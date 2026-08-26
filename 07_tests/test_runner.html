@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>בדיקות מנוע טיוב והאחדה - Master Reconciliation Engine Test Runner</title>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600;700;800&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --accent: #38bdf8;
+      --success: #10b981;
+      --error: #ef4444;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Assistant', sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      padding: 2rem;
+      direction: rtl;
+    }
+    .container { max-width: 900px; margin: 0 auto; }
+    header {
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    h1 { font-size: 1.8rem; font-weight: 800; color: var(--accent); }
+    .status-badge {
+      padding: 0.5rem 1.2rem;
+      border-radius: 9999px;
+      font-weight: 700;
+      font-size: 1.1rem;
+    }
+    .status-pass { background: rgba(16, 185, 129, 0.2); color: var(--success); border: 1px solid var(--success); }
+    .status-fail { background: rgba(239, 68, 68, 0.2); color: var(--error); border: 1px solid var(--error); }
+    .stats-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+      display: flex;
+      gap: 2rem;
+    }
+    .stat-item { flex: 1; text-align: center; }
+    .stat-num { font-size: 2.2rem; font-weight: 800; font-family: 'JetBrains Mono', monospace; }
+    .stat-lbl { color: var(--text-muted); font-size: 0.95rem; margin-top: 0.25rem; }
+    .test-list { display: flex; flex-direction: column; gap: 0.75rem; }
+    .test-card {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      transition: all 0.2s;
+    }
+    .test-card:hover { border-color: var(--accent); }
+    .test-name { font-weight: 600; font-size: 1.05rem; }
+    .test-status {
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: 700;
+      padding: 0.25rem 0.75rem;
+      border-radius: 6px;
+      font-size: 0.85rem;
+    }
+    .badge-pass { background: rgba(16, 185, 129, 0.15); color: var(--success); }
+    .badge-fail { background: rgba(239, 68, 68, 0.15); color: var(--error); }
+    .btn-run {
+      background: var(--accent);
+      color: #0f172a;
+      border: none;
+      font-family: 'Assistant', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      padding: 0.6rem 1.5rem;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>דוח בדיקות מנוע טיוב והאחדה</h1>
+        <p style="color: var(--text-muted); margin-top: 0.25rem;">אימות אוטומטי של כללי נרמול, טלפונים, מיילים, התאמות, סתירות ומיזוג Master</p>
+      </div>
+      <button class="btn-run" onclick="runTests()">הפעל בדיקות מחדש ↺</button>
+    </header>
+
+    <div class="stats-card">
+      <div class="stat-item">
+        <div class="stat-num" id="total-tests" style="color: var(--text);">--</div>
+        <div class="stat-lbl">סה"כ בדיקות</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" id="passed-tests" style="color: var(--success);">--</div>
+        <div class="stat-lbl">עברו בהצלחה</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" id="failed-tests" style="color: var(--error);">--</div>
+        <div class="stat-lbl">נכשלו</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num" id="suite-status">--</div>
+        <div class="stat-lbl">סטטוס סופי</div>
+      </div>
+    </div>
+
+    <div class="test-list" id="test-results">
+      <div style="text-align: center; color: var(--text-muted); padding: 2rem;">טוען ומריץ בדיקות...</div>
+    </div>
+  </div>
+
+  <!-- Load Modules -->
+  <script src="../04_app/audit_logger.js"></script>
+  <script src="../04_app/cleaner.js"></script>
+  <script src="../04_app/normalizer.js"></script>
+  <script src="../04_app/matcher.js"></script>
+  <script src="../04_app/conflict_resolver.js"></script>
+  <script src="../04_app/merger.js"></script>
+  <script src="../04_app/quality_engine.js"></script>
+  <script src="test_suite.js"></script>
+
+  <script>
+    async function loadJson(url) {
+      const res = await fetch(url);
+      return await res.json();
+    }
+
+    async function runTests() {
+      try {
+        const [authorities, roles, field_aliases, cleansing_rules, matching_rules, source_priority, quality_score_rules, fixtures] = await Promise.all([
+          loadJson('../03_dictionaries/dictionary_authorities.json'),
+          loadJson('../03_dictionaries/dictionary_roles.json'),
+          loadJson('../03_dictionaries/field_aliases.json'),
+          loadJson('../03_dictionaries/cleansing_rules.json'),
+          loadJson('../03_dictionaries/matching_rules.json'),
+          loadJson('../03_dictionaries/source_priority.json'),
+          loadJson('../03_dictionaries/quality_score_rules.json'),
+          loadJson('synthetic_fixtures.json')
+        ]);
+
+        const dictionaries = {
+          authorities,
+          roles,
+          field_aliases,
+          cleansing_rules,
+          matching_rules,
+          source_priority,
+          quality_score_rules
+        };
+
+        const suite = new TestSuite();
+        const outcome = await suite.runAllTests(dictionaries, fixtures);
+
+        document.getElementById('total-tests').textContent = outcome.total;
+        document.getElementById('passed-tests').textContent = outcome.passed;
+        document.getElementById('failed-tests').textContent = outcome.failed;
+
+        const statusEl = document.getElementById('suite-status');
+        if (outcome.isSuccess) {
+          statusEl.textContent = '100% תקין';
+          statusEl.style.color = 'var(--success)';
+        } else {
+          statusEl.textContent = `${outcome.failed} שגיאות`;
+          statusEl.style.color = 'var(--error)';
+        }
+
+        const listEl = document.getElementById('test-results');
+        listEl.innerHTML = '';
+        outcome.results.forEach(r => {
+          const card = document.createElement('div');
+          card.className = 'test-card';
+          card.innerHTML = `
+            <div class="test-name">${r.name}</div>
+            <div class="test-status ${r.status === 'PASS' ? 'badge-pass' : 'badge-fail'}">
+              ${r.status === 'PASS' ? '✓ עבר' : '✗ נכשל'}
+            </div>
+          `;
+          listEl.appendChild(card);
+        });
+      } catch (err) {
+        console.error('Error running test suite:', err);
+        document.getElementById('test-results').innerHTML = `<div style="color: var(--error); padding: 2rem;">שגיאה בטעינת הבדיקות: ${err.message}</div>`;
+      }
+    }
+
+    window.addEventListener('DOMContentLoaded', runTests);
+  </script>
+</body>
+</html>

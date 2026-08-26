@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>מערכת טיוב והאחדת רשימות - איגוד מנהלי אגפי ומחלקות חינוך</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- App Header -->
+  <header class="app-header">
+    <div class="header-inner">
+      <div class="brand-section">
+        <div class="logo-badge">אח</div>
+        <div class="brand-titles">
+          <h1>מערכת טיוב והאחדת רשימות (Master Reconciliation)</h1>
+          <p>איגוד מנהלי אגפי ומחלקות החינוך ברשויות המקומיות בישראל</p>
+        </div>
+      </div>
+      <div class="header-meta">
+        <span class="run-badge" id="app-run-id">RUN_2026_08_18_001</span>
+        <div class="health-gauge-pill" id="header-health-pill">
+          <span>מדד איכות נתונים:</span>
+          <span id="header-health-val">--</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- 7 Steps Navigation Bar -->
+  <nav class="tabs-nav-container">
+    <ul class="tabs-nav">
+      <li>
+        <button class="tab-btn active" data-tab="tab-1">
+          <span class="tab-step-num">1</span>
+          <span>טעינת מקורות</span>
+        </button>
+      </li>
+      <li>
+        <button class="tab-btn" data-tab="tab-2">
+          <span class="tab-step-num">2</span>
+          <span>מיפוי שדות</span>
+        </button>
+      </li>
+      <li>
+        <button class="tab-btn" data-tab="tab-3">
+          <span class="tab-step-num">3</span>
+          <span>ניקוי ונרמול</span>
+        </button>
+      </li>
+      <li>
+        <button class="tab-btn" data-tab="tab-4">
+          <span class="tab-step-num">4</span>
+          <span>התאמות בין רשימות</span>
+        </button>
+      </li>
+      <li>
+        <button class="tab-btn" data-tab="tab-5">
+          <span class="tab-step-num">5</span>
+          <span>סתירות והכרעות</span>
+          <span class="tab-badge" id="badge-conflicts" style="display: none;">0</span>
+        </button>
+      </li>
+      <li>
+        <button class="tab-btn" data-tab="tab-6">
+          <span class="tab-step-num">6</span>
+          <span>Master Preview & דשבורד</span>
+        </button>
+      </li>
+      <li>
+        <button class="tab-btn" data-tab="tab-7">
+          <span class="tab-step-num">7</span>
+          <span>ייצוא תוצרים ודוחות</span>
+        </button>
+      </li>
+    </ul>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="main-container">
+
+    <!-- ==================== TAB 1: SOURCE INGESTION ==================== -->
+    <section id="tab-1" class="tab-pane active">
+      <div class="section-header">
+        <div class="section-titles">
+          <h2>שלב 1: טעינת מקורות מידע ובדיקת מבנה (Structural QC)</h2>
+          <p>העלה עד שלושה קובצי מקור (CSV / XLSX / XLS). המערכת תבדוק קידוד, שורות כפולות ועמודות כפולות.</p>
+        </div>
+        <div style="display: flex; gap: 0.75rem;">
+          <button class="btn btn-secondary" onclick="app.loadSampleSmooveFile()">
+            📂 טען קובץ מקור סמוב (2,038 חברים)
+          </button>
+          <button class="btn btn-primary" onclick="app.runPipelineFromTab1()">
+            המשך לשלב 2: מיפוי שדות ➔
+          </button>
+        </div>
+      </div>
+
+      <div class="grid-3">
+        <!-- Source A Card -->
+        <div class="card source-card" id="source-card-A">
+          <div class="source-card-header">
+            <span class="source-tag">מקור A (עדיפות עליונה)</span>
+            <span class="badge badge-info" id="status-source-A">ממתין לקובץ</span>
+          </div>
+          <div class="form-group">
+            <label style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted);">כינוי המקור:</label>
+            <input type="text" id="name-source-A" value="רשימת האיגוד" class="search-input" style="width: 100%; margin-top: 0.25rem;">
+          </div>
+          <div class="dropzone" id="dropzone-A" onclick="document.getElementById('file-input-A').click()">
+            <div class="dropzone-icon">📥</div>
+            <p>לחץ לבחירת קובץ או גרור לכאן</p>
+            <span>תומך ב-XLSX, XLS, CSV</span>
+            <input type="file" id="file-input-A" style="display: none;" accept=".csv, .xlsx, .xls">
+          </div>
+          <div class="source-stats" id="stats-source-A" style="display: none;">
+            <div>שורות: <strong id="rows-cnt-A">0</strong></div>
+            <div>עמודות: <strong id="cols-cnt-A">0</strong></div>
+            <div>ציון תקינות: <strong id="qc-score-A">100%</strong></div>
+          </div>
+        </div>
+
+        <!-- Source B Card -->
+        <div class="card source-card" id="source-card-B">
+          <div class="source-card-header">
+            <span class="source-tag">מקור B (עדיפות שנייה)</span>
+            <span class="badge badge-info" id="status-source-B">ממתין לקובץ</span>
+          </div>
+          <div class="form-group">
+            <label style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted);">כינוי המקור:</label>
+            <input type="text" id="name-source-B" value="משרד החינוך / גוף שותף" class="search-input" style="width: 100%; margin-top: 0.25rem;">
+          </div>
+          <div class="dropzone" id="dropzone-B" onclick="document.getElementById('file-input-B').click()">
+            <div class="dropzone-icon">📥</div>
+            <p>לחץ לבחירת קובץ או גרור לכאן</p>
+            <span>תומך ב-XLSX, XLS, CSV</span>
+            <input type="file" id="file-input-B" style="display: none;" accept=".csv, .xlsx, .xls">
+          </div>
+          <div class="source-stats" id="stats-source-B" style="display: none;">
+            <div>שורות: <strong id="rows-cnt-B">0</strong></div>
+            <div>עמודות: <strong id="cols-cnt-B">0</strong></div>
+            <div>ציון תקינות: <strong id="qc-score-B">100%</strong></div>
+          </div>
+        </div>
+
+        <!-- Source C Card -->
+        <div class="card source-card" id="source-card-C">
+          <div class="source-card-header">
+            <span class="source-tag">מקור C (עדיפות שלישית)</span>
+            <span class="badge badge-info" id="status-source-C">ממתין לקובץ</span>
+          </div>
+          <div class="form-group">
+            <label style="font-size: 0.85rem; font-weight: 700; color: var(--text-muted);">כינוי המקור:</label>
+            <input type="text" id="name-source-C" value="מערכת Smoove" class="search-input" style="width: 100%; margin-top: 0.25rem;">
+          </div>
+          <div class="dropzone" id="dropzone-C" onclick="document.getElementById('file-input-C').click()">
+            <div class="dropzone-icon">📥</div>
+            <p>לחץ לבחירת קובץ או גרור לכאן</p>
+            <span>תומך ב-XLSX, XLS, CSV</span>
+            <input type="file" id="file-input-C" style="display: none;" accept=".csv, .xlsx, .xls">
+          </div>
+          <div class="source-stats" id="stats-source-C" style="display: none;">
+            <div>שורות: <strong id="rows-cnt-C">0</strong></div>
+            <div>עמודות: <strong id="cols-cnt-C">0</strong></div>
+            <div>ציון תקינות: <strong id="qc-score-C">100%</strong></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- QC Overview Table -->
+      <div style="margin-top: 2rem;">
+        <h3 style="font-size: 1.1rem; margin-bottom: 0.75rem;">דוח בדיקת איכות ומבנה קבצים</h3>
+        <div class="table-container">
+          <table class="data-table" id="qc-summary-table">
+            <thead>
+              <tr>
+                <th>מקור</th>
+                <th>שם קובץ</th>
+                <th>שורות</th>
+                <th>עמודות</th>
+                <th>עמודות כפולות בשם</th>
+                <th>ללא פרטי קשר</th>
+                <th>ללא רשות</th>
+                <th>הערכת איכות</th>
+              </tr>
+            </thead>
+            <tbody id="qc-table-body">
+              <tr>
+                <td colspan="8" style="text-align: center; color: var(--text-muted); padding: 2rem;">טרם נטענו קבצים. אנא גרור קובץ או לחץ על טעינת קובץ סמוב.</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 2: FIELD MAPPING ==================== -->
+    <section id="tab-2" class="tab-pane">
+      <div class="section-header">
+        <div class="section-titles">
+          <h2>שלב 2: מיפוי שדות תקני (Master Schema Mapping)</h2>
+          <p>וודא את התאמת עמודות המקור למבנה ה-Master האחיד. המערכת זיהתה אוטומטית התאמות מומלצות.</p>
+        </div>
+        <div style="display: flex; gap: 0.75rem;">
+          <button class="btn btn-secondary" onclick="app.goToTab('tab-1')">➔ חזרה לשלב 1</button>
+          <button class="btn btn-primary" onclick="app.runPipelineFromTab2()">אשר מיפוי והמשך לניקוי ונרמול ➔</button>
+        </div>
+      </div>
+
+      <div class="table-container">
+        <table class="data-table" id="mapping-table">
+          <thead>
+            <tr>
+              <th>שדה תקני ב-Master</th>
+              <th>תיאור השדה</th>
+              <th>עמודה במקור A</th>
+              <th>עמודה במקור B</th>
+              <th>עמודה במקור C</th>
+            </tr>
+          </thead>
+          <tbody id="mapping-table-body">
+            <!-- Populated via JavaScript -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 3: CLEANSING & NORMALIZATION ==================== -->
+    <section id="tab-3" class="tab-pane">
+      <div class="section-header">
+        <div class="section-titles">
+          <h2>שלב 3: תוצאות ניקוי ונרמול (Cleansing & Normalization)</h2>
+          <p>צפה בכל שדות המקור שנוקו: שחזור אפס מוביל בטלפונים, נרמול מיילים, האחדת רשויות ותפקידים.</p>
+        </div>
+        <div style="display: flex; gap: 0.75rem;">
+          <button class="btn btn-secondary" onclick="app.goToTab('tab-2')">➔ חזרה לשלב 2</button>
+          <button class="btn btn-primary" onclick="app.runPipelineFromTab3()">המשך להשוואת רשימות והתאמות ➔</button>
+        </div>
+      </div>
+
+      <!-- KPI Summary Cards -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-title">טלפונים שתוקנו (אפס מוביל/רווחים)</div>
+          <div class="kpi-value" id="kpi-phones-fixed" style="color: var(--primary);">0</div>
+          <div class="kpi-sub">הומרו לפורמט 05XXXXXXXX</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">דוא"לים שנורמלו</div>
+          <div class="kpi-value" id="kpi-emails-fixed" style="color: var(--success);">0</div>
+          <div class="kpi-sub">אותיות קטנות, רווחים ותיקון סיומות</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">רשויות מקומיות שתוקננו</div>
+          <div class="kpi-value" id="kpi-auth-fixed" style="color: var(--info);">0</div>
+          <div class="kpi-sub">הותאמו למילון הרשויות והמחוזות</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">תפקידים שאוחדו לאשכולות</div>
+          <div class="kpi-value" id="kpi-roles-fixed" style="color: var(--warning-dark);">0</div>
+          <div class="kpi-sub">סווגו מתוך מילון התפקידים</div>
+        </div>
+      </div>
+
+      <!-- Cleansed Data Grid -->
+      <div class="filter-bar">
+        <input type="text" id="cleanse-search" class="search-input" placeholder="חפש לפי שם, רשות, טלפון או מייל..." oninput="app.renderCleanseTable()">
+        <select id="cleanse-filter" class="select-filter" onchange="app.renderCleanseTable()">
+          <option value="ALL">הצג את כל הרשומות</option>
+          <option value="FIXED_PHONE">הצג רק טלפונים שתוקנו</option>
+          <option value="FIXED_EMAIL">הצג רק דוא"לים שנורמלו</option>
+          <option value="UNRECOGNIZED_ROLE">תפקיד לא מזוהה</option>
+          <option value="MISSING_CONTACT">ללא פרטי קשר</option>
+        </select>
+      </div>
+
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>מזהה מקור</th>
+              <th>שם מלא מנוקה</th>
+              <th>רשות תקנית</th>
+              <th>מחוז</th>
+              <th>תפקיד תקני</th>
+              <th>טלפון נייד תקני</th>
+              <th>דוא"ל תקני</th>
+              <th>סטטוס ניקוי</th>
+            </tr>
+          </thead>
+          <tbody id="cleanse-table-body">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 4: MATCHING GROUPS ==================== -->
+    <section id="tab-4" class="tab-pane">
+      <div class="section-header">
+        <div class="section-titles">
+          <h2>שלב 4: התאמות אנשים בין רשימות (Matching Groups & Record Linkage)</h2>
+          <p>השוואה רב-שכבתית (טלפון, מייל, שם מלא, רשות ותפקיד) לאיתור רשומות השייכות לאותו אדם.</p>
+        </div>
+        <div style="display: flex; gap: 0.75rem;">
+          <button class="btn btn-secondary" onclick="app.goToTab('tab-3')">➔ חזרה לשלב 3</button>
+          <button class="btn btn-primary" onclick="app.goToTab('tab-5')">עבור לבדיקת סתירות והכרעות ➔</button>
+        </div>
+      </div>
+
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-title">סה"כ אנשים ייחודיים שזוהו</div>
+          <div class="kpi-value" id="kpi-unique-people" style="color: var(--primary);">0</div>
+          <div class="kpi-sub">מתוך כלל שורות המקור</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">התאמות ודאיות (ציון 90–100)</div>
+          <div class="kpi-value" id="kpi-high-matches" style="color: var(--success);">0</div>
+          <div class="kpi-sub">התאמה רב-אותות מוכחת למיזוג</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">התאמות בינוניות לבדיקה (65–89)</div>
+          <div class="kpi-value" id="kpi-med-matches" style="color: var(--warning);">0</div>
+          <div class="kpi-sub">מחייבות בדיקה אנושית במסך סתירות</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">חברים ייחודיים במקור בודד</div>
+          <div class="kpi-value" id="kpi-single-matches" style="color: var(--info);">0</div>
+          <div class="kpi-sub">נשמרים ללא מחיקה כרשומת Master</div>
+        </div>
+      </div>
+
+      <div class="filter-bar">
+        <input type="text" id="match-search" class="search-input" placeholder="חפש קבוצת התאמה..." oninput="app.renderMatchingTable()">
+        <select id="match-filter" class="select-filter" onchange="app.renderMatchingTable()">
+          <option value="ALL">כל הקבוצות (מותאמות וייחודיות)</option>
+          <option value="MULTI">רק קבוצות מרובות רשומות (כפילויות/חפיפות)</option>
+          <option value="HIGH">התאמה ודאית (90-100)</option>
+          <option value="MEDIUM">התאמה בינונית לבדיקה (65-89)</option>
+          <option value="CONFLICTS">קבוצות עם סתירות</option>
+        </select>
+      </div>
+
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>מזהה קבוצה</th>
+              <th>שם מלא</th>
+              <th>רשות מקומית</th>
+              <th>מקורות תואמים</th>
+              <th>כמות רשומות</th>
+              <th>ציון התאמה</th>
+              <th>רמת ביטחון</th>
+              <th>סתירות</th>
+              <th>ראיות התאמה</th>
+            </tr>
+          </thead>
+          <tbody id="matching-table-body">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 5: CONFLICT RESOLUTION ==================== -->
+    <section id="tab-5" class="tab-pane">
+      <div class="section-header">
+        <div class="section-titles">
+          <h2>שלב 5: סתירות והכרעות (Conflict Resolution Hub)</h2>
+          <p>הכרעה מבוקרת בסתירות מהותיות (רשות שונה, תפקיד שונה, טלפונים שונים). כל בחירה מתועדת ב-Audit.</p>
+        </div>
+        <div style="display: flex; gap: 0.75rem;">
+          <button class="btn btn-secondary" onclick="app.goToTab('tab-4')">➔ חזרה לשלב 4</button>
+          <button class="btn btn-primary" onclick="app.runPipelineFromTab5()">אשר הכרעות והפק Master Preview ➔</button>
+        </div>
+      </div>
+
+      <div id="conflicts-container">
+        <!-- Rendered dynamically via JS -->
+      </div>
+    </section>
+
+    <!-- ==================== TAB 6: MASTER PREVIEW & DASHBOARD ==================== -->
+    <section id="tab-6" class="tab-pane">
+      <div class="section-header">
+        <div class="section-titles">
+          <h2>שלב 6: לוח מחוונים וסקירת רשימת Master סופית</h2>
+          <p>רשימת ה-Master המאוחדת והתקנית. כל אדם מופיע פעם אחת בלבד עם מלוא פרטי הקשר והשיוכים.</p>
+        </div>
+        <div style="display: flex; gap: 0.75rem;">
+          <button class="btn btn-secondary" onclick="app.goToTab('tab-5')">➔ חזרה לשלב 5</button>
+          <button class="btn btn-success" onclick="app.goToTab('tab-7')">המשך לייצוא 4 תוצרי החובה ➔</button>
+        </div>
+      </div>
+
+      <!-- KPI Executive Metrics -->
+      <div class="kpi-grid">
+        <div class="kpi-card">
+          <div class="kpi-title">סה"כ רשומות Master תקניות</div>
+          <div class="kpi-value" id="kpi-master-total" style="color: var(--primary);">0</div>
+          <div class="kpi-sub">ללא כפילויות, מוכנות לייבוא</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">רשומות מלאות ב-100%</div>
+          <div class="kpi-value" id="kpi-master-complete" style="color: var(--success);">0</div>
+          <div class="kpi-sub">כל 5 שדות הליבה קיימים ותקינים</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">רשומות הדורשות השלמה/טיפול</div>
+          <div class="kpi-value" id="kpi-master-review" style="color: var(--warning);">0</div>
+          <div class="kpi-sub">חסר פרט קשר או שיוך רשות</div>
+        </div>
+        <div class="kpi-card">
+          <div class="kpi-title">ציון בריאות נתונים ממוצע</div>
+          <div class="kpi-value" id="kpi-master-score" style="color: var(--info);">--</div>
+          <div class="kpi-sub">מדד איכות משוקלל (0-100)</div>
+        </div>
+      </div>
+
+      <!-- Master Grid Filters -->
+      <div class="filter-bar">
+        <input type="text" id="master-search" class="search-input" placeholder="חפש לפי מזהה, שם, רשות, מחוז, תפקיד, נייד או דוא\"ל..." oninput="app.renderMasterTable()">
+        <select id="master-status-filter" class="select-filter" onchange="app.renderMasterTable()">
+          <option value="ALL">כל סטטוסי האיכות</option>
+          <option value="מלאה">מלאה (100)</option>
+          <option value="כמעט מלאה">כמעט מלאה (80-99)</option>
+          <option value="חסרים נתונים">חסרים נתונים (60-79)</option>
+          <option value="דורשת טיפול">דורשת טיפול (<60)</option>
+          <option value="REVIEW_ONLY">רק רשומות שדורשות בדיקה</option>
+        </select>
+      </div>
+
+      <div class="table-container">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>מזהה Master</th>
+              <th>שם מלא</th>
+              <th>רשות מקומית תקנית</th>
+              <th>מחוז</th>
+              <th>תפקיד תקני</th>
+              <th>טלפון נייד</th>
+              <th>דוא"ל ראשי</th>
+              <th>מקורות</th>
+              <th>ציון איכות</th>
+              <th>סטטוס איכות</th>
+              <th>דורש בדיקה</th>
+            </tr>
+          </thead>
+          <tbody id="master-table-body">
+            <!-- Populated via JS -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ==================== TAB 7: EXPORT HUB ==================== -->
+    <section id="tab-7" class="tab-pane">
+      <div class="section-header">
+        <div class="section-titles">
+          <h2>שלב 7: מרכז ייצוא ארבעת תוצרי החובה ודוחות הביקורת</h2>
+          <p>הורד את קובצי ה-Excel וה-CSV הסופיים המאומתים (UTF-8 BOM מותאם לעברית מלאה).</p>
+        </div>
+      </div>
+
+      <div class="grid-2" style="margin-bottom: 2rem;">
+        <!-- Deliverable 1 -->
+        <div class="card" style="border-right: 4px solid var(--success);">
+          <h3 style="font-size: 1.2rem; color: var(--success-dark); margin-bottom: 0.5rem;">1. MASTER_FINAL (רשימת העל המאוחדת)</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+            רשימת ה-Master המלאה, הנקייה והמטויבת לפי ה-Schema המלא. כוללת את כל שיוכי רשימות התפוצה וההרשאות.
+          </p>
+          <div style="display: flex; gap: 0.75rem;">
+            <button class="btn btn-success" onclick="app.exportMasterExcel()">📥 הורד קובץ MASTER_FINAL.xlsx</button>
+            <button class="btn btn-secondary" onclick="app.exportMasterCsv()">📥 הורד CSV (UTF-8 BOM)</button>
+          </div>
+        </div>
+
+        <!-- Deliverable 2 -->
+        <div class="card" style="border-right: 4px solid var(--warning);">
+          <h3 style="font-size: 1.2rem; color: var(--warning-dark); margin-bottom: 0.5rem;">2. REVIEW_REQUIRED (דוח חריגים לבדיקה)</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+            כל הרשומות שבהן אותרו סתירות בין מקורות, ציוני התאמה בינוניים או נתונים חסרים הדורשים מעקב אנושי.
+          </p>
+          <button class="btn btn-secondary" onclick="app.exportReviewExcel()">📥 הורד REVIEW_REQUIRED.xlsx</button>
+        </div>
+
+        <!-- Deliverable 3 -->
+        <div class="card" style="border-right: 4px solid var(--primary);">
+          <h3 style="font-size: 1.2rem; color: var(--primary-dark); margin-bottom: 0.5rem;">3. MATCHED_DUPLICATES (דוח כפילויות והתאמות)</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+            פירוט מלא של כל קבוצות הרשומות שהותאמו בין המקורות, ציוני ההתאמה והראיות שהובילו למיזוג.
+          </p>
+          <button class="btn btn-secondary" onclick="app.exportDuplicatesExcel()">📥 הורד MATCHED_DUPLICATES.xlsx</button>
+        </div>
+
+        <!-- Deliverable 4 -->
+        <div class="card" style="border-right: 4px solid var(--text-main);">
+          <h3 style="font-size: 1.2rem; color: var(--text-main); margin-bottom: 0.5rem;">4. AUDIT_LOG (יומן שינויים מלא)</h3>
+          <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 1.25rem;">
+            תיעוד קפדני של כל שדה ששונה: ערך מקורי, ערך חדש, חוק שהופעל, מקור המידע וחותמת זמן.
+          </p>
+          <button class="btn btn-secondary" onclick="app.exportAuditExcel()">📥 הורד AUDIT_LOG.xlsx</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Libraries -->
+  <script src="libs/papaparse.min.js"></script>
+  <script src="libs/xlsx.full.min.js"></script>
+
+  <!-- Application Modules -->
+  <script src="audit_logger.js"></script>
+  <script src="cleaner.js"></script>
+  <script src="normalizer.js"></script>
+  <script src="parser.js"></script>
+  <script src="matcher.js"></script>
+  <script src="conflict_resolver.js"></script>
+  <script src="merger.js"></script>
+  <script src="quality_engine.js"></script>
+  <script src="exporter.js"></script>
+  <script src="ui.js"></script>
+
+</body>
+</html>

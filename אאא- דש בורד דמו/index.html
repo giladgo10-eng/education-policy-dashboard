@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>דשבורד מצרפי – איגוד מנהלי החינוך (גרסת הדגמה ציבורית)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="libs/xlsx.full.min.js"></script>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- Top Header -->
+    <header class="top-header">
+      <div class="header-content">
+        <div class="brand">
+          <div class="brand-badge">גרסת הדגמה ציבורית V1.0 (נתונים מצרפיים בלבד – Zero PII)</div>
+          <h1>דשבורד מצרפי – תמונת מצב ואיכות מאגר הנתונים</h1>
+          <p class="subtitle">איגוד מנהלי אגפי ומחלקות החינוך ברשויות המקומיות בישראל</p>
+        </div>
+        <div class="header-actions">
+          <button id="btnExportAggregatedXlsx" class="btn btn-primary">
+            <span>📥 ייצא דוח סטטיסטי מצרפי (Excel)</span>
+          </button>
+          <button id="btnExportAggregatedCsv" class="btn btn-outline">
+            <span>📄 ייצא כ-CSV</span>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Main Container -->
+    <main class="main-content">
+      
+      <!-- Section 1: Professional Affiliation Breakdown -->
+      <div class="section-title">
+        <h2>🏛️ סיווג שיוך מקצועי (Professional Affiliation)</h2>
+        <span class="section-sub">סיווג המבוסס על שיוך מוניציפלי וטקסונומיית תפקידי חינוך (סטטוס חברות רשמי באיגוד: UNKNOWN בהיעדר שדה מקור מאומת)</span>
+      </div>
+
+      <section class="affiliation-grid">
+        <div class="affil-card affil-member" data-stat="affil_edu">
+          <div class="affil-icon">🎓</div>
+          <div class="affil-details">
+            <span class="affil-title">מנהל/ת או בעל/ת תפקיד חינוך רלוונטי/ת</span>
+            <span class="affil-value" id="affilMemberCount">1,178</span>
+            <span class="affil-sub">58.8% מכלל המאגר</span>
+          </div>
+        </div>
+
+        <div class="affil-card affil-contact" data-stat="affil_other">
+          <div class="affil-icon">👤</div>
+          <div class="affil-details">
+            <span class="affil-title">איש קשר מקצועי אחר</span>
+            <span class="affil-value" id="affilContactCount">627</span>
+            <span class="affil-sub">31.3% אנשי קשר ברשויות ללא תפקיד חינוך מוגדר</span>
+          </div>
+        </div>
+
+        <div class="affil-card affil-external" data-stat="affil_ext">
+          <div class="affil-icon">🏢</div>
+          <div class="affil-details">
+            <span class="affil-title">גורם חיצוני</span>
+            <span class="affil-value" id="affilExternalCount">&lt;5</span>
+            <span class="affil-sub">0.1% גופים חיצוניים (משכ"ל, עיתונות, ספקים)</span>
+          </div>
+        </div>
+
+        <div class="affil-card affil-unknown" data-stat="affil_unk">
+          <div class="affil-icon">❓</div>
+          <div class="affil-details">
+            <span class="affil-title">לא ידוע</span>
+            <span class="affil-value" id="affilUnknownCount">195</span>
+            <span class="affil-sub">9.7% רשומות ללא שיוך רשות או תפקיד מספק</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Core KPI Grid -->
+      <div class="section-title" style="margin-top: 24px;">
+        <h2>📊 מדדי איכות נתונים מול הרשאות תקשורת (הפרדה לוגית מלאה)</h2>
+        <span class="section-sub">קטגוריות פעולה ראשיות הן בלעדיות, בעוד Flags ו־KPI עשויים לחפוף.</span>
+      </div>
+
+      <section class="kpi-grid">
+        <div class="kpi-card" data-stat="total">
+          <div class="kpi-icon">👥</div>
+          <div class="kpi-details">
+            <span class="kpi-title">סה"כ רשומות במאגר</span>
+            <span class="kpi-value" id="kpiTotalRecords">2,003</span>
+            <span class="kpi-sub">100% מכלל המאגר המטויב</span>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-success" data-stat="ready">
+          <div class="kpi-icon">⭐</div>
+          <div class="kpi-details">
+            <span class="kpi-title">רשומות באיכות גבוהה</span>
+            <span class="kpi-value" id="kpiReadyRecords">1,175</span>
+            <span class="kpi-sub" id="kpiReadyPct">58.7%</span>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-success" data-stat="comm_allowed">
+          <div class="kpi-icon">📬</div>
+          <div class="kpi-details">
+            <span class="kpi-title">מורשים לדיוור (הסכמה)</span>
+            <span class="kpi-value" id="kpiCommAllowed">1,402</span>
+            <span class="kpi-sub" id="kpiCommAllowedPct">70.0%</span>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-dark" data-stat="comm_blocked">
+          <div class="kpi-icon">🚫</div>
+          <div class="kpi-details">
+            <span class="kpi-title">חסומים לדיוור (הסרה/סירוב)</span>
+            <span class="kpi-value" id="kpiUnsubRecords">601</span>
+            <span class="kpi-sub">30.0% (הוחרגו מתור הטיוב)</span>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-info" data-stat="mobile">
+          <div class="kpi-icon">📱</div>
+          <div class="kpi-details">
+            <span class="kpi-title">בעלי טלפון נייד תקין</span>
+            <span class="kpi-value" id="kpiMobileRecords">1,048</span>
+            <span class="kpi-sub" id="kpiMobilePct">52.3%</span>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-info" data-stat="email">
+          <div class="kpi-icon">✉️</div>
+          <div class="kpi-details">
+            <span class="kpi-title">בעלי דוא"ל תקין</span>
+            <span class="kpi-value" id="kpiEmailRecords">900</span>
+            <span class="kpi-sub" id="kpiEmailPct">44.9%</span>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-warning" data-stat="no_contact">
+          <div class="kpi-icon">📵</div>
+          <div class="kpi-details">
+            <span class="kpi-title">ללא שום פרט קשר</span>
+            <span class="kpi-value" id="kpiNoContactRecords">9</span>
+            <span class="kpi-sub">0.4% רשומות פעילות</span>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-danger" data-stat="unresolved">
+          <div class="kpi-icon">⚠️</div>
+          <div class="kpi-details">
+            <span class="kpi-title">רשומות UNRESOLVED</span>
+            <span class="kpi-value" id="kpiUnresolvedRecords">22</span>
+            <span class="kpi-sub">1.1% שמורות לבירור עתידי</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Aggregated Interactive Tables & Distributions -->
+      <section class="tabs-section">
+        <div class="tabs-header">
+          <button class="tab-btn active" data-tab="tab-categories">🏷️ קטגוריות פעולה (A–I)</button>
+          <button class="tab-btn" data-tab="tab-priorities">⚡ סדרי עדיפויות לטיוב (Priorities)</button>
+          <button class="tab-btn" data-tab="tab-issues">🚨 5 הבעיות המרכזיות (Top Issues)</button>
+          <button class="tab-btn" data-tab="tab-authorities">🏛️ התפלגות רשויות (k ≥ 5)</button>
+          <button class="tab-btn" data-tab="tab-roles">🎓 התפלגות תפקידים (k ≥ 5)</button>
+        </div>
+
+        <div class="tabs-body">
+          <!-- Tab 1: Categories -->
+          <div class="tab-content active" id="tab-categories">
+            <div class="table-title">חלוקת המאגר לפי קטגוריות פעולה בלעדיות (סך הכול = 2,003 בדיוק)</div>
+            <table class="agg-table" id="tableCategories">
+              <thead>
+                <tr>
+                  <th style="width: 80px;">קוד</th>
+                  <th>שם קטגוריית הפעולה</th>
+                  <th style="width: 140px; text-align: left;">כמות רשומות</th>
+                  <th style="width: 120px; text-align: left;">אחוז מהמאגר</th>
+                  <th style="width: 200px;">התפלגות יחסית</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyCategories"></tbody>
+            </table>
+          </div>
+
+          <!-- Tab 2: Priorities -->
+          <div class="tab-content" id="tab-priorities">
+            <div class="table-title">סדרי עדיפויות לטיוב נתונים (הוחרגו רשומות חסומות לדיוור – סך הכול = 2,003)</div>
+            <table class="agg-table" id="tablePriorities">
+              <thead>
+                <tr>
+                  <th style="width: 140px;">רמת עדיפות</th>
+                  <th style="width: 140px;">הגדרה</th>
+                  <th>מיקוד ומשמעות הטיפול</th>
+                  <th style="width: 140px; text-align: left;">כמות רשומות</th>
+                  <th style="width: 120px; text-align: left;">אחוז מהמאגר</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyPriorities"></tbody>
+            </table>
+          </div>
+
+          <!-- Tab 3: Top Issues -->
+          <div class="tab-content" id="tab-issues">
+            <div class="table-title">חמשת פערי האיכות המרכזיים במאגר הפעיל</div>
+            <table class="agg-table" id="tableIssues">
+              <thead>
+                <tr>
+                  <th style="width: 80px;">דירוג</th>
+                  <th>תיאור בעיית איכות הנתונים</th>
+                  <th style="width: 140px; text-align: left;">כמות מושפעת</th>
+                  <th style="width: 120px; text-align: left;">אחוז מהמאגר</th>
+                  <th>השפעה מבצעית</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyIssues"></tbody>
+            </table>
+          </div>
+
+          <!-- Tab 4: Authorities (k >= 5) -->
+          <div class="tab-content" id="tab-authorities">
+            <div class="table-title">התפלגות רשומות לפי רשות מקומית (קבוצות עם פחות מ-5 רשומות קובצו לשמירה על פרטיות)</div>
+            <table class="agg-table" id="tableAuthorities">
+              <thead>
+                <tr>
+                  <th>רשות מקומית תקנית</th>
+                  <th style="width: 140px; text-align: left;">כמות רשומות</th>
+                  <th style="width: 120px; text-align: left;">אחוז מהמאגר</th>
+                  <th style="width: 200px;">התפלגות יחסית</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyAuthorities"></tbody>
+            </table>
+          </div>
+
+          <!-- Tab 5: Roles (k >= 5) -->
+          <div class="tab-content" id="tab-roles">
+            <div class="table-title">התפלגות רשומות לפי אשכול תפקיד תקני (קבוצות עם פחות מ-5 רשומות קובצו לשמירה על פרטיות)</div>
+            <table class="agg-table" id="tableRoles">
+              <thead>
+                <tr>
+                  <th>אשכול תפקיד תקני</th>
+                  <th style="width: 140px; text-align: left;">כמות רשומות</th>
+                  <th style="width: 120px; text-align: left;">אחוז מהמאגר</th>
+                  <th style="width: 200px;">התפלגות יחסית</th>
+                </tr>
+              </thead>
+              <tbody id="tbodyRoles"></tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Statistical Insight Modal (Zero PII - Aggregated Only) -->
+    <div class="modal" id="statModal" role="dialog" aria-hidden="true">
+      <div class="modal-backdrop" id="modalBackdrop"></div>
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3 id="statModalTitle">תובנה סטטיסטית מצרפית</h3>
+          <button class="modal-close" id="btnModalClose">&times;</button>
+        </div>
+        <div class="modal-body" id="statModalBody"></div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" id="btnModalOk">סגור</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bottom-footer">
+      <p>גרסת הדגמה ציבורית מצרפית (Zero PII) | איגוד מנהלי אגפי ומחלקות החינוך ברשויות המקומיות | גרסה UNION_DASHBOARD_PUBLIC_DEMO_V1.0</p>
+    </footer>
+  </div>
+
+  <script src="data/aggregated_data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

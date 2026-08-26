@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>דשבורד מאגר האיגוד – Master Data Operations V1.0</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="libs/xlsx.full.min.js"></script>
+</head>
+<body>
+  <div class="dashboard-layout">
+    <!-- Top Header -->
+    <header class="top-header">
+      <div class="header-content">
+        <div class="brand">
+          <div class="brand-badge">גרסה UNION_MASTER_OPERATIONAL_V1.0 (מוקפאת ומאושרת)</div>
+          <h1>דשבורד מאגר האיגוד – ניהול ותפעול נתוני חברים</h1>
+          <p class="subtitle">איגוד מנהלי אגפי ומחלקות החינוך ברשויות המקומיות בישראל</p>
+        </div>
+        <div class="header-actions">
+          <button id="btnExportFilteredXlsx" class="btn btn-primary">
+            <span>📥 ייצא תצוגה נוכחית ל-Excel</span>
+          </button>
+          <a href="UNION_MASTER_OPERATIONAL.xlsx" download class="btn btn-outline" id="btnDownloadFullXlsx">
+            <span>📁 הורד מאגר מלא (Excel)</span>
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- Quick Action / Question Bar (One-Click Drilldowns) -->
+    <section class="quick-action-bar">
+      <div class="quick-actions-container">
+        <span class="quick-label">⚡ בחירת קבוצה לפעולה:</span>
+        <div class="quick-chips" id="quickChipsContainer">
+          <button class="chip active" data-filter="ALL">הכול (2,003)</button>
+          <button class="chip chip-success" data-filter="HIGH_QUALITY">⭐ רשומות באיכות גבוהה (<span id="chipCountHQ">0</span>)</button>
+          <button class="chip chip-primary" data-filter="AFFIL_MEMBER">🎓 בעלי תפקיד חינוך רלוונטי (<span id="chipCountMember">0</span>)</button>
+          <button class="chip chip-warning" data-filter="CAT_B">🟡 חסרי טלפון פעילים (<span id="chipCountB">0</span>)</button>
+          <button class="chip chip-warning" data-filter="CAT_C">🟠 חסרי דוא"ל פעילים (<span id="chipCountC">0</span>)</button>
+          <button class="chip chip-danger" data-filter="CAT_D">🔴 ללא שום פרט קשר (<span id="chipCountD">0</span>)</button>
+          <button class="chip chip-info" data-filter="CAT_E">🟣 תפקידים להשלמה (<span id="chipCountE">0</span>)</button>
+          <button class="chip chip-info" data-filter="CAT_F">🔵 רשויות לבירור (<span id="chipCountF">0</span>)</button>
+          <button class="chip chip-danger" data-filter="CAT_G">⚠️ UNRESOLVED (<span id="chipCountG">0</span>)</button>
+          <button class="chip chip-dark" data-filter="COMM_BLOCKED">🚫 חסומים לדיוור (<span id="chipCountH">0</span>)</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Container -->
+    <main class="main-content">
+      
+      <!-- Section 1: Professional Affiliation Status -->
+      <div class="section-title">
+        <h2>🏛️ סיווג שיוך מקצועי (Professional Affiliation)</h2>
+        <span class="section-sub">סיווג מקצועי המבוסס על שיוך מוניציפלי וטקסונומיית תפקידי חינוך (סטטוס חברות רשמי באיגוד: UNKNOWN לכל המאגר בהיעדר שדה מקור מאומת)</span>
+      </div>
+
+      <section class="affiliation-grid">
+        <div class="affil-card affil-member" data-action="AFFIL_MEMBER">
+          <div class="affil-icon">🎓</div>
+          <div class="affil-details">
+            <span class="affil-title">מנהל/ת או בעל/ת תפקיד חינוך רלוונטי/ת</span>
+            <span class="affil-value" id="affilMemberCount">0</span>
+            <span class="affil-sub">1,178 בעלי תפקיד ניהול חינוכי מוניציפלי ברשות</span>
+          </div>
+        </div>
+
+        <div class="affil-card affil-contact" data-action="AFFIL_CONTACT">
+          <div class="affil-icon">👤</div>
+          <div class="affil-details">
+            <span class="affil-title">איש קשר מקצועי אחר</span>
+            <span class="affil-value" id="affilContactCount">0</span>
+            <span class="affil-sub">627 אנשי קשר ברשות מקומית ללא תפקיד חינוך ספציפי</span>
+          </div>
+        </div>
+
+        <div class="affil-card affil-external" data-action="AFFIL_EXTERNAL">
+          <div class="affil-icon">🏢</div>
+          <div class="affil-details">
+            <span class="affil-title">גורם חיצוני</span>
+            <span class="affil-value" id="affilExternalCount">0</span>
+            <span class="affil-sub">3 גופים חיצוניים (משכ"ל, עיתונות, ספקים)</span>
+          </div>
+        </div>
+
+        <div class="affil-card affil-unknown" data-action="AFFIL_UNKNOWN">
+          <div class="affil-icon">❓</div>
+          <div class="affil-details">
+            <span class="affil-title">לא ידוע</span>
+            <span class="affil-value" id="affilUnknownCount">0</span>
+            <span class="affil-sub">195 רשומות ללא שיוך רשות או תפקיד מספק</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 2: Primary KPI Scorecards -->
+      <div class="section-title" style="margin-top: 24px;">
+        <h2>📊 איכות נתונים מול הרשאות תקשורת (הפרדה לוגית מלאה)</h2>
+        <span class="section-sub">איכות נתונים (Data Ready) מופרדת מהרשאות דיוור (Communication Consent). קטגוריות פעולה ראשיות הן בלעדיות, בעוד Flags ו־KPI עשויים לחפוף.</span>
+      </div>
+
+      <section class="kpi-grid">
+        <div class="kpi-card" data-action="ALL">
+          <div class="kpi-icon">👥</div>
+          <div class="kpi-details">
+            <span class="kpi-title">סה"כ רשומות במאגר</span>
+            <span class="kpi-value" id="kpiTotalRecords">2,003</span>
+            <span class="kpi-sub">100% ממאגר המאסטר</span>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-success" data-action="HIGH_QUALITY">
+          <div class="kpi-icon">⭐</div>
+          <div class="kpi-details">
+            <span class="kpi-title">רשומות באיכות גבוהה</span>
+            <span class="kpi-value" id="kpiReadyRecords">0</span>
+            <span class="kpi-sub" id="kpiReadyPct">0%</span>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-success" data-action="COMM_ALLOWED">
+          <div class="kpi-icon">📬</div>
+          <div class="kpi-details">
+            <span class="kpi-title">מורשים לדיוור (הסכמה)</span>
+            <span class="kpi-value" id="kpiCommAllowed">0</span>
+            <span class="kpi-sub" id="kpiCommAllowedPct">0%</span>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-dark" data-action="COMM_BLOCKED">
+          <div class="kpi-icon">🚫</div>
+          <div class="kpi-details">
+            <span class="kpi-title">חסומים לדיוור (הסרה/סירוב)</span>
+            <span class="kpi-value" id="kpiUnsubRecords">0</span>
+            <span class="kpi-sub">601 רשומות בסה"כ (הוחרגו מתור הטיוב)</span>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-info" data-action="HAS_MOBILE">
+          <div class="kpi-icon">📱</div>
+          <div class="kpi-details">
+            <span class="kpi-title">בעלי טלפון נייד תקין</span>
+            <span class="kpi-value" id="kpiMobileRecords">0</span>
+            <span class="kpi-sub" id="kpiMobilePct">0%</span>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-info" data-action="HAS_EMAIL">
+          <div class="kpi-icon">✉️</div>
+          <div class="kpi-details">
+            <span class="kpi-title">בעלי דוא"ל תקין</span>
+            <span class="kpi-value" id="kpiEmailRecords">0</span>
+            <span class="kpi-sub" id="kpiEmailPct">0%</span>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-warning" data-action="CAT_D">
+          <div class="kpi-icon">📵</div>
+          <div class="kpi-details">
+            <span class="kpi-title">ללא שום פרט קשר</span>
+            <span class="kpi-value" id="kpiNoContactRecords">0</span>
+            <span class="kpi-sub">דחיפות גבוהה להשלמה (9 פעילות)</span>
+          </div>
+        </div>
+
+        <div class="kpi-card kpi-danger" data-action="CAT_G">
+          <div class="kpi-icon">⚠️</div>
+          <div class="kpi-details">
+            <span class="kpi-title">רשומות UNRESOLVED</span>
+            <span class="kpi-value" id="kpiUnresolvedRecords">22</span>
+            <span class="kpi-sub">שמורות לבירור עתידי</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- Operational Guidance: TOP 5 ISSUES & ACTION PRIORITIES -->
+      <section class="guidance-section">
+        <div class="guidance-card">
+          <div class="card-header">
+            <h3>🚨 5 הבעיות המרכזיות במאגר הפעיל (Top 5 Issues)</h3>
+          </div>
+          <div class="top-issues-list" id="topIssuesContainer">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+
+        <div class="guidance-card">
+          <div class="card-header">
+            <h3>📋 סדרי עדיפויות לטיוב נתונים (ללא רשומות חסומות)</h3>
+          </div>
+          <div class="priority-list" id="priorityQueueContainer">
+            <!-- Populated via JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- Interactive Filters & Search Hub -->
+      <section class="filter-hub">
+        <div class="search-bar">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="searchInput" placeholder="חיפוש חופשי מהיר (שם, רשות, תפקיד, טלפון, מייל, מזהה Master)..." autocomplete="off">
+          <button id="btnClearSearch" class="btn-clear" title="נקה חיפוש">✕</button>
+        </div>
+
+        <div class="filters-grid">
+          <div class="filter-group">
+            <label for="filterAuthority">🏛️ רשות מקומית:</label>
+            <select id="filterAuthority">
+              <option value="">כל הרשויות</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterRole">🎓 תפקיד תקני:</label>
+            <select id="filterRole">
+              <option value="">כל התפקידים</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterAffiliation">👥 שיוך מקצועי:</label>
+            <select id="filterAffiliation">
+              <option value="">כל סוגי השיוך</option>
+              <option value="מנהל/ת או בעל/ת תפקיד חינוך רלוונטי/ת">מנהל/ת או בעל/ת תפקיד חינוך רלוונטי/ת</option>
+              <option value="איש קשר מקצועי אחר">איש קשר מקצועי אחר</option>
+              <option value="גורם חיצוני">גורם חיצוני</option>
+              <option value="לא ידוע">לא ידוע</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterQuality">⭐ איכות נתונים:</label>
+            <select id="filterQuality">
+              <option value="">כל רמות האיכות</option>
+              <option value="איכות גבוהה">איכות גבוהה</option>
+              <option value="איכות טובה">איכות טובה</option>
+              <option value="דורשת השלמה">דורשת השלמה</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterComm">📬 הרשאת דיוור:</label>
+            <select id="filterComm">
+              <option value="">הכול (מורשים וחסומים)</option>
+              <option value="מורשה לדיוור">מורשה לדיוור בלבד</option>
+              <option value="חסום לדיוור (הסרה/סירוב)">חסום לדיוור (הוסר/סורב)</option>
+            </select>
+          </div>
+
+          <div class="filter-group">
+            <label for="filterPriority">⚡ עדיפות טיוב:</label>
+            <select id="filterPriority">
+              <option value="">כל עדיפויות הטיוב</option>
+              <option value="Priority 1">Priority 1 (בירור זהות UNRESOLVED)</option>
+              <option value="Priority 2">Priority 2 (השלמת פרטי קשר)</option>
+              <option value="Priority 3">Priority 3 (השלמת טלפונים/רשות)</option>
+              <option value="Priority 4">Priority 4 (מיפוי תפקידים/דוא"ל)</option>
+              <option value="Priority 5">Priority 5 (באיכות גבוהה - אין צורך בטיוב)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="filter-toggles">
+          <label class="toggle-label"><input type="checkbox" id="chkOnlyMobile"> רק עם נייד תקין</label>
+          <label class="toggle-label"><input type="checkbox" id="chkOnlyEmail"> רק עם דוא"ל תקין</label>
+          <label class="toggle-label"><input type="checkbox" id="chkMissingMobile"> רק חסרי נייד</label>
+          <label class="toggle-label"><input type="checkbox" id="chkMissingEmail"> רק חסרי דוא"ל</label>
+          <label class="toggle-label"><input type="checkbox" id="chkCanMail"> ניתן לדיוור במייל</label>
+          <label class="toggle-label"><input type="checkbox" id="chkUnsub"> חסומים לדיוור</label>
+          <button id="btnResetFilters" class="btn btn-link">איפוס כל המסננים</button>
+        </div>
+      </section>
+
+      <!-- Data Table View -->
+      <section class="table-section">
+        <div class="table-toolbar">
+          <div class="results-count">
+            נמצאו <strong id="lblFilteredCount">0</strong> רשומות מתוך <strong id="lblTotalCount">2,003</strong>
+          </div>
+          <div class="table-actions">
+            <label>שורות בעמוד:
+              <select id="selPageSize">
+                <option value="25">25</option>
+                <option value="50" selected>50</option>
+                <option value="100">100</option>
+                <option value="500">500</option>
+                <option value="ALL">הצג הכול</option>
+              </select>
+            </label>
+            <button id="btnExportCurrentCsv" class="btn btn-sm btn-outline">ייצא כ-CSV</button>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table" id="masterTable">
+            <thead>
+              <tr>
+                <th>מזהה Master</th>
+                <th>שם מלא</th>
+                <th>שיוך מקצועי</th>
+                <th>רשות מקומית</th>
+                <th>סוג רשות ומחוז</th>
+                <th>תפקיד תקני</th>
+                <th>טלפון נייד</th>
+                <th>דוא"ל ראשי</th>
+                <th>איכות נתונים</th>
+                <th>הרשאת דיוור</th>
+                <th>פעולות</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+              <!-- Populated via JS -->
+            </tbody>
+          </table>
+        </div>
+
+        <div class="pagination-bar" id="paginationBar">
+          <button id="btnPrevPage" class="btn btn-sm">‹ הקודם</button>
+          <span id="lblPageInfo">עמוד 1 מתוך 1</span>
+          <button id="btnNextPage" class="btn btn-sm">הבא ›</button>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Record Details Modal -->
+    <div class="modal" id="recordModal" role="dialog" aria-hidden="true">
+      <div class="modal-backdrop" id="modalBackdrop"></div>
+      <div class="modal-card">
+        <div class="modal-header">
+          <h3 id="modalTitle">פרטי רשומת Master</h3>
+          <button class="modal-close" id="btnModalClose">&times;</button>
+        </div>
+        <div class="modal-body" id="modalBody">
+          <!-- Dynamic details -->
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" id="btnModalOk">סגור</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bottom-footer">
+      <p>מערכת טיוב והאחדת רשימות האיגוד | גרסה UNION_MASTER_OPERATIONAL_V1.0 מוקפאת ומאושרת | 2,003 רשומות Master</p>
+    </footer>
+  </div>
+
+  <script src="data/master_data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>

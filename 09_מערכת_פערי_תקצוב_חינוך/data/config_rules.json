@@ -1,0 +1,19 @@
+{
+  "district_rules": [
+    { "match": "תל אביב", "socio": 8, "peri": 10, "pop": 35000, "factor": 3.5 },
+    { "match": "מרכז", "socio": 7, "peri": 8, "pop": 25000, "factor": 3.2 },
+    { "match": "חיפה", "socio": 6, "peri": 7, "pop": 22000, "factor": 2.2 },
+    { "match": "ירושלים", "socio": 4, "peri": 7, "pop": 20000, "factor": 1.4 },
+    { "match": "צפון", "socio": 3, "peri": 3, "pop": 14000, "factor": 1.1 },
+    { "match": "דרום", "socio": 3, "peri": 3, "pop": 16000, "factor": 1.1 },
+    { "match": "יהודה", "socio": 5, "peri": 5, "pop": 12000, "factor": 1.2 }
+  ],
+  "regional_rule": { "match": "אזורית", "socio_boost": 1, "pop": 12000, "min_factor": 2.5 },
+  "categories": {
+    "AFFLUENT_HIGH": "רשויות איתנות באשכול גבוה",
+    "PARADOX_LOW_SOCIO_HIGH_ARNONA": "רשויות פרדוקסליות (סוציו נמוך + ארנונה עסקית)",
+    "MIDDLE_TRAP": "מלכודת הביניים (ללא טיפוח וללא ארנונה)",
+    "VULNERABLE_LOCKED": "רשויות מוחלשות כלואות (פגיעה כפולה)"
+  },
+  "skip_names": ["דן", "ערב אל-עראמשה"]
+}

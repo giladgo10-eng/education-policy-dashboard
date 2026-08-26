@@ -1,0 +1,1055 @@
+﻿window.AGGREGATED_DATA = {
+    "metadata":  {
+                     "system_title":  "דשבורד מצרפי – איגוד מנהלי אגפי ומחלקות החינוך",
+                     "version":  "UNION_DASHBOARD_PUBLIC_DEMO_V1.0",
+                     "privacy_standard":  "Zero PII – Pure Statistical Aggregation (k \u003e= 5)",
+                     "generated_date":  "2026-08-18"
+                 },
+    "overview":  {
+                     "total_records":  2003,
+                     "data_ready":  1175,
+                     "data_ready_pct":  58.7,
+                     "communication_allowed":  1402,
+                     "communication_allowed_pct":  70,
+                     "communication_blocked":  601,
+                     "communication_blocked_pct":  30,
+                     "valid_mobile":  1048,
+                     "valid_mobile_pct":  52.3,
+                     "valid_email":  900,
+                     "valid_email_pct":  44.9,
+                     "valid_authority":  1331,
+                     "valid_authority_pct":  66.5,
+                     "valid_role":  292,
+                     "valid_role_pct":  14.6,
+                     "missing_all_contacts":  9,
+                     "unresolved":  22
+                 },
+    "professional_affiliation":  {
+                                     "education_role":  1178,
+                                     "education_role_display":  "1178",
+                                     "education_role_pct":  58.8,
+                                     "other_contact":  627,
+                                     "other_contact_display":  "627",
+                                     "other_contact_pct":  31.3,
+                                     "external_entity":  3,
+                                     "external_entity_display":  "\u003c5",
+                                     "external_entity_pct":  0.1,
+                                     "unspecified":  195,
+                                     "unspecified_display":  "195",
+                                     "unspecified_pct":  9.7
+                                 },
+    "union_membership_status":  {
+                                    "confirmed_member":  0,
+                                    "confirmed_non_member":  0,
+                                    "unknown":  2003,
+                                    "unknown_pct":  100
+                                },
+    "action_categories":  [
+                              {
+                                  "code":  "A",
+                                  "name":  "רשומות באיכות גבוהה ומורשות לדיוור",
+                                  "count":  402,
+                                  "count_display":  "402",
+                                  "pct":  20.1
+                              },
+                              {
+                                  "code":  "B",
+                                  "name":  "חסר טלפון נייד (יש דוא\"ל בלבד)",
+                                  "count":  594,
+                                  "count_display":  "594",
+                                  "pct":  29.7
+                              },
+                              {
+                                  "code":  "C",
+                                  "name":  "חסר דוא\"ל (יש טלפון בלבד)",
+                                  "count":  46,
+                                  "count_display":  "46",
+                                  "pct":  2.3
+                              },
+                              {
+                                  "code":  "D",
+                                  "name":  "חסרים פרטי קשר (ללא נייד ומייל)",
+                                  "count":  9,
+                                  "count_display":  "9",
+                                  "pct":  0.4
+                              },
+                              {
+                                  "code":  "E",
+                                  "name":  "תפקיד דורש השלמה לאשכול תקני",
+                                  "count":  279,
+                                  "count_display":  "279",
+                                  "pct":  13.9
+                              },
+                              {
+                                  "code":  "F",
+                                  "name":  "שיוך רשות מקומית דורש בירור",
+                                  "count":  49,
+                                  "count_display":  "49",
+                                  "pct":  2.4
+                              },
+                              {
+                                  "code":  "G",
+                                  "name":  "רשומות UNRESOLVED (בירור עתידי)",
+                                  "count":  22,
+                                  "count_display":  "22",
+                                  "pct":  1.1
+                              },
+                              {
+                                  "code":  "H",
+                                  "name":  "חסום לדיוור (הסרה/סירוב - אין צורך בטיוב דיוור)",
+                                  "count":  599,
+                                  "count_display":  "599",
+                                  "pct":  29.9
+                              },
+                              {
+                                  "code":  "I",
+                                  "name":  "ארגון חיצוני (לא רשות מקומית)",
+                                  "count":  3,
+                                  "count_display":  "\u003c5",
+                                  "pct":  0.1
+                              }
+                          ],
+    "cleansing_priorities":  [
+                                 {
+                                     "priority":  "Priority 1",
+                                     "name":  "דחיפות עליונה",
+                                     "desc":  "בירור זהות רשומות UNRESOLVED",
+                                     "count":  22,
+                                     "pct":  1.1
+                                 },
+                                 {
+                                     "priority":  "Priority 2",
+                                     "name":  "דחיפות גבוהה",
+                                     "desc":  "השלמת פרטי קשר לחסרי טלפון ומייל",
+                                     "count":  9,
+                                     "pct":  0.4
+                                 },
+                                 {
+                                     "priority":  "Priority 3",
+                                     "name":  "דחיפות בינונית",
+                                     "desc":  "השלמת טלפונים ניידים או שיוך רשות",
+                                     "count":  669,
+                                     "pct":  33.4
+                                 },
+                                 {
+                                     "priority":  "Priority 4",
+                                     "name":  "דחיפות מתונה",
+                                     "desc":  "מיפוי תפקידים או השלמת דוא\"ל",
+                                     "count":  302,
+                                     "pct":  15.1
+                                 },
+                                 {
+                                     "priority":  "Priority 5",
+                                     "name":  "איכות גבוהה",
+                                     "desc":  "רשומות שלמות ומורשות לדיוור",
+                                     "count":  402,
+                                     "pct":  20.1
+                                 },
+                                 {
+                                     "priority":  "חסומים לדיוור",
+                                     "name":  "הוחרגו מטיוב",
+                                     "desc":  "הוסרו מדיוור – אין פעולת טיוב נדרשת",
+                                     "count":  599,
+                                     "pct":  29.9
+                                 }
+                             ],
+    "top_issues":  [
+                       {
+                           "rank":  1,
+                           "issue":  "חסרי טלפון נייד (ברשומות פעילות)",
+                           "count":  624,
+                           "pct":  31.2,
+                           "impact":  "חוסם ערוץ SMS/WhatsApp"
+                       },
+                       {
+                           "rank":  2,
+                           "issue":  "תפקידים הדורשים מיפוי לאשכול (ברשומות פעילות)",
+                           "count":  568,
+                           "pct":  28.4,
+                           "impact":  "פוגע בפילוח מקצועי"
+                       },
+                       {
+                           "rank":  3,
+                           "issue":  "שיוך רשות מקומית לבירור (ברשומות פעילות)",
+                           "count":  150,
+                           "pct":  7.5,
+                           "impact":  "פוגע בפילוח גיאוגרפי"
+                       },
+                       {
+                           "rank":  4,
+                           "issue":  "חסרי כתובת דוא\"ל (ברשומות פעילות)",
+                           "count":  56,
+                           "pct":  2.8,
+                           "impact":  "חוסם דיוור אלקטרוני"
+                       },
+                       {
+                           "rank":  5,
+                           "issue":  "רשומות UNRESOLVED הדורשות בירור זהות",
+                           "count":  22,
+                           "pct":  1.1,
+                           "impact":  "רשומות חסרות שם מזוהה"
+                       }
+                   ],
+    "authorities_distribution":  [
+                                     {
+                                         "authority":  "לא מוגדר / לבירור",
+                                         "count":  191,
+                                         "count_display":  "191",
+                                         "pct":  9.5
+                                     },
+                                     {
+                                         "authority":  "משרד החינוך",
+                                         "count":  94,
+                                         "count_display":  "94",
+                                         "pct":  4.7
+                                     },
+                                     {
+                                         "authority":  "תל אביב-יפו",
+                                         "count":  28,
+                                         "count_display":  "28",
+                                         "pct":  1.4
+                                     },
+                                     {
+                                         "authority":  "חיפה",
+                                         "count":  25,
+                                         "count_display":  "25",
+                                         "pct":  1.2
+                                     },
+                                     {
+                                         "authority":  "ראשון לציון",
+                                         "count":  23,
+                                         "count_display":  "23",
+                                         "pct":  1.1
+                                     },
+                                     {
+                                         "authority":  "נתניה",
+                                         "count":  23,
+                                         "count_display":  "23",
+                                         "pct":  1.1
+                                     },
+                                     {
+                                         "authority":  "רמת גן",
+                                         "count":  22,
+                                         "count_display":  "22",
+                                         "pct":  1.1
+                                     },
+                                     {
+                                         "authority":  "באר שבע",
+                                         "count":  21,
+                                         "count_display":  "21",
+                                         "pct":  1
+                                     },
+                                     {
+                                         "authority":  "רחובות",
+                                         "count":  21,
+                                         "count_display":  "21",
+                                         "pct":  1
+                                     },
+                                     {
+                                         "authority":  "גבעתיים",
+                                         "count":  17,
+                                         "count_display":  "17",
+                                         "pct":  0.8
+                                     },
+                                     {
+                                         "authority":  "ירושלים",
+                                         "count":  16,
+                                         "count_display":  "16",
+                                         "pct":  0.8
+                                     },
+                                     {
+                                         "authority":  "חולון",
+                                         "count":  14,
+                                         "count_display":  "14",
+                                         "pct":  0.7
+                                     },
+                                     {
+                                         "authority":  "אשקלון",
+                                         "count":  14,
+                                         "count_display":  "14",
+                                         "pct":  0.7
+                                     },
+                                     {
+                                         "authority":  "מודיעין-מכבים-רעות",
+                                         "count":  14,
+                                         "count_display":  "14",
+                                         "pct":  0.7
+                                     },
+                                     {
+                                         "authority":  "רמת השרון",
+                                         "count":  14,
+                                         "count_display":  "14",
+                                         "pct":  0.7
+                                     },
+                                     {
+                                         "authority":  "רעננה",
+                                         "count":  13,
+                                         "count_display":  "13",
+                                         "pct":  0.6
+                                     },
+                                     {
+                                         "authority":  "כפר סבא",
+                                         "count":  13,
+                                         "count_display":  "13",
+                                         "pct":  0.6
+                                     },
+                                     {
+                                         "authority":  "רמלה",
+                                         "count":  13,
+                                         "count_display":  "13",
+                                         "pct":  0.6
+                                     },
+                                     {
+                                         "authority":  "בני ברק",
+                                         "count":  12,
+                                         "count_display":  "12",
+                                         "pct":  0.6
+                                     },
+                                     {
+                                         "authority":  "שומרון",
+                                         "count":  12,
+                                         "count_display":  "12",
+                                         "pct":  0.6
+                                     },
+                                     {
+                                         "authority":  "בית שמש",
+                                         "count":  11,
+                                         "count_display":  "11",
+                                         "pct":  0.5
+                                     },
+                                     {
+                                         "authority":  "הרצליה",
+                                         "count":  11,
+                                         "count_display":  "11",
+                                         "pct":  0.5
+                                     },
+                                     {
+                                         "authority":  "מבשרת ציון",
+                                         "count":  11,
+                                         "count_display":  "11",
+                                         "pct":  0.5
+                                     },
+                                     {
+                                         "authority":  "ראש העין",
+                                         "count":  11,
+                                         "count_display":  "11",
+                                         "pct":  0.5
+                                     },
+                                     {
+                                         "authority":  "משה\"\"ח",
+                                         "count":  10,
+                                         "count_display":  "10",
+                                         "pct":  0.5
+                                     },
+                                     {
+                                         "authority":  "יבנה",
+                                         "count":  10,
+                                         "count_display":  "10",
+                                         "pct":  0.5
+                                     },
+                                     {
+                                         "authority":  "טבריה",
+                                         "count":  10,
+                                         "count_display":  "10",
+                                         "pct":  0.5
+                                     },
+                                     {
+                                         "authority":  "הסתדרות המורים",
+                                         "count":  10,
+                                         "count_display":  "10",
+                                         "pct":  0.5
+                                     },
+                                     {
+                                         "authority":  "קדימה-צורן",
+                                         "count":  10,
+                                         "count_display":  "10",
+                                         "pct":  0.5
+                                     },
+                                     {
+                                         "authority":  "הוד השרון",
+                                         "count":  9,
+                                         "count_display":  "9",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "שוהם",
+                                         "count":  9,
+                                         "count_display":  "9",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "הפקולטה לחינוך",
+                                         "count":  9,
+                                         "count_display":  "9",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "כרמיאל",
+                                         "count":  9,
+                                         "count_display":  "9",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "מטה בנימין",
+                                         "count":  9,
+                                         "count_display":  "9",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "נוף הגליל",
+                                         "count":  9,
+                                         "count_display":  "9",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "מטה יהודה",
+                                         "count":  9,
+                                         "count_display":  "9",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "כפר יונה",
+                                         "count":  9,
+                                         "count_display":  "9",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "לוד",
+                                         "count":  9,
+                                         "count_display":  "9",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "חדרה",
+                                         "count":  8,
+                                         "count_display":  "8",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "פתח תקווה",
+                                         "count":  8,
+                                         "count_display":  "8",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "אום אל-פחם",
+                                         "count":  8,
+                                         "count_display":  "8",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "גבעת שמואל",
+                                         "count":  8,
+                                         "count_display":  "8",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "עמותת המורים",
+                                         "count":  8,
+                                         "count_display":  "8",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "איגוד מנהלי מחלקות חינוך",
+                                         "count":  8,
+                                         "count_display":  "8",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "בת ים",
+                                         "count":  8,
+                                         "count_display":  "8",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "חבל מודיעין",
+                                         "count":  8,
+                                         "count_display":  "8",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "עמק חפר",
+                                         "count":  8,
+                                         "count_display":  "8",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "באר יעקב",
+                                         "count":  8,
+                                         "count_display":  "8",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "מטה אשר",
+                                         "count":  8,
+                                         "count_display":  "8",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "ערד",
+                                         "count":  8,
+                                         "count_display":  "8",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "עפולה",
+                                         "count":  8,
+                                         "count_display":  "8",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "עראבה",
+                                         "count":  8,
+                                         "count_display":  "8",
+                                         "pct":  0.4
+                                     },
+                                     {
+                                         "authority":  "מגדל העמק",
+                                         "count":  7,
+                                         "count_display":  "7",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "נס ציונה",
+                                         "count":  7,
+                                         "count_display":  "7",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "מגאר",
+                                         "count":  7,
+                                         "count_display":  "7",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "מעלות-תרשיחא",
+                                         "count":  7,
+                                         "count_display":  "7",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "עכו",
+                                         "count":  7,
+                                         "count_display":  "7",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "נתיבות",
+                                         "count":  7,
+                                         "count_display":  "7",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "חורפיש",
+                                         "count":  7,
+                                         "count_display":  "7",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "אריאל",
+                                         "count":  7,
+                                         "count_display":  "7",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "קרית גת",
+                                         "count":  7,
+                                         "count_display":  "7",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "קרית אונו",
+                                         "count":  7,
+                                         "count_display":  "7",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "אלעד",
+                                         "count":  7,
+                                         "count_display":  "7",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "אור יהודה",
+                                         "count":  7,
+                                         "count_display":  "7",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "רהט",
+                                         "count":  7,
+                                         "count_display":  "7",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "חוף השרון",
+                                         "count":  7,
+                                         "count_display":  "7",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "יהוד-מונוסון",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "יואב",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "חריש",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "טמרה",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "כפר קאסם",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "שדות דן",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "בית הספר לחינוך",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "פרדס חנה-כרכור",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "עומר",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "בית דגן",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "בקעת בית שאן",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "יוקנעם עילית",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "באר טוביה",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "ביתר עילית",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "מרחבים",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "אור עקיבא",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "תמר",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "גולן",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "אופקים",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "מרכז השלטון המקומי",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "מעלה יוסף",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "דרום השרון",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "אורנית",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "נצרת",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "טייבה",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "מעלה אדומים",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "קרית שמונה",
+                                         "count":  6,
+                                         "count_display":  "6",
+                                         "pct":  0.3
+                                     },
+                                     {
+                                         "authority":  "נהריה",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "ביר אל-מכסור",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "שלומי",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "קרית ים",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "קרית עקרון",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "שדרות",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "אילת",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "ברנר",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "קרית מוצקין",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "אעבלין",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "בקעת הירדן",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "פרדסיה",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "טירת כרמל",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "עמק הירדן",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "אלפי מנשה",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "חצור הגלילית",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "גוש עציון",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "בית שאן",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "מודיעין עילית",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "קלנסווה",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "זרזיר",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "קרני שומרון",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "כפר מנדא",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "קרית מלאכי",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "קרית טבעון",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "תל מונד",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "הגליל התחתון",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "צפת",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "דייר אל-אסד",
+                                         "count":  5,
+                                         "count_display":  "5",
+                                         "pct":  0.2
+                                     },
+                                     {
+                                         "authority":  "רשויות נוספות (415 רשויות עם פחות מ-5 רשומות)",
+                                         "count":  711,
+                                         "count_display":  "\u003c5 לרשות",
+                                         "pct":  35.5
+                                     }
+                                 ],
+    "roles_distribution":  [
+                               {
+                                   "role":  "תפקיד הדורש מיפוי",
+                                   "count":  798,
+                                   "count_display":  "798",
+                                   "pct":  39.8
+                               },
+                               {
+                                   "role":  "ראש רשות 2018",
+                                   "count":  203,
+                                   "count_display":  "203",
+                                   "pct":  10.1
+                               },
+                               {
+                                   "role":  "מנהל/ת מחלקת חינוך",
+                                   "count":  79,
+                                   "count_display":  "79",
+                                   "pct":  3.9
+                               },
+                               {
+                                   "role":  "מנהל/ת אגף חינוך",
+                                   "count":  68,
+                                   "count_display":  "68",
+                                   "pct":  3.4
+                               },
+                               {
+                                   "role":  "מנהל/ת מחלקת גני ילדים / גיל רך",
+                                   "count":  62,
+                                   "count_display":  "62",
+                                   "pct":  3.1
+                               },
+                               {
+                                   "role":  "יו\"\"ר סניף",
+                                   "count":  28,
+                                   "count_display":  "28",
+                                   "pct":  1.4
+                               },
+                               {
+                                   "role":  "מנהל/ת מחלקת חינוך מיוחד",
+                                   "count":  19,
+                                   "count_display":  "19",
+                                   "pct":  0.9
+                               },
+                               {
+                                   "role":  "יו\"\"ר ועדת חינוך",
+                                   "count":  13,
+                                   "count_display":  "13",
+                                   "pct":  0.6
+                               },
+                               {
+                                   "role":  "נבחר ציבור / ראש רשות / מחזיק תיק",
+                                   "count":  12,
+                                   "count_display":  "12",
+                                   "pct":  0.6
+                               },
+                               {
+                                   "role":  "קדם יסודי",
+                                   "count":  11,
+                                   "count_display":  "11",
+                                   "pct":  0.5
+                               },
+                               {
+                                   "role":  "מנהל/ת מינהל חינוך",
+                                   "count":  11,
+                                   "count_display":  "11",
+                                   "pct":  0.5
+                               },
+                               {
+                                   "role":  "מנהל/ת מחלקת חינוך יסודי",
+                                   "count":  10,
+                                   "count_display":  "10",
+                                   "pct":  0.5
+                               },
+                               {
+                                   "role":  "מנכ\"\"ל",
+                                   "count":  8,
+                                   "count_display":  "8",
+                                   "pct":  0.4
+                               },
+                               {
+                                   "role":  "מנהל/ת מחלקת חינוך על-יסודי",
+                                   "count":  7,
+                                   "count_display":  "7",
+                                   "pct":  0.3
+                               },
+                               {
+                                   "role":  "ועד מנהל",
+                                   "count":  7,
+                                   "count_display":  "7",
+                                   "pct":  0.3
+                               },
+                               {
+                                   "role":  "מנהל מח` חינוך",
+                                   "count":  6,
+                                   "count_display":  "6",
+                                   "pct":  0.3
+                               },
+                               {
+                                   "role":  "ראש היררכיה",
+                                   "count":  6,
+                                   "count_display":  "6",
+                                   "pct":  0.3
+                               },
+                               {
+                                   "role":  "מזכ\"\"ל",
+                                   "count":  6,
+                                   "count_display":  "6",
+                                   "pct":  0.3
+                               },
+                               {
+                                   "role":  "יועצת משפטית",
+                                   "count":  5,
+                                   "count_display":  "5",
+                                   "pct":  0.2
+                               },
+                               {
+                                   "role":  "תפקידים נוספים (563 תפקידים עם פחות מ-5 רשומות)",
+                                   "count":  644,
+                                   "count_display":  "\u003c5 לתפקיד",
+                                   "pct":  32.2
+                               }
+                           ]
+};

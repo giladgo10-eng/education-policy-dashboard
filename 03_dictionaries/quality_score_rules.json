@@ -1,0 +1,19 @@
+{
+  "weights": {
+    "full_name": 20,
+    "authority": 20,
+    "role": 20,
+    "phone_mobile": 20,
+    "email": 20
+  },
+  "bonus": {
+    "id_number": 5,
+    "phone_work": 5
+  },
+  "status_tiers": [
+    { "min_score": 100, "status": "מלאה", "color": "green", "description": "כל 5 שדות הליבה קיימים ותקינים" },
+    { "min_score": 80, "status": "כמעט מלאה", "color": "blue", "description": "4 מתוך 5 שדות ליבה קיימים ותקינים" },
+    { "min_score": 60, "status": "חסרים נתונים", "color": "orange", "description": "3 מתוך 5 שדות ליבה קיימים" },
+    { "min_score": 0, "status": "דורשת טיפול", "color": "red", "description": "פחות מ-3 שדות ליבה קיימים או חסר פרט קשר" }
+  ]
+}

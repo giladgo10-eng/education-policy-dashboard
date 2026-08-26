@@ -1,0 +1,22 @@
+﻿{
+    "C:\\Users\\giladgo\\Documents\\AAAגלעד כללי\\איגוד תשפו 2025-2026\\מערכת טיוב רשימות איגוד\\01_source_files\\רשימת כל חברים מהסמוב 18-8-2026.csv":  {
+                                                                                                                                                             "SHA256":  "0B3235ACA8954C7959BDD98CCC806A30A330F7263E7E403726F3CC6ED4478F2C",
+                                                                                                                                                             "SizeBytes":  578839,
+                                                                                                                                                             "LastWriteTime":  "2026-08-18 10:57:06"
+                                                                                                                                                         },
+    "C:\\Users\\giladgo\\Documents\\AAAגלעד כללי\\איגוד תשפו 2025-2026\\מערכת טיוב רשימות איגוד\\02_snapshots\\RUN_2026_08_18_PILOT\\source_A_raw.csv":  {
+                                                                                                                                                             "SHA256":  "0B3235ACA8954C7959BDD98CCC806A30A330F7263E7E403726F3CC6ED4478F2C",
+                                                                                                                                                             "SizeBytes":  578839,
+                                                                                                                                                             "LastWriteTime":  "2026-08-18 12:05:36"
+                                                                                                                                                         },
+    "C:\\Users\\giladgo\\Documents\\AAAגלעד כללי\\איגוד תשפו 2025-2026\\מערכת טיוב רשימות איגוד\\run_cleansing_pipeline.ps1":  {
+                                                                                                                                   "SHA256":  "878F662BF9015BAAB30AABA31A12C868804AD7DD3A9325F0CF59BCA2F4086D85",
+                                                                                                                                   "SizeBytes":  17922,
+                                                                                                                                   "LastWriteTime":  "2026-08-18 12:02:29"
+                                                                                                                               },
+    "C:\\Users\\giladgo\\Documents\\AAAגלעד כללי\\איגוד תשפו 2025-2026\\מערכת טיוב רשימות איגוד\\SYSTEM_SPEC.md":  {
+                                                                                                                       "SHA256":  "8387D7EBF8A18F2424AEEDFC16BC928FF2E9F2669CAF797AAC643369A6ABD07D",
+                                                                                                                       "SizeBytes":  25804,
+                                                                                                                       "LastWriteTime":  "2026-08-18 11:50:57"
+                                                                                                                   }
+}

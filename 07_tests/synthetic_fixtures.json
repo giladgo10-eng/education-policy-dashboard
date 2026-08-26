@@ -1,0 +1,193 @@
+{
+  "test_cases": [
+    {
+      "id": "CASE_1_TRIPLICATE_SAME_PERSON",
+      "description": "אותו אדם מופיע ב-3 מקורות עם וריאציות קלות - חייב להתמזג לרשומת Master אחת בביטחון גבוה",
+      "records": [
+        {
+          "_source_id": "A",
+          "_source_name": "רשימת האיגוד",
+          "_raw_row_id": "A:101",
+          "first_name": "אבי",
+          "last_name": "כהן",
+          "full_name": "אבי כהן",
+          "authority": "תל אביב",
+          "role": "מנהל אגף חינוך",
+          "phone_mobile": "054-1234567",
+          "email": "avi.cohen@tel-aviv.gov.il",
+          "id_number": "012345678",
+          "member_status": "פעיל",
+          "רשימה:  גני ילדים": "כן"
+        },
+        {
+          "_source_id": "B",
+          "_source_name": "משרד החינוך",
+          "_raw_row_id": "B:205",
+          "first_name": "אברהם",
+          "last_name": "כהן",
+          "full_name": "אברהם כהן",
+          "authority": "עיריית תל אביב-יפו",
+          "role": "מנהל אגף החינוך",
+          "phone_mobile": "541234567",
+          "email": "avi.cohen@tel-aviv.gov.il",
+          "id_number": "012345678",
+          "phone_work": "03-5218888",
+          "רשימה:  חינוך יסודי": "כן"
+        },
+        {
+          "_source_id": "C",
+          "_source_name": "Smoove",
+          "_raw_row_id": "C:309",
+          "first_name": "אבי",
+          "last_name": "כהן",
+          "full_name": "אבי כהן",
+          "authority": "ת\"א",
+          "role": "מנהל אגף",
+          "phone_mobile": "0541234567",
+          "email": "avi.cohen@gmai.com",
+          "notes": "מעודכן מכנס קיץ 2025"
+        }
+      ],
+      "expected": {
+        "should_cluster": true,
+        "master_full_name": "אבי כהן",
+        "master_authority": "תל אביב-יפו",
+        "master_role": "מנהל/ת אגף חינוך",
+        "master_phone": "0541234567",
+        "master_work_phone": "03-5218888",
+        "source_count": 3,
+        "distribution_ganim": "כן",
+        "distribution_yesodi": "כן"
+      }
+    },
+    {
+      "id": "CASE_2_SAME_NAME_DIFFERENT_CITIES",
+      "description": "שם זהה (יוסי כהן) בערים שונות ללא טלפון/מייל זהה - חובה לא למזג (ציון נמוך)",
+      "records": [
+        {
+          "_source_id": "A",
+          "_source_name": "רשימת האיגוד",
+          "_raw_row_id": "A:501",
+          "first_name": "יוסי",
+          "last_name": "כהן",
+          "full_name": "יוסי כהן",
+          "authority": "חיפה",
+          "role": "מנהל מחלקת חינוך",
+          "phone_mobile": "052-1111111",
+          "email": "yossi@haifa.muni.il"
+        },
+        {
+          "_source_id": "B",
+          "_source_name": "משרד החינוך",
+          "_raw_row_id": "B:602",
+          "first_name": "יוסי",
+          "last_name": "כהן",
+          "full_name": "יוסי כהן",
+          "authority": "אילת",
+          "role": "מנהל מחלקת חינוך",
+          "phone_mobile": "058-2222222",
+          "email": "yossi@eilat.muni.il"
+        }
+      ],
+      "expected": {
+        "should_cluster": false,
+        "max_score": 60
+      }
+    },
+    {
+      "id": "CASE_3_CONFLICTING_AUTHORITY_SAME_PHONE",
+      "description": "אותו טלפון אך רשות שונה (מעבר רשות אפשרי) - התאמה בינונית המחייבת בדיקה אנושית וסימון סתירה",
+      "records": [
+        {
+          "_source_id": "A",
+          "_source_name": "רשימת האיגוד",
+          "_raw_row_id": "A:701",
+          "first_name": "דנה",
+          "last_name": "לוי",
+          "full_name": "דנה לוי",
+          "authority": "הרצליה",
+          "role": "מנהלת אגף חינוך",
+          "phone_mobile": "050-9998877",
+          "email": "dana@herzliya.muni.il"
+        },
+        {
+          "_source_id": "B",
+          "_source_name": "משרד החינוך",
+          "_raw_row_id": "B:702",
+          "first_name": "דנה",
+          "last_name": "לוי",
+          "full_name": "דנה לוי",
+          "authority": "רעננה",
+          "role": "מנהלת אגף חינוך",
+          "phone_mobile": "050-9998877",
+          "email": "dana@raanana.muni.il"
+        }
+      ],
+      "expected": {
+        "has_conflicts": true,
+        "requires_review": true,
+        "conflicting_field": "authority_name_standard"
+      }
+    },
+    {
+      "id": "CASE_4_COMPLEMENTARY_FIELDS_NO_OVERWRITE",
+      "description": "מקור A מכיל רק טלפון, מקור B מכיל רק מייל - מיזוג ללא אובדן מידע",
+      "records": [
+        {
+          "_source_id": "A",
+          "_source_name": "רשימת האיגוד",
+          "_raw_row_id": "A:801",
+          "first_name": "רונית",
+          "last_name": "שרון",
+          "full_name": "רונית שרון",
+          "authority": "נתניה",
+          "role": "מנהלת מחלקת יסודי",
+          "phone_mobile": "053-5554433",
+          "email": ""
+        },
+        {
+          "_source_id": "B",
+          "_source_name": "משרד החינוך",
+          "_raw_row_id": "B:802",
+          "first_name": "רונית",
+          "last_name": "שרון",
+          "full_name": "רונית שרון",
+          "authority": "נתניה",
+          "role": "מנהלת מדור יסודי",
+          "phone_mobile": "",
+          "email": "ronit.sh@netanya.muni.il"
+        }
+      ],
+      "expected": {
+        "should_cluster": true,
+        "master_phone": "0535554433",
+        "master_email": "ronit.sh@netanya.muni.il",
+        "master_role": "מנהל/ת מחלקת חינוך יסודי"
+      }
+    },
+    {
+      "id": "CASE_5_CORRUPTED_MOJIBAKE_AND_QUOTES",
+      "description": "תווים משובשים, גרש הפוך ורווחים מיותרים - ניקוי תקני",
+      "records": [
+        {
+          "_source_id": "A",
+          "_source_name": "רשימת האיגוד",
+          "_raw_row_id": "A:901",
+          "first_name": "ישראל  ",
+          "last_name": "  ישראלי",
+          "full_name": "ישראל   ישראלי",
+          "authority": "אום אל-פחם",
+          "role": "משנה למנכ`ל וראש מנהל שח`ק",
+          "phone_mobile": "502040865",
+          "email": "  ISRAEL@GMAIL.COM  "
+        }
+      ],
+      "expected": {
+        "cleaned_full_name": "ישראל ישראלי",
+        "cleaned_role": "מנהל/ת מינהל חינוך",
+        "cleaned_phone": "0502040865",
+        "cleaned_email": "israel@gmail.com"
+      }
+    }
+  ]
+}

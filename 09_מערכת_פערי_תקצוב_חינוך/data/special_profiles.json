@@ -1,0 +1,174 @@
+{
+  "profiles": [
+    { 
+      "Code": "5000", "Name": "תל אביב-יפו", "Type": "עירייה", "District": "תל אביב", "Pop": 475000, "Socio": 8, "Peri": 10, "Pupils": 76500, 
+      "NonResArnona": 2650000, "MuniSelfSpendPupil": 14200, "ParentsCoPay": 4800, "GovStdPupil": 13800, "GovDiffPupil": 1800, "LostMatching": 0,
+      "SpecialEdPupils": 6120, "SpecialEdMuniBurdenPupil": 28500, "TransportExpenseK": 145000, "TransportDeficitPupil": 650, "InformalEduPupil": 3400, "ClassroomShortage": 45, "GafenBasketPupil": 1450
+    },
+    { 
+      "Code": "6400", "Name": "הרצליה", "Type": "עירייה", "District": "תל אביב", "Pop": 108000, "Socio": 8, "Peri": 10, "Pupils": 22400, 
+      "NonResArnona": 580000, "MuniSelfSpendPupil": 12900, "ParentsCoPay": 4600, "GovStdPupil": 13800, "GovDiffPupil": 1600, "LostMatching": 0,
+      "SpecialEdPupils": 1792, "SpecialEdMuniBurdenPupil": 26000, "TransportExpenseK": 42000, "TransportDeficitPupil": 580, "InformalEduPupil": 3200, "ClassroomShortage": 12, "GafenBasketPupil": 1400
+    },
+    { 
+      "Code": "2650", "Name": "רמת השרון", "Type": "עירייה", "District": "תל אביב", "Pop": 49000, "Socio": 9, "Peri": 10, "Pupils": 11200, 
+      "NonResArnona": 210000, "MuniSelfSpendPupil": 13500, "ParentsCoPay": 5100, "GovStdPupil": 13800, "GovDiffPupil": 1200, "LostMatching": 0,
+      "SpecialEdPupils": 896, "SpecialEdMuniBurdenPupil": 27500, "TransportExpenseK": 22000, "TransportDeficitPupil": 520, "InformalEduPupil": 3600, "ClassroomShortage": 5, "GafenBasketPupil": 1350
+    },
+    { 
+      "Code": "6300", "Name": "גבעתיים", "Type": "עירייה", "District": "תל אביב", "Pop": 62000, "Socio": 9, "Peri": 10, "Pupils": 11800, 
+      "NonResArnona": 165000, "MuniSelfSpendPupil": 11800, "ParentsCoPay": 4900, "GovStdPupil": 13800, "GovDiffPupil": 1300, "LostMatching": 0,
+      "SpecialEdPupils": 944, "SpecialEdMuniBurdenPupil": 24000, "TransportExpenseK": 19000, "TransportDeficitPupil": 480, "InformalEduPupil": 3100, "ClassroomShortage": 8, "GafenBasketPupil": 1380
+    },
+    { 
+      "Code": "8600", "Name": "רמת גן", "Type": "עירייה", "District": "תל אביב", "Pop": 175000, "Socio": 8, "Peri": 10, "Pupils": 31500, 
+      "NonResArnona": 680000, "MuniSelfSpendPupil": 11200, "ParentsCoPay": 4500, "GovStdPupil": 13800, "GovDiffPupil": 1900, "LostMatching": 0,
+      "SpecialEdPupils": 2520, "SpecialEdMuniBurdenPupil": 23500, "TransportExpenseK": 58000, "TransportDeficitPupil": 550, "InformalEduPupil": 2900, "ClassroomShortage": 28, "GafenBasketPupil": 1500
+    },
+    { 
+      "Code": "6900", "Name": "כפר סבא", "Type": "עירייה", "District": "מרכז", "Pop": 103000, "Socio": 8, "Peri": 9, "Pupils": 23800, 
+      "NonResArnona": 340000, "MuniSelfSpendPupil": 10400, "ParentsCoPay": 4400, "GovStdPupil": 13800, "GovDiffPupil": 1900, "LostMatching": 0,
+      "SpecialEdPupils": 1904, "SpecialEdMuniBurdenPupil": 22000, "TransportExpenseK": 44000, "TransportDeficitPupil": 620, "InformalEduPupil": 2800, "ClassroomShortage": 18, "GafenBasketPupil": 1480
+    },
+    { 
+      "Code": "8700", "Name": "רעננה", "Type": "עירייה", "District": "מרכז", "Pop": 82000, "Socio": 8, "Peri": 9, "Pupils": 18600, 
+      "NonResArnona": 320000, "MuniSelfSpendPupil": 11600, "ParentsCoPay": 4700, "GovStdPupil": 13800, "GovDiffPupil": 1700, "LostMatching": 0,
+      "SpecialEdPupils": 1488, "SpecialEdMuniBurdenPupil": 24500, "TransportExpenseK": 36000, "TransportDeficitPupil": 590, "InformalEduPupil": 3000, "ClassroomShortage": 14, "GafenBasketPupil": 1420
+    },
+    { 
+      "Code": "8300", "Name": "ראשון לציון", "Type": "עירייה", "District": "מרכז", "Pop": 260000, "Socio": 7, "Peri": 9, "Pupils": 47500, 
+      "NonResArnona": 720000, "MuniSelfSpendPupil": 8900, "ParentsCoPay": 3900, "GovStdPupil": 13800, "GovDiffPupil": 2600, "LostMatching": 200,
+      "SpecialEdPupils": 3800, "SpecialEdMuniBurdenPupil": 19500, "TransportExpenseK": 88000, "TransportDeficitPupil": 740, "InformalEduPupil": 2500, "ClassroomShortage": 55, "GafenBasketPupil": 1650
+    },
+    { 
+      "Code": "7900", "Name": "פתח תקווה", "Type": "עירייה", "District": "מרכז", "Pop": 258000, "Socio": 7, "Peri": 9, "Pupils": 52000, 
+      "NonResArnona": 780000, "MuniSelfSpendPupil": 8400, "ParentsCoPay": 3800, "GovStdPupil": 13800, "GovDiffPupil": 2700, "LostMatching": 250,
+      "SpecialEdPupils": 4160, "SpecialEdMuniBurdenPupil": 18800, "TransportExpenseK": 95000, "TransportDeficitPupil": 780, "InformalEduPupil": 2400, "ClassroomShortage": 62, "GafenBasketPupil": 1680
+    },
+    { 
+      "Code": "6600", "Name": "חולון", "Type": "עירייה", "District": "תל אביב", "Pop": 198000, "Socio": 7, "Peri": 9, "Pupils": 36200, 
+      "NonResArnona": 460000, "MuniSelfSpendPupil": 7800, "ParentsCoPay": 3600, "GovStdPupil": 13800, "GovDiffPupil": 2900, "LostMatching": 300,
+      "SpecialEdPupils": 2896, "SpecialEdMuniBurdenPupil": 18200, "TransportExpenseK": 68000, "TransportDeficitPupil": 820, "InformalEduPupil": 2200, "ClassroomShortage": 35, "GafenBasketPupil": 1720
+    },
+    { 
+      "Code": "6200", "Name": "בת ים", "Type": "עירייה", "District": "תל אביב", "Pop": 129000, "Socio": 5, "Peri": 9, "Pupils": 20500, 
+      "NonResArnona": 195000, "MuniSelfSpendPupil": 5400, "ParentsCoPay": 2900, "GovStdPupil": 13800, "GovDiffPupil": 4600, "LostMatching": 800,
+      "SpecialEdPupils": 1845, "SpecialEdMuniBurdenPupil": 14200, "TransportExpenseK": 48000, "TransportDeficitPupil": 1150, "InformalEduPupil": 1700, "ClassroomShortage": 22, "GafenBasketPupil": 2100
+    },
+    { 
+      "Code": "7400", "Name": "נתניה", "Type": "עירייה", "District": "מרכז", "Pop": 235000, "Socio": 6, "Peri": 8, "Pupils": 44000, 
+      "NonResArnona": 510000, "MuniSelfSpendPupil": 6200, "ParentsCoPay": 3300, "GovStdPupil": 13800, "GovDiffPupil": 3800, "LostMatching": 600,
+      "SpecialEdPupils": 3740, "SpecialEdMuniBurdenPupil": 15800, "TransportExpenseK": 89000, "TransportDeficitPupil": 980, "InformalEduPupil": 1950, "ClassroomShortage": 75, "GafenBasketPupil": 1920
+    },
+    { 
+      "Code": "8400", "Name": "רחובות", "Type": "עירייה", "District": "מרכז", "Pop": 152000, "Socio": 7, "Peri": 8, "Pupils": 32000, 
+      "NonResArnona": 390000, "MuniSelfSpendPupil": 7400, "ParentsCoPay": 3700, "GovStdPupil": 13800, "GovDiffPupil": 2800, "LostMatching": 300,
+      "SpecialEdPupils": 2560, "SpecialEdMuniBurdenPupil": 17500, "TransportExpenseK": 58000, "TransportDeficitPupil": 840, "InformalEduPupil": 2300, "ClassroomShortage": 40, "GafenBasketPupil": 1700
+    },
+    { 
+      "Code": "7000", "Name": "מודיעין-מכבים-רעות", "Type": "עירייה", "District": "מרכז", "Pop": 100000, "Socio": 8, "Peri": 8, "Pupils": 26500, 
+      "NonResArnona": 180000, "MuniSelfSpendPupil": 7200, "ParentsCoPay": 4400, "GovStdPupil": 13800, "GovDiffPupil": 1900, "LostMatching": 150,
+      "SpecialEdPupils": 2120, "SpecialEdMuniBurdenPupil": 19200, "TransportExpenseK": 48000, "TransportDeficitPupil": 720, "InformalEduPupil": 2900, "ClassroomShortage": 25, "GafenBasketPupil": 1460
+    },
+    { 
+      "Code": "1200", "Name": "מודיעין עילית", "Type": "עירייה", "District": "יהודה ושומרון", "Pop": 86000, "Socio": 1, "Peri": 6, "Pupils": 39500, 
+      "NonResArnona": 24000, "MuniSelfSpendPupil": 1100, "ParentsCoPay": 1400, "GovStdPupil": 13800, "GovDiffPupil": 8200, "LostMatching": 2900,
+      "SpecialEdPupils": 3950, "SpecialEdMuniBurdenPupil": 6200, "TransportExpenseK": 76000, "TransportDeficitPupil": 1850, "InformalEduPupil": 600, "ClassroomShortage": 310, "GafenBasketPupil": 2850
+    },
+    { 
+      "Code": "6100", "Name": "בני ברק", "Type": "עירייה", "District": "תל אביב", "Pop": 222000, "Socio": 2, "Peri": 10, "Pupils": 79500, 
+      "NonResArnona": 345000, "MuniSelfSpendPupil": 4950, "ParentsCoPay": 1600, "GovStdPupil": 13800, "GovDiffPupil": 7400, "LostMatching": 700,
+      "SpecialEdPupils": 7155, "SpecialEdMuniBurdenPupil": 14800, "TransportExpenseK": 165000, "TransportDeficitPupil": 1420, "InformalEduPupil": 1100, "ClassroomShortage": 420, "GafenBasketPupil": 2700
+    },
+    { 
+      "Code": "8500", "Name": "רמלה", "Type": "עירייה", "District": "מרכז", "Pop": 78000, "Socio": 4, "Peri": 8, "Pupils": 18200, 
+      "NonResArnona": 230000, "MuniSelfSpendPupil": 6800, "ParentsCoPay": 2400, "GovStdPupil": 13800, "GovDiffPupil": 5800, "LostMatching": 650,
+      "SpecialEdPupils": 1820, "SpecialEdMuniBurdenPupil": 16400, "TransportExpenseK": 49000, "TransportDeficitPupil": 1280, "InformalEduPupil": 1600, "ClassroomShortage": 60, "GafenBasketPupil": 2350
+    },
+    { 
+      "Code": "700", "Name": "לוד", "Type": "עירייה", "District": "מרכז", "Pop": 86000, "Socio": 4, "Peri": 8, "Pupils": 22500, 
+      "NonResArnona": 260000, "MuniSelfSpendPupil": 6400, "ParentsCoPay": 2300, "GovStdPupil": 13800, "GovDiffPupil": 5900, "LostMatching": 750,
+      "SpecialEdPupils": 2250, "SpecialEdMuniBurdenPupil": 15900, "TransportExpenseK": 58000, "TransportDeficitPupil": 1310, "InformalEduPupil": 1550, "ClassroomShortage": 85, "GafenBasketPupil": 2380
+    },
+    { 
+      "Code": "8800", "Name": "מגדל העמק", "Type": "עירייה", "District": "צפון", "Pop": 27500, "Socio": 5, "Peri": 4, "Pupils": 5800, 
+      "NonResArnona": 68000, "MuniSelfSpendPupil": 5800, "ParentsCoPay": 2600, "GovStdPupil": 13800, "GovDiffPupil": 5200, "LostMatching": 500,
+      "SpecialEdPupils": 580, "SpecialEdMuniBurdenPupil": 16800, "TransportExpenseK": 17000, "TransportDeficitPupil": 1240, "InformalEduPupil": 1800, "ClassroomShortage": 15, "GafenBasketPupil": 2200
+    },
+    { 
+      "Code": "2640", "Name": "ראש העין", "Type": "עירייה", "District": "מרכז", "Pop": 76000, "Socio": 7, "Peri": 8, "Pupils": 22100, 
+      "NonResArnona": 95000, "MuniSelfSpendPupil": 4300, "ParentsCoPay": 3800, "GovStdPupil": 13800, "GovDiffPupil": 2700, "LostMatching": 550,
+      "SpecialEdPupils": 1768, "SpecialEdMuniBurdenPupil": 12500, "TransportExpenseK": 39000, "TransportDeficitPupil": 850, "InformalEduPupil": 2100, "ClassroomShortage": 95, "GafenBasketPupil": 1680
+    },
+    { 
+      "Code": "507", "Name": "חריש", "Type": "עירייה", "District": "חיפה", "Pop": 41000, "Socio": 5, "Peri": 6, "Pupils": 14500, 
+      "NonResArnona": 21000, "MuniSelfSpendPupil": 1850, "ParentsCoPay": 2500, "GovStdPupil": 13800, "GovDiffPupil": 4700, "LostMatching": 2100,
+      "SpecialEdPupils": 1450, "SpecialEdMuniBurdenPupil": 7400, "TransportExpenseK": 42000, "TransportDeficitPupil": 1650, "InformalEduPupil": 950, "ClassroomShortage": 165, "GafenBasketPupil": 2150
+    },
+    { 
+      "Code": "7800", "Name": "פרדס חנה-כרכור", "Type": "מועצה מקומית", "District": "חיפה", "Pop": 45000, "Socio": 6, "Peri": 7, "Pupils": 10400, 
+      "NonResArnona": 48000, "MuniSelfSpendPupil": 3900, "ParentsCoPay": 3500, "GovStdPupil": 13800, "GovDiffPupil": 3700, "LostMatching": 750,
+      "SpecialEdPupils": 884, "SpecialEdMuniBurdenPupil": 11800, "TransportExpenseK": 26000, "TransportDeficitPupil": 1020, "InformalEduPupil": 1850, "ClassroomShortage": 30, "GafenBasketPupil": 1900
+    },
+    { 
+      "Code": "2600", "Name": "גדרה", "Type": "מועצה מקומית", "District": "מרכז", "Pop": 31000, "Socio": 6, "Peri": 7, "Pupils": 8200, 
+      "NonResArnona": 32000, "MuniSelfSpendPupil": 3600, "ParentsCoPay": 3600, "GovStdPupil": 13800, "GovDiffPupil": 3600, "LostMatching": 800,
+      "SpecialEdPupils": 697, "SpecialEdMuniBurdenPupil": 11200, "TransportExpenseK": 21000, "TransportDeficitPupil": 1050, "InformalEduPupil": 1800, "ClassroomShortage": 24, "GafenBasketPupil": 1880
+    },
+    { 
+      "Code": "2530", "Name": "קדימה-צורן", "Type": "מועצה מקומית", "District": "מרכז", "Pop": 23000, "Socio": 7, "Peri": 8, "Pupils": 6100, 
+      "NonResArnona": 26000, "MuniSelfSpendPupil": 4200, "ParentsCoPay": 4100, "GovStdPupil": 13800, "GovDiffPupil": 2600, "LostMatching": 600,
+      "SpecialEdPupils": 488, "SpecialEdMuniBurdenPupil": 13000, "TransportExpenseK": 16000, "TransportDeficitPupil": 910, "InformalEduPupil": 2200, "ClassroomShortage": 15, "GafenBasketPupil": 1650
+    },
+    { 
+      "Code": "3000", "Name": "ירושלים", "Type": "עירייה", "District": "ירושלים", "Pop": 985000, "Socio": 2, "Peri": 7, "Pupils": 295000, 
+      "NonResArnona": 1150000, "MuniSelfSpendPupil": 3800, "ParentsCoPay": 2100, "GovStdPupil": 13800, "GovDiffPupil": 7600, "LostMatching": 1800,
+      "SpecialEdPupils": 29500, "SpecialEdMuniBurdenPupil": 11500, "TransportExpenseK": 480000, "TransportDeficitPupil": 1550, "InformalEduPupil": 1250, "ClassroomShortage": 1950, "GafenBasketPupil": 2750
+    },
+    { 
+      "Code": "2610", "Name": "בית שמש", "Type": "עירייה", "District": "ירושלים", "Pop": 165000, "Socio": 2, "Peri": 7, "Pupils": 61000, 
+      "NonResArnona": 125000, "MuniSelfSpendPupil": 2100, "ParentsCoPay": 1800, "GovStdPupil": 13800, "GovDiffPupil": 7500, "LostMatching": 2200,
+      "SpecialEdPupils": 5800, "SpecialEdMuniBurdenPupil": 8500, "TransportExpenseK": 125000, "TransportDeficitPupil": 1780, "InformalEduPupil": 900, "ClassroomShortage": 620, "GafenBasketPupil": 2720
+    },
+    { 
+      "Code": "1063", "Name": "רהט", "Type": "עירייה", "District": "דרום", "Pop": 82000, "Socio": 1, "Peri": 3, "Pupils": 32500, 
+      "NonResArnona": 26000, "MuniSelfSpendPupil": 1200, "ParentsCoPay": 1100, "GovStdPupil": 13800, "GovDiffPupil": 8600, "LostMatching": 2950,
+      "SpecialEdPupils": 3575, "SpecialEdMuniBurdenPupil": 4800, "TransportExpenseK": 95000, "TransportDeficitPupil": 2450, "InformalEduPupil": 450, "ClassroomShortage": 340, "GafenBasketPupil": 2950
+    },
+    { 
+      "Code": "1188", "Name": "חורה", "Type": "מועצה מקומית", "District": "דרום", "Pop": 24000, "Socio": 1, "Peri": 3, "Pupils": 9800, 
+      "NonResArnona": 8500, "MuniSelfSpendPupil": 950, "ParentsCoPay": 900, "GovStdPupil": 13800, "GovDiffPupil": 8700, "LostMatching": 3100,
+      "SpecialEdPupils": 1078, "SpecialEdMuniBurdenPupil": 4100, "TransportExpenseK": 36000, "TransportDeficitPupil": 2650, "InformalEduPupil": 400, "ClassroomShortage": 120, "GafenBasketPupil": 2980
+    },
+    { 
+      "Code": "1058", "Name": "כסייפה", "Type": "מועצה מקומית", "District": "דרום", "Pop": 23000, "Socio": 1, "Peri": 3, "Pupils": 9400, 
+      "NonResArnona": 7200, "MuniSelfSpendPupil": 900, "ParentsCoPay": 850, "GovStdPupil": 13800, "GovDiffPupil": 8750, "LostMatching": 3150,
+      "SpecialEdPupils": 1034, "SpecialEdMuniBurdenPupil": 3900, "TransportExpenseK": 35000, "TransportDeficitPupil": 2700, "InformalEduPupil": 380, "ClassroomShortage": 115, "GafenBasketPupil": 2990
+    },
+    { 
+      "Code": "9000", "Name": "באר שבע", "Type": "עירייה", "District": "דרום", "Pop": 215000, "Socio": 5, "Peri": 3, "Pupils": 42000, 
+      "NonResArnona": 510000, "MuniSelfSpendPupil": 6900, "ParentsCoPay": 3100, "GovStdPupil": 13800, "GovDiffPupil": 5200, "LostMatching": 450,
+      "SpecialEdPupils": 4410, "SpecialEdMuniBurdenPupil": 17200, "TransportExpenseK": 84000, "TransportDeficitPupil": 1180, "InformalEduPupil": 2100, "ClassroomShortage": 65, "GafenBasketPupil": 2220
+    },
+    { 
+      "Code": "70", "Name": "אשדוד", "Type": "עירייה", "District": "דרום", "Pop": 227000, "Socio": 5, "Peri": 6, "Pupils": 48000, 
+      "NonResArnona": 610000, "MuniSelfSpendPupil": 6800, "ParentsCoPay": 3200, "GovStdPupil": 13800, "GovDiffPupil": 5100, "LostMatching": 500,
+      "SpecialEdPupils": 4560, "SpecialEdMuniBurdenPupil": 16900, "TransportExpenseK": 92000, "TransportDeficitPupil": 1140, "InformalEduPupil": 2050, "ClassroomShortage": 80, "GafenBasketPupil": 2200
+    },
+    { 
+      "Code": "4000", "Name": "חיפה", "Type": "עירייה", "District": "חיפה", "Pop": 285000, "Socio": 7, "Peri": 8, "Pupils": 46000, 
+      "NonResArnona": 950000, "MuniSelfSpendPupil": 10800, "ParentsCoPay": 4100, "GovStdPupil": 13800, "GovDiffPupil": 2800, "LostMatching": 200,
+      "SpecialEdPupils": 4140, "SpecialEdMuniBurdenPupil": 21500, "TransportExpenseK": 92000, "TransportDeficitPupil": 790, "InformalEduPupil": 2750, "ClassroomShortage": 40, "GafenBasketPupil": 1700
+    },
+    { 
+      "Code": "7300", "Name": "נצרת", "Type": "עירייה", "District": "צפון", "Pop": 78000, "Socio": 3, "Peri": 4, "Pupils": 21000, 
+      "NonResArnona": 88000, "MuniSelfSpendPupil": 2600, "ParentsCoPay": 1900, "GovStdPupil": 13800, "GovDiffPupil": 6900, "LostMatching": 1950,
+      "SpecialEdPupils": 2100, "SpecialEdMuniBurdenPupil": 7800, "TransportExpenseK": 52000, "TransportDeficitPupil": 1820, "InformalEduPupil": 850, "ClassroomShortage": 140, "GafenBasketPupil": 2580
+    },
+    { 
+      "Code": "29", "Name": "תמר", "Type": "מועצה אזורית", "District": "דרום", "Pop": 1600, "Socio": 7, "Peri": 2, "Pupils": 420, 
+      "NonResArnona": 240000, "MuniSelfSpendPupil": 24500, "ParentsCoPay": 4200, "GovStdPupil": 13800, "GovDiffPupil": 2400, "LostMatching": 0,
+      "SpecialEdPupils": 35, "SpecialEdMuniBurdenPupil": 38000, "TransportExpenseK": 12000, "TransportDeficitPupil": 800, "InformalEduPupil": 4500, "ClassroomShortage": 0, "GafenBasketPupil": 1600
+    }
+  ]
+}

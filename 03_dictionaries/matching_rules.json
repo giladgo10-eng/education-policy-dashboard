@@ -1,0 +1,28 @@
+{
+  "evidence_weights": {
+    "exact_mobile_match": 50,
+    "exact_email_match": 50,
+    "exact_id_number_match": 60,
+    "exact_full_name_match": 30,
+    "high_fuzzy_name_match": 20,
+    "medium_fuzzy_name_match": 15,
+    "exact_authority_match": 25,
+    "exact_role_cluster_match": 15
+  },
+  "penalties": {
+    "conflicting_authority": -25,
+    "conflicting_valid_mobile": -35,
+    "dissimilar_names": -50
+  },
+  "thresholds": {
+    "high_confidence_auto_merge_min": 90,
+    "medium_confidence_review_min": 65,
+    "fuzzy_name_high_ratio": 0.88,
+    "fuzzy_name_medium_ratio": 0.75
+  },
+  "safety_guards": {
+    "never_auto_merge_single_signal": true,
+    "never_auto_merge_name_only": true,
+    "never_auto_merge_conflicting_contacts": true
+  }
+}

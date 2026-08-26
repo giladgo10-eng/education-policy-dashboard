@@ -1,0 +1,48 @@
+# ==============================================================================
+# .gitignore - Neot Hadar Education Budget & Disparities System
+# ==============================================================================
+
+# Environment & Secrets
+.env
+.env.*
+*.key
+*.pem
+*.pfx
+*.cert
+*credentials*
+*secret*
+*token*
+
+# Operating System & IDE Cache
+.DS_Store
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+.vscode/
+.idea/
+*.swp
+*.bak
+*.tmp
+*.log
+
+# Private Raw Member Lists & Sensitive PII Files
+01_source_files/
+01_חומרי_מקור_לטיוב/
+02_snapshots/
+05_audit/
+06_outputs/
+אאא- חומרי מקור רשימות חברי לבדיקה/
+UNION_MASTER_OPERATIONAL.csv
+UNION_MASTER_OPERATIONAL.xlsx
+*.docx
+*.pdf
+
+# Python & Node Temp Cache (if any)
+__pycache__/
+*.py[cod]
+*$py.class
+node_modules/
+npm-debug.log*
+
+# Distribution Archives
+*.zip

@@ -1,0 +1,14 @@
+{
+  "default_order": ["A", "B", "C"],
+  "sources_metadata": {
+    "A": { "label": "מקור A - רשימת האיגוד", "priority": 1 },
+    "B": { "label": "מקור B - מאגר רשמי / משרד החינוך", "priority": 2 },
+    "C": { "label": "מקור C - Smoove / ייצוא מערכת", "priority": 3 }
+  },
+  "rules": {
+    "null_never_overwrites_value": true,
+    "valid_overwrites_invalid": true,
+    "union_distribution_lists": true,
+    "concatenate_notes": true
+  }
+}

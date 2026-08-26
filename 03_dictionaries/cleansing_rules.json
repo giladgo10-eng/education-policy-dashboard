@@ -1,0 +1,31 @@
+{
+  "phones": {
+    "valid_mobile_prefixes": ["050", "051", "052", "053", "054", "055", "058"],
+    "valid_landline_prefixes": ["02", "03", "04", "08", "09", "072", "073", "074", "076", "077", "079"],
+    "mobile_length": 10,
+    "landline_lengths": [9, 10],
+    "strip_chars": ["-", " ", "(", ")", ".", "/", "\\", "\t", "\r", "\n", "+972", "972"],
+    "auto_prefix_mobile_9digits": true,
+    "auto_prefix_landline_8digits": true
+  },
+  "emails": {
+    "trim_and_lowercase": true,
+    "regex": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+    "domain_typo_fixes": {
+      "@gmai.com": "@gmail.com",
+      "@gmial.com": "@gmail.com",
+      "@gamil.com": "@gmail.com",
+      "@gmaill.com": "@gmail.com",
+      "@walla.co.il.": "@walla.co.il",
+      "@walla.com": "@walla.co.il",
+      ".con": ".com",
+      ".cpm": ".com"
+    }
+  },
+  "text": {
+    "normalize_whitespace": true,
+    "strip_corrupted_mojibake": true,
+    "fix_backticks_to_quotes": true,
+    "corrupted_patterns": ["", "\uFFFD", "???"]
+  }
+}

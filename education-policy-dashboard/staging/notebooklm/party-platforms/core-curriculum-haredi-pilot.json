@@ -6,7 +6,9 @@
     "ingestedAt": "2026-08-31T16:05:00+03:00",
     "status": "staged_pending_verification",
     "pilotScope": "לימודי ליבה בחינוך החרדי",
-    "totalRecords": 3
+    "totalRecords": 3,
+    "researchNotebook": "party_platforms",
+    "notebookId": "43fca763-ee95-4f48-bb20-bf9ff442fbc7"
   },
   "records": [
     {
@@ -35,7 +37,12 @@
       "magnitude": "structural_change",
       "municipalImpact": "עצירת תקציבים ממשלתיים למוסדות חרדיים ביישוב שאינם עומדים ב-100% ליבה, והחרפת לחצי הורים על הרשות המקומית למימון חלופי.",
       "openQuestion": "האם משרד החינוך יטיל על הרשות המקומית חובת פיקוח ובקרה שוטפת על עמידה ב-100% שעות ליב\"ה במוסדות שבתחומה?",
-      "researchNotes": "אומת במלואו מילה במילה מתוך המקור הראשוני הרשמי של המפלגה בכתובת https://www.yeshatid.org.il/platform (תועד ונבדק live HTTP 200)."
+      "researchNotes": "אומת במלואו מילה במילה מתוך המקור הראשוני הרשמי של המפלגה בכתובת https://www.yeshatid.org.il/platform (תועד ונבדק live HTTP 200).",
+      "researchNotebook": "party_platforms",
+      "issueId": "ISSUE-CORE-CURRICULUM",
+      "ingestionDate": "2026-08-31T16:05:00+03:00",
+      "verificationStatus": "verified_official",
+      "eligibleForPromotion": true
     },
     {
       "recordId": "STG-CORE-RZ-001",
@@ -63,7 +70,12 @@
       "magnitude": "structural_change",
       "municipalImpact": "קיבוע מעמד מוסדות עצמאיים בתחום הרשות ללא סמכות פיקוח או תיאום פדגוגי של אגף החינוך.",
       "openQuestion": "האם השוואת התקציב תחייב השתתפות עצמית (מאצ'ינג) של הרשות המקומית בשירותים מוניציפליים נלווים?",
-      "researchNotes": "קובץ המקור הראשוני טרם הועלה ואומת פיזית במאגר; כל ארבעת שדות האימות סומנו false."
+      "researchNotes": "קובץ המקור הראשוני טרם הועלה ואומת פיזית במאגר; כל ארבעת שדות האימות סומנו false.",
+      "researchNotebook": "party_platforms",
+      "issueId": "ISSUE-CORE-CURRICULUM",
+      "ingestionDate": "2026-08-31T16:05:00+03:00",
+      "verificationStatus": "pending_verification",
+      "eligibleForPromotion": false
     },
     {
       "recordId": "STG-CORE-BY-001",
@@ -91,7 +103,12 @@
       "magnitude": "structural_change",
       "municipalImpact": "דרישה להיערכות רב-שנתית של מנהל אגף החינוך לקליטה והטמעה של תוכניות ליבה במוסדות חרדיים מקומיים.",
       "openQuestion": "האם משרד החינוך יקצה לרשות המקומית סל תמריצים והכשרת מורים כדי לעמוד ביעד 8 השנים?",
-      "researchNotes": "המקור המשני מזוהה וקיים במערכת (SRC-RES-DOC-OPENING-5787), אך טענת המפלגה מסומנת claimVerified: false עד להצלבה מול מצע רשמי."
+      "researchNotes": "המקור המשני מזוהה וקיים במערכת (SRC-RES-DOC-OPENING-5787), אך טענת המפלגה מסומנת claimVerified: false עד להצלבה מול מצע רשמי.",
+      "researchNotebook": "party_platforms",
+      "issueId": "ISSUE-CORE-CURRICULUM",
+      "ingestionDate": "2026-08-31T16:05:00+03:00",
+      "verificationStatus": "pending_verification",
+      "eligibleForPromotion": false
     }
   ]
 }

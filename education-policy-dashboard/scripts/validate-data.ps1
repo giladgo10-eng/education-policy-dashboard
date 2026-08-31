@@ -223,6 +223,66 @@ foreach ($g in $groups) {
     }
 }
 
+# 4. Validate Staging Files (Dual-Notebook Staging Architecture)
+$stagingDir = Join-Path $projectDir "staging"
+if (Test-Path $stagingDir) {
+    Write-Host ""
+    Write-Host "Validating Staging Layer (Dual-Notebook Architecture)..." -ForegroundColor Yellow
+
+    $stagingFiles = Get-ChildItem -Path $stagingDir -Recurse -Filter "*.json"
+    Write-Host "Found $($stagingFiles.Count) staging batch files" -ForegroundColor DarkCyan
+
+    foreach ($sFile in $stagingFiles) {
+        $relPath = $sFile.FullName.Substring($projectDir.Length + 1)
+        try {
+            $sRaw = Get-Content -Path $sFile.FullName -Raw -Encoding UTF8
+            $sJson = ConvertFrom-Json -InputObject $sRaw
+
+            $nbScope = $sJson.stagingMetadata.researchNotebook
+            $isPlatformsDir = $sFile.FullName -like "*party-platforms*"
+            $isGovExecDir = $sFile.FullName -like "*government-policy-execution*"
+
+            if ($isPlatformsDir -and $nbScope -ne "party_platforms") {
+                $errors.Add("[$relPath] Directory mismatch: file in 'party-platforms' must have researchNotebook='party_platforms'")
+            }
+            if ($isGovExecDir -and $nbScope -ne "government_policy_execution") {
+                $errors.Add("[$relPath] Directory mismatch: file in 'government-policy-execution' must have researchNotebook='government_policy_execution'")
+            }
+
+            if ($sJson.records) {
+                foreach ($rec in $sJson.records) {
+                    $rId = $rec.recordId
+                    $cType = $rec.claimType
+
+                    # Rule: party_position belongs to party_platforms
+                    if ($nbScope -eq "government_policy_execution" -and $cType -eq "party_position") {
+                        $errors.Add("[$relPath | $rId] Classification error: 'party_position' cannot originate from government_policy_execution notebook")
+                    }
+
+                    # Rule: actual_execution / budget_allocation belongs to government_policy_execution
+                    if ($nbScope -eq "party_platforms" -and ($cType -in @("actual_execution", "budget_allocation", "coalition_commitment", "government_policy", "current_state"))) {
+                        $errors.Add("[$relPath | $rId] Classification error: '$cType' cannot originate from party_platforms notebook")
+                    }
+
+                    # Rule: Promotion without source backing or with claimVerified=false
+                    if ($rec.eligibleForPromotion -eq $true) {
+                        if ($rec.claimVerified -ne $true) {
+                            $errors.Add("[$relPath | $rId] Promotion violation: cannot be marked eligibleForPromotion when claimVerified is not true")
+                        }
+                        if ([string]::IsNullOrWhiteSpace($rec.sourceTitle) -and [string]::IsNullOrWhiteSpace($rec.sourceId)) {
+                            $errors.Add("[$relPath | $rId] Promotion violation: missing source backing (sourceTitle or sourceId required)")
+                        }
+                    }
+                }
+            }
+            Write-Host " [PASS] $relPath passed staging integrity checks" -ForegroundColor Green
+        }
+        catch {
+            $errors.Add("[$relPath] Staging JSON syntax/parse error: $($_.Exception.Message)")
+        }
+    }
+}
+
 Write-Host ""
 Write-Host "----------------------------------------------------------"
 if ($errors.Count -eq 0) {

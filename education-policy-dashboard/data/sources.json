@@ -13,14 +13,14 @@
       "sourceType": "coalition_agreement",
       "publisher": "מזכירות הממשלה / הכנסת",
       "publicationDate": "2022-12-28",
-      "url": "https://fs.knesset.gov.il/25/Committees/25_cs_bg_coalition_agreements.pdf",
-      "localFilePath": "research/raw/coalition-agreements/coalition_agreement_likud_religious_zionism_2022.pdf",
-      "archiveHash": "sha256-placeholder",
+      "url": null,
+      "localFilePath": "research/raw/coalition-agreements/הסכם ציונות הדתית.pdf",
+      "archiveHash": "sha256-d48dffc1e49521bbacbc9cd685b1c9c2c1b2f8d821dd8515e17e4caeb1cbcf86",
       "verificationLevel": "verified_official",
       "confidenceLevel": "high",
       "accessDate": "2026-08-31",
       "language": "he",
-      "notes": "הסכם חתום ורשמי שהוגש למזכירות הכנסת על פי חוק"
+      "notes": "הסכם קואליציוני רשמי וחתום שהוגש למזכירות הכנסת ב-28.12.2022; אומת מקומית מתוך עותק סרוק מקורי (פרק חינוך, סעיף 167)"
     },
     {
       "id": "SRC-MOE-2024-BUDGET-EXEC",

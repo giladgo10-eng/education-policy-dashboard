@@ -242,6 +242,47 @@
         "text": "הסעיף יוצר תמריץ תקציבי ישיר לבתי ספר שאינם רשמיים במגזר הדתי-לאומי ללמד ליבה ולהשתתף במערך המבחנים וההערכה, לצד הגנה על מעמד חוק החינוך הממלכתי ואינטגרציה.",
         "municipalImpactVerified": false
       }
+    },
+    {
+      "id": "COM-37-RZP-CORE-001",
+      "partyIds": [
+        "PARTY-RELIGIOUS-ZIONISM",
+        "PARTY-LIKUD"
+      ],
+      "issueId": "ISSUE-CORE-CURRICULUM",
+      "title": "תקצוב מוסדות מוכש\"ר ופטור והתניית תוספות בהיקף לימודי ליבה, מבחנים ותוכנית ישראלית",
+      "commitmentType": "coalition_agreement",
+      "epistemicType": "fact",
+      "verbatimText": "משרד החינוך יתקצב את מוסדות המוכר שאינו רשמי ב- 75% ומוסדות הפטור ב- 55% באופן יחסי לתקצוב המלא שיגיע לרשתות. מוסדות שאינם רשמיים המלמדים לימודי ליבה בהיקף רחב יותר יקבלו תוספת תקציב בהתאם להיקף לימודי הליבה ובכפוף לעמידה בכללי בחינה והערכה, ובכך שתוכנית הלימודים במוסד אינה עומדת בסתירה למטרות החינוך המפורטות בחוק החינוך הממלכתי וכן בהרכב תלמידים אינטגרטיבי.\n\nכל האמור לעיל יהיה מותנה בהוראת תוכנית הלימודים הישראלית.",
+      "sourceId": "SRC-GOV-2022-COAL-LIKUD-RZ",
+      "sourceType": "coalition_agreement",
+      "sectionRef": "ההסכם העיקרי, פרק חינוך, סעיף 167 (עמ' 17)",
+      "date": "2022-12-28",
+      "targetYear": "2023-2024",
+      "budgetYear": 2023,
+      "budgetEntity": "מוסדות שאינם רשמיים (מוכש\"ר ופטור)",
+      "budgetType": "promised",
+      "baselineBudgetNIS": null,
+      "promisedBudgetNIS": null,
+      "allocatedBudgetEstimatedNIS": null,
+      "comparabilityStatus": "not_comparable",
+      "comparabilityReason": "ההתחייבות קובעת מודל תמחור באחוזים (75% מוכש\"ר / 55% פטור) ומנגנון תוספת תמריץ מדורג לפי היקף ליבה ומבחנים, ללא סכום שקלי נקוב.",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "analysisDraft": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "הערכת משמעות לרשות: החלת מנגנוני בחינה והערכה של לימודי הליבה כתנאי לתקצוב תוספתי דורשת היערכות תפעולית של מחלקת החינוך ברשות לתיאום מבדקים ודיווחים, אך מעניקה מנוף השפעה על שיפור איכות ההוראה במוסדות אלו.",
+        "municipalImpactVerified": false
+      },
+      "assessmentDraft": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "הסעיף מבטא את עמדת הציונות הדתית המעודדת תמרוץ תקציבי להוראת ליבה מלאה ועמידה במבחני הערכה במוסדות שאינם רשמיים, לצד עיגון מפורש של חובת הוראת תוכנית הלימודים הישראלית.",
+        "municipalImpactVerified": false
+      }
     }
   ]
 }

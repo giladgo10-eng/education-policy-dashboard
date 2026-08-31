@@ -117,7 +117,8 @@ function renderPartySelector() {
   const targetParties = [
     { id: "PARTY-BEYACHAD", label: "ביחד", badge: "הצעות ומצע" },
     { id: "PARTY-SHAS", label: "ש״ס", badge: "מבחן ביצוע תקציבי" },
-    { id: "PARTY-NOAM", label: "נעם", badge: "מבחן ביצוע ומסלולים" }
+    { id: "PARTY-NOAM", label: "נעם", badge: "מבחן ביצוע ומסלולים" },
+    { id: "PARTY-RELIGIOUS-ZIONISM", label: "הציונות הדתית", badge: "הסכם ומבחן ביצוע" }
   ];
 
   container.innerHTML = targetParties.map(p => 

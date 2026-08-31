@@ -252,6 +252,1472 @@
         "date": "2026-08-31",
         "text": "יישומה ידרוש תוספת תקציבית שנתית של מיליארדי שקלים והסכם שכר קיבוצי חדש מול הסתדרות וארגון המורים."
       }
+    },
+    {
+      "id": "POS-BEY-DEC-001",
+      "partyId": "PARTY-BEYACHAD",
+      "issueId": "ISSUE-DECENTRALIZATION",
+      "topic": "ביזור סמכויות והעברת כוח לשטח לפי שיטת הרמזור ו-100% העסקת מורים ברשויות",
+      "epistemicType": "fact",
+      "verbatimQuote": "העברה מאוזנת של כוח אל השטח - לפי שיטת הרמזור: מתוך הבנה שהרשויות המקומיות ומוסדות החינוך הם אלו שמכירים הכי טוב את צורכי התלמידים, נאפשר להם - בהתאם לעמידה ביעדים ובדרישות – עצמאות הולכת וגוברת... המטרה היא, בסופו של דבר, להגיע ל100%- העסקה של צוותי החינוך במערכת על ידי הרשויות המקומיות.",
+      "summary": "ביזור סמכויות מדורג לרשויות לפי מודל רמזור תוך יעד של 100% העסקת עובדי הוראה על ידי הרשויות המקומיות וסל שקלי גמיש למנהלים.",
+      "stance": "pro_autonomy",
+      "sourceId": "SRC-PLT-BEYACHAD-5787",
+      "sourceType": "party_platform",
+      "sourceCitation": "הסכם חדש בחינוך: משרד החינוך בממשלת השיקום, פרק 2, עמ' 4",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "ביזור",
+        "שלטון מקומי",
+        "רמזור",
+        "העסקת מורים",
+        "אוטונומיה"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "הצעה מבנית עמוקה להעברת מוקד הכובד הניהולי וההעסקתי של עובדי ההוראה מירושלים לשלטון המקומי."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "המהלך יעניק גמישות רבה לרשויות חזקות, אך דורש מנגנוני גיבוי ותקצוב מוגברים לרשויות מוחלשות שיתקשו לשאת באחריות המעסיק."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "משרד החינוך מנהל ומעסיק ישירות את רוב מורי היסודי וחט\"ב, והרשויות מנהלות ומעסיקות בעיקר בתיכונים.",
+        "currentStateSourceId": null,
+        "currentStateCitation": "מצב קיים סטטוטורי",
+        "changeFromCurrentState": "העברת 100% מהעסקת צוותי החינוך לאחריות הרשות המקומית.",
+        "changeMagnitude": "structural_change",
+        "localAuthorityImpact": "הרחבה דרמטית של אחריות המעסיק, ניהול משאבי אנוש והסכמי עבודה ברשות המקומית.",
+        "openImplementationQuestion": "כיצד יסופק גיבוי תקציבי לרשויות באשכולות למ\"ס 1-4 בניהול העסקת אלפי מורים?"
+      }
+    },
+    {
+      "id": "POS-BEY-CORE-001",
+      "partyId": "PARTY-BEYACHAD",
+      "issueId": "ISSUE-CORE-CURRICULUM",
+      "topic": "התניית תקצוב החינוך החרדי בלימודי ליבה מלאים ('100% ליבה או 0% תקצוב')",
+      "epistemicType": "fact",
+      "verbatimQuote": "לא ממלכתי - לא על חשבוני: או 100% ליבה - או 0% תקצוב. היעד הוא הפסקה מוחלטת של מימון ציבורי למוסדות חרדיים שאינם בזרם הממלכתי-חרדי. בלי חריגים ובלי תירוצים... במטרה שתוך 4 שנים - כ70%- מהתלמידים בחינוך החרדי - ילמדו במוסדות של הזרם הממלכתי-חרדי, ותוך 8 שנים - הנתון כבר יהיה 100%.",
+      "summary": "הפסקה מוחלטת של מימון למוסדות חרדיים שאינם בזרם הממלכתי-חרדי תוך יעד של 70% ממ\"ח ב-4 שנים ו-100% ב-8 שנים.",
+      "stance": "pro_enforcement",
+      "sourceId": "SRC-PLT-BEYACHAD-5787",
+      "sourceType": "party_platform",
+      "sourceCitation": "הסכם חדש בחינוך, פרק תוכנית ההתחברות, עמ' 3",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "לימודי ליבה",
+        "חרדים",
+        "ממלכתי-חרדי",
+        "תקצוב"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "עמדה בלתי מתפשרת להעברת כל מוסדות החינוך החרדיים למסגרת ממלכתית מפוקחת עם לימודי ליבה מלאים."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "החלת חוק זה תחייב את הרשויות המקומיות להקים מוסדות ממ\"ח ולהתמודד עם בינוי והתנגדויות קהילתיות."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "מוסדות הפטור והמוכש\"ר מתוקצבים ב-55%-75% ללא חובת פיקוח הדוקה על ליבה מלאה.",
+        "currentStateSourceId": null,
+        "currentStateCitation": "חוק מוסדות חינוך תרבותיים ייחודיים ותקנות חינוך ממלכתי",
+        "changeFromCurrentState": "אפס תקצוב לכל מוסד שאינו בזרם הממלכתי-חרדי.",
+        "changeMagnitude": "structural_change",
+        "localAuthorityImpact": "חובת הרשות המקומית לספק מבנים ומוסדות ממ\"ח לכל הורה חרדי הדורש זאת.",
+        "openImplementationQuestion": "האם הרשויות יקבלו סמכות הפקעה והסבה של מבני מוסדות פטור לממ\"ח?"
+      }
+    },
+    {
+      "id": "POS-BEY-TEA-001",
+      "partyId": "PARTY-BEYACHAD",
+      "issueId": "ISSUE-TEACHER-SHORTAGE",
+      "topic": "קביעת שכר התחלתי של 12,000 ש\"ח למורים חדשים ומעמד מנהלים ייחודי",
+      "epistemicType": "fact",
+      "verbatimQuote": "לכן נקבע רצפת שכר של 12,000 שקלים למשרה מלאה למורות ולמורים ב6-5- השנים הראשונות לעבודתם במערכת, באמצעות מענק ייעודי – 'מענק מורה צעירה'... ונעגן מעמד מקצועי ייחודי למנהלות ולמנהלים.",
+      "summary": "העלאת שכר מורה מתחיל ל-12,000 ש\"ח באמצעות מענק ייעודי ועיגון מעמד עצמאי ושכר בכיר למנהלים.",
+      "stance": "pro_reform",
+      "sourceId": "SRC-PLT-BEYACHAD-5787",
+      "sourceType": "party_platform",
+      "sourceCitation": "הסכם חדש בחינוך, פרק כוח אדם, עמ' 8",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "שכר מורים",
+        "מורים מתחילים",
+        "מנהלים",
+        "כוח אדם"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "תמרוץ כלכלי ישיר במוקד שנות הנשירה הקריטיות (5 השנים הראשונות) למניעת עזיבת מורים איכותיים."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "העלאת שכר הבסיס תשפר את יכולת הרשויות לגייס מורים איכותיים, בפרט במקצועות במחסור."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "שכר מורה מתחיל עומד על כ-8,300-9,300 ש\"ח ברוטו בהסכמי השכר הקיימים.",
+        "currentStateSourceId": null,
+        "currentStateCitation": "הסכמי שכר עובדי הוראה",
+        "changeFromCurrentState": "רצפת שכר של 12,000 ש\"ח לחודש למורים חדשים.",
+        "changeMagnitude": "significant_change",
+        "localAuthorityImpact": "הקלה בגיוס כוח אדם איכותי לבתי הספר המקומיים וצמצום שיעור הנשירה.",
+        "openImplementationQuestion": "האם מענק מורה צעירה ימומן ב-100% ע\"י משרד האוצר ללא מצ'ינג עירוני?"
+      }
+    },
+    {
+      "id": "POS-BEY-SPE-001",
+      "partyId": "PARTY-BEYACHAD",
+      "issueId": "ISSUE-SPECIAL-EDUCATION",
+      "topic": "תעדוף חינוך מיוחד וחזרה לפעילות מלאה תוך 24 שעות בחירום",
+      "epistemicType": "fact",
+      "verbatimQuote": "'הראשונים תמיד' - החינוך המיוחד: מוסדות לתלמידים עם לקויות מורכבות ותפקוד נמוך - ייערכו מיידית, ויחזרו לפעילות מלאה בתוך 24 שעות ממתן אישור ביטחוני ראשוני... תוך מתן מענק סיוע להורים לכיסוי הוצאות דלק/זמן.",
+      "summary": "הבטחת רציפות תפקודית לחינוך המיוחד בחירום תוך 24 שעות ומענקי שיפוי להורים.",
+      "stance": "pro_support",
+      "sourceId": "SRC-PLT-BEYACHAD-5787",
+      "sourceType": "party_platform",
+      "sourceCitation": "הסכם חדש בחינוך, פרק לומדים בחירום, עמ' 17",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "חינוך מיוחד",
+        "חירום",
+        "רציפות תפקודית"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "מיקוד בהגנה על אוכלוסיות החנ\"מ המורכבות בשעת חירום ומתן גב כלכלי להסעות עצמאיות."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "מטיל עומס היערכות לוגיסטי על אגפי החינוך ברשויות לפתיחת מסגרות מוגנות בחירום."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "בחירום מסגרות חנ\"מ נפתחות באיטיות ותלויות בהפעלת מערכי הסעות מורכבים.",
+        "currentStateSourceId": null,
+        "currentStateCitation": "נהלי פיקוד העורף ומשרד החינוך בחירום",
+        "changeFromCurrentState": "פתיחה מחייבת תוך 24 שעות ומענקי סיוע ישירים להורים.",
+        "changeMagnitude": "moderate_change",
+        "localAuthorityImpact": "חובת העמדת מבנים ממוגנים ושיפוי הורים על הסעות עצמאיות.",
+        "openImplementationQuestion": "כיצד יוסדרו ביטוחי ההורים והתלמידים בהסעות עצמאיות בחירום?"
+      }
+    },
+    {
+      "id": "POS-BEY-DIF-001",
+      "partyId": "PARTY-BEYACHAD",
+      "issueId": "ISSUE-DIFFERENTIAL-FUNDING",
+      "topic": "מעבר לתקצוב שקלי גמיש פר-תלמיד ונוסחה דיפרנציאלית לטובת הפריפריה",
+      "epistemicType": "fact",
+      "verbatimQuote": "תיקון העיוות ההיסטורי במפתח התקצוב: נעביר את כל המוסדות במערכת לתקצוב שקלי שיאפשר שימוש גמיש בכסף, ונדאג לתקצוב פר-תלמיד – ולא פר-כיתה. המטרה היא לייצר נוסחת תקצוב פשוטה וברורה לכל, אבל כזו שתהיה דיפרנציאלית ותייצר הוגנות במערכת - מוסדות ותלמידים הזקוקים ליותר בפריפריה, מרקע סוציו-אקונומי מוחלש, עם צרכים מיוחדים... יקבלו יותר תקציב.",
+      "summary": "מעבר לתקצוב שקלי פר-תלמיד על פי נוסחה דיפרנציאלית שתעניק משאבים מוגדלים לפריפריה ולאוכלוסיות מוחלשות.",
+      "stance": "pro_equity",
+      "sourceId": "SRC-PLT-BEYACHAD-5787",
+      "sourceType": "party_platform",
+      "sourceCitation": "הסכם חדש בחינוך, פרק 2, עמ' 4",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "תקצוב דיפרנציאלי",
+        "סל תלמיד",
+        "פריפריה",
+        "שקלי"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "ביטול שיטת שעות ההוראה המסורבלת ומעבר לתקציב שקלי שקוף ודיפרנציאלי."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "יחזק את תקציב החינוך ברשויות פריפריאליות ויאפשר שימוש גמיש בכספים לצרכים מקומיים."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "התקצוב מבוסס על סל שעות מורכב (מודל שושני) עם פערים בין זרמים ורשויות עשירות לעניות.",
+        "currentStateSourceId": null,
+        "currentStateCitation": "מודל התקצוב של משרד החינוך",
+        "changeFromCurrentState": "תקצוב שקלי אחיד פר-תלמיד עם מקדם דיפרנציאלי לפריפריה.",
+        "changeMagnitude": "structural_change",
+        "localAuthorityImpact": "הגדלת התקציב השקלי המועבר לבתי הספר בפריפריה והפחתת התלות במשאבים עצמיים.",
+        "openImplementationQuestion": "האם יוגבל שיעור התקציב שרשויות עשירות יכולות להוסיף ממקורותיהן העצמיים?"
+      }
+    },
+    {
+      "id": "POS-BEY-EAR-001",
+      "partyId": "PARTY-BEYACHAD",
+      "issueId": "ISSUE-EARLY-CHILDHOOD",
+      "topic": "הרחבת מעונות יום מפוקחים מגיל 0 וסבסוד מותנה במיצוי כושר השתכרות להורים עובדים",
+      "epistemicType": "fact",
+      "verbatimQuote": "מתן מענה רק להורים עובדים - כיום 55% מהתקציבים של מערך הגיל הרך הציבורי הולכים לציבור החרדי שאינו משרת בצה\"ל ובחלקו הגדול לא משתתף בשוק התעסוקה... נעגן את הקריטריון של 'מיצוי כושר השתכרות' של שני ההורים, כתנאי לקבלה ולסבסוד שכר הלימוד במעונות הסמל... תוכנית אסטרטגית שתוך 8 שנים לכלל הפעוטות בישראל שהוריהם ירצו בכך תהיה מסגרת איכותית ומסובסדת.",
+      "summary": "סבסוד מעונות יום לגילאי 0-3 מותנה במיצוי כושר השתכרות ושירות צבאי, לצד פריסת מעונות ציבוריים לכלל הפעוטות תוך 8 שנים.",
+      "stance": "pro_reform",
+      "sourceId": "SRC-PLT-BEYACHAD-5787",
+      "sourceType": "party_platform",
+      "sourceCitation": "הסכם חדש בחינוך, פרק הגיל הרך, עמ' 19",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "גיל הרך",
+        "מעונות יום",
+        "מיצוי כושר השתכרות",
+        "סבסוד"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "שינוי סדרי עדיפויות בסבסוד מעונות יום לטובת משפחות עובדות ומשרתות, לצד יעד של חינוך ציבורי מגיל 0."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "הרחבת הפיקוח והקמת מעונות תוטל על הרשויות המקומיות, אך תפנה סבסודים לאוכלוסייה העובדת ביישוב."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "חלק ניכר מסבסוד מעונות היום מועבר למשפחות אברכים חרדים על בסיס מבחני הכנסה ללא חובת עבודה של שני בני הזוג.",
+        "currentStateSourceId": null,
+        "currentStateCitation": "מבחני תמיכה במעונות יום משרד העבודה",
+        "changeFromCurrentState": "התניית סבסוד וקדימות בקבלה בעבודת שני ההורים ושירות צבאי/מילואים.",
+        "changeMagnitude": "structural_change",
+        "localAuthorityImpact": "הקלה במצוקת מקומות במעונות להורים עובדים ברשות וצורך בתכנון מעונות חדשים.",
+        "openImplementationQuestion": "מה יהיה מנגנון הרישוי המהיר להקמת מעונות יום חדשים ברשויות מקומיות?"
+      }
+    },
+    {
+      "id": "POS-BEY-AI-001",
+      "partyId": "PARTY-BEYACHAD",
+      "issueId": "ISSUE-AI-TECH",
+      "topic": "הטמעת AI להוראה מותאמת אישית מכיתה א', תקציב רב-שנתי ל-STEM ו-15 מרכזי חדשנות",
+      "epistemicType": "fact",
+      "verbatimQuote": "הוראה מותאמת אישית - המטרה היא שכל תלמיד ילמד בקצב שלו. לשם כך, נטמיע את ה-AI במערכת לטובת בניית תכנים ותרגילים מותאמים, סיוע בתכנון שיעורים, ניתוח למידה, זיהוי פערי ידע ומשוב בזמן אמת... מכיתה א' שימוש מושכל ואחראי ב-AI... הקמת 15 מרכזי STEM חדשים.",
+      "summary": "הטמעת כלי AI גנרטיביים מכיתה א', הוראה מותאמת אישית, תקציב רב-שנתי ל-STEM והקמת 15 מרכזי מצוינות טכנולוגיים אזוריים.",
+      "stance": "pro_innovation",
+      "sourceId": "SRC-PLT-BEYACHAD-5787",
+      "sourceType": "party_platform",
+      "sourceCitation": "הסכם חדש בחינוך, פרק חדשנות ו-AI, עמ' 15-16",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "AI",
+        "בינה מלאכותית",
+        "STEM",
+        "הייטק",
+        "חדשנות"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "תוכנית לאומית מקיפה להפיכת מערכת החינוך הישראלית למובילה עולמית בהטמעת AI ו-STEM."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "הקמת מרכזי STEM אזוריים תספק לרשויות בפריפריה תשתיות טכנולוגיות מתקדמות ללא עלות עירונית."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "הטמעת AI נעשית באופן נקודתי ויוזמות מקומיות ללא תוכנית לאומית סדורה או תקציב ייעודי רב-שנתי.",
+        "currentStateSourceId": null,
+        "currentStateCitation": "דוחות משרד החינוך",
+        "changeFromCurrentState": "הטמעה מערכתית כוללת מכיתה א' והקמת 15 מרכזי STEM אזוריים.",
+        "changeMagnitude": "structural_change",
+        "localAuthorityImpact": "חיבור בתי ספר מקומיים למרכזי STEM אזוריים ושדרוג תשתיות המחשוב ברשות.",
+        "openImplementationQuestion": "האם משרד החינוך יממן במלואן את תשתיות הסיבים והחומרה הנדרשות בבתי הספר?"
+      }
+    },
+    {
+      "id": "POS-BEY-IDE-001",
+      "partyId": "PARTY-BEYACHAD",
+      "issueId": "ISSUE-JEWISH-IDENTITY",
+      "topic": "הקמת מועצה לאומית לחינוך, קביעת 60% ליבה משותפת והגנה על החינוך הממלכתי",
+      "epistemicType": "fact",
+      "verbatimQuote": "המועצה הלאומית לחינוך תקבע מהם לימודי הליבה המשותפים שיהיו חובה בכל הזרמים, ויהוו כ60%- משעות הלימוד בכל מוסד, בכל מגזר... לכל זרם תהיה הגמישות לתת דגשים והכוונה משלו לגבי כ20%... ויתרת ה-20% יהיו באחריות הרשות המקומית... תוספת מיליארדי ש''ח לממלכתי ליישור קו עם החמ\"ד.",
+      "summary": "הקמת מועצה לאומית סטטוטורית לחינוך, חלוקת תוכנית הלימודים (60% ליבה משותפת, 20% זרם, 20% רשות) והשוואת תקציב הממלכתי לחמ\"ד.",
+      "stance": "pro_state_education",
+      "sourceId": "SRC-PLT-BEYACHAD-5787",
+      "sourceType": "party_platform",
+      "sourceCitation": "הסכם חדש בחינוך, פרקים 3 ו-4, עמ' 5 ו-10",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "מועצה לאומית",
+        "חינוך ממלכתי",
+        "זהות",
+        "ליבה משותפת"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "יצירת מבנה תוכנית לימודים מאוזן (60-20-20) וחיזוק מעמד החינוך הממלכתי מול זרמים מגזריים."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "מעניק לרשות המקומית סמכות סטטוטורית על 20% מתכני הלימוד בבתי הספר שבתחומה."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "משרד החינוך והמזכירות הפדגוגית קובעים את רוב תוכנית הלימודים באופן ריכוזי.",
+        "currentStateSourceId": null,
+        "currentStateCitation": "חוזרי מנכ\"ל משרד החינוך",
+        "changeFromCurrentState": "הענקת 20% מסך שעות הלימוד לאוטונומיה של הרשות המקומית ובית הספר.",
+        "changeMagnitude": "structural_change",
+        "localAuthorityImpact": "יכולת של אגף החינוך ברשות לעצב תוכנית לימודים יישובית ייחודית.",
+        "openImplementationQuestion": "אילו כלי בקרה יעמדו לרשות המקומית לאישור תוכניות ה-20% בבתי הספר?"
+      }
+    },
+    {
+      "id": "POS-YAS-DEC-001",
+      "partyId": "PARTY-YASHAR",
+      "issueId": "ISSUE-DECENTRALIZATION",
+      "topic": "ביזור סמכויות לרשויות המקומיות ואוטונומיה ניהולית עם 'סל שקלי' גמיש למנהלים",
+      "epistemicType": "fact",
+      "verbatimQuote": "ביזור לרשויות המקומיות: נעצים סמכותן של הרשויות המקומיות כשותף מרכזי בניהול מערכת החינוך בתחומן, לרבות הגיל הרך וגיל הינקות. הרשויות יוסמכו לגבש מדיניות חינוכית משלימה... לנהל תקציבים ייעודיים... אוטונומיה למנהלים וגמישות תקציבית: מנהל המוסד יקבל סמכות לניהול 'סל שקלי' גמיש.",
+      "summary": "העצמת סמכות הרשויות המקומיות בניהול מערכת החינוך המקומית והענקת אוטונומיה תקציבית ופדגוגית למנהלים באמצעות סל שקלי.",
+      "stance": "pro_autonomy",
+      "sourceId": "SRC-PLT-YASHAR-5787",
+      "sourceType": "party_platform",
+      "sourceCitation": "תוכנית החינוך של ישר לקראת הבחירות תשפז 2026-7, סעיפים 03-04, עמ' 2",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "ביזור",
+        "שלטון מקומי",
+        "סל שקלי",
+        "אוטונומיה למנהלים"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "עמדה המדגישה העברת סמכויות ניהול ותקצוב לשלטון המקומי ולמנהלי בתי הספר לצד אחריותיות לתוצאות."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "מאפשר לרשויות לתפור מענים חינוכיים מקומיים ולנהל תקציבים ייעודיים באופן עצמאי."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "ניהול משרד החינוך ריכוזי וסמכויות הרשות והמנהלים מוגבלות בנושאי כוח אדם ותקציב גמיש.",
+        "currentStateSourceId": null,
+        "currentStateCitation": "מבנה משרד החינוך",
+        "changeFromCurrentState": "הרחבת סמכויות הרשות לניהול מדיניות ותקציבים ייעודיים וסל שקלי למנהל.",
+        "changeMagnitude": "significant_change",
+        "localAuthorityImpact": "שדרוג מעמד אגפי החינוך ברשויות כגוף מתכנן ומתקצב.",
+        "openImplementationQuestion": "מהם גבולות הפיקוח של משרד החינוך על החלטות הרשות בשימוש בסל השקלי?"
+      }
+    },
+    {
+      "id": "POS-YAS-CORE-001",
+      "partyId": "PARTY-YASHAR",
+      "issueId": "ISSUE-CORE-CURRICULUM",
+      "topic": "החלת לימודי ליבה כסטנדרט מחייב למימון ציבורי מלא וצמצום תקצוב למוסדות שלא יעמדו בתקן",
+      "epistemicType": "fact",
+      "verbatimQuote": "הרחבת הממלכתיות והכללת זרמי חינוך נוספים: נחיל את חוק חינוך ממלכתי ולימודי ליבה כסטנדרט מחייב לקבלת מימון ציבורי מלא. המדינה תדרוש ממוסדות שאינם ממלכתיים, בדגש על המגזר החרדי מסלול הצטרפות למערכת החרדית הממלכתית (ממ\"ח)... בהתאם, יצומצם באופן משמעותי תקצוב למוסדות שלא יעמדו בתו תקן ממלכתי.",
+      "summary": "התניית מימון ציבורי מלא בהוראת לימודי ליבה מלאים, מסלול הצטרפות לממ\"ח וצמצום תקציב למוסדות שאינם ממלכתיים.",
+      "stance": "pro_enforcement",
+      "sourceId": "SRC-PLT-YASHAR-5787",
+      "sourceType": "party_platform",
+      "sourceCitation": "תוכנית החינוך של ישר, סעיף 02, עמ' 2",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "לימודי ליבה",
+        "חרדים",
+        "ממ\"ח",
+        "הפחתת תקציב"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "עמדה הדורשת לימודי ליבה מלאים כתנאי למימון מלא, באמצעות מנגנון צמצום תקצוב והצטרפות לממ\"ח."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "יחייב את הרשויות להיערך לקליטת תלמידים ממסגרות חרדיות פרטיות שיצטרפו לממ\"ח."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "מוסדות חרדיים פרטיים מקבלים תקצוב חלקי ומלא גם ללא לימודי ליבה מלאים וללא פיקוח הדוק.",
+        "currentStateSourceId": null,
+        "currentStateCitation": "הסכמים וחקיקה קיימת",
+        "changeFromCurrentState": "צמצום משמעותי של תקציבי מוסדות שלא יעמדו בתו תקן ממלכתי של ליבה.",
+        "changeMagnitude": "structural_change",
+        "localAuthorityImpact": "הקמת בתי ספר ממ\"ח ברשויות מקומיות עם אוכלוסייה חרדית.",
+        "openImplementationQuestion": "כיצד יתמודדו הרשויות עם פערי בינוי של מוסדות ממ\"ח חדשים?"
+      }
+    },
+    {
+      "id": "POS-YAS-TEA-001",
+      "partyId": "PARTY-YASHAR",
+      "issueId": "ISSUE-TEACHER-SHORTAGE",
+      "topic": "רפורמה בהון האנושי (הסכמי דור ב'), שכר פתיחה גבוה וטבלת שכר נפרדת למנהלים ולגננות",
+      "epistemicType": "fact",
+      "verbatimQuote": "רפורמה בהון האנושי (הסכמי דור ב'): נקים מסלולי העסקה מקבילים המבוססים על איכות ותפוקות ולא רק על ותק, תוך הכרה בניסיון מקצועי קודם ושכר פתיחה גבוה. המסלול יהיה בחירה, לא כפייה... בנוסף, ניצור טבלת שכר נפרדת למנהלים... וטבלת שכר נפרדת לגננות.",
+      "summary": "יצירת מסלולי העסקה מקבילים מבוססי איכות ושכר פתיחה גבוה (הסכמי דור ב' וולונטריים) וטבלאות שכר נפרדות למנהלים ולגננות.",
+      "stance": "pro_reform",
+      "sourceId": "SRC-PLT-YASHAR-5787",
+      "sourceType": "party_platform",
+      "sourceCitation": "תוכנית החינוך של ישר, סעיפים 04, 05, 06, עמ' 2-3",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "שכר מורים",
+        "הסכמי דור ב'",
+        "מנהלים",
+        "גננות"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "הכנסת גמישות העסקתית מבוססת תפוקות ואיכות לצד שימור המסלול המסורתי למורים המעוניינים בכך."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "עשוי לסייע לרשויות לגייס כוח אדם איכותי מחוץ למערכת באמצעות חוזי שכר גמישים."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "מבנה השכר מוסדר בהסכמים קיבוציים אחידים (אופק חדש ועוז לתמורה) מבוססי ותק והשכלה.",
+        "currentStateSourceId": null,
+        "currentStateCitation": "הסכמים קיבוציים קיימים",
+        "changeFromCurrentState": "פתיחת מסלול מקביל של חוזים אישיים/הסכמי איכות לצד ההסכם הקיבוצי.",
+        "changeMagnitude": "structural_change",
+        "localAuthorityImpact": "גמישות בגיוס עובדי הוראה וגננות איכותיים ברשות המקומית.",
+        "openImplementationQuestion": "כיצד ייושם המודל מול ארגוני המורים והרשויות המקומיות כמעסיקים?"
+      }
+    },
+    {
+      "id": "POS-YAS-SPE-001",
+      "partyId": "PARTY-YASHAR",
+      "issueId": "ISSUE-SPECIAL-EDUCATION",
+      "topic": "עמדה בנושא חינוך מיוחד טרם פורטה במסמך המדיניות",
+      "epistemicType": "fact",
+      "verbatimQuote": null,
+      "summary": "מסמך תוכנית החינוך של ישר! (4 עמודים) אינו כולל פרק או סעיף ייעודי בנושא חוק החינוך המיוחד והסעות.",
+      "stance": "not_stated",
+      "sourceId": null,
+      "sourceType": "party_platform",
+      "sourceCitation": "לא אותרה עמדה מפורשת במסמך המדיניות (SRC-PLT-YASHAR-5787)",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "חינוך מיוחד",
+        "טרם פורט"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "לא אותרה התייחסות ישירה לסוגיית החינוך המיוחד במסמך המדיניות הנוכחי."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "סוגיה זו דורשת הבהרה והשלמה עתידית מול מטה המפלגה."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "עומס תקציבי כבד על הרשויות במימון שירותי חינוך מיוחד והסעות.",
+        "currentStateSourceId": null,
+        "currentStateCitation": null,
+        "changeFromCurrentState": "לא צוין שינוי מוצע.",
+        "changeMagnitude": "continuation",
+        "localAuthorityImpact": "ללא שינוי מוגדר בשלב זה.",
+        "openImplementationQuestion": "מהי עמדת המפלגה ביחס לשיפוי הוצאות החנ\"מ וההסעות לרשויות?"
+      }
+    },
+    {
+      "id": "POS-YAS-DIF-001",
+      "partyId": "PARTY-YASHAR",
+      "issueId": "ISSUE-DIFFERENTIAL-FUNDING",
+      "topic": "עמדה בנושא מודל תקצוב דיפרנציאלי טרם פורטה בנפרד במסמך המדיניות",
+      "epistemicType": "fact",
+      "verbatimQuote": null,
+      "summary": "מסמך תוכנית החינוך של ישר! כולל התייחסות לביזור תקציבים לרשויות אך אינו מפרט מודל תקצוב דיפרנציאלי או שינוי במדד הטיפוח.",
+      "stance": "not_stated",
+      "sourceId": null,
+      "sourceType": "party_platform",
+      "sourceCitation": "לא אותרה עמדה מפורשת במסמך המדיניות (SRC-PLT-YASHAR-5787)",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "תקצוב דיפרנציאלי",
+        "טרם פורט"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "המסמך מתמקד בביזור סמכויות תקציביות לרשויות ולא בנוסחת תקצוב דיפרנציאלית בין רשויות."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "נדרשת עמדה מפורשת בשאלת צמצום פערי תקצוב בין רשויות חזקות לחלשות."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "תקצוב דיפרנציאלי חלקי במערכת החינוך לפי מדד טיפוח.",
+        "currentStateSourceId": null,
+        "currentStateCitation": null,
+        "changeFromCurrentState": "לא צוין שינוי מפורט.",
+        "changeMagnitude": "continuation",
+        "localAuthorityImpact": "ללא שינוי מוגדר בשלב זה.",
+        "openImplementationQuestion": "האם יוגדל שיפוי המדינה לרשויות בדירוג סוציו-אקונומי נמוך?"
+      }
+    },
+    {
+      "id": "POS-YAS-EAR-001",
+      "partyId": "PARTY-YASHAR",
+      "issueId": "ISSUE-EARLY-CHILDHOOD",
+      "topic": "תו איכות לאומי לגילאי 0-3, איחוד האחריות במשרד החינוך וסבסוד להורים עובדים",
+      "epistemicType": "fact",
+      "verbatimQuote": "הוראה איכותית לגיל הרך (0-3): נבסס תו איכות לאומי למסגרות גילאי לידה-3 של רישוי, תקני בטיחות וסטנדרט הכשרה מינימלי לצוותים... הרחבת הסבסוד לזוגות הורים משרתים ועובדים... האחריות על תחום גילאי לידה-3 תאוחד תחת משרד החינוך... יופסק הפיצול הבין-משרדי.",
+      "summary": "קביעת תו איכות לאומי לגילאי 0-3, איחוד כלל האחריות במשרד החינוך וסבסוד מוגדל להורים עובדים ומשרתים.",
+      "stance": "pro_reform",
+      "sourceId": "SRC-PLT-YASHAR-5787",
+      "sourceType": "party_platform",
+      "sourceCitation": "תוכנית החינוך של ישר, סעיף 06, עמ' 3",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "גיל הרך",
+        "מעונות יום",
+        "תו איכות",
+        "איחוד סמכויות"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "איחוד רגולטורי תחת משרד החינוך וסבסוד ישיר להורים עובדים ומשרתים."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "יפשט את הפיקוח עבור הרשויות המקומיות הפועלות מול משרד אחד במקום פיצול משרדי."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "פיצול בין משרד העבודה (סבסוד) למשרד החינוך (פיקוח פדגוגי).",
+        "currentStateSourceId": null,
+        "currentStateCitation": "חוק הפיקוח על מעונות יום",
+        "changeFromCurrentState": "איחוד מלא של כלל סמכויות הגיל הרך תחת משרד החינוך.",
+        "changeMagnitude": "structural_change",
+        "localAuthorityImpact": "עבודה מול רגולטור ממשלתי יחיד והסדרת הפיקוח העירוני על מעונות.",
+        "openImplementationQuestion": "כיצד יועברו תקציבי הבינוי למעונות יום מהאוצר לרשויות?"
+      }
+    },
+    {
+      "id": "POS-YAS-AI-001",
+      "partyId": "PARTY-YASHAR",
+      "issueId": "ISSUE-AI-TECH",
+      "topic": "הטמעת בינה מלאכותית (AI) כחלק מתוכנית הלימודים ורפורמת בגרויות ברוח PISA",
+      "epistemicType": "fact",
+      "verbatimQuote": "מציונים, למיומנויות: רפורמה במבנה הבגרויות... צמצום מספר בחינות הבגרות החיצוניות והמרתן במבחני מיומנויות ברוח PISA והערכה חלופית (PBL)... במקביל, יוטמעו כלי בינה מלאכותית (AI) כחלק בלתי נפרד מתוכנית הלימודים, הן ככלי עזר ללמידה מותאמת אישית והן כנושא לימוד לאוריינות דיגיטלית.",
+      "summary": "הטמעת כלי AI בלמידה מותאמת אישית ורפורמה כוללת במבנה הבגרויות למעבר להערכת מיומנויות PISA ועבודות חקר.",
+      "stance": "pro_innovation",
+      "sourceId": "SRC-PLT-YASHAR-5787",
+      "sourceType": "party_platform",
+      "sourceCitation": "תוכנית החינוך של ישר, סעיף 07, עמ' 3",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "AI",
+        "בינה מלאכותית",
+        "בגרויות",
+        "PISA",
+        "חדשנות"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "שילוב בין אוריינות AI לבין עדכון שיטות המדידה וההערכה הלאומיות."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "שינוי הבגרויות יאפשר לבתי הספר התיכוניים ברשויות להטמיע למידה דיגיטלית מותאמת אישית."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "מערך בחינות בגרות חיצוניות עמוס המבוסס ברובו על שינון וציונים מספריים.",
+        "currentStateSourceId": null,
+        "currentStateCitation": "מתווה בחינות הבגרות הקיים",
+        "changeFromCurrentState": "המרת בגרויות במבחני מיומנויות והטמעת AI ככלי למידה מותאם.",
+        "changeMagnitude": "structural_change",
+        "localAuthorityImpact": "הטמעת פלטפורמות AI עירוניות והכשרת מורים להערכה חלופית.",
+        "openImplementationQuestion": "האם משרד החינוך יעמיד לרשויות מאגר פלטפורמות AI חינוכיות מאושרות?"
+      }
+    },
+    {
+      "id": "POS-YAS-IDE-001",
+      "partyId": "PARTY-YASHAR",
+      "issueId": "ISSUE-JEWISH-IDENTITY",
+      "topic": "הקמת מועצה לאומית לחינוך, חיזוק הממלכתיות והוראת דמוקרטיה וציונות",
+      "epistemicType": "fact",
+      "verbatimQuote": "הקמת מועצה לאומית לחינוך: נקים גוף סטטוטורי (בדומה למועצה לביטחון לאומי) שיורכב מאנשי אקדמיה, תעשייה ונציגי זרמי החינוך השונים... המועצה תגדיר תוכנית חומש חינוכית ותקציבית... ערכים במרכז: חוק חינוך ממלכתי כאבן הראשה... ציונות, יהדות ותפיסה אזרחית דמוקרטית וליברלית לפי ערכי מגילת העצמאות.",
+      "summary": "הקמת מועצה לאומית סטטוטורית לחינוך (במתכונת מל\"ל) וחיזוק החינוך הממלכתי הדמוקרטי והציוני לפי מגילת העצמאות.",
+      "stance": "pro_state_education",
+      "sourceId": "SRC-PLT-YASHAR-5787",
+      "sourceType": "party_platform",
+      "sourceCitation": "תוכנית החינוך של ישר, פרק ערכים במרכז וסעיף 01, עמ' 1-2",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "מועצה לאומית",
+        "חינוך ממלכתי",
+        "דמוקרטיה",
+        "מגילת העצמאות"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "ביסוס מנגנון תכנון אסטרטגי ממלכתי מנותק משינויים פוליטיים תכופים."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "המועצה תספק יציבות פדגוגית ארוכת טווח למנהלי אגפי החינוך ברשויות המקומיות."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "מדיניות החינוך והזהות משתנה תדיר בהתאם לחילופי שרים וממשלות.",
+        "currentStateSourceId": null,
+        "currentStateCitation": "מבנה המזכירות הפדגוגית",
+        "changeFromCurrentState": "הקמת מועצה לאומית סטטוטורית עצמאית לתכנון רב-שנתי.",
+        "changeMagnitude": "structural_change",
+        "localAuthorityImpact": "יציבות תוכניות הלימודים והפחתת זעזועים במערכות החינוך העירוניות.",
+        "openImplementationQuestion": "האם יובטח ייצוג רשמי לשלטון המקומי במועצה הלאומית לחינוך?"
+      }
+    },
+    {
+      "id": "POS-DEM-DEC-001",
+      "partyId": "PARTY-DEMOCRATS",
+      "issueId": "ISSUE-DECENTRALIZATION",
+      "topic": "ביזור סמכויות אחראי לרשויות המקומיות ולמנהלי בתי הספר",
+      "epistemicType": "fact",
+      "verbatimQuote": "נבזר סמכויות באופן אחראי לרשויות המקומיות ולמנהלי בתי ספר, ונחזק את העצמאות המקצועית והפדגוגית של צוותי ההוראה.",
+      "summary": "ביזור סמכויות ניהוליות ופדגוגיות לשלטון המקומי ולמנהלי בתי הספר.",
+      "stance": "pro_autonomy",
+      "sourceId": "SRC-PLT-DEMOCRATS-EDU-2025",
+      "sourceType": "party_platform",
+      "sourceCitation": "תוכנית חינוך – הדמוקרטים, סעיף 5, עמ' 2",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "ביזור",
+        "שלטון מקומי",
+        "אוטונומיה פדגוגית"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "תמיכה בביזור סמכויות ניהול לשטח לצד שמירה על אחריות ממלכתית."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "יחזק את מעמד מנהלי אגפי החינוך ברשויות בעיצוב מענים בית-ספריים."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "ניהול משרד החינוך ריכוזי בעיקרו.",
+        "currentStateSourceId": null,
+        "currentStateCitation": null,
+        "changeFromCurrentState": "ביזור סמכויות ניהוליות ופדגוגיות לרשויות ולמנהלים.",
+        "changeMagnitude": "significant_change",
+        "localAuthorityImpact": "הגברת הגמישות הניהולית ברמת בית הספר והרשות.",
+        "openImplementationQuestion": "אילו סמכויות העסקה יועברו לרשויות המקומיות?"
+      }
+    },
+    {
+      "id": "POS-DEM-CORE-001",
+      "partyId": "PARTY-DEMOCRATS",
+      "issueId": "ISSUE-CORE-CURRICULUM",
+      "topic": "הפסקת מימון מוחלטת לרשתות חרדיות מפלגתיות והסבת מוסדות לממ\"ח",
+      "epistemicType": "fact",
+      "verbatimQuote": "נפסיק את מימון הרשתות המפלגתיות - חינוך ממלכתי-חרדי איכותי לכל ילד חרדי. נבטל את המעמד המיוחד של רשתות החינוך החרדיות ונפסיק לתקצב אותן. כסף ציבורי לא צריך ללכת למוסדות בבעלות מפלגות שלא מלמדות מתמטיקה, אנגלית ואזרחות... נוביל תכנית חומש לבנייה מאסיבית של בתי ספר ממלכתיים-חרדיים, להסבת בתי ספר פרטיים לממלכתיים.",
+      "summary": "ביטול המעמד המיוחד והפסקת מימון מוחלטת לרשתות החינוך החרדיות הפרטיות, לצד תוכנית חומש לבנייה והסבה לממלכתי-חרדי (ממ\"ח).",
+      "stance": "pro_enforcement",
+      "sourceId": "SRC-PLT-DEMOCRATS-EDU-2025",
+      "sourceType": "party_platform",
+      "sourceCitation": "תוכנית חינוך – הדמוקרטים, סעיף 7, עמ' 2",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "לימודי ליבה",
+        "חרדים",
+        "שלילת מימון",
+        "ממ\"ח"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "עמדה תקיפה לשלילת תקציבים מרשתות פוליטיות והעברת החינוך החרדי לפיקוח ממלכתי מלא."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "יציב את הרשויות המקומיות באחריות להסבת מבנים והקמת מסגרות ממ\"ח עירוניות."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "רשתות החינוך החרדיות מתוקצבות ישירות ב-100% ומחזיקות באוטונומיה רחבה.",
+        "currentStateSourceId": null,
+        "currentStateCitation": "חוק יסודות התקציב סעיף 3א",
+        "changeFromCurrentState": "ביטול מעמד הרשתות והפסקת מימון לכל מוסד שאינו מלמד ליבה מלאה.",
+        "changeMagnitude": "structural_change",
+        "localAuthorityImpact": "הסבת בתי ספר עירוניים לממ\"ח וקליטת תלמידים חרדים במערכת הממלכתית.",
+        "openImplementationQuestion": "מה יהיה מעמדם של נכסי הרשתות בשטח הרשויות המקומיות בעת הסבה לממ\"ח?"
+      }
+    },
+    {
+      "id": "POS-DEM-TEA-001",
+      "partyId": "PARTY-DEMOCRATS",
+      "issueId": "ISSUE-TEACHER-SHORTAGE",
+      "topic": "העלאת שכר המורים ורפורמה במבנה ההעסקה",
+      "epistemicType": "fact",
+      "verbatimQuote": "אנחנו מחויבים למורים ולמנהלים שעובדים כל יום כדי לגדל את הדור הבא של אזרחי ישראל – הם ראויים למשכורות גבוהות יותר, לתנאים טובים יותר, ולכבוד שמגיע להם... נטפל במשבר ההוראה ובמחסור במורים, באמצעות רפורמה במבנה ההעסקה וחיזוק המעמד המקצועי.",
+      "summary": "העלאת שכר עובדי ההוראה והמנהלים ורפורמה מבנית בתנאי ההעסקה לפתרון משבר המחסור.",
+      "stance": "pro_reform",
+      "sourceId": "SRC-PLT-DEMOCRATS-EDU-2025",
+      "sourceType": "party_platform",
+      "sourceCitation": "תוכנית חינוך – הדמוקרטים, עמ' 1 וסעיף 5 בעמ' 2",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "שכר מורים",
+        "משבר כוח אדם",
+        "תנאי העסקה"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "הכרה במשבר כוח האדם כמחייב שדרוג שכר מקיף ושיפור תנאי העבודה."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "שיפור שכר המורים יסייע לרשויות לצמצם את תופעת ביטולי השיעורים וכיתות ללא מחנכים."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "מחסור כבד במורים בפרט במרכז הארץ ובמקצועות הליבה.",
+        "currentStateSourceId": null,
+        "currentStateCitation": null,
+        "changeFromCurrentState": "העלאת שכר ושיפור תנאי העסקה.",
+        "changeMagnitude": "significant_change",
+        "localAuthorityImpact": "ייצוב מצבת כוח האדם בבתי הספר שבתחום הרשות.",
+        "openImplementationQuestion": "כיצד תתמודד המערכת עם פערי שכר ותגמול בין מרכז לפריפריה?"
+      }
+    },
+    {
+      "id": "POS-DEM-SPE-001",
+      "partyId": "PARTY-DEMOCRATS",
+      "issueId": "ISSUE-SPECIAL-EDUCATION",
+      "topic": "עמדה בנושא חינוך מיוחד טרם פורטה במסמכי המצע",
+      "epistemicType": "fact",
+      "verbatimQuote": null,
+      "summary": "תוכנית 8 הצעדים ומסמך עקרונות הליבה של הדמוקרטים אינם מפרטים עמדה ייעודית בנושא חוק החינוך המיוחד ונטל ההסעות המוניציפלי.",
+      "stance": "not_stated",
+      "sourceId": null,
+      "sourceType": "party_platform",
+      "sourceCitation": "לא אותרה עמדה מפורשת במסמכי המצע (SRC-PLT-DEMOCRATS-EDU-2025)",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "חינוך מיוחד",
+        "טרם פורט"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "לא אותרה התייחסות ספציפית לנושא החנ\"מ במסמכים הקיימים."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "דורש בירור מול צוות החינוך של המפלגה."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "עומס תקציבי גדל על הרשויות המקומיות.",
+        "currentStateSourceId": null,
+        "currentStateCitation": null,
+        "changeFromCurrentState": "לא צוין שינוי מוצע.",
+        "changeMagnitude": "continuation",
+        "localAuthorityImpact": "ללא שינוי מוגדר בשלב זה.",
+        "openImplementationQuestion": "מהי תוכנית המפלגה להקלת נטל ההסעות המוניציפלי בחנ\"מ?"
+      }
+    },
+    {
+      "id": "POS-DEM-DIF-001",
+      "partyId": "PARTY-DEMOCRATS",
+      "issueId": "ISSUE-DIFFERENTIAL-FUNDING",
+      "topic": "ביטול אפליה תקציבית נגד החינוך הממלכתי ותקצוב שוויוני לפי רקע חברתי-כלכלי",
+      "epistemicType": "fact",
+      "verbatimQuote": "נבטל את האפלייה התקציבית נגד החינוך הממלכתי ונוביל לשוויון בין כל תלמידי ישראל... ההשקעה הממוצעת בתלמיד חטיבה עליונה בחינוך הממלכתי-דתי גבוהה ב26%- מההשקעה בתלמיד בחינוך הממלכתי-עברי, וב39%- מההשקעה בתלמיד בחינוך הממלכתי-ערבי. מצב זה חייב להסתיים. נקדם שוויון בין כלל התלמידים והתלמידות... בתי הספר יתוקצבו באופן שוויוני בהתאם למספר התלמידים ולרקע החברתי-כלכלי שלהם.",
+      "summary": "ביטול הפערים התקציביים בין החמ\"ד לחינוך הממלכתי הכללי והערבי, ותקצוב בתי ספר לפי מספר תלמידים ורקע סוציו-אקונומי.",
+      "stance": "pro_equity",
+      "sourceId": "SRC-PLT-DEMOCRATS-EDU-2025",
+      "sourceType": "party_platform",
+      "sourceCitation": "תוכנית חינוך – הדמוקרטים, סעיף 1, עמ' 1",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "תקצוב דיפרנציאלי",
+        "שוויון תקציבי",
+        "חינוך ממלכתי",
+        "צמצום פערים"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "השוואת תקציבי תלמיד ממלכתי וממלכתי-ערבי לתקציב החמ\"ד ותיקצוב דיפרנציאלי לפי מעמד חברתי-כלכלי."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "תוספת תקציבית משמעותית לבתי הספר הממלכתיים והערביים ברשויות המקומיות."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "פערי תקצוב של עשרות אחוזים בין החמ\"ד לממלכתי ולממלכתי-ערבי.",
+        "currentStateSourceId": null,
+        "currentStateCitation": "נתוני הלמ\"ס ומשרד החינוך",
+        "changeFromCurrentState": "יישור קו תקציבי מלא וביטול העדפת החמ\"ד.",
+        "changeMagnitude": "structural_change",
+        "localAuthorityImpact": "הזרמת תקציבי השוואה לבתי הספר הממלכתיים ברשות.",
+        "openImplementationQuestion": "כיצד תבוצע השוואת שעות התפילה והתגבור בין הזרמים?"
+      }
+    },
+    {
+      "id": "POS-DEM-EAR-001",
+      "partyId": "PARTY-DEMOCRATS",
+      "issueId": "ISSUE-EARLY-CHILDHOOD",
+      "topic": "תוכנית לאומית להצלת החינוך לגילאי 0-3 והרחבת מעונות מסובסדים ומפוקחים",
+      "epistemicType": "fact",
+      "verbatimQuote": "נשקם את מערך החינוך לגיל הרך: מערך מעונות היום מצוי כיום על סף קריסה. העלויות הגבוהות לחינוך וטיפול לגילאי 3-0, יחד עם המחסור החמור בכוח אדם במעונות, מחייבים תוכנית מקיפה להצלת החינוך לגיל הרך. נפעל להרחבת היצע המסגרות המסובסדות והמפוקחות, ונעלה את שכר הצוותים בהן.",
+      "summary": "שיקום מערך מעונות היום 0-3, העלאת שכר הצוותים והרחבת היצע המסגרות המפוקחות והמסובסדות לפי סטנדרטים מערביים.",
+      "stance": "pro_reform",
+      "sourceId": "SRC-PLT-DEMOCRATS-EDU-2025",
+      "sourceType": "party_platform",
+      "sourceCitation": "תוכנית חינוך – הדמוקרטים, סעיף 8, עמ' 2",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "גיל הרך",
+        "מעונות יום",
+        "סבסוד",
+        "שכר מטפלות"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "הגדרת הגיל הרך כחלק בלתי נפרד מאחריות המדינה לחינוך חינם ומפוקח."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "יחייב את הרשויות להקצות מבנים עירוניים וקרקעות להקמת מעונות יום מפוקחים נוספים."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "מחסור חמור במסגרות מפוקחות לגילאי 0-3 ועלויות פרטיות כבדות להורים.",
+        "currentStateSourceId": null,
+        "currentStateCitation": null,
+        "changeFromCurrentState": "הרחבה מסיבית של מעונות מסובסדים והעלאת שכר הצוותים.",
+        "changeMagnitude": "significant_change",
+        "localAuthorityImpact": "הקמת מעונות יום ציבוריים חדשים בתחומי הרשות.",
+        "openImplementationQuestion": "מה יהיה שיעור ההשתתפות הכספית של הרשויות בבינוי המעונות?"
+      }
+    },
+    {
+      "id": "POS-DEM-AI-001",
+      "partyId": "PARTY-DEMOCRATS",
+      "issueId": "ISSUE-AI-TECH",
+      "topic": "הכשרות עומק ב-AI לצוותי הוראה ושילוב טכנולוגיה מותאמת אישית",
+      "epistemicType": "fact",
+      "verbatimQuote": "הכשרות עומק בבינה מלאכותית, עבור כלל צוותי ההוראה, מתוך הבנה ש-AI עומדת לשנות מהותית את אופי ההוראה, את תפקיד המורה ואת כל שיטות הלמידה... שילוב טכנולוגיות מתקדמות ככלי למידה מותאם אישי.",
+      "summary": "הכשרת כלל המורים בבינה מלאכותית (AI) והטמעת טכנולוגיות מתקדמות ללמידה מותאמת אישית.",
+      "stance": "pro_innovation",
+      "sourceId": "SRC-PLT-DEMOCRATS-CORE-2025",
+      "sourceType": "party_platform",
+      "sourceCitation": "עקרונות הליבה של הדמוקרטים, פרק חינוך, עמ' 9-10",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "AI",
+        "בינה מלאכותית",
+        "הכשרת מורים",
+        "למידה מותאמת"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "הבנת ה-AI כמהפכה פדגוגית המשנה את תפקיד המורה ומחייבת הכשרה מקצועית מערכתית."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "הרשויות יידרשו לתמוך בהשתלמויות מורים עירוניות בנושאי AI ופדגוגיה דיגיטלית."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "היעדר הכשרה מערכתית סדורה למורים בשימוש בכלי AI.",
+        "currentStateSourceId": null,
+        "currentStateCitation": null,
+        "changeFromCurrentState": "הכשרות עומק חובה ב-AI לכלל צוותי ההוראה.",
+        "changeMagnitude": "significant_change",
+        "localAuthorityImpact": "שדרוג מיומנויות ההוראה בבתי הספר המקומיים.",
+        "openImplementationQuestion": "האם משרד החינוך יקצה גמולי השתלמות ייעודיים לקורסי AI?"
+      }
+    },
+    {
+      "id": "POS-DEM-IDE-001",
+      "partyId": "PARTY-DEMOCRATS",
+      "issueId": "ISSUE-JEWISH-IDENTITY",
+      "topic": "הקמת המועצה לחינוך ממלכתי כשומרת סף וחובת חינוך לאזרחות ודמוקרטיה",
+      "epistemicType": "fact",
+      "verbatimQuote": "נקים מועצה לחינוך הממלכתי, שתהיה בעלת סמכויות מקבילות למועצת החינוך הממלכתי-דתי: המועצה תתווה חלק מתכנית הלימודים בחינוך הממלכתי, תייצר לו המשכיות, הגנה ויכולת תכנון במנותק משינויים פוליטיים, תטפח זהות וערכים, ותשמש כשומרת סף בכל הנוגע לכניסת גורמים חיצוניים... נחייב חינוך לאזרחות ודמוקרטיה לכולם.",
+      "summary": "הקמת מועצה לחינוך ממלכתי בעלת סמכויות מקבילות למועצת החמ\"ד להגנה מפני התערבות פוליטית וחובת לימודי דמוקרטיה ואזרחות בכל הזרמים.",
+      "stance": "pro_state_education",
+      "sourceId": "SRC-PLT-DEMOCRATS-EDU-2025",
+      "sourceType": "party_platform",
+      "sourceCitation": "תוכנית חינוך – הדמוקרטים, סעיפים 2-3, עמ' 2",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "מועצה לחינוך ממלכתי",
+        "דמוקרטיה",
+        "שומרי סף",
+        "אזרחות"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "ביצור מעמד החינוך הממלכתי באמצעות מועצה סטטוטורית עצמאית וחובת הוראת דמוקרטיה."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "יעניק למנהלי בתי ספר ברשויות גיבוי רגולטורי לסינון תוכניות חיצוניות שנויות במחלוקת."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "אין גוף סטטוטורי עצמאי המגן על החינוך הממלכתי במקביל למועצת החמ\"ד.",
+        "currentStateSourceId": null,
+        "currentStateCitation": "חוק חינוך ממלכתי",
+        "changeFromCurrentState": "הקמת מועצה לחינוך ממלכתי וחובת חינוך לאזרחות ודמוקרטיה.",
+        "changeMagnitude": "structural_change",
+        "localAuthorityImpact": "שקיפות ופיקוח על כניסת עמותות ותוכניות חיצוניות לבתי הספר ברשות.",
+        "openImplementationQuestion": "מה יהיה מנגנון התיאום בין המועצה למנהלי מחלקות החינוך ברשויות?"
+      }
+    },
+    {
+      "id": "POS-RZP-DEC-001",
+      "partyId": "PARTY-RELIGIOUS-ZIONISM",
+      "issueId": "ISSUE-DECENTRALIZATION",
+      "topic": "עמדה בנושא ביזור סמכויות לרשויות טרם פורטה במסמך החינוך",
+      "epistemicType": "fact",
+      "verbatimQuote": null,
+      "summary": "מסמך רפורמת החינוך הדתי של הציונות הדתית מתמקד בתקצוב החמ\"ד והישיבות ואינו מפרט עמדה לגבי ביזור סמכויות לרשויות מקומיות.",
+      "stance": "not_stated",
+      "sourceId": null,
+      "sourceType": "party_platform",
+      "sourceCitation": "לא אותרה עמדה מפורשת במסמך הרפורמה (SRC-PLT-RZ-REFORM-2022)",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "ביזור",
+        "טרם פורט"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "המסמך עוסק בחיזוק מעמד מועצת החמ\"ד והתקצוב המגזרי ולא בביזור מוניציפלי."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "נדרשת עמדה משלימה לגבי יחסי החמ\"ד מול אגפי החינוך ברשויות."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "מערכת החמ\"ד פועלת בתיאום מול מחוזות משרד החינוך והרשויות.",
+        "currentStateSourceId": null,
+        "currentStateCitation": null,
+        "changeFromCurrentState": "לא צוין שינוי מוצע.",
+        "changeMagnitude": "continuation",
+        "localAuthorityImpact": "ללא שינוי מוגדר בשלב זה.",
+        "openImplementationQuestion": "מהי עמדת המפלגה ביחס לסמכות מנהל החינוך העירוני על בתי ספר של החמ\"ד?"
+      }
+    },
+    {
+      "id": "POS-RZP-TEA-001",
+      "partyId": "PARTY-RELIGIOUS-ZIONISM",
+      "issueId": "ISSUE-TEACHER-SHORTAGE",
+      "topic": "התאמת נוסחת שכר המורים (השכל\"מ) למאפייני החינוך הדתי והכרה בפעילות ייחודית",
+      "epistemicType": "fact",
+      "verbatimQuote": "נפעל להתאמת נוסחת הבסיס של השכל\"מ למאפייני החינוך הדתי... נפעל להכרה בפונקציות הייחודיות לחינוך הדתי בבסיס התקציב ולא ככסף קואליציוני... נקדם רפורמה בתנאי השירות של בנות השירות הלאומי.",
+      "summary": "התאמת מודל שכר מורי החמ\"ד (שכל\"מ) למאפייני החינוך הדתי, עיגון תפקידים ייחודיים בבסיס התקציב ושדרוג תנאי בנות השירות הלאומי.",
+      "stance": "pro_reform",
+      "sourceId": "SRC-PLT-RZ-REFORM-2022",
+      "sourceType": "party_platform",
+      "sourceCitation": "רפורמת הציונות הדתית בחינוך הדתי, עמ' 1",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "שכר מורים",
+        "חמ\"ד",
+        "שכל\"מ",
+        "שירות לאומי"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "העברת תקציבי מורים ותפקידים בחמ\"ד מכספים קואליציוניים לבסיס התקציב הקבוע."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "יעניק יציבות תעסוקתית לצוותי ההוראה במוסדות החמ\"ד ברשויות המקומיות."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "חלק מתקציבי השעות והתפקידים הייחודיים בחמ\"ד תלויים בתוספות קואליציוניות שנתיות.",
+        "currentStateSourceId": null,
+        "currentStateCitation": "דוחות ביצוע תקציב משרד החינוך",
+        "changeFromCurrentState": "עיגון מלא בבסיס התקציב של נוסחת השכל\"מ המותאמת לחמ\"ד.",
+        "changeMagnitude": "significant_change",
+        "localAuthorityImpact": "יציבות תקציבית לאגפי החינוך בניהול שעות ותקני החמ\"ד ברשות.",
+        "openImplementationQuestion": "כיצד תושפע השתתפות הרשות במימון שעות תפילה ותגבור תורני?"
+      }
+    },
+    {
+      "id": "POS-RZP-SPE-001",
+      "partyId": "PARTY-RELIGIOUS-ZIONISM",
+      "issueId": "ISSUE-SPECIAL-EDUCATION",
+      "topic": "תקצוב שבטי יובל (חינוך מיוחד) בתנועות הנוער והרחבת מענים",
+      "epistemicType": "fact",
+      "verbatimQuote": "נפעל לתקצוב שבטי יובל (חינוך מיוחד)... נפעל להגדלת השתתפות המדינה בתקציבי הפעילות.",
+      "summary": "תקצוב ייעודי לשבטי יובל המשלבים חניכי חינוך מיוחד בתנועות הנוער הדתיות.",
+      "stance": "pro_support",
+      "sourceId": "SRC-PLT-RZ-REFORM-2022",
+      "sourceType": "party_platform",
+      "sourceCitation": "רפורמת הציונות הדתית בחינוך הדתי, עמ' 1",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "חינוך מיוחד",
+        "שבטי יובל",
+        "תנועות נוער"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "תמיכה בשילוב חברתי של ילדי חנ\"מ במסגרות החינוך הבלתי פורמלי."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "יאפשר לרשויות להרחיב מענים בלתי-פורמליים משלבים לילדי חנ\"מ בקהילה."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "פעילות שבטי יובל נשענת בחלקה על תקציבים עירוניים מקומיים ותרומות.",
+        "currentStateSourceId": null,
+        "currentStateCitation": null,
+        "changeFromCurrentState": "תקצוב מדינתי ייעודי לשבטי יובל.",
+        "changeMagnitude": "moderate_change",
+        "localAuthorityImpact": "הרחבת פעילות שילוב חנ\"מ בסניפי תנועות הנוער ברשות.",
+        "openImplementationQuestion": "כיצד יועברו תקציבי שבטי יובל דרך תקנות התמיכה של הרשות?"
+      }
+    },
+    {
+      "id": "POS-RZP-IDE-001",
+      "partyId": "PARTY-RELIGIOUS-ZIONISM",
+      "issueId": "ISSUE-JEWISH-IDENTITY",
+      "topic": "עיגון חוק החמ\"ד לשמירת האוטונומיה הפדגוגית והתקציבית וחיזוק מוסדות תורניים",
+      "epistemicType": "fact",
+      "verbatimQuote": "נקדם בחקיקה את תיקון חוק החמ\"ד לעיגון עצמאותו הפדגוגית ותקצובו של החינוך הדתי... נקים אגף תתמ\"ד בחמ\"ד שיתן מענה לתלמודי התורה... נכיר בבתי הספר של תנועת חב\"ד כזרם בחמ\"ד... נפעל לשימור מעמדן של הישיבות והמדרשות ונעגן את תקציביהן בבסיס התקציב.",
+      "summary": "עיגון סטטוטורי של עצמאות החמ\"ד בחקיקה, הקמת אגף תתמ\"ד, הכרה במוסדות חב\"ד בחמ\"ד ועיגון תקציבי הישיבות והמדרשות בבסיס התקציב.",
+      "stance": "pro_religious_autonomy",
+      "sourceId": "SRC-PLT-RZ-REFORM-2022",
+      "sourceType": "party_platform",
+      "sourceCitation": "רפורמת הציונות הדתית בחינוך הדתי, עמ' 1",
+      "date": "2026-08-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_source",
+      "tags": [
+        "חמ\"ד",
+        "אוטונומיה פדגוגית",
+        "תתמ\"ד",
+        "ישיבות",
+        "זהות יהודית"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "ביצור האוטונומיה הדתית והפדגוגית של החמ\"ד והרחבת גבולותיו למוסדות תורניים וחב\"ד."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "יחייב רשויות מקומיות לכבד את עצמאות מועצת החמ\"ד במינויים ותכנים בתחומן."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "החמ\"ד פועל כאגף במשרד החינוך בכפיפות למזכירות הפדגוגית הכללית.",
+        "currentStateSourceId": null,
+        "currentStateCitation": "חוק חינוך ממלכתי (סעיף החמ\"ד)",
+        "changeFromCurrentState": "חקיקת חוק חמ\"ד ייעודי המעגן עצמאות פדגוגית ותקציבית מלאה.",
+        "changeMagnitude": "structural_change",
+        "localAuthorityImpact": "עצמאות יתר למנהלי מוסדות החמ\"ד מול אגפי החינוך העירוניים.",
+        "openImplementationQuestion": "כיצד יתואמו אזורי רישום עירוניים כאשר תתמ\"ד וחב\"ד יוכרו כזרמי משנה בחמ\"ד?"
+      }
+    },
+    {
+      "id": "POS-HAD-HIST-DIF-001",
+      "partyId": "PARTY-HADASH",
+      "issueId": "ISSUE-DIFFERENTIAL-FUNDING",
+      "topic": "סגירת פערי החינוך הערבי, בניית 9,000 כיתות לימוד וחינוך חינם ממעונות ועד אוניברסיטה",
+      "epistemicType": "fact",
+      "verbatimQuote": "תוכנית חד\"ש למערכת חינוך שוויונית: 1. הבטחת חינוך חינם, הלכה למעשה, בכל המסגרות החינוכיות-לימודיות ממעונות היום ועד לאוניברסיטה... 4. הגדלת התקציבים לחינוך בדרך שתקטין פערים בתנאי-הלימוד ובהישגים הלימודיים, ובייחוד בין מערכת החינוך הערבית לבין מערכת החינוך העברית; 5. בנייתם תוך חמש שנים של 9,000 כיתות-לימוד החסרות במערכת החינוך הערבית.",
+      "summary": "תוכנית מצע 2013: חינוך חינם ממעונות עד אקדמיה, סגירת פערי תקצוב בחינוך הערבי ובניית 9,000 כיתות חסרות.",
+      "stance": "pro_equity",
+      "sourceId": "SRC-PLT-HADASH-HIST-2013",
+      "sourceType": "party_platform",
+      "sourceCitation": "מצע חד\"ש לבחירות לכנסת ה-19, עמ' 10",
+      "date": "2013-01-30",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_historical",
+      "tags": [
+        "חינוך ערבי",
+        "צמצום פערים",
+        "חינוך חינם",
+        "בינוי כיתות",
+        "היסטורי"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "עמדת יסוד היסטורית של חד\"ש המתמקדת בשוויון תקציבי מלא, ביטול אפליה מוסדית בחינוך הערבי וחינוך חינם אוניברסלי."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "מסמך היסטורי מ-2013 (כנסת 19); אינו משקף עמדה רשמית מעודכנת לתשפ״ז אך מציג את קווי היסוד האידיאולוגיים."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "פערי בינוי ותקצוב מתמשכים ברשויות הערביות.",
+        "currentStateSourceId": null,
+        "currentStateCitation": null,
+        "changeFromCurrentState": "השקעה מסיבית לצמצום הפערים ובניית 9,000 כיתות.",
+        "changeMagnitude": "structural_change",
+        "localAuthorityImpact": "סגירת פערי תשתיות קריטיים ברשויות המקומיות הערביות.",
+        "openImplementationQuestion": "מהם מקורות התקציב הממשלתיים למימון תוכנית בינוי 9,000 כיתות?"
+      }
+    },
+    {
+      "id": "POS-HAD-HIST-IDE-001",
+      "partyId": "PARTY-HADASH",
+      "issueId": "ISSUE-JEWISH-IDENTITY",
+      "topic": "חינוך לדמוקרטיה ושלום, מעמד שפה ותרבות ערבית והקמת אוניברסיטה בנצרת",
+      "epistemicType": "fact",
+      "verbatimQuote": "יישום תוכניות לימודים בבתי-הספר ובמוסדות החינוך בכל הדרגים, אשר יחנכו את הצעירים לכיבוד האדם, נגד קיפוח בשל השתייכות לאומית... לדמוקרטיה, לאחווה יהודית-ערבית... הוצאת סממנים מיליטריסטיים... הקמתה בנצרת של אוניברסיטה ששפת ההוראה בה ערבית.",
+      "summary": "חינוך לדמוקרטיה ואחווה יהודית-ערבית, הוצאת תכנים מיליטריסטיים והקמת אוניברסיטה ערבית בנצרת.",
+      "stance": "pro_state_education",
+      "sourceId": "SRC-PLT-HADASH-HIST-2013",
+      "sourceType": "party_platform",
+      "sourceCitation": "מצע חד\"ש לבחירות לכנסת ה-19, עמ' 10 ו-12",
+      "date": "2013-01-30",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "primary_historical",
+      "tags": [
+        "דמוקרטיה",
+        "חינוך לשלום",
+        "אוניברסיטה בנצרת",
+        "היסטורי"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "דגש על חינוך לשוויון אזרחי, שלום והכרה בזכויות לאומיות ותרבותיות של המיעוט הערבי."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "עמדה היסטורית (2013) המדגישה אוטונומיה תרבותית ואוניברסיטה בנצרת."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "מערכת החינוך הערבית מנוהלת ומפוקחת ישירות על ידי משרד החינוך ללא אוניברסיטה ייעודית.",
+        "currentStateSourceId": null,
+        "currentStateCitation": null,
+        "changeFromCurrentState": "הקמת אוניברסיטה ערבית והתאמת תוכניות הלימודים לערכי שוויון ושלום.",
+        "changeMagnitude": "structural_change",
+        "localAuthorityImpact": "חיזוק מעמד העיר נצרת כמרכז השכלה גבוהה ערבי.",
+        "openImplementationQuestion": "כיצד תוכר האוניברסיטה בנצרת במסגרת המועצה להשכלה גבוהה?"
+      }
+    },
+    {
+      "id": "POS-RAA-SEC-DIF-001",
+      "partyId": "PARTY-RAAM",
+      "issueId": "ISSUE-DIFFERENTIAL-FUNDING",
+      "topic": "צמצום פערים בחינוך הערבי, שוויון תקציבי והקמת אוניברסיטה ערבית",
+      "epistemicType": "analysis",
+      "verbatimQuote": null,
+      "summary": "פרופיל מחקרי: רע״ם מציבה במרכז תפיסתה את צמצום הפערים בין החינוך הערבי ליהודי, שוויון תקציבי מוחלט, הכשרת כוח אדם מקצועי והקמת אוניברסיטה ערבית לצורך מוביליות כלכלית וחברתית.",
+      "stance": "pro_equity",
+      "sourceId": "SRC-SEC-RAAM-2026",
+      "sourceType": "secondary_research_source",
+      "sourceCitation": "פרופיל עמדות החינוך של רע״ם (מחקר עורך וסקירת IDI), עמ' 1",
+      "date": "2026-08-31",
+      "verificationLevel": "secondary_academic",
+      "confidenceLevel": "medium",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "secondary_research",
+      "tags": [
+        "רע״ם",
+        "חינוך ערבי",
+        "מחקר משני",
+        "שוויון תקציבי",
+        "מוביליות"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "עמדת רע\"ם מתמקדת בתוצאות מעשיות, תקציבים ותעסוקה בחברה הערבית, לצד שימור זהות דתית ומסורתית."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "מחקר משני המבוסס על מצע 1999, פעילות פרלמנטרית ודוחות IDI; אינו מצע רשמי מעודכן."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "פערי תקציב ותשתיות בחינוך הערבי ברשויות המקומיות.",
+        "currentStateSourceId": null,
+        "currentStateCitation": null,
+        "changeFromCurrentState": "השוואת משאבים ופיתוח תוכניות תעסוקה והשכלה.",
+        "changeMagnitude": "significant_change",
+        "localAuthorityImpact": "הזרמת משאבי פיתוח לרשויות הערביות והרחבת מענה למורים מקומיים.",
+        "openImplementationQuestion": "כיצד ייושמו תוכניות החומש (כגון 550) מול הרשויות המקומיות?"
+      }
+    },
+    {
+      "id": "POS-HTA-SEC-IDE-001",
+      "partyId": "PARTY-HADASH-TAAL",
+      "issueId": "ISSUE-JEWISH-IDENTITY",
+      "topic": "שוויון אזרחי ולאומי, מעמד השפה הערבית ומאבק באפליה מוסדית",
+      "epistemicType": "analysis",
+      "verbatimQuote": null,
+      "summary": "ניתוח מחקרי: חד״ש–תע״ל מדגישה חינוך דמוקרטי־חילוני, שוויון לאומי ואזרחי מלא, מעמד השפה הערבית כשפה רשמית בפועל, סגירת פערי תשתיות ומאבק באפליה ובגזענות.",
+      "stance": "pro_state_education",
+      "sourceId": "SRC-SEC-HADASHTAAL-2026",
+      "sourceType": "secondary_research_source",
+      "sourceCitation": "תפיסת החינוך של חד״ש–תע״ל על בסיס המצע, עמ' 1-2",
+      "date": "2026-08-31",
+      "verificationLevel": "secondary_academic",
+      "confidenceLevel": "medium",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "sourceStatus": "secondary_research",
+      "tags": [
+        "חד״ש-תע״ל",
+        "מחקר משני",
+        "שוויון לאומי",
+        "שפה ערבית"
+      ],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "דגש על ערכי שוויון אוניברסליים, זכויות מיעוט לאומי ומאבק בהפרטה ובפערים חברתיים."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "ניתוח מחקרי משני של עקרונות המצע הכללי; אינו מהווה מצע חינוך מפורט לקראת תשפ״ז."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "פערים בין החינוך הערבי לעברי ותת-ייצוג של השפה והתרבות הערבית.",
+        "currentStateSourceId": null,
+        "currentStateCitation": null,
+        "changeFromCurrentState": "השוואת מעמד ותקציבים והכרה בערבית כשפה רשמית מלאה.",
+        "changeMagnitude": "structural_change",
+        "localAuthorityImpact": "שדרוג סמכויות והשקעות ברשויות המקומיות הערביות.",
+        "openImplementationQuestion": "כיצד תוגדר האוטונומיה התרבותית של מערכת החינוך הערבית ברמת הרשות?"
+      }
     }
   ]
 }

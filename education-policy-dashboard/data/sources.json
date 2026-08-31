@@ -54,18 +54,20 @@
     },
     {
       "id": "SRC-PLT-YESHATID-2022",
-      "title": "מצע מפלגת יש עתיד לבחירות לכנסת ה-25 - פרק החינוך",
+      "title": "מצע מפלגת יש עתיד - אתר רשמי (שמירה על הדמוקרטיה וחינוך)",
       "sourceType": "party_platform",
       "publisher": "מפלגת יש עתיד",
-      "publicationDate": "2022-10-15",
+      "publicationDate": "2026-08-31",
       "url": "https://www.yeshatid.org.il/platform",
       "localFilePath": "research/raw/party-platforms/platform_yesh_atid_2022.pdf",
       "archiveHash": "sha256-placeholder",
       "verificationLevel": "verified_official",
       "confidenceLevel": "high",
       "accessDate": "2026-08-31",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
       "language": "he",
-      "notes": "מצע רשמי מאושר ומפורסם לציבור"
+      "notes": "מצע רשמי מאושר ומפורסם לציבור באתר המפלגה (פרק שמירה על הדמוקרטיה וחינוך) - אומת ונבדק live ב-HTTP 200"
     },
     {
       "id": "SRC-PLT-RZ-2022",

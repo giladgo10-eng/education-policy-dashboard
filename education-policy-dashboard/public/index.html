@@ -1,65 +1,89 @@
-﻿<!DOCTYPE html>
-<html lang=he dir=rtl>
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
 <head>
-  <meta charset=UTF-8>
-  <meta name=viewport content=width=device-width, initial-scale=1.0>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>מפת החינוך 2026 | מצעים, מדיניות ומבחן הביצוע</title>
-  <link rel=stylesheet href=style.css>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <!-- Top Navigation / Brand Header -->
-  <header class=site-header>
-    <div class=header-inner>
-      <div class=brand-block>
-        <span class=meta-tag>פרויקט מחקרי עצמאי לקראת תשפ״ז</span>
-        <h1 class=main-title>מפת החינוך 2026</h1>
-        <p class=sub-title>מצעים, מדיניות ומבחן הביצוע של מערכת החינוך בישראל</p>
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-block">
+        <span class="meta-tag">פרויקט מחקרי עצמאי לקראת תשפ״ז • MVP 1.0</span>
+        <h1 class="main-title">מפת החינוך 2026</h1>
+        <p class="sub-title">מצעי מפלגות, השוואת סוגיות ומבחן ביצוע ההסכמים הקואליציוניים</p>
       </div>
-      <div class=header-status-badge>
-        <span class=live-dot></span>
-        <span>סביבת נתונים מאומתת (Evidence Chain V1.0)</span>
+      <div class="header-status-badge">
+        <span class="live-dot"></span>
+        <span>MVP Dataset Ready • שרשרת ראיות מלאה</span>
       </div>
     </div>
   </header>
 
-  <!-- Main Container -->
-  <main class=app-container>
+  <!-- Screen Navigation Bar -->
+  <nav class="main-nav-bar">
+    <div class="nav-inner">
+      <button class="nav-tab active" data-screen="party">🏛️ מפלגה במבט אחד</button>
+      <button class="nav-tab" data-screen="issue">⚖️ השוואה לפי סוגיה</button>
+      <button class="nav-tab" data-screen="execution">📊 מבחן הביצוע</button>
+    </div>
+  </nav>
 
-    <!-- Party Selector Bar -->
-    <section class=party-selector-section>
-      <div class=selector-label-wrap>
-        <label class=selector-label>בחר מפלגה לצפייה מהירה:</label>
-        <span class=selector-hint>לחץ על מפלגה לצפייה במצע, בסוגיות ובמבחן הביצוע</span>
+  <!-- Main Container -->
+  <main class="app-container">
+
+    <!-- SCREEN 1: Party At A Glance -->
+    <section class="screen-view active" id="screen-party">
+      <div class="selector-card">
+        <div class="selector-label-wrap">
+          <label class="selector-label">בחר מפלגה לצפייה:</label>
+          <span class="selector-hint">הצגת כל עמדות החינוך, מצעים ומקורות המידע המאומתים</span>
+        </div>
+        <div class="party-buttons" id="party-buttons-container"></div>
       </div>
-      <div class=party-buttons id=party-buttons-container>
-        <!-- Injected via JS dynamically -->
-      </div>
+      <div id="party-content-area"></div>
     </section>
 
-    <!-- Party At A Glance View -->
-    <div id=party-content-area>
-      <!-- Injected via JS dynamically -->
-    </div>
+    <!-- SCREEN 2: Comparison By Issue -->
+    <section class="screen-view" id="screen-issue">
+      <div class="selector-card">
+        <div class="selector-label-wrap">
+          <label class="selector-label">בחר סוגיה להשוואה:</label>
+          <span class="selector-hint">השוואת עמדות כל המפלגות בסוגיית חינוך מוגדרת זו לצד זו</span>
+        </div>
+        <div class="issue-buttons" id="issue-buttons-container"></div>
+      </div>
+      <div id="issue-content-area"></div>
+    </section>
+
+    <!-- SCREEN 3: Execution Test -->
+    <section class="screen-view" id="screen-execution">
+      <div class="execution-header-card">
+        <h2 class="section-title">📊 מבחן הביצוע: התחייבויות קואליציוניות והוצאה לפועל</h2>
+        <p class="section-desc">התחייבויות ממשלתיות חתומות בהסכמים הקואליציוניים, סטטוסי ביצוע מאומתים ושרשרת מקורות ראשוניים.</p>
+      </div>
+      <div id="execution-content-area"></div>
+    </section>
 
   </main>
 
   <!-- Source Details Drawer Modal -->
-  <div class=drawer-overlay id=drawer-overlay>
-    <aside class=source-drawer id=source-drawer aria-labelledby=drawer-title role=dialog aria-modal=true>
-      <div class=drawer-header>
-        <div class=drawer-title-group>
-          <span class=drawer-badge>שרשרת ראיות ומקורות</span>
-          <h3 id=drawer-title>פרטי מקור המידע</h3>
+  <div class="drawer-overlay" id="drawer-overlay">
+    <aside class="source-drawer" id="source-drawer" aria-labelledby="drawer-title" role="dialog" aria-modal="true">
+      <div class="drawer-header">
+        <div class="drawer-title-group">
+          <span class="drawer-badge">שרשרת ראיות ומקורות</span>
+          <h3 id="drawer-title">פרטי מקור המידע</h3>
         </div>
-        <button class=drawer-close-btn id=drawer-close-btn aria-label=סגור חלונית מקור>&times;</button>
+        <button class="drawer-close-btn" id="drawer-close-btn" aria-label="סגור חלונית מקור">&times;</button>
       </div>
-      <div class=drawer-body id=drawer-content>
-        <!-- Injected via JS dynamically -->
-      </div>
+      <div class="drawer-body" id="drawer-content"></div>
     </aside>
   </div>
 
-  <script src=app.js></script>
+  <script src="app.js"></script>
 </body>
 </html>

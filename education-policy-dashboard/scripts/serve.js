@@ -4,6 +4,7 @@ const path = require('path');
 
 const PORT = 8080;
 const BASE_DIR = path.resolve(__dirname, '..');
+const PUBLIC_DIR = path.join(BASE_DIR, 'public');
 
 const MIME_TYPES = {
   '.html': 'text/html; charset=utf-8',
@@ -19,11 +20,25 @@ const MIME_TYPES = {
 const server = http.createServer((req, res) => {
   let reqUrl = req.url.split('?')[0];
   if (reqUrl === '/' || reqUrl === '') {
-    reqUrl = '/public/index.html';
+    reqUrl = '/index.html';
   }
 
   const safePath = path.normalize(reqUrl).replace(/^(\.\.[\/\\])+/, '');
-  const filePath = path.join(BASE_DIR, safePath);
+  
+  // 1. Try public directory first
+  let filePath = path.join(PUBLIC_DIR, safePath);
+  let isFound = false;
+
+  try {
+    if (fs.existsSync(filePath) && fs.statSync(filePath).isFile()) {
+      isFound = true;
+    }
+  } catch (e) {}
+
+  // 2. Fall back to base directory (for /data/*, /research/*, etc.)
+  if (!isFound) {
+    filePath = path.join(BASE_DIR, safePath);
+  }
 
   fs.stat(filePath, (err, stats) => {
     if (err || !stats.isFile()) {
@@ -50,4 +65,5 @@ server.listen(PORT, '127.0.0.1', () => {
   console.log('Education Policy Dashboard running at: http://localhost:' + PORT);
   console.log('Serving root directory: ' + BASE_DIR);
 });
+
 

@@ -47,16 +47,38 @@ if ($errors.Count -gt 0) {
     exit 1
 }
 
-# 2. Extract valid source IDs
+# 2. Extract valid IDs for Foreign Key checks
 $validSourceIds = [System.Collections.Generic.HashSet[string]]::new()
 if ($dataStore["sources.json"].sources) {
     foreach ($src in $dataStore["sources.json"].sources) {
-        if ($src.id) {
-            [void]$validSourceIds.Add($src.id)
-        }
+        if ($src.id) { [void]$validSourceIds.Add($src.id) }
     }
 }
 Write-Host "`nIndexed $($validSourceIds.Count) valid sources from sources.json" -ForegroundColor DarkCyan
+
+$validPartyIds = [System.Collections.Generic.HashSet[string]]::new()
+if ($dataStore["parties.json"].parties) {
+    foreach ($pty in $dataStore["parties.json"].parties) {
+        if ($pty.id) { [void]$validPartyIds.Add($pty.id) }
+    }
+}
+Write-Host "Indexed $($validPartyIds.Count) valid parties from parties.json" -ForegroundColor DarkCyan
+
+$validIssueIds = [System.Collections.Generic.HashSet[string]]::new()
+if ($dataStore["issues.json"].issues) {
+    foreach ($iss in $dataStore["issues.json"].issues) {
+        if ($iss.id) { [void]$validIssueIds.Add($iss.id) }
+    }
+}
+Write-Host "Indexed $($validIssueIds.Count) valid issues from issues.json" -ForegroundColor DarkCyan
+
+$validCommitmentIds = [System.Collections.Generic.HashSet[string]]::new()
+if ($dataStore["commitments.json"].commitments) {
+    foreach ($com in $dataStore["commitments.json"].commitments) {
+        if ($com.id) { [void]$validCommitmentIds.Add($com.id) }
+    }
+}
+Write-Host "Indexed $($validCommitmentIds.Count) valid commitments from commitments.json" -ForegroundColor DarkCyan
 
 # 3. Check records for source grounding, verificationLevel, confidenceLevel, and epistemic separation
 $groups = @(
@@ -91,6 +113,34 @@ foreach ($g in $groups) {
             }
         } elseif (-not $validSourceIds.Contains($item.sourceId)) {
             $errors.Add("[$fName | $id] Foreign key error: sourceId '$($item.sourceId)' does not exist in sources.json")
+        }
+
+        # Foreign key check for partyId / partyIds
+        if ($item.partyId) {
+            if (-not $validPartyIds.Contains($item.partyId)) {
+                $errors.Add("[$fName | $id] Foreign key error: partyId '$($item.partyId)' does not exist in parties.json")
+            }
+        }
+        if ($item.partyIds) {
+            foreach ($partyRef in $item.partyIds) {
+                if (-not $validPartyIds.Contains($partyRef)) {
+                    $errors.Add("[$fName | $id] Foreign key error: partyId '$partyRef' does not exist in parties.json")
+                }
+            }
+        }
+
+        # Foreign key check for issueId
+        if ($item.issueId) {
+            if (-not $validIssueIds.Contains($item.issueId)) {
+                $errors.Add("[$fName | $id] Foreign key error: issueId '$($item.issueId)' does not exist in issues.json")
+            }
+        }
+
+        # Foreign key check for commitmentId
+        if ($item.commitmentId) {
+            if (-not $validCommitmentIds.Contains($item.commitmentId)) {
+                $errors.Add("[$fName | $id] Foreign key error: commitmentId '$($item.commitmentId)' does not exist in commitments.json")
+            }
         }
 
         # Verification level check

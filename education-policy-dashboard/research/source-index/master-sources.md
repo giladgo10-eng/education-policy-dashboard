@@ -10,3 +10,7 @@
 | `SRC-PLT-YESHATID-2022` | מצע מפלגת יש עתיד לכנסת ה-25 - פרק החינוך | `party-platforms` | יש עתיד | 2022-10-15 | `research/raw/party-platforms/` | verified_official | high |
 | `SRC-PLT-RZ-2022` | עיקרי מדיניות ותוכנית חינוך - הציונות הדתית | `party-platforms` | הציונות הדתית | 2022-10-20 | `research/raw/party-platforms/` | verified_official | high |
 | `SRC-PLT-LIKUD-2022` | תוכנית הליכוד לחינוך חינם 0-3 | `party-platforms` | הליכוד | 2022-10-25 | `research/raw/party-platforms/` | verified_official | high |
+| `SRC-PLT-STATENAT-2022` | עקרונות המצע החברתי-חינוכי של המחנה הממלכתי | `party-platforms` | המחנה הממלכתי | 2022-10-22 | `research/raw/party-platforms/` | verified_official | high |
+| `SRC-RES-DOC-OPENING-5787` | א-מחקר עומק פתיחת שנת הלימודים תשפז 2026-7.docx | `education-system` | צוות מחקר / עורך הפרויקט | 2026-08-31 | `research/raw/education-system/` | secondary_academic | high |
+| `SRC-RES-DOC-COAL-EVAL` | א-הערכת מדיניות החינוך של מפלגות הקואלציה הממשלה היוצאת.docx | `government-decisions` | צוות מחקר / עורך הפרויקט | 2026-08-31 | `research/raw/government-decisions/` | secondary_academic | high |
+

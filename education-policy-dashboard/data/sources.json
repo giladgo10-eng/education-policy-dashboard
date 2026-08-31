@@ -111,6 +111,36 @@
       "accessDate": "2026-08-31",
       "language": "he",
       "notes": "מסמך מצע מפורסם"
+    },
+    {
+      "id": "SRC-RES-DOC-OPENING-5787",
+      "title": "א-מחקר עומק פתיחת שנת הלימודים תשפז 2026-7.docx",
+      "sourceType": "secondary_research_source",
+      "publisher": "צוות מחקר פרויקט education-policy-dashboard / עורך הפרויקט",
+      "publicationDate": "2026-08-31",
+      "url": null,
+      "localFilePath": "research/raw/education-system/א-מחקר עומק פתיחת שנת הלימודים תשפז 2026-7.docx",
+      "archiveHash": "sha256-placeholder",
+      "verificationLevel": "secondary_academic",
+      "confidenceLevel": "high",
+      "accessDate": "2026-08-31",
+      "language": "he",
+      "notes": "מסמך מחקר עומק שסופק על ידי עורך הפרויקט לקראת תשפ״ז; מסווג כ-secondary_research_source"
+    },
+    {
+      "id": "SRC-RES-DOC-COAL-EVAL",
+      "title": "א-הערכת מדיניות החינוך של מפלגות הקואלציה הממשלה היוצאת.docx",
+      "sourceType": "secondary_research_source",
+      "publisher": "צוות מחקר פרויקט education-policy-dashboard / עורך הפרויקט",
+      "publicationDate": "2026-08-31",
+      "url": null,
+      "localFilePath": "research/raw/government-decisions/א-הערכת מדיניות החינוך של מפלגות הקואלציה הממשלה היוצאת.docx",
+      "archiveHash": "sha256-placeholder",
+      "verificationLevel": "secondary_academic",
+      "confidenceLevel": "high",
+      "accessDate": "2026-08-31",
+      "language": "he",
+      "notes": "מסמך מחקר והערכת מדיניות החינוך של מפלגות הקואליציה היוצאת; מסווג כ-secondary_research_source"
     }
   ]
 }

@@ -69,6 +69,192 @@
         "date": "2026-08-31",
         "text": "הנושא היווה נקודת מחלוקת ציבורית ופוליטית עזה לאורך כל שנת התקציב."
       }
+    },
+    {
+      "id": "BUD-SHAS-MAAYAN-2023",
+      "year": 2023,
+      "budgetCode": "20.XX.SHAS.2023",
+      "title": "תקציב רשת מעיין החינוך התורני (בני יוסף) - בסיס 2023",
+      "category": "בסיס התקציב",
+      "plannedNetBudgetNIS": 980100000,
+      "updatedNetBudgetNIS": 980100000,
+      "actualExecutedNIS": null,
+      "executionRatePercent": null,
+      "isCoalitionFund": false,
+      "beneficiarySector": "חרדי",
+      "epistemicType": "fact",
+      "sourceId": "SRC-RES-DOC-COAL-EVAL",
+      "sourceType": "secondary_research_source",
+      "date": "2023-12-31",
+      "verificationLevel": "secondary_academic",
+      "confidenceLevel": "high",
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "נתון בסיס של תקציב רשת החינוך לשנת 2023 (כ-980.1 מיליון ₪)."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "משקף את רמת התקצוב טרם תוספות ההסכמים הקואליציוניים המלאות של הממשלה ה-37."
+      }
+    },
+    {
+      "id": "BUD-SHAS-MAAYAN-2026",
+      "year": 2026,
+      "budgetCode": "20.XX.SHAS.2026",
+      "title": "תקציב רשת מעיין החינוך התורני (בני יוסף) - שנת 2026",
+      "category": "בסיס התקציב",
+      "plannedNetBudgetNIS": 1234000000,
+      "updatedNetBudgetNIS": 1234000000,
+      "actualExecutedNIS": null,
+      "executionRatePercent": null,
+      "isCoalitionFund": false,
+      "beneficiarySector": "חרדי",
+      "epistemicType": "fact",
+      "sourceId": "SRC-RES-DOC-COAL-EVAL",
+      "sourceType": "secondary_research_source",
+      "date": "2026-08-31",
+      "verificationLevel": "secondary_academic",
+      "confidenceLevel": "high",
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "תקציב מאושר של כ-1.234 מיליארד ₪ לשנת 2026. גידול עובדתי נומינלי של כ-253.9 מיליון ₪ ביחס ל-2023 (ערך מחושב - derived value)."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "הערכת המחקר היא שהחיזוק התקציבי לרשת מעיין החינוך התורני בוצע."
+      }
+    },
+    {
+      "id": "BUD-NOAM-AUTHORITY-2025",
+      "year": 2025,
+      "budgetCode": "04.XX.NOAM.AUTH.2025",
+      "title": "ביצוע בפועל: הרשות לזהות לאומית-יהודית - 2025",
+      "category": "תוכניות לאומיות",
+      "plannedNetBudgetNIS": null,
+      "updatedNetBudgetNIS": null,
+      "actualExecutedNIS": 11850000,
+      "executionRatePercent": null,
+      "isCoalitionFund": true,
+      "beneficiarySector": "כללי ודתי-לאומי",
+      "epistemicType": "fact",
+      "sourceId": "SRC-RES-DOC-COAL-EVAL",
+      "sourceType": "secondary_research_source",
+      "date": "2025-12-31",
+      "verificationLevel": "secondary_academic",
+      "confidenceLevel": "high",
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "ביצוע בפועל של כ-11.85 מיליון ₪ עבור הרשות לזהות לאומית-יהודית (גוף 1) בשנת 2025."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "ביצוע חלקי מאוד ביחס למסגרת של 100-150 מיליון ש\"ח שהובטחה במקור."
+      }
+    },
+    {
+      "id": "BUD-NOAM-AUTHORITY-2026",
+      "year": 2026,
+      "budgetCode": "04.XX.NOAM.AUTH.2026",
+      "title": "תקציב: הרשות לזהות לאומית-יהודית - 2026",
+      "category": "תוכניות לאומיות",
+      "plannedNetBudgetNIS": 423000,
+      "updatedNetBudgetNIS": 423000,
+      "actualExecutedNIS": null,
+      "executionRatePercent": null,
+      "isCoalitionFund": true,
+      "beneficiarySector": "כללי ודתי-לאומי",
+      "epistemicType": "fact",
+      "sourceId": "SRC-RES-DOC-COAL-EVAL",
+      "sourceType": "secondary_research_source",
+      "date": "2026-08-31",
+      "verificationLevel": "secondary_academic",
+      "confidenceLevel": "high",
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "תקציב של כ-423 אלף ₪ בלבד שהוקצה לרשות (גוף 1) בשנת 2026."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "מבטא צמצום משמעותי ביותר בפעילות הרשות במתכונתה המקורית."
+      }
+    },
+    {
+      "id": "BUD-NOAM-DIRECTORATE-2025",
+      "year": 2025,
+      "budgetCode": "04.XX.NOAM.DIR.2025",
+      "title": "ביצוע בפועל: מנהלת לזהות יהודית - 2025",
+      "category": "תוכניות לאומיות",
+      "plannedNetBudgetNIS": null,
+      "updatedNetBudgetNIS": null,
+      "actualExecutedNIS": 49804000,
+      "executionRatePercent": null,
+      "isCoalitionFund": true,
+      "beneficiarySector": "כללי ודתי-לאומי",
+      "epistemicType": "fact",
+      "sourceId": "SRC-RES-DOC-COAL-EVAL",
+      "sourceType": "secondary_research_source",
+      "date": "2025-12-31",
+      "verificationLevel": "secondary_academic",
+      "confidenceLevel": "high",
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "ביצוע בפועל של כ-49.804 מיליון ₪ עבור 'המנהלת לזהות יהודית' (גוף 2) בשנת 2025. נשמר בנפרד מנתוני הרשות."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "מלמד על פיצול והסטת חלק ניכר מהפעילות למנהלת נפרדת."
+      }
+    },
+    {
+      "id": "BUD-NOAM-DIRECTORATE-2026",
+      "year": 2026,
+      "budgetCode": "04.XX.NOAM.DIR.2026",
+      "title": "תקציב: מנהלת לזהות יהודית - 2026",
+      "category": "תוכניות לאומיות",
+      "plannedNetBudgetNIS": 82164000,
+      "updatedNetBudgetNIS": 82164000,
+      "actualExecutedNIS": null,
+      "executionRatePercent": null,
+      "isCoalitionFund": true,
+      "beneficiarySector": "כללי ודתי-לאומי",
+      "epistemicType": "fact",
+      "sourceId": "SRC-RES-DOC-COAL-EVAL",
+      "sourceType": "secondary_research_source",
+      "date": "2026-08-31",
+      "verificationLevel": "secondary_academic",
+      "confidenceLevel": "high",
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "תקציב מאושר של כ-82.164 מיליון ₪ עבור 'המנהלת לזהות יהודית' (גוף 2) לשנת 2026. נשמר בנפרד מנתוני הרשות."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "הערכת המחקר: המסלול התקציבי המקורי השתנה באופן מהותי; אין לחבר את נתוני המנהלת עם נתוני הרשות למסלול יחיד."
+      }
     }
   ]
 }

@@ -68,6 +68,99 @@
         "date": "2026-08-31",
         "text": "יישום חלקי מאוד. המענה ניתן בעקיפין דרך הטבות מס אך לא יצר פריסה של מעונות מסובסדים לכלל השנתונים."
       }
+    },
+    {
+      "id": "COM-37-SHAS-MAAYAN-001",
+      "partyIds": ["PARTY-SHAS", "PARTY-LIKUD"],
+      "issueId": "ISSUE-CORE-CURRICULUM",
+      "title": "חיזוק רשת מעיין החינוך התורני / בני יוסף והשוואת רכיבי תקצוב ותנאים",
+      "commitmentType": "coalition_agreement",
+      "epistemicType": "fact",
+      "verbatimText": "הממשלה תפעל לחיזוק רשת החינוך 'בני יוסף' (מעיין החינוך התורני) ולהשוואת תנאי השכר, רכיבי התקצוב, הבינוי וההפעלה לתנאי מוסדות החינוך הרשמי.",
+      "sourceId": "SRC-RES-DOC-COAL-EVAL",
+      "sourceType": "secondary_research_source",
+      "sectionRef": "הסכם קואליציוני הליכוד-ש\"ס לכנסת ה-25, פרק החינוך (מצוטט במסמך מחקר עורך הפרויקט)",
+      "date": "2022-12-28",
+      "targetYear": "2023-2026",
+      "budgetYear": 2023,
+      "promisedBudgetNIS": null,
+      "allocatedBudgetEstimatedNIS": null,
+      "verificationLevel": "secondary_academic",
+      "confidenceLevel": "high",
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "ההתחייבות נועדה להבטיח את מעמדה העצמאי של רשת ש\"ס תוך חיבורה הישיר לצינורות המימון הממשלתיים והשוואת תקני השכר ברשת."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "ההתחייבות הפוליטית קיבלה ביטוי תקציבי מובהק בגידול חד של תקציב הרשת מ-980.1 מיליון ש\"ח ב-2023 לכ-1.234 מיליארד ש\"ח ב-2026."
+      }
+    },
+    {
+      "id": "COM-37-NOAM-IDENTITY-001",
+      "partyIds": ["PARTY-NOAM", "PARTY-LIKUD"],
+      "issueId": "ISSUE-JEWISH-IDENTITY",
+      "title": "הקמת רשות לזהות לאומית-יהודית במשרד ראש הממשלה",
+      "commitmentType": "coalition_agreement",
+      "epistemicType": "fact",
+      "verbatimText": "תוקם רשות לזהות לאומית-יהודית במשרד ראש הממשלה בראשות סגן שר מטעם סיעת נעם. תקציב פעילות הרשות יעמוד על 100 מיליון ₪ בשנה הראשונה ו-150 מיליון ₪ בשנה השנייה.",
+      "sourceId": "SRC-RES-DOC-COAL-EVAL",
+      "sourceType": "secondary_research_source",
+      "sectionRef": "הסכם קואליציוני מפלגת נעם - הליכוד, כנסת 25 (מצוטט במסמך מחקר עורך הפרויקט)",
+      "date": "2022-12-28",
+      "targetYear": "2023-2024",
+      "budgetYear": 2023,
+      "promisedBudgetNIS": 100000000,
+      "allocatedBudgetEstimatedNIS": 100000000,
+      "verificationLevel": "secondary_academic",
+      "confidenceLevel": "high",
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "הסכם קואליציוני ייעודי של סיעת יחיד, שהתנה את התמיכה בממשלה בהקמת מנגנון ממשלתי ייעודי לענייני זהות יהודית וסמכויות על תוכניות חינוך חיצוניות (מאגר גפ\"ן)."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "ההתחייבות המוסדית להקמת הרשות בוצעה, אך המבנה והמסלול התקציבי פוצלו ועברו שינויים משמעותיים."
+      }
+    },
+    {
+      "id": "COM-37-NOAM-IDENTITY-002",
+      "partyIds": ["PARTY-NOAM", "PARTY-LIKUD"],
+      "issueId": "ISSUE-JEWISH-IDENTITY",
+      "title": "תקציב פעילות שנה שנייה לרשות לזהות לאומית-יהודית",
+      "commitmentType": "coalition_agreement",
+      "epistemicType": "fact",
+      "verbatimText": "תקציב פעילות הרשות לזהות לאומית-יהודית בשנה השנייה יעמוד על 150 מיליון ₪.",
+      "sourceId": "SRC-RES-DOC-COAL-EVAL",
+      "sourceType": "secondary_research_source",
+      "sectionRef": "הסכם קואליציוני נעם - הליכוד, כנסת 25 (מצוטט במסמך מחקר עורך הפרויקט)",
+      "date": "2022-12-28",
+      "targetYear": "2024",
+      "budgetYear": 2024,
+      "promisedBudgetNIS": 150000000,
+      "allocatedBudgetEstimatedNIS": 150000000,
+      "verificationLevel": "secondary_academic",
+      "confidenceLevel": "high",
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "הגדלת תקציב הפעילות של הרשות בשנה השנייה ב-50% מעבר לבסיס השנה הראשונה."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "סכום זה לא הוקצה במתכונתו המקורית עקב שינויים מבניים, התפטרות וחזרה של סגן השר והקמת מנהלת מקבילה."
+      }
     }
   ]
 }

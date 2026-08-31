@@ -34,7 +34,7 @@
 | :--- | :--- | :--- | :--- |
 | `id` | String | `SRC-GOV-2022-COAL-LIKUD-RZ` | מזהה חד-ערכי (Primary Key) |
 | `title` | String | שם המסמך המלא | כותרת המקור הרשמית |
-| `sourceType` | Enum | `official_law`, `government_decision`, `coalition_agreement`, `official_budget`, `cbs_stat`, `knesset_research`, `party_platform`, `state_comptroller`, `court_ruling`, `press_release` | סוג המקור המהימן |
+| `sourceType` | Enum | `official_law`, `government_decision`, `coalition_agreement`, `official_budget`, `cbs_stat`, `knesset_research`, `party_platform`, `state_comptroller`, `court_ruling`, `press_release`, `secondary_research_source` | סוג המקור המהימן (כולל מחקרים פנימיים ומשניים) |
 | `publisher` | String | משרד החינוך, הכנסת, הלמ\"ס | הגוף המפרסם |
 | `publicationDate` | String | `2022-12-28` (`YYYY-MM-DD`) | תאריך פרסום המקור |
 | `url` | String / Null | URL ציבורי ישיר | קישור מקוון למסמך (אם זמין) |

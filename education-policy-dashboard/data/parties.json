@@ -80,6 +80,37 @@
       "platformDocumentSourceId": "SRC-PLT-STATENAT-2022",
       "confidenceLevel": "high",
       "notes": "כיהנה זמנית בממשלת החירום (אוקטובר 2023 - יוני 2024)"
+    },
+    {
+      "id": "PARTY-BEYACHAD",
+      "nameHe": "ביחד",
+      "nameEn": "Beyachad",
+      "knessetFaction25": null,
+      "statusInKnesset25": "extra_parliamentary",
+      "currentMinistersInEducation": [],
+      "officialWebsite": null,
+      "platformDocumentSourceId": "SRC-RES-DOC-OPENING-5787",
+      "confidenceLevel": "high",
+      "notes": "מפלגה/יוזמה פוליטית חדשה לקראת הבחירות הבאות ותשפ״ז; עמדותיה מתועדות במסמכי המחקר"
+    },
+    {
+      "id": "PARTY-NOAM",
+      "nameHe": "נעם",
+      "nameEn": "Noam",
+      "knessetFaction25": "נעם בראשות אבי מעוז",
+      "statusInKnesset25": "coalition_partner",
+      "currentMinistersInEducation": [
+        {
+          "role": "סגן שר במשרד ראש הממשלה (אחראי על הרשות לזהות לאומית-יהודית)",
+          "name": "אבי מעוז",
+          "termStart": "2022-12-29",
+          "sourceId": "SRC-RES-DOC-COAL-EVAL"
+        }
+      ],
+      "officialWebsite": null,
+      "platformDocumentSourceId": null,
+      "confidenceLevel": "high",
+      "notes": "סיעת יחיד בקואליציה, התקשרה בהסכם קואליציוני ייעודי להקמת הרשות לזהות לאומית-יהודית"
     }
   ]
 }

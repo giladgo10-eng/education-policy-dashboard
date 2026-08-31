@@ -71,6 +71,122 @@
         "date": "2026-08-31",
         "text": "העמדה יושמה בחלקה במסגרת תקציבי 2023-2024 ותוכנית 'אופק חדש' ברשתות, אך נתקלה בחסמים משפטיים ובג\"ץ."
       }
+    },
+    {
+      "id": "POS-BY-DEC-001",
+      "partyId": "PARTY-BEYACHAD",
+      "issueId": "ISSUE-DECENTRALIZATION",
+      "topic": "ביזור סמכויות ניהול לרשויות המקומיות ולמנהלי בתי הספר",
+      "epistemicType": "fact",
+      "verbatimQuote": "המפלגה מציעה להעביר חלק משמעותי מסמכויות הניהול לרשויות המקומיות ולמנהלי בתי הספר. משרד החינוך אמור להתמקד יותר במדיניות, סטנדרטים ופיקוח ופחות בניהול היומיומי.",
+      "summary": "העברת כובד המשקל הניהולי לשלטון המקומי ולמנהלים, תוך הגדרת תפקיד משרד החינוך כקובע מדיניות ומפקח.",
+      "stance": "pro_enforcement",
+      "sourceId": "SRC-RES-DOC-OPENING-5787",
+      "sourceType": "secondary_research_source",
+      "sourceCitation": "מסמך מחקר עומק פתיחת שנת הלימודים תשפז 2026-7.docx, פרק מצע מפלגת ביחד",
+      "date": "2026-08-31",
+      "verificationLevel": "secondary_academic",
+      "confidenceLevel": "high",
+      "tags": ["ביזור", "שלטון מקומי", "אוטונומיה ניהולית", "הצעה עתידית"],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "הצעה מבנית עתידית המבקשת לשנות את הפרדיגמה הריכוזית של משרד החינוך, בהתאם לדרישות ותיקות של איגוד מנהלי החינוך ומרכז השלטון המקומי."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "מודל זה דורש שינוי חקיקה עמוק בהגדרת סמכויות הרשויות המקומיות ועלול להיתקל בהתנגדות מצד פקידות המטה במשרד החינוך וארגוני המורים."
+      }
+    },
+    {
+      "id": "POS-BY-CURR-001",
+      "partyId": "PARTY-BEYACHAD",
+      "issueId": "ISSUE-CURRICULUM-STRUCTURE",
+      "topic": "מבנה תוכנית הלימודים (מודל 60-20-20)",
+      "epistemicType": "fact",
+      "verbatimQuote": "60% ליבה משותפת ארצית; 20% לפי הזרם; 20% לרשות המקומית ו/או למוסד החינוכי.",
+      "summary": "הצעה לחלוקה תלת-שכבתית של שעות ההוראה: 60% ליבה לאומית, 20% ייחודיות זרם, ו-20% בחירה מוניציפלית ובית-ספרית.",
+      "stance": "pro_enforcement",
+      "sourceId": "SRC-RES-DOC-OPENING-5787",
+      "sourceType": "secondary_research_source",
+      "sourceCitation": "מסמך מחקר עומק פתיחת שנת הלימודים תשפז 2026-7.docx, פרק מצע מפלגת ביחד",
+      "date": "2026-08-31",
+      "verificationLevel": "secondary_academic",
+      "confidenceLevel": "high",
+      "tags": ["תוכנית לימודים", "חלוקת שעות", "ליבה", "אוטונומיה בית ספרית", "הצעה עתידית"],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "מודל המשלב סטנדרטיזציה לאומית רחבה לצד מרחב גמישות פדגוגי משמעותי לרשות ולמנהל בית הספר."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "חלוקה זו מבטיחה תשתית ידע משותפת לכלל הזרמים, אך מחייבת מערך פיקוח הדוק של משרד החינוך על ה-60% הארציים."
+      }
+    },
+    {
+      "id": "POS-BY-CORE-001",
+      "partyId": "PARTY-BEYACHAD",
+      "issueId": "ISSUE-CORE-CURRICULUM",
+      "topic": "חינוך חרדי ולימודי ליבה (100% ליבה או 0% תקצוב, יעד 8 שנים)",
+      "epistemicType": "fact",
+      "verbatimQuote": "עקרון: 100% לימודי ליבה או 0% תקצוב. במחקר מופיע גם יעד לליבה מלאה לכל תלמיד חרדי בתוך שמונה שנים.",
+      "summary": "התניית תקצוב ממלכתי מלא ב-100% לימודי ליבה, וקביעת יעד מעבר הדרגתי של 8 שנים להחלת ליבה מלאה בכלל החינוך החרדי.",
+      "stance": "pro_enforcement",
+      "sourceId": "SRC-RES-DOC-OPENING-5787",
+      "sourceType": "secondary_research_source",
+      "sourceCitation": "מסמך מחקר עומק פתיחת שנת הלימודים תשפז 2026-7.docx, פרק מצע מפלגת ביחד",
+      "date": "2026-08-31",
+      "verificationLevel": "secondary_academic",
+      "confidenceLevel": "high",
+      "tags": ["חינוך חרדי", "לימודי ליבה", "התניית תקצוב", "יעד שמונה שנים", "הצעה עתידית"],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "מדיניות המשלבת עיקרון חד וקשיח (שלילת תקצוב מוחלטת ללא ליבה) לצד מנגנון פריסה והסתגלות רב-שנתי (8 שנים) המכיר במורכבות ההטמעה בשטח."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "ההצעה צפויה להיתקל בהתנגדות עזה מצד המפלגות החרדיות, אולם פריסת היעד על פני 8 שנים עשויה להוות בסיס למשא ומתן בממשלות רחבות."
+      }
+    },
+    {
+      "id": "POS-BY-TEACH-001",
+      "partyId": "PARTY-BEYACHAD",
+      "issueId": "ISSUE-TEACHER-SHORTAGE",
+      "topic": "מעמד המורים: שכר התחלתי 12,000 ₪ והעלאת רף קבלה",
+      "epistemicType": "fact",
+      "verbatimQuote": "שכר התחלתי מוצע: 12,000 ₪ למורה בתחילת דרכו, לצד העלאת רף הקבלה להוראה.",
+      "summary": "העלאת שכר היסוד ההתחלתי לעובדי הוראה ל-12,000 ש\"ח לחודש לצד החמרת תנאי הסף והסינון להכשרת מורים.",
+      "stance": "pro_enforcement",
+      "sourceId": "SRC-RES-DOC-OPENING-5787",
+      "sourceType": "secondary_research_source",
+      "sourceCitation": "מסמך מחקר עומק פתיחת שנת הלימודים תשפז 2026-7.docx, פרק מצע מפלגת ביחד",
+      "date": "2026-08-31",
+      "verificationLevel": "secondary_academic",
+      "confidenceLevel": "high",
+      "tags": ["שכר מורים", "מעמד המורה", "רף קבלה להוראה", "הצעה עתידית"],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "הצעה המכוונת לפתרון משבר כוח האדם באמצעות משיכת כוח אדם איכותי למערכת, תוך שילוב תגמול כספי גבוה עם יוקרה מקצועית."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "יישומה ידרוש תוספת תקציבית שנתית של מיליארדי שקלים והסכם שכר קיבוצי חדש מול הסתדרות וארגון המורים."
+      }
     }
   ]
 }

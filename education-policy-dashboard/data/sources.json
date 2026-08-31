@@ -177,6 +177,21 @@
       "sourceVerifiedDate": "2026-08-31",
       "language": "he",
       "notes": "מסמך רשמי של מינהל כלכלה ותקציב במשרד החינוך המגדיר את הקצאות ומסגרת תוכנית גפ\"ן לשנת 2025"
+    },
+    {
+      "id": "SRC-GOV-2022-COAL-LIKUD-NOAM",
+      "title": "הסכם קואליציוני לכינון ממשלה לאומית בין סיעת הליכוד לבין סיעת נעם",
+      "sourceType": "coalition_agreement",
+      "publisher": "מזכירות הכנסת / סיעת הליכוד וסיעת נעם",
+      "publicationDate": "2022-12-28",
+      "url": null,
+      "localFilePath": "research/raw/coalition-agreements/הסכם סיעת נועם.pdf",
+      "archiveHash": "sha256-4834c4f9a90d2a59ea6a8f58e9c6c18cc149d6814e23c529ef2ac081f20cc5a5",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "accessDate": "2026-08-31",
+      "language": "he",
+      "notes": "הסכם קואליציוני רשמי וחתום שהוגש למזכירות הכנסת ב-28.12.2022; אומת מקומית מתוך עותק סרוק מקורי (פרק חינוך, סעיף 34)"
     }
   ]
 }

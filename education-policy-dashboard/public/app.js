@@ -324,10 +324,24 @@ function renderExecutionItems(commitments, partyId) {
             '</div>'
           ) : '') +
 
+          (com.analysisDraft ? (
+            '<div class="epistemic-layer analysis-layer" style="border-right-color: #f59e0b; background-color: #fffdf5;">' +
+              '<div class="layer-title-badge" style="color: #b45309;">טיוטת ניתוח מוניציפלי (Analysis Draft • לא מאומת)</div>' +
+              '<p class="layer-content">' + com.analysisDraft.text + '</p>' +
+            '</div>'
+          ) : '') +
+
           (com.assessment ? (
             '<div class="epistemic-layer assessment-layer">' +
               '<div class="layer-title-badge">הערכת ביצוע</div>' +
               '<p class="layer-content">' + com.assessment.text + '</p>' +
+            '</div>'
+          ) : '') +
+
+          (com.assessmentDraft ? (
+            '<div class="epistemic-layer assessment-layer" style="border-right-color: #f59e0b; background-color: #fffdf5;">' +
+              '<div class="layer-title-badge" style="color: #b45309;">טיוטת הערכה (Assessment Draft)</div>' +
+              '<p class="layer-content">' + com.assessmentDraft.text + '</p>' +
             '</div>'
           ) : '') +
         '</div>' +
@@ -407,7 +421,24 @@ function renderSemanticBudgetVisual(com, execRecords) {
     );
   }
 
-  // Case 3: Not Comparable / Diverged Entity Tracks (e.g. Noam)
+  // Case 3: Policy commitment without specific promised amount or with formula / diverged tracks
+  if (!com.promisedBudgetNIS && execRecords.length === 0) {
+    return (
+      '<div class="budget-flow-container" style="background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 12px 16px; margin: 12px 0;">' +
+        '<div style="display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: #334155;">' +
+          '<span style="font-size: 1.2rem;">📋</span>' +
+          '<div>' +
+            '<strong>התחייבות למדיניות תקצוב מותנית (מודל אחוזים ותמריץ ליבה)</strong>' +
+            '<p style="margin: 4px 0 0 0; font-size: 0.85rem; color: #64748b;">' +
+              (com.comparabilityReason || 'ההתחייבות מעגנת שיעורי תקצוב (75% מוכש"ר / 55% פטור) ותוספת תקציבית מותנית בהיקף לימודי ליבה ובחינה והערכה, ללא סכום שקלי נקוב מראש.') +
+            '</p>' +
+          '</div>' +
+        '</div>' +
+      '</div>'
+    );
+  }
+
+  // Case 4: Not Comparable / Diverged Entity Tracks (e.g. Noam identity authorities)
   return (
     '<div class="not-comparable-container">' +
       '<div class="not-comp-alert">' +
@@ -712,7 +743,12 @@ function openSourceDrawer(sourceId, refNote) {
         '<span class="drawer-label">קישור ישיר למסמך המקור</span>' +
         '<span class="drawer-val"><a href="' + source.url + '" target="_blank" rel="noopener noreferrer" class="source-direct-url">פתח מסמך מקור מקוון ↗</a></span>' +
       '</div>'
-    : '');
+    : 
+      '<div class="drawer-row">' +
+        '<span class="drawer-label">גישה למסמך</span>' +
+        '<span class="drawer-val" style="color: #166534; font-weight: 600;">📁 מקור ראשוני מאומת — קובץ מקומי בפרויקט</span>' +
+      '</div>'
+    );
 
   overlay.classList.add("open");
 }

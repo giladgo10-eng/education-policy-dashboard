@@ -201,6 +201,47 @@
         "date": "2026-08-31",
         "text": "סכום זה לא הוקצה במתכונתו המקורית עקב שינויים מבניים, התפטרות וחזרה של סגן השר והקמת מנהלת מקבילה."
       }
+    },
+    {
+      "id": "COM-37-NOAM-CORE-001",
+      "partyIds": [
+        "PARTY-NOAM",
+        "PARTY-LIKUD"
+      ],
+      "issueId": "ISSUE-CORE-CURRICULUM",
+      "title": "תקצוב מוסדות מוכש\"ר ופטור דתי-לאומי והתניית תוספות בלימודי ליבה ומבחנים",
+      "commitmentType": "coalition_agreement",
+      "epistemicType": "fact",
+      "verbatimText": "משרד החינוך יתקצב את מוסדות המוכר שאינו רשמי הדתי לאומי ב- 75% ומוסדות הפטור הדתי לאומי ב- 55% באופן יחסי לתקצוב המלא שיגיע לרשתות. מוסדות שאינם רשמיים המלמדים לימודי ליבה בהיקף רחב יותר יקבלו תוספת תקציב בהתאם להיקף לימודי הליבה ובכפוף לעמידה בכללי בחינה והערכה, ובכך שתוכנית הלימודים במוסד אינה עומדת בסתירה למטרות החינוך המפורטות בחוק החינוך הממלכתי וכן בהרכב תלמידים אינטגרטיבי.",
+      "sourceId": "SRC-GOV-2022-COAL-LIKUD-NOAM",
+      "sourceType": "coalition_agreement",
+      "sectionRef": "ההסכם העיקרי, פרק חינוך, סעיף 34 (עמ' 4)",
+      "date": "2022-12-28",
+      "targetYear": "2023-2024",
+      "budgetYear": 2023,
+      "budgetEntity": "מוסדות שאינם רשמיים (מוכש\"ר ופטור)",
+      "budgetType": "promised",
+      "baselineBudgetNIS": null,
+      "promisedBudgetNIS": null,
+      "allocatedBudgetEstimatedNIS": null,
+      "comparabilityStatus": "not_comparable",
+      "comparabilityReason": "ההתחייבות קובעת עקרונות תמחור באחוזים (75% מוכש\"ר / 55% פטור) ומנגנון תוספת תמריץ מותנה בהיקף ליבה ובחינות, ללא סכום שקלי נקוב.",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "analysisDraft": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "הערכת משמעות לרשות: התניית תוספות תקציביות למוסדות חרדיים בבחינה והערכה של היקף לימודי הליבה ובאי-סתירה לחוק החינוך הממלכתי, עשויה להעניק למנהל אגף החינוך כלי פיקוח ומעקב פדגוגיים משמעותיים יותר על המתרחש במוסדות אלו ברשות.",
+        "municipalImpactVerified": false
+      },
+      "assessmentDraft": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "הסעיף יוצר תמריץ תקציבי ישיר לבתי ספר שאינם רשמיים במגזר הדתי-לאומי ללמד ליבה ולהשתתף במערך המבחנים וההערכה, לצד הגנה על מעמד חוק החינוך הממלכתי ואינטגרציה.",
+        "municipalImpactVerified": false
+      }
     }
   ]
 }

@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html lang=he dir=rtl>
+<head>
+  <meta charset=UTF-8>
+  <meta name=viewport content=width=device-width, initial-scale=1.0>
+  <title>מפת החינוך 2026 | מצעים, מדיניות ומבחן הביצוע</title>
+  <link rel=stylesheet href=style.css>
+</head>
+<body>
+
+  <!-- Top Navigation / Brand Header -->
+  <header class=site-header>
+    <div class=header-inner>
+      <div class=brand-block>
+        <span class=meta-tag>פרויקט מחקרי עצמאי לקראת תשפ״ז</span>
+        <h1 class=main-title>מפת החינוך 2026</h1>
+        <p class=sub-title>מצעים, מדיניות ומבחן הביצוע של מערכת החינוך בישראל</p>
+      </div>
+      <div class=header-status-badge>
+        <span class=live-dot></span>
+        <span>סביבת נתונים מאומתת (Evidence Chain V1.0)</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class=app-container>
+
+    <!-- Party Selector Bar -->
+    <section class=party-selector-section>
+      <div class=selector-label-wrap>
+        <label class=selector-label>בחר מפלגה לצפייה מהירה:</label>
+        <span class=selector-hint>לחץ על מפלגה לצפייה במצע, בסוגיות ובמבחן הביצוע</span>
+      </div>
+      <div class=party-buttons id=party-buttons-container>
+        <!-- Injected via JS dynamically -->
+      </div>
+    </section>
+
+    <!-- Party At A Glance View -->
+    <div id=party-content-area>
+      <!-- Injected via JS dynamically -->
+    </div>
+
+  </main>
+
+  <!-- Source Details Drawer Modal -->
+  <div class=drawer-overlay id=drawer-overlay>
+    <aside class=source-drawer id=source-drawer aria-labelledby=drawer-title role=dialog aria-modal=true>
+      <div class=drawer-header>
+        <div class=drawer-title-group>
+          <span class=drawer-badge>שרשרת ראיות ומקורות</span>
+          <h3 id=drawer-title>פרטי מקור המידע</h3>
+        </div>
+        <button class=drawer-close-btn id=drawer-close-btn aria-label=סגור חלונית מקור>&times;</button>
+      </div>
+      <div class=drawer-body id=drawer-content>
+        <!-- Injected via JS dynamically -->
+      </div>
+    </aside>
+  </div>
+
+  <script src=app.js></script>
+</body>
+</html>

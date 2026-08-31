@@ -1,0 +1,76 @@
+{
+  "$schema": "./schemas/positions.schema.json",
+  "metadata": {
+    "dataset": "positions",
+    "version": "1.0.0",
+    "description": "עמדות רשמיות של מפלגות בנושאי חינוך - מבוססות אך ורק על מצעים ומסמכים רשמיים מאומתים",
+    "epistemicRules": {
+      "noInference": true,
+      "requireDirectSource": true,
+      "distinguishFactAnalysisAssessment": true,
+      "allowedStances": ["pro_enforcement", "pro_autonomy", "neutral", "status_quo", "undecided", "not_stated"],
+      "notStatedRule": "When stance is not_stated, sourceId may be null without inventing a placeholder source"
+    },
+    "lastUpdated": "2026-08-31"
+  },
+  "positions": [
+    {
+      "id": "POS-YA-CORE-001",
+      "partyId": "PARTY-YESH-ATID",
+      "issueId": "ISSUE-CORE-CURRICULUM",
+      "topic": "התניית תקצוב מוסדות חינוך בלימודי ליבה מלאים ובפיקוח",
+      "epistemicType": "fact",
+      "verbatimQuote": "מוסד חינוכי שלא ילמד תוכנית ליבה מלאה הכוללת מתמטיקה, אנגלית ומדעים, ויסרב לפיקוח ולמבחני השוואה חיצוניים, לא יקבל תקצוב ממשלתי.",
+      "summary": "התניית כלל התקציבים הממשלתיים למוסדות חרדיים בהוראת לימודי יסוד מלאים ומבחני פיקוח.",
+      "stance": "pro_enforcement",
+      "sourceId": "SRC-PLT-YESHATID-2022",
+      "sourceType": "party_platform",
+      "sourceCitation": "פרק החינוך, עמ' 34",
+      "date": "2022-10-15",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "tags": ["לימודי ליבה", "חרדים", "שלילת תקצוב"],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "עמדה מסורתית ועקבית של מפלגת יש עתיד מאז 2013, המציבה את נושא הליבה כתנאי סף לקואליציה."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "סיכויי יישום נמוכים בכל הרכב ממשלה הנשען על מפלגות חרדיות; עשוי להוות ציר עימות מרכזי במו\"מ קואליציוני עתידי."
+      }
+    },
+    {
+      "id": "POS-RZ-CORE-001",
+      "partyId": "PARTY-RELIGIOUS-ZIONISM",
+      "issueId": "ISSUE-CORE-CURRICULUM",
+      "topic": "השוואת תקציבי החינוך התורני והעצמאי ללא התניית שינוי תכנים",
+      "epistemicType": "fact",
+      "verbatimQuote": "הכרה בעצמאות החינוך התורני והשוואת שכר המורים והתקציב לכל תלמיד במערכת ללא פגיעה באוטונומיה הרוחנית.",
+      "summary": "מתן תקצוב שוויוני לחינוך התורני תוך שמירה מלאה על עצמאות המוסדות והתכנים.",
+      "stance": "pro_autonomy",
+      "sourceId": "SRC-PLT-RZ-2022",
+      "sourceType": "party_platform",
+      "sourceCitation": "חוברת עיקרי המדיניות, עמ' 18",
+      "date": "2022-10-20",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "tags": ["חינוך תורני", "אוטונומיה", "תקצוב שוויוני"],
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "תפיסה הרואה בחינוך התורני זרם לגיטימי הזכאי למימון מלא, תוך שלילת כפיית תוכניות לימודים חיצוניות."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "העמדה יושמה בחלקה במסגרת תקציבי 2023-2024 ותוכנית 'אופק חדש' ברשתות, אך נתקלה בחסמים משפטיים ובג\"ץ."
+      }
+    }
+  ]
+}

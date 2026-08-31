@@ -1,0 +1,75 @@
+{
+  "$schema": "./schemas/execution.schema.json",
+  "metadata": {
+    "dataset": "execution",
+    "version": "1.0.0",
+    "description": "מבחן ביצוע של מדיניות הממשלה היוצאת (הממשלה ה-37) - סטטוס ביצוע עובדתי, תקציבי ומנהלי",
+    "lastUpdated": "2026-08-31"
+  },
+  "executionRecords": [
+    {
+      "id": "EXEC-OFN-2023-2024",
+      "commitmentId": "COM-37-OFN-001",
+      "issueId": "ISSUE-CORE-CURRICULUM",
+      "title": "ביצוע החלת 'אופק חדש' ברשתות החרדיות",
+      "budgetYear": 2024,
+      "epistemicType": "fact",
+      "status": "partially_executed_frozen",
+      "completionPercentage": 35,
+      "allocatedBudgetNIS": 1200000000,
+      "reportedBudgetNIS": 1200000000,
+      "actualSpendingNIS": 550000000,
+      "factualSummary": "בשנת הלימודים תשפ\"ד שולמו מקדמות שכר בחלק מהרשתות, אולם בעקבות עתירות לבג\"ץ וחוות דעת של המשנה ליועמ\"שית והחשב הכללי, הוקפאו חלק מהתקציבים בשל אי-עמידה בתנאי פיקוח ומבחני שוויון.",
+      "legalStatus": "pending_hcj_ruling",
+      "sourceId": "SRC-MOE-2024-BUDGET-EXEC",
+      "sourceType": "official_budget",
+      "date": "2024-12-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "קיימת דיכוטומיה בין הרצון הפוליטי להשוואת שכר לבין מגבלות הדין המנהלי והיעדר כלי פיקוח ובקרה של משרד החינוך על שעות ההוראה בפועל ברשתות."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "המהלך נתקע במתכונתו המקורית; הממשלה הבאה תידרש להכריע בין חקיקה ראשית עוקפת בג\"ץ לבין הסדרת פיקוח הדוק ומבחני סף."
+      }
+    },
+    {
+      "id": "EXEC-FREE-0-3-2024",
+      "commitmentId": "COM-37-FREE-0-3",
+      "issueId": "ISSUE-EARLY-CHILDHOOD",
+      "title": "ביצוע תוכנית חינוך חינם לגילאי 0-3",
+      "budgetYear": 2024,
+      "epistemicType": "fact",
+      "status": "alternative_execution",
+      "completionPercentage": 40,
+      "allocatedBudgetNIS": 3500000000,
+      "reportedBudgetNIS": 3500000000,
+      "actualSpendingNIS": 2100000000,
+      "factualSummary": "בפועל יושמה הרחבה של נקודות זיכוי להורים לילדים בגילאי 1-3 (עד שווי של מאות שקלים לחודש לילד), והועברו סובסידיות חלקיות למעונות יום מפוקחים בלבד. לא הוקמו מוסדות חדשים בחינם בפריסה אוניברסלית.",
+      "legalStatus": "legislation_enacted",
+      "sourceId": "SRC-MOE-2024-BUDGET-EXEC",
+      "sourceType": "official_budget",
+      "date": "2024-12-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "המדיניות הומרה ממודל של אספקה ציבורית ישירה (Public Provision) למודל של תמריץ מס עקיף (Tax Expenditure), שאינו מסייע לאוכלוסיות שאינן מגיעות לסף המס."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "התחייבות הבחירות מולאה באופן חלקי ומעוות ביחס לציפיות הציבוריות המקוריות לחינוך חינם בפועל."
+      }
+    }
+  ]
+}

@@ -1,0 +1,74 @@
+{
+  "$schema": "./schemas/budgets.schema.json",
+  "metadata": {
+    "dataset": "budgets",
+    "version": "1.0.0",
+    "description": "תקציבי חינוך, שינויים תקציביים (העברות), כספים קואליציוניים וביצוע מול תכנון",
+    "currency": "ILS",
+    "lastUpdated": "2026-08-31"
+  },
+  "budgetLines": [
+    {
+      "id": "BUD-MOE-TOTAL-2024",
+      "year": 2024,
+      "budgetCode": "20",
+      "title": "בסיס תקציב משרד החינוך",
+      "category": "בסיס התקציב",
+      "plannedNetBudgetNIS": 84500000000,
+      "updatedNetBudgetNIS": 89200000000,
+      "actualExecutedNIS": 87800000000,
+      "executionRatePercent": 98.4,
+      "isCoalitionFund": false,
+      "beneficiarySector": "כללי",
+      "epistemicType": "fact",
+      "sourceId": "SRC-MOE-2024-BUDGET-EXEC",
+      "sourceType": "official_budget",
+      "date": "2024-12-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "תקציב החינוך הוא השני בגודלו במדינה (לאחר הביטחון). השינויים לאורך השנה שיקפו תוספות חירום עקב מלחמת 'חרבות ברזל' (פינוי תלמידים, מענים רגשיים)."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "רמת הביצוע הגבוהה נובעת ממרכיב השכר הקשיח (כ-75% מהתקציב), בעוד שתקציבי פיתוח ובינוי סבלו מעיכובים."
+      }
+    },
+    {
+      "id": "BUD-COAL-TORANI-2024",
+      "year": 2024,
+      "budgetCode": "20.45.02",
+      "title": "תוספת כספים קואליציוניים למוסדות תורניים ותרבות יהודית",
+      "category": "כספים קואליציוניים",
+      "plannedNetBudgetNIS": 1150000000,
+      "updatedNetBudgetNIS": 980000000,
+      "actualExecutedNIS": 720000000,
+      "executionRatePercent": 73.5,
+      "isCoalitionFund": true,
+      "beneficiarySector": "חרדי ודתי-לאומי",
+      "epistemicType": "fact",
+      "sourceId": "SRC-MOE-2024-BUDGET-EXEC",
+      "sourceType": "official_budget",
+      "date": "2024-12-31",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "פער הביצוע נובע מקיצוצים רוחביים שבוצעו בתקציבי 2024 למימון הוצאות המלחמה, לצד קשיים משפטיים בקריטריונים לחלוקה."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "הנושא היווה נקודת מחלוקת ציבורית ופוליטית עזה לאורך כל שנת התקציב."
+      }
+    }
+  ]
+}

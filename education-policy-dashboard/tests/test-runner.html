@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>בדיקות איכות נתונים - education-policy-dashboard</title>
+  <style>
+    body { font-family: system-ui, -apple-system, sans-serif; margin: 30px; background-color: #f8fafc; color: #0f172a; }
+    h1 { color: #1e3a8a; border-bottom: 2px solid #cbd5e1; padding-bottom: 10px; }
+    .card { background: white; border-radius: 8px; padding: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); margin-bottom: 20px; }
+    .status-badge { display: inline-block; padding: 4px 10px; border-radius: 12px; font-weight: bold; font-size: 0.9em; }
+    .status-pass { background-color: #dcfce7; color: #15803d; }
+    .status-fail { background-color: #fee2e2; color: #b91c1c; }
+    table { width: 100%; border-collapse: collapse; margin-top: 15px; }
+    th, td { border: 1px solid #e2e8f0; padding: 10px; text-align: right; }
+    th { background-color: #f1f5f9; }
+  </style>
+</head>
+<body>
+  <h1>בדיקות איכות נתונים ושרשרת הראיות</h1>
+  <div class="card">
+    <h3>עקרונות אימות מחייבים במערכת:</h3>
+    <ul>
+      <li>עיגון מקורות: כל רשומה חייבת להכיל <code>sourceId</code> מאומת מתוך <code>sources.json</code>.</li>
+      <li>הפרדה אפיסטמית: הבחנה מובנית בין עובדה (fact), ניתוח (analysis) והערכה (assessment).</li>
+      <li>אפס הנחות: מפלגות ללא מצע מוגדרות כ-<code>not_stated</code>.</li>
+    </ul>
+  </div>
+</body>
+</html>

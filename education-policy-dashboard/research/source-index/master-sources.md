@@ -1,0 +1,12 @@
+# אינדקס מקורות מידע מרכזי (Master Source Index)
+
+טבלה זו מסנכרנת בין כלל מסמכי המקור שנשמרו בארכיון הגולמי `research/raw/` לבין המזהים במערכת הנתונים.
+
+| מזהה מקור (sourceId) | כותרת המקור | קטגוריה / תיקייה | גוף מפרסם | תאריך פרסום | נתיב קובץ גולמי | רמת אימות | רמת ביטחון |
+| :--- | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
+| `SRC-GOV-2022-COAL-LIKUD-RZ` | הסכם קואליציוני הממשלה ה-37 (ליכוד - הציונות הדתית) | `coalition-agreements` | מזכירות הכנסת | 2022-12-28 | `research/raw/coalition-agreements/` | verified_official | high |
+| `SRC-MOE-2024-BUDGET-EXEC` | דוח ביצוע תקציב משרד החינוך 2024 | `budgets` | משרד האוצר - חשכ\"ל | 2025-03-15 | `research/raw/budgets/` | verified_official | high |
+| `SRC-CBS-2025-STAT-EDU` | פני החברה בישראל - לקט חינוך לקראת תשפ״ו | `education-system` | הלשכה המרכזית לסטטיסטיקה | 2025-08-27 | `research/raw/education-system/` | verified_official | high |
+| `SRC-PLT-YESHATID-2022` | מצע מפלגת יש עתיד לכנסת ה-25 - פרק החינוך | `party-platforms` | יש עתיד | 2022-10-15 | `research/raw/party-platforms/` | verified_official | high |
+| `SRC-PLT-RZ-2022` | עיקרי מדיניות ותוכנית חינוך - הציונות הדתית | `party-platforms` | הציונות הדתית | 2022-10-20 | `research/raw/party-platforms/` | verified_official | high |
+| `SRC-PLT-LIKUD-2022` | תוכנית הליכוד לחינוך חינם 0-3 | `party-platforms` | הליכוד | 2022-10-25 | `research/raw/party-platforms/` | verified_official | high |

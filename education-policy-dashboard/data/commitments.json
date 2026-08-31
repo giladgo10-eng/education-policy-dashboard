@@ -1,0 +1,73 @@
+{
+  "$schema": "./schemas/commitments.schema.json",
+  "metadata": {
+    "dataset": "commitments",
+    "version": "1.0.0",
+    "description": "התחייבויות קואליציוניות, החלטות ממשלה וסיכומי תקציב מחייבים בתחום החינוך",
+    "lastUpdated": "2026-08-31"
+  },
+  "commitments": [
+    {
+      "id": "COM-37-OFN-001",
+      "partyIds": ["PARTY-LIKUD", "PARTY-SHAS", "PARTY-RELIGIOUS-ZIONISM"],
+      "issueId": "ISSUE-CORE-CURRICULUM",
+      "title": "החלת תוכנית 'אופק חדש' על רשתות החינוך החרדיות (החינוך העצמאי ובני יוסף)",
+      "commitmentType": "coalition_agreement",
+      "epistemicType": "fact",
+      "verbatimText": "הממשלה תפעל להשוואת שכרם של עובדי ההוראה בחינוך המוכר שאינו רשמי ובפטור לתנאי שכרם של עובדי ההוראה בחינוך הרשמי, לרבות החלת עקרונות רפורמת 'אופק חדש'.",
+      "sourceId": "SRC-GOV-2022-COAL-LIKUD-RZ",
+      "sourceType": "coalition_agreement",
+      "sectionRef": "סעיף 95 בהסכם הקואליציוני",
+      "date": "2022-12-28",
+      "targetYear": "2023-2024",
+      "budgetYear": 2023,
+      "promisedBudgetNIS": 1200000000,
+      "allocatedBudgetEstimatedNIS": 1200000000,
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "התחייבות דרמטית בהיקפה התקציבי שנועדה להשוות את שכר המורים החרדים ללא הכפפתם המלאה למנגנוני הפיקוח והפיטורין של שירות המדינה."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "ההתחייבות יצרה מתח משפטי וחשבונאי חריף מול אגף התקציבים, הייעוץ המשפטי לממשלה ובג\"ץ, מה שהוביל להקפאות תקציביות חלקיות."
+      }
+    },
+    {
+      "id": "COM-37-FREE-0-3",
+      "partyIds": ["PARTY-LIKUD"],
+      "issueId": "ISSUE-EARLY-CHILDHOOD",
+      "title": "חינוך חינם מגיל 0 עד 3",
+      "commitmentType": "campaign_pledge_and_gov_guidelines",
+      "epistemicType": "fact",
+      "verbatimText": "הממשלה תיישם תוכנית מדורגת לחינוך חינם מגיל אפס עד שלוש לכלל ילדי ישראל.",
+      "sourceId": "SRC-GOV-2022-COAL-LIKUD-RZ",
+      "sourceType": "government_decision",
+      "sectionRef": "קווי יסוד של הממשלה ה-37, סעיף 12",
+      "date": "2022-12-29",
+      "targetYear": "2023-2026",
+      "budgetYear": 2023,
+      "promisedBudgetNIS": 3500000000,
+      "allocatedBudgetEstimatedNIS": 3500000000,
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "הבטחת בחירות מרכזית של ראש הממשלה בנימין נתניהו, אשר המרתה בפועל התבססה בעיקר על נקודות זיכוי במס להורים עובדים ולא על מעונות בחינם."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "יישום חלקי מאוד. המענה ניתן בעקיפין דרך הטבות מס אך לא יצר פריסה של מעונות מסובסדים לכלל השנתונים."
+      }
+    }
+  ]
+}

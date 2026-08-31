@@ -1,0 +1,85 @@
+{
+  "$schema": "./schemas/parties.schema.json",
+  "metadata": {
+    "dataset": "parties",
+    "version": "1.0.0",
+    "description": "רשימת המפלגות והסיעות הפוליטיות הנבחנות בפרויקט לקראת שנת הלימודים תשפ״ז והבחירות לכנסת",
+    "lastUpdated": "2026-08-31"
+  },
+  "parties": [
+    {
+      "id": "PARTY-LIKUD",
+      "nameHe": "הליכוד",
+      "nameEn": "Likud",
+      "knessetFaction25": "הליכוד בראשות בנימין נתניהו לראשות הממשלה",
+      "statusInKnesset25": "coalition_lead",
+      "currentMinistersInEducation": [
+        {
+          "role": "שר החינוך",
+          "name": "יואב קיש",
+          "termStart": "2022-12-29",
+          "sourceId": "SRC-GOV-2022-COAL-LIKUD-RZ"
+        }
+      ],
+      "officialWebsite": "https://www.likud.org.il",
+      "platformDocumentSourceId": "SRC-PLT-LIKUD-2022",
+      "confidenceLevel": "high",
+      "notes": "מובילת הממשלה ה-37 והקואליציה"
+    },
+    {
+      "id": "PARTY-YESH-ATID",
+      "nameHe": "יש עתיד",
+      "nameEn": "Yesh Atid",
+      "knessetFaction25": "יש עתיד בראשות יאיר לפיד",
+      "statusInKnesset25": "opposition",
+      "currentMinistersInEducation": [],
+      "officialWebsite": "https://www.yeshatid.org.il",
+      "platformDocumentSourceId": "SRC-PLT-YESHATID-2022",
+      "confidenceLevel": "high",
+      "notes": "סיעת האופוזיציה הגדולה ביותר בכנסת ה-25"
+    },
+    {
+      "id": "PARTY-RELIGIOUS-ZIONISM",
+      "nameHe": "הציונות הדתית",
+      "nameEn": "Religious Zionism",
+      "knessetFaction25": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "statusInKnesset25": "coalition_partner",
+      "currentMinistersInEducation": [],
+      "officialWebsite": "https://zionut.org.il",
+      "platformDocumentSourceId": "SRC-PLT-RZ-2022",
+      "confidenceLevel": "high",
+      "notes": "שותפה קואליציונית מרכזית, מחזיקה במשרד האוצר"
+    },
+    {
+      "id": "PARTY-SHAS",
+      "nameHe": "ש״ס",
+      "nameEn": "Shas",
+      "knessetFaction25": "התאחדות הספרדים שומרי תורה תנועת ש\"ס",
+      "statusInKnesset25": "coalition_partner",
+      "currentMinistersInEducation": [
+        {
+          "role": "שר במשרד החינוך",
+          "name": "חיים ביטון",
+          "termStart": "2022-12-29",
+          "sourceId": "SRC-GOV-2022-COAL-LIKUD-RZ"
+        }
+      ],
+      "officialWebsite": "https://shas.org.il",
+      "platformDocumentSourceId": null,
+      "confidenceLevel": "high",
+      "notes": "אחראית על רשת החינוך 'בני יוסף' (מעיין החינוך התורני)"
+    },
+    {
+      "id": "PARTY-STATE-CAMP",
+      "nameHe": "המחנה הממלכתי",
+      "nameEn": "National Unity / State Camp",
+      "knessetFaction25": "המחנה הממלכתי בהנהגת בני גנץ",
+      "statusInKnesset25": "opposition",
+      "currentMinistersInEducation": [],
+      "officialWebsite": "https://machanemam拓展.org.il",
+      "platformDocumentSourceId": "SRC-PLT-STATENAT-2022",
+      "confidenceLevel": "high",
+      "notes": "כיהנה זמנית בממשלת החירום (אוקטובר 2023 - יוני 2024)"
+    }
+  ]
+}

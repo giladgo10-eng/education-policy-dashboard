@@ -1,0 +1,43 @@
+# ==============================================================================
+# .gitignore - education-policy-dashboard
+# ==============================================================================
+
+# Environment & Secrets
+.env
+.env.*
+*.key
+*.pem
+*.pfx
+*.cert
+*credentials*
+*secret*
+*token*
+
+# Operating System & IDE Cache
+.DS_Store
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+.vscode/
+.idea/
+*.swp
+*.bak
+*.tmp
+*.log
+
+# Node & Build artifacts (for upcoming UI phases)
+node_modules/
+dist/
+build/
+.cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Python caches (if scripts are added)
+__pycache__/
+*.py[cod]
+
+# Temporary downloads and archives
+*.zip
+*.tar.gz

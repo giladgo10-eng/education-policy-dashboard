@@ -78,7 +78,7 @@
 
 ---
 
-### 2.4. `positions.json` – עמדות ומצעי מפלגות
+### 2.4. `positions.json` – עמדות ומצעי מפלגות (כולל שכבת ניתוח מוניציפלית)
 | שם שדה | טיפוס | ערכים מותרים / דוגמה | תיאור |
 | :--- | :--- | :--- | :--- |
 | `id` | String | `POS-YA-CORE-001` | מזהה עמדה ייחודי |
@@ -89,14 +89,26 @@
 | `verbatimQuote` | String | ציטוט מילה במילה מהמצע | הציטוט המדויק מהמסמך הרשמי |
 | `summary` | String | תמצית העמדה בלשון אובייקטיבית | סיכום עובדתי של עיקרי העמדה |
 | `stance` | Enum | `pro_enforcement`, `pro_autonomy`, `neutral`, `status_quo`, `undecided`, `not_stated` | כיוון המדיניות המוצעת (אם לא צוינה עמדה במצע ייקבע `not_stated`) |
-| `sourceId` | String / Null | מזהה מ-`sources.json` (או `null` עבור `not_stated`) | קישור למקור הרשמי (חובה לכל טענה; חריג: ברשומת `not_stated` ניתן להשאיר `null`) |
-| `sourceType` | Enum | `party_platform`, `official_interview`, `signed_manifesto` | סוג המקור |
+| `sourceId` | String / Null | מזהה מ-`sources.json` (או `null` עבור `not_stated`) | קישור למקור הרשמי של עמדת המפלגה |
+| `sourceType` | Enum | `party_platform`, `official_interview`, `signed_manifesto`, `secondary_research_source` | סוג המקור של עמדת המפלגה |
 | `sourceCitation` | String | פרק החינוך, עמ' 18 | מיקום מדויק בתוך המסמך |
 | `date` | String | `YYYY-MM-DD` | תאריך פרסום העמדה |
 | `verificationLevel` | Enum | `verified_official`, `secondary_academic`, `unverified` | רמת אימות המקור |
 | `confidenceLevel` | Enum | `high`, `medium`, `low` | רמת הביטחון בתקפות העמדה |
 | `analysis` | Object | `{ epistemicType: "analysis", author, date, text }` | ניתוח הקשרי מופרד |
 | `assessment` | Object | `{ epistemicType: "assessment", author, date, text }` | הערכת היתכנות והשלכות מופרדת |
+| `municipalImpactAnalysis` | Object / Null | ראו פירוט טבלה 2.4.1 להלן | שכבת ניתוח והשוואה לשלטון המקומי |
+
+#### 2.4.1. מבנה שדה `municipalImpactAnalysis` (שכבת השלטון המקומי)
+| שם שדה משנה | טיפוס | ערכים מותרים / דוגמה | תיאור מתודולוגי |
+| :--- | :--- | :--- | :--- |
+| `currentState` | String | תיאור עובדתי של מדיניות הממשלה ומשרד החינוך כיום | **חובה לבסס על מקור מאומת**. אם אין מקור מספיק: "לא קיים בסיס מספק להשוואה" |
+| `currentStateSourceId` | String / Null | מזהה מ-`sources.json` (למשל: `SRC-MOE-GEFEN-DIRECTIVE-2024`) | **חובה לקשר למקור מאומת** המגבה את תיאור המצב הקיים |
+| `currentStateCitation` | String / Null | חוזר מנכ"ל, סעיף ד' | מראה מקום מדויק למקור המצב הקיים |
+| `changeFromCurrentState` | String | תיאור הניתוח של מה שונה או חדש בהצעת המפלגה | **רובד ניתוח (Analysis)**: מה חדש ביחס למצב הקיים |
+| `changeMagnitude` | Enum | `continuation`, `moderate_change`, `significant_change`, `structural_change`, `undetermined` | סיווג היקף ועוצמת השינוי המבני |
+| `localAuthorityImpact` | String | תיאור המשמעות המעשית לרשות המקומית | **רובד הערכה (Assessment)**: השלכות על תקציב, סמכויות ותפעול |
+| `openImplementationQuestion` | String | שאלה ממוקדת לגבי היתכנות ויישום בשטח | צווארי בקבוק, שיפוי כוח אדם, פערים מוניציפליים |
 
 ---
 

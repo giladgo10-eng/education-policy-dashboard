@@ -1,4 +1,4 @@
-# PowerShell Data Validation Script for education-policy-dashboard (Budget Model V2)
+# PowerShell Data Validation Script for education-policy-dashboard (Budget Model V2 + Municipal Lens)
 
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $projectDir = Split-Path -Parent $scriptDir
@@ -6,7 +6,7 @@ $dataDir = Join-Path $projectDir "data"
 
 Write-Host "==========================================================" -ForegroundColor Cyan
 Write-Host " Running Data Validation for education-policy-dashboard   " -ForegroundColor Cyan
-Write-Host " (Budget Model V2 Assertions Enabled)                     " -ForegroundColor Cyan
+Write-Host " (Budget Model V2 + Municipal Lens Enabled)               " -ForegroundColor Cyan
 Write-Host "==========================================================" -ForegroundColor Cyan
 
 $filesToCheck = @(
@@ -43,7 +43,8 @@ foreach ($file in $filesToCheck) {
 }
 
 if ($errors.Count -gt 0) {
-    Write-Host "`nCritical load errors:" -ForegroundColor Red
+    Write-Host ""
+    Write-Host "Critical load errors:" -ForegroundColor Red
     $errors | ForEach-Object { Write-Host " - $_" -ForegroundColor Red }
     exit 1
 }
@@ -55,7 +56,8 @@ if ($dataStore["sources.json"].sources) {
         if ($src.id) { [void]$validSourceIds.Add($src.id) }
     }
 }
-Write-Host "`nIndexed $($validSourceIds.Count) valid sources from sources.json" -ForegroundColor DarkCyan
+Write-Host ""
+Write-Host "Indexed $($validSourceIds.Count) valid sources from sources.json" -ForegroundColor DarkCyan
 
 $validPartyIds = [System.Collections.Generic.HashSet[string]]::new()
 if ($dataStore["parties.json"].parties) {
@@ -81,7 +83,7 @@ if ($dataStore["commitments.json"].commitments) {
 }
 Write-Host "Indexed $($validCommitmentIds.Count) valid commitments from commitments.json" -ForegroundColor DarkCyan
 
-# 3. Check records for source grounding, verificationLevel, confidenceLevel, and epistemic separation
+# 3. Check records
 $groups = @(
     @{ file = "positions.json"; items = $dataStore["positions.json"].positions; label = "Positions" },
     @{ file = "commitments.json"; items = $dataStore["commitments.json"].commitments; label = "Commitments" },
@@ -95,12 +97,12 @@ foreach ($g in $groups) {
     $items = $g.items
     $lbl = $g.label
 
-    Write-Host "`nValidating $lbl ($fName)..." -ForegroundColor Yellow
+    Write-Host ""
+    Write-Host "Validating $lbl ($fName)..." -ForegroundColor Yellow
 
     foreach ($item in $items) {
         $id = $item.id
 
-        # Determine if this record explicitly states absence of stance or claim (not_stated / not_available)
         $isNotStated = ($item.stance -eq "not_stated") -or ($item.status -eq "not_available")
 
         # Source ID check
@@ -115,7 +117,7 @@ foreach ($g in $groups) {
             $errors.Add("[$fName | $id] Foreign key error: sourceId '$($item.sourceId)' does not exist in sources.json")
         }
 
-        # Foreign key check for partyId / partyIds
+        # PartyId check
         if ($item.partyId) {
             if (-not $validPartyIds.Contains($item.partyId)) {
                 $errors.Add("[$fName | $id] Foreign key error: partyId '$($item.partyId)' does not exist in parties.json")
@@ -129,14 +131,14 @@ foreach ($g in $groups) {
             }
         }
 
-        # Foreign key check for issueId
+        # IssueId check
         if ($item.issueId) {
             if (-not $validIssueIds.Contains($item.issueId)) {
                 $errors.Add("[$fName | $id] Foreign key error: issueId '$($item.issueId)' does not exist in issues.json")
             }
         }
 
-        # Foreign key check for commitmentId
+        # CommitmentId check
         if ($item.commitmentId) {
             if (-not $validCommitmentIds.Contains($item.commitmentId)) {
                 $errors.Add("[$fName | $id] Foreign key error: commitmentId '$($item.commitmentId)' does not exist in commitments.json")
@@ -169,36 +171,51 @@ foreach ($g in $groups) {
             }
         }
 
+        # Municipal Impact Analysis Check (when present in positions or commitments)
+        if ($item.municipalImpactAnalysis) {
+            $mia = $item.municipalImpactAnalysis
+            $hasCurrentState = -not [string]::IsNullOrWhiteSpace($mia.currentState)
+            
+            if ($hasCurrentState) {
+                if ([string]::IsNullOrWhiteSpace($mia.currentStateSourceId)) {
+                    # Explicitly allowed: marked as unverified / pending source verification
+                    $warnings.Add("[$fName | $id] Municipal Lens: currentStateSourceId is null (SOURCE VERIFICATION REQUIRED)")
+                } elseif (-not $validSourceIds.Contains($mia.currentStateSourceId)) {
+                    $errors.Add("[$fName | $id] Municipal Lens Foreign key error: currentStateSourceId '$($mia.currentStateSourceId)' does not exist in sources.json")
+                }
+            }
+
+            # Check changeMagnitude enum
+            $allowedMagnitudes = @("continuation", "moderate_change", "significant_change", "structural_change", "undetermined")
+            if ($mia.changeMagnitude -and ($mia.changeMagnitude -notin $allowedMagnitudes)) {
+                $errors.Add("[$fName | $id] Invalid changeMagnitude '$($mia.changeMagnitude)'")
+            }
+        }
+
         # Budget Model V2 Assertions
         if ($fName -in @("commitments.json", "execution.json", "budgets.json")) {
-            # Check for budgetEntity
             if ([string]::IsNullOrWhiteSpace($item.budgetEntity)) {
                 $errors.Add("[$fName | $id] Budget Model V2 violation: Missing required 'budgetEntity'")
             }
 
-            # Check for budgetType
             if ([string]::IsNullOrWhiteSpace($item.budgetType)) {
                 $errors.Add("[$fName | $id] Budget Model V2 violation: Missing required 'budgetType'")
             }
 
-            # Check for budgetYear
             $hasYear = ($null -ne $item.budgetYear) -or ($null -ne $item.year)
             if (-not $hasYear) {
                 $errors.Add("[$fName | $id] Budget Model V2 violation: Missing budgetYear/year for financial record")
             }
 
-            # Check comparabilityStatus
             $allowedStatus = @("comparable", "partially_comparable", "not_comparable")
             if ($item.comparabilityStatus -and ($item.comparabilityStatus -notin $allowedStatus)) {
                 $errors.Add("[$fName | $id] Invalid comparabilityStatus '$($item.comparabilityStatus)'")
             }
 
-            # If not_comparable, verify that completionPercentage is null / not calculated
             if ($item.comparabilityStatus -eq "not_comparable" -and $null -ne $item.completionPercentage) {
                 $errors.Add("[$fName | $id] Rule violation: completionPercentage must be null when comparabilityStatus is 'not_comparable'")
             }
 
-            # Check that baselineBudgetNIS is not mixed with allocated/actual
             if ($item.budgetType -eq "baseline" -and ($null -ne $item.allocatedBudgetNIS -or $null -ne $item.actualSpendingNIS)) {
                 $errors.Add("[$fName | $id] Rule violation: baseline record cannot have allocatedBudgetNIS or actualSpendingNIS set")
             }
@@ -206,9 +223,14 @@ foreach ($g in $groups) {
     }
 }
 
-Write-Host "`n----------------------------------------------------------"
+Write-Host ""
+Write-Host "----------------------------------------------------------"
 if ($errors.Count -eq 0) {
     Write-Host "All validation tests PASSED successfully! (0 errors)" -ForegroundColor Green
+    if ($warnings.Count -gt 0) {
+        Write-Host "Notice: $($warnings.Count) informational items / unverified sources flagged:" -ForegroundColor Yellow
+        $warnings | ForEach-Object { Write-Host " [NOTICE] $_" -ForegroundColor Yellow }
+    }
     exit 0
 } else {
     Write-Host "Found $($errors.Count) validation errors:" -ForegroundColor Red

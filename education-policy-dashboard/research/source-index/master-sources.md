@@ -13,4 +13,5 @@
 | `SRC-PLT-STATENAT-2022` | עקרונות המצע החברתי-חינוכי של המחנה הממלכתי | `party-platforms` | המחנה הממלכתי | 2022-10-22 | `research/raw/party-platforms/` | verified_official | high |
 | `SRC-RES-DOC-OPENING-5787` | א-מחקר עומק פתיחת שנת הלימודים תשפז 2026-7.docx | `education-system` | צוות מחקר / עורך הפרויקט | 2026-08-31 | `research/raw/education-system/` | secondary_academic | high |
 | `SRC-RES-DOC-COAL-EVAL` | א-הערכת מדיניות החינוך של מפלגות הקואלציה הממשלה היוצאת.docx | `government-decisions` | צוות מחקר / עורך הפרויקט | 2026-08-31 | `research/raw/government-decisions/` | secondary_academic | high |
-
+| `SRC-MOE-GEFEN-TASHPAV-PAGE` | תוכנית גפ"ן – שנת הלימודים תשפ"ו | `education-system` | משרד החינוך - פורטל מוסדות חינוך והמינהל הפדגוגי | 2025-08-01 | `research/raw/education-system/moe_gefen_tashpav_portal.html` | verified_official | high |
+| `SRC-MOE-BUDGET-HIGHLIGHTS-2025` | עיקרי התקציב 2025 — סעיף גפ"ן | `education-system` | משרד החינוך - מינהל כלכלה ותקציב | 2025-01-01 | `research/raw/budgets/ikare_takzit2025.pdf` | verified_official | high |

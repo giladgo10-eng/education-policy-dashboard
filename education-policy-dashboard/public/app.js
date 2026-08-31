@@ -38,6 +38,8 @@ const SOURCE_TYPE_LABELS = {
   official_budget: "ספר התקציב / דוח חשכ\"ל",
   cbs_stat: "הלשכה המרכזית לסטטיסטיקה",
   party_platform: "מצע מפלגה רשמי",
+  official_directive: "חוזר מנכ\"ל / הנחיה רשמית",
+  official_government_source: "מקור ממשלתי רשמי (משרד החינוך)",
   secondary_research_source: "מסמך מחקר עומק (מקור משני)"
 };
 
@@ -436,7 +438,16 @@ function renderSemanticBudgetVisual(com, execRecords) {
   );
 }
 
-// Render Positions Items with Progressive Disclosure
+// Magnitude config for Municipal Lens
+const MAGNITUDE_CONFIG = {
+  continuation: { label: "המשכיות", class: "mag-continuation" },
+  moderate_change: { label: "שינוי מתון", class: "mag-moderate" },
+  significant_change: { label: "שינוי משמעותי", class: "mag-significant" },
+  structural_change: { label: "שינוי מבני 🏛️", class: "mag-structural" },
+  undetermined: { label: "טרם נקבע", class: "mag-undetermined" }
+};
+
+// Render Positions Items with Municipal Lens & Progressive Disclosure
 function renderPositionsItems(positions, party) {
   if (!positions || positions.length === 0) {
     return (
@@ -455,12 +466,22 @@ function renderPositionsItems(positions, party) {
       positions.map((pos, idx) => {
         const issue = STATE.issues.find(i => i.id === pos.issueId) || { title: pos.topic, category: "כללי" };
         const uniqueId = 'pos-details-' + idx;
+        const mia = pos.municipalImpactAnalysis;
+
+        let magnitudeBadge = '';
+        if (mia && mia.changeMagnitude) {
+          const mag = MAGNITUDE_CONFIG[mia.changeMagnitude] || MAGNITUDE_CONFIG.undetermined;
+          magnitudeBadge = '<span class="magnitude-pill ' + mag.class + '">' + mag.label + '</span>';
+        }
 
         return (
           '<article class="compact-dashboard-card proposal-card">' +
             '<div class="card-summary-header">' +
               '<div class="header-main-info">' +
-                '<span class="issue-pill">' + issue.category + '</span>' +
+                '<div class="badge-row">' +
+                  '<span class="issue-pill">' + issue.category + '</span>' +
+                  magnitudeBadge +
+                '</div>' +
                 '<h4 class="card-title-text">' + issue.title + '</h4>' +
                 '<p class="card-headline-summary">' +
                   '<strong>עיקר ההצעה:</strong> ' + (pos.summary || pos.verbatimQuote) +
@@ -471,28 +492,72 @@ function renderPositionsItems(positions, party) {
               '</div>' +
             '</div>' +
 
+            // Municipal Bottom Line (if municipalImpactAnalysis exists)
+            (mia ? (
+              '<div class="municipal-card-summary">' +
+                '<div class="municipal-summary-badge">📌 בשורה התחתונה לרשות המקומית:</div>' +
+                '<p class="municipal-impact-text">' + mia.localAuthorityImpact + '</p>' +
+              '</div>'
+            ) : '') +
+
             '<!-- Card Action Bar -->' +
             '<div class="card-action-bar">' +
               '<button class="disclosure-toggle-btn" data-target="' + uniqueId + '">' +
                 '<span class="toggle-icon">▾</span>' +
-                '<span class="toggle-text">פירוט וניתוח</span>' +
+                '<span class="toggle-text">השוואה למצב הקיים וניתוח</span>' +
               '</button>' +
-              '<button class="secondary-source-link" data-source-id="' + pos.sourceId + '" data-source-ref="' + (pos.sourceCitation || '') + '">' +
-                '<span>מקור: ' + (pos.sourceCitation || 'מצע המפלגה') + '</span>' +
-                '<span class="source-link-icon">📄</span>' +
-              '</button>' +
+              '<div class="source-links-group">' +
+                (mia ? (
+                  mia.currentStateSourceId ? (
+                    '<button class="secondary-source-link source-btn-compact" data-source-id="' + mia.currentStateSourceId + '" data-source-ref="' + (mia.currentStateCitation || '') + '" title="מקור המצב הקיים במשרד החינוך">' +
+                      '<span>מקור למצב הקיים</span>' +
+                      '<span class="source-link-icon">🏢</span>' +
+                    '</button>'
+                  ) : (
+                    '<button class="secondary-source-link source-btn-compact source-unverified-btn" data-source-id="UNVERIFIED" data-source-ref="' + (mia.currentStateCitation || '') + '" title="מקור רשמי למצב הקיים טרם אומת במאגר">' +
+                      '<span>מקור למצב הקיים (טרם אומת)</span>' +
+                      '<span class="source-link-icon">⚠️</span>' +
+                    '</button>'
+                  )
+                ) : '') +
+                '<button class="secondary-source-link source-btn-compact" data-source-id="' + pos.sourceId + '" data-source-ref="' + (pos.sourceCitation || '') + '" title="מקור הצעת המפלגה">' +
+                  '<span>מקור להצעת המפלגה</span>' +
+                  '<span class="source-link-icon">📄</span>' +
+                '</button>' +
+              '</div>' +
             '</div>' +
 
             '<!-- Progressive Disclosure Panel -->' +
             '<div class="disclosure-panel" id="' + uniqueId + '">' +
+              // Municipal Analysis Layers
+              (mia ? (
+                '<div class="municipal-disclosure-block">' +
+                  '<div class="epistemic-layer current-state-layer">' +
+                    '<div class="layer-title-badge">🏢 המצב הקיים כיום במדיניות הממשלה / משרד החינוך (עובדה מאומתת)</div>' +
+                    '<p class="layer-content">' + mia.currentState + '</p>' +
+                    (mia.currentStateCitation ? '<div class="rec-meta-tag">מקור: ' + mia.currentStateCitation + '</div>' : '') +
+                  '</div>' +
+
+                  '<div class="epistemic-layer change-layer">' +
+                    '<div class="layer-title-badge">⚡ מה חדש / שונה בהצעת המפלגה? (ניתוח ההבדל)</div>' +
+                    '<p class="layer-content">' + mia.changeFromCurrentState + '</p>' +
+                  '</div>' +
+
+                  '<div class="epistemic-layer open-question-layer">' +
+                    '<div class="layer-title-badge">❓ שאלה מרכזית פתוחה ליישום בשטח</div>' +
+                    '<p class="layer-content font-semibold">' + mia.openImplementationQuestion + '</p>' +
+                  '</div>' +
+                '</div>'
+              ) : '') +
+
               '<div class="epistemic-layer fact-layer">' +
-                '<div class="layer-title-badge">עובדה מתועדת • ציטוט המקור</div>' +
+                '<div class="layer-title-badge">עובדה מתועדת • ציטוט לשון המקור של המפלגה</div>' +
                 '<p class="layer-content">"' + pos.verbatimQuote + '"</p>' +
               '</div>' +
 
               (pos.analysis ? (
                 '<div class="epistemic-layer analysis-layer">' +
-                  '<div class="layer-title-badge">ניתוח מחקרי</div>' +
+                  '<div class="layer-title-badge">ניתוח מחקרי כללי</div>' +
                   '<p class="layer-content">' + pos.analysis.text + '</p>' +
                 '</div>'
               ) : '') +
@@ -572,13 +637,19 @@ function openSourceDrawer(sourceId, refNote) {
   const content = document.getElementById("drawer-content");
   const source = STATE.sources.find(s => s.id === sourceId);
 
-  if (!source) {
+  if (sourceId === "UNVERIFIED" || !source) {
     content.innerHTML = 
-      '<div class="drawer-row">' +
-        '<span class="drawer-label">מזהה מקור</span>' +
-        '<span class="drawer-val">' + (sourceId || 'לא צוין') + '</span>' +
-        '<p style="color: #991b1b; font-size: 0.85rem; margin-top: 8px;">פרטי המקור לא אותרו במאגר sources.json.</p>' +
-      '</div>';
+      '<div class="drawer-alert-banner" style="background-color: #fffbeb; border-color: #fef3c7; color: #92400e;">' +
+        '<strong>סטטוס אימות מקורות: מקור רשמי למצב הקיים טרם אומת במאגר</strong><br>' +
+        'בהתאם למתודולוגיה הקפדנית של הפרויקט, לא מוצג קישור או מסמך שלא נבדק ואומת ישירות מול מאגרי הממשלה (חוזר מנכ"ל / חוק רשמי). ' +
+        'הנתון מסומן כעת כדורש השלמת אימות מקור רשמי (Source Verification Required).' +
+      '</div>' +
+      (refNote ? 
+        '<div class="drawer-row">' +
+          '<span class="drawer-label">הערת תיעוד / סטטוס</span>' +
+          '<span class="drawer-val">' + refNote + '</span>' +
+        '</div>'
+      : '');
     overlay.classList.add("open");
     return;
   }
@@ -617,7 +688,9 @@ function openSourceDrawer(sourceId, refNote) {
 
     '<div class="drawer-row">' +
       '<span class="drawer-label">רמת אימות</span>' +
-      '<span class="drawer-val">' + verifLabel + ' (ביטחון: ' + (source.confidenceLevel === 'high' ? 'גבוה' : 'בינוני') + ')</span>' +
+      '<span class="drawer-val">' + verifLabel + ' (ביטחון: ' + (source.confidenceLevel === 'high' ? 'גבוה' : 'בינוני') + ')' +
+      (source.sourceVerified ? ' <span style="display:inline-block; background-color:#dcfce7; color:#166534; padding:2px 8px; border-radius:4px; font-weight:700; font-size:0.75rem; margin-right:6px;">✓ מאומת רשמית (' + (source.sourceVerifiedDate || '2026-08-31') + ')</span>' : '') +
+      '</span>' +
     '</div>' +
 
     (refNote ? 
@@ -631,6 +704,13 @@ function openSourceDrawer(sourceId, refNote) {
       '<div class="drawer-row">' +
         '<span class="drawer-label">נתיב קובץ בארכיון</span>' +
         '<span class="drawer-val"><code>' + source.localFilePath + '</code></span>' +
+      '</div>'
+    : '') +
+
+    (source.url ? 
+      '<div class="drawer-row">' +
+        '<span class="drawer-label">קישור ישיר למסמך המקור</span>' +
+        '<span class="drawer-val"><a href="' + source.url + '" target="_blank" rel="noopener noreferrer" class="source-direct-url">פתח מסמך מקור מקוון ↗</a></span>' +
       '</div>'
     : '');
 

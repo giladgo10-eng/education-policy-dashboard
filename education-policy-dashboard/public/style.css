@@ -939,3 +939,127 @@ body {
   margin-top: 4px;
   font-weight: 600;
 }
+
+
+/* ==========================================================
+   Municipal Lens & Target Audience Styles
+   ========================================================== */
+
+.magnitude-pill {
+  display: inline-block;
+  font-size: 0.74rem;
+  font-weight: 800;
+  padding: 3px 10px;
+  border-radius: 12px;
+  white-space: nowrap;
+}
+
+.mag-structural {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #991b1b;
+}
+
+.mag-significant {
+  background-color: #fffbeb;
+  border: 1px solid #fef3c7;
+  color: #92400e;
+}
+
+.mag-moderate {
+  background-color: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #166534;
+}
+
+.mag-continuation {
+  background-color: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+}
+
+.mag-undetermined {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  color: #64748b;
+}
+
+/* Municipal Summary Box on Card */
+.municipal-card-summary {
+  background-color: #f0fdfa;
+  border-top: 1px solid #ccfbf1;
+  border-bottom: 1px solid #ccfbf1;
+  padding: 12px 18px;
+}
+
+.municipal-summary-badge {
+  font-size: 0.8rem;
+  font-weight: 800;
+  color: #0f766e;
+  margin-bottom: 4px;
+}
+
+.municipal-impact-text {
+  font-size: 0.9rem;
+  color: #134e4a;
+  line-height: 1.5;
+  margin: 0;
+  font-weight: 600;
+}
+
+/* Action bar group for source links */
+.source-links-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.source-btn-compact {
+  padding: 4px 10px;
+  font-size: 0.76rem;
+  opacity: 0.9;
+}
+
+.source-btn-compact:hover {
+  opacity: 1;
+  background-color: #f1f5f9;
+}
+
+/* Epistemic layer specialized tints */
+.current-state-layer {
+  background-color: #f8fafc;
+  border-right-color: #64748b;
+}
+
+.current-state-layer .layer-title-badge {
+  color: #334155;
+}
+
+.change-layer {
+  background-color: #eff6ff;
+  border-right-color: #3b82f6;
+}
+
+.change-layer .layer-title-badge {
+  color: #1d4ed8;
+}
+
+.open-question-layer {
+  background-color: #fffbeb;
+  border-right-color: #f59e0b;
+}
+
+.open-question-layer .layer-title-badge {
+  color: #b45309;
+}
+
+.source-direct-url {
+  color: var(--primary);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.source-direct-url:hover {
+  color: #1e3a8a;
+}

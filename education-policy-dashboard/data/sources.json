@@ -141,6 +141,40 @@
       "accessDate": "2026-08-31",
       "language": "he",
       "notes": "מסמך מחקר והערכת מדיניות החינוך של מפלגות הקואליציה היוצאת; מסווג כ-secondary_research_source"
+    },
+    {
+      "id": "SRC-MOE-GEFEN-TASHPAV-PAGE",
+      "title": "תוכנית גפ\"ן – שנת הלימודים תשפ\"ו",
+      "sourceType": "official_government_source",
+      "publisher": "משרד החינוך - פורטל מוסדות חינוך והמינהל הפדגוגי",
+      "publicationDate": "2025-08-01",
+      "url": "https://pob.education.gov.il/budget/gefen-tashpav/",
+      "localFilePath": "research/raw/education-system/moe_gefen_tashpav_portal.html",
+      "archiveHash": "sha256-placeholder",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "accessDate": "2026-08-31",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "language": "he",
+      "notes": "דף רשמי של משרד החינוך המפרט את תוכנית גפ\"ן לשנת הלימודים תשפ\"ו, מנגנוני הבחירה, מאגרי המענים והבקרה"
+    },
+    {
+      "id": "SRC-MOE-BUDGET-HIGHLIGHTS-2025",
+      "title": "עיקרי התקציב 2025 — סעיף גפ\"ן",
+      "sourceType": "official_government_source",
+      "publisher": "משרד החינוך - מינהל כלכלה ותקציב",
+      "publicationDate": "2025-01-01",
+      "url": "https://meyda.education.gov.il/files/MinhalCalcala/ikare_takzit2025.pdf",
+      "localFilePath": "research/raw/budgets/ikare_takzit2025.pdf",
+      "archiveHash": "sha256-placeholder",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "accessDate": "2026-08-31",
+      "sourceVerified": true,
+      "sourceVerifiedDate": "2026-08-31",
+      "language": "he",
+      "notes": "מסמך רשמי של מינהל כלכלה ותקציב במשרד החינוך המגדיר את הקצאות ומסגרת תוכנית גפ\"ן לשנת 2025"
     }
   ]
 }

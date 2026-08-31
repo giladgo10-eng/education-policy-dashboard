@@ -8,7 +8,14 @@
       "noInference": true,
       "requireDirectSource": true,
       "distinguishFactAnalysisAssessment": true,
-      "allowedStances": ["pro_enforcement", "pro_autonomy", "neutral", "status_quo", "undecided", "not_stated"],
+      "allowedStances": [
+        "pro_enforcement",
+        "pro_autonomy",
+        "neutral",
+        "status_quo",
+        "undecided",
+        "not_stated"
+      ],
       "notStatedRule": "When stance is not_stated, sourceId may be null without inventing a placeholder source"
     },
     "lastUpdated": "2026-08-31"
@@ -29,7 +36,11 @@
       "date": "2022-10-15",
       "verificationLevel": "verified_official",
       "confidenceLevel": "high",
-      "tags": ["לימודי ליבה", "חרדים", "שלילת תקצוב"],
+      "tags": [
+        "לימודי ליבה",
+        "חרדים",
+        "שלילת תקצוב"
+      ],
       "analysis": {
         "epistemicType": "analysis",
         "author": "צוות מחקר דשבורד",
@@ -58,7 +69,11 @@
       "date": "2022-10-20",
       "verificationLevel": "verified_official",
       "confidenceLevel": "high",
-      "tags": ["חינוך תורני", "אוטונומיה", "תקצוב שוויוני"],
+      "tags": [
+        "חינוך תורני",
+        "אוטונומיה",
+        "תקצוב שוויוני"
+      ],
       "analysis": {
         "epistemicType": "analysis",
         "author": "צוות מחקר דשבורד",
@@ -87,7 +102,12 @@
       "date": "2026-08-31",
       "verificationLevel": "secondary_academic",
       "confidenceLevel": "high",
-      "tags": ["ביזור", "שלטון מקומי", "אוטונומיה ניהולית", "הצעה עתידית"],
+      "tags": [
+        "ביזור",
+        "שלטון מקומי",
+        "אוטונומיה ניהולית",
+        "הצעה עתידית"
+      ],
       "analysis": {
         "epistemicType": "analysis",
         "author": "צוות מחקר דשבורד",
@@ -99,6 +119,18 @@
         "author": "צוות מחקר דשבורד",
         "date": "2026-08-31",
         "text": "מודל זה דורש שינוי חקיקה עמוק בהגדרת סמכויות הרשויות המקומיות ועלול להיתקל בהתנגדות מצד פקידות המטה במשרד החינוך וארגוני המורים."
+      },
+      "municipalImpactAnalysis": {
+        "currentState": "תוכנית גפ״ן הרחיבה בשנים האחרונות את הגמישות הפדגוגית והניהולית של בתי הספר והרשויות המקומיות, לרבות גמישות בניהול משאבים ובבחירת מענים. עם זאת, הגמישות מתקיימת בתוך מסגרת ארצית שקובע משרד החינוך — כללי תקצוב, מערכת גפ״ן, מאגרי מענים, מנגנוני תכנון, דיווח ובקרה. לפיכך מדובר בהרחבת אוטונומיה בתוך מערכת רגולטורית ארצית, ולא בהעברת מלוא סמכויות הניהול לרשות המקומית.",
+        "currentStateSourceId": "SRC-MOE-GEFEN-TASHPAV-PAGE",
+        "currentStateCitation": "משרד החינוך, פורטל מוסדות חינוך, תוכנית גפ״ן – שנת הלימודים תשפ״ו (בשיתוף עיקרי התקציב 2025)",
+        "sourceUrl": "https://pob.education.gov.il/budget/gefen-tashpav/",
+        "sourceVerified": true,
+        "sourceVerifiedDate": "2026-08-31",
+        "changeFromCurrentState": "הצעת מפלגת ביחד מציעה להעביר חלק משמעותי מסמכויות הניהול לרשויות המקומיות ולמנהלי בתי הספר, תוך צמצום תפקיד משרד החינוך להתמקדות במדיניות, סטנדרטים ופיקוח בלבד ופחות בניהול היומיומי — מעבר מהרחבת אוטונומיה מוגבלת בתוך מערכת רגולטורית ארצית לביזור סמכויות ניהוליות ממשיות.",
+        "changeMagnitude": "structural_change",
+        "localAuthorityImpact": "הרחבה משמעותית של סמכויות הניהול והאוטונומיה התקציבית של מנהל אגף החינוך בהתאמת המענים והניהול התפעולי ללא תלות באישורי מחוז שוטפים; מנגד, הדבר מטיל על הרשות אחריות מנהלית, משפטית ותפעולית מוגברת לניהול מכרזים, בקרה והתמודדות ישירה מול קהילות הורים.",
+        "openImplementationQuestion": "האם העברת האחריות לרשות המקומית תלווה גם בהעברת תקציב, תקנים וסמכויות פורמליות?"
       }
     },
     {
@@ -116,7 +148,13 @@
       "date": "2026-08-31",
       "verificationLevel": "secondary_academic",
       "confidenceLevel": "high",
-      "tags": ["תוכנית לימודים", "חלוקת שעות", "ליבה", "אוטונומיה בית ספרית", "הצעה עתידית"],
+      "tags": [
+        "תוכנית לימודים",
+        "חלוקת שעות",
+        "ליבה",
+        "אוטונומיה בית ספרית",
+        "הצעה עתידית"
+      ],
       "analysis": {
         "epistemicType": "analysis",
         "author": "צוות מחקר דשבורד",
@@ -145,7 +183,13 @@
       "date": "2026-08-31",
       "verificationLevel": "secondary_academic",
       "confidenceLevel": "high",
-      "tags": ["חינוך חרדי", "לימודי ליבה", "התניית תקצוב", "יעד שמונה שנים", "הצעה עתידית"],
+      "tags": [
+        "חינוך חרדי",
+        "לימודי ליבה",
+        "התניית תקצוב",
+        "יעד שמונה שנים",
+        "הצעה עתידית"
+      ],
       "analysis": {
         "epistemicType": "analysis",
         "author": "צוות מחקר דשבורד",
@@ -174,7 +218,12 @@
       "date": "2026-08-31",
       "verificationLevel": "secondary_academic",
       "confidenceLevel": "high",
-      "tags": ["שכר מורים", "מעמד המורה", "רף קבלה להוראה", "הצעה עתידית"],
+      "tags": [
+        "שכר מורים",
+        "מעמד המורה",
+        "רף קבלה להוראה",
+        "הצעה עתידית"
+      ],
       "analysis": {
         "epistemicType": "analysis",
         "author": "צוות מחקר דשבורד",

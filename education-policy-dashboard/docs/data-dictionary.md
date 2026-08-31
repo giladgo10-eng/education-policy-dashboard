@@ -100,7 +100,7 @@
 
 ---
 
-### 2.5. `commitments.json` – התחייבויות שלטוניות
+### 2.5. `commitments.json` – התחייבויות שלטוניות (Budget Model V2)
 | שם שדה | טיפוס | ערכים מותרים / דוגמה | תיאור |
 | :--- | :--- | :--- | :--- |
 | `id` | String | `COM-37-OFN-001` | מזהה התחייבות |
@@ -111,14 +111,19 @@
 | `epistemicType` | Enum | `fact` | סיווג הנתון כעובדה חתומה |
 | `verbatimText` | String | לשון הסעיף החתום | הציטוט המדויק של סעיף ההסכם |
 | `sourceId` | String | מזהה מ-`sources.json` | מסמך המקור |
-| `sourceType` | Enum | `coalition_agreement`, `government_decision` | סוג המקור |
+| `sourceType` | Enum | `coalition_agreement`, `government_decision`, `secondary_research_source` | סוג המקור |
 | `sectionRef` | String | סעיף 95 בהסכם | מראה מקום מדויק |
 | `date` | String | `YYYY-MM-DD` | תאריך החתימה |
 | `targetYear` | String | `2023-2024` | שנת היעד ליישום |
 | `budgetYear` | Number / Null | `2023`, `2024` | שנת תקציב רלוונטית |
-| `promisedBudgetNIS` | Number / Null | שקלים חדשים (למשל `1200000000`) | סכום שהובטח בהסכם או בהחלטה |
-| `allocatedBudgetEstimatedNIS` | Number / Null | שקלים חדשים (תאימות לאחור ל-`promisedBudgetNIS`) | הערכת תקציב שהובטח במקור |
-| `verificationLevel` | Enum | `verified_official`, `cross_referenced` | רמת אימות |
+| `budgetEntity` | String | למשל: `רשת מעיין החינוך התורני (בני יוסף)` | הגוף/התוכנית התקציבית המוגדרת |
+| `budgetType` | Enum | `promised`, `baseline_comparison`, `allocated`, `actual` | סיווג מהות הנתון התקציבי |
+| `baselineBudgetNIS` | Number / Null | שקלים חדשים (למשל `980100000`) | תקציב בסיס היסטורי טרם ההתחייבות |
+| `promisedBudgetNIS` | Number / Null | שקלים חדשים (למשל `1200000000`) | סכום תוספת שהובטח בהסכם/החלטה |
+| `allocatedBudgetEstimatedNIS` | Number / Null | שקלים חדשים | תאימות לאחור ל-`promisedBudgetNIS` |
+| `comparabilityStatus` | Enum | `comparable`, `partially_comparable`, `not_comparable` | האם ניתן להשוואה ישירה |
+| `comparabilityReason` | String | תיאור קצר בעברית | נימוק מתודולוגי ליכולת ההשוואה |
+| `verificationLevel` | Enum | `verified_official`, `cross_referenced`, `secondary_academic` | רמת אימות |
 | `confidenceLevel` | Enum | `high`, `medium`, `low` | רמת ביטחון |
 | `analysis` | Object | שדות ניתוח מופרדים | ניתוח הרקע והמשמעות |
 | `assessment` | Object | שדות הערכה מופרדים | הערכת השלכות וחסמים |

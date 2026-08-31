@@ -2,14 +2,18 @@
   "$schema": "./schemas/commitments.schema.json",
   "metadata": {
     "dataset": "commitments",
-    "version": "1.0.0",
-    "description": "התחייבויות קואליציוניות, החלטות ממשלה וסיכומי תקציב מחייבים בתחום החינוך",
+    "version": "2.0.0",
+    "description": "התחייבויות קואליציוניות, החלטות ממשלה וסיכומי תקציב מחייבים בתחום החינוך - מודל תקציבי V2",
     "lastUpdated": "2026-08-31"
   },
   "commitments": [
     {
       "id": "COM-37-OFN-001",
-      "partyIds": ["PARTY-LIKUD", "PARTY-SHAS", "PARTY-RELIGIOUS-ZIONISM"],
+      "partyIds": [
+        "PARTY-LIKUD",
+        "PARTY-SHAS",
+        "PARTY-RELIGIOUS-ZIONISM"
+      ],
       "issueId": "ISSUE-CORE-CURRICULUM",
       "title": "החלת תוכנית 'אופק חדש' על רשתות החינוך החרדיות (החינוך העצמאי ובני יוסף)",
       "commitmentType": "coalition_agreement",
@@ -21,8 +25,13 @@
       "date": "2022-12-28",
       "targetYear": "2023-2024",
       "budgetYear": 2023,
+      "budgetEntity": "רשתות החינוך החרדיות (החינוך העצמאי ובני יוסף)",
+      "budgetType": "promised",
+      "baselineBudgetNIS": null,
       "promisedBudgetNIS": 1200000000,
       "allocatedBudgetEstimatedNIS": 1200000000,
+      "comparabilityStatus": "partially_comparable",
+      "comparabilityReason": "ההתחייבות תוקצבה בספר התקציב 2024 באותו סכום, אך הביצוע הוקפא חלקית עקב הליכים משפטיים ודרישות פיקוח.",
       "verificationLevel": "verified_official",
       "confidenceLevel": "high",
       "analysis": {
@@ -40,7 +49,9 @@
     },
     {
       "id": "COM-37-FREE-0-3",
-      "partyIds": ["PARTY-LIKUD"],
+      "partyIds": [
+        "PARTY-LIKUD"
+      ],
       "issueId": "ISSUE-EARLY-CHILDHOOD",
       "title": "חינוך חינם מגיל 0 עד 3",
       "commitmentType": "campaign_pledge_and_gov_guidelines",
@@ -52,8 +63,13 @@
       "date": "2022-12-29",
       "targetYear": "2023-2026",
       "budgetYear": 2023,
+      "budgetEntity": "מערכת הגיל הרך / משרד החינוך ורשות המסים",
+      "budgetType": "promised",
+      "baselineBudgetNIS": null,
       "promisedBudgetNIS": 3500000000,
       "allocatedBudgetEstimatedNIS": 3500000000,
+      "comparabilityStatus": "partially_comparable",
+      "comparabilityReason": "הסכום שהובטח תוקצב במלואו, אך המימוש הומר בפועל לנקודות זיכוי במס ולא למעונות חינם לכלל האוכלוסייה.",
       "verificationLevel": "verified_official",
       "confidenceLevel": "high",
       "analysis": {
@@ -71,7 +87,10 @@
     },
     {
       "id": "COM-37-SHAS-MAAYAN-001",
-      "partyIds": ["PARTY-SHAS", "PARTY-LIKUD"],
+      "partyIds": [
+        "PARTY-SHAS",
+        "PARTY-LIKUD"
+      ],
       "issueId": "ISSUE-CORE-CURRICULUM",
       "title": "חיזוק רשת מעיין החינוך התורני / בני יוסף והשוואת רכיבי תקצוב ותנאים",
       "commitmentType": "coalition_agreement",
@@ -83,8 +102,13 @@
       "date": "2022-12-28",
       "targetYear": "2023-2026",
       "budgetYear": 2023,
+      "budgetEntity": "רשת מעיין החינוך התורני (בני יוסף)",
+      "budgetType": "baseline_comparison",
+      "baselineBudgetNIS": 980100000,
       "promisedBudgetNIS": null,
       "allocatedBudgetEstimatedNIS": null,
+      "comparabilityStatus": "not_comparable",
+      "comparabilityReason": "ההסכם קבע עקרונות מדיניות וחיזוק ללא סכום שקלי נקוב מראש; מוצגת התפתחות תקציב הבסיס (2023 מול 2026) ולא שרשרת הבטחה-ביצוע ישירה.",
       "verificationLevel": "secondary_academic",
       "confidenceLevel": "high",
       "analysis": {
@@ -102,7 +126,10 @@
     },
     {
       "id": "COM-37-NOAM-IDENTITY-001",
-      "partyIds": ["PARTY-NOAM", "PARTY-LIKUD"],
+      "partyIds": [
+        "PARTY-NOAM",
+        "PARTY-LIKUD"
+      ],
       "issueId": "ISSUE-JEWISH-IDENTITY",
       "title": "הקמת רשות לזהות לאומית-יהודית במשרד ראש הממשלה",
       "commitmentType": "coalition_agreement",
@@ -114,8 +141,13 @@
       "date": "2022-12-28",
       "targetYear": "2023-2024",
       "budgetYear": 2023,
+      "budgetEntity": "הרשות לזהות לאומית-יהודית",
+      "budgetType": "promised",
+      "baselineBudgetNIS": null,
       "promisedBudgetNIS": 100000000,
       "allocatedBudgetEstimatedNIS": 100000000,
+      "comparabilityStatus": "not_comparable",
+      "comparabilityReason": "ההבטחה (100 מלש\"ח לשנת 2023) ניתנה לרשות לזהות לאומית, אך בפועל הפעילות פוצלה לשני גופים נפרדים (הרשות והמנהלת) ונמדדה בשנים שונות (ביצוע 2025 מול תקציב 2026), כך שאין אפשרות להשוואת ביצוע ישירה.",
       "verificationLevel": "secondary_academic",
       "confidenceLevel": "high",
       "analysis": {
@@ -133,7 +165,10 @@
     },
     {
       "id": "COM-37-NOAM-IDENTITY-002",
-      "partyIds": ["PARTY-NOAM", "PARTY-LIKUD"],
+      "partyIds": [
+        "PARTY-NOAM",
+        "PARTY-LIKUD"
+      ],
       "issueId": "ISSUE-JEWISH-IDENTITY",
       "title": "תקציב פעילות שנה שנייה לרשות לזהות לאומית-יהודית",
       "commitmentType": "coalition_agreement",
@@ -145,8 +180,13 @@
       "date": "2022-12-28",
       "targetYear": "2024",
       "budgetYear": 2024,
+      "budgetEntity": "הרשות לזהות לאומית-יהודית",
+      "budgetType": "promised",
+      "baselineBudgetNIS": null,
       "promisedBudgetNIS": 150000000,
       "allocatedBudgetEstimatedNIS": 150000000,
+      "comparabilityStatus": "not_comparable",
+      "comparabilityReason": "תקציב שנת היעד (2024) לא הוקצה במתכונת המקורית עקב שינויים מבניים, פיצול לגופים מקבילים ושינויי כהונה.",
       "verificationLevel": "secondary_academic",
       "confidenceLevel": "high",
       "analysis": {

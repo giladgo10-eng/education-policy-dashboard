@@ -1,4 +1,4 @@
-# PowerShell Data Validation Script for education-policy-dashboard
+# PowerShell Data Validation Script for education-policy-dashboard (Budget Model V2)
 
 $scriptDir = Split-Path -Parent $MyInvocation.MyCommand.Path
 $projectDir = Split-Path -Parent $scriptDir
@@ -6,6 +6,7 @@ $dataDir = Join-Path $projectDir "data"
 
 Write-Host "==========================================================" -ForegroundColor Cyan
 Write-Host " Running Data Validation for education-policy-dashboard   " -ForegroundColor Cyan
+Write-Host " (Budget Model V2 Assertions Enabled)                     " -ForegroundColor Cyan
 Write-Host "==========================================================" -ForegroundColor Cyan
 
 $filesToCheck = @(
@@ -102,8 +103,7 @@ foreach ($g in $groups) {
         # Determine if this record explicitly states absence of stance or claim (not_stated / not_available)
         $isNotStated = ($item.stance -eq "not_stated") -or ($item.status -eq "not_available")
 
-        # Source ID check: All factual claims/positions/commitments require a valid sourceId.
-        # Exception: when explicitly marked as not_stated / not_available with no factual assertion.
+        # Source ID check
         if ([string]::IsNullOrWhiteSpace($item.sourceId)) {
             if (-not $isNotStated) {
                 $errors.Add("[$fName | $id] Missing required sourceId for factual assertion/position")
@@ -166,6 +166,41 @@ foreach ($g in $groups) {
         if ($item.assessment) {
             if ($item.assessment.epistemicType -ne "assessment") {
                 $errors.Add("[$fName | $id] assessment block must have epistemicType='assessment'")
+            }
+        }
+
+        # Budget Model V2 Assertions
+        if ($fName -in @("commitments.json", "execution.json", "budgets.json")) {
+            # Check for budgetEntity
+            if ([string]::IsNullOrWhiteSpace($item.budgetEntity)) {
+                $errors.Add("[$fName | $id] Budget Model V2 violation: Missing required 'budgetEntity'")
+            }
+
+            # Check for budgetType
+            if ([string]::IsNullOrWhiteSpace($item.budgetType)) {
+                $errors.Add("[$fName | $id] Budget Model V2 violation: Missing required 'budgetType'")
+            }
+
+            # Check for budgetYear
+            $hasYear = ($null -ne $item.budgetYear) -or ($null -ne $item.year)
+            if (-not $hasYear) {
+                $errors.Add("[$fName | $id] Budget Model V2 violation: Missing budgetYear/year for financial record")
+            }
+
+            # Check comparabilityStatus
+            $allowedStatus = @("comparable", "partially_comparable", "not_comparable")
+            if ($item.comparabilityStatus -and ($item.comparabilityStatus -notin $allowedStatus)) {
+                $errors.Add("[$fName | $id] Invalid comparabilityStatus '$($item.comparabilityStatus)'")
+            }
+
+            # If not_comparable, verify that completionPercentage is null / not calculated
+            if ($item.comparabilityStatus -eq "not_comparable" -and $null -ne $item.completionPercentage) {
+                $errors.Add("[$fName | $id] Rule violation: completionPercentage must be null when comparabilityStatus is 'not_comparable'")
+            }
+
+            # Check that baselineBudgetNIS is not mixed with allocated/actual
+            if ($item.budgetType -eq "baseline" -and ($null -ne $item.allocatedBudgetNIS -or $null -ne $item.actualSpendingNIS)) {
+                $errors.Add("[$fName | $id] Rule violation: baseline record cannot have allocatedBudgetNIS or actualSpendingNIS set")
             }
         }
     }

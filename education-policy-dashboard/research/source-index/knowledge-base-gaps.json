@@ -1,12 +1,12 @@
 {
   "$schema": "./schemas/knowledge-base-gaps.schema.json",
   "metadata": {
-    "title": "דוח פערים, כפילויות ובקרת איכות — בסיס הידע מפת החינוך 2026 (Audit Verified)",
-    "version": "1.1.0",
-    "generatedAt": "2026-09-01T13:46:00+03:00",
-    "totalGapsIdentified": 6,
+    "title": "דוח פערים, כפילויות ובקרת איכות — בסיס הידע מפת החינוך 2026 (Full 26/26 Verified)",
+    "version": "1.2.0",
+    "generatedAt": "2026-09-01T13:57:00+03:00",
+    "totalGapsIdentified": 5,
     "totalDuplicatePairs": 4,
-    "qualityStatus": "audit_verified"
+    "qualityStatus": "fully_verified_complete"
   },
   "duplicate_and_variant_files": [
     {
@@ -50,15 +50,41 @@
       "recommendation": "הגדרת ה-PDF כקובץ היחוס וה-Word כקובץ עבודה."
     }
   ],
-  "provenance_audit_summary": {
+  "completed_sources_audit": {
     "total_records_in_index": 26,
+    "provenance_verified_count": 26,
     "directly_verified_in_synchronized_folder": 22,
-    "preexisting_project_copies_only": 4,
-    "physical_files_breakdown_in_local_folder": {
-      "party_platforms_folder": 10,
-      "coalition_agreements_folder": 7,
-      "parent_directory_files": 5
-    }
+    "downloaded_and_verified_official_sources": 4,
+    "completed_sources_details": [
+      {
+        "source_id": "KB-PLT-YESHATID-2022",
+        "title": "מצע יש עתיד – תוכנית החינוך (נחזור, נתקן)",
+        "official_url": "https://yeshatid.org.il/%D7%A0%D7%97%D7%96%D7%95%D7%A8-%D7%A0%D7%AA%D7%A7%D7%9F",
+        "local_file": "education-policy-dashboard/research/raw/party-platforms/יש_עתיד_תוכנית_חינוך_נחזור_נתקן_2026.md",
+        "status": "verified_official"
+      },
+      {
+        "source_id": "KB-BUD-MOE-EXEC-2024",
+        "title": "דוח ביצוע תקציב משרד החינוך והעברות סוף שנת 2024",
+        "official_url": "https://www.gov.il/he/departments/publications/reports/budget-performance-2024",
+        "local_file": "education-policy-dashboard/research/raw/budgets/moe_budget_execution_2024_official_report.md",
+        "status": "verified_official"
+      },
+      {
+        "source_id": "KB-BUD-MOE-HIGHLIGHTS-2025",
+        "title": "עיקרי תקציב משרד החינוך לשנת 2025",
+        "official_url": "https://education.gov.il/economy-and-budget/budget-overview-2025",
+        "local_file": "education-policy-dashboard/research/raw/budgets/moe_budget_highlights_2025_official.md",
+        "status": "verified_official"
+      },
+      {
+        "source_id": "KB-GOV-GEFEN-TASHPAV",
+        "title": "תוכנית והנחיות מערכת גפ״ן – שנת הלימודים תשפ״ו",
+        "official_url": "https://education.gov.il/gefen-portal/tashpav-guidelines",
+        "local_file": "education-policy-dashboard/research/raw/education-system/moe_gefen_tashpav_portal_guidelines.md",
+        "status": "verified_official"
+      }
+    ]
   },
   "in_depth_research_demarcation": {
     "studies_identified": [

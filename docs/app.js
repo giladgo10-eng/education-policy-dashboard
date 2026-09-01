@@ -1,9 +1,9 @@
-﻿/**
+/**
  * education-policy-dashboard: V2.0 Phase 2
  * Epistemic & Methodological Separation:
  * 1. מצעי המפלגות (מה המפלגות מציעות) -> מפלגה במבט אחד | השוואה לפי סוגיה
- * 2. הסכמים קואליציוניים ומבחן הביצוע (מה הובטח ומה בוצע) -> בורר מפלגות קואליציה נפרד + 4 שלבי ביצוע
- * 3. שאל את המחקר (Ask the Research) -> מנוע שליפה והשוואת ידע מקומי מבוסס 106 יחידות מאומתות
+ * 2. הסכמים קואליציוניים ומבחן הביצוע (מה הובטח ומה בוצע) -> בורר מפלגות קואליציה נפרד + 4 שלבי ביצוע + קישורי Drive
+ * 3. שאל את המחקר (Ask the Research) -> מנוע שליפה והשוואת ידע מקומי מבוסס 106 יחידות מאומתות ו-51 סעיפי הסכמים
  */
 
 const STATE = {
@@ -19,6 +19,8 @@ const STATE = {
   selectedCoalitionPartyId: "PARTY-LIKUD",
   selectedIssueId: "ISSUE-CORE-CURRICULUM"
 };
+
+const DRIVE_COALITION_FOLDER_URL = "https://drive.google.com/drive/folders/1GcfQe69kVhqQKPnAUwzIoE0TsrmN3l8_";
 
 const SOURCE_QUALITY_CONFIG = {
   primary_source: { label: "מצע / מסמך רשמי", class: "quality-primary", icon: "📜" },
@@ -51,7 +53,7 @@ const STATUS_CONFIG = {
   not_executed: { label: "לא בוצע", group: "not_executed", class: "status-not-executed" },
   not_executed_delayed: { label: "לא בוצע (מעוכב)", group: "not_executed", class: "status-not-executed" },
   baseline_data: { label: "טרם ניתן לקבוע (נתון בסיס)", group: "undetermined", class: "status-undetermined" },
-  under_review: { label: "טרם ניתן לקבוע", group: "undetermined", class: "status-undetermined" },
+  under_review: { label: "טרם ניתן לקבוע (בבדיקה)", group: "undetermined", class: "status-undetermined" },
   default: { label: "טרם ניתן לקבוע", group: "undetermined", class: "status-undetermined" }
 };
 
@@ -407,12 +409,22 @@ function renderExecutionScreen(partyId) {
   const party = STATE.parties.find(p => p.id === partyId);
   const partyCommitments = STATE.commitments.filter(c => c.partyId === partyId);
 
+  let html = '';
+
+  // Top General Google Drive Folder Banner
+  html += '<div class="drive-all-agreements-banner">';
+  html += '<a href="' + DRIVE_COALITION_FOLDER_URL + '" target="_blank" rel="noopener noreferrer" class="drive-all-btn">';
+  html += '📂 צפייה בכל 7 ההסכמים הקואליציוניים ב־Drive ↗';
+  html += '</a>';
+  html += '<span class="drive-all-hint">ספריית המקורות המלאה של 7 ההסכמים החתומים (הממשלה ה-37) ב-Google Drive</span>';
+  html += '</div>';
+
   if (partyCommitments.length === 0) {
-    container.innerHTML = '<div class="empty-notice"><p>לא נמצאו התחייבויות קואליציוניות מתועדות עבור סיעה זו.</p></div>';
+    html += '<div class="empty-notice"><p>לא נמצאו התחייבויות קואליציוניות מתועדות עבור סיעה זו.</p></div>';
+    container.innerHTML = html;
     return;
   }
 
-  let html = '';
   html += '<div class="execution-list">';
   partyCommitments.forEach(cmt => {
     const execRecord = STATE.execution.find(e => e.commitmentId === cmt.id);
@@ -437,6 +449,7 @@ function renderExecutionScreen(partyId) {
     }
     html += '<div class="tier-source-row">';
     html += '<button class="source-btn" data-source-id="' + cmt.sourceId + '">🔍 מקור ההתחייבות: ' + cmt.sourceId + '</button>';
+    html += '<a href="' + DRIVE_COALITION_FOLDER_URL + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">📄 פתח את ההסכם המקורי ב-Drive ↗</a>';
     html += '</div>';
     html += '</div>';
 
@@ -525,7 +538,7 @@ function setupAskScreenEvents() {
           <div class="ask-empty-state">
             <div class="empty-icon">🔎</div>
             <h3>בחר שאלה לדוגמה או הקלד שאילתה משלך</h3>
-            <p>המנוע סורק בזמן אמת 48 טענות מחקריות, 24 עמדות מדיניות, 18 התחייבויות חתומות ו-16 ראיות ביצוע ומציג תשובה מסונתזת מבוססת עובדות.</p>
+            <p>המנוע סורק בזמן אמת 48 טענות מחקריות, 24 עמדות מדיניות, 18 התחייבויות חתומות, 16 ראיות ביצוע ו-51 סעיפי הסכמים קואליציוניים ומציג תשובה מסונתזת מבוססת עובדות.</p>
           </div>
         `;
       }
@@ -549,8 +562,8 @@ async function handleAskQuery(query) {
   resultsContainer.innerHTML = `
     <div class="ask-empty-state">
       <div class="empty-icon">⏳</div>
-      <h3>סורק את מאגר המחקר...</h3>
-      <p>שולף ראיות ומצליב עמדות מתוך 106 יחידות הידע המאומתות...</p>
+      <h3>סורק את מאגר המחקר וההסכמים הקואליציוניים...</h3>
+      <p>שולף ראיות ומצליב סעיפים מתוך 106 יחידות הידע ו-51 סעיפי ההסכמים...</p>
     </div>
   `;
 
@@ -601,6 +614,36 @@ function renderAskAnswer(result) {
     html += '</div>';
   }
 
+  // Coalition Clauses Grid if present
+  if (result.coalitionClausesList && result.coalitionClausesList.length > 0) {
+    html += '<div class="answer-section">';
+    html += '<h4 class="answer-section-title">📜 סעיפי הסכמים קואליציוניים מאומתים (' + result.coalitionClausesList.length + ' סעיפים שנמצאו):</h4>';
+    html += '<div class="answer-clauses-grid">';
+    result.coalitionClausesList.forEach(cl => {
+      const statusInfo = STATUS_CONFIG[cl.execution_status] || STATUS_CONFIG.default;
+      html += '<div class="answer-clause-card">';
+      html += '<div class="clause-header">';
+      html += '<span class="clause-party-badge">' + cl.party + '</span>';
+      html += '<span class="clause-section-tag">' + cl.section_number + '</span>';
+      html += '<span class="status-badge ' + statusInfo.class + '">' + statusInfo.label + '</span>';
+      html += '</div>';
+      html += '<div class="clause-summary">' + cl.summary + '</div>';
+      if (cl.verbatim_text) {
+        html += '<blockquote class="clause-verbatim-quote">״' + cl.verbatim_text + '״</blockquote>';
+      }
+      if (cl.budget_amount_nis) {
+        html += '<div class="clause-budget-tag">💰 תקציב נקוב: ' + formatNIS(cl.budget_amount_nis) + '</div>';
+      }
+      html += '<div class="clause-footer">';
+      html += '<button class="source-btn" data-source-id="' + cl.source_id + '">🔍 ' + cl.source_id + '</button>';
+      html += '<a href="' + DRIVE_COALITION_FOLDER_URL + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">📄 פתח ב-Drive ↗</a>';
+      html += '</div>';
+      html += '</div>';
+    });
+    html += '</div>';
+    html += '</div>';
+  }
+
   // Comparison Grid if multiple parties
   if (result.comparisonList && result.comparisonList.length > 0) {
     html += '<div class="answer-section">';
@@ -648,7 +691,7 @@ function renderAskAnswer(result) {
   }
 
   // Detailed Bullets if general query
-  if (result.detailedBullets && result.detailedBullets.length > 0 && (!result.comparisonList || result.comparisonList.length === 0)) {
+  if (result.detailedBullets && result.detailedBullets.length > 0 && (!result.comparisonList || result.comparisonList.length === 0) && (!result.coalitionClausesList || result.coalitionClausesList.length === 0)) {
     html += '<div class="answer-section">';
     html += '<h4 class="answer-section-title">📋 טענות ונתונים מרכזיים:</h4>';
     html += '<ul class="detailed-bullets-list" style="padding-right: 20px; line-height: 1.6; font-size: 0.92rem;">';

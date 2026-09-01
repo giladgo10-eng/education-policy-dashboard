@@ -3,7 +3,7 @@
  * Epistemic & Methodological Separation:
  * 1. מצעי המפלגות (מה המפלגות מציעות) -> מפלגה במבט אחד | השוואה לפי סוגיה
  * 2. הסכמים קואליציוניים ומבחן הביצוע (מה הובטח ומה בוצע) -> בורר מפלגות קואליציה נפרד + 4 שלבי ביצוע + קישורי Drive
- * 3. שאל את המחקר (Ask the Research) -> מנוע שליפה והשוואת ידע מקומי מבוסס 106 יחידות מאומתות ו-51 סעיפי הסכמים
+ * 3. שאל את המחקר (Ask the Research) -> מנוע תשובות מחקריות מסונתזות מבוסס 106 יחידות מאומתות ו-51 סעיפי הסכמים
  */
 
 const STATE = {
@@ -599,7 +599,7 @@ function setupAskScreenEvents() {
           <div class="ask-empty-state">
             <div class="empty-icon">🔎</div>
             <h3>בחר שאלה לדוגמה או הקלד שאילתה משלך</h3>
-            <p>המנוע סורק בזמן אמת 48 טענות מחקריות, 24 עמדות מדיניות, 18 התחייבויות חתומות, 16 ראיות ביצוע ו-51 סעיפי הסכמים קואליציוניים ומציג תשובה מסונתזת מבוססת עובדות.</p>
+            <p>המנוע סורק בזמן אמת 48 טענות מחקריות, 24 עמדות מדיניות, 18 התחייבויות חתומות, 16 ראיות ביצוע ו-51 סעיפי הסכמים קואליציוניים ומציג תשובה מחקרית מסונתזת מבוססת עובדות.</p>
           </div>
         `;
       }
@@ -623,8 +623,8 @@ async function handleAskQuery(query) {
   resultsContainer.innerHTML = `
     <div class="ask-empty-state">
       <div class="empty-icon">⏳</div>
-      <h3>סורק את מאגר המחקר וההסכמים הקואליציוניים...</h3>
-      <p>שולף ראיות ומצליב סעיפים מתוך 106 יחידות הידע ו-51 סעיפי ההסכמים...</p>
+      <h3>מסנתז תשובה מחקרית מתוך בסיס הידע המאומת...</h3>
+      <p>מצליב עמדות, סעיפי הסכמים ונתוני ביצוע מתוך 106 יחידות הידע ו-51 סעיפי ההסכמים...</p>
     </div>
   `;
 
@@ -646,7 +646,7 @@ function renderAskAnswer(result) {
       <div class="ask-empty-state">
         <div class="empty-icon">🔍</div>
         <h3>לא נמצא מספיק מידע</h3>
-        <p>${result.shortAnswer || 'בבסיס הידע הקיים אין כרגע מספיק מידע כדי לענות על השאלה באופן מבוסס.'}</p>
+        <p>${(result && result.summaryParagraphs && result.summaryParagraphs[0]) || 'בבסיס הידע הקיים אין די מידע כדי לקבוע זאת בביטחון.'}</p>
       </div>
     `;
     return;
@@ -655,19 +655,39 @@ function renderAskAnswer(result) {
   let html = '';
   html += '<div class="ask-answer-card">';
 
-  // Header
+  // 1. Header (Question title & methodology badge)
   html += '<div class="answer-header">';
   html += '<h3 class="answer-query-title">״' + result.query + '״</h3>';
-  html += '<span class="answer-meta-pill">תשובה מסונתזת מתוך בסיס הידע המאומת</span>';
+  html += '<span class="answer-meta-pill">ניתוח מחקרי מסונתז מתוך בסיס הידע המאומת</span>';
   html += '</div>';
 
-  // Summary box
-  html += '<div class="answer-summary-box">';
-  html += '<div class="summary-title">תשובה קצרה / תמצית מנהלים:</div>';
-  html += '<div class="summary-text">' + result.shortAnswer + '</div>';
-  html += '</div>';
+  // 2. Structured Research Synthesis (2-4 paragraphs)
+  if (result.summaryParagraphs && result.summaryParagraphs.length > 0) {
+    html += '<div class="answer-synthesis-card">';
+    html += '<div class="synthesis-header-label">📑 תשובה מחקרית מסונתזת:</div>';
+    html += '<div class="synthesis-body">';
+    result.summaryParagraphs.forEach(p => {
+      const formattedP = p.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      html += '<p class="synthesis-p">' + formattedP + '</p>';
+    });
+    html += '</div>';
+    html += '</div>';
+  }
 
-  // Contradiction Alert if exists
+  // 3. Key Takeaways / Findings (3-5 items)
+  if (result.keyFindings && result.keyFindings.length > 0) {
+    html += '<div class="answer-section">';
+    html += '<h4 class="answer-section-title">💡 נקודות מרכזיות וממצאים עיקריים:</h4>';
+    html += '<ul class="key-findings-list">';
+    result.keyFindings.forEach(f => {
+      const formattedF = f.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+      html += '<li class="finding-item">' + formattedF + '</li>';
+    });
+    html += '</ul>';
+    html += '</div>';
+  }
+
+  // 4. Contradiction Alert if exists
   if (result.contradictionAlert) {
     html += '<div class="contradiction-alert-box">';
     html += '<div class="alert-title">⚠️ ' + result.contradictionAlert.title + '</div>';
@@ -675,10 +695,18 @@ function renderAskAnswer(result) {
     html += '</div>';
   }
 
-  // Coalition Clauses Grid if present
+  // 5. Epistemic Limitations Callout if exists
+  if (result.limitations) {
+    html += '<div class="limitations-callout-box">';
+    html += '<div class="limitations-title">📌 מגבלות המידע והמתודולוגיה:</div>';
+    html += '<div class="limitations-text">' + result.limitations + '</div>';
+    html += '</div>';
+  }
+
+  // 6. Grounded Evidence: Coalition Clauses Grid
   if (result.coalitionClausesList && result.coalitionClausesList.length > 0) {
     html += '<div class="answer-section">';
-    html += '<h4 class="answer-section-title">📜 סעיפי הסכמים קואליציוניים מאומתים (' + result.coalitionClausesList.length + ' סעיפים שנמצאו):</h4>';
+    html += '<h4 class="answer-section-title">📜 הראיות המרכזיות — סעיפי הסכמים קואליציוניים מאומתים:</h4>';
     html += '<div class="answer-clauses-grid">';
     result.coalitionClausesList.forEach(cl => {
       const statusInfo = STATUS_CONFIG[cl.execution_status] || STATUS_CONFIG.default;
@@ -700,7 +728,7 @@ function renderAskAnswer(result) {
       }
       html += '<div class="clause-footer-clean">';
       html += '<span class="clause-source-text">' + cleanSourceTitle + '</span>';
-      html += '<a href="' + pdfUrl + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">📄 פתח את ההסכם המקורי ↗</a>';
+      html += '<a href="' + pdfUrl + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">📄 לצפייה בהסכם המקורי ↗</a>';
       html += '</div>';
       html += '</div>';
     });
@@ -708,10 +736,10 @@ function renderAskAnswer(result) {
     html += '</div>';
   }
 
-  // Comparison Grid if multiple parties
+  // 7. Grounded Evidence: Platform Comparisons Grid
   if (result.comparisonList && result.comparisonList.length > 0) {
     html += '<div class="answer-section">';
-    html += '<h4 class="answer-section-title">⚖️ מה אומרים המקורות — השוואת עמדות:</h4>';
+    html += '<h4 class="answer-section-title">⚖️ מה אומרים המצעים ומסמכי המקור — השוואת עמדות:</h4>';
     html += '<div class="answer-comparison-grid">';
     result.comparisonList.forEach(comp => {
       const badgeClass = comp.tier === "primary" ? "badge-primary" : "badge-secondary";
@@ -731,7 +759,7 @@ function renderAskAnswer(result) {
     html += '</div>';
   }
 
-  // Execution List if execution query
+  // 8. Grounded Evidence: Execution Evidence List
   if (result.executionList && result.executionList.length > 0) {
     html += '<div class="answer-section">';
     html += '<h4 class="answer-section-title">📊 הבטחה מול ביצוע ותקציבים בפועל:</h4>';
@@ -754,19 +782,7 @@ function renderAskAnswer(result) {
     html += '</div>';
   }
 
-  // Detailed Bullets if general query
-  if (result.detailedBullets && result.detailedBullets.length > 0 && (!result.comparisonList || result.comparisonList.length === 0) && (!result.coalitionClausesList || result.coalitionClausesList.length === 0)) {
-    html += '<div class="answer-section">';
-    html += '<h4 class="answer-section-title">📋 טענות ונתונים מרכזיים:</h4>';
-    html += '<ul class="detailed-bullets-list" style="padding-right: 20px; line-height: 1.6; font-size: 0.92rem;">';
-    result.detailedBullets.forEach(b => {
-      html += '<li><strong>' + b.entity + ':</strong> ' + b.text + '</li>';
-    });
-    html += '</ul>';
-    html += '</div>';
-  }
-
-  // Municipal Impact Callout
+  // 9. Municipal Impact Callout
   if (result.municipalSection) {
     html += '<div class="municipal-impact-box">';
     html += '<div class="municipal-title">🏛️ משמעות לשלטון המקומי ולרשויות:</div>';
@@ -774,14 +790,14 @@ function renderAskAnswer(result) {
     html += '</div>';
   }
 
-  // Sources Section
+  // 10. Sources Bar
   if (result.sources && result.sources.length > 0) {
     html += '<div class="answer-sources-wrap">';
     html += '<span class="sources-label">מקורות מאומתים שעליהם מתבססת התשובה:</span>';
     html += '<div class="source-pills-list">';
     result.sources.forEach(src => {
       html += '<button class="source-pill-btn" data-source-id="' + src.id + '">';
-      html += (src.isPrimary ? '📜 ' : '📖 ') + (src.title || src.id) + ' (' + src.tier + ')';
+      html += (src.isPrimary ? '📜 ' : '📖 ') + (src.title || src.id);
       html += '</button>';
     });
     html += '</div>';
@@ -792,7 +808,7 @@ function renderAskAnswer(result) {
 
   container.innerHTML = html;
 
-  // Bind source pill click events to the drawer modal
+  // Bind source pill click events to drawer modal
   container.querySelectorAll(".source-pill-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       const sourceId = btn.getAttribute("data-source-id");

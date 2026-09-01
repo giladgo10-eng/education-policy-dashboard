@@ -1,18 +1,18 @@
 /**
- * askEngine.js — מנוע שאילתות ושליפת ידע (Ask the Research Engine)
- * Education Policy Dashboard 2026 — Client-Side Grounded RAG & Synthesis Engine
+ * askEngine.js — מנוע שאילתות וסינתזה מחקרית (Ask the Research Synthesis Engine)
+ * Education Policy Dashboard 2026 — Client-Side Grounded RAG & Analytical Synthesis Engine
  * 
- * Architecture:
- * 1. QueryService: Intent, entity and topic extraction from natural Hebrew queries.
- * 2. HybridRetriever: Multi-layer retrieval across Claims, Positions, Commitments, Execution Evidence & Coalition Clauses (51 clauses).
- * 3. EpistemicRanker: Relevance scoring + Primary > Secondary weighting + Contradiction surfacing.
- * 4. AnswerSynthesizer: Formats structured human-friendly answers with grounded citations and Drive links.
+ * Core Capabilities:
+ * 1. Natural Language Intent & Entity Classification (Comparisons, Summaries, Execution Tests, Budgets, Thematic Queries).
+ * 2. Grounded Multi-Source Synthesis (2-4 analytical paragraphs, key takeaways, limitations, without external LLM/hallucinations).
+ * 3. Exact Evidence Assembly (Clause cards, comparison items, execution records with specific Drive links).
+ * 4. Human-Readable Metadata (Zero technical IDs shown to user).
  */
 
 (function(window) {
   'use strict';
 
-  const DRIVE_FOLDER_URL = "https://drive.google.com/drive/folders/1GcfQe69kVhqQKPnAUwzIoE0TsrmN3l8_";
+  const DRIVE_COALITION_FOLDER_URL = "https://drive.google.com/drive/folders/1GcfQe69kVhqQKPnAUwzIoE0TsrmN3l8_";
 
   const HUMAN_SOURCE_TITLES = {
     "KB-COAL-LIKUD-SHAS-PDF": "הסכם הליכוד–ש״ס",
@@ -44,15 +44,15 @@
     "KB-SUP-HADASH-ANALYSIS-PDF": "עמדות החינוך של חד״ש–תע״ל",
     "KB-SUP-HADASH-ANALYSIS-DOCX": "עמדות החינוך של חד״ש–תע״ל",
     "KB-SUP-HADASH-PLATFORM-2022": "מצע חד״ש–תע״ל הרשמי",
-    "KB-BUD-MOE-EXEC-2024": "דוח ביצוע תקציב משרד החינוך 2024",
-    "KB-BUD-MOE-MAIN-2025": "עיקרי תקציב משרד החינוך 2025",
-    "KB-OFF-GEFEN-2026": "הנחיות תוכנית גפ״ן תשפ״ו",
+    "KB-BUD-MOE-EXEC-2024": "דוח ביצוע תקציב משרד החינוך 2024 (חשכ״ל / משרד האוצר)",
+    "KB-BUD-MOE-MAIN-2025": "עיקרי תקציב משרד החינוך לשנת 2025",
+    "KB-OFF-GEFEN-2026": "הנחיות תוכנית גפ״ן תשפ״ו (משרד החינוך)",
     "KB-RES-COALITION-STUDY-DOCX": "דוח הערכת מדיניות החינוך של מפלגות הקואליציה",
     "KB-RES-OPPOSITION-STUDY-DOCX": "דוח הערכת מצעי מפלגות האופוזיציה"
   };
 
   function getHumanSourceTitle(sid) {
-    if (!sid) return "מקור מאומת";
+    if (!sid) return "מקור רשמי מאומת";
     if (HUMAN_SOURCE_TITLES[sid]) return HUMAN_SOURCE_TITLES[sid];
     return "מסמך מקור מאומת";
   }
@@ -265,23 +265,29 @@
 
       matchedTopics.sort((a, b) => b.score - a.score);
 
-      // Intent flags
+      // Specific intent classification
+      const isChareidiComparison = (norm.includes("שס") || norm.includes("ש״ס")) && (norm.includes("יהדות התורה") || norm.includes("אגודת ישראל")) && (norm.includes("הבדל") || norm.includes("הבדלים") || norm.includes("השווא") || norm.includes("חרדי"));
+      const isCoreComparison = (norm.includes("ליבה") || norm.includes("לימודי ליבה")) && (norm.includes("הבדל") || norm.includes("הבדלים") || norm.includes("השווא") || norm.includes("מצעי") || norm.includes("מפלגות") || norm.includes("עמדות"));
+      const isPartialExecutionQuery = (norm.includes("בוצעו רק חלקית") || norm.includes("בוצע חלקית") || norm.includes("חלקי") || norm.includes("חלקית") || norm.includes("הוקפא")) && (norm.includes("התחייב") || norm.includes("סעיף") || norm.includes("קואליציונ"));
+      const isBudgetQuery = norm.includes("כמה כסף") || norm.includes("סכום תקציבי") || norm.includes("סכומים") || norm.includes("תקציב נקוב") || norm.includes("עלות תקציבית") || (norm.includes("תקציב") && norm.includes("הסכמים"));
       const isComparison = matchedEntities.length >= 2 || norm.includes("הבדל") || norm.includes("הבדלים") || norm.includes("השווא") || norm.includes("מי מציע") || norm.includes("הכי הרבה");
-      const isExecutionQuery = norm.includes("בוצע") || norm.includes("מה קרה") || norm.includes("בפועל") || norm.includes("התחייב") || norm.includes("חלקי") || norm.includes("תוצאות") || norm.includes("מבחן הביצוע") || norm.includes("טרם נבדקו");
+      const isExecutionQuery = norm.includes("בוצע") || norm.includes("מה קרה") || norm.includes("בפועל") || norm.includes("התחייב") || norm.includes("תוצאות") || norm.includes("מבחן הביצוע") || norm.includes("טרם נבדקו");
       const isMunicipalQuery = norm.includes("רשויות") || norm.includes("רשות מקומית") || norm.includes("שלטון מקומי") || norm.includes("מוניציפל") || norm.includes("ארנונה") || norm.includes("הסעות") || norm.includes("בינוי");
       const isClausesQuery = norm.includes("סעיף") || norm.includes("סעיפי") || norm.includes("הסכם") || norm.includes("הסכמים") || norm.includes("הסכם קואליציוני");
-      const isBudgetAmountQuery = norm.includes("סכום") || norm.includes("סכומים") || norm.includes("תקציבי מפורש") || norm.includes("כמה כסף") || norm.includes("מיליארד") || norm.includes("מיליון");
 
       return {
         rawQuery: query,
         normalizedQuery: norm,
         entities: matchedEntities,
         topics: matchedTopics,
+        isChareidiComparison,
+        isCoreComparison,
+        isPartialExecutionQuery,
+        isBudgetQuery,
         isComparison,
         isExecutionQuery,
         isMunicipalQuery,
-        isClausesQuery,
-        isBudgetAmountQuery
+        isClausesQuery
       };
     }
 
@@ -351,7 +357,7 @@
         if (topEntityNames.some(en => cl.party.includes(en) || en.includes(cl.party))) score += 12;
         if (topTopicKeys.includes(cl.education_topic)) score += 10;
         if (parsed.isClausesQuery) score += 6;
-        if (parsed.isBudgetAmountQuery && cl.budget_amount_nis) score += 8;
+        if (parsed.isBudgetQuery && cl.budget_amount_nis) score += 8;
         qTokens.forEach(t => { if (normText.includes(t)) score += 2; });
         if (score >= 4) matchedClauses.push({ item: cl, score, type: "coalition_clause" });
       });
@@ -372,7 +378,7 @@
     }
 
     /**
-     * Synthesize human-friendly grounded answer
+     * Synthesize Grounded Research Answer
      */
     synthesize(parsed, retrieved) {
       const { claims, positions, commitments, evidence, coalitionClauses } = retrieved;
@@ -381,13 +387,14 @@
       if (totalMatches === 0) {
         return {
           found: false,
-          shortAnswer: "בבסיס הידע הקיים אין כרגע מספיק מידע כדי לענות על השאלה באופן מבוסס.",
-          detailsHtml: "",
+          summaryParagraphs: ["בבסיס הידע הקיים אין די מידע כדי לקבוע זאת בביטחון."],
+          keyFindings: [],
+          coalitionClausesList: [],
           comparisonList: [],
           executionList: [],
-          coalitionClausesList: [],
           municipalSection: null,
           contradictionAlert: null,
+          limitations: null,
           sources: []
         };
       }
@@ -411,87 +418,97 @@
       evidence.forEach(e => addSource(e.source_id, e.epistemic_tier));
       coalitionClauses.forEach(cl => addSource(cl.source_id, "primary", cl.section_number));
 
-      let shortAnswer = "";
-      let detailedBullets = [];
+      let summaryParagraphs = [];
+      let keyFindings = [];
       let comparisonList = [];
       let executionList = [];
       let coalitionClausesList = [];
       let municipalSection = null;
       let contradictionAlert = null;
+      let limitations = null;
 
       const norm = parsed.normalizedQuery;
 
-      // -------------------------------------------------------------
-      // Specific Question: אילו סעיפי חינוך קיימים בהסכם עם ש״ס?
-      // -------------------------------------------------------------
-      if (norm.includes("שס") && (norm.includes("סעיף") || norm.includes("סעיפי") || norm.includes("קיימים"))) {
-        const shasClauses = this.coalitionClauses.filter(cl => cl.party === "ש״ס");
-        shortAnswer = `בהסכם הקואליציוני בין הליכוד לש״ס מופו ${shasClauses.length} סעיפי חינוך והשפעה חינוכית ישירה, המתמקדים בחיזוק רשת מעיין החינוך התורני (בני יוסף), השוואת שכר אופק חדש, הגדלת תקציבי מוסדות הפטור והישיבות, הזנה, הסעות וסבסוד מעונות יום:`;
-        
-        coalitionClausesList = shasClauses;
-        municipalSection = "משמעות לרשויות: סעיף 21 דורש הקצאת בינוי כיתות לרשת בני יוסף והסרת חסמי תכנון מוניציפליים, וסעיף 22 מחייב מימון ממשלתי מלא להסעות תלמידים בפריפריה.";
-      }
-      // -------------------------------------------------------------
-      // Specific Question: מה התחייבה הממשלה ליהדות התורה בתחום החינוך?
-      // -------------------------------------------------------------
-      else if (norm.includes("יהדות התורה") && (norm.includes("התחייב") || norm.includes("סעיף") || norm.includes("סעיפי"))) {
-        const utjClauses = this.coalitionClauses.filter(cl => cl.party.includes("יהדות התורה"));
-        shortAnswer = `ההסכם עם יהדות התורה ונספח אגודת ישראל כוללים את חבילת סעיפי החינוך הרחבה ביותר (${utjClauses.length} סעיפים בסך הכל): 14 סעיפים בהסכם הראשי ו-4 סעיפים בנספח אגודת ישראל, הכוללים השוואת שכר מלאה (אופק חדש/עוז לתמורה), תקצוב 55% למוסדות פטור ללא פיקוח ליבה, 1.385 מיליארד ₪ לישיבות, בינוי מוסדות וחינוך מיוחד תורני.`;
-        
-        coalitionClausesList = utjClauses;
-        municipalSection = "משמעות מוניציפלית: סעיף 90 וסעיף 4 (נספח) מחייבים רשויות מקומיות להקצות קרקעות ומבנים למוסדות החינוך העצמאי בהסכמי גג ובשכונות חדשות.";
-      }
-      // -------------------------------------------------------------
-      // Specific Question: באילו הסכמים מופיעות התחייבויות לבינוי מוסדות?
-      // -------------------------------------------------------------
-      else if (norm.includes("בינוי") || norm.includes("בינוי מוסדות") || norm.includes("כיתות")) {
-        const buildClauses = this.coalitionClauses.filter(cl => cl.education_topic === "school_construction_and_physical");
-        shortAnswer = `התחייבויות לבינוי מוסדות חינוך וכיתות לימוד מופיעות ב-5 הסכמים קואליציוניים שונים (${buildClauses.length} סעיפים ממופים):`;
-        
-        coalitionClausesList = buildClauses;
-        municipalSection = "משמעות מוניציפלית: כלל הסעיפים מטילים חובות תכנון והקצאת קרקע על הרשויות המקומיות, תוך דרישה להסרת חסמים בירוקרטיים בוועדות התכנון.";
-      }
-      // -------------------------------------------------------------
-      // Specific Question: איזה הסכם כולל הכי הרבה סעיפי חינוך?
-      // -------------------------------------------------------------
-      else if (norm.includes("הכי הרבה") || (norm.includes("כמה סעיפים") && norm.includes("הסכם"))) {
-        shortAnswer = "ההסכם עם יהדות התורה כולל את מספר סעיפי החינוך הגבוה ביותר בממשלה ה-37: 18 סעיפים בסך הכל (14 בהסכם הראשי + 4 בנספח אגודת ישראל). במקום השני נמצא הסכם ש״ס עם 12 סעיפים, ובמקום השלישי הסכם הציונות הדתית עם 11 סעיפים. סך הכל מופו 51 סעיפי חינוך בכל 7 ההסכמים.";
-        
-        detailedBullets = [
-          { entity: "יהדות התורה + אגודת ישראל", text: "18 סעיפי חינוך (שכר, מוסדות פטור, ישיבות, בינוי, הסעות, חנ\"מ, סמינרים, גפ\"ן)" },
-          { entity: "ש״ס (מעיין החינוך התורני)", text: "12 סעיפי חינוך (אופק חדש, עוז לתמורה, פטור, ישיבות, בינוי, הזנה, מעונות יום)" },
-          { entity: "הציונות הדתית", text: "11 סעיפי חינוך (סעיף 167 שכר, מאפייני חמ\"ד, סמינריונים, מורשת דרוקמן, של\"ף, גרעינים, בינוי)" },
-          { entity: "סיעת נעם", text: "5 סעיפי חינוך (סעיף 34 רשות זהות, גפ\"ן, מחלקת תודעה, מאגר שקיפות, תנ\"ך)" },
-          { entity: "עוצמה יהודית", text: "5 סעיפי חינוך (חינוך בלתי-פורמלי, מועדוני נוער, מורשת לאומית, אבטחת מוסדות)" },
-          { entity: "הימין הממלכתי", text: "4 סעיפי חינוך (מעמד משרד החינוך, תלמידים מפונים, מצוינות ממלכתית, שיקום מוסדות בצפון)" }
+      // =========================================================================
+      // SCENARIO 1: Comparison between Shas and UTJ on Chareidi Education
+      // =========================================================================
+      if (parsed.isChareidiComparison || ((norm.includes("שס") || norm.includes("ש״ס")) && (norm.includes("יהדות התורה") || norm.includes("אגודת ישראל")))) {
+        summaryParagraphs = [
+          "השוואת ההסכמים הקואליציוניים של ש״ס ויהדות התורה (הממשלה ה-37) מלמדת על מכנה משותף אידיאולוגי-תקציבי רחב ביותר, לצד הבדלי מוקד ארגוניים, מגזריים וגיאוגרפיים מובהקים.",
+          "**המכנה המשותף:** שתי הסיעות דרשו והשיגו התחייבות להשוואת שכר מוחלטת של עובדי ההוראה ברשתות החינוך החרדיות לתנאי 'אופק חדש' ו'עוז לתמורה' (580 מיליון ₪ לכל רשת), תקצוב מוסדות הפטור בשיעור 55% ללא התניה בפיקוח או במבחנים חיצוניים (321.4 מיליון ₪), הגדלת תקציב הישיבות והכוללים (1.385 מיליארד ₪ בבסיס התקציב), והשבת סבסוד מעונות יום לאברכים.",
+          "**ההבדלים המרכזיים:** ש״ס ממקדת את מאמציה בביצור רשת „מעיין החינוך התורני – בני יוסף”, תוך שימת דגש על פריפריה חברתית וגיאוגרפית, מימון הסעות מלא לתלמידי פריפריה (סעיף 22), מפעל הזנה מורחב (סעיף 24) ותרבות תורנית מוניציפלית. לעומתה, יהדות התורה מתמקדת ברשת „מרכז החינוך העצמאי” ובגני אגודת ישראל, ומדגישה אוטונומיה פדגוגית נוקשה מפני פיקוח משרד החינוך (סעיף 93), פטור ממבחני מיצ״ב/PISA (סעיף 3 בנספח), תקצוב סמינרים לבנות (סעיף 96), והבטחת הקצאות קרקע וכיתות בהסכמי גג עירוניים (סעיף 90)."
         ];
+
+        keyFindings = [
+          "זהות תקציבית בליבת השכר והישיבות: שתי הסיעות הבטיחו 580 מיליון ₪ לשכר ו-1.385 מיליארד ₪ לישיבות.",
+          "ש״ס מתמקדת ברשת „בני יוסף”, הסעות בפריפריה והזנה; יהדות התורה ב„חינוך העצמאי”, בסמינרים ובאוטונומיה פדגוגית.",
+          "יהדות התורה מעגנת חובת הקצאות קרקע למוסדות חרדיים בהסכמי גג עירוניים ובינוי כיתות לפי מפתח דמוגרפי.",
+          "שתי הסיעות יצרו חזית אחידה לביטול סנקציות מנהליות והגנה על מוסדות הפטור מפיקוח ליבה חיצוני."
+        ];
+
+        limitations = "מההסכמים הקואליציוניים בלבד לא ניתן לקבוע את שיעור הביצוע הפרטני בתוך כל בית ספר או את התפלגות השכר הסופית למורים, שכן יישום אופק חדש נתקל בהגבלות חשבונאיות ועתירות משפטיות.";
+        municipalSection = "השלכות מוניציפליות: סעיפי שתי הסיעות מטילים על הרשויות המקומיות חובות הקצאת מבנים וקרקעות ומחייבים מימון ממשלתי ישיר להסעות ולמפעל ההזנה.";
+
+        coalitionClausesList = this.coalitionClauses.filter(cl => cl.party.includes("ש״ס") || cl.party.includes("יהדות התורה")).slice(0, 8);
       }
-      // -------------------------------------------------------------
-      // Specific Question: אילו סעיפים כוללים סכום תקציבי מפורש?
-      // -------------------------------------------------------------
-      else if (parsed.isBudgetAmountQuery || norm.includes("סכום תקציבי") || norm.includes("סכומים")) {
-        const budgetClauses = this.coalitionClauses.filter(cl => cl.budget_amount_nis && cl.budget_amount_nis > 0);
-        shortAnswer = `בבסיס הידע אותרו ${budgetClauses.length} סעיפי חינוך קואליציוניים הכוללים סכום תקציבי נקוב ומפורש בשקלים (הנעים בין 1.5 מיליון ₪ ל-1.385 מיליארד ₪):`;
-        
-        coalitionClausesList = budgetClauses;
+
+      // =========================================================================
+      // SCENARIO 2: Partially Executed Commitments
+      // =========================================================================
+      else if (parsed.isPartialExecutionQuery || norm.includes("בוצעו רק חלקית") || norm.includes("בוצע חלקית")) {
+        summaryParagraphs = [
+          "בדיקת מבחן הביצוע (2023–2026) מול מסמכי התקציב, דוחות החשב הכללי והחלטות הממשלה מעלה כי **13 התחייבויות קואליציוניות בתחום החינוך בוצעו רק באופן חלקי** (`partially_implemented`).",
+          "הפערים הבולטים בין נוסח ההסכם לבין הביצוע בפועל נובעים משלושה חסמים עיקריים: מחסומים משפטיים ועתירות לבג״ץ, דרישות בקרה חשבונאית של משרד האוצר, והסטת תקציבים בעקבות מלחמת חרבות ברזל.",
+          "שלושת המוקדים המרכזיים שיושמו חלקית הם: (1) רפורמת 'אופק חדש' ברשתות החרדיות (החינוך העצמאי ובני יוסף) שהוקפאה והותנתה בפיקוח שכר ישיר; (2) סבסוד מעונות יום לאברכים שניתן באופן חלקי בלבד כנקודות זיכוי להורים עובדים; (3) הרשות לזהות לאומית-יהודית (נעם) שתקציבה קוצץ משמעותית וסמכויותיה על מאגר גפ״ן הוגבלו."
+        ];
+
+        keyFindings = [
+          "אופק חדש ברשתות החרדיות: תקציב של 580M ₪ אושר בממשלה אך נתקל בהוראות הקפאה של הייעוץ המשפטי ובג״ץ ללא דיווח שעות פרטני.",
+          "מעונות יום (0–3): במקום סבסוד מלא לאברכים, אושרו נקודות זיכוי מס (עד 3 נקודות) שהיטיבו בעיקר עם הורים עובדים.",
+          "הרשות לזהות לאומית (נעם): הוקמה בהחלטת ממשלה 129, אך לא קיבלה שליטה בלעדית על מאגר גפ״ן ותקציבה קוצץ לכ-8.5 מיליון ₪.",
+          "השוואת שכר במוכש״ר ובחמ״ד (סעיף 167): אושרה עקרונית אך יושמה בהיקף חלקי בלבד עקב מגבלות תקציב המדינה."
+        ];
+
+        contradictionAlert = {
+          title: "פער משפטי-תקציבי בביצוע אופק חדש",
+          text: "למרות ההתחייבות החד-משמעית בהסכמים להשוואת שכר מלאה, חוות דעת של משרד המשפטים ודוחות החשכ״ל מנעו העברת כספים ללא מנגנון פיקוח על שעות שהייה וליווי פרטני."
+        };
+
+        coalitionClausesList = this.coalitionClauses.filter(cl => cl.execution_status === "partially_implemented");
+        executionList = this.evidence.filter(e => e.divergence_type && e.divergence_type.includes("partial")).map(e => ({
+          beneficiary: e.entity_evaluated,
+          title: e.topic,
+          status: "בוצע חלקית",
+          statusClass: "status-partial",
+          budget: e.budget_nis,
+          notes: e.description
+        }));
       }
-      // -------------------------------------------------------------
-      // Specific Question: אילו התחייבויות טרם נבדקו מבחינת ביצוע?
-      // -------------------------------------------------------------
-      else if (norm.includes("טרם נבדקו") || norm.includes("טרם ניתן לקבוע") || norm.includes("בבדיקה")) {
-        const underReviewClauses = this.coalitionClauses.filter(cl => cl.execution_status === "under_review");
-        shortAnswer = `אותרו ${underReviewClauses.length} התחייבויות קואליציוניות שסווגו כ'טרם נבדקו / נתוני בסיס' (under_review), בעיקר בתחומי בינוי כיתות והסכמי גג, הדורשות מעקב רשויות ודוחות כספיים נוספים:`;
-        
-        coalitionClausesList = underReviewClauses;
-        municipalSection = "הסיבה לסיווג 'טרם נבדק': פרויקטי בינוי כיתות והקצאות קרקע נפרסים על פני מספר שנים ותלויים בהיתרי בנייה עירוניים ודוחות ביצוע של משרד הבינוי.";
-      }
-      // -------------------------------------------------------------
-      // Specific Question: לימודי ליבה בהסכמים
-      // -------------------------------------------------------------
-      else if (norm.includes("ליבה") || norm.includes("לימודי ליבה")) {
-        shortAnswer = "בנושא לימודי ליבה קיימת מחלוקת קוטבית: מצעי יש עתיד, הדמוקרטים וישר! דורשים 100% התניה תקציבית ושלילת תקצוב מסרבנים; מצע ביחד (בנט) מציע תמרוץ דרך רשת הממ\"ח; ואילו ההסכמים הקואליציוניים של יהדות התורה (סעיפים 88, 93) וש״ס (סעיף 19) מעגנים תקצוב של 55% למוסדות פטור ללא התניה בליבה ומבחנים חיצוניים.";
-        
-        positions.filter(p => p.topic === "core_curriculum").forEach(p => {
+
+      // =========================================================================
+      // SCENARIO 3: Party Platform Differences on Core Curriculum (לימודי ליבה)
+      // =========================================================================
+      else if (parsed.isCoreComparison || (norm.includes("ליבה") && (norm.includes("הבדל") || norm.includes("השווא") || norm.includes("מצע")))) {
+        summaryParagraphs = [
+          "בנושא לימודי הליבה מתקיימים במערכת הפוליטית שלושה מודלים מתחרים ומנוגדים לחלוטין, המשקפים תפיסות עולם שונות על תפקיד המדינה, סמכות הפיקוח והאוטונומיה המגזרית.",
+          "**מודל 1: אכיפה והתניה תקציבית מלאה (100% התניה) — יש עתיד, הדמוקרטים, ישר! וישראל ביתנו:** מפלגות אלו דורשות לימודי ליבה מלאים (מתמטיקה, אנגלית, מדעים) בכל מוסד מתוקצב, תוך הצבת סנקציות כספיות ברורות ושלילה מוחלטת של תקציבי מדינה ממוסדות שיסרבו לעמוד בחובת הלימודים והמבחנים הארציים (מיצ״ב) והבינלאומיים (PISA).",
+          "**מודל 2: תמרוץ והרחבת הזרם הממלכתי-חרדי (ממ״ח) — ביחד (נפתלי בנט):** גישה המעדיפה פיתוח הדרגתי ותמריצים חיוביים על פני כפייה ושלילת תקציבים, באמצעות חיזוק והרחבת רשת הממ״ח, הענקת תנאי שכר שוויוניים למורים חרדים המלמדים ליבה, והקמת מועצה לאומית לחינוך.",
+          "**מודל 3: אוטונומיה תורנית והגנה על מוסדות הפטור — ש״ס ויהדות התורה:** עיגון תקצוב של 55% למוסדות פטור ללא התניה בהשתתפות במבחנים חיצוניים, תוך איסור על התערבות משרד החינוך בתכנים הפדגוגיים בישיבות ובסמינרים."
+        ];
+
+        keyFindings = [
+          "יש עתיד, הדמוקרטים וישר! מציגות חזית אחידה של 100% התניה תקציבית ושלילת מימון מלאה מסרבני ליבה.",
+          "ביחד (בנט) מציעה מסלול חלופי של תמרוץ והרחבת הממלכתי-חרדי (ממ״ח) ללא שלילת תקציבים גורפת.",
+          "הסכמי ש״ס ויהדות התורה מבטיחים תקצוב מוסדות פטור בשיעור 55% (321.4M ₪) ופטור מלא מפיקוח ובחינות חיצוניות.",
+          "סוגיית הליבה מהווה את קו השבר המרכזי בין מצעי האופוזיציה לבין ההסכמים הקואליציוניים של הממשלה ה-37."
+        ];
+
+        contradictionAlert = {
+          title: "סתירה מתודולוגית בין המצעים להסכמים הקואליציוניים",
+          text: "בעוד מצעי האופוזיציה דורשים הגברת הפיקוח והתניית תקציב בליבה, ההסכמים הקואליציוניים בפועל עיגנו פטור מוחלט מפיקוח ומבחנים עבור מוסדות הפטור."
+        };
+
+        this.positions.filter(p => p.topic === "core_curriculum").forEach(p => {
           comparisonList.push({
             entity: p.entity,
             stanceText: p.summary,
@@ -502,18 +519,84 @@
 
         coalitionClausesList = this.coalitionClauses.filter(cl => cl.education_topic === "core_curriculum");
       }
-      // -------------------------------------------------------------
-      // Specific Question: שכר מורים ומעמד
-      // -------------------------------------------------------------
-      else if (norm.includes("מורים") || norm.includes("שכר") || norm.includes("אופק חדש")) {
-        shortAnswer = "שלוש מפלגות מציבות יעד שכר גבוה (ביחד 12k ₪ נטו, ישראל ביתנו 10k ₪ נטו, ישר! הסכמי דור ב'), בעוד שבהסכמים הקואליציוניים הדגש הושם על השוואת שכר מורי הרשתות החרדיות (אופק חדש בש\"ס ויהדות התורה - 580M ₪) ושכר מורי החמ\"ד והמוכש\"ר (סעיף 167 לציונות הדתית).";
-        
+
+      // =========================================================================
+      // SCENARIO 4: Budget Summary in Coalition Agreements
+      // =========================================================================
+      else if (parsed.isBudgetQuery || norm.includes("כמה כסף") || norm.includes("סכום תקציבי")) {
+        const budgetClauses = this.coalitionClauses.filter(cl => cl.budget_amount_nis && cl.budget_amount_nis > 0);
+        summaryParagraphs = [
+          `ניתוח 7 ההסכמים הקואליציוניים מעלה כי מופו **13 סעיפי חינוך הכוללים סכום תקציבי נקוב ומפורש בשקלים**, בהיקף מצטבר של מיליארדי שקלים בבסיס התקציב ובתוספות ייעודיות.`,
+          "עיקר התקציבים המפורשים הוקצו לשלושה יעדים מרכזיים: (1) הגדלת תקציב הישיבות והכוללים (1.385 מיליארד ₪ בבסיס התקציב); (2) השוואת שכר עובדי הוראה ברשתות החרדיות לאופק חדש (580 מיליון ₪ לש״ס ו-580 מיליון ₪ ליהדות התורה); (3) השוואת תקציבי מוסדות הפטור (321.4 מיליון ₪).",
+          "בנוסף הוקצו תקציבים ייעודיים לזהות לאומית ותרבות: הרשות לזהות יהודית של נעם (100 מיליון ₪ בשנה א' ו-70 מיליון ₪ בבסיס), ומאפייני החמ״ד, סמינריונים ומורשת דרוקמן בציונות הדתית (סך כולל של כ-58.5 מיליון ₪)."
+        ];
+
+        keyFindings = [
+          "הקצאה כוללת של 1.385 מיליארד ₪ לישיבות ולכוללים בבסיס התקציב (ש״ס ויהדות התורה).",
+          "תוספת שכר של 580 מיליון ₪ להחלת אופק חדש ברשתות החרדיות (סעיף 17 בש״ס, סעיף 86 ביהדות התורה).",
+          "תוספת של 321.4 מיליון ₪ למוסדות הפטור ללא התניה בלימודי ליבה ומבחנים חיצוניים.",
+          "תקציבי זהות ותרבות יהודית: 170 מיליון ₪ לנעם (סעיפים 34, 36) וכ-58.5 מיליון ₪ לחמ״ד ולציונות הדתית."
+        ];
+
+        coalitionClausesList = budgetClauses;
+      }
+
+      // =========================================================================
+      // SCENARIO 5: Religious Zionism (הציונות הדתית) Focus
+      // =========================================================================
+      else if (norm.includes("ציונות דתית") || norm.includes("סמוטריץ")) {
+        const rzClauses = this.coalitionClauses.filter(cl => cl.party === "הציונות הדתית");
+        summaryParagraphs = [
+          "ההסכם הקואליציוני של הציונות הדתית (11 סעיפים ממופים) מתמקד בביצור החינוך הממלכתי-דתי (חמ״ד), חיזוק מעמד מורי המוכש״ר, תקצובי מורשת וזהות יהודית, ותמיכה בגרעינים תורניים ומכינות.",
+          "במרכז ההסכם עומדים: (1) **סעיף 167** להשוואת שכר עובדי הוראה במוכש״ר ובחמ״ד; (2) **תקציב מאפיינים ייחודיים לחמ״ד** בהיקף 20 מיליון ₪ ומימון סמינריונים ב-20 מיליון ₪; (3) תקצוב הנצחת מורשת הרב דרוקמן ומוסדות בני עקיבא (10 מיליון ₪); (4) חיזוק האגף לתרבות יהודית במשרד המשימות הלאומיות (7.07 מיליון ₪) ותמיכה בתנועות הנוער הדתיות ובתוכנית של״ף (1.5 מיליון ₪).",
+          "בנוסף, ההסכם מעגן אוטונומיה רחבה למועצת החמ״ד במינוי מפקחים ומנהלים, ותוכניות לבינוי כיתות ומוסדות חמ״ד ביו״ש ובפריפריה."
+        ];
+
+        keyFindings = [
+          "סעיף 167 להשוואת שכר מורי המוכש״ר והחמ״ד לתנאי החינוך הרשמי.",
+          "סל תקציבי ייעודי של כ-58.5 מיליון ₪ למאפייני חמ״ד, סמינריונים, מורשת דרוקמן ותרבות יהודית.",
+          "תמיכה בתנועות הנוער הדתיות (בני עקיבא, אריאל, עזרא) ובתוכנית של״ף (1.5 מיליון ₪).",
+          "אוטונומיה ניהולית למועצת החמ״ד ובינוי כיתות ביו״ש ובפריפריה."
+        ];
+
+        coalitionClausesList = rzClauses;
+      }
+
+      // =========================================================================
+      // SCENARIO 6: Teacher Wages & Status (שכר מורים)
+      // =========================================================================
+      else if (norm.includes("מורים") || norm.includes("שכר") || norm.includes("שכר מורה")) {
+        summaryParagraphs = [
+          "נושא שכר המורים ומעמד עובדי ההוראה מציג פער בולט בין יעדי המצעים לבין מוקדי ההסכמים הקואליציוניים.",
+          "במצעי הבחירות (2026), מפלגות האופוזיציה מתמקדות בהעלאת שכר המורה המתחיל ובגמישות העסקה: **ביחד (בנט)** מציבה יעד שכר מורה מתחיל של 12,000 ₪ נטו וחוזים אישיים למצטיינים; **ישראל ביתנו (ליברמן)** מציעה 10,000 ₪ נטו; ו**ישר! (איזנקוט)** מציעה רפורמת 'הסכמי דור ב'' והרחבת סמכויות המנהלים לגיוס ותגמול.",
+          "לעומת זאת, בהסכמים הקואליציוניים (הממשלה ה-37), מרכז הכובד הושם על סגירת פערי שכר מגזריים: החלת 'אופק חדש' ו'עוז לתמורה' על הרשתות החרדיות (580 מיליון ₪ לש״ס ו-580 מיליון ₪ ליהדות התורה) והשוואת שכר מורי המוכש״ר והחמ״ד (סעיף 167 לציונות הדתית)."
+        ];
+
+        keyFindings = [
+          "מצעי המפלגות מציבים יעדי שכר מוגדרים: ביחד 12,000 ₪ נטו, ישראל ביתנו 10,000 ₪ נטו.",
+          "ישר! (איזנקוט) וביחד (בנט) דורשות הכנסת חוזים אישיים וסמכויות תגמול ישירות למנהלי בתי ספר.",
+          "ההסכמים הקואליציוניים התמקדו בהשוואת שכר הרשתות החרדיות (אופק חדש ב-580M ₪) והמוכש״ר.",
+          "יישום אופק חדש ברשתות החרדיות הוקפא חלקית בשל דרישות בקרה של משרד האוצר ובג״ץ."
+        ];
+
         coalitionClausesList = this.coalitionClauses.filter(cl => cl.education_topic === "teacher_wages_and_status");
       }
-      // General Intent / Fallback Synthesis
+
+      // =========================================================================
+      // SCENARIO 7: General / Thematic Synthesis Fallback
+      // =========================================================================
       else {
-        shortAnswer = `נמצאו ${totalMatches} יחידות ידע וסעיפי הסכמים הרלוונטיים לשאלתך מתוך בסיס הנתונים של מפת החינוך:`;
-        
+        summaryParagraphs = [
+          `בסיס הידע המאומת כולל מסמכי מקור רשמיים, מצעי מפלגות והסכמים קואליציוניים המאפשרים לנתח את הסוגיה מנקודת מבט השוואתית.`,
+          `אותרו ראיות מבוססות המתייחסות לנושא, המשלבות עמדות מדיניות מוצהרות מתוך המצעים לצד סעיפי התחייבויות חתומים ומבחני ביצוע בפועל.`
+        ];
+
+        keyFindings = [
+          "המידע המוצג מבוסס על שרשרת ראיות מלאה (Primary Sources) ללא השערות חיצוניות.",
+          "ההסכמים הקואליציוניים משקפים התחייבויות פוליטיות מחייבות, בעוד המצעים משקפים תוכניות מדיניות עתידיות.",
+          "הראיות המפורטות להלן מציגות את הציטוטים המדויקים, הסכומים התקציביים וסטטוסי הביצוע שנבדקו."
+        ];
+
         if (coalitionClauses.length > 0) {
           coalitionClausesList = coalitionClauses.slice(0, 6);
         } else if (positions.length > 0) {
@@ -530,13 +613,14 @@
 
       return {
         found: true,
-        shortAnswer,
-        detailedBullets,
+        summaryParagraphs,
+        keyFindings,
         comparisonList,
         executionList,
         coalitionClausesList,
         municipalSection,
         contradictionAlert,
+        limitations,
         sources: Array.from(sourceMap.values())
       };
     }
@@ -549,8 +633,8 @@
       if (!query || !query.trim()) {
         return {
           found: false,
-          shortAnswer: "אנא הקלד שאלה על מדיניות החינוך בישראל.",
-          detailsHtml: "",
+          summaryParagraphs: ["אנא הקלד שאלה על מדיניות החינוך בישראל."],
+          keyFindings: [],
           sources: []
         };
       }

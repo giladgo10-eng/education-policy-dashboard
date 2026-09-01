@@ -96,6 +96,25 @@ body {
   color: var(--text-muted);
 }
 
+.author-credits-line {
+  font-size: 0.78rem;
+  color: #64748b;
+  margin: 3px 0 5px 0;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.author-credits-line a.credit-mail-link {
+  color: #475569;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  transition: color 0.15s ease;
+}
+
+.author-credits-line a.credit-mail-link:hover {
+  color: #2563eb;
+}
+
 .header-status-badge {
   display: flex;
   align-items: center;

@@ -15,3 +15,5 @@
 | `SRC-RES-DOC-COAL-EVAL` | א-הערכת מדיניות החינוך של מפלגות הקואלציה הממשלה היוצאת.docx | `government-decisions` | צוות מחקר / עורך הפרויקט | 2026-08-31 | `research/raw/government-decisions/` | secondary_academic | high |
 | `SRC-MOE-GEFEN-TASHPAV-PAGE` | תוכנית גפ"ן – שנת הלימודים תשפ"ו | `education-system` | משרד החינוך - פורטל מוסדות חינוך והמינהל הפדגוגי | 2025-08-01 | `research/raw/education-system/moe_gefen_tashpav_portal.html` | verified_official | high |
 | `SRC-MOE-BUDGET-HIGHLIGHTS-2025` | עיקרי התקציב 2025 — סעיף גפ"ן | `education-system` | משרד החינוך - מינהל כלכלה ותקציב | 2025-01-01 | `research/raw/budgets/ikare_takzit2025.pdf` | verified_official | high |
+| `SRC-PLT-BEYTENU-2026` | מצע החינוך של ישראל ביתנו 2026 | `party-platforms` | מפלגת ישראל ביתנו (אביגדור ליברמן) | 2026-08-31 | `research/raw/party-platforms/מפלגות מצע החינוך של ישראל ביתנו 2026.pdf` | verified_official | high |
+

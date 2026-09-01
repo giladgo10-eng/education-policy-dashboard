@@ -1688,3 +1688,38 @@ body {
   background-color: #e2e8f0;
   color: #0f172a;
 }
+
+/* NotebookLM Integration Section under Ask the Research */
+.ask-notebook-section {
+  margin-top: 36px;
+  padding-top: 28px;
+  border-top: 2px dashed var(--border-light);
+}
+
+.notebook-section-header {
+  margin-bottom: 20px;
+}
+
+.notebook-section-tag {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: #0369a1;
+  background-color: #e0f2fe;
+  padding: 3px 10px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+}
+
+.notebook-section-title {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #0f172a;
+  margin-bottom: 6px;
+}
+
+.notebook-section-desc {
+  font-size: 0.92rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}

@@ -77,6 +77,15 @@
           <p>הנתונים המוצגים להלן כוללים התחייבויות מאומתות שנבדקו מילה במילה מול מסמכי המקור של ההסכמים הקואליציוניים החתומים (הממשלה ה-37). אין להסיק מרשימה זו כי היא מייצגת את מלוא ההסכמים הקואליציוניים שנחתמו.</p>
         </div>
       </div>
+
+      <!-- General Google Drive Folder Banner -->
+      <div class="drive-all-agreements-banner">
+        <a href="https://drive.google.com/drive/folders/1GcfQe69kVhqQKPnAUwzIoE0TsrmN3l8_" target="_blank" rel="noopener noreferrer" class="drive-all-btn">
+          📂 צפייה בכל 7 ההסכמים הקואליציוניים ב־Drive ↗
+        </a>
+        <span class="drive-all-hint">ספריית המקורות המלאה של 7 ההסכמים החתומים (הממשלה ה-37) ב-Google Drive</span>
+      </div>
+
       <div class="selector-card">
         <div class="selector-label-wrap">
           <label class="selector-label">בחר מפלגת / סיעת קואליציה:</label>
@@ -90,9 +99,9 @@
     <!-- AREA 3: שאל את המחקר (Ask the Research) -->
     <div class="main-section-view" id="section-ask">
       <div class="ask-header-box">
-        <div class="ask-badge-tag">מנוע שליפה והשוואת ידע מחקרי • 106 יחידות מאומתות</div>
+        <div class="ask-badge-tag">מנוע שליפה והשוואת ידע מחקרי • 106 יחידות מאומתות ו-51 סעיפי הסכמים</div>
         <h2 class="ask-main-title">💡 שאל את המחקר</h2>
-        <p class="ask-subtitle">שאל שאלות בשפה חופשית וקבל תשובות מבוססות מקורות, השוואות עמדות בין מפלגות ומבחני ביצוע מתוך בסיס הידע המאומת של הפרויקט.</p>
+        <p class="ask-subtitle">שאל שאלות בשפה חופשית וקבל תשובות מבוססות מקורות, השוואות עמדות בין מפלגות, סעיפי הסכמים קואליציוניים ומבחני ביצוע מתוך בסיס הידע המאומת של הפרויקט.</p>
       </div>
 
       <!-- Search Input Card -->
@@ -103,7 +112,7 @@
             type="text" 
             id="ask-query-input" 
             class="ask-input" 
-            placeholder="הקלד שאלה (למשל: מה עמדת המפלגות על לימודי ליבה? מה הובטח לגיל הרך?)" 
+            placeholder="הקלד שאלה (למשל: מה סעיפי החינוך בהסכם ש״ס? מה הובטח לגיל הרך?)" 
             autocomplete="off"
           />
           <button id="ask-submit-btn" class="ask-btn">🔍 שאל את המחקר</button>
@@ -117,17 +126,20 @@
             <button class="sample-chip" data-query="מה מציעות המפלגות בנושא לימודי ליבה?">
               מה מציעות המפלגות בנושא לימודי ליבה?
             </button>
-            <button class="sample-chip" data-query="מי מציע יותר סמכויות לרשויות המקומיות?">
-              מי מציע יותר סמכויות לרשויות המקומיות?
+            <button class="sample-chip" data-query="אילו סעיפי חינוך קיימים בהסכם עם ש״ס?">
+              אילו סעיפי חינוך קיימים בהסכם עם ש״ס?
             </button>
-            <button class="sample-chip" data-query="מה התחייבה ש״ס בחינוך ומה בוצע?">
-              מה התחייבה ש״ס בחינוך ומה בוצע?
+            <button class="sample-chip" data-query="מה התחייבה הממשלה ליהדות התורה בתחום החינוך?">
+              מה התחייבה הממשלה ליהדות התורה בתחום החינוך?
             </button>
-            <button class="sample-chip" data-query="מה ההבדלים בין ישראל ביתנו, ביחד וישר! בנושא המורים?">
-              מה ההבדלים בין ישראל ביתנו, ביחד וישר! בנושא המורים?
+            <button class="sample-chip" data-query="איזה הסכם כולל הכי הרבה סעיפי חינוך?">
+              איזה הסכם כולל הכי הרבה סעיפי חינוך?
             </button>
-            <button class="sample-chip" data-query="מה קרה בפועל להבטחת חינוך חינם מגיל 0–3?">
-              מה קרה בפועל להבטחת חינוך חינם מגיל 0–3?
+            <button class="sample-chip" data-query="באילו הסכמים מופיעות התחייבויות לבינוי מוסדות?">
+              באילו הסכמים מופיעות התחייבויות לבינוי מוסדות?
+            </button>
+            <button class="sample-chip" data-query="אילו סעיפים כוללים סכום תקציבי מפורש?">
+              אילו סעיפים כוללים סכום תקציבי מפורש?
             </button>
             <button class="sample-chip" data-query="אילו התחייבויות קואליציוניות בוצעו רק חלקית?">
               אילו התחייבויות קואליציוניות בוצעו רק חלקית?
@@ -142,7 +154,7 @@
         <div class="ask-empty-state">
           <div class="empty-icon">🔎</div>
           <h3>בחר שאלה לדוגמה או הקלד שאילתה משלך</h3>
-          <p>המנוע סורק בזמן אמת 48 טענות מחקריות, 24 עמדות מדיניות, 18 התחייבויות חתומות ו-16 ראיות ביצוע ומציג תשובה מסונתזת מבוססת עובדות.</p>
+          <p>המנוע סורק בזמן אמת 48 טענות מחקריות, 24 עמדות מדיניות, 18 התחייבויות חתומות, 16 ראיות ביצוע ו-51 סעיפי הסכמים קואליציוניים ומציג תשובה מסונתזת מבוססת עובדות.</p>
         </div>
       </div>
 

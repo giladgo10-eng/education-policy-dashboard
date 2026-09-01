@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>מפת החינוך 2026 | מצעים, הסכמים ומבחן הביצוע</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Top Brand Header -->
+  <header class="site-header">
+    <div class="header-inner">
+      <div class="brand-block">
+        <span class="meta-tag">פרויקט מחקרי עצמאי לקראת תשפ״ז • V2.0</span>
+        <h1 class="main-title">מפת החינוך 2026</h1>
+        <p class="sub-title">הפרדה מתודולוגית: מצעי מפלגות מול הסכמים קואליציוניים ומבחן הביצוע</p>
+      </div>
+      <div class="header-status-badge">
+        <span class="live-dot"></span>
+        <span>סביבת נתונים מאומתת • שרשרת ראיות מלאה</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Top Main Navigation Bar (3 Core Areas) -->
+  <nav class="main-nav-bar">
+    <div class="nav-inner">
+      <button class="nav-tab active" data-section="platforms">📋 מצעי המפלגות — מה המפלגות מציעות</button>
+      <button class="nav-tab" data-section="coalition">🏛️ הסכמים קואליציוניים ומבחן הביצוע</button>
+      <button class="nav-tab" data-section="ask">💡 שאל את המחקר</button>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <main class="app-container">
+
+    <!-- AREA 1: מצעי המפלגות -->
+    <div class="main-section-view active" id="section-platforms">
+      <!-- Sub Navigation for Platforms -->
+      <div class="sub-nav-bar">
+        <button class="sub-tab active" data-subview="party">🏛️ מפלגה במבט אחד</button>
+        <button class="sub-tab" data-subview="issue">⚖️ השוואה לפי סוגיה</button>
+      </div>
+
+      <!-- Subview 1.1: Party at a glance -->
+      <div class="sub-view active" id="subview-party">
+        <div class="selector-card">
+          <div class="selector-label-wrap">
+            <label class="selector-label">בחר מפלגה לצפייה במצע:</label>
+            <span class="selector-hint">מוצגות רק מפלגות בעלות מצע רשמי, מקור היסטורי או מחקר משני מתועד</span>
+          </div>
+          <div class="party-buttons" id="party-buttons-container"></div>
+        </div>
+        <div id="party-content-area"></div>
+      </div>
+
+      <!-- Subview 1.2: Comparison by issue -->
+      <div class="sub-view" id="subview-issue">
+        <div class="selector-card">
+          <div class="selector-label-wrap">
+            <label class="selector-label">בחר סוגיה להשוואת עמדות המפלגות:</label>
+            <span class="selector-hint">השוואת עמדות מפורטות לצד סימוני "לא נאמר / לא נמצא במקור"</span>
+          </div>
+          <div class="issue-buttons" id="issue-buttons-container"></div>
+        </div>
+        <div id="issue-content-area"></div>
+      </div>
+    </div>
+
+    <!-- AREA 2: הסכמים קואליציוניים ומבחן הביצוע -->
+    <div class="main-section-view" id="section-coalition">
+      <div class="disclosure-banner">
+        <div class="disclosure-icon">⚠️</div>
+        <div class="disclosure-content">
+          <h4>גרסת מחקר חלקית — מאגר ההתחייבויות והביצוע נמצא בהרחבה</h4>
+          <p>הנתונים המוצגים להלן כוללים התחייבויות מאומתות שנבדקו מילה במילה מול מסמכי המקור של ההסכמים הקואליציוניים החתומים (הממשלה ה-37). אין להסיק מרשימה זו כי היא מייצגת את מלוא ההסכמים הקואליציוניים שנחתמו.</p>
+        </div>
+      </div>
+      <div class="selector-card">
+        <div class="selector-label-wrap">
+          <label class="selector-label">בחר מפלגת / סיעת קואליציה:</label>
+          <span class="selector-hint">הצגת התחייבויות החינוך החתומות בהסכם הקואליציוני ומבחן הביצוע המאומת</span>
+        </div>
+        <div class="party-buttons" id="coalition-party-buttons-container"></div>
+      </div>
+      <div id="execution-content-area"></div>
+    </div>
+
+    <!-- AREA 3: שאל את המחקר -->
+    <div class="main-section-view" id="section-ask">
+      <div class="ask-header-box">
+        <h2 class="ask-main-title">שאל את המחקר</h2>
+        <p class="ask-subtitle">שני מאגרי מחקר נפרדים מאפשרים להעמיק מעבר למידע המוצג בדשבורד.</p>
+      </div>
+
+      <div class="ask-cards-grid">
+        <!-- Card 1: מצעי המפלגות -->
+        <div class="ask-card">
+          <div class="ask-card-header">
+            <h3 class="ask-card-title">📘 שאל על מצעי המפלגות</h3>
+          </div>
+          <p class="ask-card-desc">פתח את מאגר המחקר ושאל שאלות על עמדות המפלגות, השווה בין מפלגות וסוגיות ובדוק את המקורות שעליהם מבוסס המידע.</p>
+          <div class="ask-card-footer">
+            <a href="https://notebook.google.com/notebook/43fca763-ee95-4f48-bb20-bf9ff442fbc7/preview" target="_blank" rel="noopener noreferrer" class="ask-notebook-btn btn-platforms">
+              פתח את מחקר המצעים ↗
+            </a>
+          </div>
+        </div>
+
+        <!-- Card 2: הסכמים קואליציוניים ומבחן הביצוע -->
+        <div class="ask-card">
+          <div class="ask-card-header">
+            <h3 class="ask-card-title">📙 שאל על ההסכמים ומבחן הביצוע</h3>
+          </div>
+          <p class="ask-card-desc">פתח את מאגר המחקר ושאל מה התחייבה כל מפלגה בהסכם הקואליציוני בתחום החינוך, מה אושר לביצוע, מה בוצע בפועל ומה עדיין לא בוצע.</p>
+          <div class="ask-card-footer">
+            <a href="https://notebook.google.com/notebook/8b1eb59c-0eac-466b-9861-699021f3a87f/preview" target="_blank" rel="noopener noreferrer" class="ask-notebook-btn btn-coalition">
+              פתח את מחקר ההסכמים והביצוע ↗
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- Evidence Drawer Modal -->
+  <div class="drawer-overlay" id="drawer-overlay">
+    <aside class="source-drawer" id="source-drawer" aria-labelledby="drawer-title" role="dialog" aria-modal="true">
+      <div class="drawer-header">
+        <div class="drawer-title-group">
+          <span class="drawer-badge">שרשרת ראיות ומקורות</span>
+          <h3 id="drawer-title">פרטי מקור המידע</h3>
+        </div>
+        <button class="drawer-close-btn" id="drawer-close-btn" aria-label="סגור חלונית מקור">&times;</button>
+      </div>
+      <div class="drawer-body" id="drawer-content"></div>
+    </aside>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

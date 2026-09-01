@@ -4,7 +4,7 @@
     "dataset": "commitments",
     "version": "2.0.0",
     "description": "התחייבויות קואליציוניות, החלטות ממשלה וסיכומי תקציב מחייבים בתחום החינוך - מודל תקציבי V2",
-    "lastUpdated": "2026-08-31"
+    "lastUpdated": "2026-09-01"
   },
   "commitments": [
     {
@@ -282,6 +282,347 @@
         "date": "2026-08-31",
         "text": "הסעיף מבטא את עמדת הציונות הדתית המעודדת תמרוץ תקציבי להוראת ליבה מלאה ועמידה במבחני הערכה במוסדות שאינם רשמיים, לצד עיגון מפורש של חובת הוראת תוכנית הלימודים הישראלית.",
         "municipalImpactVerified": false
+      }
+    },
+    {
+      "id": "COM-37-UTJ-AUTONOMY-001",
+      "partyIds": [
+        "PARTY-UTJ",
+        "PARTY-LIKUD"
+      ],
+      "issueId": "ISSUE-CORE-CURRICULUM",
+      "title": "שמירת עצמאותו, מעמדו הייחודי ותקצובו של החינוך החרדי",
+      "commitmentType": "coalition_agreement",
+      "epistemicType": "fact",
+      "verbatimText": "ישמרו עצמאותו, מעמדו הייחודי ותקצובו החינוכי של החינוך החרדי ועל כל סוגיו (לרבות רשתות החינוך, מוסדות הפטור והמוכש\"ר) במערכת החינוך. וזאת אף ככל ויחול שינוי ארגוני, מבני או תכני במערכת החינוך הכללית. אם תהיה פגיעה במעמד כאמור תפעל הממשלה לתיקון הפגיעה, בין אם בחקיקה ובין אם בדרך אחרת. הכל לפי העניין והצורך.",
+      "sourceId": "SRC-GOV-2022-COAL-LIKUD-UTJ",
+      "sourceType": "coalition_agreement",
+      "sectionRef": "ההסכם העיקרי, פרק חינוך, סעיף 128 (עמ' 10)",
+      "date": "2022-12-28",
+      "targetYear": "2023-2026",
+      "budgetYear": 2023,
+      "budgetEntity": "מוסדות החינוך החרדיים (רשתות, פטור ומוכש\"ר)",
+      "budgetType": "promised",
+      "baselineBudgetNIS": null,
+      "promisedBudgetNIS": null,
+      "allocatedBudgetEstimatedNIS": null,
+      "comparabilityStatus": "not_comparable",
+      "comparabilityReason": "סעיף עקרוני להגנה על עצמאות פדגוגית ומבנית ללא נקיבת סכום מספרי מוגדר.",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "analysisDraft": {
+        "epistemicType": "analysis",
+        "text": "עיגון חסינות סטטוטורית לחינוך החרדי מפני שינויים ורפורמות בחינוך הממלכתי הכללי."
+      }
+    },
+    {
+      "id": "COM-37-UTJ-CORE-PTUR-001",
+      "partyIds": [
+        "PARTY-UTJ",
+        "PARTY-LIKUD"
+      ],
+      "issueId": "ISSUE-CORE-CURRICULUM",
+      "title": "תקצוב מוסדות הפטור ב-55% מיחידת המימון הרשמית (כולל אופק חדש) והשוואת תקציבים תוספתיים ב-100%",
+      "commitmentType": "coalition_agreement",
+      "epistemicType": "fact",
+      "verbatimText": "מוסדות הפטור - יתוקצבו לפי 55% מיחידת המימון של תלמיד בבית ספר רשמי. \"יחידת מימון\" - מימון המדינה בעד תלמיד הלומד במוסד יסודי רשמי באותה שנת לימודים, לרבות \"אופק חדש\" (לרבות: כל שעות הלימוד, תוכניות ההוראה, חוק הסרדינים, תמריץ כיתה גדולה, וכל התוספות שניתנות בחינוך הרשמי עבור שעות הוראה ולמעט \"תקציבים תוספתיים\" שימומנו במלואם באופן שוויוני כמו כל תלמיד ישראל כמפורט כדלקמן). כמו כן, יתוקן חוק חינוך מיוחד שיוחל על מוסדות הפטור כמו שאר מוסדות החינוך באופן שכל תלמיד במוסדות הפטור יוכל לממש את הסל האישי לשירותי חינוך מיוחדים במלואו (בדומה לתיקון 11 לחוק החינוך המיוחד).",
+      "sourceId": "SRC-GOV-2022-COAL-LIKUD-UTJ",
+      "sourceType": "coalition_agreement",
+      "sectionRef": "נספח השוואת תקצוב מוסדות החינוך, סעיף 2 (עמ' 17)",
+      "date": "2022-12-28",
+      "targetYear": "2023-2024",
+      "budgetYear": 2023,
+      "budgetEntity": "מוסדות הפטור החרדיים",
+      "budgetType": "promised",
+      "baselineBudgetNIS": null,
+      "promisedBudgetNIS": null,
+      "allocatedBudgetEstimatedNIS": null,
+      "comparabilityStatus": "partially_comparable",
+      "comparabilityReason": "ההתחייבות מייצרת נוסחת תקצוב יחסית שנגזרת מעלות תלמיד בחינוך הרשמי כולל רפורמת אופק חדש.",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "analysisDraft": {
+        "epistemicType": "analysis",
+        "text": "העלאת בסיס המימון של מוסדות הפטור תוך ניתוק תוספות התקציב מחובת עמידה במבחני ליבה חיצוניים."
+      }
+    },
+    {
+      "id": "COM-37-UTJ-CORE-MUKSHAR-001",
+      "partyIds": [
+        "PARTY-UTJ",
+        "PARTY-LIKUD"
+      ],
+      "issueId": "ISSUE-CORE-CURRICULUM",
+      "title": "תקצוב מוסדות המוכר שאינו רשמי (מוכש\"ר) ב-75% לפחות ממוסד רשמי דומה ו-100% תקציבים תוספתיים",
+      "commitmentType": "coalition_agreement",
+      "epistemicType": "fact",
+      "verbatimText": "מוסדות המוכר שאינו רשמי – בתוך 60 יום יתוקנו תקנות חינוך ממלכתי (מוסדות מוכרים), תשי\"ד-1954, באופן שחובת השתתפות המדינה בתקצוב מוסדות חינוך מוכרים תעמוד על 75% מכל תקציבי שעות הלימוד והשירותים הנלווים של מוסד רשמי דומה (למעט \"תקציבים תוספתיים\" שימומנו במלואם באופן שוויוני כמו כל תלמידי ישראל כדלקמן). ההשוואה תכלול בין השאר את שעות הלימוד המתוקצבות על סוגיהן, דרך חישובן (לפי תחשיב אופק חדש) ואופן חישוב עלויות השעה באופן שיהיו מבוססים על נתוני המורים בפועל של כל מוסד (ותק, דירוג ומצבו האישי). כמו כן, יתוקנו התקנות באופן שחובב מדד הטיפוח הרשותי יחושב לפי מגזרי החינוך.",
+      "sourceId": "SRC-GOV-2022-COAL-LIKUD-UTJ",
+      "sourceType": "coalition_agreement",
+      "sectionRef": "נספח השוואת תקצוב מוסדות החינוך, סעיף 3 (עמ' 17)",
+      "date": "2022-12-28",
+      "targetYear": "2023",
+      "budgetYear": 2023,
+      "budgetEntity": "מוסדות החינוך המוכר שאינו רשמי (מוכש\"ר)",
+      "budgetType": "promised",
+      "baselineBudgetNIS": null,
+      "promisedBudgetNIS": null,
+      "allocatedBudgetEstimatedNIS": null,
+      "comparabilityStatus": "partially_comparable",
+      "comparabilityReason": "תיקון תקנות המחייב הגדלת שיעור השתתפות המדינה ל-75% מתחשיב אופק חדש.",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "analysisDraft": {
+        "epistemicType": "analysis",
+        "text": "השוואת תעריף השעה במוכש\"ר לפי נתוני מורים בפועל ותחשיב אופק חדש, לצד 100% שוויון בסלי שילוב והזנה."
+      }
+    },
+    {
+      "id": "COM-37-UTJ-CONSTRUCTION-001",
+      "partyIds": [
+        "PARTY-UTJ",
+        "PARTY-LIKUD"
+      ],
+      "issueId": "ISSUE-DECENTRALIZATION",
+      "title": "תעדוף בינוי כיתות, גנים ומעונות במגזר החרדי (תוספת 700 כיתות לשנה)",
+      "commitmentType": "coalition_agreement",
+      "epistemicType": "fact",
+      "verbatimText": "בעקבות מסקנות דו\"ח מבקר המדינה 2022 על אפליה ומחסור של כיתות, גני ילדים ומעונות במגזר החרדי, הממשלה תתעדף בינוי כיתות, גנים ומעונות במגזר החרדי ותפעל לצמצום הפערים, לרבות בכך שלתוכנית החומש לבניית כיתות, יתווספו 700 כיתות לשנה, עבור החסר שהצטבר במתן כיתות למגזר החרדי.",
+      "sourceId": "SRC-GOV-2022-COAL-LIKUD-UTJ",
+      "sourceType": "coalition_agreement",
+      "sectionRef": "ההסכם העיקרי, פרק חינוך, סעיף 130 (עמ' 10)",
+      "date": "2022-12-28",
+      "targetYear": "2023-2027",
+      "budgetYear": 2023,
+      "budgetEntity": "בינוי כיתות ומוסדות חינוך במגזר החרדי",
+      "budgetType": "promised",
+      "baselineBudgetNIS": null,
+      "promisedBudgetNIS": null,
+      "allocatedBudgetEstimatedNIS": null,
+      "comparabilityStatus": "partially_comparable",
+      "comparabilityReason": "התחייבות כמותית לתוספת של 700 כיתות לימוד שנתיות בתוכנית החומש הממשלתית.",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "analysisDraft": {
+        "epistemicType": "analysis",
+        "text": "מתן מענה לפערי בינוי ותשתיות חריפים ברשויות החרדיות והמעורבות על רקע ממצאי מבקר המדינה."
+      }
+    },
+    {
+      "id": "COM-37-UTJ-SPECIAL-EDU-001",
+      "partyIds": [
+        "PARTY-UTJ",
+        "PARTY-LIKUD"
+      ],
+      "issueId": "ISSUE-SPECIAL-EDUCATION",
+      "title": "השוואת שירותי חינוך מיוחד, סייעות וטיפולים פרא-רפואיים במוסדות מוכש\"ר ופטור ב-100%",
+      "commitmentType": "coalition_agreement",
+      "epistemicType": "fact",
+      "verbatimText": "חינוך מיוחד במוסדות המוכש\"ר, הפטור וגני ילדים – סייעות פדגוגית, יועץ חינוכי, עיי\"ס, פרא רפואי ובעלי מקצועות אחרים הנדרשים בגני המוכש\"ר, במוסדות המוכש\"ר או במוסדות הפטור, יתוקצבו במלואם על ידי משרד החינוך בהתאם לזכויותיהם לפי חוקת העבודה. לחילופין לעניין סייעת פדגוגית, השלמת תקצוב הסייעות תבוצע על ידי הרשויות המקומיות.",
+      "sourceId": "SRC-GOV-2022-COAL-LIKUD-UTJ",
+      "sourceType": "coalition_agreement",
+      "sectionRef": "נספח השוואת תקצוב מוסדות החינוך, סעיף 5 (עמ' 18)",
+      "date": "2022-12-28",
+      "targetYear": "2023",
+      "budgetYear": 2023,
+      "budgetEntity": "סל שירותי חינוך מיוחד במוסדות מוכש\"ר ופטור",
+      "budgetType": "promised",
+      "baselineBudgetNIS": null,
+      "promisedBudgetNIS": null,
+      "allocatedBudgetEstimatedNIS": null,
+      "comparabilityStatus": "partially_comparable",
+      "comparabilityReason": "התחייבות להשוואת 100% ממימון מקצועות הבריאות, יועצים וסייעות פדגוגיות במוסדות חרדיים.",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "analysisDraft": {
+        "epistemicType": "analysis",
+        "text": "העברת אחריות תקציבית ומימונית מלאה למדינה ולרשויות בגין שירותי חנ\"מ במוסדות לא-רשמיים."
+      }
+    },
+    {
+      "id": "COM-37-UTJ-NAHARI-001",
+      "partyIds": [
+        "PARTY-UTJ",
+        "PARTY-LIKUD"
+      ],
+      "issueId": "ISSUE-DIFFERENTIAL-FUNDING",
+      "title": "הרחבת חוק נהרי על גני ילדים, מוסדות פטור ומוכש\"ר על-יסודי ונוהל קיזוז תקציב מרשויות מקומיות",
+      "commitmentType": "coalition_agreement",
+      "epistemicType": "fact",
+      "verbatimText": "הרחבת חוק נהרי – עד להעברת תקציב 2023, הממשלה תתקן את סעיף 11א לחוק חינוך ממלכתי, באופן שהשתתפות רשות מקומית בתקציבי מוסדות חינוך מוכרים לא רשמיים, תחול גם על גני ילדים, מוסדות הפטור ומוסדות החינוך העל יסודי. משרד החינוך יקזז מתקציב רשות מקומית שלא תמלא חובותיה בהתאם לחוק נהרי, בדומה למנגנון קיזוז אגרות לימודי חוץ.",
+      "sourceId": "SRC-GOV-2022-COAL-LIKUD-UTJ",
+      "sourceType": "coalition_agreement",
+      "sectionRef": "נספח השוואת תקצוב מוסדות החינוך, סעיף 10 (עמ' 18)",
+      "date": "2022-12-28",
+      "targetYear": "2023",
+      "budgetYear": 2023,
+      "budgetEntity": "השתתפות רשויות מקומיות (חוק נהרי)",
+      "budgetType": "promised",
+      "baselineBudgetNIS": null,
+      "promisedBudgetNIS": null,
+      "allocatedBudgetEstimatedNIS": null,
+      "comparabilityStatus": "partially_comparable",
+      "comparabilityReason": "חקיקה מתוכננת להרחבת חובת ההשתתפות המוניציפלית וסנקציית קיזוז תקציבי ישיר מרשויות.",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "analysisDraft": {
+        "epistemicType": "analysis",
+        "text": "הטלת חובת השתתפות כספית על הרשויות המקומיות עבור מוסדות פטור וגנים, עם סמכות קיזוז אוטומטית."
+      }
+    },
+    {
+      "id": "COM-37-SHAS-OFFSET-001",
+      "partyIds": [
+        "PARTY-SHAS",
+        "PARTY-LIKUD"
+      ],
+      "issueId": "ISSUE-DECENTRALIZATION",
+      "title": "נוהל קיזוז תקציב מרשויות מקומיות שלא העבירו כספים למוסדות חינוך תורניים וחנ\"מ",
+      "commitmentType": "coalition_agreement",
+      "epistemicType": "fact",
+      "verbatimText": "החל משנת 2023 יופעל נוהל קיזוז תקציב מרשויות מקומיות שלא העבירו כספים למוסדות המוכש\"ר ולמוסדות הפטור החרדיים כנדרש בדין, בדומה למודל קיזוז אגרות לימודי חוץ.",
+      "sourceId": "SRC-GOV-2022-COAL-LIKUD-SHAS",
+      "sourceType": "coalition_agreement",
+      "sectionRef": "ההסכם העיקרי, פרק חינוך, סעיף 147 (עמ' 11)",
+      "date": "2022-12-28",
+      "targetYear": "2023",
+      "budgetYear": 2023,
+      "budgetEntity": "תקציבי העברה של רשויות מקומיות",
+      "budgetType": "promised",
+      "baselineBudgetNIS": null,
+      "promisedBudgetNIS": null,
+      "allocatedBudgetEstimatedNIS": null,
+      "comparabilityStatus": "not_comparable",
+      "comparabilityReason": "הפעלת מנגנון אכיפה וקיזוז מנהלי כנגד רשויות מקומיות.",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "analysisDraft": {
+        "epistemicType": "analysis",
+        "text": "הגברת כוח הגבייה של רשתות החינוך החרדיות והמוסדות מול תקציבי הרשויות המקומיות."
+      }
+    },
+    {
+      "id": "COM-37-SHAS-MAHAT-001",
+      "partyIds": [
+        "PARTY-SHAS",
+        "PARTY-LIKUD"
+      ],
+      "issueId": "ISSUE-AI-TECH",
+      "title": "תקצוב מלגות 'בוסטי' לתלמידי מה\"ט חרדים בהיקף 15 מיליון ₪ לשנה",
+      "commitmentType": "coalition_agreement",
+      "epistemicType": "fact",
+      "verbatimText": "מהי\"ט תתקצב ב-15 מיליון ₪ בשנה עבור \"מלגות בוסטי\" לתלמידים חרדים במהי\"ט. הקריטריונים למלגות ייקבעו בתיאום עם מרכזי ההכוון החרדיים במשרד הכלכלה. בנוסף, מהי\"ט תתקצב ב-15 מיליון ₪ בשנה עבור \"מלגות בוסטי\" לתלמידות חרדיות ממעמד סוציואקונומי נמוך.",
+      "sourceId": "SRC-GOV-2022-COAL-LIKUD-SHAS",
+      "sourceType": "coalition_agreement",
+      "sectionRef": "ההסכם העיקרי, פרק חינוך, סעיפים 132-133 (עמ' 10)",
+      "date": "2022-12-28",
+      "targetYear": "2023-2024",
+      "budgetYear": 2023,
+      "budgetEntity": "המכון הממשלתי להכשרה טכנולוגית (מה\"ט)",
+      "budgetType": "promised",
+      "baselineBudgetNIS": null,
+      "promisedBudgetNIS": 30000000,
+      "allocatedBudgetEstimatedNIS": 30000000,
+      "comparabilityStatus": "partially_comparable",
+      "comparabilityReason": "התחייבות תקציבית מפורשת של 30 מיליון ₪ לשנה עבור מלגות טכנולוגיות לתלמידים ותלמידות חרדים.",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "analysisDraft": {
+        "epistemicType": "analysis",
+        "text": "תמיכה בהכשרה מקצועית-טכנולוגית לגברים ונשים חרדים לצורך השתלבות בתעסוקה בעלת פריון גבוה."
+      }
+    },
+    {
+      "id": "COM-37-OTZMA-TERROR-001",
+      "partyIds": [
+        "PARTY-OTZMA-YEHUDIT",
+        "PARTY-LIKUD"
+      ],
+      "issueId": "ISSUE-JEWISH-IDENTITY",
+      "title": "תיקון חוק חינוך ממלכתי לפסילת עובדי הוראה מטעמי תמיכה בטרור",
+      "commitmentType": "coalition_agreement",
+      "epistemicType": "fact",
+      "verbatimText": "יתוקן חוק חינוך ממלכתי (פסול עובדים מטעמי תמיכה בטרור) לפיו לא תתאפשר במשרד החינוך ובמערכת החינוך ובמל\"ג העסקת מורה שמגלה תמיכה בטרור.",
+      "sourceId": "SRC-GOV-2022-COAL-LIKUD-OTZMA",
+      "sourceType": "coalition_agreement",
+      "sectionRef": "ההסכם העיקרי, סעיף 122 (עמ' 10)",
+      "date": "2022-12-28",
+      "targetYear": "2023",
+      "budgetYear": 2023,
+      "budgetEntity": "משרד החינוך והמל\"ג",
+      "budgetType": "promised",
+      "baselineBudgetNIS": null,
+      "promisedBudgetNIS": null,
+      "allocatedBudgetEstimatedNIS": null,
+      "comparabilityStatus": "not_comparable",
+      "comparabilityReason": "התחייבות חקיקתית-רגולטורית לשלילת העסקת מורים המביעים תמיכה בטרור.",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "analysisDraft": {
+        "epistemicType": "analysis",
+        "text": "הרחבת עילות הפסילה המנהליות של עובדי הוראה במערכת החינוך ובמוסדות ההשכלה הגבוהה."
+      }
+    },
+    {
+      "id": "COM-37-OTZMA-ZIONISM-001",
+      "partyIds": [
+        "PARTY-OTZMA-YEHUDIT",
+        "PARTY-LIKUD"
+      ],
+      "issueId": "ISSUE-JEWISH-IDENTITY",
+      "title": "תוכנית רב-שנתית לחיזוק לימודי ציונות במוסדות מוכש\"ר ובתלמודי תורה",
+      "commitmentType": "coalition_agreement",
+      "epistemicType": "fact",
+      "verbatimText": "משרד החינוך יפעיל תוכנית ייעודית ורב שנתית במוסדות החינוך המוכש\"ר, לחיזוק לימודי ציונות בתלמודי התורה ובמוסדות תרבותיים ייחודיים בהיקף שלא יפחת מתוכנית שנתית רב יעד והכוון במחקר.",
+      "sourceId": "SRC-GOV-2022-COAL-LIKUD-OTZMA",
+      "sourceType": "coalition_agreement",
+      "sectionRef": "ההסכם העיקרי, סעיף 154 (עמ' 12)",
+      "date": "2022-12-28",
+      "targetYear": "2023-2026",
+      "budgetYear": 2023,
+      "budgetEntity": "משרד החינוך - אגף מוסדות מוכרים",
+      "budgetType": "promised",
+      "baselineBudgetNIS": null,
+      "promisedBudgetNIS": null,
+      "allocatedBudgetEstimatedNIS": null,
+      "comparabilityStatus": "not_comparable",
+      "comparabilityReason": "הפעלת תוכנית פדגוגית לתכני ציונות ומורשת במוסדות חרדיים ומוכש\"ר.",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "analysisDraft": {
+        "epistemicType": "analysis",
+        "text": "הכנסת תוכניות לימוד ומורשת ציונית למוסדות תורניים שאינם רשמיים."
+      }
+    },
+    {
+      "id": "COM-37-YAMIN-ARIEL-001",
+      "partyIds": [
+        "PARTY-YAMIN-MAMLACHTI",
+        "PARTY-LIKUD"
+      ],
+      "issueId": "ISSUE-AI-TECH",
+      "title": "ביסוס והסדרת תקצוב אוניברסיטת אריאל בשומרון והפיכת אריאל לעיר אוניברסיטאית",
+      "commitmentType": "coalition_agreement",
+      "epistemicType": "fact",
+      "verbatimText": "בהמשך להחלטות הממשלה בעניינה של אוניברסיטת אריאל בשומרון (החלטת ממשלה מס' 3579 מיום 2.5.2005 והחלטת ממשלה מס' 5098 מיום 9.9.2012), הממשלה תפעל לקדם ולבסס את אוניברסיטת אריאל בתחומי המחקר וההוראה ובכלל זה שיפוי עקב הדרתה מההסכמים עם האיחוד האירופי ומדינות אסיה והקרנות הבינלאומיות השונות, הסדרת תקצוב כלל הסטודנטים הלומדים בקמפוס בפועל (פתרון בעיית הסטודנטים ללא תקצוב), וקידום החלטת הממשלה להפיכתה של העיר אריאל לעיר אוניברסיטאית. שר מטעם הימין הממלכתי ירכז את הכנת החלטת הממשלה האמורה והבאתה לאישור הממשלה.",
+      "sourceId": "SRC-GOV-2024-COAL-LIKUD-YAMIN",
+      "sourceType": "coalition_agreement",
+      "sectionRef": "ההסכם העיקרי, סעיף 16 (עמ' 3)",
+      "date": "2024-11-05",
+      "targetYear": "2025-2026",
+      "budgetYear": 2025,
+      "budgetEntity": "אוניברסיטת אריאל / ות\"ת ומל\"ג",
+      "budgetType": "promised",
+      "baselineBudgetNIS": null,
+      "promisedBudgetNIS": null,
+      "allocatedBudgetEstimatedNIS": null,
+      "comparabilityStatus": "partially_comparable",
+      "comparabilityReason": "הסדרת תקצוב ות\"ת מלא לכלל הסטודנטים באוניברסיטת אריאל ושיפוי על חרמות בינלאומיים.",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "analysisDraft": {
+        "epistemicType": "analysis",
+        "text": "חיזוק מוסד ההשכלה הגבוהה בשומרון, פתרון מצוקת תת-התקצוב הסטודנטיאלי וקידום אריאל כעיר אוניברסיטה."
       }
     }
   ]

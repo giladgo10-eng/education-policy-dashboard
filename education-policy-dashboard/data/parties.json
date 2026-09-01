@@ -4,7 +4,7 @@
     "dataset": "parties",
     "version": "1.0.0",
     "description": "רשימת המפלגות והסיעות הפוליטיות הנבחנות בפרויקט לקראת שנת הלימודים תשפ״ז והבחירות לכנסת",
-    "lastUpdated": "2026-08-31"
+    "lastUpdated": "2026-09-01"
   },
   "parties": [
     {
@@ -171,6 +171,27 @@
       "platformDocumentSourceId": "SRC-SEC-RAAM-2026",
       "confidenceLevel": "medium",
       "notes": "הרשימה הערבית המאוחדת בראשות מנסור עבאס; עמדותיה מתועדות במסמך מחקר משני"
+    },
+    {
+      "id": "PARTY-UTJ",
+      "nameHe": "יהדות התורה",
+      "nameEn": "United Torah Judaism",
+      "knessetFaction25": "יהדות התורה (אגודת ישראל - דגל התורה)",
+      "notes": "סיעת קואליציה חתומה על הסכם קואליציוני"
+    },
+    {
+      "id": "PARTY-OTZMA-YEHUDIT",
+      "nameHe": "עוצמה יהודית",
+      "nameEn": "Otzma Yehudit",
+      "knessetFaction25": "עוצמה יהודית בראשות איתמר בן גביר",
+      "notes": "סיעת קואליציה חתומה על הסכם קואליציוני"
+    },
+    {
+      "id": "PARTY-YAMIN-MAMLACHTI",
+      "nameHe": "הימין הממלכתי",
+      "nameEn": "HaYamin HaMamlachti",
+      "knessetFaction25": "הימין הממלכתי בראשות גדעון סער",
+      "notes": "סיעת קואליציה חתומה על הסכם הצטרפות לממשלה (2024)"
     }
   ]
 }

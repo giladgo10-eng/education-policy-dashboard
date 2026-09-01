@@ -1,23 +1,30 @@
 /**
- * education-policy-dashboard: MVP 1.0
- * 3-Screen Working Dashboard:
- * 1. מפלגה במבט אחד
- * 2. השוואה לפי סוגיה
- * 3. מבחן הביצוע
+ * education-policy-dashboard: V2.0 Phase 2
+ * Epistemic & Methodological Separation:
+ * 1. מצעי המפלגות (מה המפלגות מציעות) -> מפלגה במבט אחד | השוואה לפי סוגיה
+ * 2. הסכמים קואליציוניים ומבחן הביצוע (מה הובטח ומה בוצע) -> בורר מפלגות קואליציה נפרד + 4 שלבי ביצוע
+ * 3. שאל את המחקר (Placeholder)
  */
 
 const STATE = {
-  activeScreen: "party", // "party" | "issue" | "execution"
+  activeSection: "platforms", // "platforms" | "coalition" | "ask"
+  activeSubview: "party",     // "party" | "issue"
   sources: [],
   parties: [],
   issues: [],
   positions: [],
   commitments: [],
   execution: [],
-  budgets: [],
-  educationSystem: [],
   selectedPartyId: "PARTY-BEYACHAD",
+  selectedCoalitionPartyId: "PARTY-LIKUD",
   selectedIssueId: "ISSUE-CORE-CURRICULUM"
+};
+
+const SOURCE_QUALITY_CONFIG = {
+  primary_source: { label: "מצע / מסמך רשמי", class: "quality-primary", icon: "📜" },
+  primary_historical: { label: "מקור היסטורי (2013)", class: "quality-historical", icon: "🏛️" },
+  secondary_research: { label: "מחקר משני", class: "quality-secondary", icon: "📖" },
+  default: { label: "מקור מתועד", class: "quality-default", icon: "📄" }
 };
 
 const STANCE_CONFIG = {
@@ -35,13 +42,17 @@ const STANCE_CONFIG = {
 };
 
 const STATUS_CONFIG = {
-  fully_executed: { label: "בוצע", class: "status-executed" },
-  executed_growth: { label: "בוצע (גידול תקציבי)", class: "status-executed" },
-  partially_executed: { label: "בוצע חלקית", class: "status-partial" },
-  partially_executed_frozen: { label: "בוצע חלקית (הוקפא)", class: "status-partial" },
-  not_executed: { label: "לא בוצע", class: "status-not-executed" },
-  under_review: { label: "טרם ניתן לקבוע", class: "status-undetermined" },
-  default: { label: "טרם ניתן לקבוע", class: "status-undetermined" }
+  fully_executed: { label: "בוצע", group: "executed", class: "status-executed" },
+  executed_growth: { label: "בוצע (גידול תקציבי)", group: "executed", class: "status-executed" },
+  partially_executed: { label: "בוצע חלקית", group: "partial", class: "status-partial" },
+  partially_executed_frozen: { label: "בוצע חלקית (הוקפא)", group: "partial", class: "status-partial" },
+  alternative_execution: { label: "בוצע חלקית (מתווה חלופי)", group: "partial", class: "status-partial" },
+  partial_diverged_execution: { label: "בוצע חלקית", group: "partial", class: "status-partial" },
+  not_executed: { label: "לא בוצע", group: "not_executed", class: "status-not-executed" },
+  not_executed_delayed: { label: "לא בוצע (מעוכב)", group: "not_executed", class: "status-not-executed" },
+  baseline_data: { label: "טרם ניתן לקבוע (נתון בסיס)", group: "undetermined", class: "status-undetermined" },
+  under_review: { label: "טרם ניתן לקבוע", group: "undetermined", class: "status-undetermined" },
+  default: { label: "טרם ניתן לקבוע", group: "undetermined", class: "status-undetermined" }
 };
 
 const SOURCE_TYPE_LABELS = {
@@ -52,6 +63,13 @@ const SOURCE_TYPE_LABELS = {
   official_budget: "דוח תקציב רשמי",
   secondary_research_source: "מסמך מחקר משני"
 };
+
+function formatNIS(num) {
+  if (!num || isNaN(num)) return null;
+  if (num >= 1000000000) return (num / 1000000000).toFixed(1).replace(/\.0$/, '') + ' מיליארד ₪';
+  if (num >= 1000000) return (num / 1000000).toFixed(1).replace(/\.0$/, '') + ' מיליון ₪';
+  return Number(num).toLocaleString('he-IL') + ' ₪';
+}
 
 // Initialize Application
 async function initApp() {
@@ -79,10 +97,12 @@ async function initApp() {
     STATE.commitments = (await commitmentsRes.json()).commitments || [];
     STATE.execution = (await executionRes.json()).executionRecords || [];
 
-    setupScreenNavigation();
+    setupTopNavigation();
+    setupSubNavigation();
     renderPartyScreenSelectors();
     renderIssueScreenSelectors();
-    renderActiveScreen();
+    renderCoalitionPartySelectors();
+    renderActiveView();
     setupDrawerEvents();
   } catch (err) {
     console.error("Error loading application data:", err);
@@ -91,61 +111,100 @@ async function initApp() {
   }
 }
 
-// Setup Tab Navigation between the 3 screens
-function setupScreenNavigation() {
-  document.querySelectorAll(".nav-tab").forEach(tab => {
+// ----------------------------------------------------
+// NAVIGATION LOGIC (Section -> Subview)
+// ----------------------------------------------------
+function setupTopNavigation() {
+  document.querySelectorAll(".main-nav-bar .nav-tab").forEach(tab => {
     tab.addEventListener("click", () => {
-      const screen = tab.getAttribute("data-screen");
-      STATE.activeScreen = screen;
+      const section = tab.getAttribute("data-section");
+      STATE.activeSection = section;
 
-      document.querySelectorAll(".nav-tab").forEach(t => t.classList.remove("active"));
+      document.querySelectorAll(".main-nav-bar .nav-tab").forEach(t => t.classList.remove("active"));
       tab.classList.add("active");
 
-      document.querySelectorAll(".screen-view").forEach(s => s.classList.remove("active"));
-      const targetScreen = document.getElementById("screen-" + screen);
-      if (targetScreen) targetScreen.classList.add("active");
+      document.querySelectorAll(".main-section-view").forEach(s => s.classList.remove("active"));
+      const targetSec = document.getElementById("section-" + section);
+      if (targetSec) targetSec.classList.add("active");
 
-      renderActiveScreen();
+      renderActiveView();
     });
   });
 }
 
-function renderActiveScreen() {
-  if (STATE.activeScreen === "party") {
-    renderPartyScreen(STATE.selectedPartyId);
-  } else if (STATE.activeScreen === "issue") {
-    renderIssueScreen(STATE.selectedIssueId);
-  } else if (STATE.activeScreen === "execution") {
-    renderExecutionScreen();
+function setupSubNavigation() {
+  document.querySelectorAll(".sub-nav-bar .sub-tab").forEach(tab => {
+    tab.addEventListener("click", () => {
+      const subview = tab.getAttribute("data-subview");
+      STATE.activeSubview = subview;
+
+      document.querySelectorAll(".sub-nav-bar .sub-tab").forEach(t => t.classList.remove("active"));
+      tab.classList.add("active");
+
+      document.querySelectorAll(".sub-view").forEach(v => v.classList.remove("active"));
+      const targetSub = document.getElementById("subview-" + subview);
+      if (targetSub) targetSub.classList.add("active");
+
+      renderActiveView();
+    });
+  });
+}
+
+function renderActiveView() {
+  if (STATE.activeSection === "platforms") {
+    if (STATE.activeSubview === "party") {
+      renderPartyScreen(STATE.selectedPartyId);
+    } else if (STATE.activeSubview === "issue") {
+      renderIssueScreen(STATE.selectedIssueId);
+    }
+  } else if (STATE.activeSection === "coalition") {
+    renderCoalitionPartySelectors();
+    renderExecutionScreen(STATE.selectedCoalitionPartyId);
   }
 }
 
+// Helper: Get list of parties that actually have platform/research positions
+function getPlatformParties() {
+  const allowedStatuses = ["primary_source", "primary_historical", "secondary_research"];
+  return STATE.parties.map(party => {
+    const partyPositions = STATE.positions.filter(p => p.partyId === party.id);
+    const validPos = partyPositions.find(p => p.sourceStatus && allowedStatuses.includes(p.sourceStatus));
+    if (!validPos) return null;
+    const sourceStatus = validPos.sourceStatus;
+    return {
+      ...party,
+      sourceStatus,
+      qualityInfo: SOURCE_QUALITY_CONFIG[sourceStatus] || SOURCE_QUALITY_CONFIG.default
+    };
+  }).filter(Boolean);
+}
+
+// Helper: Get list of coalition agreement parties from commitments.json
+function getCoalitionParties() {
+  const partyIdsInCommitments = new Set(STATE.commitments.flatMap(c => c.partyIds || []));
+  return STATE.parties.filter(p => partyIdsInCommitments.has(p.id)).map(party => {
+    const count = STATE.commitments.filter(c => (c.partyIds || []).includes(party.id)).length;
+    return {
+      ...party,
+      commitmentCount: count
+    };
+  });
+}
+
 // ----------------------------------------------------
-// SCREEN 1: מפלגה במבט אחד
+// AREA 1.1: מצעי המפלגות — מפלגה במבט אחד
 // ----------------------------------------------------
 function renderPartyScreenSelectors() {
   const container = document.getElementById("party-buttons-container");
   if (!container) return;
 
-  const targetPartyIds = [
-    "PARTY-BEYACHAD",
-    "PARTY-YASHAR",
-    "PARTY-DEMOCRATS",
-    "PARTY-RELIGIOUS-ZIONISM",
-    "PARTY-YESH-ATID",
-    "PARTY-SHAS",
-    "PARTY-NOAM",
-    "PARTY-HADASH",
-    "PARTY-RAAM",
-    "PARTY-HADASH-TAAL"
-  ];
+  const platformParties = getPlatformParties();
 
-  const partyList = targetPartyIds.map(id => STATE.parties.find(p => p.id === id)).filter(Boolean);
-
-  container.innerHTML = partyList.map(p => {
+  container.innerHTML = platformParties.map(p => {
     const isSelected = p.id === STATE.selectedPartyId;
     return '<button class="party-btn ' + (isSelected ? 'active' : '') + '" data-party-id="' + p.id + '">' +
       '<span class="party-btn-name">' + p.nameHe + '</span>' +
+      '<span class="quality-mini-badge ' + p.qualityInfo.class + '">' + p.qualityInfo.label + '</span>' +
     '</button>';
   }).join("");
 
@@ -171,10 +230,13 @@ function renderPartyScreen(partyId) {
   }
 
   const partyPositions = STATE.positions.filter(pos => pos.partyId === partyId);
+  const samplePos = partyPositions[0];
+  const sourceQuality = samplePos ? (SOURCE_QUALITY_CONFIG[samplePos.sourceStatus] || SOURCE_QUALITY_CONFIG.default) : SOURCE_QUALITY_CONFIG.default;
 
   let html = '<div class="party-header-box">';
   html += '<div class="party-title-row">';
   html += '<h2 class="party-title">' + party.nameHe + '</h2>';
+  html += '<span class="source-quality-pill ' + sourceQuality.class + '">' + sourceQuality.icon + ' ' + sourceQuality.label + '</span>';
   if (party.notes) {
     html += '<span class="party-notes-badge">' + party.notes + '</span>';
   }
@@ -183,7 +245,7 @@ function renderPartyScreen(partyId) {
   html += '</div>';
 
   if (partyPositions.length === 0) {
-    html += '<div class="empty-notice"><p>טרם נקלטו עמדות מפורטות למפלגה זו ב-MVP Dataset.</p></div>';
+    html += '<div class="empty-notice"><p>לא אותרו עמדות מפורטות במצע המפלגה עבור הסוגיות המוגדרות.</p></div>';
   } else {
     html += '<div class="positions-grid">';
     partyPositions.forEach(pos => {
@@ -199,9 +261,9 @@ function renderPartyScreen(partyId) {
       html += '<span class="card-stance-badge ' + stanceInfo.class + '">' + stanceInfo.label + '</span>';
       html += '</div>';
 
-      // Historical / Secondary Notice Banner if applicable
+      // Historical / Secondary Notice Banner
       if (pos.sourceStatus === "primary_historical") {
-        html += '<div class="status-banner banner-historical">📜 מקור היסטורי (מצע 2013) — אינו עמדה עדכנית לתשפ״ז</div>';
+        html += '<div class="status-banner banner-historical">🏛️ מקור היסטורי (מצע 2013) — אינו עמדה רשמית מעודכנת לתשפ״ז</div>';
       } else if (pos.sourceStatus === "secondary_research") {
         html += '<div class="status-banner banner-secondary">📖 מחקר משני וניתוח פרשני — אינו מצע רשמי של המפלגה</div>';
       }
@@ -246,7 +308,7 @@ function renderPartyScreen(partyId) {
 }
 
 // ----------------------------------------------------
-// SCREEN 2: השוואה לפי סוגיה
+// AREA 1.2: מצעי המפלגות — השוואה לפי סוגיה
 // ----------------------------------------------------
 function renderIssueScreenSelectors() {
   const container = document.getElementById("issue-buttons-container");
@@ -288,28 +350,18 @@ function renderIssueScreen(issueId) {
   html += '<p class="issue-desc">' + issue.description + '</p>';
   html += '</div>';
 
-  // Compare parties
-  const comparedPartyIds = [
-    "PARTY-BEYACHAD",
-    "PARTY-YASHAR",
-    "PARTY-DEMOCRATS",
-    "PARTY-RELIGIOUS-ZIONISM",
-    "PARTY-YESH-ATID",
-    "PARTY-HADASH",
-    "PARTY-RAAM",
-    "PARTY-HADASH-TAAL"
-  ];
+  const platformParties = getPlatformParties();
 
   html += '<div class="comparison-grid">';
-  comparedPartyIds.forEach(pId => {
-    const party = STATE.parties.find(p => p.id === pId);
-    if (!party) return;
-
-    const pos = STATE.positions.find(p => p.partyId === pId && p.issueId === issueId);
+  platformParties.forEach(party => {
+    const pos = STATE.positions.find(p => p.partyId === party.id && p.issueId === issueId);
 
     html += '<div class="compare-card">';
     html += '<div class="compare-party-head">';
+    html += '<div class="compare-party-title-wrap">';
     html += '<h3>' + party.nameHe + '</h3>';
+    html += '<span class="quality-mini-badge ' + party.qualityInfo.class + '">' + party.qualityInfo.label + '</span>';
+    html += '</div>';
     
     if (pos) {
       const stanceInfo = STANCE_CONFIG[pos.stance] || STANCE_CONFIG.default;
@@ -321,7 +373,7 @@ function renderIssueScreen(issueId) {
 
     if (pos && pos.stance !== "not_stated") {
       if (pos.sourceStatus === "primary_historical") {
-        html += '<div class="status-banner banner-historical">📜 מקור היסטורי (2013)</div>';
+        html += '<div class="status-banner banner-historical">🏛️ מקור היסטורי (2013)</div>';
       } else if (pos.sourceStatus === "secondary_research") {
         html += '<div class="status-banner banner-secondary">📖 מחקר משני</div>';
       }
@@ -354,21 +406,89 @@ function renderIssueScreen(issueId) {
 }
 
 // ----------------------------------------------------
-// SCREEN 3: מבחן הביצוע
+// AREA 2: הסכמים קואליציוניים ומבחן הביצוע (V2 Phase 2)
 // ----------------------------------------------------
-function renderExecutionScreen() {
+function renderCoalitionPartySelectors() {
+  const container = document.getElementById("coalition-party-buttons-container");
+  if (!container) return;
+
+  const coalitionParties = getCoalitionParties();
+
+  container.innerHTML = coalitionParties.map(p => {
+    const isSelected = p.id === STATE.selectedCoalitionPartyId;
+    return '<button class="party-btn ' + (isSelected ? 'active' : '') + '" data-coalition-party-id="' + p.id + '">' +
+      '<span class="party-btn-name">' + p.nameHe + '</span>' +
+      '<span class="quality-mini-badge quality-default">' + p.commitmentCount + ' התחייבויות</span>' +
+    '</button>';
+  }).join("");
+
+  container.querySelectorAll(".party-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const id = btn.getAttribute("data-coalition-party-id");
+      STATE.selectedCoalitionPartyId = id;
+      container.querySelectorAll(".party-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderExecutionScreen(id);
+    });
+  });
+}
+
+function renderExecutionScreen(partyId = STATE.selectedCoalitionPartyId) {
   const container = document.getElementById("execution-content-area");
   if (!container) return;
 
-  if (STATE.commitments.length === 0) {
-    container.innerHTML = '<div class="empty-notice">לא נמצאו התחייבויות מאומתות במאגר.</div>';
+  const party = STATE.parties.find(p => p.id === partyId);
+  const partyName = party ? party.nameHe : partyId;
+
+  // Filter commitments where this party is a signatory/partner
+  const partyCommitments = STATE.commitments.filter(c => (c.partyIds || []).includes(partyId));
+
+  if (partyCommitments.length === 0) {
+    container.innerHTML = '<div class="empty-notice">לא נמצאו התחייבויות קואליציוניות מאומתות למפלגה זו במאגר.</div>';
     return;
   }
 
-  let html = '<div class="execution-list">';
-  STATE.commitments.forEach(com => {
+  // Calculate summary stats
+  let executedCount = 0;
+  let partialCount = 0;
+  let notExecutedCount = 0;
+  let undeterminedCount = 0;
+
+  partyCommitments.forEach(com => {
+    const execRecord = STATE.execution.find(e => e.commitmentId === com.id);
+    const statusKey = execRecord ? execRecord.status : "under_review";
+    const statusInfo = STATUS_CONFIG[statusKey] || STATUS_CONFIG.default;
+
+    if (statusInfo.group === "executed") executedCount++;
+    else if (statusInfo.group === "partial") partialCount++;
+    else if (statusInfo.group === "not_executed") notExecutedCount++;
+    else undeterminedCount++;
+  });
+
+  let html = '';
+
+  // 1. Party Summary Box
+  html += '<div class="coalition-summary-box">';
+  html += '<div class="coalition-summary-head">';
+  html += '<h3>סיכום התחייבויות חינוך בהסכמים — ' + partyName + '</h3>';
+  html += '<span class="summary-total-badge">סה״כ במאגר: ' + partyCommitments.length + ' התחייבויות</span>';
+  html += '</div>';
+
+  html += '<div class="summary-stats-row">';
+  html += '<div class="stat-pill stat-executed"><span class="stat-num">' + executedCount + '</span><span class="stat-label">בוצעו</span></div>';
+  html += '<div class="stat-pill stat-partial"><span class="stat-num">' + partialCount + '</span><span class="stat-label">בוצעו חלקית</span></div>';
+  html += '<div class="stat-pill stat-not-executed"><span class="stat-num">' + notExecutedCount + '</span><span class="stat-label">לא בוצעו</span></div>';
+  html += '<div class="stat-pill stat-undetermined"><span class="stat-num">' + undeterminedCount + '</span><span class="stat-label">טרם ניתן לקבוע</span></div>';
+  html += '</div>';
+
+  html += '<p class="summary-disclaimer">📌 הנתונים משקפים את המאגר המאומת הקיים ואינם בהכרח את מלוא ההסכם הקואליציוני.</p>';
+  html += '</div>';
+
+  // 2. Commitments 4-Tier Cards
+  html += '<div class="execution-list">';
+  partyCommitments.forEach(com => {
     const issue = STATE.issues.find(i => i.id === com.issueId);
-    const partyNames = (com.partyIds || []).map(pId => {
+    const partnerNames = (com.partyIds || []).map(pId => {
       const p = STATE.parties.find(party => party.id === pId);
       return p ? p.nameHe : pId;
     }).join(", ");
@@ -379,10 +499,10 @@ function renderExecutionScreen() {
 
     html += '<div class="execution-card">';
     
-    // Header
+    // Main Card Header
     html += '<div class="execution-card-header">';
     html += '<div class="exec-tags">';
-    html += '<span class="exec-party-tag">' + partyNames + '</span>';
+    html += '<span class="exec-party-tag">שותפי ההסכם: ' + partnerNames + '</span>';
     if (issue) {
       html += '<span class="exec-issue-tag">' + issue.title + '</span>';
     }
@@ -390,34 +510,91 @@ function renderExecutionScreen() {
     html += '<span class="status-badge ' + statusInfo.class + '">' + statusInfo.label + '</span>';
     html += '</div>';
 
-    // Title
+    // 1. נחתם
+    html += '<div class="tier-section tier-signed">';
+    html += '<div class="tier-head"><span class="tier-num">1</span> <h4>ההתחייבות שנחתמה</h4></div>';
     html += '<h3 class="exec-title">' + com.title + '</h3>';
-
-    // Verbatim Text from signed agreement
     html += '<div class="exec-quote-box">';
-    html += '<span class="quote-label">לשון הסעיף המאומת מילה במילה מההסכם החתום (' + (com.sectionRef || '') + '):</span>';
+    html += '<span class="quote-label">לשון הסעיף המקורי מתוך ההסכם (' + (com.sectionRef || 'ללא מראה מקום') + '):</span>';
     html += '<blockquote class="exec-quote">"' + com.verbatimText + '"</blockquote>';
     html += '</div>';
-
-    // Analysis / Municipal Impact
-    if (com.analysisDraft && com.analysisDraft.text) {
-      html += '<div class="exec-analysis-box">';
-      html += '<span class="analysis-label">טיוטת ניתוח מוניציפלי (Analysis Draft):</span>';
-      html += '<p class="analysis-text">' + com.analysisDraft.text + '</p>';
-      html += '</div>';
+    html += '<div class="tier-meta-row">';
+    html += '<span><strong>תאריך חתימה:</strong> ' + (com.date || '2022-12-28') + '</span>';
+    html += '<span><strong>שנת יעד:</strong> ' + (com.targetYear || com.budgetYear || '2023-2024') + '</span>';
+    if (com.promisedBudgetNIS) {
+      html += '<span><strong>סכום שהובטח:</strong> ' + formatNIS(com.promisedBudgetNIS) + '</span>';
     }
-
-    // Footer with Source Button
-    html += '<div class="exec-footer">';
-    html += '<span class="exec-meta">תאריך חתימה: ' + (com.date || '2022-12-28') + ' • שנת תקציב: ' + (com.budgetYear || '2023') + '</span>';
     if (com.sourceId) {
       html += '<button class="source-btn" data-source-id="' + com.sourceId + '" data-citation="' + (com.sectionRef || '') + '">';
       html += '📁 מקור: ' + com.sourceId;
       html += '</button>';
     }
     html += '</div>';
-
     html += '</div>';
+
+    // 2. מה אושר לביצוע
+    html += '<div class="tier-section tier-approved">';
+    html += '<div class="tier-head"><span class="tier-num">2</span> <h4>מה אושר לביצוע</h4></div>';
+    if (com.allocatedBudgetEstimatedNIS || com.budgetEntity || (execRecord && execRecord.allocatedBudgetNIS)) {
+      const allocatedNIS = (execRecord && execRecord.allocatedBudgetNIS) || com.allocatedBudgetEstimatedNIS;
+      html += '<div class="approved-grid">';
+      html += '<div><strong>מנגנון / גוף מתוקצב:</strong> ' + (com.budgetEntity || 'משרד החינוך / גורם ממשלתי') + '</div>';
+      html += '<div><strong>שנת תקציב מאושרת:</strong> ' + (com.budgetYear || '2023-2024') + '</div>';
+      if (allocatedNIS) {
+        html += '<div><strong>תקציב שאושר / הוקצה:</strong> ' + formatNIS(allocatedNIS) + '</div>';
+      }
+      if (com.comparabilityReason) {
+        html += '<div class="approved-notes"><strong>הערת התאמה:</strong> ' + com.comparabilityReason + '</div>';
+      }
+      html += '</div>';
+    } else {
+      html += '<p class="missing-tier-notice">טרם קיים במאגר מידע מאומת על אישור לביצוע.</p>';
+    }
+    html += '</div>';
+
+    // 3. מה בוצע בפועל
+    html += '<div class="tier-section tier-executed">';
+    html += '<div class="tier-head"><span class="tier-num">3</span> <h4>מה בוצע בפועל</h4></div>';
+    if (execRecord && (execRecord.factualSummary || execRecord.actualSpendingNIS || execRecord.completionPercentage !== undefined)) {
+      html += '<div class="executed-body">';
+      if (execRecord.factualSummary) {
+        html += '<p class="executed-summary"><strong>סיכום עובדתי:</strong> ' + execRecord.factualSummary + '</p>';
+      }
+      html += '<div class="executed-metrics">';
+      if (execRecord.actualSpendingNIS) {
+        html += '<span><strong>ביצוע תקציבי בפועל:</strong> ' + formatNIS(execRecord.actualSpendingNIS) + '</span>';
+      }
+      if (execRecord.completionPercentage !== null && execRecord.completionPercentage !== undefined) {
+        html += '<span><strong>אחוז ביצוע מוערך:</strong> ' + execRecord.completionPercentage + '%</span>';
+      }
+      if (execRecord.legalStatus) {
+        html += '<span><strong>סטטוס משפטי:</strong> ' + execRecord.legalStatus + '</span>';
+      }
+      html += '</div>';
+      if (execRecord.analysis && execRecord.analysis.text) {
+        html += '<div class="exec-analysis-box">';
+        html += '<span class="analysis-label">ניתוח ביצוע (Analysis):</span>';
+        html += '<p class="analysis-text">' + execRecord.analysis.text + '</p>';
+        html += '</div>';
+      }
+      html += '</div>';
+    } else {
+      html += '<p class="missing-tier-notice">טרם קיים במאגר מידע מאומת על ביצוע בפועל.</p>';
+    }
+    html += '</div>';
+
+    // 4. סטטוס סופי
+    html += '<div class="tier-section tier-status">';
+    html += '<div class="tier-head"><span class="tier-num">4</span> <h4>סטטוס ביצוע מאומת</h4></div>';
+    html += '<div class="status-tier-row">';
+    html += '<span class="status-badge ' + statusInfo.class + '">' + statusInfo.label + '</span>';
+    if (execRecord && execRecord.sourceId) {
+      html += '<span class="status-source-note">מאומת מול: ' + execRecord.sourceId + '</span>';
+    }
+    html += '</div>';
+    html += '</div>';
+
+    html += '</div>'; // End execution-card
   });
   html += '</div>';
 
@@ -442,9 +619,7 @@ function setupDrawerEvents() {
   const overlay = document.getElementById("drawer-overlay");
   const closeBtn = document.getElementById("drawer-close-btn");
 
-  if (closeBtn) {
-    closeBtn.addEventListener("click", closeSourceDrawer);
-  }
+  if (closeBtn) closeBtn.addEventListener("click", closeSourceDrawer);
   if (overlay) {
     overlay.addEventListener("click", e => {
       if (e.target === overlay) closeSourceDrawer();
@@ -502,5 +677,4 @@ function closeSourceDrawer() {
   if (drawer) drawer.classList.remove("active");
 }
 
-// Run when DOM is ready
 document.addEventListener("DOMContentLoaded", initApp);

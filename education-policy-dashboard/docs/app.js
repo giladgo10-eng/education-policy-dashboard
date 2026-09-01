@@ -22,6 +22,37 @@ const STATE = {
 
 const DRIVE_COALITION_FOLDER_URL = "https://drive.google.com/drive/folders/1GcfQe69kVhqQKPnAUwzIoE0TsrmN3l8_";
 
+// Specific Google Drive PDF Links for all 7 Coalition Agreements
+const COALITION_PDF_MAP = {
+  "PARTY-SHAS": "https://drive.google.com/file/d/10UlNZ0uHKU6UGvddFwHnezp1Wo1x16OY/view?usp=sharing",
+  "PARTY-UTJ": "https://drive.google.com/file/d/170jZW_rmd1LB1QcZvoIPHDaKsyKS0N1m/view?usp=sharing",
+  "PARTY-RZ": "https://drive.google.com/file/d/1XyoY-dKRwtm5uHu6hyiu_dhftS0xQh98/view?usp=sharing",
+  "PARTY-OZMA": "https://drive.google.com/file/d/13aoUSFRcTOtUS3S6sNgrh1kNsxs0BTj5/view?usp=sharing",
+  "PARTY-NOAM": "https://drive.google.com/file/d/1jWtYDXl5VkVwuaO9f8UJj60GLEDFJPrs/view?usp=sharing",
+  "PARTY-YAMINST": "https://drive.google.com/file/d/1JREXh4SSzK6gwuneCTvYiRvdKvk_znrv/view?usp=sharing",
+  "KB-COAL-LIKUD-SHAS-PDF": "https://drive.google.com/file/d/10UlNZ0uHKU6UGvddFwHnezp1Wo1x16OY/view?usp=sharing",
+  "KB-COAL-LIKUD-UTJ-PDF": "https://drive.google.com/file/d/170jZW_rmd1LB1QcZvoIPHDaKsyKS0N1m/view?usp=sharing",
+  "KB-COAL-LIKUD-AGUDAT-ISRAEL-PDF": "https://drive.google.com/file/d/1EA_xVDPWQtByoZf0tvmKYEpGnr-Nan5w/view?usp=sharing",
+  "KB-COAL-LIKUD-UTJ-APPENDIX-PDF": "https://drive.google.com/file/d/1EA_xVDPWQtByoZf0tvmKYEpGnr-Nan5w/view?usp=sharing",
+  "KB-COAL-LIKUD-RZ-PDF": "https://drive.google.com/file/d/1XyoY-dKRwtm5uHu6hyiu_dhftS0xQh98/view?usp=sharing",
+  "KB-COAL-LIKUD-OTZMA-PDF": "https://drive.google.com/file/d/13aoUSFRcTOtUS3S6sNgrh1kNsxs0BTj5/view?usp=sharing",
+  "KB-COAL-LIKUD-OZMA-PDF": "https://drive.google.com/file/d/13aoUSFRcTOtUS3S6sNgrh1kNsxs0BTj5/view?usp=sharing",
+  "KB-COAL-LIKUD-NOAM-PDF": "https://drive.google.com/file/d/1jWtYDXl5VkVwuaO9f8UJj60GLEDFJPrs/view?usp=sharing",
+  "KB-COAL-LIKUD-YAMIN-MAMLACHTI-PDF": "https://drive.google.com/file/d/1JREXh4SSzK6gwuneCTvYiRvdKvk_znrv/view?usp=sharing",
+  "KB-COAL-LIKUD-YAMINST-PDF": "https://drive.google.com/file/d/1JREXh4SSzK6gwuneCTvYiRvdKvk_znrv/view?usp=sharing",
+  "SRC-LIKUD-SHAS-2022": "https://drive.google.com/file/d/10UlNZ0uHKU6UGvddFwHnezp1Wo1x16OY/view?usp=sharing",
+  "SRC-LIKUD-UTJ-2022": "https://drive.google.com/file/d/170jZW_rmd1LB1QcZvoIPHDaKsyKS0N1m/view?usp=sharing",
+  "SRC-LIKUD-RZ-2022": "https://drive.google.com/file/d/1XyoY-dKRwtm5uHu6hyiu_dhftS0xQh98/view?usp=sharing",
+  "SRC-LIKUD-OZMA-2022": "https://drive.google.com/file/d/13aoUSFRcTOtUS3S6sNgrh1kNsxs0BTj5/view?usp=sharing",
+  "SRC-LIKUD-NOAM-2022": "https://drive.google.com/file/d/1jWtYDXl5VkVwuaO9f8UJj60GLEDFJPrs/view?usp=sharing"
+};
+
+function getAgreementPdfUrl(sourceId, partyId) {
+  if (sourceId && COALITION_PDF_MAP[sourceId]) return COALITION_PDF_MAP[sourceId];
+  if (partyId && COALITION_PDF_MAP[partyId]) return COALITION_PDF_MAP[partyId];
+  return DRIVE_COALITION_FOLDER_URL;
+}
+
 const SOURCE_QUALITY_CONFIG = {
   primary_source: { label: "מצע / מסמך רשמי", class: "quality-primary", icon: "📜" },
   primary_historical: { label: "מקור היסטורי (2013)", class: "quality-historical", icon: "🏛️" },
@@ -430,6 +461,7 @@ function renderExecutionScreen(partyId) {
     const execRecord = STATE.execution.find(e => e.commitmentId === cmt.id);
     const statusKey = execRecord ? execRecord.status : "under_review";
     const statusInfo = STATUS_CONFIG[statusKey] || STATUS_CONFIG.default;
+    const pdfUrl = getAgreementPdfUrl(cmt.sourceId, party.id);
 
     html += '<div class="execution-card">';
     html += '<div class="exec-header">';
@@ -449,7 +481,7 @@ function renderExecutionScreen(partyId) {
     }
     html += '<div class="tier-source-row">';
     html += '<button class="source-btn" data-source-id="' + cmt.sourceId + '">🔍 מקור ההתחייבות: ' + cmt.sourceId + '</button>';
-    html += '<a href="' + DRIVE_COALITION_FOLDER_URL + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">📄 פתח את ההסכם המקורי ב-Drive ↗</a>';
+    html += '<a href="' + pdfUrl + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">📄 פתח את ההסכם המקורי ב-Drive ↗</a>';
     html += '</div>';
     html += '</div>';
 
@@ -621,6 +653,8 @@ function renderAskAnswer(result) {
     html += '<div class="answer-clauses-grid">';
     result.coalitionClausesList.forEach(cl => {
       const statusInfo = STATUS_CONFIG[cl.execution_status] || STATUS_CONFIG.default;
+      const pdfUrl = cl.drive_url || getAgreementPdfUrl(cl.source_id, null);
+
       html += '<div class="answer-clause-card">';
       html += '<div class="clause-header">';
       html += '<span class="clause-party-badge">' + cl.party + '</span>';
@@ -636,7 +670,7 @@ function renderAskAnswer(result) {
       }
       html += '<div class="clause-footer">';
       html += '<button class="source-btn" data-source-id="' + cl.source_id + '">🔍 ' + cl.source_id + '</button>';
-      html += '<a href="' + DRIVE_COALITION_FOLDER_URL + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">📄 פתח ב-Drive ↗</a>';
+      html += '<a href="' + pdfUrl + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">📄 פתח את ההסכם המקורי ב-Drive ↗</a>';
       html += '</div>';
       html += '</div>';
     });
@@ -785,10 +819,13 @@ function openSourceDrawer(sourceId, citation) {
     html += '<div class="drawer-field"><label>גוף מפרסם:</label><div class="drawer-val">' + (src.publisher || 'לא צוין') + '</div></div>';
     html += '<div class="drawer-field"><label>תאריך פרסום / אימות:</label><div class="drawer-val">' + (src.publicationDate || src.accessDate || 'לא צוין') + '</div></div>';
     
+    const specificPdfUrl = COALITION_PDF_MAP[sourceId] || src.url;
+    if (specificPdfUrl) {
+      html += '<div class="drawer-field"><label>קישור למסמך המקורי ב-Google Drive:</label><div class="drawer-val"><a href="' + specificPdfUrl + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">📄 פתח את המסמך המקורי ב-Drive ↗</a></div></div>';
+    }
+
     if (src.localFilePath) {
-      html += '<div class="drawer-field"><label>גישה למסמך המקור:</label><div class="drawer-val local-file-val">📁 מקור ראשוני מאומת — קובץ מקומי בפרויקט (' + src.localFilePath + ')</div></div>';
-    } else if (src.url) {
-      html += '<div class="drawer-field"><label>קישור רשמי:</label><div class="drawer-val"><a href="' + src.url + '" target="_blank" rel="noopener">פתח קישור חיצוני &larr;</a></div></div>';
+      html += '<div class="drawer-field"><label>עותק מקומי מסונכרן בפרויקט:</label><div class="drawer-val local-file-val">📁 ' + src.localFilePath + '</div></div>';
     }
 
     if (src.archiveHash) {

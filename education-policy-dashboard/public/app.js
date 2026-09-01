@@ -1,7 +1,7 @@
 /**
  * education-policy-dashboard: V2.0 Phase 2
  * Epistemic & Methodological Separation:
- * 1. מצעי המפלגות (מה המפלגות מציעות) -> מפלגה במבט אחד | השוואה לפי סוגיה
+ * 1. מצעי המפלגות (מה המפלגות מציעות) -> מפלגה במבט אחד | השוואה לפי סוגיה + קישורי Drive למסמכי המקור
  * 2. הסכמים קואליציוניים ומבחן הביצוע (מה הובטח ומה בוצע) -> בורר מפלגות קואליציה נפרד + 4 שלבי ביצוע + קישורי Drive
  * 3. שאל את המחקר (Ask the Research) -> מנוע תשובות מחקריות מסונתזות מבוסס 106 יחידות מאומתות ו-51 סעיפי הסכמים
  */
@@ -20,9 +20,78 @@ const STATE = {
   selectedIssueId: "ISSUE-CORE-CURRICULUM"
 };
 
+const DRIVE_PLATFORMS_FOLDER_URL = "https://drive.google.com/drive/folders/1PvVXkV2KIxscPrIxE57-L1T_dF-0UxfM";
 const DRIVE_COALITION_FOLDER_URL = "https://drive.google.com/drive/folders/1GcfQe69kVhqQKPnAUwzIoE0TsrmN3l8_";
 
-// Specific Google Drive PDF Links for all 7 Coalition Agreements
+// Specific Google Drive Links for Party Platforms & Research Documents
+const PLATFORM_DOC_MAP = {
+  "PARTY-BEYACHAD": {
+    url: "https://drive.google.com/file/d/1M_llcAkxPie446iaqDJKxPMGvKBy6xnV/view?usp=sharing",
+    isPrimary: true,
+    label: "תוכנית החינוך של ביחד (נפתלי בנט)",
+    btnText: "📄 לצפייה במצע / מסמך המקור ↗"
+  },
+  "PARTY-YASHAR": {
+    url: "https://drive.google.com/file/d/1wsm1YEt5OVkLKWZ_o6D-S1ELH-pDvlK5/view?usp=sharing",
+    isPrimary: true,
+    label: "תוכנית החינוך של ישר! (גדי איזנקוט)",
+    btnText: "📄 לצפייה במצע / מסמך המקור ↗"
+  },
+  "PARTY-DEMOCRATS": {
+    url: "https://drive.google.com/file/d/1920qzJmHmqDXlXQq5ezKYfpYEivTUoed/view?usp=sharing",
+    isPrimary: true,
+    label: "תוכנית החינוך של הדמוקרטים (יאיר גולן)",
+    btnText: "📄 לצפייה במצע / מסמך המקור ↗"
+  },
+  "PARTY-YISRAEL-BEYTENU": {
+    url: "https://drive.google.com/file/d/1c0IHyot1UMBjvknFZdlKwr8a0ocul58X/view?usp=sharing",
+    isPrimary: true,
+    label: "מצע החינוך של ישראל ביתנו (אביגדור ליברמן)",
+    btnText: "📄 לצפייה במצע / מסמך המקור ↗"
+  },
+  "PARTY-RELIGIOUS-ZIONISM": {
+    url: "https://drive.google.com/file/d/1dTvW2XLV3gdq7Qm_-fsM6BXth_Fmoz0k/view?usp=sharing",
+    isPrimary: true,
+    label: "פרק החינוך של הציונות הדתית",
+    btnText: "📄 לצפייה במצע / מסמך המקור ↗"
+  },
+  "PARTY-YESH-ATID": {
+    url: "https://drive.google.com/drive/folders/1PvVXkV2KIxscPrIxE57-L1T_dF-0UxfM",
+    isPrimary: true,
+    label: "מצע החינוך של יש עתיד",
+    btnText: "📄 לצפייה במצע / מסמך המקור ↗"
+  },
+  "PARTY-RAAM": {
+    url: "https://drive.google.com/file/d/1kscIl_3H0ZqfoWKwt1SKfJMmFlcUWZ-O/view?usp=sharing",
+    isPrimary: false,
+    label: "עמדות החינוך של רע״ם (מסמך מחקר משני)",
+    btnText: "📖 לצפייה במסמך המחקר ↗"
+  },
+  "PARTY-HADASH": {
+    url: "https://drive.google.com/file/d/1p1RzD-Z-wy6N_-vCdch_ffIHlp4Bkglm/view?usp=sharing",
+    isPrimary: false,
+    label: "ניתוח מצע החינוך של חד״ש–תע״ל (מחקר משני)",
+    btnText: "📖 לצפייה במסמך המחקר ↗"
+  },
+  "PARTY-HADASH-TAAL": {
+    url: "https://drive.google.com/file/d/1p1RzD-Z-wy6N_-vCdch_ffIHlp4Bkglm/view?usp=sharing",
+    isPrimary: false,
+    label: "ניתוח מצע החינוך של חד״ש–תע״ל (מחקר משני)",
+    btnText: "📖 לצפייה במסמך המחקר ↗"
+  }
+};
+
+function getPartyPlatformDoc(partyId) {
+  if (partyId && PLATFORM_DOC_MAP[partyId]) return PLATFORM_DOC_MAP[partyId];
+  return {
+    url: DRIVE_PLATFORMS_FOLDER_URL,
+    isPrimary: true,
+    label: "מסמך מצע / מקור ב-Drive",
+    btnText: "📄 לצפייה במצע / מסמך המקור ↗"
+  };
+}
+
+// Specific Google Drive Links for all 7 Coalition Agreements
 const COALITION_PDF_MAP = {
   "PARTY-SHAS": "https://drive.google.com/file/d/10UlNZ0uHKU6UGvddFwHnezp1Wo1x16OY/view?usp=sharing",
   "PARTY-UTJ": "https://drive.google.com/file/d/170jZW_rmd1LB1QcZvoIPHDaKsyKS0N1m/view?usp=sharing",
@@ -191,12 +260,12 @@ async function initApp() {
       commitmentsRes,
       executionRes
     ] = await Promise.all([
-      fetch("data/sources.json"),
-      fetch("data/parties.json"),
-      fetch("data/issues.json"),
-      fetch("data/positions.json"),
-      fetch("data/commitments.json"),
-      fetch("data/execution.json")
+      fetch("data/sources.json?v=2.2.0"),
+      fetch("data/parties.json?v=2.2.0"),
+      fetch("data/issues.json?v=2.2.0"),
+      fetch("data/positions.json?v=2.2.0"),
+      fetch("data/commitments.json?v=2.2.0"),
+      fetch("data/execution.json?v=2.2.0")
     ]);
 
     STATE.sources = (await sourcesRes.json()).sources || [];
@@ -359,8 +428,18 @@ function renderPartyScreen(partyId) {
     }
   }
   const sourceQuality = SOURCE_QUALITY_CONFIG[qualityKey] || SOURCE_QUALITY_CONFIG.default;
+  const partyDoc = getPartyPlatformDoc(party.id);
 
   let html = '';
+
+  // Top General Google Drive Folder Banner for Party Platforms
+  html += '<div class="drive-all-agreements-banner">';
+  html += '<a href="' + DRIVE_PLATFORMS_FOLDER_URL + '" target="_blank" rel="noopener noreferrer" class="drive-all-btn">';
+  html += '📂 צפייה בכל מצעי המפלגות ב־Drive ↗';
+  html += '</a>';
+  html += '<span class="drive-all-hint">ספריית מסמכי המצע והמחקר המלאה לקראת תשפ״ז והבחירות לכנסת</span>';
+  html += '</div>';
+
   html += '<div class="party-header-card">';
   html += '<div class="party-title-wrap">';
   html += '<h3 class="party-main-name">' + pName + '</h3>';
@@ -377,7 +456,15 @@ function renderPartyScreen(partyId) {
   }
   html += '</div>';
   html += '</div>';
+
+  // Direct Document Access Button
+  html += '<div class="party-doc-action-wrap">';
+  html += '<a href="' + partyDoc.url + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn primary-doc-btn">';
+  html += partyDoc.btnText;
+  html += '</a>';
   html += '</div>';
+
+  html += '</div>'; // End party-header-card
 
   html += '<div class="positions-grid">';
   STATE.issues.forEach(issue => {
@@ -418,6 +505,9 @@ function renderPartyScreen(partyId) {
       html += '<button class="source-btn" data-source-id="' + pos.sourceId + '" data-citation="' + (pos.sourceCitation || pos.citation || '') + '">';
       html += '🔍 מקור: ' + sourceHumanText;
       html += '</button>';
+      html += '<a href="' + partyDoc.url + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">';
+      html += partyDoc.btnText;
+      html += '</a>';
       html += '</div>';
     }
 
@@ -470,6 +560,15 @@ function renderIssueScreen(issueId) {
   const validParties = getPlatformParties();
 
   let html = '';
+
+  // Top General Google Drive Folder Banner for Party Platforms
+  html += '<div class="drive-all-agreements-banner">';
+  html += '<a href="' + DRIVE_PLATFORMS_FOLDER_URL + '" target="_blank" rel="noopener noreferrer" class="drive-all-btn">';
+  html += '📂 צפייה בכל מצעי המפלגות ב־Drive ↗';
+  html += '</a>';
+  html += '<span class="drive-all-hint">ספריית מסמכי המצע והמחקר המלאה לקראת תשפ״ז והבחירות לכנסת</span>';
+  html += '</div>';
+
   html += '<div class="issue-header-card">';
   html += '<div class="issue-header-title-wrap">';
   html += '<h3 class="issue-main-name">' + isIcon + ' ' + isTitle + '</h3>';
@@ -483,6 +582,7 @@ function renderIssueScreen(issueId) {
     const stanceConfig = (pos && STANCE_CONFIG[pos.stance]) ? STANCE_CONFIG[pos.stance] : STANCE_CONFIG.default;
     const isNotStated = !pos || pos.stance === "not_stated";
     const pName = getPartyName(party);
+    const partyDoc = getPartyPlatformDoc(party.id);
 
     html += '<div class="comparison-card ' + (isNotStated ? 'is-not-stated' : '') + '">';
     html += '<div class="comp-header">';
@@ -509,6 +609,9 @@ function renderIssueScreen(issueId) {
       html += '<button class="source-btn" data-source-id="' + pos.sourceId + '" data-citation="' + (pos.sourceCitation || pos.citation || '') + '">';
       html += '🔍 מקור: ' + sourceHumanText;
       html += '</button>';
+      html += '<a href="' + partyDoc.url + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">';
+      html += partyDoc.btnText;
+      html += '</a>';
       html += '</div>';
     }
 
@@ -828,6 +931,10 @@ function renderAskAnswer(result) {
     result.comparisonList.forEach(comp => {
       const badgeClass = comp.tier === "primary" ? "badge-primary" : "badge-secondary";
       const badgeLabel = comp.tier === "primary" ? "מקור רשמי" : "מחקר משני";
+      const driveUrl = comp.driveUrl || DRIVE_PLATFORMS_FOLDER_URL;
+      const driveBtnText = comp.driveBtnText || (comp.tier === "primary" ? "📄 פתח את מסמך המקור ↗" : "📖 פתח את מסמך המחקר ↗");
+      const cleanSourceDoc = comp.sourceDocLabel || ('תוכנית החינוך של ' + comp.entity);
+
       html += '<div class="answer-comp-card">';
       html += '<div class="answer-comp-header">';
       html += '<span class="answer-comp-name">' + comp.entity + '</span>';
@@ -837,6 +944,10 @@ function renderAskAnswer(result) {
       if (comp.quote) {
         html += '<blockquote class="answer-comp-quote">״' + comp.quote + '״</blockquote>';
       }
+      html += '<div class="answer-comp-footer-clean">';
+      html += '<span class="clause-source-text">מקור: ' + cleanSourceDoc + '</span>';
+      html += '<a href="' + driveUrl + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">' + driveBtnText + '</a>';
+      html += '</div>';
       html += '</div>';
     });
     html += '</div>';
@@ -948,7 +1059,7 @@ function openSourceDrawer(sourceId, citation) {
     html += '<div class="drawer-field"><label>גוף מפרסם:</label><div class="drawer-val">' + (src.publisher || 'לא צוין') + '</div></div>';
     html += '<div class="drawer-field"><label>תאריך פרסום / אימות:</label><div class="drawer-val">' + (src.publicationDate || src.accessDate || 'לא צוין') + '</div></div>';
     
-    const specificPdfUrl = COALITION_PDF_MAP[sourceId] || src.url;
+    const specificPdfUrl = COALITION_PDF_MAP[sourceId] || (src.url || null);
     if (specificPdfUrl) {
       html += '<div class="drawer-field"><label>קישור למסמך המקורי ב-Google Drive:</label><div class="drawer-val"><a href="' + specificPdfUrl + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">📄 לצפייה בהסכם המקורי ↗</a></div></div>';
     }

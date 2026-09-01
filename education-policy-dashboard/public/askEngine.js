@@ -12,7 +12,74 @@
 (function(window) {
   'use strict';
 
+  const DRIVE_PLATFORMS_FOLDER_URL = "https://drive.google.com/drive/folders/1PvVXkV2KIxscPrIxE57-L1T_dF-0UxfM";
   const DRIVE_COALITION_FOLDER_URL = "https://drive.google.com/drive/folders/1GcfQe69kVhqQKPnAUwzIoE0TsrmN3l8_";
+
+  const PLATFORM_DOC_MAP = {
+    "ביחד": {
+      url: "https://drive.google.com/file/d/1M_llcAkxPie446iaqDJKxPMGvKBy6xnV/view?usp=sharing",
+      isPrimary: true,
+      label: "תוכנית החינוך של ביחד (נפתלי בנט)",
+      btnText: "📄 פתח את מסמך המקור ↗"
+    },
+    "ישר!": {
+      url: "https://drive.google.com/file/d/1wsm1YEt5OVkLKWZ_o6D-S1ELH-pDvlK5/view?usp=sharing",
+      isPrimary: true,
+      label: "תוכנית החינוך של ישר! (גדי איזנקוט)",
+      btnText: "📄 פתח את מסמך המקור ↗"
+    },
+    "הדמוקרטים": {
+      url: "https://drive.google.com/file/d/1920qzJmHmqDXlXQq5ezKYfpYEivTUoed/view?usp=sharing",
+      isPrimary: true,
+      label: "תוכנית החינוך של הדמוקרטים (יאיר גולן)",
+      btnText: "📄 פתח את מסמך המקור ↗"
+    },
+    "ישראל ביתנו": {
+      url: "https://drive.google.com/file/d/1c0IHyot1UMBjvknFZdlKwr8a0ocul58X/view?usp=sharing",
+      isPrimary: true,
+      label: "מצע החינוך של ישראל ביתנו (אביגדור ליברמן)",
+      btnText: "📄 פתח את מסמך המקור ↗"
+    },
+    "הציונות הדתית": {
+      url: "https://drive.google.com/file/d/1dTvW2XLV3gdq7Qm_-fsM6BXth_Fmoz0k/view?usp=sharing",
+      isPrimary: true,
+      label: "פרק החינוך של הציונות הדתית",
+      btnText: "📄 פתח את מסמך המקור ↗"
+    },
+    "יש עתיד": {
+      url: "https://drive.google.com/drive/folders/1PvVXkV2KIxscPrIxE57-L1T_dF-0UxfM",
+      isPrimary: true,
+      label: "מצע החינוך של יש עתיד",
+      btnText: "📄 פתח את מסמך המקור ↗"
+    },
+    "רע״ם": {
+      url: "https://drive.google.com/file/d/1kscIl_3H0ZqfoWKwt1SKfJMmFlcUWZ-O/view?usp=sharing",
+      isPrimary: false,
+      label: "עמדות החינוך של רע״ם (מסמך מחקר משני)",
+      btnText: "📖 פתח את מסמך המחקר ↗"
+    },
+    "חד״ש–תע״ל": {
+      url: "https://drive.google.com/file/d/1p1RzD-Z-wy6N_-vCdch_ffIHlp4Bkglm/view?usp=sharing",
+      isPrimary: false,
+      label: "ניתוח מצע החינוך של חד״ש–תע״ל (מחקר משני)",
+      btnText: "📖 פתח את מסמך המחקר ↗"
+    }
+  };
+
+  function getPlatformDocInfo(entity) {
+    if (!entity) return null;
+    for (const [k, v] of Object.entries(PLATFORM_DOC_MAP)) {
+      if (entity.includes(k) || k.includes(entity)) {
+        return v;
+      }
+    }
+    return {
+      url: DRIVE_PLATFORMS_FOLDER_URL,
+      isPrimary: true,
+      label: "תוכנית החינוך של " + entity,
+      btnText: "📄 פתח את מסמך המקור ↗"
+    };
+  }
 
   const HUMAN_SOURCE_TITLES = {
     "KB-COAL-LIKUD-SHAS-PDF": "הסכם הליכוד–ש״ס",
@@ -79,93 +146,73 @@
       name: "הגיל הרך (0–3)",
       keywords: ["0-3", "0–3", "גיל הרך", "הגיל הרך", "פעוטות", "מעונות", "מעונות יום", "חינוך חינם מגיל 0", "חינם 0-3", "נקודות זיכוי", "מס הכנסה", "סבסוד מעונות", "סבסוד אברכים"]
     },
+    differential_budget: {
+      id: "differential_budget",
+      name: "תקצוב דיפרנציאלי ושוויון",
+      keywords: ["תקצוב דיפרנציאלי", "דיפרנציאלי", "שוויון", "פערים", "טיפוח", "מדד טיפוח", "סל שעות", "הסעות", "מאצינג", "מצ'ינג", "פריפריה", "בינוי כיתות"]
+    },
     special_education: {
       id: "special_education",
-      name: "חינוך מיוחד (חנ״מ)",
-      keywords: ["חינוך מיוחד", "חנ\"מ", "חנמ", "תלמידים זכאים", "ועדות אפיון", "הסעות חנ\"מ", "סייעות", "פסיכולוגים", "טיפולים פארא-רפואיים", "418,385", "גידול חנ\"מ"]
+      name: "חינוך מיוחד והסעות",
+      keywords: ["חינוך מיוחד", "חנ\"מ", "חנמ", "שילוב", "סייעות שילוב", "הסעות", "מאצינג חנ\"מ"]
     },
-    jewish_identity_and_gefen: {
-      id: "jewish_identity_and_gefen",
-      name: "זהות יהודית, תוכניות גפ״ן ורשות נעם",
-      keywords: ["גפ\"ן", "גפן", "זהות יהודית", "נעם", "נועם", "אבי מעוז", "מעוז", "שבילי מורשת", "תנ\"ך", "תנך", "מורשת", "הדתה", "תוכניות חיצוניות", "רשות לזהות", "רשות נעם", "סעיף 34", "סעיף 35", "סעיף 36", "רצפת 4%", "סמינריונים", "גרעינים תורניים", "תרבות יהודית", "דרוקמן"]
+    jewish_identity_gefen: {
+      id: "jewish_identity_gefen",
+      name: "זהות יהודית, גפ״ן ותוכניות חיצוניות",
+      keywords: ["זהות יהודית", "זהות לאומית", "אבי מעוז", "נעם", "נועם", "גפן", "גפ\"ן", "תוכניות חיצוניות", "שקיפות הורים", "רשות לזהות"]
     },
-    chareidi_networks_and_ptor: {
-      id: "chareidi_networks_and_ptor",
-      name: "רשתות חינוך חרדיות ומוסדות תורניים",
-      keywords: ["חינוך עצמאי", "מעיין החינוך", "בני יוסף", "ישיבות", "כוללים", "מוסדות תורניים", "מוסדות פטור", "אגודת ישראל", "דגל התורה", "1.385", "1.385 מיליארד", "321 מיליון"]
-    },
-    school_construction_and_physical: {
-      id: "school_construction_and_physical",
-      name: "בינוי מוסדות חינוך וכיתות לימוד",
-      keywords: ["בינוי", "כיתות", "בינוי מוסדות", "בינוי כיתות", "מבנים", "קרקעות", "הקצאת קרקע", "הסכמי גג", "מבנים יבילים", "שיפוצים"]
-    },
-    informal_education_and_youth: {
-      id: "informal_education_and_youth",
-      name: "חינוך בלתי-פורמלי ותנועות נוער",
-      keywords: ["בלתי-פורמלי", "בלתי פורמלי", "תנועות נוער", "נוער", "בני עקיבא", "אריאל", "עזרא", "של\"ף", "מכינות", "מכינות קדם צבאיות", "מועדוני נוער"]
-    },
-    feeding_and_transport: {
-      id: "feeding_and_transport",
-      name: "הסעות תלמידים ומפעל ההזנה",
-      keywords: ["הסעות", "הסעות תלמידים", "הזנה", "מפעל ההזנה", "ארוחה חמה", "אבטחת מוסדות"]
-    },
-    contingency_and_war_recovery: {
-      id: "contingency_and_war_recovery",
-      name: "מפונים ושיקום מוסדות במלחמה",
-      keywords: ["מפונים", "תלמידים מפונים", "חרבות ברזל", "שיקום הצפון", "קו עימות", "תקומה"]
-    },
-    budget_execution_and_transfers: {
-      id: "budget_execution_and_transfers",
-      name: "תקציבים, כספים קואליציוניים ומבחן ביצוע",
-      keywords: ["ביצוע", "תקציב", "כספים קואליציוניים", "העברות", "חשכ\"ל", "ועדת הכספים", "4.5 מיליארד", "92 מיליארד", "580 מיליון", "321.4 מיליון", "100 מיליון", "70 מיליון", "20 מיליון", "10 מיליון", "סכום תקציבי", "סכומים", "חלקי", "בוצע חלקית", "טרם נבדקו"]
+    technology_and_ai: {
+      id: "technology_and_ai",
+      name: "חדשנות, בינה מלאכותית (AI) ומצוינות",
+      keywords: ["ai", "בינה מלאכותית", "טכנולוגיה", "מצוינות", "stem", "מדעים", "סייבר", "חדשנות"]
     }
   };
 
-  // Entity dictionary
+  // Entity configuration & Aliases
   const ENTITY_CONFIG = {
-    "ביחד (נפתלי בנט)": {
-      aliases: ["ביחד", "נפתלי בנט", "בנט", "מפלגת ביחד", "beyachad", "bennett"],
+    "ביחד": {
+      aliases: ["ביחד", "בנט", "נפתלי בנט", "beyachad", "bennett"],
       shortName: "ביחד (בנט)"
     },
-    "ישר! (גדי איזנקוט)": {
+    "ישר!": {
       aliases: ["ישר", "ישר!", "איזנקוט", "גדי איזנקוט", "yashar", "eisenkot"],
       shortName: "ישר! (איזנקוט)"
     },
-    "הדמוקרטים (יאיר גולן)": {
-      aliases: ["הדמוקרטים", "יאיר גולן", "גולן", "דמוקרטים", "עבודה", "מרצ", "democrats", "golan"],
+    "הדמוקרטים": {
+      aliases: ["הדמוקרטים", "דמוקרטים", "יאיר גולן", "גולן", "העבודה", "מרצ", "democrats"],
       shortName: "הדמוקרטים (גולן)"
     },
-    "ישראל ביתנו (אביגדור ליברמן)": {
-      aliases: ["ישראל ביתנו", "ליברמן", "אביגדור ליברמן", "beytenu", "lieberman"],
+    "ישראל ביתנו": {
+      aliases: ["ישראל ביתנו", "ליברמן", "אביגדור ליברמן", "yisrael beytenu", "liberman"],
       shortName: "ישראל ביתנו (ליברמן)"
     },
-    "יש עתיד (יאיר לפיד)": {
+    "יש עתיד": {
       aliases: ["יש עתיד", "לפיד", "יאיר לפיד", "yesh atid", "lapid"],
       shortName: "יש עתיד (לפיד)"
     },
     "הליכוד": {
-      aliases: ["הליכוד", "ליכוד", "נתניהו", "בנימין נתניהו", "יואב קיש", "קיש", "הממשלה ה-37", "ממשלת ישראל", "likud", "netanyahu", "kisch"],
-      shortName: "הליכוד / ממשלה 37"
+      aliases: ["הליכוד", "ליכוד", "נתניהו", "קיש", "יואב קיש", "likud", "netanyahu"],
+      shortName: "הליכוד (נתניהו)"
     },
     "ש״ס": {
-      aliases: ["שס", "ש\"ס", "ש״ס", "בני יוסף", "מעיין החינוך", "מעיין החינוך התורני", "דרעי", "shas"],
+      aliases: ["שס", "ש\"ס", "ש״ס", "דרעי", "בני יוסף", "מעיין החינוך", "shas"],
       shortName: "ש״ס"
     },
     "יהדות התורה": {
-      aliases: ["יהדות התורה", "החינוך העצמאי", "מרכז החינוך העצמאי", "אגודת ישראל", "דגל התורה", "גפני", "גולדקנופף", "מוסדות פטור", "utj"],
+      aliases: ["יהדות התורה", "גולדקנופף", "גפני", "החינוך העצמאי", "אגודת ישראל", "דגל התורה", "utj"],
       shortName: "יהדות התורה"
     },
     "הציונות הדתית": {
-      aliases: ["הציונות הדתית", "ציונות דתית", "סמוטריץ", "סמוטריץ'", "חמ\"ד", "חמד", "סעיף 167", "דרוקמן"],
-      shortName: "הציונות הדתית"
+      aliases: ["הציונות הדתית", "ציונות דתית", "סמוטריץ", "סמוטריץ'", "חמ\"ד", "חמד", "דרוקמן", "religious zionism"],
+      shortName: "הציונות הדתית (סמוטריץ')"
     },
     "עוצמה יהודית": {
-      aliases: ["עוצמה יהודית", "בן גביר", "איתמר בן גביר"],
+      aliases: ["עוצמה יהודית", "בן גביר", "בן-גביר", "otzma yehudit", "ben gvir"],
       shortName: "עוצמה יהודית"
     },
     "נעם": {
-      aliases: ["נעם", "נועם", "אבי מעוז", "מעוז", "הרשות לזהות"],
-      shortName: "נעם (אבי מעוז)"
+      aliases: ["נעם", "נועם", "אבי מעוז", "מעוז", "noam"],
+      shortName: "סיעת נעם (אבי מעוז)"
     },
     "הימין הממלכתי": {
       aliases: ["הימין הממלכתי", "גדעון סער", "סער"],
@@ -198,11 +245,11 @@
       if (this.isLoaded) return;
       try {
         const [cRes, pRes, mRes, eRes, clRes] = await Promise.all([
-          fetch("data/knowledge/claims.json").then(r => r.json()),
-          fetch("data/knowledge/policy-positions.json").then(r => r.json()),
-          fetch("data/knowledge/commitments.json").then(r => r.json()),
-          fetch("data/knowledge/execution-evidence.json").then(r => r.json()),
-          fetch("data/knowledge/coalition-education-clauses.json").then(r => r.json())
+          fetch("data/knowledge/claims.json?v=2.2.0").then(r => r.json()),
+          fetch("data/knowledge/policy-positions.json?v=2.2.0").then(r => r.json()),
+          fetch("data/knowledge/commitments.json?v=2.2.0").then(r => r.json()),
+          fetch("data/knowledge/execution-evidence.json?v=2.2.0").then(r => r.json()),
+          fetch("data/knowledge/coalition-education-clauses.json?v=2.2.0").then(r => r.json())
         ]);
 
         this.claims = cRes.claims || [];
@@ -251,129 +298,111 @@
 
       // Check topics
       for (const [topicKey, config] of Object.entries(TOPIC_CONFIG)) {
-        let score = 0;
         for (const kw of config.keywords) {
           const normKw = this.normalizeText(kw);
           if (norm.includes(normKw)) {
-            score++;
+            matchedTopics.push({ topicKey, name: config.name });
+            break;
           }
-        }
-        if (score > 0) {
-          matchedTopics.push({ topicKey, name: config.name, score });
         }
       }
 
-      matchedTopics.sort((a, b) => b.score - a.score);
+      // Intent classification
+      const isComparison = (matchedEntities.length >= 2) || norm.includes("הבדל") || norm.includes("הבדלים") || norm.includes("השווא") || norm.includes("מול") || norm.includes("לעומת") || (norm.includes("מצעי המפלגות") && norm.includes("נושא"));
+      const isExecutionQuery = norm.includes("בוצע") || norm.includes("ביצוע") || norm.includes("יושם") || norm.includes("הובטח") || norm.includes("חלקי") || norm.includes("הוקפא") || norm.includes("חסם") || norm.includes("מבחן הביצוע") || norm.includes("התחייבויות");
+      const isPartialExecutionQuery = isExecutionQuery && (norm.includes("חלקית") || norm.includes("חלקי") || norm.includes("הוקפאו") || norm.includes("אילו התחייבויות"));
+      const isBudgetQuery = norm.includes("תקציב") || norm.includes("כסף") || norm.includes("מיליון") || norm.includes("מיליארד") || norm.includes("שקל") || norm.includes("סכום") || norm.includes("עלות");
+      const isMunicipalQuery = norm.includes("רשות") || norm.includes("רשויות") || norm.includes("שלטון מקומי") || norm.includes("סמכויות") || norm.includes("ביזור") || norm.includes("מוניציפל");
+      const isClausesQuery = norm.includes("סעיף") || norm.includes("סעיפים") || norm.includes("הסכם") || norm.includes("הסכמים");
 
-      // Specific intent classification
-      const isChareidiComparison = (norm.includes("שס") || norm.includes("ש״ס")) && (norm.includes("יהדות התורה") || norm.includes("אגודת ישראל")) && (norm.includes("הבדל") || norm.includes("הבדלים") || norm.includes("השווא") || norm.includes("חרדי"));
-      const isCoreComparison = (norm.includes("ליבה") || norm.includes("לימודי ליבה")) && (norm.includes("הבדל") || norm.includes("הבדלים") || norm.includes("השווא") || norm.includes("מצעי") || norm.includes("מפלגות") || norm.includes("עמדות"));
-      const isPartialExecutionQuery = (norm.includes("בוצעו רק חלקית") || norm.includes("בוצע חלקית") || norm.includes("חלקי") || norm.includes("חלקית") || norm.includes("הוקפא")) && (norm.includes("התחייב") || norm.includes("סעיף") || norm.includes("קואליציונ"));
-      const isBudgetQuery = norm.includes("כמה כסף") || norm.includes("סכום תקציבי") || norm.includes("סכומים") || norm.includes("תקציב נקוב") || norm.includes("עלות תקציבית") || (norm.includes("תקציב") && norm.includes("הסכמים"));
-      const isComparison = matchedEntities.length >= 2 || norm.includes("הבדל") || norm.includes("הבדלים") || norm.includes("השווא") || norm.includes("מי מציע") || norm.includes("הכי הרבה");
-      const isExecutionQuery = norm.includes("בוצע") || norm.includes("מה קרה") || norm.includes("בפועל") || norm.includes("התחייב") || norm.includes("תוצאות") || norm.includes("מבחן הביצוע") || norm.includes("טרם נבדקו");
-      const isMunicipalQuery = norm.includes("רשויות") || norm.includes("רשות מקומית") || norm.includes("שלטון מקומי") || norm.includes("מוניציפל") || norm.includes("ארנונה") || norm.includes("הסעות") || norm.includes("בינוי");
-      const isClausesQuery = norm.includes("סעיף") || norm.includes("סעיפי") || norm.includes("הסכם") || norm.includes("הסכמים") || norm.includes("הסכם קואליציוני");
+      // Specific core scenarios
+      const isChareidiComparison = (norm.includes("שס") || norm.includes("ש\"ס") || norm.includes("ש״ס")) && (norm.includes("יהדות התורה") || norm.includes("גולדקנופף") || norm.includes("גפני") || norm.includes("החינוך החרדי"));
+      const isCoreComparison = norm.includes("ליבה") || norm.includes("ליב\"ה") || norm.includes("לימודי ליבה");
 
       return {
         rawQuery: query,
         normalizedQuery: norm,
         entities: matchedEntities,
         topics: matchedTopics,
-        isChareidiComparison,
-        isCoreComparison,
-        isPartialExecutionQuery,
-        isBudgetQuery,
         isComparison,
         isExecutionQuery,
+        isPartialExecutionQuery,
+        isBudgetQuery,
         isMunicipalQuery,
-        isClausesQuery
+        isClausesQuery,
+        isChareidiComparison,
+        isCoreComparison
       };
     }
 
     /**
-     * Retrieve matching items across all 5 knowledge datasets
+     * Retrieve matching knowledge units across all 5 datasets
      */
     retrieve(parsed) {
-      const qTokens = parsed.normalizedQuery.split(/\s+/).filter(t => t.length > 1);
-      const matchedClaims = [];
-      const matchedPositions = [];
-      const matchedCommitments = [];
-      const matchedEvidence = [];
-      const matchedClauses = [];
+      const { normalizedQuery, entities, topics, isComparison, isExecutionQuery } = parsed;
+      const entityNames = entities.map(e => e.entityName);
+      const topicKeys = topics.map(t => t.topicKey);
 
-      const topTopicKeys = parsed.topics.map(t => t.topicKey);
-      const topEntityNames = parsed.entities.map(e => e.entityName);
-
-      // 1. Filter Claims
-      this.claims.forEach(c => {
+      // Score and filter claims
+      const scoredClaims = this.claims.map(c => {
         let score = 0;
-        const normText = this.normalizeText(c.claim_text + " " + c.entity + " " + (c.tags || []).join(" "));
-        if (topEntityNames.some(en => c.entity.includes(en) || en.includes(c.entity))) score += 10;
-        if (topTopicKeys.includes(c.topic)) score += 8;
-        qTokens.forEach(t => { if (normText.includes(t)) score += 2; });
-        if (c.epistemic_tier === "primary") score += 1;
-        if (score >= 4) matchedClaims.push({ item: c, score, type: "claim" });
-      });
+        const normClaim = this.normalizeText(c.claim_text + " " + (c.verbatim_quote || ""));
+        if (entityNames.includes(c.entity)) score += 5;
+        if (topicKeys.includes(c.topic)) score += 4;
+        if (c.epistemic_tier === "primary") score += 3;
+        if (normalizedQuery.split(' ').some(w => w.length > 2 && normClaim.includes(w))) score += 2;
+        return { item: c, score, type: "claim" };
+      }).filter(s => s.score > 2).sort((a, b) => b.score - a.score);
 
-      // 2. Filter Policy Positions
-      this.positions.forEach(p => {
+      // Score and filter policy positions
+      const scoredPositions = this.positions.map(p => {
         let score = 0;
-        const normText = this.normalizeText(p.summary + " " + p.entity + " " + (p.verbatim_quotes || []).join(" "));
-        if (topEntityNames.some(en => p.entity.includes(en) || en.includes(p.entity))) score += 12;
-        if (topTopicKeys.includes(p.topic)) score += 10;
-        qTokens.forEach(t => { if (normText.includes(t)) score += 2; });
-        if (p.epistemic_tier === "primary") score += 1;
-        if (score >= 4) matchedPositions.push({ item: p, score, type: "position" });
-      });
+        const normPos = this.normalizeText(p.position_title + " " + p.summary);
+        if (entityNames.includes(p.entity)) score += 6;
+        if (topicKeys.includes(p.topic)) score += 5;
+        if (p.epistemic_tier === "primary") score += 3;
+        if (normalizedQuery.split(' ').some(w => w.length > 2 && normPos.includes(w))) score += 2;
+        return { item: p, score, type: "position" };
+      }).filter(s => s.score > 2).sort((a, b) => b.score - a.score);
 
-      // 3. Filter Commitments
-      this.commitments.forEach(m => {
+      // Score and filter commitments
+      const scoredCommitments = this.commitments.map(m => {
         let score = 0;
-        const normText = this.normalizeText(m.commitment_text + " " + m.beneficiary + " " + m.obligor + " " + m.notes);
-        if (topEntityNames.some(en => (m.beneficiary + " " + m.obligor).includes(en))) score += 10;
-        if (topTopicKeys.includes(m.topic)) score += 8;
-        if (parsed.isExecutionQuery) score += 4;
-        qTokens.forEach(t => { if (normText.includes(t)) score += 2; });
-        if (score >= 4) matchedCommitments.push({ item: m, score, type: "commitment" });
-      });
+        const normCom = this.normalizeText(m.commitment_title + " " + m.summary + " " + (m.clause_reference || ""));
+        if (entityNames.includes(m.entity)) score += 6;
+        if (topicKeys.includes(m.topic)) score += 5;
+        if (isExecutionQuery) score += 4;
+        if (normalizedQuery.split(' ').some(w => w.length > 2 && normCom.includes(w))) score += 2;
+        return { item: m, score, type: "commitment" };
+      }).filter(s => s.score > 2).sort((a, b) => b.score - a.score);
 
-      // 4. Filter Execution Evidence
-      this.evidence.forEach(e => {
+      // Score and filter execution evidence
+      const scoredEvidence = this.evidence.map(e => {
         let score = 0;
-        const normText = this.normalizeText(e.description + " " + e.entity_evaluated + " " + e.planned_vs_actual + " " + e.municipal_implication);
-        if (topEntityNames.some(en => e.entity_evaluated.includes(en))) score += 10;
-        if (topTopicKeys.includes(e.topic)) score += 8;
-        if (parsed.isExecutionQuery) score += 6;
-        if (parsed.isMunicipalQuery && e.municipal_implication) score += 8;
-        qTokens.forEach(t => { if (normText.includes(t)) score += 2; });
-        if (score >= 4) matchedEvidence.push({ item: e, score, type: "evidence" });
-      });
+        const normEv = this.normalizeText(e.finding_text + " " + (e.notes || ""));
+        if (entityNames.includes(e.entity)) score += 5;
+        if (topicKeys.includes(e.topic)) score += 4;
+        if (isExecutionQuery) score += 6;
+        if (normalizedQuery.split(' ').some(w => w.length > 2 && normEv.includes(w))) score += 2;
+        return { item: e, score, type: "evidence" };
+      }).filter(s => s.score > 2).sort((a, b) => b.score - a.score);
 
-      // 5. Filter Coalition Clauses (51 full clauses)
-      this.coalitionClauses.forEach(cl => {
+      // Score and filter coalition clauses
+      const scoredClauses = this.coalitionClauses.map(cl => {
         let score = 0;
-        const normText = this.normalizeText(cl.summary + " " + cl.verbatim_text + " " + cl.party + " " + cl.section_number + " " + cl.responsible_body);
-        if (topEntityNames.some(en => cl.party.includes(en) || en.includes(cl.party))) score += 12;
-        if (topTopicKeys.includes(cl.education_topic)) score += 10;
-        if (parsed.isClausesQuery) score += 6;
-        if (parsed.isBudgetQuery && cl.budget_amount_nis) score += 8;
-        qTokens.forEach(t => { if (normText.includes(t)) score += 2; });
-        if (score >= 4) matchedClauses.push({ item: cl, score, type: "coalition_clause" });
-      });
-
-      matchedClaims.sort((a, b) => b.score - a.score);
-      matchedPositions.sort((a, b) => b.score - a.score);
-      matchedCommitments.sort((a, b) => b.score - a.score);
-      matchedEvidence.sort((a, b) => b.score - a.score);
-      matchedClauses.sort((a, b) => b.score - a.score);
+        const normCl = this.normalizeText(cl.summary + " " + cl.verbatim_text + " " + cl.section_number);
+        if (entityNames.some(en => cl.party.includes(en) || en.includes(cl.party))) score += 6;
+        if (topicKeys.some(tk => cl.education_topic === tk)) score += 5;
+        if (normalizedQuery.split(' ').some(w => w.length > 2 && normCl.includes(w))) score += 3;
+        return { item: cl, score, type: "clause" };
+      }).filter(s => s.score > 3).sort((a, b) => b.score - a.score);
 
       return {
-        claims: matchedClaims.map(m => m.item),
-        positions: matchedPositions.map(m => m.item),
-        commitments: matchedCommitments.map(m => m.item),
-        evidence: matchedEvidence.map(m => m.item),
-        coalitionClauses: matchedClauses.map(m => m.item)
+        claims: scoredClaims.map(s => s.item),
+        positions: scoredPositions.map(s => s.item),
+        commitments: scoredCommitments.map(s => s.item),
+        evidence: scoredEvidence.map(s => s.item),
+        coalitionClauses: scoredClauses.map(s => s.item)
       };
     }
 
@@ -430,9 +459,9 @@
       const norm = parsed.normalizedQuery;
 
       // =========================================================================
-      // SCENARIO 1: Comparison between Shas and UTJ on Chareidi Education
+      // SCENARIO 1: Chareidi Education Comparison (ש״ס מול יהדות התורה בחינוך החרדי)
       // =========================================================================
-      if (parsed.isChareidiComparison || ((norm.includes("שס") || norm.includes("ש״ס")) && (norm.includes("יהדות התורה") || norm.includes("אגודת ישראל")))) {
+      if (parsed.isChareidiComparison || ((norm.includes("שס") || norm.includes("ש״ס")) && norm.includes("יהדות התורה"))) {
         summaryParagraphs = [
           "השוואת ההסכמים הקואליציוניים של ש״ס ויהדות התורה (הממשלה ה-37) מלמדת על מכנה משותף אידיאולוגי-תקציבי רחב ביותר, לצד הבדלי מוקד ארגוניים, מגזריים וגיאוגרפיים מובהקים.",
           "**המכנה המשותף:** שתי הסיעות דרשו והשיגו התחייבות להשוואת שכר מוחלטת של עובדי ההוראה ברשתות החינוך החרדיות לתנאי 'אופק חדש' ו'עוז לתמורה' (580 מיליון ₪ לכל רשת), תקצוב מוסדות הפטור בשיעור 55% ללא התניה בפיקוח או במבחנים חיצוניים (321.4 מיליון ₪), הגדלת תקציב הישיבות והכוללים (1.385 מיליארד ₪ בבסיס התקציב), והשבת סבסוד מעונות יום לאברכים.",
@@ -447,17 +476,21 @@
         ];
 
         limitations = "מההסכמים הקואליציוניים בלבד לא ניתן לקבוע את שיעור הביצוע הפרטני בתוך כל בית ספר או את התפלגות השכר הסופית למורים, שכן יישום אופק חדש נתקל בהגבלות חשבונאיות ועתירות משפטיות.";
-        municipalSection = "השלכות מוניציפליות: סעיפי שתי הסיעות מטילים על הרשויות המקומיות חובות הקצאת מבנים וקרקעות ומחייבים מימון ממשלתי ישיר להסעות ולמפעל ההזנה.";
 
-        coalitionClausesList = this.coalitionClauses.filter(cl => cl.party.includes("ש״ס") || cl.party.includes("יהדות התורה")).slice(0, 8);
+        coalitionClausesList = this.coalitionClauses.filter(cl => 
+          (cl.party === "ש״ס" || cl.party === "יהדות התורה" || cl.party === "אגודת ישראל") &&
+          (cl.education_topic === "chareidi_wages_and_parity" || cl.education_topic === "core_curriculum" || cl.education_topic === "yeshivot_and_budget")
+        ).slice(0, 8);
       }
 
       // =========================================================================
-      // SCENARIO 2: Partially Executed Commitments
+      // SCENARIO 2: Partial Execution Analysis (התחייבויות שבוצעו חלקית)
       // =========================================================================
-      else if (parsed.isPartialExecutionQuery || norm.includes("בוצעו רק חלקית") || norm.includes("בוצע חלקית")) {
+      else if (parsed.isPartialExecutionQuery || (norm.includes("בוצעו") && norm.includes("חלקית")) || norm.includes("התחייבויות קואליציוניות שבוצעו רק חלקית")) {
+        const partialClauses = this.coalitionClauses.filter(cl => cl.execution_status === "partially_implemented");
+        
         summaryParagraphs = [
-          "בדיקת מבחן הביצוע (2023–2026) מול מסמכי התקציב, דוחות החשב הכללי והחלטות הממשלה מעלה כי **13 התחייבויות קואליציוניות בתחום החינוך בוצעו רק באופן חלקי** (`partially_implemented`).",
+          `בדיקת מבחן הביצוע (2023–2026) מול מסמכי התקציב, דוחות החשב הכללי והחלטות הממשלה מעלה כי **${partialClauses.length} התחייבויות קואליציוניות בתחום החינוך בוצעו רק באופן חלקי** (\`partially_implemented\`).`,
           "הפערים הבולטים בין נוסח ההסכם לבין הביצוע בפועל נובעים משלושה חסמים עיקריים: מחסומים משפטיים ועתירות לבג״ץ, דרישות בקרה חשבונאית של משרד האוצר, והסטת תקציבים בעקבות מלחמת חרבות ברזל.",
           "שלושת המוקדים המרכזיים שיושמו חלקית הם: (1) רפורמת 'אופק חדש' ברשתות החרדיות (החינוך העצמאי ובני יוסף) שהוקפאה והותנתה בפיקוח שכר ישיר; (2) סבסוד מעונות יום לאברכים שניתן באופן חלקי בלבד כנקודות זיכוי להורים עובדים; (3) הרשות לזהות לאומית-יהודית (נעם) שתקציבה קוצץ משמעותית וסמכויותיה על מאגר גפ״ן הוגבלו."
         ];
@@ -474,21 +507,13 @@
           text: "למרות ההתחייבות החד-משמעית בהסכמים להשוואת שכר מלאה, חוות דעת של משרד המשפטים ודוחות החשכ״ל מנעו העברת כספים ללא מנגנון פיקוח על שעות שהייה וליווי פרטני."
         };
 
-        coalitionClausesList = this.coalitionClauses.filter(cl => cl.execution_status === "partially_implemented");
-        executionList = this.evidence.filter(e => e.divergence_type && e.divergence_type.includes("partial")).map(e => ({
-          beneficiary: e.entity_evaluated,
-          title: e.topic,
-          status: "בוצע חלקית",
-          statusClass: "status-partial",
-          budget: e.budget_nis,
-          notes: e.description
-        }));
+        coalitionClausesList = partialClauses;
       }
 
       // =========================================================================
-      // SCENARIO 3: Party Platform Differences on Core Curriculum (לימודי ליבה)
+      // SCENARIO 3: Core Curriculum Platform Differences (הבדלים במצעים בלימודי ליבה)
       // =========================================================================
-      else if (parsed.isCoreComparison || (norm.includes("ליבה") && (norm.includes("הבדל") || norm.includes("השווא") || norm.includes("מצע")))) {
+      else if (parsed.isCoreComparison && (parsed.isComparison || norm.includes("מצע") || norm.includes("הבדל"))) {
         summaryParagraphs = [
           "בנושא לימודי הליבה מתקיימים במערכת הפוליטית שלושה מודלים מתחרים ומנוגדים לחלוטין, המשקפים תפיסות עולם שונות על תפקיד המדינה, סמכות הפיקוח והאוטונומיה המגזרית.",
           "**מודל 1: אכיפה והתניה תקציבית מלאה (100% התניה) — יש עתיד, הדמוקרטים, ישר! וישראל ביתנו:** מפלגות אלו דורשות לימודי ליבה מלאים (מתמטיקה, אנגלית, מדעים) בכל מוסד מתוקצב, תוך הצבת סנקציות כספיות ברורות ושלילה מוחלטת של תקציבי מדינה ממוסדות שיסרבו לעמוד בחובת הלימודים והמבחנים הארציים (מיצ״ב) והבינלאומיים (PISA).",
@@ -509,11 +534,15 @@
         };
 
         this.positions.filter(p => p.topic === "core_curriculum").forEach(p => {
+          const docInfo = getPlatformDocInfo(p.entity);
           comparisonList.push({
             entity: p.entity,
             stanceText: p.summary,
             quote: p.verbatim_quotes ? p.verbatim_quotes[0] : null,
-            tier: p.epistemic_tier
+            tier: p.epistemic_tier,
+            driveUrl: docInfo ? docInfo.url : null,
+            driveBtnText: docInfo ? docInfo.btnText : null,
+            sourceDocLabel: docInfo ? docInfo.label : null
           });
         });
 
@@ -601,11 +630,15 @@
           coalitionClausesList = coalitionClauses.slice(0, 6);
         } else if (positions.length > 0) {
           positions.slice(0, 4).forEach(p => {
+            const docInfo = getPlatformDocInfo(p.entity);
             comparisonList.push({
               entity: p.entity,
               stanceText: p.summary,
               quote: p.verbatim_quotes ? p.verbatim_quotes[0] : null,
-              tier: p.epistemic_tier
+              tier: p.epistemic_tier,
+              driveUrl: docInfo ? docInfo.url : null,
+              driveBtnText: docInfo ? docInfo.btnText : null,
+              sourceDocLabel: docInfo ? docInfo.label : null
             });
           });
         }

@@ -1,53 +1,79 @@
 {
   "$schema": "./schemas/knowledge-base-gaps.schema.json",
   "metadata": {
-    "title": "דוח פערים, כפילויות ובקרת איכות — בסיס הידע מפת החינוך 2026",
-    "version": "1.0.0",
-    "generatedAt": "2026-09-01T13:42:00+03:00",
+    "title": "דוח פערים, כפילויות ובקרת איכות — בסיס הידע מפת החינוך 2026 (Audit Verified)",
+    "version": "1.1.0",
+    "generatedAt": "2026-09-01T13:46:00+03:00",
     "totalGapsIdentified": 6,
-    "qualityStatus": "passed_with_notices"
+    "totalDuplicatePairs": 4,
+    "qualityStatus": "audit_verified"
   },
   "duplicate_and_variant_files": [
     {
+      "pair_id": "DUP-001",
       "entity": "ישראל ביתנו 2026",
       "files": [
-        "מפלגות מצע החינוך של ישראל ביתנו 2026.pdf",
-        "מפלגות מצע החינוך של ישראל ביתנו 2026.docx"
+        "מפלגות מצע החינוך של ישראל ביתנו 2026.pdf (דשבורד 1מצעי המפלגות)",
+        "מפלגות מצע החינוך של ישראל ביתנו 2026.docx (דשבורד 1מצעי המפלגות)"
       ],
-      "finding": "קיימות שתי גרסאות (PDF ו-Word) בעלות תוכן זהה. ה-PDF משמש כמקור התקף והחתום, וה-Word משמש כקובץ עבודה פנימי.",
+      "finding": "קיימות שתי גרסאות בעלות תוכן זהה. ה-PDF משמש כמקור התקף והחתום, וה-Word משמש כקובץ עבודה פנימי.",
       "recommendation": "שמירה על ה-PDF כמקור האמת הראשוני (Primary Source of Truth)."
     },
     {
+      "pair_id": "DUP-002",
       "entity": "ישר! (גדי איזנקוט) 2026",
       "files": [
-        "מפלגות תוכניות החינוך ישר לקראת הבחירות תשפז 2026-7.pdf",
-        "מפלגות תוכניות החינוך ישר לקראת הבחירות תשפז 2026-7.docx"
+        "מפלגות תוכניות החינוך ישר לקראת הבחירות תשפז 2026-7.pdf (דשבורד 1מצעי המפלגות)",
+        "מפלגות תוכניות החינוך ישר לקראת הבחירות תשפז 2026-7.docx (תיקיית האב)"
       ],
       "finding": "גרסת PDF רשמית לצד גרסת Word פנימית. תוכן זהה של 8 פרקי המדיניות.",
       "recommendation": "אינדוקס ה-PDF כמקור ראשוני והגדרת ה-Word כגרסת טיוטה/עבודה."
     },
     {
-      "entity": "רע״ם וחד״ש–תע״ל (מקורות משניים)",
+      "pair_id": "DUP-003",
+      "entity": "רע״ם (מקור משני)",
       "files": [
-        "מפלגות רעם.pdf ו-מפלגות רעם.docx",
-        "מפלגות- חדש תעל החינוך על בסיס המצע.pdf ו-מפלגות- חדש תעל החינוך על בסיס המצע.docx"
+        "מפלגות רעם.pdf (דשבורד 1מצעי המפלגות)",
+        "מפלגות רעם.docx (תיקיית האב)"
       ],
-      "finding": "קבצי סקירה מחקרית קיימים בפורמטי PDF ו-DOCX בתיקיות המחקר המשני.",
-      "recommendation": "הגדרתם כמקורות משניים לצורך רקע והקשר בלבד."
+      "finding": "קובץ סקירה מחקרית קיים בפורמט PDF ובפורמט Word.",
+      "recommendation": "הגדרת ה-PDF כקובץ היחוס וה-Word כקובץ עבודה."
+    },
+    {
+      "pair_id": "DUP-004",
+      "entity": "חד״ש–תע״ל (מקור משני)",
+      "files": [
+        "מפלגות- חדש תעל החינוך על בסיס המצע.pdf (דשבורד 1מצעי המפלגות)",
+        "מפלגות- חדש תעל החינוך על בסיס המצע.docx (תיקיית האב)"
+      ],
+      "finding": "קובץ ניתוח מצע קיים בפורמט PDF ובפורמט Word.",
+      "recommendation": "הגדרת ה-PDF כקובץ היחוס וה-Word כקובץ עבודה."
     }
   ],
+  "provenance_audit_summary": {
+    "total_records_in_index": 26,
+    "directly_verified_in_synchronized_folder": 22,
+    "preexisting_project_copies_only": 4,
+    "physical_files_breakdown_in_local_folder": {
+      "party_platforms_folder": 10,
+      "coalition_agreements_folder": 7,
+      "parent_directory_files": 5
+    }
+  },
   "in_depth_research_demarcation": {
     "studies_identified": [
       {
         "source_id": "KB-RES-OPENING-5787-DOCX",
         "title": "א-מחקר עומק פתיחת שנת הלימודים תשפז 2026-7.docx",
         "tier": "secondary_research",
+        "provenance_verified": true,
         "purpose": "מפת כוח אדם, פילוח דמוגרפי, פערי רשויות, והשוואת מצעים של ביחד, ישר והדמוקרטים."
       },
       {
         "source_id": "KB-RES-COAL-EVAL-DOCX",
         "title": "א-הערכת מדיניות החינוך של מפלגות הקואלציה הממשלה היוצאת.docx",
         "tier": "secondary_research",
+        "provenance_verified": true,
         "purpose": "ניתוח מימוש ההסכמים הקואליציוניים, העברות כספים קואליציוניים, רשתות החינוך החרדיות ורשות הזהות הלאומית."
       }
     ],
@@ -92,10 +118,5 @@
       "gap": "טרם פורסם מצע חינוך כולל ומפורט של הליכוד לכלל שלבי החינוך לקראת תשפ״ז.",
       "impact": "עמדות הליכוד מתמקדות בגיל הרך ובמדיניות הממשלה בפועל."
     }
-  ],
-  "missing_data_fields_summary": {
-    "undated_sources": 0,
-    "unverified_sources": 0,
-    "broken_file_links": 0
-  }
+  ]
 }

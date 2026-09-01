@@ -1,9 +1,9 @@
-/**
+﻿/**
  * education-policy-dashboard: V2.0 Phase 2
  * Epistemic & Methodological Separation:
  * 1. מצעי המפלגות (מה המפלגות מציעות) -> מפלגה במבט אחד | השוואה לפי סוגיה
  * 2. הסכמים קואליציוניים ומבחן הביצוע (מה הובטח ומה בוצע) -> בורר מפלגות קואליציה נפרד + 4 שלבי ביצוע
- * 3. שאל את המחקר (Placeholder)
+ * 3. שאל את המחקר (Ask the Research) -> מנוע שליפה והשוואת ידע מקומי מבוסס 106 יחידות מאומתות
  */
 
 const STATE = {
@@ -97,11 +97,17 @@ async function initApp() {
     STATE.commitments = (await commitmentsRes.json()).commitments || [];
     STATE.execution = (await executionRes.json()).executionRecords || [];
 
+    // Initialize AskEngine
+    if (window.AskEngine) {
+      window.AskEngine.init();
+    }
+
     setupTopNavigation();
     setupSubNavigation();
     renderPartyScreenSelectors();
     renderIssueScreenSelectors();
     renderCoalitionPartySelectors();
+    setupAskScreenEvents();
     renderActiveView();
     setupDrawerEvents();
   } catch (err) {
@@ -179,42 +185,34 @@ function getPlatformParties() {
   }).filter(Boolean);
 }
 
-// Helper: Get list of coalition agreement parties from commitments.json
+// Helper: Get list of coalition parties that have commitments
 function getCoalitionParties() {
-  const partyIdsInCommitments = new Set(STATE.commitments.flatMap(c => c.partyIds || []));
-  return STATE.parties.filter(p => partyIdsInCommitments.has(p.id)).map(party => {
-    const count = STATE.commitments.filter(c => (c.partyIds || []).includes(party.id)).length;
-    return {
-      ...party,
-      commitmentCount: count
-    };
-  });
+  const coalitionPartyIds = Array.from(new Set(STATE.commitments.map(c => c.partyId)));
+  return STATE.parties.filter(p => coalitionPartyIds.includes(p.id));
 }
 
 // ----------------------------------------------------
-// AREA 1.1: מצעי המפלגות — מפלגה במבט אחד
+// SCREEN 1.1: PARTY SCREEN (מפלגה במבט אחד)
 // ----------------------------------------------------
 function renderPartyScreenSelectors() {
   const container = document.getElementById("party-buttons-container");
   if (!container) return;
 
-  const platformParties = getPlatformParties();
-
-  container.innerHTML = platformParties.map(p => {
-    const isSelected = p.id === STATE.selectedPartyId;
-    return '<button class="party-btn ' + (isSelected ? 'active' : '') + '" data-party-id="' + p.id + '">' +
-      '<span class="party-btn-name">' + p.nameHe + '</span>' +
-      '<span class="quality-mini-badge ' + p.qualityInfo.class + '">' + p.qualityInfo.label + '</span>' +
-    '</button>';
+  const validParties = getPlatformParties();
+  container.innerHTML = validParties.map(party => {
+    const isActive = party.id === STATE.selectedPartyId ? "active" : "";
+    return '<button class="party-btn ' + isActive + '" data-party-id="' + party.id + '">' +
+      '<span class="btn-name">' + party.name + '</span>' +
+      '<span class="btn-quality-badge ' + party.qualityInfo.class + '">' + party.qualityInfo.icon + ' ' + party.qualityInfo.label + '</span>' +
+      '</button>';
   }).join("");
 
   container.querySelectorAll(".party-btn").forEach(btn => {
     btn.addEventListener("click", () => {
-      const id = btn.getAttribute("data-party-id");
-      STATE.selectedPartyId = id;
+      STATE.selectedPartyId = btn.getAttribute("data-party-id");
       container.querySelectorAll(".party-btn").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-      renderPartyScreen(id);
+      renderPartyScreen(STATE.selectedPartyId);
     });
   });
 }
@@ -225,109 +223,95 @@ function renderPartyScreen(partyId) {
 
   const party = STATE.parties.find(p => p.id === partyId);
   if (!party) {
-    container.innerHTML = '<div class="empty-notice">לא נמצאו נתונים למפלגה שנבחרה</div>';
+    container.innerHTML = '<div class="empty-notice"><p>מפלגה לא נמצאה.</p></div>';
     return;
   }
 
-  const partyPositions = STATE.positions.filter(pos => pos.partyId === partyId);
-  const samplePos = partyPositions[0];
-  const sourceQuality = samplePos ? (SOURCE_QUALITY_CONFIG[samplePos.sourceStatus] || SOURCE_QUALITY_CONFIG.default) : SOURCE_QUALITY_CONFIG.default;
+  const partyPositions = STATE.positions.filter(p => p.partyId === partyId);
+  const samplePos = partyPositions.find(p => p.sourceStatus && SOURCE_QUALITY_CONFIG[p.sourceStatus]) || partyPositions[0];
+  const sourceQuality = (samplePos && samplePos.sourceStatus) ? 
+    (SOURCE_QUALITY_CONFIG[samplePos.sourceStatus] || SOURCE_QUALITY_CONFIG.default) : 
+    SOURCE_QUALITY_CONFIG.default;
 
-  let html = '<div class="party-header-box">';
-  html += '<div class="party-title-row">';
-  html += '<h2 class="party-title">' + party.nameHe + '</h2>';
-  html += '<span class="source-quality-pill ' + sourceQuality.class + '">' + sourceQuality.icon + ' ' + sourceQuality.label + '</span>';
-  if (party.notes) {
-    html += '<span class="party-notes-badge">' + party.notes + '</span>';
+  let html = '';
+  html += '<div class="party-header-card">';
+  html += '<div class="party-title-wrap">';
+  html += '<h3 class="party-main-name">' + party.name + '</h3>';
+  html += '<span class="party-leader-badge">יו״ר / מוביל: ' + party.leader + '</span>';
+  html += '</div>';
+  html += '<div class="party-quality-indicator ' + sourceQuality.class + '">';
+  html += '<span class="indicator-icon">' + sourceQuality.icon + '</span>';
+  html += '<div class="indicator-text">';
+  html += '<strong>מעמד ראייתי: ' + sourceQuality.label + '</strong>';
+  if (party.provenanceNote) {
+    html += '<p class="indicator-note">' + party.provenanceNote + '</p>';
   }
   html += '</div>';
-  html += '<p class="party-subtitle">' + (party.knessetFaction25 ? 'סיעה בכנסת ה-25: ' + party.knessetFaction25 : 'יוזמה / מפלגה לקראת תשפ״ז') + '</p>';
+  html += '</div>';
   html += '</div>';
 
-  if (partyPositions.length === 0) {
-    html += '<div class="empty-notice"><p>לא אותרו עמדות מפורטות במצע המפלגה עבור הסוגיות המוגדרות.</p></div>';
-  } else {
-    html += '<div class="positions-grid">';
-    partyPositions.forEach(pos => {
-      const issue = STATE.issues.find(i => i.id === pos.issueId);
-      const issueTitle = issue ? issue.title : pos.issueId;
-      const stanceInfo = STANCE_CONFIG[pos.stance] || STANCE_CONFIG.default;
+  html += '<div class="positions-grid">';
+  STATE.issues.forEach(issue => {
+    const pos = partyPositions.find(p => p.issueId === issue.id);
+    const stanceConfig = (pos && STANCE_CONFIG[pos.stance]) ? STANCE_CONFIG[pos.stance] : STANCE_CONFIG.default;
+    const isNotStated = !pos || pos.stance === "not_stated";
 
-      html += '<div class="position-card ' + (pos.sourceStatus || '') + '">';
-      
-      // Card Header
-      html += '<div class="card-header">';
-      html += '<span class="card-issue-tag">' + issueTitle + '</span>';
-      html += '<span class="card-stance-badge ' + stanceInfo.class + '">' + stanceInfo.label + '</span>';
-      html += '</div>';
-
-      // Historical / Secondary Notice Banner
-      if (pos.sourceStatus === "primary_historical") {
-        html += '<div class="status-banner banner-historical">🏛️ מקור היסטורי (מצע 2013) — אינו עמדה רשמית מעודכנת לתשפ״ז</div>';
-      } else if (pos.sourceStatus === "secondary_research") {
-        html += '<div class="status-banner banner-secondary">📖 מחקר משני וניתוח פרשני — אינו מצע רשמי של המפלגה</div>';
-      }
-
-      // Claim / Topic
-      html += '<h4 class="card-topic">' + (pos.topic || pos.summary) + '</h4>';
-      html += '<p class="card-summary">' + pos.summary + '</p>';
-
-      // Verbatim Quote if available
-      if (pos.verbatimQuote) {
-        html += '<div class="card-quote-box">';
-        html += '<span class="quote-label">ציטוט מאומת מתוך המקור:</span>';
-        html += '<blockquote class="quote-text">"' + pos.verbatimQuote + '"</blockquote>';
-        html += '</div>';
-      }
-
-      // Municipal Impact Preview
-      if (pos.municipalImpactAnalysis && pos.municipalImpactAnalysis.localAuthorityImpact) {
-        html += '<div class="card-municipal-box">';
-        html += '<strong>השפעה על הרשות המקומית: </strong>' + pos.municipalImpactAnalysis.localAuthorityImpact;
-        html += '</div>';
-      }
-
-      // Card Footer with Source button
-      html += '<div class="card-footer">';
-      if (pos.sourceId) {
-        html += '<button class="source-btn" data-source-id="' + pos.sourceId + '" data-citation="' + (pos.sourceCitation || '') + '">';
-        html += '🔍 מקור: ' + (pos.sourceCitation || 'הצג מקור מלא');
-        html += '</button>';
-      } else {
-        html += '<span class="no-source-tag">לא צוין מקור ישיר</span>';
-      }
-      html += '</div>';
-
-      html += '</div>';
-    });
+    html += '<div class="position-card ' + (isNotStated ? 'is-not-stated' : '') + '">';
+    html += '<div class="card-top">';
+    html += '<h4 class="card-issue-title">' + issue.icon + ' ' + issue.name + '</h4>';
+    html += '<span class="stance-pill ' + stanceConfig.class + '">' + stanceConfig.label + '</span>';
     html += '</div>';
-  }
+
+    if (isNotStated) {
+      html += '<div class="not-stated-box">';
+      html += '<p class="not-stated-text">לא אותרה התייחסות מפורשת לסוגיה זו במסמך המקור שנבדק.</p>';
+      html += '</div>';
+    } else {
+      html += '<p class="card-summary">' + pos.summary + '</p>';
+      if (pos.verbatimQuote) {
+        html += '<blockquote class="card-quote">' + pos.verbatimQuote + '</blockquote>';
+      }
+      if (pos.analysis) {
+        html += '<div class="card-analysis"><span class="analysis-tag">הערכת מחקר:</span> ' + pos.analysis + '</div>';
+      }
+    }
+
+    if (pos && pos.sourceId) {
+      html += '<div class="card-footer">';
+      html += '<button class="source-btn" data-source-id="' + pos.sourceId + '" data-citation="' + (pos.citation || '') + '">';
+      html += '🔍 מקור: ' + pos.sourceId + (pos.citation ? ' (' + pos.citation + ')' : '');
+      html += '</button>';
+      html += '</div>';
+    }
+
+    html += '</div>';
+  });
+  html += '</div>';
 
   container.innerHTML = html;
   attachSourceButtonEvents(container);
 }
 
 // ----------------------------------------------------
-// AREA 1.2: מצעי המפלגות — השוואה לפי סוגיה
+// SCREEN 1.2: ISSUE SCREEN (השוואה לפי סוגיה)
 // ----------------------------------------------------
 function renderIssueScreenSelectors() {
   const container = document.getElementById("issue-buttons-container");
   if (!container) return;
 
-  container.innerHTML = STATE.issues.map(iss => {
-    const isSelected = iss.id === STATE.selectedIssueId;
-    return '<button class="issue-btn ' + (isSelected ? 'active' : '') + '" data-issue-id="' + iss.id + '">' +
-      '<span class="issue-btn-title">' + iss.title + '</span>' +
-    '</button>';
+  container.innerHTML = STATE.issues.map(issue => {
+    const isActive = issue.id === STATE.selectedIssueId ? "active" : "";
+    return '<button class="issue-btn ' + isActive + '" data-issue-id="' + issue.id + '">' +
+      '<span class="issue-icon">' + issue.icon + '</span> ' + issue.name +
+      '</button>';
   }).join("");
 
   container.querySelectorAll(".issue-btn").forEach(btn => {
     btn.addEventListener("click", () => {
-      const id = btn.getAttribute("data-issue-id");
-      STATE.selectedIssueId = id;
+      STATE.selectedIssueId = btn.getAttribute("data-issue-id");
       container.querySelectorAll(".issue-btn").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-      renderIssueScreen(id);
+      renderIssueScreen(STATE.selectedIssueId);
     });
   });
 }
@@ -338,62 +322,48 @@ function renderIssueScreen(issueId) {
 
   const issue = STATE.issues.find(i => i.id === issueId);
   if (!issue) {
-    container.innerHTML = '<div class="empty-notice">סוגיה לא נמצאה</div>';
+    container.innerHTML = '<div class="empty-notice"><p>סוגיה לא נמצאה.</p></div>';
     return;
   }
 
-  let html = '<div class="issue-header-box">';
-  html += '<div class="issue-header-top">';
-  html += '<span class="issue-cat-badge">' + (issue.category || 'סוגיית ליבה') + '</span>';
-  html += '<h2 class="issue-title">' + issue.title + '</h2>';
-  html += '</div>';
+  const validParties = getPlatformParties();
+  let html = '';
+  html += '<div class="issue-header-card">';
+  html += '<div class="issue-header-title-wrap">';
+  html += '<h3 class="issue-main-name">' + issue.icon + ' ' + issue.name + '</h3>';
   html += '<p class="issue-desc">' + issue.description + '</p>';
   html += '</div>';
-
-  const platformParties = getPlatformParties();
+  html += '</div>';
 
   html += '<div class="comparison-grid">';
-  platformParties.forEach(party => {
+  validParties.forEach(party => {
     const pos = STATE.positions.find(p => p.partyId === party.id && p.issueId === issueId);
+    const stanceConfig = (pos && STANCE_CONFIG[pos.stance]) ? STANCE_CONFIG[pos.stance] : STANCE_CONFIG.default;
+    const isNotStated = !pos || pos.stance === "not_stated";
 
-    html += '<div class="compare-card">';
-    html += '<div class="compare-party-head">';
-    html += '<div class="compare-party-title-wrap">';
-    html += '<h3>' + party.nameHe + '</h3>';
-    html += '<span class="quality-mini-badge ' + party.qualityInfo.class + '">' + party.qualityInfo.label + '</span>';
+    html += '<div class="comparison-card ' + (isNotStated ? 'is-not-stated' : '') + '">';
+    html += '<div class="comp-header">';
+    html += '<div class="comp-party-name">' + party.name + '</div>';
+    html += '<span class="stance-pill ' + stanceConfig.class + '">' + stanceConfig.label + '</span>';
     html += '</div>';
-    
-    if (pos) {
-      const stanceInfo = STANCE_CONFIG[pos.stance] || STANCE_CONFIG.default;
-      html += '<span class="card-stance-badge ' + stanceInfo.class + '">' + stanceInfo.label + '</span>';
+
+    if (isNotStated) {
+      html += '<div class="not-stated-box"><p class="not-stated-text">לא נאמר במפורש במסמך המקור.</p></div>';
     } else {
-      html += '<span class="card-stance-badge stance-not-stated">לא נאמר / לא נמצא במקור</span>';
-    }
-    html += '</div>';
-
-    if (pos && pos.stance !== "not_stated") {
-      if (pos.sourceStatus === "primary_historical") {
-        html += '<div class="status-banner banner-historical">🏛️ מקור היסטורי (2013)</div>';
-      } else if (pos.sourceStatus === "secondary_research") {
-        html += '<div class="status-banner banner-secondary">📖 מחקר משני</div>';
-      }
-
-      html += '<p class="compare-summary">' + pos.summary + '</p>';
-
+      html += '<p class="comp-summary">' + pos.summary + '</p>';
       if (pos.verbatimQuote) {
-        html += '<blockquote class="compare-quote">"' + pos.verbatimQuote + '"</blockquote>';
+        html += '<blockquote class="comp-quote">' + pos.verbatimQuote + '</blockquote>';
       }
+      if (pos.analysis) {
+        html += '<div class="comp-analysis">' + pos.analysis + '</div>';
+      }
+    }
 
-      if (pos.sourceId) {
-        html += '<div class="compare-footer">';
-        html += '<button class="source-btn" data-source-id="' + pos.sourceId + '" data-citation="' + (pos.sourceCitation || '') + '">';
-        html += '🔍 מקור: ' + (pos.sourceCitation || 'הצג מקור');
-        html += '</button>';
-        html += '</div>';
-      }
-    } else {
-      html += '<div class="not-stated-box">';
-      html += '<p>המפלגה לא פירטה עמדה רשמית מפורשת בסוגיה זו במסמך המדיניות שנקלט.</p>';
+    if (pos && pos.sourceId) {
+      html += '<div class="comp-footer">';
+      html += '<button class="source-btn" data-source-id="' + pos.sourceId + '" data-citation="' + (pos.citation || '') + '">';
+      html += '🔍 מקור: ' + pos.sourceId;
+      html += '</button>';
       html += '</div>';
     }
 
@@ -406,177 +376,96 @@ function renderIssueScreen(issueId) {
 }
 
 // ----------------------------------------------------
-// AREA 2: הסכמים קואליציוניים ומבחן הביצוע (V2 Phase 2)
+// SCREEN 2: COALITION SCREEN (הסכמים קואליציוניים ומבחן הביצוע)
 // ----------------------------------------------------
 function renderCoalitionPartySelectors() {
   const container = document.getElementById("coalition-party-buttons-container");
   if (!container) return;
 
   const coalitionParties = getCoalitionParties();
-
-  container.innerHTML = coalitionParties.map(p => {
-    const isSelected = p.id === STATE.selectedCoalitionPartyId;
-    return '<button class="party-btn ' + (isSelected ? 'active' : '') + '" data-coalition-party-id="' + p.id + '">' +
-      '<span class="party-btn-name">' + p.nameHe + '</span>' +
-      '<span class="quality-mini-badge quality-default">' + p.commitmentCount + ' התחייבויות</span>' +
-    '</button>';
+  container.innerHTML = coalitionParties.map(party => {
+    const isActive = party.id === STATE.selectedCoalitionPartyId ? "active" : "";
+    return '<button class="party-btn ' + isActive + '" data-coalition-party-id="' + party.id + '">' +
+      '<span class="btn-name">' + party.name + '</span>' +
+      '</button>';
   }).join("");
 
   container.querySelectorAll(".party-btn").forEach(btn => {
     btn.addEventListener("click", () => {
-      const id = btn.getAttribute("data-coalition-party-id");
-      STATE.selectedCoalitionPartyId = id;
+      STATE.selectedCoalitionPartyId = btn.getAttribute("data-coalition-party-id");
       container.querySelectorAll(".party-btn").forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-      renderExecutionScreen(id);
+      renderExecutionScreen(STATE.selectedCoalitionPartyId);
     });
   });
 }
 
-function renderExecutionScreen(partyId = STATE.selectedCoalitionPartyId) {
+function renderExecutionScreen(partyId) {
   const container = document.getElementById("execution-content-area");
   if (!container) return;
 
   const party = STATE.parties.find(p => p.id === partyId);
-  const partyName = party ? party.nameHe : partyId;
-
-  // Filter commitments where this party is a signatory/partner
-  const partyCommitments = STATE.commitments.filter(c => (c.partyIds || []).includes(partyId));
+  const partyCommitments = STATE.commitments.filter(c => c.partyId === partyId);
 
   if (partyCommitments.length === 0) {
-    container.innerHTML = '<div class="empty-notice">לא נמצאו התחייבויות קואליציוניות מאומתות למפלגה זו במאגר.</div>';
+    container.innerHTML = '<div class="empty-notice"><p>לא נמצאו התחייבויות קואליציוניות מתועדות עבור סיעה זו.</p></div>';
     return;
   }
 
-  // Calculate summary stats
-  let executedCount = 0;
-  let partialCount = 0;
-  let notExecutedCount = 0;
-  let undeterminedCount = 0;
-
-  partyCommitments.forEach(com => {
-    const execRecord = STATE.execution.find(e => e.commitmentId === com.id);
-    const statusKey = execRecord ? execRecord.status : "under_review";
-    const statusInfo = STATUS_CONFIG[statusKey] || STATUS_CONFIG.default;
-
-    if (statusInfo.group === "executed") executedCount++;
-    else if (statusInfo.group === "partial") partialCount++;
-    else if (statusInfo.group === "not_executed") notExecutedCount++;
-    else undeterminedCount++;
-  });
-
   let html = '';
-
-  // 1. Party Summary Box
-  html += '<div class="coalition-summary-box">';
-  html += '<div class="coalition-summary-head">';
-  html += '<h3>סיכום התחייבויות חינוך בהסכמים — ' + partyName + '</h3>';
-  html += '<span class="summary-total-badge">סה״כ במאגר: ' + partyCommitments.length + ' התחייבויות</span>';
-  html += '</div>';
-
-  html += '<div class="summary-stats-row">';
-  html += '<div class="stat-pill stat-executed"><span class="stat-num">' + executedCount + '</span><span class="stat-label">בוצעו</span></div>';
-  html += '<div class="stat-pill stat-partial"><span class="stat-num">' + partialCount + '</span><span class="stat-label">בוצעו חלקית</span></div>';
-  html += '<div class="stat-pill stat-not-executed"><span class="stat-num">' + notExecutedCount + '</span><span class="stat-label">לא בוצעו</span></div>';
-  html += '<div class="stat-pill stat-undetermined"><span class="stat-num">' + undeterminedCount + '</span><span class="stat-label">טרם ניתן לקבוע</span></div>';
-  html += '</div>';
-
-  html += '<p class="summary-disclaimer">📌 הנתונים משקפים את המאגר המאומת הקיים ואינם בהכרח את מלוא ההסכם הקואליציוני.</p>';
-  html += '</div>';
-
-  // 2. Commitments 4-Tier Cards
   html += '<div class="execution-list">';
-  partyCommitments.forEach(com => {
-    const issue = STATE.issues.find(i => i.id === com.issueId);
-    const partnerNames = (com.partyIds || []).map(pId => {
-      const p = STATE.parties.find(party => party.id === pId);
-      return p ? p.nameHe : pId;
-    }).join(", ");
-
-    const execRecord = STATE.execution.find(e => e.commitmentId === com.id);
+  partyCommitments.forEach(cmt => {
+    const execRecord = STATE.execution.find(e => e.commitmentId === cmt.id);
     const statusKey = execRecord ? execRecord.status : "under_review";
     const statusInfo = STATUS_CONFIG[statusKey] || STATUS_CONFIG.default;
 
     html += '<div class="execution-card">';
-    
-    // Main Card Header
-    html += '<div class="execution-card-header">';
-    html += '<div class="exec-tags">';
-    html += '<span class="exec-party-tag">שותפי ההסכם: ' + partnerNames + '</span>';
-    if (issue) {
-      html += '<span class="exec-issue-tag">' + issue.title + '</span>';
-    }
+    html += '<div class="exec-header">';
+    html += '<div class="exec-meta-left">';
+    html += '<span class="exec-party-tag">' + party.name + '</span>';
+    html += '<span class="exec-clause-tag">' + (cmt.sectionRef || 'סעיף הסכם') + '</span>';
     html += '</div>';
     html += '<span class="status-badge ' + statusInfo.class + '">' + statusInfo.label + '</span>';
     html += '</div>';
 
-    // 1. נחתם
-    html += '<div class="tier-section tier-signed">';
-    html += '<div class="tier-head"><span class="tier-num">1</span> <h4>ההתחייבות שנחתמה</h4></div>';
-    html += '<h3 class="exec-title">' + com.title + '</h3>';
-    html += '<div class="exec-quote-box">';
-    html += '<span class="quote-label">לשון הסעיף המקורי מתוך ההסכם (' + (com.sectionRef || 'ללא מראה מקום') + '):</span>';
-    html += '<blockquote class="exec-quote">"' + com.verbatimText + '"</blockquote>';
-    html += '</div>';
-    html += '<div class="tier-meta-row">';
-    html += '<span><strong>תאריך חתימה:</strong> ' + (com.date || '2022-12-28') + '</span>';
-    html += '<span><strong>שנת יעד:</strong> ' + (com.targetYear || com.budgetYear || '2023-2024') + '</span>';
-    if (com.promisedBudgetNIS) {
-      html += '<span><strong>סכום שהובטח:</strong> ' + formatNIS(com.promisedBudgetNIS) + '</span>';
+    // 1. נוסח ההתחייבות
+    html += '<div class="tier-section tier-commitment">';
+    html += '<div class="tier-head"><span class="tier-num">1</span> <h4>נוסח ההתחייבות בהסכם הקואליציוני החתום</h4></div>';
+    html += '<blockquote class="verbatim-clause">' + cmt.verbatimText + '</blockquote>';
+    if (cmt.budgetAmountNIS) {
+      html += '<div class="budget-tag-wrap">💰 תקציב נקוב בהסכם: <strong>' + formatNIS(cmt.budgetAmountNIS) + '</strong></div>';
     }
-    if (com.sourceId) {
-      html += '<button class="source-btn" data-source-id="' + com.sourceId + '" data-citation="' + (com.sectionRef || '') + '">';
-      html += '📁 מקור: ' + com.sourceId;
-      html += '</button>';
-    }
+    html += '<div class="tier-source-row">';
+    html += '<button class="source-btn" data-source-id="' + cmt.sourceId + '">🔍 מקור ההתחייבות: ' + cmt.sourceId + '</button>';
     html += '</div>';
     html += '</div>';
 
-    // 2. מה אושר לביצוע
-    html += '<div class="tier-section tier-approved">';
-    html += '<div class="tier-head"><span class="tier-num">2</span> <h4>מה אושר לביצוע</h4></div>';
-    if (com.allocatedBudgetEstimatedNIS || com.budgetEntity || (execRecord && execRecord.allocatedBudgetNIS)) {
-      const allocatedNIS = (execRecord && execRecord.allocatedBudgetNIS) || com.allocatedBudgetEstimatedNIS;
-      html += '<div class="approved-grid">';
-      html += '<div><strong>מנגנון / גוף מתוקצב:</strong> ' + (com.budgetEntity || 'משרד החינוך / גורם ממשלתי') + '</div>';
-      html += '<div><strong>שנת תקציב מאושרת:</strong> ' + (com.budgetYear || '2023-2024') + '</div>';
-      if (allocatedNIS) {
-        html += '<div><strong>תקציב שאושר / הוקצה:</strong> ' + formatNIS(allocatedNIS) + '</div>';
+    // 2. החלטות ממשלה ותקציב
+    html += '<div class="tier-section tier-budget">';
+    html += '<div class="tier-head"><span class="tier-num">2</span> <h4>החלטות ממשלה, תקציב וצעדי יישום רשמיים</h4></div>';
+    if (execRecord && (execRecord.governmentDecision || execRecord.budgetExecutionNIS || execRecord.description)) {
+      html += '<div class="decision-box">';
+      if (execRecord.governmentDecision) {
+        html += '<p><strong>החלטת ממשלה:</strong> ' + execRecord.governmentDecision + '</p>';
       }
-      if (com.comparabilityReason) {
-        html += '<div class="approved-notes"><strong>הערת התאמה:</strong> ' + com.comparabilityReason + '</div>';
+      if (execRecord.budgetExecutionNIS) {
+        html += '<p><strong>ביצוע תקציבי מאומת:</strong> ' + formatNIS(execRecord.budgetExecutionNIS) + '</p>';
+      }
+      if (execRecord.description) {
+        html += '<p class="exec-desc-text">' + execRecord.description + '</p>';
       }
       html += '</div>';
     } else {
-      html += '<p class="missing-tier-notice">טרם קיים במאגר מידע מאומת על אישור לביצוע.</p>';
+      html += '<p class="missing-tier-notice">לא אותרו צעדי יישום או החלטות ממשלה נוספות במאגר.</p>';
     }
     html += '</div>';
 
-    // 3. מה בוצע בפועל
-    html += '<div class="tier-section tier-executed">';
-    html += '<div class="tier-head"><span class="tier-num">3</span> <h4>מה בוצע בפועל</h4></div>';
-    if (execRecord && (execRecord.factualSummary || execRecord.actualSpendingNIS || execRecord.completionPercentage !== undefined)) {
-      html += '<div class="executed-body">';
-      if (execRecord.factualSummary) {
-        html += '<p class="executed-summary"><strong>סיכום עובדתי:</strong> ' + execRecord.factualSummary + '</p>';
-      }
-      html += '<div class="executed-metrics">';
-      if (execRecord.actualSpendingNIS) {
-        html += '<span><strong>ביצוע תקציבי בפועל:</strong> ' + formatNIS(execRecord.actualSpendingNIS) + '</span>';
-      }
-      if (execRecord.completionPercentage !== null && execRecord.completionPercentage !== undefined) {
-        html += '<span><strong>אחוז ביצוע מוערך:</strong> ' + execRecord.completionPercentage + '%</span>';
-      }
-      if (execRecord.legalStatus) {
-        html += '<span><strong>סטטוס משפטי:</strong> ' + execRecord.legalStatus + '</span>';
-      }
-      html += '</div>';
-      if (execRecord.analysis && execRecord.analysis.text) {
-        html += '<div class="exec-analysis-box">';
-        html += '<span class="analysis-label">ניתוח ביצוע (Analysis):</span>';
-        html += '<p class="analysis-text">' + execRecord.analysis.text + '</p>';
-        html += '</div>';
-      }
+    // 3. מבחן הביצוע בפועל
+    html += '<div class="tier-section tier-reality">';
+    html += '<div class="tier-head"><span class="tier-num">3</span> <h4>מבחן הביצוע בפועל והערכת מחקר</h4></div>';
+    if (execRecord && execRecord.divergenceAnalysis) {
+      html += '<div class="divergence-box">';
+      html += '<p>' + execRecord.divergenceAnalysis + '</p>';
       html += '</div>';
     } else {
       html += '<p class="missing-tier-notice">טרם קיים במאגר מידע מאומת על ביצוע בפועל.</p>';
@@ -594,12 +483,215 @@ function renderExecutionScreen(partyId = STATE.selectedCoalitionPartyId) {
     html += '</div>';
     html += '</div>';
 
-    html += '</div>'; // End execution-card
+    html += '</div>';
   });
   html += '</div>';
 
   container.innerHTML = html;
   attachSourceButtonEvents(container);
+}
+
+// ----------------------------------------------------
+// SCREEN 3: ASK THE RESEARCH (שאל את המחקר)
+// ----------------------------------------------------
+function setupAskScreenEvents() {
+  const queryInput = document.getElementById("ask-query-input");
+  const submitBtn = document.getElementById("ask-submit-btn");
+  const clearBtn = document.getElementById("ask-clear-btn");
+  const chips = document.querySelectorAll(".sample-chip");
+
+  if (submitBtn) {
+    submitBtn.addEventListener("click", () => {
+      const q = queryInput ? queryInput.value.trim() : "";
+      handleAskQuery(q);
+    });
+  }
+
+  if (queryInput) {
+    queryInput.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        handleAskQuery(queryInput.value.trim());
+      }
+    });
+  }
+
+  if (clearBtn) {
+    clearBtn.addEventListener("click", () => {
+      if (queryInput) queryInput.value = "";
+      const resultsContainer = document.getElementById("ask-results-container");
+      if (resultsContainer) {
+        resultsContainer.innerHTML = `
+          <div class="ask-empty-state">
+            <div class="empty-icon">🔎</div>
+            <h3>בחר שאלה לדוגמה או הקלד שאילתה משלך</h3>
+            <p>המנוע סורק בזמן אמת 48 טענות מחקריות, 24 עמדות מדיניות, 18 התחייבויות חתומות ו-16 ראיות ביצוע ומציג תשובה מסונתזת מבוססת עובדות.</p>
+          </div>
+        `;
+      }
+    });
+  }
+
+  chips.forEach(chip => {
+    chip.addEventListener("click", () => {
+      const q = chip.getAttribute("data-query");
+      if (queryInput) queryInput.value = q;
+      handleAskQuery(q);
+    });
+  });
+}
+
+async function handleAskQuery(query) {
+  if (!query) return;
+  const resultsContainer = document.getElementById("ask-results-container");
+  if (!resultsContainer) return;
+
+  resultsContainer.innerHTML = `
+    <div class="ask-empty-state">
+      <div class="empty-icon">⏳</div>
+      <h3>סורק את מאגר המחקר...</h3>
+      <p>שולף ראיות ומצליב עמדות מתוך 106 יחידות הידע המאומתות...</p>
+    </div>
+  `;
+
+  if (!window.AskEngine) {
+    resultsContainer.innerHTML = '<div class="empty-notice"><p>מנוע החיפוש טרם נטען. אנא נסה שוב בעוד מספר שניות.</p></div>';
+    return;
+  }
+
+  const result = await window.AskEngine.answer(query);
+  renderAskAnswer(result);
+}
+
+function renderAskAnswer(result) {
+  const container = document.getElementById("ask-results-container");
+  if (!container) return;
+
+  if (!result || !result.found) {
+    container.innerHTML = `
+      <div class="ask-empty-state">
+        <div class="empty-icon">🔍</div>
+        <h3>לא נמצא מספיק מידע</h3>
+        <p>${result.shortAnswer || 'בבסיס הידע הקיים אין כרגע מספיק מידע כדי לענות על השאלה באופן מבוסס.'}</p>
+      </div>
+    `;
+    return;
+  }
+
+  let html = '';
+  html += '<div class="ask-answer-card">';
+
+  // Header
+  html += '<div class="answer-header">';
+  html += '<h3 class="answer-query-title">״' + result.query + '״</h3>';
+  html += '<span class="answer-meta-pill">תשובה מסונתזת מתוך בסיס הידע המאומת</span>';
+  html += '</div>';
+
+  // Summary box
+  html += '<div class="answer-summary-box">';
+  html += '<div class="summary-title">תשובה קצרה / תמצית מנהלים:</div>';
+  html += '<div class="summary-text">' + result.shortAnswer + '</div>';
+  html += '</div>';
+
+  // Contradiction Alert if exists
+  if (result.contradictionAlert) {
+    html += '<div class="contradiction-alert-box">';
+    html += '<div class="alert-title">⚠️ ' + result.contradictionAlert.title + '</div>';
+    html += '<div class="alert-text">' + result.contradictionAlert.text + '</div>';
+    html += '</div>';
+  }
+
+  // Comparison Grid if multiple parties
+  if (result.comparisonList && result.comparisonList.length > 0) {
+    html += '<div class="answer-section">';
+    html += '<h4 class="answer-section-title">⚖️ מה אומרים המקורות — השוואת עמדות:</h4>';
+    html += '<div class="answer-comparison-grid">';
+    result.comparisonList.forEach(comp => {
+      const badgeClass = comp.tier === "primary" ? "badge-primary" : "badge-secondary";
+      const badgeLabel = comp.tier === "primary" ? "מקור רשמי" : "מחקר משני";
+      html += '<div class="answer-comp-card">';
+      html += '<div class="answer-comp-header">';
+      html += '<span class="answer-comp-name">' + comp.entity + '</span>';
+      html += '<span class="answer-comp-badge ' + badgeClass + '">' + badgeLabel + '</span>';
+      html += '</div>';
+      html += '<div class="answer-comp-body">' + comp.stanceText + '</div>';
+      if (comp.quote) {
+        html += '<blockquote class="answer-comp-quote">״' + comp.quote + '״</blockquote>';
+      }
+      html += '</div>';
+    });
+    html += '</div>';
+    html += '</div>';
+  }
+
+  // Execution List if execution query
+  if (result.executionList && result.executionList.length > 0) {
+    html += '<div class="answer-section">';
+    html += '<h4 class="answer-section-title">📊 הבטחה מול ביצוע ותקציבים בפועל:</h4>';
+    html += '<div class="answer-execution-list">';
+    result.executionList.forEach(exec => {
+      html += '<div class="answer-exec-item">';
+      html += '<div class="exec-item-top">';
+      html += '<span class="exec-item-title">' + (exec.beneficiary ? exec.beneficiary + ' — ' : '') + exec.title + '</span>';
+      html += '<span class="status-badge ' + (exec.statusClass || 'status-partial') + '">' + exec.status + '</span>';
+      html += '</div>';
+      if (exec.budget) {
+        html += '<div class="exec-item-budget">💰 היקף תקציבי: <strong>' + formatNIS(exec.budget) + '</strong></div>';
+      }
+      if (exec.notes) {
+        html += '<div class="exec-item-notes">' + exec.notes + '</div>';
+      }
+      html += '</div>';
+    });
+    html += '</div>';
+    html += '</div>';
+  }
+
+  // Detailed Bullets if general query
+  if (result.detailedBullets && result.detailedBullets.length > 0 && (!result.comparisonList || result.comparisonList.length === 0)) {
+    html += '<div class="answer-section">';
+    html += '<h4 class="answer-section-title">📋 טענות ונתונים מרכזיים:</h4>';
+    html += '<ul class="detailed-bullets-list" style="padding-right: 20px; line-height: 1.6; font-size: 0.92rem;">';
+    result.detailedBullets.forEach(b => {
+      html += '<li><strong>' + b.entity + ':</strong> ' + b.text + '</li>';
+    });
+    html += '</ul>';
+    html += '</div>';
+  }
+
+  // Municipal Impact Callout
+  if (result.municipalSection) {
+    html += '<div class="municipal-impact-box">';
+    html += '<div class="municipal-title">🏛️ משמעות לשלטון המקומי ולרשויות:</div>';
+    html += '<div class="municipal-text">' + result.municipalSection + '</div>';
+    html += '</div>';
+  }
+
+  // Sources Section
+  if (result.sources && result.sources.length > 0) {
+    html += '<div class="answer-sources-wrap">';
+    html += '<span class="sources-label">מקורות מאומתים שעליהם מתבססת התשובה:</span>';
+    html += '<div class="source-pills-list">';
+    result.sources.forEach(src => {
+      html += '<button class="source-pill-btn" data-source-id="' + src.id + '">';
+      html += (src.isPrimary ? '📜 ' : '📖 ') + src.id + ' (' + src.tier + ')';
+      html += '</button>';
+    });
+    html += '</div>';
+    html += '</div>';
+  }
+
+  html += '</div>'; // End ask-answer-card
+
+  container.innerHTML = html;
+
+  // Bind source pill click events to the drawer modal
+  container.querySelectorAll(".source-pill-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const sourceId = btn.getAttribute("data-source-id");
+      openSourceDrawer(sourceId);
+    });
+  });
 }
 
 // ----------------------------------------------------

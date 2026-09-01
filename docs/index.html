@@ -18,7 +18,7 @@
       </div>
       <div class="header-status-badge">
         <span class="live-dot"></span>
-        <span>סביבת נתונים מאומתת • שרשרת ראיות מלאה</span>
+        <span>סביבת נתונים מאומתת • 100% שרשרת ראיות</span>
       </div>
     </div>
   </header>
@@ -87,38 +87,62 @@
       <div id="execution-content-area"></div>
     </div>
 
-    <!-- AREA 3: שאל את המחקר -->
+    <!-- AREA 3: שאל את המחקר (Ask the Research) -->
     <div class="main-section-view" id="section-ask">
       <div class="ask-header-box">
-        <h2 class="ask-main-title">שאל את המחקר</h2>
-        <p class="ask-subtitle">שני מאגרי מחקר נפרדים מאפשרים להעמיק מעבר למידע המוצג בדשבורד.</p>
+        <div class="ask-badge-tag">מנוע שליפה והשוואת ידע מחקרי • 106 יחידות מאומתות</div>
+        <h2 class="ask-main-title">💡 שאל את המחקר</h2>
+        <p class="ask-subtitle">שאל שאלות בשפה חופשית וקבל תשובות מבוססות מקורות, השוואות עמדות בין מפלגות ומבחני ביצוע מתוך בסיס הידע המאומת של הפרויקט.</p>
       </div>
 
-      <div class="ask-cards-grid">
-        <!-- Card 1: מצעי המפלגות -->
-        <div class="ask-card">
-          <div class="ask-card-header">
-            <h3 class="ask-card-title">📘 שאל על מצעי המפלגות</h3>
-          </div>
-          <p class="ask-card-desc">פתח את מאגר המחקר ושאל שאלות על עמדות המפלגות, השווה בין מפלגות וסוגיות ובדוק את המקורות שעליהם מבוסס המידע.</p>
-          <div class="ask-card-footer">
-            <a href="https://notebook.google.com/notebook/43fca763-ee95-4f48-bb20-bf9ff442fbc7/preview" target="_blank" rel="noopener noreferrer" class="ask-notebook-btn btn-platforms">
-              פתח את מחקר המצעים ↗
-            </a>
-          </div>
+      <!-- Search Input Card -->
+      <div class="ask-search-card">
+        <label class="ask-search-label" for="ask-query-input">מה תרצו לדעת על מדיניות החינוך בישראל?</label>
+        <div class="ask-input-group">
+          <input 
+            type="text" 
+            id="ask-query-input" 
+            class="ask-input" 
+            placeholder="הקלד שאלה (למשל: מה עמדת המפלגות על לימודי ליבה? מה הובטח לגיל הרך?)" 
+            autocomplete="off"
+          />
+          <button id="ask-submit-btn" class="ask-btn">🔍 שאל את המחקר</button>
+          <button id="ask-clear-btn" class="ask-btn-secondary" title="נקה שאלה">✕</button>
         </div>
 
-        <!-- Card 2: הסכמים קואליציוניים ומבחן הביצוע -->
-        <div class="ask-card">
-          <div class="ask-card-header">
-            <h3 class="ask-card-title">📙 שאל על ההסכמים ומבחן הביצוע</h3>
+        <!-- Sample Questions Chips -->
+        <div class="ask-sample-questions-box">
+          <span class="sample-label">שאלות לדוגמה מתוך מאגר המחקר:</span>
+          <div class="sample-chips-wrap">
+            <button class="sample-chip" data-query="מה מציעות המפלגות בנושא לימודי ליבה?">
+              מה מציעות המפלגות בנושא לימודי ליבה?
+            </button>
+            <button class="sample-chip" data-query="מי מציע יותר סמכויות לרשויות המקומיות?">
+              מי מציע יותר סמכויות לרשויות המקומיות?
+            </button>
+            <button class="sample-chip" data-query="מה התחייבה ש״ס בחינוך ומה בוצע?">
+              מה התחייבה ש״ס בחינוך ומה בוצע?
+            </button>
+            <button class="sample-chip" data-query="מה ההבדלים בין ישראל ביתנו, ביחד וישר! בנושא המורים?">
+              מה ההבדלים בין ישראל ביתנו, ביחד וישר! בנושא המורים?
+            </button>
+            <button class="sample-chip" data-query="מה קרה בפועל להבטחת חינוך חינם מגיל 0–3?">
+              מה קרה בפועל להבטחת חינוך חינם מגיל 0–3?
+            </button>
+            <button class="sample-chip" data-query="אילו התחייבויות קואליציוניות בוצעו רק חלקית?">
+              אילו התחייבויות קואליציוניות בוצעו רק חלקית?
+            </button>
           </div>
-          <p class="ask-card-desc">פתח את מאגר המחקר ושאל מה התחייבה כל מפלגה בהסכם הקואליציוני בתחום החינוך, מה אושר לביצוע, מה בוצע בפועל ומה עדיין לא בוצע.</p>
-          <div class="ask-card-footer">
-            <a href="https://notebook.google.com/notebook/8b1eb59c-0eac-466b-9861-699021f3a87f/preview" target="_blank" rel="noopener noreferrer" class="ask-notebook-btn btn-coalition">
-              פתח את מחקר ההסכמים והביצוע ↗
-            </a>
-          </div>
+        </div>
+      </div>
+
+      <!-- Results Container -->
+      <div id="ask-results-container" class="ask-results-container">
+        <!-- Initial Empty State -->
+        <div class="ask-empty-state">
+          <div class="empty-icon">🔎</div>
+          <h3>בחר שאלה לדוגמה או הקלד שאילתה משלך</h3>
+          <p>המנוע סורק בזמן אמת 48 טענות מחקריות, 24 עמדות מדיניות, 18 התחייבויות חתומות ו-16 ראיות ביצוע ומציג תשובה מסונתזת מבוססת עובדות.</p>
         </div>
       </div>
     </div>
@@ -139,6 +163,7 @@
     </aside>
   </div>
 
+  <script src="askEngine.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

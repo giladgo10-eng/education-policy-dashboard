@@ -1864,3 +1864,29 @@ body {
   flex-wrap: wrap;
   gap: 8px;
 }
+
+/* Humanized Source & Footer Styling */
+.source-human-label {
+  font-size: 0.88rem;
+  color: #334155;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.clause-footer-clean {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid #f1f5f9;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.clause-source-text {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #475569;
+}

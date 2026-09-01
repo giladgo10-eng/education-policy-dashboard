@@ -53,6 +53,34 @@ function getAgreementPdfUrl(sourceId, partyId) {
   return DRIVE_COALITION_FOLDER_URL;
 }
 
+function getAgreementCleanTitle(partyName, sectionRef, pageNumber) {
+  let agName = "";
+  const p = partyName || "";
+  if (p.includes("ש״ס") || p.includes("שס")) agName = "הסכם הליכוד–ש״ס";
+  else if (p.includes("אגודת ישראל")) agName = "נספח הליכוד–אגודת ישראל";
+  else if (p.includes("יהדות התורה")) agName = "הסכם הליכוד–יהדות התורה";
+  else if (p.includes("ציונות דתית") || p.includes("הציונות הדתית")) agName = "הסכם הליכוד–הציונות הדתית";
+  else if (p.includes("עוצמה יהודית")) agName = "הסכם הליכוד–עוצמה יהודית";
+  else if (p.includes("נעם") || p.includes("נועם")) agName = "הסכם הליכוד–נעם";
+  else if (p.includes("הימין הממלכתי")) agName = "הסכם הליכוד–הימין הממלכתי";
+  else agName = "הסכם קואליציוני רשמי";
+
+  let res = agName;
+  if (sectionRef) res += " | " + sectionRef;
+  if (pageNumber) res += " (עמ׳ " + pageNumber + ")";
+  return res;
+}
+
+function getHumanSourceLabel(sourceId, citation) {
+  const src = STATE.sources.find(s => s.id === sourceId);
+  let title = src ? src.title : "מקור רשמי מאומת";
+  title = title.replace(/\s*\((?:PDF|Word|גרסת Word|הסכם מלא|8 צעדים)\)/gi, '').trim();
+  if (citation) {
+    title += ' | ' + citation;
+  }
+  return title;
+}
+
 const SOURCE_QUALITY_CONFIG = {
   primary_source: { label: "מצע / מסמך רשמי", class: "quality-primary", icon: "📜" },
   primary_historical: { label: "מקור היסטורי (2013)", class: "quality-historical", icon: "🏛️" },
@@ -310,9 +338,10 @@ function renderPartyScreen(partyId) {
     }
 
     if (pos && pos.sourceId) {
+      const sourceHumanText = getHumanSourceLabel(pos.sourceId, pos.citation);
       html += '<div class="card-footer">';
       html += '<button class="source-btn" data-source-id="' + pos.sourceId + '" data-citation="' + (pos.citation || '') + '">';
-      html += '🔍 מקור: ' + pos.sourceId + (pos.citation ? ' (' + pos.citation + ')' : '');
+      html += '🔍 מקור: ' + sourceHumanText;
       html += '</button>';
       html += '</div>';
     }
@@ -393,9 +422,10 @@ function renderIssueScreen(issueId) {
     }
 
     if (pos && pos.sourceId) {
+      const sourceHumanText = getHumanSourceLabel(pos.sourceId, pos.citation);
       html += '<div class="comp-footer">';
       html += '<button class="source-btn" data-source-id="' + pos.sourceId + '" data-citation="' + (pos.citation || '') + '">';
-      html += '🔍 מקור: ' + pos.sourceId;
+      html += '🔍 מקור: ' + sourceHumanText;
       html += '</button>';
       html += '</div>';
     }
@@ -462,6 +492,7 @@ function renderExecutionScreen(partyId) {
     const statusKey = execRecord ? execRecord.status : "under_review";
     const statusInfo = STATUS_CONFIG[statusKey] || STATUS_CONFIG.default;
     const pdfUrl = getAgreementPdfUrl(cmt.sourceId, party.id);
+    const cleanSourceLabel = getAgreementCleanTitle(party.name, cmt.sectionRef, cmt.pageNumber);
 
     html += '<div class="execution-card">';
     html += '<div class="exec-header">';
@@ -480,8 +511,8 @@ function renderExecutionScreen(partyId) {
       html += '<div class="budget-tag-wrap">💰 תקציב נקוב בהסכם: <strong>' + formatNIS(cmt.budgetAmountNIS) + '</strong></div>';
     }
     html += '<div class="tier-source-row">';
-    html += '<button class="source-btn" data-source-id="' + cmt.sourceId + '">🔍 מקור ההתחייבות: ' + cmt.sourceId + '</button>';
-    html += '<a href="' + pdfUrl + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">📄 פתח את ההסכם המקורי ב-Drive ↗</a>';
+    html += '<div class="source-human-label">מקור: <strong>' + cleanSourceLabel + '</strong></div>';
+    html += '<a href="' + pdfUrl + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">📄 לצפייה בהסכם המקורי ↗</a>';
     html += '</div>';
     html += '</div>';
 
@@ -522,9 +553,7 @@ function renderExecutionScreen(partyId) {
     html += '<div class="tier-head"><span class="tier-num">4</span> <h4>סטטוס ביצוע מאומת</h4></div>';
     html += '<div class="status-tier-row">';
     html += '<span class="status-badge ' + statusInfo.class + '">' + statusInfo.label + '</span>';
-    if (execRecord && execRecord.sourceId) {
-      html += '<span class="status-source-note">מאומת מול: ' + execRecord.sourceId + '</span>';
-    }
+    html += '<span class="status-source-note">מאומת מול: מסמכי מקור רשמיים ודוחות ביצוע</span>';
     html += '</div>';
     html += '</div>';
 
@@ -654,6 +683,7 @@ function renderAskAnswer(result) {
     result.coalitionClausesList.forEach(cl => {
       const statusInfo = STATUS_CONFIG[cl.execution_status] || STATUS_CONFIG.default;
       const pdfUrl = cl.drive_url || getAgreementPdfUrl(cl.source_id, null);
+      const cleanSourceTitle = getAgreementCleanTitle(cl.party, cl.section_number, cl.page_number);
 
       html += '<div class="answer-clause-card">';
       html += '<div class="clause-header">';
@@ -668,9 +698,9 @@ function renderAskAnswer(result) {
       if (cl.budget_amount_nis) {
         html += '<div class="clause-budget-tag">💰 תקציב נקוב: ' + formatNIS(cl.budget_amount_nis) + '</div>';
       }
-      html += '<div class="clause-footer">';
-      html += '<button class="source-btn" data-source-id="' + cl.source_id + '">🔍 ' + cl.source_id + '</button>';
-      html += '<a href="' + pdfUrl + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">📄 פתח את ההסכם המקורי ב-Drive ↗</a>';
+      html += '<div class="clause-footer-clean">';
+      html += '<span class="clause-source-text">' + cleanSourceTitle + '</span>';
+      html += '<a href="' + pdfUrl + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">📄 פתח את ההסכם המקורי ↗</a>';
       html += '</div>';
       html += '</div>';
     });
@@ -751,7 +781,7 @@ function renderAskAnswer(result) {
     html += '<div class="source-pills-list">';
     result.sources.forEach(src => {
       html += '<button class="source-pill-btn" data-source-id="' + src.id + '">';
-      html += (src.isPrimary ? '📜 ' : '📖 ') + src.id + ' (' + src.tier + ')';
+      html += (src.isPrimary ? '📜 ' : '📖 ') + (src.title || src.id) + ' (' + src.tier + ')';
       html += '</button>';
     });
     html += '</div>';
@@ -808,9 +838,8 @@ function openSourceDrawer(sourceId, citation) {
 
   let html = '';
   if (!src) {
-    html = '<div class="empty-notice"><p>מזהה מקור: ' + sourceId + '</p><p>פרטי המקור טרם הוזנו באינדקס.</p></div>';
+    html = '<div class="empty-notice"><p>פרטי המקור המבוקש:</p><p>מקור רשמי מאומת בבסיס הידע.</p></div>';
   } else {
-    html += '<div class="drawer-field"><label>מזהה מקור במערכת:</label><div class="drawer-val code-val">' + src.id + '</div></div>';
     html += '<div class="drawer-field"><label>כותרת המקור:</label><div class="drawer-val title-val">' + src.title + '</div></div>';
     html += '<div class="drawer-field"><label>סוג מסמך:</label><div class="drawer-val">' + (SOURCE_TYPE_LABELS[src.sourceType] || src.sourceType) + '</div></div>';
     if (citation) {
@@ -821,15 +850,7 @@ function openSourceDrawer(sourceId, citation) {
     
     const specificPdfUrl = COALITION_PDF_MAP[sourceId] || src.url;
     if (specificPdfUrl) {
-      html += '<div class="drawer-field"><label>קישור למסמך המקורי ב-Google Drive:</label><div class="drawer-val"><a href="' + specificPdfUrl + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">📄 פתח את המסמך המקורי ב-Drive ↗</a></div></div>';
-    }
-
-    if (src.localFilePath) {
-      html += '<div class="drawer-field"><label>עותק מקומי מסונכרן בפרויקט:</label><div class="drawer-val local-file-val">📁 ' + src.localFilePath + '</div></div>';
-    }
-
-    if (src.archiveHash) {
-      html += '<div class="drawer-field"><label>גיבוב שלמות (SHA-256 Checksum):</label><div class="drawer-val hash-val">' + src.archiveHash + '</div></div>';
+      html += '<div class="drawer-field"><label>קישור למסמך המקורי ב-Google Drive:</label><div class="drawer-val"><a href="' + specificPdfUrl + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">📄 לצפייה בהסכם המקורי ↗</a></div></div>';
     }
 
     if (src.notes) {

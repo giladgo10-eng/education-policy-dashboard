@@ -14,6 +14,49 @@
 
   const DRIVE_FOLDER_URL = "https://drive.google.com/drive/folders/1GcfQe69kVhqQKPnAUwzIoE0TsrmN3l8_";
 
+  const HUMAN_SOURCE_TITLES = {
+    "KB-COAL-LIKUD-SHAS-PDF": "הסכם הליכוד–ש״ס",
+    "KB-COAL-LIKUD-UTJ-PDF": "הסכם הליכוד–יהדות התורה",
+    "KB-COAL-LIKUD-AGUDAT-ISRAEL-PDF": "נספח הליכוד–אגודת ישראל",
+    "KB-COAL-LIKUD-UTJ-APPENDIX-PDF": "נספח הליכוד–אגודת ישראל",
+    "KB-COAL-LIKUD-RZ-PDF": "הסכם הליכוד–הציונות הדתית",
+    "KB-COAL-LIKUD-OTZMA-PDF": "הסכם הליכוד–עוצמה יהודית",
+    "KB-COAL-LIKUD-OZMA-PDF": "הסכם הליכוד–עוצמה יהודית",
+    "KB-COAL-LIKUD-NOAM-PDF": "הסכם הליכוד–סיעת נעם",
+    "KB-COAL-LIKUD-YAMIN-MAMLACHTI-PDF": "הסכם הליכוד–הימין הממלכתי",
+    "KB-COAL-LIKUD-YAMINST-PDF": "הסכם הליכוד–הימין הממלכתי",
+    "SRC-LIKUD-SHAS-2022": "הסכם הליכוד–ש״ס",
+    "SRC-LIKUD-UTJ-2022": "הסכם הליכוד–יהדות התורה",
+    "SRC-LIKUD-RZ-2022": "הסכם הליכוד–הציונות הדתית",
+    "SRC-LIKUD-OZMA-2022": "הסכם הליכוד–עוצמה יהודית",
+    "SRC-LIKUD-NOAM-2022": "הסכם הליכוד–סיעת נעם",
+    "KB-PLT-BENNETT-2026-PDF": "תוכנית החינוך של ביחד (נפתלי בנט)",
+    "KB-PLT-BENNETT-2026-DOCX": "תוכנית החינוך של ביחד (נפתלי בנט)",
+    "KB-PLT-YASHAR-2026-PDF": "תוכנית החינוך של ישר! (גדי איזנקוט)",
+    "KB-PLT-YASHAR-2026-DOCX": "תוכנית החינוך של ישר! (גדי איזנקוט)",
+    "KB-PLT-DEMOCRATS-PLAN-PDF": "תוכנית החינוך של הדמוקרטים (יאיר גולן)",
+    "KB-PLT-DEMOCRATS-PLAN-DOCX": "תוכנית החינוך של הדמוקרטים (יאיר גולן)",
+    "KB-PLT-BEYTENU-2026-PDF": "תוכנית החינוך של ישראל ביתנו (אביגדור ליברמן)",
+    "KB-PLT-YESHATID-2022": "מצע החינוך של יש עתיד (יאיר לפיד)",
+    "KB-PLT-YESHATID-HISTORIC-2013": "מצע יש עתיד ההיסטורי (2013)",
+    "KB-SUP-RAAM-PDF": "עמדות החינוך של רע״ם",
+    "KB-SUP-RAAM-DOCX": "עמדות החינוך של רע״ם",
+    "KB-SUP-HADASH-ANALYSIS-PDF": "עמדות החינוך של חד״ש–תע״ל",
+    "KB-SUP-HADASH-ANALYSIS-DOCX": "עמדות החינוך של חד״ש–תע״ל",
+    "KB-SUP-HADASH-PLATFORM-2022": "מצע חד״ש–תע״ל הרשמי",
+    "KB-BUD-MOE-EXEC-2024": "דוח ביצוע תקציב משרד החינוך 2024",
+    "KB-BUD-MOE-MAIN-2025": "עיקרי תקציב משרד החינוך 2025",
+    "KB-OFF-GEFEN-2026": "הנחיות תוכנית גפ״ן תשפ״ו",
+    "KB-RES-COALITION-STUDY-DOCX": "דוח הערכת מדיניות החינוך של מפלגות הקואליציה",
+    "KB-RES-OPPOSITION-STUDY-DOCX": "דוח הערכת מצעי מפלגות האופוזיציה"
+  };
+
+  function getHumanSourceTitle(sid) {
+    if (!sid) return "מקור מאומת";
+    if (HUMAN_SOURCE_TITLES[sid]) return HUMAN_SOURCE_TITLES[sid];
+    return "מסמך מקור מאומת";
+  }
+
   // Topic taxonomy & Hebrew keywords
   const TOPIC_CONFIG = {
     core_curriculum: {
@@ -355,9 +398,9 @@
         if (!sourceMap.has(sid)) {
           sourceMap.set(sid, {
             id: sid,
-            tier: tier === "primary" ? "מקור רשמי ראשוני" : "מחקר משני",
+            tier: tier === "primary" ? "מקור רשמי" : "מחקר משני",
             isPrimary: tier === "primary",
-            title: title || sid
+            title: getHumanSourceTitle(sid) || title || sid
           });
         }
       };

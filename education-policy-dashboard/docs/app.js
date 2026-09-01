@@ -27,9 +27,12 @@ const COALITION_PDF_MAP = {
   "PARTY-SHAS": "https://drive.google.com/file/d/10UlNZ0uHKU6UGvddFwHnezp1Wo1x16OY/view?usp=sharing",
   "PARTY-UTJ": "https://drive.google.com/file/d/170jZW_rmd1LB1QcZvoIPHDaKsyKS0N1m/view?usp=sharing",
   "PARTY-RZ": "https://drive.google.com/file/d/1XyoY-dKRwtm5uHu6hyiu_dhftS0xQh98/view?usp=sharing",
+  "PARTY-RELIGIOUS-ZIONISM": "https://drive.google.com/file/d/1XyoY-dKRwtm5uHu6hyiu_dhftS0xQh98/view?usp=sharing",
   "PARTY-OZMA": "https://drive.google.com/file/d/13aoUSFRcTOtUS3S6sNgrh1kNsxs0BTj5/view?usp=sharing",
+  "PARTY-OTZMA-YEHUDIT": "https://drive.google.com/file/d/13aoUSFRcTOtUS3S6sNgrh1kNsxs0BTj5/view?usp=sharing",
   "PARTY-NOAM": "https://drive.google.com/file/d/1jWtYDXl5VkVwuaO9f8UJj60GLEDFJPrs/view?usp=sharing",
   "PARTY-YAMINST": "https://drive.google.com/file/d/1JREXh4SSzK6gwuneCTvYiRvdKvk_znrv/view?usp=sharing",
+  "PARTY-YAMIN-MAMLACHTI": "https://drive.google.com/file/d/1JREXh4SSzK6gwuneCTvYiRvdKvk_znrv/view?usp=sharing",
   "KB-COAL-LIKUD-SHAS-PDF": "https://drive.google.com/file/d/10UlNZ0uHKU6UGvddFwHnezp1Wo1x16OY/view?usp=sharing",
   "KB-COAL-LIKUD-UTJ-PDF": "https://drive.google.com/file/d/170jZW_rmd1LB1QcZvoIPHDaKsyKS0N1m/view?usp=sharing",
   "KB-COAL-LIKUD-AGUDAT-ISRAEL-PDF": "https://drive.google.com/file/d/1EA_xVDPWQtByoZf0tvmKYEpGnr-Nan5w/view?usp=sharing",
@@ -46,6 +49,51 @@ const COALITION_PDF_MAP = {
   "SRC-LIKUD-OZMA-2022": "https://drive.google.com/file/d/13aoUSFRcTOtUS3S6sNgrh1kNsxs0BTj5/view?usp=sharing",
   "SRC-LIKUD-NOAM-2022": "https://drive.google.com/file/d/1jWtYDXl5VkVwuaO9f8UJj60GLEDFJPrs/view?usp=sharing"
 };
+
+const ISSUE_ICON_MAP = {
+  "ISSUE-CORE-CURRICULUM": "📚",
+  "ISSUE-SPECIAL-EDUCATION": "♿",
+  "ISSUE-TEACHER-SHORTAGE": "👩‍🏫",
+  "ISSUE-BUDGET-DIFFERENTIAL": "💰",
+  "ISSUE-EARLY-CHILDHOOD": "👶",
+  "ISSUE-MUNICIPAL-AUTONOMY": "🏛️",
+  "ISSUE-JEWISH-IDENTITY": "📜"
+};
+
+// Safe Accessor Functions
+function getPartyName(p) {
+  if (!p) return "";
+  return p.nameHe || p.name || p.id || "";
+}
+
+function getPartyLeader(p) {
+  if (!p) return "";
+  return p.knessetFaction25 || p.leader || "";
+}
+
+function getIssueTitle(i) {
+  if (!i) return "";
+  return i.title || i.name || i.id || "";
+}
+
+function getIssueIcon(i) {
+  if (!i) return "📌";
+  return i.icon || ISSUE_ICON_MAP[i.id] || "📌";
+}
+
+function getAnalysisText(analysis) {
+  if (!analysis) return "";
+  if (typeof analysis === "string") return analysis;
+  if (typeof analysis === "object" && analysis.text) return analysis.text;
+  return "";
+}
+
+function getAssessmentText(assessment) {
+  if (!assessment) return "";
+  if (typeof assessment === "string") return assessment;
+  if (typeof assessment === "object" && assessment.text) return assessment.text;
+  return "";
+}
 
 function getAgreementPdfUrl(sourceId, partyId) {
   if (sourceId && COALITION_PDF_MAP[sourceId]) return COALITION_PDF_MAP[sourceId];
@@ -232,18 +280,27 @@ function renderActiveView() {
 
 // Helper: Get list of parties that actually have platform/research positions
 function getPlatformParties() {
-  const allowedStatuses = ["primary_source", "primary_historical", "secondary_research"];
-  return STATE.parties.map(party => {
+  return STATE.parties.filter(party => {
+    return STATE.positions.some(p => p.partyId === party.id);
+  }).map(party => {
     const partyPositions = STATE.positions.filter(p => p.partyId === party.id);
-    const validPos = partyPositions.find(p => p.sourceStatus && allowedStatuses.includes(p.sourceStatus));
-    if (!validPos) return null;
-    const sourceStatus = validPos.sourceStatus;
+    const samplePos = partyPositions.find(p => p.sourceType || p.verificationLevel || p.sourceStatus) || partyPositions[0];
+    let qualityKey = "primary_source";
+    if (samplePos) {
+      if (samplePos.sourceType === "secondary_research_source" || samplePos.verificationLevel === "secondary_research") {
+        qualityKey = "secondary_research";
+      } else if (samplePos.sourceType === "party_platform_historical") {
+        qualityKey = "primary_historical";
+      } else {
+        qualityKey = "primary_source";
+      }
+    }
     return {
       ...party,
-      sourceStatus,
-      qualityInfo: SOURCE_QUALITY_CONFIG[sourceStatus] || SOURCE_QUALITY_CONFIG.default
+      displayName: getPartyName(party),
+      qualityInfo: SOURCE_QUALITY_CONFIG[qualityKey] || SOURCE_QUALITY_CONFIG.default
     };
-  }).filter(Boolean);
+  });
 }
 
 // Helper: Get list of coalition parties that have commitments
@@ -262,8 +319,9 @@ function renderPartyScreenSelectors() {
   const validParties = getPlatformParties();
   container.innerHTML = validParties.map(party => {
     const isActive = party.id === STATE.selectedPartyId ? "active" : "";
+    const pName = getPartyName(party);
     return '<button class="party-btn ' + isActive + '" data-party-id="' + party.id + '">' +
-      '<span class="btn-name">' + party.name + '</span>' +
+      '<span class="btn-name">' + pName + '</span>' +
       '<span class="btn-quality-badge ' + party.qualityInfo.class + '">' + party.qualityInfo.icon + ' ' + party.qualityInfo.label + '</span>' +
       '</button>';
   }).join("");
@@ -288,24 +346,34 @@ function renderPartyScreen(partyId) {
     return;
   }
 
+  const pName = getPartyName(party);
+  const pLeader = getPartyLeader(party);
   const partyPositions = STATE.positions.filter(p => p.partyId === partyId);
-  const samplePos = partyPositions.find(p => p.sourceStatus && SOURCE_QUALITY_CONFIG[p.sourceStatus]) || partyPositions[0];
-  const sourceQuality = (samplePos && samplePos.sourceStatus) ? 
-    (SOURCE_QUALITY_CONFIG[samplePos.sourceStatus] || SOURCE_QUALITY_CONFIG.default) : 
-    SOURCE_QUALITY_CONFIG.default;
+  const samplePos = partyPositions[0];
+  let qualityKey = "primary_source";
+  if (samplePos) {
+    if (samplePos.sourceType === "secondary_research_source" || samplePos.verificationLevel === "secondary_research") {
+      qualityKey = "secondary_research";
+    } else if (samplePos.sourceType === "party_platform_historical") {
+      qualityKey = "primary_historical";
+    }
+  }
+  const sourceQuality = SOURCE_QUALITY_CONFIG[qualityKey] || SOURCE_QUALITY_CONFIG.default;
 
   let html = '';
   html += '<div class="party-header-card">';
   html += '<div class="party-title-wrap">';
-  html += '<h3 class="party-main-name">' + party.name + '</h3>';
-  html += '<span class="party-leader-badge">יו״ר / מוביל: ' + party.leader + '</span>';
+  html += '<h3 class="party-main-name">' + pName + '</h3>';
+  if (pLeader) {
+    html += '<span class="party-leader-badge">יו״ר / סיעה: ' + pLeader + '</span>';
+  }
   html += '</div>';
   html += '<div class="party-quality-indicator ' + sourceQuality.class + '">';
   html += '<span class="indicator-icon">' + sourceQuality.icon + '</span>';
   html += '<div class="indicator-text">';
   html += '<strong>מעמד ראייתי: ' + sourceQuality.label + '</strong>';
-  if (party.provenanceNote) {
-    html += '<p class="indicator-note">' + party.provenanceNote + '</p>';
+  if (party.notes) {
+    html += '<p class="indicator-note">' + party.notes + '</p>';
   }
   html += '</div>';
   html += '</div>';
@@ -316,10 +384,12 @@ function renderPartyScreen(partyId) {
     const pos = partyPositions.find(p => p.issueId === issue.id);
     const stanceConfig = (pos && STANCE_CONFIG[pos.stance]) ? STANCE_CONFIG[pos.stance] : STANCE_CONFIG.default;
     const isNotStated = !pos || pos.stance === "not_stated";
+    const isTitle = getIssueTitle(issue);
+    const isIcon = getIssueIcon(issue);
 
     html += '<div class="position-card ' + (isNotStated ? 'is-not-stated' : '') + '">';
     html += '<div class="card-top">';
-    html += '<h4 class="card-issue-title">' + issue.icon + ' ' + issue.name + '</h4>';
+    html += '<h4 class="card-issue-title">' + isIcon + ' ' + isTitle + '</h4>';
     html += '<span class="stance-pill ' + stanceConfig.class + '">' + stanceConfig.label + '</span>';
     html += '</div>';
 
@@ -328,19 +398,24 @@ function renderPartyScreen(partyId) {
       html += '<p class="not-stated-text">לא אותרה התייחסות מפורשת לסוגיה זו במסמך המקור שנבדק.</p>';
       html += '</div>';
     } else {
-      html += '<p class="card-summary">' + pos.summary + '</p>';
+      html += '<p class="card-summary">' + (pos.summary || '') + '</p>';
       if (pos.verbatimQuote) {
         html += '<blockquote class="card-quote">' + pos.verbatimQuote + '</blockquote>';
       }
-      if (pos.analysis) {
-        html += '<div class="card-analysis"><span class="analysis-tag">הערכת מחקר:</span> ' + pos.analysis + '</div>';
+      const analysisText = getAnalysisText(pos.analysis);
+      if (analysisText) {
+        html += '<div class="card-analysis"><span class="analysis-tag">הערכת מחקר:</span> ' + analysisText + '</div>';
+      }
+      const assessmentText = getAssessmentText(pos.assessment);
+      if (assessmentText) {
+        html += '<div class="card-analysis" style="margin-top:6px; background-color:#eff6ff; border-right-color:#3b82f6;"><span class="analysis-tag" style="color:#1e40af;">משמעות מוניציפלית:</span> ' + assessmentText + '</div>';
       }
     }
 
     if (pos && pos.sourceId) {
-      const sourceHumanText = getHumanSourceLabel(pos.sourceId, pos.citation);
+      const sourceHumanText = getHumanSourceLabel(pos.sourceId, pos.sourceCitation || pos.citation);
       html += '<div class="card-footer">';
-      html += '<button class="source-btn" data-source-id="' + pos.sourceId + '" data-citation="' + (pos.citation || '') + '">';
+      html += '<button class="source-btn" data-source-id="' + pos.sourceId + '" data-citation="' + (pos.sourceCitation || pos.citation || '') + '">';
       html += '🔍 מקור: ' + sourceHumanText;
       html += '</button>';
       html += '</div>';
@@ -363,8 +438,10 @@ function renderIssueScreenSelectors() {
 
   container.innerHTML = STATE.issues.map(issue => {
     const isActive = issue.id === STATE.selectedIssueId ? "active" : "";
+    const isTitle = getIssueTitle(issue);
+    const isIcon = getIssueIcon(issue);
     return '<button class="issue-btn ' + isActive + '" data-issue-id="' + issue.id + '">' +
-      '<span class="issue-icon">' + issue.icon + '</span> ' + issue.name +
+      '<span class="issue-icon">' + isIcon + '</span> ' + isTitle +
       '</button>';
   }).join("");
 
@@ -388,12 +465,15 @@ function renderIssueScreen(issueId) {
     return;
   }
 
+  const isTitle = getIssueTitle(issue);
+  const isIcon = getIssueIcon(issue);
   const validParties = getPlatformParties();
+
   let html = '';
   html += '<div class="issue-header-card">';
   html += '<div class="issue-header-title-wrap">';
-  html += '<h3 class="issue-main-name">' + issue.icon + ' ' + issue.name + '</h3>';
-  html += '<p class="issue-desc">' + issue.description + '</p>';
+  html += '<h3 class="issue-main-name">' + isIcon + ' ' + isTitle + '</h3>';
+  html += '<p class="issue-desc">' + (issue.description || '') + '</p>';
   html += '</div>';
   html += '</div>';
 
@@ -402,29 +482,31 @@ function renderIssueScreen(issueId) {
     const pos = STATE.positions.find(p => p.partyId === party.id && p.issueId === issueId);
     const stanceConfig = (pos && STANCE_CONFIG[pos.stance]) ? STANCE_CONFIG[pos.stance] : STANCE_CONFIG.default;
     const isNotStated = !pos || pos.stance === "not_stated";
+    const pName = getPartyName(party);
 
     html += '<div class="comparison-card ' + (isNotStated ? 'is-not-stated' : '') + '">';
     html += '<div class="comp-header">';
-    html += '<div class="comp-party-name">' + party.name + '</div>';
+    html += '<div class="comp-party-name">' + pName + '</div>';
     html += '<span class="stance-pill ' + stanceConfig.class + '">' + stanceConfig.label + '</span>';
     html += '</div>';
 
     if (isNotStated) {
       html += '<div class="not-stated-box"><p class="not-stated-text">לא נאמר במפורש במסמך המקור.</p></div>';
     } else {
-      html += '<p class="comp-summary">' + pos.summary + '</p>';
+      html += '<p class="comp-summary">' + (pos.summary || '') + '</p>';
       if (pos.verbatimQuote) {
         html += '<blockquote class="comp-quote">' + pos.verbatimQuote + '</blockquote>';
       }
-      if (pos.analysis) {
-        html += '<div class="comp-analysis">' + pos.analysis + '</div>';
+      const analysisText = getAnalysisText(pos.analysis);
+      if (analysisText) {
+        html += '<div class="comp-analysis">' + analysisText + '</div>';
       }
     }
 
     if (pos && pos.sourceId) {
-      const sourceHumanText = getHumanSourceLabel(pos.sourceId, pos.citation);
+      const sourceHumanText = getHumanSourceLabel(pos.sourceId, pos.sourceCitation || pos.citation);
       html += '<div class="comp-footer">';
-      html += '<button class="source-btn" data-source-id="' + pos.sourceId + '" data-citation="' + (pos.citation || '') + '">';
+      html += '<button class="source-btn" data-source-id="' + pos.sourceId + '" data-citation="' + (pos.sourceCitation || pos.citation || '') + '">';
       html += '🔍 מקור: ' + sourceHumanText;
       html += '</button>';
       html += '</div>';
@@ -448,8 +530,9 @@ function renderCoalitionPartySelectors() {
   const coalitionParties = getCoalitionParties();
   container.innerHTML = coalitionParties.map(party => {
     const isActive = party.id === STATE.selectedCoalitionPartyId ? "active" : "";
+    const pName = getPartyName(party);
     return '<button class="party-btn ' + isActive + '" data-coalition-party-id="' + party.id + '">' +
-      '<span class="btn-name">' + party.name + '</span>' +
+      '<span class="btn-name">' + pName + '</span>' +
       '</button>';
   }).join("");
 
@@ -468,6 +551,7 @@ function renderExecutionScreen(partyId) {
   if (!container) return;
 
   const party = STATE.parties.find(p => p.id === partyId);
+  const pName = getPartyName(party);
   const partyCommitments = STATE.commitments.filter(c => c.partyId === partyId);
 
   let html = '';
@@ -491,13 +575,13 @@ function renderExecutionScreen(partyId) {
     const execRecord = STATE.execution.find(e => e.commitmentId === cmt.id);
     const statusKey = execRecord ? execRecord.status : "under_review";
     const statusInfo = STATUS_CONFIG[statusKey] || STATUS_CONFIG.default;
-    const pdfUrl = getAgreementPdfUrl(cmt.sourceId, party.id);
-    const cleanSourceLabel = getAgreementCleanTitle(party.name, cmt.sectionRef, cmt.pageNumber);
+    const pdfUrl = getAgreementPdfUrl(cmt.sourceId, party ? party.id : null);
+    const cleanSourceLabel = getAgreementCleanTitle(pName, cmt.sectionRef, cmt.pageNumber);
 
     html += '<div class="execution-card">';
     html += '<div class="exec-header">';
     html += '<div class="exec-meta-left">';
-    html += '<span class="exec-party-tag">' + party.name + '</span>';
+    html += '<span class="exec-party-tag">' + pName + '</span>';
     html += '<span class="exec-clause-tag">' + (cmt.sectionRef || 'סעיף הסכם') + '</span>';
     html += '</div>';
     html += '<span class="status-badge ' + statusInfo.class + '">' + statusInfo.label + '</span>';

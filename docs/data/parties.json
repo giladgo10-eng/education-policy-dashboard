@@ -1,229 +1,208 @@
-﻿{
-    "$schema":  "./schemas/parties.schema.json",
-    "metadata":  {
-                     "dataset":  "parties",
-                     "version":  "1.0.0",
-                     "description":  "רשימת המפלגות והסיעות הפוליטיות הנבחנות בפרויקט לקראת שנת הלימודים תשפ״ז והבחירות לכנסת",
-                     "lastUpdated":  "2026-09-01"
-                 },
-    "parties":  [
-                    {
-                        "id":  "PARTY-LIKUD",
-                        "nameHe":  "הליכוד",
-                        "nameEn":  "Likud",
-                        "knessetFaction25":  "הליכוד בראשות בנימין נתניהו לראשות הממשלה",
-                        "statusInKnesset25":  "coalition_lead",
-                        "currentMinistersInEducation":  [
-                                                            {
-                                                                "role":  "שר החינוך",
-                                                                "name":  "יואב קיש",
-                                                                "termStart":  "2022-12-29",
-                                                                "sourceId":  "SRC-GOV-2022-COAL-LIKUD-RZ"
-                                                            }
-                                                        ],
-                        "officialWebsite":  "https://www.likud.org.il",
-                        "platformDocumentSourceId":  "SRC-PLT-LIKUD-2022",
-                        "confidenceLevel":  "high",
-                        "notes":  "מובילת הממשלה ה-37 והקואליציה"
-                    },
-                    {
-                        "id":  "PARTY-YESH-ATID",
-                        "nameHe":  "יש עתיד",
-                        "nameEn":  "Yesh Atid",
-                        "knessetFaction25":  "יש עתיד בראשות יאיר לפיד",
-                        "statusInKnesset25":  "opposition",
-                        "currentMinistersInEducation":  [
-
-                                                        ],
-                        "officialWebsite":  "https://www.yeshatid.org.il",
-                        "platformDocumentSourceId":  "SRC-PLT-YESHATID-2022",
-                        "confidenceLevel":  "high",
-                        "notes":  "סיעת האופוזיציה הגדולה ביותר בכנסת ה-25"
-                    },
-                    {
-                        "id":  "PARTY-RELIGIOUS-ZIONISM",
-                        "nameHe":  "הציונות הדתית",
-                        "nameEn":  "Religious Zionism",
-                        "knessetFaction25":  "הציונות הדתית בראשות בצלאל סמוטריץ\u0027",
-                        "statusInKnesset25":  "coalition_partner",
-                        "currentMinistersInEducation":  [
-
-                                                        ],
-                        "officialWebsite":  "https://zionut.org.il",
-                        "platformDocumentSourceId":  "SRC-PLT-RZ-2022",
-                        "confidenceLevel":  "high",
-                        "notes":  "שותפה קואליציונית מרכזית, מחזיקה במשרד האוצר"
-                    },
-                    {
-                        "id":  "PARTY-SHAS",
-                        "nameHe":  "ש״ס",
-                        "nameEn":  "Shas",
-                        "knessetFaction25":  "התאחדות הספרדים שומרי תורה תנועת ש\"ס",
-                        "statusInKnesset25":  "coalition_partner",
-                        "currentMinistersInEducation":  [
-                                                            {
-                                                                "role":  "שר במשרד החינוך",
-                                                                "name":  "חיים ביטון",
-                                                                "termStart":  "2022-12-29",
-                                                                "sourceId":  "SRC-GOV-2022-COAL-LIKUD-RZ"
-                                                            }
-                                                        ],
-                        "officialWebsite":  "https://shas.org.il",
-                        "platformDocumentSourceId":  null,
-                        "confidenceLevel":  "high",
-                        "notes":  "אחראית על רשת החינוך \u0027בני יוסף\u0027 (מעיין החינוך התורני)"
-                    },
-                    {
-                        "id":  "PARTY-STATE-CAMP",
-                        "nameHe":  "המחנה הממלכתי",
-                        "nameEn":  "National Unity / State Camp",
-                        "knessetFaction25":  "המחנה הממלכתי בהנהגת בני גנץ",
-                        "statusInKnesset25":  "opposition",
-                        "currentMinistersInEducation":  [
-
-                                                        ],
-                        "officialWebsite":  "https://machanemam拓展.org.il",
-                        "platformDocumentSourceId":  "SRC-PLT-STATENAT-2022",
-                        "confidenceLevel":  "high",
-                        "notes":  "כיהנה זמנית בממשלת החירום (אוקטובר 2023 - יוני 2024)"
-                    },
-                    {
-                        "id":  "PARTY-BEYACHAD",
-                        "nameHe":  "ביחד",
-                        "nameEn":  "Beyachad",
-                        "knessetFaction25":  null,
-                        "statusInKnesset25":  "extra_parliamentary",
-                        "currentMinistersInEducation":  [
-
-                                                        ],
-                        "officialWebsite":  null,
-                        "platformDocumentSourceId":  "SRC-RES-DOC-OPENING-5787",
-                        "confidenceLevel":  "high",
-                        "notes":  "מפלגה/יוזמה פוליטית חדשה לקראת הבחירות הבאות ותשפ״ז; עמדותיה מתועדות במסמכי המחקר"
-                    },
-                    {
-                        "id":  "PARTY-NOAM",
-                        "nameHe":  "נעם",
-                        "nameEn":  "Noam",
-                        "knessetFaction25":  "נעם בראשות אבי מעוז",
-                        "statusInKnesset25":  "coalition_partner",
-                        "currentMinistersInEducation":  [
-                                                            {
-                                                                "role":  "סגן שר במשרד ראש הממשלה (אחראי על הרשות לזהות לאומית-יהודית)",
-                                                                "name":  "אבי מעוז",
-                                                                "termStart":  "2022-12-29",
-                                                                "sourceId":  "SRC-RES-DOC-COAL-EVAL"
-                                                            }
-                                                        ],
-                        "officialWebsite":  null,
-                        "platformDocumentSourceId":  null,
-                        "confidenceLevel":  "high",
-                        "notes":  "סיעת יחיד בקואליציה, התקשרה בהסכם קואליציוני ייעודי להקמת הרשות לזהות לאומית-יהודית"
-                    },
-                    {
-                        "id":  "PARTY-YASHAR",
-                        "nameHe":  "ישר!",
-                        "nameEn":  "Yashar",
-                        "knessetFaction25":  null,
-                        "statusInKnesset25":  "extra_parliamentary",
-                        "currentMinistersInEducation":  [
-
-                                                        ],
-                        "officialWebsite":  "https://yasharwitheisenkot.com",
-                        "platformDocumentSourceId":  "SRC-PLT-YASHAR-5787",
-                        "confidenceLevel":  "high",
-                        "notes":  "יוזמה ומפלגה פוליטית בראשות גדי איזנקוט לקראת הבחירות לכנסת ותשפ״ז"
-                    },
-                    {
-                        "id":  "PARTY-DEMOCRATS",
-                        "nameHe":  "הדמוקרטים",
-                        "nameEn":  "The Democrats",
-                        "knessetFaction25":  "העבודה (במיזוג מרצ והדמוקרטים)",
-                        "statusInKnesset25":  "opposition",
-                        "currentMinistersInEducation":  [
-
-                                                        ],
-                        "officialWebsite":  "https://democrats.org.il",
-                        "platformDocumentSourceId":  "SRC-PLT-DEMOCRATS-EDU-2025",
-                        "confidenceLevel":  "high",
-                        "notes":  "איחוד מפלגת העבודה ומרצ בראשות יאיר גולן"
-                    },
-                    {
-                        "id":  "PARTY-HADASH",
-                        "nameHe":  "חד״ש",
-                        "nameEn":  "Hadash",
-                        "knessetFaction25":  "חד\"ש-תע\"ל",
-                        "statusInKnesset25":  "opposition",
-                        "currentMinistersInEducation":  [
-
-                                                        ],
-                        "officialWebsite":  "http://hadash.org.il",
-                        "platformDocumentSourceId":  "SRC-PLT-HADASH-HIST-2013",
-                        "confidenceLevel":  "high",
-                        "notes":  "החזית הדמוקרטית לשלום ולשוויון; מצע החינוך ההיסטורי נבחן בגרסת 2013"
-                    },
-                    {
-                        "id":  "PARTY-HADASH-TAAL",
-                        "nameHe":  "חד״ש–תע״ל",
-                        "nameEn":  "Hadash-Ta\u0027al",
-                        "knessetFaction25":  "חד\"ש-תע\"ל בראשות איימן עודה ואחמד טיבי",
-                        "statusInKnesset25":  "opposition",
-                        "currentMinistersInEducation":  [
-
-                                                        ],
-                        "officialWebsite":  null,
-                        "platformDocumentSourceId":  "SRC-SEC-HADASHTAAL-2026",
-                        "confidenceLevel":  "medium",
-                        "notes":  "סיעת האופוזיציה בכנסת ה-25; עמדותיה מתועדות בניתוח מחקרי משני"
-                    },
-                    {
-                        "id":  "PARTY-RAAM",
-                        "nameHe":  "רע״ם",
-                        "nameEn":  "Ra\u0027am",
-                        "knessetFaction25":  "הרשימה הערבית המאוחדת (רע\"ם)",
-                        "statusInKnesset25":  "opposition",
-                        "currentMinistersInEducation":  [
-
-                                                        ],
-                        "officialWebsite":  null,
-                        "platformDocumentSourceId":  "SRC-SEC-RAAM-2026",
-                        "confidenceLevel":  "medium",
-                        "notes":  "הרשימה הערבית המאוחדת בראשות מנסור עבאס; עמדותיה מתועדות במסמך מחקר משני"
-                    },
-                    {
-                        "id":  "PARTY-UTJ",
-                        "nameHe":  "יהדות התורה",
-                        "nameEn":  "United Torah Judaism",
-                        "knessetFaction25":  "יהדות התורה (אגודת ישראל - דגל התורה)",
-                        "notes":  "סיעת קואליציה חתומה על הסכם קואליציוני"
-                    },
-                    {
-                        "id":  "PARTY-OTZMA-YEHUDIT",
-                        "nameHe":  "עוצמה יהודית",
-                        "nameEn":  "Otzma Yehudit",
-                        "knessetFaction25":  "עוצמה יהודית בראשות איתמר בן גביר",
-                        "notes":  "סיעת קואליציה חתומה על הסכם קואליציוני"
-                    },
-                    {
-                        "id":  "PARTY-YAMIN-MAMLACHTI",
-                        "nameHe":  "הימין הממלכתי",
-                        "nameEn":  "HaYamin HaMamlachti",
-                        "knessetFaction25":  "הימין הממלכתי בראשות גדעון סער",
-                        "notes":  "סיעת קואליציה חתומה על הסכם הצטרפות לממשלה (2024)"
-                    },
-                    {
-                        "id":  "PARTY-YISRAEL-BEYTENU",
-                        "nameHe":  "ישראל ביתנו",
-                        "nameEn":  "Yisrael Beytenu",
-                        "knessetFaction25":  "ישראל ביתנו בראשות אביגדור ליברמן",
-                        "statusInKnesset25":  "opposition",
-                        "currentMinistersInEducation":  [
-
-                                                        ],
-                        "officialWebsite":  "https://beytenu.org.il",
-                        "platformDocumentSourceId":  "SRC-PLT-BEYTENU-2026",
-                        "confidenceLevel":  "high",
-                        "notes":  "מפלגת אופוזיציה בכנסת ה-25 בראשות אביגדור ליברמן; מצע החינוך 2026 מבוסס על הסכמי שכר, מעמד המורה והמנהל, סנכרון חופשות והטבות סטודנטים"
-                    }
-                ]
+{
+  "$schema": "./schemas/parties.schema.json",
+  "metadata": {
+    "dataset": "parties",
+    "version": "1.0.0",
+    "description": "רשימת המפלגות והסיעות הפוליטיות הנבחנות בפרויקט לקראת שנת הלימודים תשפ״ז והבחירות לכנסת",
+    "lastUpdated": "2026-09-02"
+  },
+  "parties": [
+    {
+      "id": "PARTY-LIKUD",
+      "nameHe": "הליכוד",
+      "nameEn": "Likud",
+      "knessetFaction25": "הליכוד בראשות בנימין נתניהו לראשות הממשלה",
+      "statusInKnesset25": "coalition_lead",
+      "currentMinistersInEducation": [
+        {
+          "role": "שר החינוך",
+          "name": "יואב קיש",
+          "termStart": "2022-12-29",
+          "sourceId": "SRC-GOV-2022-COAL-LIKUD-RZ"
+        }
+      ],
+      "officialWebsite": "https://www.likud.org.il",
+      "platformDocumentSourceId": "SRC-PLT-LIKUD-2022",
+      "confidenceLevel": "high",
+      "notes": "מובילת הממשלה ה-37 והקואליציה"
+    },
+    {
+      "id": "PARTY-RELIGIOUS-ZIONISM",
+      "nameHe": "הציונות הדתית",
+      "nameEn": "Religious Zionism",
+      "knessetFaction25": "הציונות הדתית בראשות בצלאל סמוטריץ'",
+      "statusInKnesset25": "coalition_partner",
+      "currentMinistersInEducation": [],
+      "officialWebsite": "https://zionut.org.il",
+      "platformDocumentSourceId": "SRC-PLT-RZ-2022",
+      "confidenceLevel": "high",
+      "notes": "שותפה קואליציונית מרכזית, מחזיקה במשרד האוצר"
+    },
+    {
+      "id": "PARTY-SHAS",
+      "nameHe": "ש״ס",
+      "nameEn": "Shas",
+      "knessetFaction25": "התאחדות הספרדים שומרי תורה תנועת ש\"ס",
+      "statusInKnesset25": "coalition_partner",
+      "currentMinistersInEducation": [
+        {
+          "role": "שר במשרד החינוך",
+          "name": "חיים ביטון",
+          "termStart": "2022-12-29",
+          "sourceId": "SRC-GOV-2022-COAL-LIKUD-RZ"
+        }
+      ],
+      "officialWebsite": "https://shas.org.il",
+      "platformDocumentSourceId": null,
+      "confidenceLevel": "high",
+      "notes": "אחראית על רשת החינוך 'בני יוסף' (מעיין החינוך התורני)"
+    },
+    {
+      "id": "PARTY-STATE-CAMP",
+      "nameHe": "המחנה הממלכתי",
+      "nameEn": "National Unity / State Camp",
+      "knessetFaction25": "המחנה הממלכתי בהנהגת בני גנץ",
+      "statusInKnesset25": "opposition",
+      "currentMinistersInEducation": [],
+      "officialWebsite": "https://machanemam拓展.org.il",
+      "platformDocumentSourceId": "SRC-PLT-STATENAT-2022",
+      "confidenceLevel": "high",
+      "notes": "כיהנה זמנית בממשלת החירום (אוקטובר 2023 - יוני 2024)"
+    },
+    {
+      "id": "PARTY-BEYACHAD",
+      "nameHe": "ביחד",
+      "nameEn": "Beyachad",
+      "knessetFaction25": null,
+      "statusInKnesset25": "extra_parliamentary",
+      "currentMinistersInEducation": [],
+      "officialWebsite": null,
+      "platformDocumentSourceId": "SRC-PLT-BEYACHAD-5787",
+      "confidenceLevel": "high",
+      "notes": "יוזמת/מפלגת ביחד (תוכנית החינוך לקראת תשפ״ז; כולל שילוב מצעי בנט ויש עתיד)",
+      "aliases": [
+        "ביחד",
+        "בנט",
+        "נפתלי בנט",
+        "יש עתיד",
+        "ביחד – נפתלי בנט",
+        "ביחד (נפתלי בנט)",
+        "beyachad",
+        "bennett",
+        "yesh atid"
+      ]
+    },
+    {
+      "id": "PARTY-NOAM",
+      "nameHe": "נעם",
+      "nameEn": "Noam",
+      "knessetFaction25": "נעם בראשות אבי מעוז",
+      "statusInKnesset25": "coalition_partner",
+      "currentMinistersInEducation": [
+        {
+          "role": "סגן שר במשרד ראש הממשלה (אחראי על הרשות לזהות לאומית-יהודית)",
+          "name": "אבי מעוז",
+          "termStart": "2022-12-29",
+          "sourceId": "SRC-RES-DOC-COAL-EVAL"
+        }
+      ],
+      "officialWebsite": null,
+      "platformDocumentSourceId": null,
+      "confidenceLevel": "high",
+      "notes": "סיעת יחיד בקואליציה, התקשרה בהסכם קואליציוני ייעודי להקמת הרשות לזהות לאומית-יהודית"
+    },
+    {
+      "id": "PARTY-YASHAR",
+      "nameHe": "ישר!",
+      "nameEn": "Yashar",
+      "knessetFaction25": null,
+      "statusInKnesset25": "extra_parliamentary",
+      "currentMinistersInEducation": [],
+      "officialWebsite": "https://yasharwitheisenkot.com",
+      "platformDocumentSourceId": "SRC-PLT-YASHAR-5787",
+      "confidenceLevel": "high",
+      "notes": "יוזמה ומפלגה פוליטית בראשות גדי איזנקוט לקראת הבחירות לכנסת ותשפ״ז"
+    },
+    {
+      "id": "PARTY-DEMOCRATS",
+      "nameHe": "הדמוקרטים",
+      "nameEn": "The Democrats",
+      "knessetFaction25": "העבודה (במיזוג מרצ והדמוקרטים)",
+      "statusInKnesset25": "opposition",
+      "currentMinistersInEducation": [],
+      "officialWebsite": "https://democrats.org.il",
+      "platformDocumentSourceId": "SRC-PLT-DEMOCRATS-EDU-2025",
+      "confidenceLevel": "high",
+      "notes": "איחוד מפלגת העבודה ומרצ בראשות יאיר גולן"
+    },
+    {
+      "id": "PARTY-HADASH",
+      "nameHe": "חד״ש",
+      "nameEn": "Hadash",
+      "knessetFaction25": "חד\"ש-תע\"ל",
+      "statusInKnesset25": "opposition",
+      "currentMinistersInEducation": [],
+      "officialWebsite": "http://hadash.org.il",
+      "platformDocumentSourceId": "SRC-PLT-HADASH-HIST-2013",
+      "confidenceLevel": "high",
+      "notes": "החזית הדמוקרטית לשלום ולשוויון; מצע החינוך ההיסטורי נבחן בגרסת 2013"
+    },
+    {
+      "id": "PARTY-HADASH-TAAL",
+      "nameHe": "חד״ש–תע״ל",
+      "nameEn": "Hadash-Ta'al",
+      "knessetFaction25": "חד\"ש-תע\"ל בראשות איימן עודה ואחמד טיבי",
+      "statusInKnesset25": "opposition",
+      "currentMinistersInEducation": [],
+      "officialWebsite": null,
+      "platformDocumentSourceId": "SRC-SEC-HADASHTAAL-2026",
+      "confidenceLevel": "medium",
+      "notes": "סיעת האופוזיציה בכנסת ה-25; עמדותיה מתועדות בניתוח מחקרי משני"
+    },
+    {
+      "id": "PARTY-RAAM",
+      "nameHe": "רע״ם",
+      "nameEn": "Ra'am",
+      "knessetFaction25": "הרשימה הערבית המאוחדת (רע\"ם)",
+      "statusInKnesset25": "opposition",
+      "currentMinistersInEducation": [],
+      "officialWebsite": null,
+      "platformDocumentSourceId": "SRC-SEC-RAAM-2026",
+      "confidenceLevel": "medium",
+      "notes": "הרשימה הערבית המאוחדת בראשות מנסור עבאס; עמדותיה מתועדות במסמך מחקר משני"
+    },
+    {
+      "id": "PARTY-UTJ",
+      "nameHe": "יהדות התורה",
+      "nameEn": "United Torah Judaism",
+      "knessetFaction25": "יהדות התורה (אגודת ישראל - דגל התורה)",
+      "notes": "סיעת קואליציה חתומה על הסכם קואליציוני"
+    },
+    {
+      "id": "PARTY-OTZMA-YEHUDIT",
+      "nameHe": "עוצמה יהודית",
+      "nameEn": "Otzma Yehudit",
+      "knessetFaction25": "עוצמה יהודית בראשות איתמר בן גביר",
+      "notes": "סיעת קואליציה חתומה על הסכם קואליציוני"
+    },
+    {
+      "id": "PARTY-YAMIN-MAMLACHTI",
+      "nameHe": "הימין הממלכתי",
+      "nameEn": "HaYamin HaMamlachti",
+      "knessetFaction25": "הימין הממלכתי בראשות גדעון סער",
+      "notes": "סיעת קואליציה חתומה על הסכם הצטרפות לממשלה (2024)"
+    },
+    {
+      "id": "PARTY-YISRAEL-BEYTENU",
+      "nameHe": "ישראל ביתנו",
+      "nameEn": "Yisrael Beytenu",
+      "knessetFaction25": "ישראל ביתנו בראשות אביגדור ליברמן",
+      "statusInKnesset25": "opposition",
+      "currentMinistersInEducation": [],
+      "officialWebsite": "https://beytenu.org.il",
+      "platformDocumentSourceId": "SRC-PLT-BEYTENU-2026",
+      "confidenceLevel": "high",
+      "notes": "מפלגת אופוזיציה בכנסת ה-25 בראשות אביגדור ליברמן; מצע החינוך 2026 מבוסס על הסכמי שכר, מעמד המורה והמנהל, סנכרון חופשות והטבות סטודנטים"
+    }
+  ]
 }

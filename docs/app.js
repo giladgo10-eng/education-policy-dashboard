@@ -296,6 +296,7 @@ function setupTopNavigation() {
   document.querySelectorAll(".main-nav-bar .nav-tab").forEach(tab => {
     tab.addEventListener("click", () => {
       const section = tab.getAttribute("data-section");
+      if (!section) return;
       STATE.activeSection = section;
 
       document.querySelectorAll(".main-nav-bar .nav-tab").forEach(t => t.classList.remove("active"));

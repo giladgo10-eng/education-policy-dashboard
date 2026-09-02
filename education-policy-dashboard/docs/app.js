@@ -28,7 +28,7 @@ const PLATFORM_DOC_MAP = {
   "PARTY-BEYACHAD": {
     url: "https://drive.google.com/file/d/1M_llcAkxPie446iaqDJKxPMGvKBy6xnV/view?usp=sharing",
     isPrimary: true,
-    label: "תוכנית החינוך של ביחד (נפתלי בנט)",
+    label: "תוכנית החינוך של ביחד",
     btnText: "📄 לצפייה במצע / מסמך המקור ↗"
   },
   "PARTY-YASHAR": {
@@ -55,13 +55,7 @@ const PLATFORM_DOC_MAP = {
     label: "פרק החינוך של הציונות הדתית",
     btnText: "📄 לצפייה במצע / מסמך המקור ↗"
   },
-  "PARTY-YESH-ATID": {
-    url: "https://drive.google.com/drive/folders/1PvVXkV2KIxscPrIxE57-L1T_dF-0UxfM",
-    isPrimary: true,
-    label: "מצע החינוך של יש עתיד",
-    btnText: "📄 לצפייה במצע / מסמך המקור ↗"
-  },
-  "PARTY-RAAM": {
+    "PARTY-RAAM": {
     url: "https://drive.google.com/file/d/1kscIl_3H0ZqfoWKwt1SKfJMmFlcUWZ-O/view?usp=sharing",
     isPrimary: false,
     label: "עמדות החינוך של רע״ם (מסמך מחקר משני)",
@@ -374,7 +368,7 @@ function getPlatformParties() {
 
 // Helper: Get list of coalition parties that have commitments
 function getCoalitionParties() {
-  const coalitionPartyIds = Array.from(new Set(STATE.commitments.map(c => c.partyId)));
+  const coalitionPartyIds = Array.from(new Set(STATE.commitments.flatMap(c => c.partyIds || (c.partyId ? [c.partyId] : []))));
   return STATE.parties.filter(p => coalitionPartyIds.includes(p.id));
 }
 
@@ -655,7 +649,7 @@ function renderExecutionScreen(partyId) {
 
   const party = STATE.parties.find(p => p.id === partyId);
   const pName = getPartyName(party);
-  const partyCommitments = STATE.commitments.filter(c => c.partyId === partyId);
+  const partyCommitments = STATE.commitments.filter(c => (c.partyIds && c.partyIds.includes(partyId)) || c.partyId === partyId);
 
   let html = '';
 

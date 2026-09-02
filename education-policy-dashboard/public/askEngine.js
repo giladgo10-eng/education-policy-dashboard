@@ -19,7 +19,7 @@
     "ביחד": {
       url: "https://drive.google.com/file/d/1M_llcAkxPie446iaqDJKxPMGvKBy6xnV/view?usp=sharing",
       isPrimary: true,
-      label: "תוכנית החינוך של ביחד (נפתלי בנט)",
+      label: "תוכנית החינוך של ביחד",
       btnText: "📄 פתח את מסמך המקור ↗"
     },
     "ישר!": {
@@ -46,13 +46,7 @@
       label: "פרק החינוך של הציונות הדתית",
       btnText: "📄 פתח את מסמך המקור ↗"
     },
-    "יש עתיד": {
-      url: "https://drive.google.com/drive/folders/1PvVXkV2KIxscPrIxE57-L1T_dF-0UxfM",
-      isPrimary: true,
-      label: "מצע החינוך של יש עתיד",
-      btnText: "📄 פתח את מסמך המקור ↗"
-    },
-    "רע״ם": {
+        "רע״ם": {
       url: "https://drive.google.com/file/d/1kscIl_3H0ZqfoWKwt1SKfJMmFlcUWZ-O/view?usp=sharing",
       isPrimary: false,
       label: "עמדות החינוך של רע״ם (מסמך מחקר משני)",
@@ -171,8 +165,8 @@
   // Entity configuration & Aliases
   const ENTITY_CONFIG = {
     "ביחד": {
-      aliases: ["ביחד", "בנט", "נפתלי בנט", "beyachad", "bennett"],
-      shortName: "ביחד (בנט)"
+      aliases: ["ביחד", "בנט", "נפתלי בנט", "יש עתיד", "ביחד (בנט)", "ביחד - נפתלי בנט", "beyachad", "bennett"],
+      shortName: "ביחד"
     },
     "ישר!": {
       aliases: ["ישר", "ישר!", "איזנקוט", "גדי איזנקוט", "yashar", "eisenkot"],
@@ -186,11 +180,7 @@
       aliases: ["ישראל ביתנו", "ליברמן", "אביגדור ליברמן", "yisrael beytenu", "liberman"],
       shortName: "ישראל ביתנו (ליברמן)"
     },
-    "יש עתיד": {
-      aliases: ["יש עתיד", "לפיד", "יאיר לפיד", "yesh atid", "lapid"],
-      shortName: "יש עתיד (לפיד)"
-    },
-    "הליכוד": {
+        "הליכוד": {
       aliases: ["הליכוד", "ליכוד", "נתניהו", "קיש", "יואב קיש", "likud", "netanyahu"],
       shortName: "הליכוד (נתניהו)"
     },

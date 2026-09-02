@@ -11,7 +11,7 @@
   "claims": [
     {
       "claim_id": "CLM-001",
-      "entity": "ביחד (נפתלי בנט)",
+      "entity": "ביחד",
       "topic": "core_curriculum",
       "claim_text": "החלת לימודי ליבה מלאים בכלל בתי הספר, תוך הרחבה מאסיבית של רשת החינוך הממלכתי-חרדי (ממ\"ח) כפתרון מערכתי לשילוב המגזר החרדי.",
       "claim_type": "policy_pledge",
@@ -23,7 +23,7 @@
     },
     {
       "claim_id": "CLM-002",
-      "entity": "ביחד (נפתלי בנט)",
+      "entity": "ביחד",
       "topic": "teacher_wages_and_status",
       "claim_text": "העלאת שכר מורה מתחיל ל-12,000 ש\"ח נטו לצד מתן מענקי מצוינות וחוזים אישיים למורים מצטיינים במקצועות ה-STEM.",
       "claim_type": "policy_pledge",
@@ -35,7 +35,7 @@
     },
     {
       "claim_id": "CLM-003",
-      "entity": "ביחד (נפתלי בנט)",
+      "entity": "ביחד",
       "topic": "governance_and_autonomy",
       "claim_text": "הקמת מועצה לאומית עצמאית לחינוך בעלת סמכויות תכנון ארוכות טווח וביזור סמכויות תקציביות ופדגוגיות מלאות למנהלי בתי הספר.",
       "claim_type": "policy_pledge",

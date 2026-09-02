@@ -9,7 +9,7 @@
   "positions": [
     {
       "position_id": "POS-001",
-      "entity": "ביחד (נפתלי בנט)",
+      "entity": "ביחד",
       "topic": "core_curriculum",
       "stance": "support_mandatory_via_mamach",
       "summary": "החלת לימודי ליבה מלאים באמצעות הרחבת רשת החינוך הממלכתי-חרדי (ממ\"ח) ותמרוץ כלכלי.",
@@ -106,7 +106,7 @@
     },
     {
       "position_id": "POS-009",
-      "entity": "ביחד (נפתלי בנט)",
+      "entity": "ביחד",
       "topic": "teacher_wages_and_status",
       "stance": "support_major_wage_hike_and_contracts",
       "summary": "העלאת שכר מורה מתחיל ל-12,000 ₪, מתן חוזים אישיים למצטיינים ותגמול דיפרנציאלי לפי ביצועים.",
@@ -251,7 +251,7 @@
     },
     {
       "position_id": "POS-021",
-      "entity": "ביחד (נפתלי בנט)",
+      "entity": "ביחד",
       "topic": "governance_and_autonomy",
       "stance": "independent_statutory_council",
       "summary": "הקמת מועצה לאומית עצמאית לחינוך לניתוק המערכת משינויים פוליטיים תכופים.",
@@ -275,7 +275,7 @@
     },
     {
       "position_id": "POS-023",
-      "entity": "ביחד (נפתלי בנט)",
+      "entity": "ביחד",
       "topic": "stem_ai_and_matriculation",
       "stance": "national_ai_and_math_excellence",
       "summary": "הטמעת AI בכל שכבות הגיל, זינוק בלימודי 5 יח\"ל מתמטיקה ומדעים והגנה מאלימות.",

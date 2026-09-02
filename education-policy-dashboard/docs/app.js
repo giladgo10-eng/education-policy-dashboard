@@ -254,12 +254,12 @@ async function initApp() {
       commitmentsRes,
       executionRes
     ] = await Promise.all([
-      fetch("data/sources.json?v=2.2.0"),
-      fetch("data/parties.json?v=2.2.0"),
-      fetch("data/issues.json?v=2.2.0"),
-      fetch("data/positions.json?v=2.2.0"),
-      fetch("data/commitments.json?v=2.2.0"),
-      fetch("data/execution.json?v=2.2.0")
+      fetch("data/sources.json?v=2.5.0"),
+      fetch("data/parties.json?v=2.5.0"),
+      fetch("data/issues.json?v=2.5.0"),
+      fetch("data/positions.json?v=2.5.0"),
+      fetch("data/commitments.json?v=2.5.0"),
+      fetch("data/execution.json?v=2.5.0")
     ]);
 
     STATE.sources = (await sourcesRes.json()).sources || [];
@@ -341,29 +341,38 @@ function renderActiveView() {
   }
 }
 
-// Helper: Get list of parties that actually have platform/research positions
+// Helper: Get list of parties that actually have platform/research positions (with robust Fallback Protection)
 function getPlatformParties() {
-  return STATE.parties.filter(party => {
-    return STATE.positions.some(p => p.partyId === party.id);
-  }).map(party => {
-    const partyPositions = STATE.positions.filter(p => p.partyId === party.id);
-    const samplePos = partyPositions.find(p => p.sourceType || p.verificationLevel || p.sourceStatus) || partyPositions[0];
-    let qualityKey = "primary_source";
-    if (samplePos) {
-      if (samplePos.sourceType === "secondary_research_source" || samplePos.verificationLevel === "secondary_research") {
-        qualityKey = "secondary_research";
-      } else if (samplePos.sourceType === "party_platform_historical") {
-        qualityKey = "primary_historical";
-      } else {
-        qualityKey = "primary_source";
+  const legacyAliases = ["PARTY-YESH-ATID", "PARTY-BENNETT", "PARTY-NAFTALI-BENNETT", "YESH-ATID", "BENNETT"];
+  
+  return STATE.parties
+    .filter(party => {
+      // Epistemic Fallback Filter: Never create separate buttons for Yesh Atid or Bennett
+      if (legacyAliases.includes(party.id)) return false;
+      if (party.nameHe === "יש עתיד" || party.nameHe === "בנט" || party.nameHe === "נפתלי בנט") return false;
+      return STATE.positions.some(p => p.partyId === party.id || (party.id === "PARTY-BEYACHAD" && legacyAliases.includes(p.partyId)));
+    })
+    .map(party => {
+      const partyPositions = STATE.positions.filter(p => p.partyId === party.id || (party.id === "PARTY-BEYACHAD" && legacyAliases.includes(p.partyId)));
+      const samplePos = partyPositions.find(p => p.sourceType || p.verificationLevel || p.sourceStatus) || partyPositions[0];
+      let qualityKey = "primary_source";
+      if (samplePos) {
+        if (samplePos.sourceType === "secondary_research_source" || samplePos.verificationLevel === "secondary_research") {
+          qualityKey = "secondary_research";
+        } else if (samplePos.sourceType === "party_platform_historical") {
+          qualityKey = "primary_historical";
+        } else {
+          qualityKey = "primary_source";
+        }
       }
-    }
-    return {
-      ...party,
-      displayName: getPartyName(party),
-      qualityInfo: SOURCE_QUALITY_CONFIG[qualityKey] || SOURCE_QUALITY_CONFIG.default
-    };
-  });
+      const displayName = party.id === "PARTY-BEYACHAD" ? "ביחד" : getPartyName(party);
+      return {
+        ...party,
+        nameHe: displayName,
+        displayName: displayName,
+        qualityInfo: SOURCE_QUALITY_CONFIG[qualityKey] || SOURCE_QUALITY_CONFIG.default
+      };
+    });
 }
 
 // Helper: Get list of coalition parties that have commitments

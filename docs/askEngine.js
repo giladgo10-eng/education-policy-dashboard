@@ -235,11 +235,11 @@
       if (this.isLoaded) return;
       try {
         const [cRes, pRes, mRes, eRes, clRes] = await Promise.all([
-          fetch("data/knowledge/claims.json?v=2.2.0").then(r => r.json()),
-          fetch("data/knowledge/policy-positions.json?v=2.2.0").then(r => r.json()),
-          fetch("data/knowledge/commitments.json?v=2.2.0").then(r => r.json()),
-          fetch("data/knowledge/execution-evidence.json?v=2.2.0").then(r => r.json()),
-          fetch("data/knowledge/coalition-education-clauses.json?v=2.2.0").then(r => r.json())
+          fetch("data/knowledge/claims.json?v=2.5.0").then(r => r.json()),
+          fetch("data/knowledge/policy-positions.json?v=2.5.0").then(r => r.json()),
+          fetch("data/knowledge/commitments.json?v=2.5.0").then(r => r.json()),
+          fetch("data/knowledge/execution-evidence.json?v=2.5.0").then(r => r.json()),
+          fetch("data/knowledge/coalition-education-clauses.json?v=2.5.0").then(r => r.json())
         ]);
 
         this.claims = cRes.claims || [];

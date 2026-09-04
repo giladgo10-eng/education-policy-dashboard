@@ -4,7 +4,7 @@
     "title": "מאגר טענות ועובדות מחקריות — מפת החינוך 2026 (Granular Knowledge Base Claims)",
     "version": "1.0.0",
     "generatedAt": "2026-09-01T14:00:00+03:00",
-    "totalClaims": 48,
+    "totalClaims": 41,
     "primaryClaimsCount": 34,
     "secondaryClaimsCount": 14
   },
@@ -19,7 +19,11 @@
       "source_location": "פרק 1: לימודי ליבה וממ\"ח",
       "epistemic_tier": "primary",
       "confidence_level": "high",
-      "tags": ["לימודי ליבה", "ממ\"ח", "חינוך חרדי"]
+      "tags": [
+        "לימודי ליבה",
+        "ממ\"ח",
+        "חינוך חרדי"
+      ]
     },
     {
       "claim_id": "CLM-002",
@@ -31,7 +35,11 @@
       "source_location": "פרק 3: מעמד המורה ותגמול",
       "epistemic_tier": "primary",
       "confidence_level": "high",
-      "tags": ["שכר מורים", "מורה מתחיל", "חוזים אישיים"]
+      "tags": [
+        "שכר מורים",
+        "מורה מתחיל",
+        "חוזים אישיים"
+      ]
     },
     {
       "claim_id": "CLM-003",
@@ -43,7 +51,11 @@
       "source_location": "פרק 2: משילות וניהול עצמי",
       "epistemic_tier": "primary",
       "confidence_level": "high",
-      "tags": ["מועצה לאומית", "ניהול עצמי", "אוטונומיה"]
+      "tags": [
+        "מועצה לאומית",
+        "ניהול עצמי",
+        "אוטונומיה"
+      ]
     },
     {
       "claim_id": "CLM-004",
@@ -55,7 +67,11 @@
       "source_location": "פרק 2: התניית תקציב בליבה",
       "epistemic_tier": "primary",
       "confidence_level": "high",
-      "tags": ["לימודי ליבה", "סנקציות תקציביות", "פיקוח"]
+      "tags": [
+        "לימודי ליבה",
+        "סנקציות תקציביות",
+        "פיקוח"
+      ]
     },
     {
       "claim_id": "CLM-005",
@@ -67,7 +83,11 @@
       "source_location": "פרק 1: מועצה לאומית וביזור",
       "epistemic_tier": "primary",
       "confidence_level": "high",
-      "tags": ["מועצה לאומית", "ביזור אזורי", "רשויות מקומיות"]
+      "tags": [
+        "מועצה לאומית",
+        "ביזור אזורי",
+        "רשויות מקומיות"
+      ]
     },
     {
       "claim_id": "CLM-006",
@@ -79,7 +99,11 @@
       "source_location": "פרק 6: הגיל הרך 0-3",
       "epistemic_tier": "primary",
       "confidence_level": "high",
-      "tags": ["גיל הרך", "מעונות יום", "משרד החינוך"]
+      "tags": [
+        "גיל הרך",
+        "מעונות יום",
+        "משרד החינוך"
+      ]
     },
     {
       "claim_id": "CLM-007",
@@ -91,7 +115,11 @@
       "source_location": "צעד 2: שוויון ולימודי ליבה",
       "epistemic_tier": "primary",
       "confidence_level": "high",
-      "tags": ["לימודי ליבה", "ביטול תקצוב", "חינוך ממלכתי"]
+      "tags": [
+        "לימודי ליבה",
+        "ביטול תקצוב",
+        "חינוך ממלכתי"
+      ]
     },
     {
       "claim_id": "CLM-008",
@@ -103,7 +131,12 @@
       "source_location": "צעד 4: הפרדת דת ומדינה בגפ\"ן",
       "epistemic_tier": "primary",
       "confidence_level": "high",
-      "tags": ["רשות נעם", "זהות יהודית", "גפ\"ן", "הפרדת דת"]
+      "tags": [
+        "רשות נעם",
+        "זהות יהודית",
+        "גפ\"ן",
+        "הפרדת דת"
+      ]
     },
     {
       "claim_id": "CLM-009",
@@ -115,7 +148,11 @@
       "source_location": "צעד 5: רפורמת הבגרויות",
       "epistemic_tier": "primary",
       "confidence_level": "high",
-      "tags": ["בגרויות", "הערכה חלופית", "AI"]
+      "tags": [
+        "בגרויות",
+        "הערכה חלופית",
+        "AI"
+      ]
     },
     {
       "claim_id": "CLM-010",
@@ -127,7 +164,11 @@
       "source_location": "סעיף 1: שכר מורים ומנהלים",
       "epistemic_tier": "primary",
       "confidence_level": "high",
-      "tags": ["שכר מורים", "שכר מנהלים", "גיוס ופיטורין"]
+      "tags": [
+        "שכר מורים",
+        "שכר מנהלים",
+        "גיוס ופיטורין"
+      ]
     },
     {
       "claim_id": "CLM-011",
@@ -139,7 +180,11 @@
       "source_location": "סעיף 4: סנכרון חופשות",
       "epistemic_tier": "primary",
       "confidence_level": "high",
-      "tags": ["חופשות", "הורים עובדים", "משק"]
+      "tags": [
+        "חופשות",
+        "הורים עובדים",
+        "משק"
+      ]
     },
     {
       "claim_id": "CLM-012",
@@ -151,7 +196,11 @@
       "source_location": "סעיף 3: סייעות ופסיכולוגים",
       "epistemic_tier": "primary",
       "confidence_level": "high",
-      "tags": ["סייעות", "פסיכולוגים", "מענקים"]
+      "tags": [
+        "סייעות",
+        "פסיכולוגים",
+        "מענקים"
+      ]
     },
     {
       "claim_id": "CLM-013",
@@ -163,7 +212,11 @@
       "source_location": "תוכנית נחזור נתקן: חובת לימודי ליב\"ה",
       "epistemic_tier": "primary",
       "confidence_level": "high",
-      "tags": ["לימודי ליבה", "שלילת תקצוב", "חוק חינוך ממלכתי"]
+      "tags": [
+        "לימודי ליבה",
+        "שלילת תקצוב",
+        "חוק חינוך ממלכתי"
+      ]
     },
     {
       "claim_id": "CLM-014",
@@ -175,7 +228,11 @@
       "source_location": "תוכנית נחזור נתקן: שינוי רוחבי בחינוך",
       "epistemic_tier": "primary",
       "confidence_level": "high",
-      "tags": ["שכר מורים", "צמצום כיתות", "הכשרת מורים"]
+      "tags": [
+        "שכר מורים",
+        "צמצום כיתות",
+        "הכשרת מורים"
+      ]
     },
     {
       "claim_id": "CLM-015",
@@ -187,7 +244,12 @@
       "source_location": "סעיף 167 להסכם הקואליציוני",
       "epistemic_tier": "primary",
       "confidence_level": "high",
-      "tags": ["מוכש\"ר", "חמ\"ד", "השוואת שכר", "סעיף 167"]
+      "tags": [
+        "מוכש\"ר",
+        "חמ\"ד",
+        "השוואת שכר",
+        "סעיף 167"
+      ]
     },
     {
       "claim_id": "CLM-016",
@@ -199,7 +261,11 @@
       "source_location": "נספח תקציבי לתרבות יהודית וחמ\"ד",
       "epistemic_tier": "primary",
       "confidence_level": "high",
-      "tags": ["חמ\"ד", "גרעינים תורניים", "זהות יהודית"]
+      "tags": [
+        "חמ\"ד",
+        "גרעינים תורניים",
+        "זהות יהודית"
+      ]
     },
     {
       "claim_id": "CLM-017",
@@ -211,7 +277,11 @@
       "source_location": "פרק חינוך בהסכם הקואליציוני",
       "epistemic_tier": "primary",
       "confidence_level": "high",
-      "tags": ["בני יוסף", "מעיין החינוך", "אופק חדש בחרדי"]
+      "tags": [
+        "בני יוסף",
+        "מעיין החינוך",
+        "אופק חדש בחרדי"
+      ]
     },
     {
       "claim_id": "CLM-018",
@@ -223,7 +293,11 @@
       "source_location": "סעיפי חינוך ותרבות תורנית",
       "epistemic_tier": "primary",
       "confidence_level": "high",
-      "tags": ["חינוך עצמאי", "מוסדות פטור", "לימודי ליבה"]
+      "tags": [
+        "חינוך עצמאי",
+        "מוסדות פטור",
+        "לימודי ליבה"
+      ]
     },
     {
       "claim_id": "CLM-019",
@@ -235,7 +309,12 @@
       "source_location": "סעיף 34 להסכם הקואליציוני",
       "epistemic_tier": "primary",
       "confidence_level": "high",
-      "tags": ["רשות נעם", "זהות יהודית", "גפ\"ן", "סעיף 34"]
+      "tags": [
+        "רשות נעם",
+        "זהות יהודית",
+        "גפ\"ן",
+        "סעיף 34"
+      ]
     },
     {
       "claim_id": "CLM-020",
@@ -247,7 +326,11 @@
       "source_location": "פרק 1: הליכוד - חינוך חינם 0-3 מול ביצוע",
       "epistemic_tier": "secondary",
       "confidence_level": "high",
-      "tags": ["הליכוד", "חינוך חינם 0-3", "נקודות זיכוי"]
+      "tags": [
+        "הליכוד",
+        "חינוך חינם 0-3",
+        "נקודות זיכוי"
+      ]
     },
     {
       "claim_id": "CLM-021",
@@ -259,7 +342,12 @@
       "source_location": "פרק 1: הליכוד - מדיניות יואב קיש",
       "epistemic_tier": "secondary",
       "confidence_level": "high",
-      "tags": ["שבילי מורשת", "תנ\"ך", "זהות יהודית", "גפ\"ן 4%"]
+      "tags": [
+        "שבילי מורשת",
+        "תנ\"ך",
+        "זהות יהודית",
+        "גפ\"ן 4%"
+      ]
     },
     {
       "claim_id": "CLM-022",
@@ -271,7 +359,11 @@
       "source_location": "פרק 2: פערי בינוי ותקצוב",
       "epistemic_tier": "secondary",
       "confidence_level": "medium",
-      "tags": ["החברה הערבית", "בינוי כיתות", "חינוך בדואי"]
+      "tags": [
+        "החברה הערבית",
+        "בינוי כיתות",
+        "חינוך בדואי"
+      ]
     },
     {
       "claim_id": "CLM-023",
@@ -283,7 +375,11 @@
       "source_location": "עקרונות המצע לחינוך הערבי",
       "epistemic_tier": "secondary",
       "confidence_level": "medium",
-      "tags": ["חד\"ש-תע\"ל", "אוטונומיה פדגוגית", "נרטיב"]
+      "tags": [
+        "חד\"ש-תע\"ל",
+        "אוטונומיה פדגוגית",
+        "נרטיב"
+      ]
     },
     {
       "claim_id": "CLM-024",
@@ -295,7 +391,12 @@
       "source_location": "דוח העברות סוף שנת 2024",
       "epistemic_tier": "primary",
       "confidence_level": "high",
-      "tags": ["ביצוע תקציב 2024", "העברות סוף שנה", "חנ\"מ", "שכר מורים"]
+      "tags": [
+        "ביצוע תקציב 2024",
+        "העברות סוף שנה",
+        "חנ\"מ",
+        "שכר מורים"
+      ]
     },
     {
       "claim_id": "CLM-025",
@@ -307,7 +408,11 @@
       "source_location": "עיקרי תקציב 2025",
       "epistemic_tier": "primary",
       "confidence_level": "high",
-      "tags": ["תקציב 2025", "92 מיליארד ₪", "קו עימות"]
+      "tags": [
+        "תקציב 2025",
+        "92 מיליארד ₪",
+        "קו עימות"
+      ]
     },
     {
       "claim_id": "CLM-026",
@@ -319,7 +424,11 @@
       "source_location": "הנחיות הפעלת גפ\"ן תשפ\"ו",
       "epistemic_tier": "primary",
       "confidence_level": "high",
-      "tags": ["גפ\"ן תשפ\"ו", "ניהול עצמי", "סל גמיש"]
+      "tags": [
+        "גפ\"ן תשפ\"ו",
+        "ניהול עצמי",
+        "סל גמיש"
+      ]
     },
     {
       "claim_id": "CLM-027",
@@ -331,7 +440,11 @@
       "source_location": "פרק 3: חינוך מיוחד לקראת תשפ\"ז",
       "epistemic_tier": "secondary",
       "confidence_level": "high",
-      "tags": ["חינוך מיוחד", "418,385 תלמידים", "16% מהתלמידים"]
+      "tags": [
+        "חינוך מיוחד",
+        "418,385 תלמידים",
+        "16% מהתלמידים"
+      ]
     },
     {
       "claim_id": "CLM-028",
@@ -343,7 +456,12 @@
       "source_location": "פרק 4: פערי רשויות מקומיות ומאצ'ינג",
       "epistemic_tier": "secondary",
       "confidence_level": "high",
-      "tags": ["ארנונה עסקית", "פורום ה-15", "פערי רשויות", "מאצ'ינג"]
+      "tags": [
+        "ארנונה עסקית",
+        "פורום ה-15",
+        "פערי רשויות",
+        "מאצ'ינג"
+      ]
     },
     {
       "claim_id": "CLM-029",
@@ -355,7 +473,11 @@
       "source_location": "טבלת סיכום ביצוע תקציבי רשתות חרדיות",
       "epistemic_tier": "secondary",
       "confidence_level": "high",
-      "tags": ["חינוך עצמאי 2.1B", "מעיין החינוך 1.23B", "תקציב 2026"]
+      "tags": [
+        "חינוך עצמאי 2.1B",
+        "מעיין החינוך 1.23B",
+        "תקציב 2026"
+      ]
     },
     {
       "claim_id": "CLM-030",
@@ -367,7 +489,11 @@
       "source_location": "טבלת סיכום ביצוע מוסדות פטור",
       "epistemic_tier": "secondary",
       "confidence_level": "high",
-      "tags": ["מוסדות פטור", "321M ₪", "חנ\"מ בפטור 108M ₪"]
+      "tags": [
+        "מוסדות פטור",
+        "321M ₪",
+        "חנ\"מ בפטור 108M ₪"
+      ]
     },
     {
       "claim_id": "CLM-031",
@@ -379,7 +505,11 @@
       "source_location": "פרק 3: אופק חדש ברשתות החרדיות",
       "epistemic_tier": "secondary",
       "confidence_level": "high",
-      "tags": ["אופק חדש בחרדי", "פיקוח נורמטיבי", "בג\"ץ"]
+      "tags": [
+        "אופק חדש בחרדי",
+        "פיקוח נורמטיבי",
+        "בג\"ץ"
+      ]
     },
     {
       "claim_id": "CLM-032",
@@ -391,7 +521,11 @@
       "source_location": "פרק 4: רשות נעם ומבחן התקציב",
       "epistemic_tier": "secondary",
       "confidence_level": "high",
-      "tags": ["רשות נעם", "קיצוץ מלחמה", "אבי מעוז"]
+      "tags": [
+        "רשות נעם",
+        "קיצוץ מלחמה",
+        "אבי מעוז"
+      ]
     },
     {
       "claim_id": "CLM-033",
@@ -403,7 +537,11 @@
       "source_location": "פרק 1: מפת כוח אדם ומחסור במורים",
       "epistemic_tier": "secondary",
       "confidence_level": "high",
-      "tags": ["מחסור במורים", "STEM", "חטיבות ביניים"]
+      "tags": [
+        "מחסור במורים",
+        "STEM",
+        "חטיבות ביניים"
+      ]
     },
     {
       "claim_id": "CLM-034",
@@ -415,7 +553,129 @@
       "source_location": "פרק 6: אתגרי הטמעת AI",
       "epistemic_tier": "secondary",
       "confidence_level": "high",
-      "tags": ["AI", "תשתיות מחשוב", "פדגוגיה דיגיטלית"]
+      "tags": [
+        "AI",
+        "תשתיות מחשוב",
+        "פדגוגיה דיגיטלית"
+      ]
+    },
+    {
+      "claim_id": "CLM-UNION-001",
+      "entity": "איגוד מנהלי אגפי החינוך (הנהגה מקצועית רשותית)",
+      "topic": "governance_and_autonomy",
+      "claim_text": "העברת סמכויות הניהול הפדגוגיות והארגוניות לרשויות המקומיות במודל זיכיון דיפרנציאלי ל-5 שנים תחת ועדה בראשות שופט, תוך מיקוד משרד החינוך ברגולציה וסטנדרטים לאומיים בלבד.",
+      "claim_type": "professional_position",
+      "source_id": "SRC-UNION-2015-KAMINSKY-REFORM",
+      "source_location": "מצגת ון ליר 2015, שקפים 9-16",
+      "epistemic_tier": "primary",
+      "confidence_level": "high",
+      "tags": [
+        "ביזור",
+        "מודל זיכיון",
+        "שלטון מקומי",
+        "סמכות ואחריות"
+      ]
+    },
+    {
+      "claim_id": "CLM-UNION-002",
+      "entity": "איגוד מנהלי אגפי החינוך (הנהגה מקצועית רשותית)",
+      "topic": "early_childhood",
+      "claim_text": "איחוד האחריות הממשלתית על גילאי 0-3 תחת משרד החינוך, תקצוב חוק הפיקוח 2018, ויצירת רצף חינוכי מלידה עד 18 באגפי החינוך ברשויות המקומיות.",
+      "claim_type": "official_resolution",
+      "source_id": "SRC-UNION-2019-CALL-PARTIES-0TO3",
+      "source_location": "קריאה למפלגות ולבוחרים 2019, עמ' 1-2",
+      "epistemic_tier": "primary",
+      "confidence_level": "high",
+      "tags": [
+        "גיל הרך",
+        "לידה עד שלוש",
+        "חוק הפיקוח",
+        "רצף חינוכי"
+      ]
+    },
+    {
+      "claim_id": "CLM-UNION-003",
+      "entity": "איגוד מנהלי אגפי החינוך (הנהגה מקצועית רשותית)",
+      "topic": "early_childhood",
+      "claim_text": "קביעת תקן של 25 ילדים לכיתת גן לבני 3-4 (במקום 35), מימון ממשלתי מלא של עלויות הבינוי (616 מלש\"ח), ופיקוח פדגוגי מחמיר על גנים פרטיים מסובסדים למניעת אי-שוויון.",
+      "claim_type": "joint_position_paper",
+      "source_id": "SRC-UNION-2012-TRACHTENBERG-POS",
+      "source_location": "נייר עמדה משותף מש\"מ ואיגוד 2012, עמ' 1-3",
+      "epistemic_tier": "primary",
+      "confidence_level": "high",
+      "tags": [
+        "חינוך חינם 3-4",
+        "ועדת טרכטנברג",
+        "תקן 25 ילדים",
+        "בינוי גנים"
+      ]
+    },
+    {
+      "claim_id": "CLM-UNION-004",
+      "entity": "איגוד מנהלי אגפי החינוך (הנהגה מקצועית רשותית)",
+      "topic": "special_education",
+      "claim_text": "שיפוי ממשלתי מלא על עומסי החינוך המיוחד ומערך ההסעות, הסדרת מעמד ותנאי הסייעות, ושילוב ישיר של מנהלי אגפי החינוך בצוותי ההיגוי של משרד החינוך.",
+      "claim_type": "policy_stance",
+      "source_id": "SRC-UNION-2026-SYNTHESIS-STUDY",
+      "source_location": "דוח מהשטח למדיניות, פסקאות 71-74, 271-280",
+      "epistemic_tier": "primary",
+      "confidence_level": "high",
+      "tags": [
+        "חינוך מיוחד",
+        "סייעות",
+        "הסעות",
+        "צוות היגוי"
+      ]
+    },
+    {
+      "claim_id": "CLM-UNION-005",
+      "entity": "איגוד מנהלי אגפי החינוך (הנהגה מקצועית רשותית)",
+      "topic": "core_curriculum",
+      "claim_text": "רפורמת הבגרות ומיומנויות 2030: מעבר לבחינות בגרות מעצבות, הערכה פנימית, תיקי עבודות וחיבור הפורמלי לבלתי-פורמלי לאורך כל היום.",
+      "claim_type": "implementation_recommendations",
+      "source_id": "SRC-UNION-2021-CHINUCH-2030",
+      "source_location": "המלצות ליישום ספטמבר 2021, פרקים 1-4",
+      "epistemic_tier": "primary",
+      "confidence_level": "high",
+      "tags": [
+        "חינוך 2030",
+        "בגרויות",
+        "מיומנויות",
+        "חינוך הוליסטי"
+      ]
+    },
+    {
+      "claim_id": "CLM-UNION-006",
+      "entity": "איגוד מנהלי אגפי החינוך (הנהגה מקצועית רשותית)",
+      "topic": "governance_and_autonomy",
+      "claim_text": "הגנה על מעמד מנהל האגף בתוכנית גפ\"ן, והובלת הוראת השעה של משרד הפנים שהכשירה את מאגר הספקים של משרד החינוך לרכש מוניציפלי ישיר.",
+      "claim_type": "regulatory_impact",
+      "source_id": "SRC-UNION-2026-SYNTHESIS-STUDY",
+      "source_location": "דוח מהשטח למדיניות, פסקאות 353-365",
+      "epistemic_tier": "primary",
+      "confidence_level": "high",
+      "tags": [
+        "גפ\"ן",
+        "הוראת שעה",
+        "רכש",
+        "השפעה מתועדת"
+      ]
+    },
+    {
+      "claim_id": "CLM-UNION-007",
+      "entity": "איגוד מנהלי אגפי החינוך (הנהגה מקצועית רשותית)",
+      "topic": "leadership_and_field_knowledge",
+      "claim_text": "תפיסת מנהל אגף החינוך כמנהיג מערכת יישובית המחזיקה את החינוך בשגרה ובחירום: השטח אינו רק מבצע הוראות אלא יצרן ידע חיוני לעיצוב המדיניות הלאומית.",
+      "claim_type": "professional_doctrine",
+      "source_id": "SRC-UNION-2026-SECURITY-NET-IMPACT",
+      "source_location": "מאמר סיכום תשפ\"ו ומבט לתשפ\"ז, עמ' 1-3",
+      "epistemic_tier": "primary",
+      "confidence_level": "high",
+      "tags": [
+        "מנהיגות יישובית",
+        "שגרת חירום",
+        "השטח כמקור ידע"
+      ]
     }
   ]
 }

@@ -4,17 +4,22 @@
     "title": "עמדות מדיניות השוואתיות — מפת החינוך 2026 (Structured Policy Positions)",
     "version": "1.0.0",
     "generatedAt": "2026-09-01T14:00:00+03:00",
-    "totalPositions": 24
+    "totalPositions": 28
   },
   "positions": [
     {
       "position_id": "POS-001",
-      "entity": "ביחד (נפתלי בנט)",
+      "entity": "ביחד",
       "topic": "core_curriculum",
       "stance": "support_mandatory_via_mamach",
       "summary": "החלת לימודי ליבה מלאים באמצעות הרחבת רשת החינוך הממלכתי-חרדי (ממ\"ח) ותמרוץ כלכלי.",
-      "verbatim_quotes": ["הרחבת הממ\"ח כזרם ממלכתי מוביל במגזר החרדי והבטחת לימודי יסוד לכל ילד בישראל."],
-      "source_ids": ["KB-PLT-BENNETT-2026-PDF", "KB-RES-OPENING-5787-DOCX"],
+      "verbatim_quotes": [
+        "הרחבת הממ\"ח כזרם ממלכתי מוביל במגזר החרדי והבטחת לימודי יסוד לכל ילד בישראל."
+      ],
+      "source_ids": [
+        "KB-PLT-BENNETT-2026-PDF",
+        "KB-RES-OPENING-5787-DOCX"
+      ],
       "epistemic_tier": "primary",
       "confidence_level": "high",
       "contradiction_flag": false
@@ -25,8 +30,13 @@
       "topic": "core_curriculum",
       "stance": "conditional_full_funding",
       "summary": "התניה מלאה של 100% מהתקציב בהוראת תוכנית ליבה מלאה ועמידה במבחני מדידה אחידים.",
-      "verbatim_quotes": ["התניית תקציב המדינה ב-100% לימודי ליבה, פיקוח פדגוגי ומבחני מיצ\"ב ללא פשרות."],
-      "source_ids": ["KB-PLT-YASHAR-2026-PDF", "KB-RES-OPENING-5787-DOCX"],
+      "verbatim_quotes": [
+        "התניית תקציב המדינה ב-100% לימודי ליבה, פיקוח פדגוגי ומבחני מיצ\"ב ללא פשרות."
+      ],
+      "source_ids": [
+        "KB-PLT-YASHAR-2026-PDF",
+        "KB-RES-OPENING-5787-DOCX"
+      ],
       "epistemic_tier": "primary",
       "confidence_level": "high",
       "contradiction_flag": false
@@ -37,8 +47,13 @@
       "topic": "core_curriculum",
       "stance": "zero_funding_non_compliance",
       "summary": "שלילת 100% מהתקציב לכל מוסד שאינו מלמד ליבה ממלכתית מלאה תחת פיקוח הדוק.",
-      "verbatim_quotes": ["מוסד שלא ילמד תוכנית ליבה ממלכתית מלאה לא יקבל שקל אחד מכספי הציבור."],
-      "source_ids": ["KB-PLT-DEMOCRATS-PLAN-PDF", "KB-PLT-DEMOCRATS-CORE-PDF"],
+      "verbatim_quotes": [
+        "מוסד שלא ילמד תוכנית ליבה ממלכתית מלאה לא יקבל שקל אחד מכספי הציבור."
+      ],
+      "source_ids": [
+        "KB-PLT-DEMOCRATS-PLAN-PDF",
+        "KB-PLT-DEMOCRATS-CORE-PDF"
+      ],
       "epistemic_tier": "primary",
       "confidence_level": "high",
       "contradiction_flag": false
@@ -49,8 +64,12 @@
       "topic": "core_curriculum",
       "stance": "zero_funding_non_compliance",
       "summary": "חובת לימודי ליב\"ה 100% בכל הזרמים ושלילת תקצוב מלאה ממוסדות סרבנים.",
-      "verbatim_quotes": ["נחיל חובת לימודי ליב\"ה בכל בתי הספר בכל הזרמים- מוסד שלא ילמד 100% לימודי ליב\"ה לא יקבל שקל אחד מהמדינה."],
-      "source_ids": ["KB-PLT-YESHATID-2022"],
+      "verbatim_quotes": [
+        "נחיל חובת לימודי ליב\"ה בכל בתי הספר בכל הזרמים- מוסד שלא ילמד 100% לימודי ליב\"ה לא יקבל שקל אחד מהמדינה."
+      ],
+      "source_ids": [
+        "KB-PLT-YESHATID-2022"
+      ],
       "epistemic_tier": "primary",
       "confidence_level": "high",
       "contradiction_flag": false
@@ -61,8 +80,13 @@
       "topic": "core_curriculum",
       "stance": "oppose_mandatory_demand_equal_budget",
       "summary": "התנגדות מוחלטת לכפיית לימודי ליבה ומבחנים חיצוניים, ודרישה להשוואת תקציב מוחלטת למוסדות הפטור והחינוך העצמאי.",
-      "verbatim_quotes": ["תקצוב מוסדות הפטור והחינוך העצמאי יושווה לתקציב הרשמי ללא התניה בתוכניות לימודים חיצוניות."],
-      "source_ids": ["KB-COAL-LIKUD-UTJ-PDF", "KB-RES-COAL-EVAL-DOCX"],
+      "verbatim_quotes": [
+        "תקצוב מוסדות הפטור והחינוך העצמאי יושווה לתקציב הרשמי ללא התניה בתוכניות לימודים חיצוניות."
+      ],
+      "source_ids": [
+        "KB-COAL-LIKUD-UTJ-PDF",
+        "KB-RES-COAL-EVAL-DOCX"
+      ],
       "epistemic_tier": "primary",
       "confidence_level": "high",
       "contradiction_flag": false
@@ -73,8 +97,13 @@
       "topic": "core_curriculum",
       "stance": "oppose_mandatory_demand_equal_budget",
       "summary": "חיזוק עצמאות רשת מעיין החינוך התורני (בני יוסף) והשוואת שכר מלאה (אופק חדש) ללא כפיפות לפיקוח ליבה ממלכתי.",
-      "verbatim_quotes": ["החלת הסכמי השכר של עובדי ההוראה על מורי רשת בני יוסף והרחבת תקציבי הפעולות."],
-      "source_ids": ["KB-COAL-LIKUD-SHAS-PDF", "KB-RES-COAL-EVAL-DOCX"],
+      "verbatim_quotes": [
+        "החלת הסכמי השכר של עובדי ההוראה על מורי רשת בני יוסף והרחבת תקציבי הפעולות."
+      ],
+      "source_ids": [
+        "KB-COAL-LIKUD-SHAS-PDF",
+        "KB-RES-COAL-EVAL-DOCX"
+      ],
       "epistemic_tier": "primary",
       "confidence_level": "high",
       "contradiction_flag": false
@@ -85,8 +114,14 @@
       "topic": "core_curriculum",
       "stance": "rhetoric_vs_coalition_divergence",
       "summary": "הצהרה על חשיבות מקצועות היסוד ו-STEM לצד חתימה על הסכמים קואליציוניים והעברת מיליארדים לרשתות ללא הסדרת הליבה.",
-      "verbatim_quotes": ["קידום מצוינות ומדעים לצד שמירה על מחויבויות ההסכמים הקואליציוניים לשותפות."],
-      "source_ids": ["KB-COAL-LIKUD-UTJ-PDF", "KB-COAL-LIKUD-SHAS-PDF", "KB-RES-COAL-EVAL-DOCX"],
+      "verbatim_quotes": [
+        "קידום מצוינות ומדעים לצד שמירה על מחויבויות ההסכמים הקואליציוניים לשותפות."
+      ],
+      "source_ids": [
+        "KB-COAL-LIKUD-UTJ-PDF",
+        "KB-COAL-LIKUD-SHAS-PDF",
+        "KB-RES-COAL-EVAL-DOCX"
+      ],
       "epistemic_tier": "secondary",
       "confidence_level": "high",
       "contradiction_flag": true,
@@ -98,20 +133,28 @@
       "topic": "teacher_wages_and_status",
       "stance": "support_major_wage_hike_and_manager_autonomy",
       "summary": "העלאת שכר מורה מתחיל ל-10,000 ₪, שכר מנהל ל-25,000 ₪ ומתן סמכות למנהל לגייס ולפטר מורים.",
-      "verbatim_quotes": ["שכר מורה מתחיל יעמוד על 10,000 ש\"ח נטו ושכר מנהל בית ספר יעמוד על 25,000 ש\"ח נטו."],
-      "source_ids": ["KB-PLT-BEYTENU-2026-PDF"],
+      "verbatim_quotes": [
+        "שכר מורה מתחיל יעמוד על 10,000 ש\"ח נטו ושכר מנהל בית ספר יעמוד על 25,000 ש\"ח נטו."
+      ],
+      "source_ids": [
+        "KB-PLT-BEYTENU-2026-PDF"
+      ],
       "epistemic_tier": "primary",
       "confidence_level": "high",
       "contradiction_flag": false
     },
     {
       "position_id": "POS-009",
-      "entity": "ביחד (נפתלי בנט)",
+      "entity": "ביחד",
       "topic": "teacher_wages_and_status",
       "stance": "support_major_wage_hike_and_contracts",
       "summary": "העלאת שכר מורה מתחיל ל-12,000 ₪, מתן חוזים אישיים למצטיינים ותגמול דיפרנציאלי לפי ביצועים.",
-      "verbatim_quotes": ["שכר מורה מתחיל 12,000 ש\"ח וחוזים אישיים למורים מצטיינים במקצועות מבוקשים."],
-      "source_ids": ["KB-PLT-BENNETT-2026-PDF"],
+      "verbatim_quotes": [
+        "שכר מורה מתחיל 12,000 ש\"ח וחוזים אישיים למורים מצטיינים במקצועות מבוקשים."
+      ],
+      "source_ids": [
+        "KB-PLT-BENNETT-2026-PDF"
+      ],
       "epistemic_tier": "primary",
       "confidence_level": "high",
       "contradiction_flag": false
@@ -122,8 +165,12 @@
       "topic": "teacher_wages_and_status",
       "stance": "support_differential_agreements",
       "summary": "חתימה על הסכמי שכר 'דור ב' גמישים ודיפרנציאליים לפי אזור עדיפות ומקצוע.",
-      "verbatim_quotes": ["רפורמה בהסכמי השכר למורים ומעבר להסכמי שכר דור ב' המאפשרים תגמול דיפרנציאלי."],
-      "source_ids": ["KB-PLT-YASHAR-2026-PDF"],
+      "verbatim_quotes": [
+        "רפורמה בהסכמי השכר למורים ומעבר להסכמי שכר דור ב' המאפשרים תגמול דיפרנציאלי."
+      ],
+      "source_ids": [
+        "KB-PLT-YASHAR-2026-PDF"
+      ],
       "epistemic_tier": "primary",
       "confidence_level": "high",
       "contradiction_flag": false
@@ -134,8 +181,13 @@
       "topic": "teacher_wages_and_status",
       "stance": "support_sectoral_equalization",
       "summary": "השוואת תנאי שכר המורים בחינוך הממלכתי-דתי ובמוסדות המוכש\"ר לרשתות הרשמיות (סעיף 167).",
-      "verbatim_quotes": ["השוואת שכר מורים במוכש\"ר ובחמ\"ד באופן שוויוני ומלא."],
-      "source_ids": ["KB-COAL-LIKUD-RZ-PDF", "KB-PLT-RZ-PDF"],
+      "verbatim_quotes": [
+        "השוואת שכר מורים במוכש\"ר ובחמ\"ד באופן שוויוני ומלא."
+      ],
+      "source_ids": [
+        "KB-COAL-LIKUD-RZ-PDF",
+        "KB-PLT-RZ-PDF"
+      ],
       "epistemic_tier": "primary",
       "confidence_level": "high",
       "contradiction_flag": false
@@ -146,8 +198,13 @@
       "topic": "jewish_identity_and_gefen",
       "stance": "strict_secularism_and_abolition",
       "summary": "ביטול מיידי של רשות הזהות הלאומית, הוצאת עמותות דתיות ומחזירות בתשובה מגפ\"ן והבטחת פלורליזם ממלכתי.",
-      "verbatim_quotes": ["ביטול הרשות לזהות יהודית והוצאת עמותות הדתה מגפ\"ן."],
-      "source_ids": ["KB-PLT-DEMOCRATS-PLAN-PDF", "KB-PLT-DEMOCRATS-CORE-PDF"],
+      "verbatim_quotes": [
+        "ביטול הרשות לזהות יהודית והוצאת עמותות הדתה מגפ\"ן."
+      ],
+      "source_ids": [
+        "KB-PLT-DEMOCRATS-PLAN-PDF",
+        "KB-PLT-DEMOCRATS-CORE-PDF"
+      ],
       "epistemic_tier": "primary",
       "confidence_level": "high",
       "contradiction_flag": false
@@ -158,8 +215,12 @@
       "topic": "jewish_identity_and_gefen",
       "stance": "centralized_national_jewish_oversight",
       "summary": "הקמת רשות ייעודית לפיקוח על תכנים חיצוניים בגפ\"ן, סינון תוכניות ליברליות והעמקת הזהות היהודית-לאומית.",
-      "verbatim_quotes": ["העברת יחידת התוכניות החיצוניות וגפ\"ן לרשות לזהות לאומית-יהודית."],
-      "source_ids": ["KB-COAL-LIKUD-NOAM-PDF"],
+      "verbatim_quotes": [
+        "העברת יחידת התוכניות החיצוניות וגפ\"ן לרשות לזהות לאומית-יהודית."
+      ],
+      "source_ids": [
+        "KB-COAL-LIKUD-NOAM-PDF"
+      ],
       "epistemic_tier": "primary",
       "confidence_level": "high",
       "contradiction_flag": false
@@ -170,8 +231,12 @@
       "topic": "jewish_identity_and_gefen",
       "stance": "compulsory_tradition_floor",
       "summary": "הגדרת שבילי מורשת כמקצוע חובה, קביעת רצפת תקציב של 4% בגפ\"ן לזהות יהודית והרחבת תוכניות תנ\"ך.",
-      "verbatim_quotes": ["תיקון ההתרחקות מתנ\"ך וזהות יהודית בחינוך הממלכתי."],
-      "source_ids": ["KB-RES-COAL-EVAL-DOCX"],
+      "verbatim_quotes": [
+        "תיקון ההתרחקות מתנ\"ך וזהות יהודית בחינוך הממלכתי."
+      ],
+      "source_ids": [
+        "KB-RES-COAL-EVAL-DOCX"
+      ],
       "epistemic_tier": "secondary",
       "confidence_level": "high",
       "contradiction_flag": false
@@ -182,8 +247,12 @@
       "topic": "early_childhood",
       "stance": "tax_credits_vs_universal_free_preschools",
       "summary": "יישום חלקי של הבטחת חינוך חינם 0-3 דרך נקודות זיכוי במס ומענקים מוגבלים ולא כמעונות יום חינם לכלל הפעוטות.",
-      "verbatim_quotes": ["הענקת שתי נקודות זיכוי נוספות להורים עובדים ומענק לפעוט."],
-      "source_ids": ["KB-RES-COAL-EVAL-DOCX"],
+      "verbatim_quotes": [
+        "הענקת שתי נקודות זיכוי נוספות להורים עובדים ומענק לפעוט."
+      ],
+      "source_ids": [
+        "KB-RES-COAL-EVAL-DOCX"
+      ],
       "epistemic_tier": "secondary",
       "confidence_level": "high",
       "contradiction_flag": true,
@@ -195,8 +264,12 @@
       "topic": "early_childhood",
       "stance": "universal_free_state_daycare",
       "summary": "החלת חינוך חינם אמיתי, אוניברסלי ומפוקח מגיל לידה עד 3 במימון מלא של המדינה.",
-      "verbatim_quotes": ["חינוך חינם מגיל 0 במסגרת מעונות יום ציבוריים ומפוקחים."],
-      "source_ids": ["KB-PLT-DEMOCRATS-PLAN-PDF"],
+      "verbatim_quotes": [
+        "חינוך חינם מגיל 0 במסגרת מעונות יום ציבוריים ומפוקחים."
+      ],
+      "source_ids": [
+        "KB-PLT-DEMOCRATS-PLAN-PDF"
+      ],
       "epistemic_tier": "primary",
       "confidence_level": "high",
       "contradiction_flag": false
@@ -207,8 +280,12 @@
       "topic": "early_childhood",
       "stance": "transfer_to_moe_and_expansion",
       "summary": "העברת גיל הרך 0-3 לאחריות מלאה של משרד החינוך והרחבת ההיצע והסבסוד הדיפרנציאלי.",
-      "verbatim_quotes": ["העברת הגיל הרך 0-3 למשרד החינוך והשוואת תנאי הפיקוח והאיכות."],
-      "source_ids": ["KB-PLT-YASHAR-2026-PDF"],
+      "verbatim_quotes": [
+        "העברת הגיל הרך 0-3 למשרד החינוך והשוואת תנאי הפיקוח והאיכות."
+      ],
+      "source_ids": [
+        "KB-PLT-YASHAR-2026-PDF"
+      ],
       "epistemic_tier": "primary",
       "confidence_level": "high",
       "contradiction_flag": false
@@ -219,8 +296,12 @@
       "topic": "arab_sector_equality",
       "stance": "demand_massive_budget_and_pedagogical_autonomy",
       "summary": "סגירת פערי בינוי של 5,000 כיתות, תקצוב דיפרנציאלי מתקן ואוטונומיה פדגוגית לחינוך הערבי.",
-      "verbatim_quotes": ["צמצום פערי בינוי כיתות ותקצוב בחברה הערבית והקמת מועצה פדגוגית."],
-      "source_ids": ["KB-SUP-RAAM-PDF"],
+      "verbatim_quotes": [
+        "צמצום פערי בינוי כיתות ותקצוב בחברה הערבית והקמת מועצה פדגוגית."
+      ],
+      "source_ids": [
+        "KB-SUP-RAAM-PDF"
+      ],
       "epistemic_tier": "secondary",
       "confidence_level": "medium",
       "contradiction_flag": false
@@ -231,8 +312,13 @@
       "topic": "arab_sector_equality",
       "stance": "demand_national_equality_and_narrative",
       "summary": "שוויון תקציבי מוחלט, ביטול אפליה מוסדית, הכרה בנרטיב הפלסטיני ואוטונומיה לניהול החינוך הערבי.",
-      "verbatim_quotes": ["שוויון מלא בתקצוב החינוך הערבי והוראת התרבות והנרטיב ההיסטורי."],
-      "source_ids": ["KB-PLT-HADASH-HIST-2013-PDF", "KB-SUP-HADASH-ANALYSIS-PDF"],
+      "verbatim_quotes": [
+        "שוויון מלא בתקצוב החינוך הערבי והוראת התרבות והנרטיב ההיסטורי."
+      ],
+      "source_ids": [
+        "KB-PLT-HADASH-HIST-2013-PDF",
+        "KB-SUP-HADASH-ANALYSIS-PDF"
+      ],
       "epistemic_tier": "secondary",
       "confidence_level": "medium",
       "contradiction_flag": false
@@ -243,20 +329,28 @@
       "topic": "governance_and_autonomy",
       "stance": "calendar_synchronization_and_scholarships",
       "summary": "סנכרון חופשות מערכת החינוך עם המשק ומלגות 100% לסטודנטים בנגב ובגליל.",
-      "verbatim_quotes": ["סנכרון חופשות מערכת החינוך ומלגות לימודים מלאות בפריפריה."],
-      "source_ids": ["KB-PLT-BEYTENU-2026-PDF"],
+      "verbatim_quotes": [
+        "סנכרון חופשות מערכת החינוך ומלגות לימודים מלאות בפריפריה."
+      ],
+      "source_ids": [
+        "KB-PLT-BEYTENU-2026-PDF"
+      ],
       "epistemic_tier": "primary",
       "confidence_level": "high",
       "contradiction_flag": false
     },
     {
       "position_id": "POS-021",
-      "entity": "ביחד (נפתלי בנט)",
+      "entity": "ביחד",
       "topic": "governance_and_autonomy",
       "stance": "independent_statutory_council",
       "summary": "הקמת מועצה לאומית עצמאית לחינוך לניתוק המערכת משינויים פוליטיים תכופים.",
-      "verbatim_quotes": ["מועצה לאומית לחינוך שתתווה מדיניות לטווח ארוך ותבזר סמכויות למנהלים."],
-      "source_ids": ["KB-PLT-BENNETT-2026-PDF"],
+      "verbatim_quotes": [
+        "מועצה לאומית לחינוך שתתווה מדיניות לטווח ארוך ותבזר סמכויות למנהלים."
+      ],
+      "source_ids": [
+        "KB-PLT-BENNETT-2026-PDF"
+      ],
       "epistemic_tier": "primary",
       "confidence_level": "high",
       "contradiction_flag": false
@@ -267,20 +361,28 @@
       "topic": "stem_ai_and_matriculation",
       "stance": "abolish_external_bagrut",
       "summary": "ביטול בחינות הבגרות החיצוניות ומעבר למודל הערכה חלופית בית-ספרית ו-AI.",
-      "verbatim_quotes": ["ביטול בחינות בגרות חיצוניות והערכה בית-ספרית מבוססת עבודות חקר."],
-      "source_ids": ["KB-PLT-DEMOCRATS-PLAN-PDF"],
+      "verbatim_quotes": [
+        "ביטול בחינות בגרות חיצוניות והערכה בית-ספרית מבוססת עבודות חקר."
+      ],
+      "source_ids": [
+        "KB-PLT-DEMOCRATS-PLAN-PDF"
+      ],
       "epistemic_tier": "primary",
       "confidence_level": "high",
       "contradiction_flag": false
     },
     {
       "position_id": "POS-023",
-      "entity": "ביחד (נפתלי בנט)",
+      "entity": "ביחד",
       "topic": "stem_ai_and_matriculation",
       "stance": "national_ai_and_math_excellence",
       "summary": "הטמעת AI בכל שכבות הגיל, זינוק בלימודי 5 יח\"ל מתמטיקה ומדעים והגנה מאלימות.",
-      "verbatim_quotes": ["הטמעת כלי בינה מלאכותית ומצוינות מתמטית-טכנולוגית בכל בתי הספר."],
-      "source_ids": ["KB-PLT-BENNETT-2026-PDF"],
+      "verbatim_quotes": [
+        "הטמעת כלי בינה מלאכותית ומצוינות מתמטית-טכנולוגית בכל בתי הספר."
+      ],
+      "source_ids": [
+        "KB-PLT-BENNETT-2026-PDF"
+      ],
       "epistemic_tier": "primary",
       "confidence_level": "high",
       "contradiction_flag": false
@@ -291,8 +393,79 @@
       "topic": "stem_ai_and_matriculation",
       "stance": "pisa_pbl_aligned_matriculation",
       "summary": "רפורמה בבגרויות מותאמת PISA ולמידה מבוססת פרויקטים (PBL).",
-      "verbatim_quotes": ["התאמת הבגרויות לסטנדרטים בינלאומיים של PISA ומיומנויות המאה ה-21."],
-      "source_ids": ["KB-PLT-YASHAR-2026-PDF"],
+      "verbatim_quotes": [
+        "התאמת הבגרויות לסטנדרטים בינלאומיים של PISA ומיומנויות המאה ה-21."
+      ],
+      "source_ids": [
+        "KB-PLT-YASHAR-2026-PDF"
+      ],
+      "epistemic_tier": "primary",
+      "confidence_level": "high",
+      "contradiction_flag": false
+    },
+    {
+      "position_id": "POS-KB-UNION-001",
+      "entity": "איגוד מנהלי אגפי החינוך (הנהגה מקצועית רשותית)",
+      "topic": "governance_and_autonomy",
+      "stance": "pro_decentralization_via_differential_licensing",
+      "summary": "ביזור סמכויות הדרגתי ודיפרנציאלי לרשויות במודל זיכיון חמש-שנתי עם סמכות פדגוגית ותקציבית רשותית מלאה.",
+      "verbatim_quotes": [
+        "נוסחת הפתרון: ביזור הדרגתי ודיפרנציאלי... תפקידי משרד החינוך: קביעת המדיניות ברמה הלאומית, סטנדרטים, רישוי ובקרה. תפקידי הרשות המקומית – כל השאר... סמכות ואחריות ארגונית ופדגוגית."
+      ],
+      "source_ids": [
+        "SRC-UNION-2015-KAMINSKY-REFORM",
+        "SRC-UNION-2021-CORONA-OPP"
+      ],
+      "epistemic_tier": "primary",
+      "confidence_level": "high",
+      "contradiction_flag": false
+    },
+    {
+      "position_id": "POS-KB-UNION-002",
+      "entity": "איגוד מנהלי אגפי החינוך (הנהגה מקצועית רשותית)",
+      "topic": "early_childhood",
+      "stance": "support_full_continuity_birth_to_three",
+      "summary": "העברת האחריות הממשלתית על לידה עד 3 למשרד החינוך, תקצוב חוק הפיקוח 2018, ורצף פדגוגי יישובי מלידה עד 18.",
+      "verbatim_quotes": [
+        "יש להעביר את האחריות הכוללת על גילאי 0-3 למשרד החינוך, לתקצב וליישם את חוק הפיקוח על מעונות יום, ולהטיל את האחריות היישובית על אגף החינוך ברשות כדי לבנות רצף חינוכי מלידה."
+      ],
+      "source_ids": [
+        "SRC-UNION-2019-CALL-PARTIES-0TO3",
+        "SRC-UNION-2019-HOCHMAN-EARLY"
+      ],
+      "epistemic_tier": "primary",
+      "confidence_level": "high",
+      "contradiction_flag": false
+    },
+    {
+      "position_id": "POS-KB-UNION-003",
+      "entity": "איגוד מנהלי אגפי החינוך (הנהגה מקצועית רשותית)",
+      "topic": "core_curriculum",
+      "stance": "reform_bagrut_and_sel_focus",
+      "summary": "צמצום בחינות הבגרות החיצוניות, מעבר למיומנויות המאה ה-21 והערכה מעצבת, ואיחוד הפורמלי והבלתי-פורמלי לאורך כל היום.",
+      "verbatim_quotes": [
+        "שינוי מהותי במודל הבגרות: מעבר מהערכה חיצונית של שינון להערכה פנימית, עבודות חקר, תיקי עבודות ומיקוד במיומנויות... אין ילד של בוקר וילד של אחה\"צ, החינוך הפורמלי והבלתי פורמלי הם רצף שלם."
+      ],
+      "source_ids": [
+        "SRC-UNION-2021-CHINUCH-2030",
+        "SRC-UNION-2020-KAMINSKY-FORMAL-INFORMAL"
+      ],
+      "epistemic_tier": "primary",
+      "confidence_level": "high",
+      "contradiction_flag": false
+    },
+    {
+      "position_id": "POS-KB-UNION-004",
+      "entity": "איגוד מנהלי אגפי החינוך (הנהגה מקצועית רשותית)",
+      "topic": "special_education",
+      "stance": "demand_full_funding_and_field_steering",
+      "summary": "שיפוי ממשלתי מלא על הוצאות ההסעות והשילוב, הסדרת מעמד הסייעות, ושיתוף נציגי מנהלי האגפים בצוותי ההיגוי המשרדיים.",
+      "verbatim_quotes": [
+        "האיגוד דרש מ־2011 הסדרה מקצועית של הסייעות, שיפוי ממשלתי מלא על הוצאות ההסעות והשילוב, ומניעת גלגול הגירעונות על הרשויות."
+      ],
+      "source_ids": [
+        "SRC-UNION-2026-SYNTHESIS-STUDY"
+      ],
       "epistemic_tier": "primary",
       "confidence_level": "high",
       "contradiction_flag": false

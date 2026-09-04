@@ -7,7 +7,7 @@
  */
 
 const STATE = {
-  activeSection: "platforms", // "platforms" | "coalition" | "ask"
+  activeSection: "platforms", // "platforms" | "coalition" | "union" | "ask"
   activeSubview: "party",     // "party" | "issue"
   sources: [],
   parties: [],
@@ -15,13 +15,17 @@ const STATE = {
   positions: [],
   commitments: [],
   execution: [],
+  entities: [],
+  unionPositions: [],
   selectedPartyId: "PARTY-BEYACHAD",
   selectedCoalitionPartyId: "PARTY-LIKUD",
-  selectedIssueId: "ISSUE-CORE-CURRICULUM"
+  selectedIssueId: "ISSUE-CORE-CURRICULUM",
+  selectedUnionTopic: "ALL"
 };
 
 const DRIVE_PLATFORMS_FOLDER_URL = "https://drive.google.com/drive/folders/1PvVXkV2KIxscPrIxE57-L1T_dF-0UxfM";
 const DRIVE_COALITION_FOLDER_URL = "https://drive.google.com/drive/folders/1GcfQe69kVhqQKPnAUwzIoE0TsrmN3l8_";
+const DRIVE_UNION_FOLDER_URL = "https://drive.google.com/drive/folders/19ScYmoBNpvxFndPh5sNQElzhNN42Im05?usp=sharing";
 
 // Specific Google Drive Links for Party Platforms & Research Documents
 const PLATFORM_DOC_MAP = {
@@ -233,7 +237,29 @@ const SOURCE_TYPE_LABELS = {
   official_law: "חוק רשמי",
   government_decision: "החלטת ממשלה",
   official_budget: "דוח תקציב רשמי",
-  secondary_research_source: "מסמך מחקר משני"
+  secondary_research_source: "מסמך מחקר משני",
+  official_position_paper: "נייר עמדה רשמי (איגוד)",
+  official_union_call: "קריאה רשמית של האיגוד",
+  official_annual_report: "דוח שנתי רשמי",
+  expert_presentation: "מצגת / הרצאת מומחה ויו״ר",
+  research_report: "דוח מחקר ומומחה",
+  expert_paper: "מאמר תפיסה מקצועי",
+  secondary_academic: "מחקר סינתזה 2026"
+};
+
+const SOURCE_CLASSIFICATION_LABELS = {
+  "A": { label: "קטגוריה A: עמדה רשמית של האיגוד", class: "cat-a" },
+  "B": { label: "קטגוריה B: מסמך משותף עם מש״מ", class: "cat-b" },
+  "C": { label: "קטגוריה C: הרצאת יו״ר / נייר מומחה", class: "cat-c" },
+  "D": { label: "קטגוריה D: מחקר סינתזה 2026", class: "cat-d" }
+};
+
+const POLICY_TIER_CONFIG = {
+  documented_influence: { label: "השפעה מתועדת (דרגה 3)", class: "documented-influence", icon: "🏆" },
+  alignment: { label: "התאמה למדיניות (דרגה 2)", class: "alignment", icon: "⚖️" },
+  precedence: { label: "קדימות בזמן (דרגה 1)", class: "precedence", icon: "⏳" },
+  divergence: { label: "אי-התאמה / סטייה", class: "divergence", icon: "⚡" },
+  not_applicable: { label: "לא רלוונטי להשוואה", class: "not-applicable", icon: "⚪" }
 };
 
 function formatNIS(num) {
@@ -252,14 +278,18 @@ async function initApp() {
       issuesRes,
       positionsRes,
       commitmentsRes,
-      executionRes
+      executionRes,
+      entitiesRes,
+      unionPositionsRes
     ] = await Promise.all([
       fetch("data/sources.json?v=2.5.0"),
       fetch("data/parties.json?v=2.5.0"),
       fetch("data/issues.json?v=2.5.0"),
       fetch("data/positions.json?v=2.5.0"),
       fetch("data/commitments.json?v=2.5.0"),
-      fetch("data/execution.json?v=2.5.0")
+      fetch("data/execution.json?v=2.5.0"),
+      fetch("data/professional-entities.json?v=2.5.0"),
+      fetch("data/union-positions.json?v=2.5.0")
     ]);
 
     STATE.sources = (await sourcesRes.json()).sources || [];
@@ -268,6 +298,8 @@ async function initApp() {
     STATE.positions = (await positionsRes.json()).positions || [];
     STATE.commitments = (await commitmentsRes.json()).commitments || [];
     STATE.execution = (await executionRes.json()).executionRecords || [];
+    STATE.entities = (await entitiesRes.json()).entities || [];
+    STATE.unionPositions = (await unionPositionsRes.json()).positions || [];
 
     // Initialize AskEngine
     if (window.AskEngine) {
@@ -279,6 +311,7 @@ async function initApp() {
     renderPartyScreenSelectors();
     renderIssueScreenSelectors();
     renderCoalitionPartySelectors();
+    renderUnionTopicSelectors();
     setupAskScreenEvents();
     renderActiveView();
     setupDrawerEvents();
@@ -339,6 +372,9 @@ function renderActiveView() {
   } else if (STATE.activeSection === "coalition") {
     renderCoalitionPartySelectors();
     renderExecutionScreen(STATE.selectedCoalitionPartyId);
+  } else if (STATE.activeSection === "union") {
+    renderUnionTopicSelectors();
+    renderUnionScreen();
   }
 }
 
@@ -580,6 +616,46 @@ function renderIssueScreen(issueId) {
   html += '</div>';
   html += '</div>';
 
+  // Professional Municipal Leadership Callout (Union of Education Department Directors)
+  const unionPositionsForIssue = (STATE.unionPositions || []).filter(u => u.issueId === issueId);
+  if (unionPositionsForIssue.length > 0) {
+    html += '<div class="union-issue-callout">';
+    html += '<div class="union-callout-header">';
+    html += '<div class="union-callout-title">🏛️ עמדת איגוד מנהלי אגפי החינוך (הנהגה מקצועית רשותית)</div>';
+    html += '<span class="tier-badge alignment">השוואת מדיניות מקצועית</span>';
+    html += '</div>';
+    html += '<div class="union-callout-body">';
+    unionPositionsForIssue.forEach(up => {
+      const tierConf = POLICY_TIER_CONFIG[up.policyComparison ? up.policyComparison.comparisonTier : 'alignment'] || POLICY_TIER_CONFIG.alignment;
+      const catConf = SOURCE_CLASSIFICATION_LABELS[up.sourceClassification] || { label: "מקור מקצועי", class: "cat-a" };
+      const tierLabel = (up.policyComparison && up.policyComparison.tierLabelHe) ? up.policyComparison.tierLabelHe : tierConf.label;
+      html += '<div style="margin-bottom:14px; padding-bottom:12px; border-bottom:1px solid rgba(16,185,129,0.18);">';
+      html += '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px; flex-wrap:wrap; gap:6px;">';
+      html += '<strong style="color:#065f46; font-size:0.98rem;">' + (up.topic || '') + '</strong>';
+      html += '<div style="display:flex; gap:6px; align-items:center;">';
+      html += '<span class="source-cat-pill ' + catConf.class + '">' + catConf.label + '</span>';
+      html += '<span class="tier-badge ' + tierConf.class + '">' + tierConf.icon + ' ' + tierLabel + '</span>';
+      html += '</div>';
+      html += '</div>';
+      if (up.verbatimQuote) {
+        html += '<blockquote class="union-quote-box" style="margin:8px 0;"><span class="union-quote-label">ציטוט ממסמך המקור:</span><p class="union-quote-text">"' + up.verbatimQuote + '"</p><span class="union-quote-citation">' + (up.sourceCitation || '') + '</span></blockquote>';
+      }
+      html += '<p style="font-size:0.9rem; color:#334155; margin:6px 0;"><strong>עיקרי העמדה:</strong> ' + (up.summary || '') + '</p>';
+      if (up.policyComparison && up.policyComparison.evidenceDetails) {
+        html += '<div class="union-epistemic-box evidence-box"><span class="epistemic-prefix">מבחן ראיות והשפעה:</span> ' + up.policyComparison.evidenceDetails + '</div>';
+      }
+      const srcObj = STATE.sources ? STATE.sources.find(s => s.id === up.sourceId) : null;
+      const driveUrl = (srcObj && srcObj.url) ? srcObj.url : DRIVE_UNION_FOLDER_URL;
+      html += '<div class="union-callout-footer">';
+      html += '<button class="source-btn" data-source-id="' + (up.sourceId || '') + '" data-citation="' + (up.sourceCitation || '') + '">🔍 פרטי מקור האיגוד</button>';
+      html += '<a href="' + driveUrl + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">📄 פתח מסמך מקור ב-Drive ↗</a>';
+      html += '</div>';
+      html += '</div>';
+    });
+    html += '</div>';
+    html += '</div>';
+  }
+
   html += '<div class="comparison-grid">';
   validParties.forEach(party => {
     const pos = STATE.positions.find(p => p.partyId === party.id && p.issueId === issueId);
@@ -749,6 +825,135 @@ function renderExecutionScreen(partyId) {
     html += '</div>';
 
     html += '</div>';
+  });
+  html += '</div>';
+
+  container.innerHTML = html;
+  attachSourceButtonEvents(container);
+}
+
+// ----------------------------------------------------
+// SCREEN 2.5: UNION SCREEN (עמדות איגוד מנהלי אגפי החינוך)
+// ----------------------------------------------------
+function renderUnionTopicSelectors() {
+  const container = document.getElementById("union-topic-buttons-container");
+  if (!container) return;
+
+  const topics = [
+    { id: "ALL", name: "כלל העמדות (6 עמדות ליבה)" },
+    { id: "ISSUE-DECENTRALIZATION", name: "ביזור סמכויות וגפ״ן" },
+    { id: "ISSUE-EARLY-CHILDHOOD", name: "הגיל הרך (0–3)" },
+    { id: "ISSUE-SPECIAL-EDUCATION", name: "חינוך מיוחד והסעות" },
+    { id: "ISSUE-CURRICULUM-STRUCTURE", name: "תוכניות לימודים וחינוך 2030" }
+  ];
+
+  container.innerHTML = topics.map(top => {
+    const isActive = top.id === STATE.selectedUnionTopic ? "active" : "";
+    return '<button class="party-btn ' + isActive + '" data-union-topic="' + top.id + '">' +
+      '<span class="btn-name">' + top.name + '</span>' +
+      '</button>';
+  }).join("");
+
+  container.querySelectorAll(".party-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      STATE.selectedUnionTopic = btn.getAttribute("data-union-topic");
+      container.querySelectorAll(".party-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderUnionScreen();
+    });
+  });
+}
+
+function renderUnionScreen() {
+  const container = document.getElementById("union-content-area");
+  if (!container) return;
+
+  const allPositions = STATE.unionPositions || [];
+  const filtered = STATE.selectedUnionTopic === "ALL" 
+    ? allPositions 
+    : allPositions.filter(p => p.issueId === STATE.selectedUnionTopic);
+
+  if (filtered.length === 0) {
+    container.innerHTML = '<div class="empty-notice"><p>לא נמצאו עמדות בתחום שנבחר.</p></div>';
+    return;
+  }
+
+  let html = '<div class="union-grid">';
+  filtered.forEach(pos => {
+    const tierConf = POLICY_TIER_CONFIG[pos.policyComparison ? pos.policyComparison.comparisonTier : 'alignment'] || POLICY_TIER_CONFIG.alignment;
+    const catConf = SOURCE_CLASSIFICATION_LABELS[pos.sourceClassification] || { label: "מקור מקצועי", class: "cat-a" };
+    const tierLabel = (pos.policyComparison && pos.policyComparison.tierLabelHe) ? pos.policyComparison.tierLabelHe : tierConf.label;
+    const issueObj = (STATE.issues || []).find(i => i.id === pos.issueId);
+    const issueTitle = (issueObj && (issueObj.subCategory || getIssueTitle(issueObj))) || (pos && pos.issueId) || "";
+
+    html += '<div class="union-card">';
+
+    // 1. Header
+    html += '<div class="union-card-header">';
+    html += '<div class="union-card-topic">' + (pos.topic || '') + '</div>';
+    html += '</div>';
+
+    // 2. Badges Wrap
+    html += '<div class="union-badges-wrap">';
+    html += '<span class="source-cat-pill ' + catConf.class + '">' + catConf.label + '</span>';
+    html += '<span class="tier-badge ' + tierConf.class + '" title="' + tierLabel + '">' + tierConf.icon + ' ' + tierLabel + '</span>';
+    if (issueTitle && issueTitle !== "undefined") {
+      html += '<span class="stance-pill stance-pro">' + issueTitle + '</span>';
+    }
+    html += '</div>';
+
+    // 3. Verbatim Quote from Source
+    if (pos.verbatimQuote) {
+      html += '<blockquote class="union-quote-box">';
+      html += '<span class="union-quote-label">📜 ציטוט עובדתי ממסמך המקור:</span>';
+      html += '<p class="union-quote-text">"' + pos.verbatimQuote + '"</p>';
+      if (pos.sourceCitation) {
+        html += '<span class="union-quote-citation">' + pos.sourceCitation + (pos.date ? ' (' + pos.date + ')' : '') + '</span>';
+      }
+      html += '</blockquote>';
+    }
+
+    // 4. Summary
+    html += '<p class="union-summary-text"><strong>עיקרי העמדה:</strong> ' + (pos.summary || '') + '</p>';
+
+    // 5. Epistemic Analysis Block
+    if (pos.analysis && pos.analysis.text) {
+      html += '<div class="union-epistemic-box analysis-box">';
+      html += '<span class="epistemic-prefix">🔬 ניתוח מקצועי:</span> ' + pos.analysis.text;
+      html += '</div>';
+    }
+
+    // 6. Epistemic Assessment Block
+    if (pos.assessment && pos.assessment.text) {
+      html += '<div class="union-epistemic-box assessment-box">';
+      html += '<span class="epistemic-prefix">📊 הערכת מדיניות:</span> ' + pos.assessment.text;
+      html += '</div>';
+    }
+
+    // 7. Policy Comparison Evidence Details (Strict Evidence Scale)
+    if (pos.policyComparison && pos.policyComparison.evidenceDetails) {
+      html += '<div class="union-epistemic-box evidence-box">';
+      html += '<span class="epistemic-prefix">⚖️ מבחן ראיות והשפעה (' + tierLabel + '):</span> ' + pos.policyComparison.evidenceDetails;
+      html += '</div>';
+    }
+
+    // 8. Municipal Lens Impact
+    if (pos.municipalImpactAnalysis) {
+      const mia = pos.municipalImpactAnalysis;
+      html += '<div class="card-analysis" style="margin-top:8px; background-color:#eff6ff; border-right-color:#3b82f6;">';
+      html += '<span class="analysis-tag" style="color:#1e40af;">🏛️ משמעות מוניציפלית:</span> ' + (mia.localAuthorityImpact || mia.changeFromCurrentState || '');
+      html += '</div>';
+    }
+
+    // 9. Card Footer with Source Drawer and direct Drive doc link
+    const srcObj = STATE.sources ? STATE.sources.find(s => s.id === pos.sourceId) : null;
+    const driveUrl = (srcObj && srcObj.url) ? srcObj.url : DRIVE_UNION_FOLDER_URL;
+    html += '<div class="comp-footer" style="margin-top:14px;">';
+    html += '<button class="source-btn" data-source-id="' + (pos.sourceId || '') + '" data-citation="' + (pos.sourceCitation || '') + '">🔍 פרטי מקור האיגוד</button>';
+    html += '<a href="' + driveUrl + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">📄 פתח מסמך מקור ב-Drive ↗</a>';
+    html += '</div>';
+
+    html += '</div>'; // End union-card
   });
   html += '</div>';
 
@@ -1065,7 +1270,10 @@ function openSourceDrawer(sourceId, citation) {
     
     const specificPdfUrl = COALITION_PDF_MAP[sourceId] || (src.url || null);
     if (specificPdfUrl) {
-      html += '<div class="drawer-field"><label>קישור למסמך המקורי ב-Google Drive:</label><div class="drawer-val"><a href="' + specificPdfUrl + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">📄 לצפייה בהסכם המקורי ↗</a></div></div>';
+      const btnLabel = (src.id && src.id.startsWith("SRC-UNION-")) 
+        ? "📄 לצפייה במסמך המקור ב-Drive ↗" 
+        : (COALITION_PDF_MAP[sourceId] ? "📄 לצפייה בהסכם המקורי ↗" : "📄 לצפייה במסמך המקור ב-Drive ↗");
+      html += '<div class="drawer-field"><label>קישור למסמך המקורי ב-Google Drive:</label><div class="drawer-val"><a href="' + specificPdfUrl + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">' + btnLabel + '</a></div></div>';
     }
 
     if (src.notes) {

@@ -1,0 +1,99 @@
+{
+  "$schema": "./schemas/education-system.schema.json",
+  "metadata": {
+    "dataset": "education-system",
+    "version": "1.0.0",
+    "description": "תמונת מצב עובדתית של מערכת החינוך בישראל לקראת שנת הלימודים תשפ״ז (2026-2027)",
+    "lastUpdated": "2026-08-31"
+  },
+  "systemIndicators": [
+    {
+      "id": "IND-STUDENT-POPULATION-5786",
+      "category": "דמוגרפיה ואוכלוסיות",
+      "indicatorName": "סך כל התלמידים במערכת החינוך (גני ילדים עד י\"ב)",
+      "schoolYear": "תשפ״ו",
+      "calendarYear": 2025,
+      "epistemicType": "fact",
+      "value": 2550000,
+      "unit": "students",
+      "breakdownBySector": {
+        "hebrewStateGeneral": 1120000,
+        "hebrewStateReligious": 395000,
+        "harediUltraOrthodox": 490000,
+        "arabAndDruze": 545000
+      },
+      "sourceId": "SRC-CBS-2025-STAT-EDU",
+      "sourceType": "cbs_stat",
+      "date": "2025-08-27",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "החינוך החרדי והחינוך הממלכתי-דתי ממשיכים להציג את שיעורי הגידול השנתיים הגבוהים ביותר, מה שמשנה את המשקל היחסי של הזרמים במערכת."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "לקראת תשפ״ז, הגידול בשיעור התלמידים במערכות שאינן מלמדות ליבה מלאה מעמיק את האתגר של שוק העבודה העתידי והפריון הלאומי."
+      }
+    },
+    {
+      "id": "IND-SPECIAL-EDU-STUDENTS",
+      "category": "חינוך מיוחד",
+      "indicatorName": "מספר התלמידים הזכאים לשירותי חינוך מיוחד",
+      "schoolYear": "תשפ״ו",
+      "calendarYear": 2025,
+      "epistemicType": "fact",
+      "value": 335000,
+      "unit": "students",
+      "percentageOfTotalStudents": 13.1,
+      "sourceId": "SRC-CBS-2025-STAT-EDU",
+      "sourceType": "cbs_stat",
+      "date": "2025-08-27",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "שיעור תלמידי החינוך המיוחד עלה מ-8.5% בעשור הקודם ל-13.1%, קצב גידול הגבוה פי כמה משיעור הגידול הטבעי באוכלוסייה."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "מצב זה מהווה את האתגר הכלכלי והארגוני הכבד ביותר כיום עבור ראשי אגפי חינוך ברשויות המקומיות לקראת תשפ״ז."
+      }
+    },
+    {
+      "id": "IND-TEACHER-SHORTAGE-EST",
+      "category": "כוח אדם והוראה",
+      "indicatorName": "הערכת מחסור במשרות הוראה תקניות בפתח שנת הלימודים",
+      "schoolYear": "תשפ״ו",
+      "calendarYear": 2025,
+      "epistemicType": "fact",
+      "value": 4800,
+      "unit": "unfilled_positions",
+      "sourceId": "SRC-CBS-2025-STAT-EDU",
+      "sourceType": "cbs_stat",
+      "date": "2025-08-27",
+      "verificationLevel": "verified_official",
+      "confidenceLevel": "high",
+      "analysis": {
+        "epistemicType": "analysis",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "המחסור מרוכז בעיקר במחוזות תל אביב והמרכז במקצועות מדעיים, אנגלית וגננות/סייעות."
+      },
+      "assessment": {
+        "epistemicType": "assessment",
+        "author": "צוות מחקר דשבורד",
+        "date": "2026-08-31",
+        "text": "פוגע ביכולת לפתוח כיתות תקניות ומוביל לצפיפות כיתות ולהעסקת כוח אדם לא מוסמך."
+      }
+    }
+  ]
+}

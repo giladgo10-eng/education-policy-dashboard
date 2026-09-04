@@ -29,6 +29,7 @@
     <div class="nav-inner">
       <button class="nav-tab active" data-section="platforms">📋 מצעי המפלגות — מה המפלגות מציעות</button>
       <button class="nav-tab" data-section="coalition">🏛️ הסכמים קואליציוניים ומבחן הביצוע</button>
+      <button class="nav-tab" data-section="union">🎓 עמדות איגוד מנהלי החינוך</button>
       <button class="nav-tab" data-section="ask">💡 שאל את המחקר</button>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLScCSJ_E1DkAn9Qa8d43FexpeSFFrIWLgPPQWz5nC_5j78Ts9g/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="nav-tab nav-tab-link">💬 למידה שיתופית</a>
     </div>
@@ -98,7 +99,37 @@
       <div id="execution-content-area"></div>
     </div>
 
-    <!-- AREA 3: שאל את המחקר (Ask the Research) -->
+    <!-- AREA 3: עמדות איגוד מנהלי אגפי החינוך (הנהגה מקצועית רשותית) -->
+    <div class="main-section-view" id="section-union">
+      <div class="union-header-card">
+        <div class="union-header-badge">🏛️ הנהגה מקצועית רשותית • שכבת מדיניות בלתי-מפלגתית</div>
+        <h2 class="union-header-title">עמדות איגוד מנהלי ומנהלות אגפי החינוך ברשויות המקומיות</h2>
+        <p class="union-header-desc">
+          איגוד מנהלי אגפי החינוך (ע״ר) מייצג את שדרת הניהול המקצועית של מערכות החינוך המקומיות בישראל מאז 1990 (ראשיתו בשנות ה-60). 
+          האיגוד אינו מפלגה פוליטית אלא גוף מקצועי הפועל מול משרד החינוך, מרכז השלטון המקומי וועדת החינוך של הכנסת. 
+          שכבה זו מציגה את עמדות הדרג המקצועי הרשותי, תוך הבחנה אפיסטמית מחמירה בין ציטוטים מדויקים ממסמכי המקור, ניתוח מחקרי, והערכת השפעה ומדיניות (קדימות / התאמה / השפעה מתועדת).
+        </p>
+        <div class="union-header-actions">
+          <a href="https://drive.google.com/drive/folders/19ScYmoBNpvxFndPh5sNQElzhNN42Im05?usp=sharing" target="_blank" rel="noopener noreferrer" class="drive-all-btn">
+            📂 צפייה בארכיון 16 מסמכי המקור של האיגוד ב־Drive ↗
+          </a>
+          <span class="drive-all-hint">ספריית המקורות המלאה של ניירות העמדה, מצגות היו״ר ודוחות המומחים של האיגוד</span>
+        </div>
+      </div>
+
+      <!-- Filter by Topic / Issue -->
+      <div class="selector-card">
+        <div class="selector-label-wrap">
+          <label class="selector-label">סינון עמדות לפי תחום מדיניות:</label>
+          <span class="selector-hint">הצגת עמדות מפורטות, ציטוטים מאומתים ורמת השפעה מתועדת מול מדיניות הממשלה</span>
+        </div>
+        <div class="party-buttons" id="union-topic-buttons-container"></div>
+      </div>
+
+      <div id="union-content-area"></div>
+    </div>
+
+    <!-- AREA 4: שאל את המחקר (Ask the Research) -->
     <div class="main-section-view" id="section-ask">
       <div class="ask-header-box">
         <div class="ask-badge-tag">מנוע שליפה והשוואת ידע מחקרי • 106 יחידות מאומתות ו-51 סעיפי הסכמים</div>
@@ -142,6 +173,12 @@
             </button>
             <button class="sample-chip" data-query="אילו סעיפים כוללים סכום תקציבי מפורש?">
               אילו סעיפים כוללים סכום תקציבי מפורש?
+            </button>
+            <button class="sample-chip" data-query="מה עמדת איגוד מנהלי החינוך לגבי ביזור וגפ״ן?">
+              מה עמדת איגוד מנהלי החינוך לגבי ביזור וגפ״ן?
+            </button>
+            <button class="sample-chip" data-query="כיצד הציע האיגוד להסדיר את החינוך מלידה עד 3?">
+              כיצד הציע האיגוד להסדיר את החינוך מלידה עד 3?
             </button>
             <button class="sample-chip" data-query="אילו התחייבויות קואליציוניות בוצעו רק חלקית?">
               אילו התחייבויות קואליציוניות בוצעו רק חלקית?

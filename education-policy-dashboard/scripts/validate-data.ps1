@@ -17,7 +17,9 @@ $filesToCheck = @(
     "commitments.json",
     "execution.json",
     "budgets.json",
-    "education-system.json"
+    "education-system.json",
+    "professional-entities.json",
+    "union-positions.json"
 )
 
 $errors = [System.Collections.Generic.List[string]]::new()
@@ -83,13 +85,22 @@ if ($dataStore["commitments.json"].commitments) {
 }
 Write-Host "Indexed $($validCommitmentIds.Count) valid commitments from commitments.json" -ForegroundColor DarkCyan
 
+$validEntityIds = [System.Collections.Generic.HashSet[string]]::new()
+if ($dataStore["professional-entities.json"].entities) {
+    foreach ($ent in $dataStore["professional-entities.json"].entities) {
+        if ($ent.id) { [void]$validEntityIds.Add($ent.id) }
+    }
+}
+Write-Host "Indexed $($validEntityIds.Count) valid professional entities from professional-entities.json" -ForegroundColor DarkCyan
+
 # 3. Check records
 $groups = @(
     @{ file = "positions.json"; items = $dataStore["positions.json"].positions; label = "Positions" },
     @{ file = "commitments.json"; items = $dataStore["commitments.json"].commitments; label = "Commitments" },
     @{ file = "execution.json"; items = $dataStore["execution.json"].executionRecords; label = "Execution Records" },
     @{ file = "budgets.json"; items = $dataStore["budgets.json"].budgetLines; label = "Budget Lines" },
-    @{ file = "education-system.json"; items = $dataStore["education-system.json"].systemIndicators; label = "System Indicators" }
+    @{ file = "education-system.json"; items = $dataStore["education-system.json"].systemIndicators; label = "System Indicators" },
+    @{ file = "union-positions.json"; items = $dataStore["union-positions.json"].positions; label = "Union Positions (Professional Entities)" }
 )
 
 foreach ($g in $groups) {
@@ -131,6 +142,13 @@ foreach ($g in $groups) {
             }
         }
 
+        # EntityId check (for professional entities)
+        if ($item.entityId) {
+            if (-not $validEntityIds.Contains($item.entityId)) {
+                $errors.Add("[$fName | $id] Foreign key error: entityId '$($item.entityId)' does not exist in professional-entities.json")
+            }
+        }
+
         # IssueId check
         if ($item.issueId) {
             if (-not $validIssueIds.Contains($item.issueId)) {
@@ -168,6 +186,17 @@ foreach ($g in $groups) {
         if ($item.assessment) {
             if ($item.assessment.epistemicType -ne "assessment") {
                 $errors.Add("[$fName | $id] assessment block must have epistemicType='assessment'")
+            }
+        }
+
+        # Policy Comparison tier check (for union positions / policy evaluations)
+        if ($item.policyComparison) {
+            $allowedTiers = @("precedence", "alignment", "documented_influence", "divergence", "not_applicable")
+            if ($item.policyComparison.comparisonTier -notin $allowedTiers) {
+                $errors.Add("[$fName | $id] Invalid comparisonTier '$($item.policyComparison.comparisonTier)'")
+            }
+            if ($item.policyComparison.comparisonTier -eq "documented_influence" -and [string]::IsNullOrWhiteSpace($item.policyComparison.evidenceDetails)) {
+                $errors.Add("[$fName | $id] Epistemic violation: 'documented_influence' requires non-empty evidenceDetails")
             }
         }
 

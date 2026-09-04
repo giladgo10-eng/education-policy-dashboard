@@ -1,0 +1,35 @@
+{
+  "$schema": "./schemas/professional-entities.schema.json",
+  "metadata": {
+    "dataset": "professional_entities",
+    "version": "1.0.0",
+    "description": "הנהגה מקצועית, גופים יציגים ואיגודים מקצועיים בשלטון המקומי ובמערכת החינוך (שכבה מקצועית מובחנת ממפלגות פוליטיות)",
+    "lastUpdated": "2026-09-04"
+  },
+  "entities": [
+    {
+      "id": "ENTITY-UNION-EDU",
+      "nameHe": "איגוד מנהלי ומנהלות אגפי החינוך ברשויות המקומיות",
+      "nameEn": "Association of Directors of Education Departments in Local Authorities",
+      "shortNameHe": "איגוד מנהלי אגפי החינוך",
+      "entityType": "professional_association",
+      "establishedYear": 1990,
+      "historicalRoots": "ראשית שנות ה-60",
+      "legalStatus": "עמותה רשומה",
+      "leadership": {
+        "currentChair": "שירלי קוטלר (תשפ\"ו–תשפ\"ז)",
+        "formerChair": "אבי קמינסקי (2011–2022)"
+      },
+      "officialWebsite": "https://www.e4u.org.il",
+      "publicDriveArchive": "https://drive.google.com/drive/folders/19ScYmoBNpvxFndPh5sNQElzhNN42Im05?usp=sharing",
+      "representation": [
+        "ועדת החינוך, התרבות והספורט של הכנסת",
+        "הנהלת משרד החינוך וצוותי היגוי ארציים",
+        "מרכז השלטון המקומי בישראל (מש\"מ)",
+        "פורום ה-15 ומרכז השלטון האזורי"
+      ],
+      "mission": "חיזוק מעמד מנהל החינוך, קידום אוטונומיה וביזור סמכויות לשלטון המקומי, יצירת רצף חינוכי מלידה, גיבוש ניירות עמדה מקצועיים, והגדלת חלקו של השלטון המקומי בעיצוב המדיניות הלאומית מתוך הידע המצטבר בשטח.",
+      "notes": "שכבה מקצועית עצמאית בלתי-מפלגתית המייצגת את שדרת הניהול של מערכות החינוך היישוביות בכלל הרשויות בישראל."
+    }
+  ]
+}

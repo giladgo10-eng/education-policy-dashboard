@@ -1,0 +1,959 @@
+{
+  "$schema": "./schemas/union-claims.schema.json",
+  "metadata": {
+    "dataset": "union_claims",
+    "version": "2.0.0",
+    "description": "קטלוג טענות איגוד מנהלי אגפי החינוך בטקסונומיה מורחבת עם סיווג סמכות מקור A–F וסטטוס טענה",
+    "lastUpdated": "2026-09-04",
+    "epistemicRules": {
+      "nonOfficialAuthorityRule": "טענות מדרגות סמכות C, D, E, F אינן עמדות רשמיות של האיגוד, ומוגדרות כקול הנהגה, ניתוח מחקרי, תיעוד שנתי או עדות משנית.",
+      "claimStatusDefinitions": {
+        "official_position": "עמדה רשמית שאושרה בהנהלת האיגוד",
+        "institutional_stance": "ביטוי מוסדי משותף עם גוף ממשלתי/מוניציפלי",
+        "leadership_perspective": "עמדת הנהגה מקצועית (מצגת/הרצאת יו\"ר)",
+        "research_analysis": "ניתוח מחקרי / דוח מומחה מייעץ",
+        "documentation_statement": "תיעוד ופרסום שנתי של האיגוד",
+        "secondary_milestone": "עדות היסטורית משנית ללא מקור ראשוני"
+      }
+    }
+  },
+  "claims": [
+    {
+      "id": "CLM-UNION-GOV-001",
+      "claim": "מעבר מניהול ריכוזי של משרד החינוך לביזור דיפרנציאלי במודל זיכיון רשותי ל-5 שנים תחת בקרה ציבורית.",
+      "theme": "THEME-GOVERNANCE-DECENTRALIZATION",
+      "subTopic": "מודל הזיכיון והביזור הדיפרנציאלי",
+      "evolutionStation": "תחנה 3: גיבוש תפיסת משילות רב-מפלסית (2015)",
+      "documentId": "DOC-UNION-2015-KAMINSKY-REFORM",
+      "sourceId": "SRC-UNION-2015-KAMINSKY-REFORM",
+      "sourceCitation": "שקפים 9, 14, 15, 16",
+      "date": "2015-11-10",
+      "explicitOrInferred": "explicit",
+      "confidence": "high",
+      "primarySourceAvailable": true,
+      "evidenceType": "primary_source",
+      "layers": {
+        "fact": {
+          "quote": "נוסחת הפתרון: ביזור הדרגתי ודיפרנציאלי. הרשות המקומית תצטרך להוכיח כשירות לקבלת סמכויות לניהול עצמאי של החינוך: כושר ניהול, רמת ביצוע, עמידה ביעדים, ניהול כספי ואיתנות תקציבית... חידוש הרישיון לרשות שקיבלה זיכיון אחת לחמש שנים... תפקידי משרד החינוך: קביעת המדיניות ברמה הלאומית, סטנדרטים, רישוי, קריטריונים לתקצוב, פיקוח ובקרה. תפקידי הרשות המקומית – כל השאר... סמכות ואחריות ארגונית ופדגוגית.",
+          "sourceLocation": "שקפים 9, 14-16 במצגת ון ליר 2015"
+        },
+        "interpretation": {
+          "researchMeaning": "האיגוד הציב חלופה עקרונית לגישת 'הניהול העצמי' הבית-ספרי של משרד החינוך: ביזור שאינו עוקף את הרשות, אלא מבסס ממשל רב-מפלסי (Multi-level Governance) המאזן בין האוטונומיה המוסדית של מנהל בית הספר לבין ראיית המכלול היישובית של מנהל אגף החינוך."
+        },
+        "assessment": {
+          "policySignificance": "המודל הקדים רעיונית את תוכנית גפ\"ן (2022), אך מודל הזיכיון המלא בחקיקה ראשית טרם יושם. סיווג השוואתי: התאמה רעיונית."
+        }
+      },
+      "targetAudience": [
+        "משרד החינוך",
+        "משרד האוצר",
+        "ממשלת ישראל"
+      ],
+      "relatedIssues": [
+        "ISSUE-DECENTRALIZATION"
+      ],
+      "secondaryThemes": [
+        "THEME-AUTHORITY-RESOURCES"
+      ],
+      "claimStatus": "leadership_perspective",
+      "sourceAuthority": "C",
+      "authorityNote": "קול הנהגה מקצועי: הרצאת יו\"ר האיגוד אבי קמינסקי במכון ון ליר. אינה מהווה החלטת הנהלה רשמית."
+    },
+    {
+      "id": "CLM-UNION-GOV-002",
+      "claim": "הפיכת מנגנוני הגמישות והאוטונומיה הרשותית שהופעלו בשעת חירום (משבר הקורונה) למבנה קבע ניהולי במערכת החינוך.",
+      "theme": "THEME-GOVERNANCE-DECENTRALIZATION",
+      "subTopic": "לקחי חירום כבסיס לביזור קבוע",
+      "evolutionStation": "תחנה 5: האוטונומיה במבחן החירום (2021)",
+      "documentId": "DOC-UNION-2021-CORONA-OPP",
+      "sourceId": "SRC-UNION-2021-CORONA-OPP",
+      "sourceCitation": "עמודים 1-3, סעיפים 2-4",
+      "date": "2021-01-15",
+      "explicitOrInferred": "explicit",
+      "confidence": "high",
+      "primarySourceAvailable": true,
+      "evidenceType": "primary_source",
+      "layers": {
+        "fact": {
+          "quote": "תקופת הקורונה הוכיחה בעליל: היכן שניתנה אוטונומיה ניהולית ופדגוגית לרשויות המקומיות – המערכת תפקדה, מצאה פתרונות יצירתיים ושמרה על שלומם ורציפות למידתם של התלמידים. החזרה לריכוזיות הנוקשה של ערב המשבר תהיה שגיאה היסטורית.",
+          "sourceLocation": "עמ' 1-2 בנייר עמדה קורונה ינואר 2021"
+        },
+        "interpretation": {
+          "researchMeaning": "משבר הקורונה שימש עבור האיגוד מעבדת שטח מוכחת (Proof of Concept) לכך שהרשויות מסוגלות לנהל מערכות חינוך עצמאיות ביעילות גבוהה בהרבה ממנגנוני המטה הממשלתיים."
+        },
+        "assessment": {
+          "policySignificance": "הלחץ הציבורי והמקצועי מן השטח הוביל ישירות להשקת תוכנית האוטונומיה וגפ\"ן בממשלת בנט-לפיד (2022). סיווג: קדימות והתאמה."
+        }
+      },
+      "targetAudience": [
+        "משרד החינוך",
+        "ועדת החינוך של הכנסת"
+      ],
+      "relatedIssues": [
+        "ISSUE-DECENTRALIZATION"
+      ],
+      "secondaryThemes": [
+        "THEME-AUTHORITY-RESOURCES",
+        "THEME-EMERGENCY-RESILIENCE"
+      ],
+      "claimStatus": "official_position",
+      "sourceAuthority": "A",
+      "authorityNote": "עמדה רשמית: נייר עמדה רשמי של הנהלת האיגוד ינואר 2021."
+    },
+    {
+      "id": "CLM-UNION-GOV-003",
+      "claim": "הסרת חסמי רכש מוניציפליים במערכת גפ\"ן באמצעות הוראת שעה של משרד הפנים ושמירה על סמכות התיאום של מנהל אגף החינוך.",
+      "theme": "THEME-BUDGET-FINANCE",
+      "subTopic": "פתרון חסם הרכש והרגולציה בגפ\"ן",
+      "evolutionStation": "תחנה 7: התערבות מנגנונית ישירה בגפ\"ן (2022)",
+      "documentId": "DOC-UNION-2022-GEFEN-INTERVENTION",
+      "sourceId": "SRC-UNION-2026-SYNTHESIS-STUDY",
+      "sourceCitation": "פסקאות 353-365",
+      "date": "2022-09-23",
+      "explicitOrInferred": "explicit",
+      "confidence": "high",
+      "primarySourceAvailable": false,
+      "evidenceType": "secondary_summary",
+      "layers": {
+        "fact": {
+          "quote": "האיגוד התריע שהרחבת האוטונומיה של מנהלי בתי הספר עלולה לפגוע במעמדו של מנהל אגף החינוך... בעקבות עבודת ועדת שותפים שכללה את משרד החינוך, האיגוד, איגוד הגזברים ומרכז השלטון המקומי, פורסמה הוראת שעה של משרד הפנים שהכירה במאגר הספקים, ומדריך גפ\"ן תוקן במספר מהדורות בהתאם להערות האיגוד.",
+          "sourceLocation": "פסקאות 353-365 במונוגרפיית מהשטח למדיניות 2026"
+        },
+        "interpretation": {
+          "researchMeaning": "עדות מובהקת להשפעה מתועדת בזמן אמת: התנגשות רגולטורית בין מאגר התוכניות של משרד החינוך לפקודת העיריות איימה לשתק את הרכש ברשויות; התערבות האיגוד ייצרה את המענה המשפטי המאפשר."
+        },
+        "assessment": {
+          "policySignificance": "דרגה 3 - השפעה מתועדת. קיימת אסמכתה מפורשת לקשר בין עבודת ועדת השותפים להוראת השעה הרשמית."
+        }
+      },
+      "targetAudience": [
+        "משרד הפנים",
+        "משרד החינוך",
+        "איגוד הגזברים"
+      ],
+      "relatedIssues": [
+        "ISSUE-DECENTRALIZATION"
+      ],
+      "secondaryThemes": [
+        "THEME-GOVERNANCE-DECENTRALIZATION",
+        "THEME-DIRECTOR-STATUS"
+      ],
+      "claimStatus": "secondary_milestone",
+      "sourceAuthority": "F",
+      "authorityNote": "אזכור משני: עדות משנית על ועדת שותפים מתוך מונוגרפיית 2026; פרוטוקולי הוועדה המקוריים אינם בקורפוס.",
+      "supportingEvidence": [
+        {
+          "evidenceId": "EVD-2026-SYNTHESIS-GOV-003",
+          "sourceDocumentId": "DOC-UNION-2026-SYNTHESIS-STUDY",
+          "sourceFile": "מהשטח-למדיניות- מעוצב גרפית -איגוד-מנהלי-אגפי-החינוך.docx",
+          "authorityTier": "D",
+          "quote": "האיגוד לא הסתפק בתמיכה: הוא דרש להגן על האוטונומיה של מנהל אגף החינוך, השתתף בשינוי הנחיות המדריך, והיה בין השותפים לפתרון חסם הרכש מול משרד הפנים.",
+          "analysis": "חיזוק רטרוספקטיבי מתוך המונוגרפיה המחקרית: תיעוד ישיר של דרישת האיגוד להגנת אוטונומיית מנהל האגף, שינוי הנחיות מדריך גפ\"ן ושותפות בהסרת חסם הרכש מול משרד הפנים.",
+          "integratedAt": "2026-09-05"
+        }
+      ]
+    },
+    {
+      "id": "CLM-UNION-STA-001",
+      "claim": "הסדרת מעמד סטטוטורי וסל סמכויות מוגדר בחקיקה למנהל אגף החינוך מעבר לתנאי הכשירות הבסיסיים של חוק 2001.",
+      "theme": "THEME-DIRECTOR-STATUS",
+      "subTopic": "עדכון חוק מנהלי מחלקות חינוך 2001",
+      "evolutionStation": "תחנה 1: מאבק על מעמד וכשירות (2001–2019)",
+      "documentId": "DOC-UNION-2019-KAMINSKY-TIMELINE",
+      "sourceId": "SRC-UNION-2019-KAMINSKY-TIMELINE",
+      "sourceCitation": "שקפים 4, 8, 12",
+      "date": "2019-03-15",
+      "explicitOrInferred": "explicit",
+      "confidence": "high",
+      "primarySourceAvailable": true,
+      "evidenceType": "primary_source",
+      "layers": {
+        "fact": {
+          "quote": "חוק הרשויות המקומיות (מנהל מחלקת חינוך) 2001 היה צעד היסטורי ראשון בהגדרת כשירות והגנה מפיטורים, אך אינו מגדיר סל סמכויות פדגוגי וניהולי של מנהל האגף מול מנהלי בתי הספר ומשרד החינוך. נדרש עדכון חקיקה שיעגן את מעמדו הסטטוטורי.",
+          "sourceLocation": "שקף 4 במצגת התפתחות מערכות החינוך מרץ 2019"
+        },
+        "interpretation": {
+          "researchMeaning": "האיגוד מאבחן פער מובנה: מנהל האגף נושא באחריות ציבורית ויישובית לכלל מוסדות החינוך אך נעדר כלים חוקיים לחייב מנהלים לפעול בהתאם למדיניות העירונית."
+        },
+        "assessment": {
+          "policySignificance": "הדרישה לעדכון חוק 2001 נותרה בעינה גם בשנת 2026 ולא עוגנה עד כה בחקיקה ראשית."
+        }
+      },
+      "targetAudience": [
+        "כנסת ישראל",
+        "משרד הפנים",
+        "משרד החינוך"
+      ],
+      "relatedIssues": [
+        "ISSUE-DECENTRALIZATION"
+      ],
+      "secondaryThemes": [
+        "THEME-AUTHORITY-RESOURCES"
+      ],
+      "claimStatus": "leadership_perspective",
+      "sourceAuthority": "C",
+      "authorityNote": "קול הנהגה מקצועי: מצגת יו\"ר האיגוד אבי קמינסקי מרץ 2019."
+    },
+    {
+      "id": "CLM-UNION-STA-002",
+      "claim": "מעבר מתפיסת מנהל אגף החינוך כמנהלן תפעולי של הרשות לתפיסתו כמנהיג מערכת חינוך יישובית וכוח מקצועי מעצב מדיניות.",
+      "theme": "THEME-DIRECTOR-STATUS",
+      "subTopic": "שינוי זהות מקצועית: ממנהלן למנהיג מערכת",
+      "evolutionStation": "תחנה 8: מהשטח למדיניות ומנהיגות מערכתית (2026)",
+      "documentId": "DOC-UNION-2026-SECURITY-NET-IMPACT",
+      "sourceId": "SRC-UNION-2026-SECURITY-NET-IMPACT",
+      "sourceCitation": "עמוד 1, פסקאות 1-3",
+      "date": "2026-09-01",
+      "explicitOrInferred": "explicit",
+      "confidence": "high",
+      "primarySourceAvailable": true,
+      "evidenceType": "primary_source",
+      "layers": {
+        "fact": {
+          "quote": "שנת תשפ\"ו חידדה את מקומם של מנהלי ומנהלות אגפי החינוך ברשויות המקומיות: לא רק מי שמיישמים מדיניות, אלא מנהיגות מקצועית המחזיקה את המערכת בשגרה ובחירום, מייצרת ידע מן השטח ומבקשת להשפיע על עיצוב המדיניות... מעבר מרשת ביטחון פנימית לכוח מקצועי משפיע.",
+          "sourceLocation": "עמ' 1 במאמר סיכום תשפ\"ו ספטמבר 2026"
+        },
+        "interpretation": {
+          "researchMeaning": "גיבוש זהות קולקטיבית בוגרת של האיגוד: הרשות המקומית איננה עוד 'קבלן ביצוע' של משרד החינוך, אלא מטה אסטרטגי המייצר ידע מקצועי מן השטח ומציב אלטרנטיבות מדיניות ברמה הלאומית."
+        },
+        "assessment": {
+          "policySignificance": "התאמה מוסדית להתחזקות מעמד השלטון המקומי מול השלטון המרכזי במשברים לאומיים (קורונה וחרבות ברזל)."
+        }
+      },
+      "targetAudience": [
+        "הנהגת האיגוד",
+        "משרד החינוך",
+        "הציבור הרחב"
+      ],
+      "relatedIssues": [
+        "ISSUE-DECENTRALIZATION"
+      ],
+      "secondaryThemes": [
+        "THEME-GOVERNANCE-DECENTRALIZATION"
+      ],
+      "claimStatus": "documentation_statement",
+      "sourceAuthority": "E",
+      "authorityNote": "תיעוד/פרסום: דוח סיכום תשפ\"ו ומבט למחר (מאמר עמדה ופרסום שנתי של ההנהגה)."
+    },
+    {
+      "id": "CLM-UNION-STA-003",
+      "claim": "הערכה פרשנית: פער בין הגדרת המטרות ההיסטורית של האיגוד (קבלת מעמד סטטוטורי) לבין המצב המשפטי לאחר 2001 מעיד על דרישה להעמקת סמכויות ולא על היעדר מעמד.",
+      "theme": "THEME-AUTHORITY-RESOURCES",
+      "subTopic": "פרשנות מעמד סטטוטורי",
+      "evolutionStation": "תחנה 1: מאבק על מעמד וכשירות (2001–2019)",
+      "documentId": "DOC-UNION-2026-SYNTHESIS-STUDY",
+      "sourceId": "SRC-UNION-2026-SYNTHESIS-STUDY",
+      "sourceCitation": "פסקה 68",
+      "date": "2026-08-31",
+      "explicitOrInferred": "inferred",
+      "confidence": "medium",
+      "primarySourceAvailable": false,
+      "evidenceType": "secondary_summary",
+      "layers": {
+        "fact": {
+          "quote": "יש כאן גם אי־התאמה ראויה לציון באתר האיגוד עצמו: רשימת מטרותיו הנוכחית עדיין כוללת 'קבלת מעמד סטטוטורי', אף שמנהל מחלקת החינוך מוסדר בחוק מאז 2001... לכן לא נכון לקרוא את הביטוי כפשוטו כאילו אין לתפקיד מעמד בחוק.",
+          "sourceLocation": "פסקה 68 במונוגרפיית 2026"
+        },
+        "interpretation": {
+          "researchMeaning": "מדובר בעמדה נגזרת (inferred): אין מסמך רשמי שבו האיגוד מודה בטעות ניסוח, אלא הערכה מחקרית הגורסת כי הכוונה היא להרחבת סמכויות החוק ולא לביטול חוק 2001."
+        },
+        "assessment": {
+          "policySignificance": "סיווג מחמיר כעמדה משוערת (inferred) למניעת ייחוס אמירה שגויה לאיגוד."
+        }
+      },
+      "targetAudience": [
+        "חוקרי מדיניות חינוך"
+      ],
+      "relatedIssues": [
+        "ISSUE-DECENTRALIZATION"
+      ],
+      "secondaryThemes": [
+        "THEME-DIRECTOR-STATUS"
+      ],
+      "claimStatus": "research_analysis",
+      "sourceAuthority": "D",
+      "authorityNote": "מחקר/ייעוץ: עמדה משוערת (inferred) שנגזרה בניתוח מחקרי של סעיף 68 במונוגרפיית 2026."
+    },
+    {
+      "id": "CLM-UNION-EAR-001",
+      "claim": "העברת האחריות הכוללת על גילאי לידה עד שלוש למשרד החינוך, תקצוב חוק הפיקוח, והקמת יחידות גיל רך מתכללות באגפי החינוך ברשויות.",
+      "theme": "THEME-EARLY-CHILDHOOD",
+      "subTopic": "העברת 0-3 למשרד החינוך ורצף פדגוגי",
+      "evolutionStation": "תחנה 4: הרחבת אחריות מלידה והיפוך הפירמידה (2019)",
+      "documentId": "DOC-UNION-2019-CALL-PARTIES-0TO3",
+      "sourceId": "SRC-UNION-2019-CALL-PARTIES-0TO3",
+      "sourceCitation": "עמודים 1-2",
+      "date": "2019-08-15",
+      "explicitOrInferred": "explicit",
+      "confidence": "high",
+      "primarySourceAvailable": true,
+      "evidenceType": "primary_source",
+      "layers": {
+        "fact": {
+          "quote": "איגוד מנהלי אגפי החינוך קורא לכל המפלגות והבוחרים להציב את הגיל הרך מלידה עד 3 בראש סדר העדיפויות... פיצול האחריות בין משרדי ממשלה שונים פוגע בילדים. יש להעביר את האחריות הכוללת על גילאי 0-3 למשרד החינוך, לתקצב וליישם את חוק הפיקוח על מעונות יום, ולהטיל את האחריות היישובית על אגף החינוך ברשות כדי לבנות רצף חינוכי מלידה.",
+          "sourceLocation": "עמ' 1-2 בקריאה למפלגות אוגוסט 2019"
+        },
+        "interpretation": {
+          "researchMeaning": "האיגוד הגדיר את הגיל הרך כשלב התפתחותי מעצב ולא כשירות שמרטפות לתעסוקת הורים, ודרש רצף פדגוגי אחד מלידה ועד גיל 18 בהובלת הרשות המקומית."
+        },
+        "assessment": {
+          "policySignificance": "דרגה 1 - קדימות והתאמה. הממשלה החליטה בינואר 2022 להעביר את מעונות היום למשרד החינוך והקצתה תקני לידה-3 ברשויות, בהתאמה מלאה למבנה שדרש האיגוד."
+        }
+      },
+      "targetAudience": [
+        "מפלגות פוליטיות",
+        "ממשלת ישראל",
+        "משרד החינוך"
+      ],
+      "relatedIssues": [
+        "ISSUE-EARLY-CHILDHOOD"
+      ],
+      "secondaryThemes": [
+        "THEME-CONTINUUM-BIRTH-ADULT",
+        "THEME-BUDGET-FINANCE"
+      ],
+      "claimStatus": "leadership_perspective",
+      "sourceAuthority": "C",
+      "authorityNote": "קול הנהגה מקצועי: מצגת יו\"ר האיגוד אבי קמינסקי אוגוסט 2019."
+    },
+    {
+      "id": "CLM-UNION-EAR-002",
+      "claim": "הורדת תקן כיתת הגן לבני 3-4 מ-35 ל-25 ילדים, שיפוי ממשלתי מלא על בינוי ותפעול (616 מלש\"ח), ופיקוח מחמיר על גנים פרטיים מסובסדים.",
+      "theme": "THEME-EARLY-CHILDHOOD",
+      "subTopic": "יישום חינוך חינם 3-4 (טרכטנברג)",
+      "evolutionStation": "תחנה 2: התרעות יישום מן השטח (2012)",
+      "documentId": "DOC-UNION-2012-TRACHTENBERG",
+      "sourceId": "SRC-UNION-2012-TRACHTENBERG-POS",
+      "sourceCitation": "עמודים 1-3",
+      "date": "2012-01-22",
+      "explicitOrInferred": "explicit",
+      "confidence": "high",
+      "primarySourceAvailable": true,
+      "evidenceType": "primary_source",
+      "layers": {
+        "fact": {
+          "quote": "הגדרת תקן של 35 ילדים לכיתת גן אחת לבני 3-4 אינה ראויה. ניסיוננו מעלה שחלק מגילאי 3 (כ-20%) מגיעים לא גמולים ומתקשים להסתגל. צוות של גננת וסייעת אינו יכול לתת מענה. התקן המתאים הינו 25 ילדים לכיתת גן, גננת מוסמכת וסייעת בכל שעות הפעילות... בינוי 2,000 כיתות מטיל על הרשויות נטל של 616 מיליון ₪... הכרה בגנים פרטיים ללא החלת תקנות מוכש\"ר תנציח חינוך שונה לעשירים ולעניים.",
+          "sourceLocation": "עמ' 1-3 בנייר העמדה המשותף ינואר 2012"
+        },
+        "interpretation": {
+          "researchMeaning": "תפקיד האיגוד כמערכת התרעה מוקדמת: חשיפת הכשל של החלטות ממשלה פופולריות הנעדרות תשתית תקציבית ופדגוגית מותאמת לשטח."
+        },
+        "assessment": {
+          "policySignificance": "דרגה 2 - התאמה לאבחון. דוח מבקר המדינה 65ג (2015) אישש במדויק את כל מוקדי הכשל שעליהם התריע האיגוד ב-2012."
+        }
+      },
+      "targetAudience": [
+        "ממשלת ישראל",
+        "ועדת טרכטנברג",
+        "משרד האוצר"
+      ],
+      "relatedIssues": [
+        "ISSUE-EARLY-CHILDHOOD"
+      ],
+      "secondaryThemes": [
+        "THEME-PERSONNEL-STATUS",
+        "THEME-INFRASTRUCTURE-SPACES"
+      ],
+      "claimStatus": "institutional_stance",
+      "sourceAuthority": "B",
+      "authorityNote": "ביטוי מוסדי: נייר עמדה מוסדי משותף עם מרכז השלטון המקומי לקראת ועדת טרכטנברג 2012."
+    },
+    {
+      "id": "CLM-UNION-EAR-003",
+      "claim": "היפוך פירמידת ההשקעה בחינוך: הפניית משאבים תקציביים מרביים לשנות החיים הראשונות (0–3) כמנוף המרכזי לצמצום פערים חברתיים.",
+      "theme": "THEME-CONTINUUM-BIRTH-ADULT",
+      "subTopic": "היפוך פירמידת ההשקעה",
+      "evolutionStation": "תחנה 4: הרחבת אחריות מלידה והיפוך הפירמידה (2019)",
+      "documentId": "DOC-UNION-2019-KAMINSKY-PYRAMID",
+      "sourceId": "SRC-UNION-2019-KAMINSKY-PYRAMID",
+      "sourceCitation": "שקפים 3-7",
+      "date": "2019-08-21",
+      "explicitOrInferred": "explicit",
+      "confidence": "high",
+      "primarySourceAvailable": true,
+      "evidenceType": "primary_source",
+      "layers": {
+        "fact": {
+          "quote": "פירמידת ההשקעה בישראל הפוכה: משקיעים הכי מעט בגיל שבו מתעצבת התשתית המוחית והרגשית (0-3), והכי הרבה בעל-יסודי ובאקדמיה. חובה להפוך את הפירמידה: השקעה של שקל בגיל הרך חוסכת שבעה שקלים בטיפול בנשירה, בפשיעה ובפערים בגיל מבוגר.",
+          "sourceLocation": "שקפים 3-5 במצגת היפוך הפירמידה אוגוסט 2019"
+        },
+        "interpretation": {
+          "researchMeaning": "אימוץ תיאוריות כלכליות של חתן פרס נובל ג'יימס הקמן על התשואה הכלכלית העודפת של השקעה בגיל הרך, וחיבורן למבנה הרשותי."
+        },
+        "assessment": {
+          "policySignificance": "התאמה לחזון משרד החינוך והמלצות דוחות OECD, אך יישום תקציבי מלא בישראל עדיין לוקה בחסר עמוק."
+        }
+      },
+      "targetAudience": [
+        "משרד האוצר",
+        "משרד החינוך",
+        "השלטון המקומי"
+      ],
+      "relatedIssues": [
+        "ISSUE-EARLY-CHILDHOOD",
+        "ISSUE-DIFFERENTIAL-FUNDING"
+      ],
+      "secondaryThemes": [
+        "THEME-EARLY-CHILDHOOD"
+      ],
+      "claimStatus": "official_position",
+      "sourceAuthority": "A",
+      "authorityNote": "עמדה רשמית: פנייה רשמית של הנהלת האיגוד לראשי המפלגות לקראת בחירות 2019."
+    },
+    {
+      "id": "CLM-UNION-SPE-001",
+      "claim": "שותפות מקצועית בהטמעת רפורמות החינוך המיוחד, מניעת שחיקת תקציבי הרשויות, ושיפוי ממשלתי מלא (100%) על עלויות ההסעות.",
+      "theme": "THEME-SPECIAL-EDU",
+      "subTopic": "עומס החנ\"מ, הסעות ומאצ'ינג",
+      "evolutionStation": "תחנה 1: מאבק על מעמד וכשירות (2001–2019)",
+      "documentId": "DOC-UNION-2011-DORNER-COMMITTEE",
+      "sourceId": "SRC-UNION-2026-SYNTHESIS-STUDY",
+      "sourceCitation": "פסקאות 71-74, 271-280",
+      "date": "2019-07-10",
+      "explicitOrInferred": "explicit",
+      "confidence": "high",
+      "primarySourceAvailable": false,
+      "evidenceType": "secondary_summary",
+      "layers": {
+        "fact": {
+          "quote": "נציגת משרד החינוך תיארה בוועדת החינוך כיצד יו\"ר האיגוד קמינסקי בחר מנהלי אגפי חינוך שישתתפו בצוות ההיגוי של רפורמת החינוך המיוחד... האיגוד דרש מ־2011 הסדרה מקצועית של הסייעות, שיפוי ממשלתי מלא על הוצאות ההסעות והשילוב, ומניעת גלגול הגירעונות על הרשויות.",
+          "sourceLocation": "פסקאות 71-74, 271-280 במונוגרפיית 2026"
+        },
+        "interpretation": {
+          "researchMeaning": "הרשות המקומית נמצאת בחזית התפעולית והרגשית של החינוך המיוחד: היא המגייסת סייעות, מפעילה מערכי היסעים מורכבים ועומדת מול ההורים. הדרת מנהלי האגפים ממוקדי קבלת ההחלטות יצרה משברים יישומיים חריפים."
+        },
+        "assessment": {
+          "policySignificance": "דרגה 3 - השפעה מתועדת. שילוב ישיר של מנהלי אגפים בצוות ההיגוי המשרדי בעקבות דרישת האיגוד מתועד בפרוטוקול הכנסת."
+        }
+      },
+      "targetAudience": [
+        "משרד החינוך - אגף חנ\"מ",
+        "ועדת החינוך של הכנסת"
+      ],
+      "relatedIssues": [
+        "ISSUE-SPECIAL-EDUCATION"
+      ],
+      "secondaryThemes": [
+        "THEME-BUDGET-FINANCE"
+      ],
+      "claimStatus": "secondary_milestone",
+      "sourceAuthority": "F",
+      "authorityNote": "אזכור משני: עדות משנית מתוך פרוטוקול ועדת החינוך של הכנסת ומונוגרפיית 2026; מסמך המקור הגולמי אינו בקורפוס.",
+      "supportingEvidence": [
+        {
+          "evidenceId": "EVD-2026-SYNTHESIS-SPE-001",
+          "sourceDocumentId": "DOC-UNION-2026-SYNTHESIS-STUDY",
+          "sourceFile": "מהשטח-למדיניות- מעוצב גרפית -איגוד-מנהלי-אגפי-החינוך.docx",
+          "authorityTier": "D",
+          "quote": "המוקד עדיין היה במידה רבה \"איך הרפורמה הארצית פוגשת את המציאות המקומית\", אבל מכאן צמח ידע מדיניות ייחודי: הרשויות רואות את עלויות הבינוי, כוח האדם, ההסעות, ההצטיידות והפערים שהחלטות מטה אינן תמיד מביאות בחשבון.",
+          "analysis": "חיזוק רטרוספקטיבי מתוך המונוגרפיה המחקרית: ידע המדיניות הייחודי של הרשויות צמח מתוך המפגש הישיר של הרפורמה עם השטח (בינוי, הסעות, כוח אדם ופערים).",
+          "integratedAt": "2026-09-05"
+        }
+      ]
+    },
+    {
+      "id": "CLM-UNION-SPE-002",
+      "claim": "הסדרה לאומית מחייבת של מעמד, הכשרת ושכר סייעות השילוב והסייעות הרפואיות ברשויות המקומיות.",
+      "theme": "THEME-PERSONNEL-STATUS",
+      "subTopic": "הסדרת מעמד הסייעות",
+      "evolutionStation": "תחנה 1: מאבק על מעמד וכשירות (2001–2019)",
+      "documentId": "DOC-UNION-2011-DORNER-COMMITTEE",
+      "sourceId": "SRC-UNION-2026-SYNTHESIS-STUDY",
+      "sourceCitation": "פסקאות 72, 87-88",
+      "date": "2019-07-10",
+      "explicitOrInferred": "explicit",
+      "confidence": "high",
+      "primarySourceAvailable": false,
+      "evidenceType": "secondary_summary",
+      "layers": {
+        "fact": {
+          "quote": "בדיון בוועדת החינוך צוין שחלק מן ההיבטים שהאיגוד העלה לא קיבלו מענה; הדיון עצמו עסק, בין היתר, בהכשרת סייעות ובפער בין האחריות המוטלת על הרשויות לבין הסדרה מקצועית ומימונית מצד המדינה.",
+          "sourceLocation": "פסקאות 72, 87 במונוגרפיית 2026"
+        },
+        "interpretation": {
+          "researchMeaning": "מצוקת הסייעות מהווה צוואר בקבוק המאיים למוטט את השילוב בכיתות הרגילות; הרשות נושאת באחריות להשמה אך אינה מקבלת תנאי שכר המאפשרים גיוס יציב."
+        },
+        "assessment": {
+          "policySignificance": "נחתם הסכם שכר סייעות ב-2023, אך המחסור האקוטי נותר בעינו גם בשנת 2026."
+        }
+      },
+      "targetAudience": [
+        "משרד האוצר",
+        "מרכז השלטון המקומי",
+        "הסתדרות המעו\"ף"
+      ],
+      "relatedIssues": [
+        "ISSUE-SPECIAL-EDUCATION",
+        "ISSUE-TEACHER-SHORTAGE"
+      ],
+      "secondaryThemes": [
+        "THEME-SPECIAL-EDU"
+      ],
+      "claimStatus": "secondary_milestone",
+      "sourceAuthority": "F",
+      "authorityNote": "אזכור משני: דרישת תקינת הסייעות מתוך עדות משנית על ועדת דורנר במונוגרפיית 2026."
+    },
+    {
+      "id": "CLM-UNION-PED-001",
+      "claim": "שינוי מהותי במודל הבגרות: מעבר מהערכה חיצונית של שינון להערכה פנימית, מטלות ביצוע, עבודות חקר ומיקוד במיומנויות המאה ה-21.",
+      "theme": "THEME-PEDAGOGY-EVALUATION",
+      "subTopic": "רפורמת מודל הבגרות ומיומנויות",
+      "evolutionStation": "תחנה 6: פדגוגיה ומיומנויות 2030 (2021)",
+      "documentId": "DOC-UNION-2021-CHINUCH-2030",
+      "sourceId": "SRC-UNION-2021-CHINUCH-2030",
+      "sourceCitation": "פרק 1, עמודים 3-7",
+      "date": "2021-09-15",
+      "explicitOrInferred": "explicit",
+      "confidence": "high",
+      "primarySourceAvailable": true,
+      "evidenceType": "primary_source",
+      "layers": {
+        "fact": {
+          "quote": "הנהלת האיגוד מציגה: חינוך 2030 – המלצות ליישום ספטמבר 2021... שינוי מהותי במודל הבגרות: מעבר מהערכה חיצונית של שינון להערכה פנימית, עבודות חקר, תיקי עבודות ומיקוד במיומנויות... צמצום מקצועות הבגרות החיצוניים... ראייה הוליסטית.",
+          "sourceLocation": "עמ' 3-5 במסמך חינוך 2030 ספטמבר 2021"
+        },
+        "interpretation": {
+          "researchMeaning": "חיבור בין שינוי פדגוגי עמוק (שיטות למידה והערכה) לממשל המקומי: שחרור מנהלי בתי הספר ממירוץ הציונים הנוקשה מאפשר לרשות להטמיע דגשים ערכיים ויישוביים."
+        },
+        "assessment": {
+          "policySignificance": "דרגה 1 - קדימות והתאמה. מודל 'התחדשות הלמידה' של השרה שאשא-ביטון ב-2022 תאם כמעט לחלוטין את הצעת האיגוד, אך בוטל בחלקו על ידי השר קיש ב-2023."
+        }
+      },
+      "targetAudience": [
+        "שר/ת החינוך",
+        "המזכירות הפדגוגית"
+      ],
+      "relatedIssues": [
+        "ISSUE-CURRICULUM-STRUCTURE",
+        "ISSUE-AI-TECH"
+      ],
+      "secondaryThemes": [
+        "THEME-AI-FUTURE-SKILLS"
+      ],
+      "claimStatus": "official_position",
+      "sourceAuthority": "A",
+      "authorityNote": "עמדה רשמית: נייר המלצות ותוכנית עבודה רשמית של הנהלת האיגוד: חינוך 2030 (ספטמבר 2021)."
+    },
+    {
+      "id": "CLM-UNION-PED-002",
+      "claim": "חיזוק האוטונומיה הפדגוגית של הרשות המקומית ובית הספר בבחירת תוכניות לימודים מותאמות אוכלוסייה וצמצום תוכניות חובה אחידות.",
+      "theme": "THEME-AI-FUTURE-SKILLS",
+      "subTopic": "אוטונומיה פדגוגית יישובית",
+      "evolutionStation": "תחנה 6: פדגוגיה ומיומנויות 2030 (2021)",
+      "documentId": "DOC-UNION-2021-CHINUCH-2030",
+      "sourceId": "SRC-UNION-2021-CHINUCH-2030",
+      "sourceCitation": "פרק 3, עמודים 12-15",
+      "date": "2021-09-15",
+      "explicitOrInferred": "explicit",
+      "confidence": "high",
+      "primarySourceAvailable": true,
+      "evidenceType": "primary_source",
+      "layers": {
+        "fact": {
+          "quote": "יש לאפשר לרשות המקומית ולבתי הספר אוטונומיה של לפחות 30% מתוכנית הלימודים, לעיצוב תכנים ייחודיים המותאמים למאפייני הקהילה, לתרבותה ולחוזקותיה היישוביות, ללא צורך באישור פרטני של המטה.",
+          "sourceLocation": "עמ' 12-13 במסמך חינוך 2030"
+        },
+        "interpretation": {
+          "researchMeaning": "מעבר מסטנדרטיזציה ארצית כופה לפלורליזם פדגוגי מבוקר: הרשות נתפסת כמרחב הראוי לקבוע דגשים חינוכיים לצד ליבה לאומית מחייבת."
+        },
+        "assessment": {
+          "policySignificance": "סל האוטונומיה הפדגוגית בגפ\"ן נתן מענה חלקי לדרישה זו."
+        }
+      },
+      "targetAudience": [
+        "משרד החינוך",
+        "המזכירות הפדגוגית"
+      ],
+      "relatedIssues": [
+        "ISSUE-CURRICULUM-STRUCTURE",
+        "ISSUE-DECENTRALIZATION"
+      ],
+      "secondaryThemes": [
+        "THEME-PEDAGOGY-EVALUATION"
+      ],
+      "claimStatus": "official_position",
+      "sourceAuthority": "A",
+      "authorityNote": "עמדה רשמית: תוכנית עבודה רשמית חינוך 2030 (ספטמבר 2021) — מיקוד במיומנויות המאה ה-21 ואוריינות דיגיטלית."
+    },
+    {
+      "id": "CLM-UNION-HOL-001",
+      "claim": "דוקטרינת 'אין ילד של בוקר וילד של אחה\"צ': ראיית החינוך הפורמלי והבלתי-פורמלי כרצף פדגוגי אחד מ-08:00 עד 20:00 בהובלת הרשות.",
+      "theme": "THEME-FORMAL-INFORMAL",
+      "subTopic": "רצף פורמלי-בלתי פורמלי",
+      "evolutionStation": "תחנה 4: הרחבת אחריות מלידה והיפוך הפירמידה (2019–2020)",
+      "documentId": "DOC-UNION-2020-KAMINSKY-FORMAL-INFORMAL",
+      "sourceId": "SRC-UNION-2020-KAMINSKY-FORMAL-INFORMAL",
+      "sourceCitation": "עמודים 1-4",
+      "date": "2020-05-15",
+      "explicitOrInferred": "explicit",
+      "confidence": "high",
+      "primarySourceAvailable": true,
+      "evidenceType": "primary_source",
+      "layers": {
+        "fact": {
+          "quote": "אין ילד של בוקר וילד של אחה\"צ. הילד הוא אותו ילד לאורך כל היממה, וכל הפרדה בין החינוך הפורמלי בבית הספר לחינוך הבלתי פורמלי בתנועות הנוער ובקהילה היא מלאכותית ומזיקה. מנהל אגף החינוך ברשות הוא הגורם היחיד היכול להחזיק את הרצף הזה.",
+          "sourceLocation": "עמ' 2-3 במאמר אבי קמינסקי מאי 2020"
+        },
+        "interpretation": {
+          "researchMeaning": "ניסוח דוקטרינת חינוך יישובית הוליסטית: בית הספר אינו אי מבודד, אלא עוגן קהילתי המסונכרן עם מערכות הרווחה, הספורט והנוער ברשות."
+        },
+        "assessment": {
+          "policySignificance": "התפיסה אומצה באופן נרחב ברשויות מקומיות מובילות, אך משרד החינוך שומר עדיין על הפרדה תקציבית ומבנית בין האגפים."
+        }
+      },
+      "targetAudience": [
+        "ראשי רשויות",
+        "מנהלי אגפי חינוך",
+        "משרד החינוך"
+      ],
+      "relatedIssues": [
+        "ISSUE-CURRICULUM-STRUCTURE"
+      ],
+      "secondaryThemes": [
+        "THEME-CONTINUUM-BIRTH-ADULT",
+        "THEME-COMMUNITY-PARENTS"
+      ],
+      "claimStatus": "leadership_perspective",
+      "sourceAuthority": "C",
+      "authorityNote": "קול הנהגה מקצועי: מאמר תפיסה מקצועי של יו\"ר האיגוד אבי קמינסקי דצמבר 2020."
+    },
+    {
+      "id": "CLM-UNION-HOL-002",
+      "claim": "איגום משאבי נוער, קהילה, תרבות וספורט תחת אגף החינוך הרשותי למניעת כפילויות ולמתן מענה מותאם אישית לתלמידים בסיכון.",
+      "theme": "THEME-COMMUNITY-PARENTS",
+      "subTopic": "איגום משאבים יישובי",
+      "evolutionStation": "תחנה 6: פדגוגיה ומיומנויות 2030 (2021)",
+      "documentId": "DOC-UNION-2021-CHINUCH-2030",
+      "sourceId": "SRC-UNION-2021-CHINUCH-2030",
+      "sourceCitation": "פרק 4, עמודים 16-19",
+      "date": "2021-09-15",
+      "explicitOrInferred": "explicit",
+      "confidence": "high",
+      "primarySourceAvailable": true,
+      "evidenceType": "primary_source",
+      "layers": {
+        "fact": {
+          "quote": "פיצול התקציבים בין מחלקות הנוער, הרווחה, הספורט והחינוך פוגע ביכולת לתת מענה שלם לתלמיד. יש לאגם את כלל המשאבים היישוביים תחת הנהגה פדגוגית אחידה של אגף החינוך.",
+          "sourceLocation": "עמ' 16-17 במסמך חינוך 2030"
+        },
+        "interpretation": {
+          "researchMeaning": "שבירת 'סילו' (Silos) ארגוני בתוך הרשות המקומית כדי למקסם את המשאבים העומדים לרשות הילד והקהילה."
+        },
+        "assessment": {
+          "policySignificance": "הרעיון יושם בהצלחה במספר רשויות כמודל פיילוט מקומי."
+        }
+      },
+      "targetAudience": [
+        "ראשי רשויות",
+        "משרד הפנים"
+      ],
+      "relatedIssues": [
+        "ISSUE-CURRICULUM-STRUCTURE",
+        "ISSUE-DIFFERENTIAL-FUNDING"
+      ],
+      "secondaryThemes": [
+        "THEME-FORMAL-INFORMAL",
+        "THEME-EMERGENCY-RESILIENCE",
+        "THEME-INFRASTRUCTURE-SPACES"
+      ],
+      "claimStatus": "official_position",
+      "sourceAuthority": "A",
+      "authorityNote": "עמדה רשמית: נייר עמדה רשמי של הנהלת האיגוד ינואר 2021 (מבני חינוך כעוגנים קהילתיים 24/7)."
+    },
+    {
+      "id": "CLM-UNION-SAF-001",
+      "claim": "גיבוש תוכנית חירום לאומית לאקלים בטוח ומדיניות 'אפס סבלנות' לאלימות במוסדות החינוך: הגנה ממשית ומוגנות על צוותי ההוראה, הצבת מדריכי מוגנות ככוח אדם משלים, והחמרת סנקציות כלפי אלימות תלמידים והורים.",
+      "theme": "THEME-PROTECTION-SAFETY",
+      "secondaryThemes": [
+        "THEME-PERSONNEL-STATUS",
+        "THEME-COMMUNITY-PARENTS"
+      ],
+      "subTopic": "מוגנות צוותים ומדיניות אפס סבלנות לאלימות",
+      "evolutionStation": "תחנה 8: מהשטח למדיניות ומנהיגות מערכתית (2026)",
+      "documentId": "DOC-UNION-2026-KAFE-COMPENDIUM",
+      "sourceId": "SRC-UNION-2026-KAFE-COMPENDIUM",
+      "sourceCitation": "כנס פתיחת שנת הלימודים תשפ\"ז 'אלימות, תקווה ומה שביניהן' ומבזק 24-7-2026",
+      "date": "2026-08-01",
+      "explicitOrInferred": "explicit",
+      "confidence": "high",
+      "primarySourceAvailable": true,
+      "evidenceType": "primary_source",
+      "claimStatus": "documentation_statement",
+      "sourceAuthority": "E",
+      "authorityNote": "תיעוד/פרסום: כנס הנהגת האיגוד לפתיחת שנת הלימודים תשפ\"ז וביטאון 'תוך כדי קפה'. אינו נייר עמדה רשמי מסוג A אך מבטא עמדה פומבית ברורה של ההנהגה.",
+      "layers": {
+        "fact": {
+          "quote": "במהלך המפגש הגדרנו צרכים למענים אופרטיביים דחופים: מוגנות צוותים: יצירת הגנה ממשית לצוותי החינוך ולבעלי התפקידים ברשויות... כוח אדם משלים: הצבת 'עיניים נוספות' במוסדות החינוך (כגון מדריכי מוגנות) שאינן חלק מצוות ההוראה הישיר... מדיניות 'אפס סבלנות': גיבוש אמירה ניהולית אחידה של המשרד והרשויות נגד אלימות, בשילוב מנגנון תגובה משמעותי והנחיות ברורות לאופן הפעולה המותר בעת התפרצות אלימה, הן מצד תלמידים והן מצד הורים.",
+          "sourceLocation": "ביטאון 'תוך כדי קפה' 24-7-2026 והזמנת כנס פתיחת שנה תשפ\"ז 1-8-2026"
+        },
+        "interpretation": {
+          "researchMeaning": "עמדה אופרטיבית מובהקת של האיגוד בסוגיית האלימות: הרשויות רואות באלימות שבר ערכי ומערכתי הדורש גיבוי משפטי ופיזי לצוותים, נוכחות מבוגרים משמעותית (מדריכי מוגנות) וסמכות תגובה בלתי מתפשרת מול תלמידים והורים אלימים."
+        },
+        "assessment": {
+          "policySignificance": "הופך את תחום המוגנות והאלימות מתחום 'חסר' לתחום בעל עמדה מנומקת מבוססת תיעוד הנהגה (דרגה E)."
+        }
+      },
+      "targetAudience": [
+        "משרד החינוך",
+        "הנהגות ההורים",
+        "משטרת ישראל והשלטון המקומי"
+      ],
+      "relatedIssues": [
+        "ISSUE-PROTECTION-CLIMATE"
+      ]
+    },
+    {
+      "id": "CLM-UNION-PSY-001",
+      "claim": "חיזוק מערך השירות הפסיכולוגי-חינוכי (שפ\"ח) ברשויות המקומיות, העמקת שיתוף הפעולה בין מנהלי האגפים להנהגת השפ\"ח, וראיית הפסיכולוגים החינוכיים כעוגן החוסן הרגשי והטיפול בטראומה בשגרה ובחירום.",
+      "theme": "THEME-PSYCHO-SOCIAL-SERVICES",
+      "secondaryThemes": [
+        "THEME-EMERGENCY-RESILIENCE",
+        "THEME-PERSONNEL-STATUS"
+      ],
+      "subTopic": "מעמד שפ\"ח ומענה רגשי בחירום ובשגרה",
+      "evolutionStation": "תחנה 8: מהשטח למדיניות ומנהיגות מערכתית (2026)",
+      "documentId": "DOC-UNION-2025-EMERGENCY-DOSSIER",
+      "sourceId": "SRC-UNION-2025-EMERGENCY-DOSSIER",
+      "sourceCitation": "נוהל מכלול חינוך יולי 2025 ומבזקי שפ\"ח יוני 2026 ב'תוך כדי קפה'",
+      "date": "2025-07-15",
+      "explicitOrInferred": "explicit",
+      "confidence": "high",
+      "primarySourceAvailable": true,
+      "evidenceType": "primary_source",
+      "claimStatus": "leadership_perspective",
+      "sourceAuthority": "C",
+      "authorityNote": "קול הנהגה מקצועי: נוהל מכלול חינוך של האיגוד ודיאלוג הנהגת האיגוד מול אגף הפסיכולוגיה במשרד החינוך.",
+      "layers": {
+        "fact": {
+          "quote": "הפעלת צוותי שפ\"ח במכלול החינוך ברשות למתן עזרה ראשונה נפשית, מעקב רגשי שוטף וטיפול בחרדה וטראומה בקהילה החינוכית... שיח על שיתופי הפעולה בין מנהלי אגפי החינוך לשירותים הפסיכולוגיים החינוכיים ופתרון קשיים בהטמעת מערכות מידע טיפוליות.",
+          "sourceLocation": "תיק ביקורת מכלול חינוך עמ' 4 וביטאון 'תוך כדי קפה' יוני 2026"
+        },
+        "interpretation": {
+          "researchMeaning": "הרשות המקומית רואה בשפ\"ח זרוע אסטרטגית בלתי נפרדת מאגף החינוך, המשלבת מניעה בשגרה ומענה נפשי בחירום, תוך דרישה לחיזוק שכר ותקינה כדי למנוע נטישת מטפלים."
+        },
+        "assessment": {
+          "policySignificance": "מעביר את סוגיית השפ\"ח והבריאות הנפשית מתחום משוער לתחום מעוגן בהנחיות אופרטיביות ובדיאלוג הנהגה מתועד."
+        }
+      },
+      "targetAudience": [
+        "אגף הפסיכולוגיה במשרד החינוך",
+        "הנהלות השפ\"ח ברשויות"
+      ],
+      "relatedIssues": [
+        "ISSUE-RESILIENCE-MENTAL-HEALTH"
+      ]
+    },
+    {
+      "id": "CLM-UNION-AI-001",
+      "claim": "בינה מלאכותית בחינוך היא כלי עזר להוראה, לניהול ולצמצום פערים, אך אינה תחליף למפגש האנושי ולמערכת יחסים חינוכית; יש להטמיע כלי AI מתקדמים ברשויות תוך שמירה על המרחב האנושי והערכי.",
+      "theme": "THEME-AI-FUTURE-SKILLS",
+      "secondaryThemes": [
+        "THEME-PEDAGOGY-EVALUATION",
+        "THEME-EQUITY-GAPS"
+      ],
+      "subTopic": "תפיסת AI: כלי עזר מועיל לצד מרכזיות המפגש האנושי",
+      "evolutionStation": "תחנה 8: מהשטח למדיניות ומנהיגות מערכתית (2026)",
+      "documentId": "DOC-UNION-2026-KAFE-COMPENDIUM",
+      "sourceId": "SRC-UNION-2026-KAFE-COMPENDIUM",
+      "sourceCitation": "טור עמדה של יו\"ר האיגוד שלי קרן ומסמך פיתוח סוכן AI לתנאי העסקה (דצמבר 2025)",
+      "date": "2026-08-01",
+      "explicitOrInferred": "explicit",
+      "confidence": "high",
+      "primarySourceAvailable": true,
+      "evidenceType": "primary_source",
+      "claimStatus": "documentation_statement",
+      "sourceAuthority": "E",
+      "authorityNote": "תיעוד/פרסום: מאמרי יו\"ר האיגוד בביטאון ופרויקט יישום מעשי של בוט AI לאיגוד. אינו נייר עמדה רשמי מסוג A אך מהווה ביטוי ברור להשקפת העולם.",
+      "layers": {
+        "fact": {
+          "quote": "בינה מלאכותית היא כלי עזר מעולה לאנשים, אבל היא לא תחליף לאנשים. הבעיה האמיתית שלנו היא לא בבינה המלאכותית, היא דווקא ביכולת של ילדים, בני נוער ומבוגרים לקיים מפגש אנושי מיטבי, טוב ומכבד... הבינה המלאכותית היא העתיד אך היא צריכה לתת מענה לצמצום פערים ולעשייה החינוכית.",
+          "sourceLocation": "ביטאון 'תוך כדי קפה' אוגוסט 2026 ואפיון סוכן AI דצמבר 2025"
+        },
+        "interpretation": {
+          "researchMeaning": "איזון מנהיגותי בין אימוץ מוקדם של טכנולוגיה מתקדמת (קורסי AI, פיתוח בוטים לניהול מוניציפלי) לבין אזהרה חריפה מדה-הומניזציה של החינוך והחלפת הקשר מורה-תלמיד במסכים."
+        },
+        "assessment": {
+          "policySignificance": "מחזק את תחום ה-AI מציון נקודתי במסמך 2030 לתפיסה מנהיגותית עכשווית ומעשית של האיגוד ב-2025–2026."
+        }
+      },
+      "targetAudience": [
+        "מנהלי אגפי חינוך",
+        "משרד החינוך",
+        "חברות טכנולוגיה חינוכית"
+      ],
+      "relatedIssues": [
+        "ISSUE-AI-TECHNOLOGY"
+      ]
+    },
+    {
+      "id": "CLM-UNION-EMG-001",
+      "claim": "הגדרת מערכת החינוך הרשותית כמפעל חיוני, ביטול ההבחנה בין חינוך פורמלי לבלתי-פורמלי בחירום, וניהול עצמאי של מכלולי החינוך המקומיים בשיתוף פיקוד העורף.",
+      "theme": "THEME-EMERGENCY-RESILIENCE",
+      "subTopic": "תורת הפעלה אסטרטגית בחירום והסרת מגבלות פקע\"ר",
+      "evolutionStation": "תחנה 5: התמודדות עם משבר מלחמת חרבות ברזל (2024–2026)",
+      "documentId": "DOC-UNION-2026-EMERGENCY-DOCTRINE",
+      "sourceId": "SRC-UNION-2026-EMERGENCY-DOCTRINE",
+      "sourceCitation": "פרק 'המלצות אופרטיביות', עדכון מדיניות ההתגוננות שאגת הארי (1-8-2026)",
+      "date": "2026-08-01",
+      "explicitOrInferred": "explicit",
+      "confidence": "high",
+      "primarySourceAvailable": true,
+      "evidenceType": "primary_source",
+      "layers": {
+        "fact": {
+          "quote": "במסגרת תהליך הפקת לקחים ומהניסיון המבצעי שנלמד ב'שאגת הארי' עודכנה תורת מדיניות ההתגוננות... השינוי המרכזי הוא בתחום הגדרת פעילות חינוכית וחברתית: בוטלה ההבחנה בין פעילות חינוך פורמלי לפעילות בלתי פורמלית... במדרג כתום נוספה חלופה ב' המאפשרת פעילות בהיקף 30 אנשים... מתוך ניתוח הפערים בשטח: הקמת ממשק נתונים לאומי אחיד, הגדרת מערכת החינוך כ'מפעל חיוני', וקבלת החלטות עצמאית ללא תלות במדינה.",
+          "sourceLocation": "סעיפי תיאור המסמך ודברי יו\"ר שלי קרן, 1-8-2026"
+        },
+        "interpretation": {
+          "researchMeaning": "האיגוד הוביל מהלך מבצעי תקדימי מול פיקוד העורף ומשרד החינוך להכרה ברצף החינוכי-חברתי בחירום, תוך ביטול ההפרדה המלאכותית בין בוקר לאחה\"צ והענקת אוטונומיה למכלול החינוך הרשותי."
+        },
+        "assessment": {
+          "policySignificance": "מעבר מכיבוי שריפות נקודתי למיסוד תורת הפעלה מוסכמת שמחזקת את ריבונות הרשות המקומית בחירום. רמת סמכות C (קול הנהגה והנחיה אופרטיבית)."
+        }
+      },
+      "targetAudience": [
+        "הנהגת השלטון המקומי",
+        "פיקוד העורף",
+        "משרד החינוך",
+        "משרד הביטחון"
+      ],
+      "relatedIssues": [
+        "ISSUE-EMERGENCY-RESILIENCE"
+      ],
+      "secondaryThemes": [
+        "THEME-FORMAL-INFORMAL",
+        "THEME-AUTHORITY-RESOURCES"
+      ],
+      "claimStatus": "leadership_perspective",
+      "sourceAuthority": "C",
+      "authorityNote": "קול הנהגה והנחיה מבצעית: תורת הפעלה אופרטיבית המעוגנת בדיאלוג פיקוד העורף ומנהלי מכלולי חינוך ברשויות."
+    },
+    {
+      "id": "CLM-UNION-EQU-001",
+      "claim": "בלימת תהליכי הפרטה סמויים ותשלומי הורים (תל\"ן) המייצרים הסללה מגזרית, באמצעות מחוון אבחון רשותי ואמנה עירונית להקצאת משאבים שוויונית.",
+      "theme": "THEME-EQUITY-GAPS",
+      "subTopic": "צמצום פערים, הסללה מוניציפלית ומניעת הפרטה",
+      "evolutionStation": "תחנה 6: מנהיגות מקומית ומחויבות לחינוך הממלכתי (2026)",
+      "documentId": "DOC-UNION-2026-MABAT-8-HUB",
+      "sourceId": "SRC-UNION-2026-MABAT-8-HUB",
+      "sourceCitation": "פרקים 2 ו-3, מחוון אבחון השוויון",
+      "date": "2026-08-20",
+      "explicitOrInferred": "explicit",
+      "confidence": "high",
+      "primarySourceAvailable": true,
+      "evidenceType": "primary_source",
+      "layers": {
+        "fact": {
+          "quote": "בפרק זה נשיר מבט אל הפערים הכואבים ביותר במערכת החינוך: אי-שוויון בהקצאת משאבים, כוחם של תשלומי ההורים (תל\"ן) המייצרים לעיתים 'הסללה' מגזרית, והפערים בין מוסדות שונים... באמצעות צעדים אופרטיביים – מיפוי המערכת, בדיקת שוויון במשאבים, זיהוי מטרות חסרות ובחירת יעדים שנתיים ממוקדים – תוכלו לזהות תהליכי הפרטה סמויים... ניסוח אמנה רשותית ותוכנית לצמצום פערים.",
+          "sourceLocation": "מבט רחב מס' 8, אוגוסט 2026, תקצירי פרק 2, 3 ו-5"
+        },
+        "interpretation": {
+          "researchMeaning": "האיגוד ממפה באופן גלוי את הסיכון שבהפרטה זוחלת באמצעות תל\"ן ועמותות פרטיות, וקורא למנהלי החינוך להשתמש בסמכותם המוניציפלית לבקר את זרימת הכספים הפרטיים המרחיבה פערים."
+        },
+        "assessment": {
+          "policySignificance": "הדרישה לשוויון אינה מופנית רק כלפי מעלה (משרד החינוך) אלא מוטלת גם על הרשות המקומית כמבקרת של הפערים הפנים-יישוביים. רמת סמכות E (ידיעון מקצועי)."
+        }
+      },
+      "targetAudience": [
+        "מנהלי אגפי חינוך",
+        "ראשי רשויות",
+        "משרד החינוך",
+        "הנהגות הורים"
+      ],
+      "relatedIssues": [
+        "ISSUE-EQUITY-GAPS"
+      ],
+      "secondaryThemes": [
+        "THEME-BUDGET-FINANCE"
+      ],
+      "claimStatus": "documentation_statement",
+      "sourceAuthority": "E",
+      "authorityNote": "תיעוד ופרסום (Source Hub): סקירה רחבה המרכזת קישורים למסמכי מדיניות; הידיעון נערך בסיוע AI ומפנה למחווני עבודה ראשוניים."
+    },
+    {
+      "id": "CLM-UNION-MAM-001",
+      "claim": "ביסוס משילות פדגוגית מקומית כריבון המעצב את הפדגוגיה היישובית בהלימה לערכי חוק חינוך ממלכתי, תוך סינון ובקרה קפדניים של ספקי גפ\"ן ותוכניות חיצוניות.",
+      "theme": "THEME-GOVERNANCE-DECENTRALIZATION",
+      "subTopic": "משילות פדגוגית מקומית, רגולציית ספקי גפ\"ן ושמירה על ערכי הממלכתיות",
+      "evolutionStation": "תחנה 6: מנהיגות מקומית ומחויבות לחינוך הממלכתי (2026)",
+      "documentId": "DOC-UNION-2026-MABAT-8-HUB",
+      "sourceId": "SRC-UNION-2026-MABAT-8-HUB",
+      "sourceCitation": "פרק 4, 'מן המדיניות הארצית למשילות מקומית – מי מעצב את החינוך בעיר?'",
+      "date": "2026-08-20",
+      "explicitOrInferred": "explicit",
+      "confidence": "high",
+      "primarySourceAvailable": true,
+      "evidenceType": "primary_source",
+      "layers": {
+        "fact": {
+          "quote": "בעידן של ביזור סמכויות ורפורמת הגפ\"ן (גמישות פדגוגית ניהולית), הרשות המקומית ומנהלי בתי הספר הופכים לריבון המעצב את הפדגוגיה. אך לצד ההזדמנות להתאמת מענים מקומיים, אורבים סיכונים של כניסת אינטרסים זרים והעמקת הפערים. פרק זה מעניק לכם מחוון עבודה מעשי לסינון ובקרה של תוכניות חיצוניות ועמותות, תוך הקפדה על חוקיות, הלימה למטרות החוק ושמירה על פרטיות התלמידים... חשוב להבחין בין כיוון מוצהר לבין שינוי מבני: הדרך לביזור סמכויות ממשי עדיין ארוכה.",
+          "sourceLocation": "מבט רחב 8, תקציר פרק 4 וניתוח דברי מנכ\"ל משרד החינוך"
+        },
+        "interpretation": {
+          "researchMeaning": "האיגוד מגדיר את הרשות לא כסוכן ביצוע עיוור של מאגר התוכניות של משרד החינוך, אלא כבעלת אחריות רגולטורית וערכית לסנן ספקים ועמותות פרטיות הפועלות בגפ\"ן."
+        },
+        "assessment": {
+          "policySignificance": "איזון בין האוטונומיה הניהולית של מנהל בית הספר לבין המשילות והאחריות הפדגוגית היישובית של הרשות. רמת סמכות E."
+        }
+      },
+      "targetAudience": [
+        "מנהלי אגפי חינוך",
+        "מנהלי בתי ספר",
+        "משרד החינוך"
+      ],
+      "relatedIssues": [
+        "ISSUE-DECENTRALIZATION"
+      ],
+      "secondaryThemes": [
+        "THEME-PEDAGOGY-EVALUATION",
+        "THEME-BUDGET-FINANCE"
+      ],
+      "claimStatus": "documentation_statement",
+      "sourceAuthority": "E",
+      "authorityNote": "תיעוד ופרסום שוטף (דרג E) מתוך מבט רחב 8, עם מחוון עבודה מקושר ב-Drive."
+    },
+    {
+      "id": "CLM-UNION-SAF-002",
+      "claim": "מעבר מתגובה נקודתית לאירועי אלימות למעטפת מוגנות רשותית אינטגרטיבית (פורמלי, בלתי פורמלי, שפ\"ח, רווחה, משטרה והורים) תוך מתן גיבוי והגנה לצוותי ההוראה.",
+      "theme": "THEME-PROTECTION-SAFETY",
+      "subTopic": "מעטפת מוגנות עירונית כוללת והגנה על עובדי הוראה",
+      "evolutionStation": "תחנה 6: מנהיגות מקומית ומחויבות לחינוך הממלכתי (2026)",
+      "documentId": "DOC-UNION-2026-HAIFA-CONFERENCE-SAFETY",
+      "sourceId": "SRC-UNION-2026-HAIFA-CONFERENCE-SAFETY",
+      "sourceCitation": "דברי פתיחה של יו\"ר האיגוד שלי קרן, כנס חיפה 20-8-2026",
+      "date": "2026-08-20",
+      "explicitOrInferred": "explicit",
+      "confidence": "high",
+      "primarySourceAvailable": true,
+      "evidenceType": "primary_source",
+      "layers": {
+        "fact": {
+          "quote": "הפתרון לתופעה אינו יכול להישאר רק בין כותלי מוסדות החינוך... יתרונו הגדול של השלטון המקומי טמון ביכולתו הייחודית לחבר את כל חלקי הפאזל – חינוך, רווחה, ביטחון, ספורט ותרבות – ליצירת מעטפת מוגנות שלמה עבור הילדים. כמו כן, היא תובעת להפנות קשב רב לאלימות המופנית כלפי צוותי ההוראה והמנהלים בשטח, ופוסקת כי מי שאמורה להגן על הילדים חייבת לדעת שהמערכת מעניקה לה הגנה וגב חזק... לעבור משפת תגובה לשפת מניעה.",
+          "sourceLocation": "סיכום כנס חיפה תשפ\"ז, עמ' 1-2 (https://lp.vp4.me/is7r)"
+        },
+        "interpretation": {
+          "researchMeaning": "הגדרת המוגנות כאתגר רשותי ולא בית-ספרי בלבד, עם דרישה ברורה להגן על המורים והמנהלים מפני אלימות תלמידים והורים כחלק מחוסן המערכת."
+        },
+        "assessment": {
+          "policySignificance": "יצירת שותפות מוסדית רב-תחומית ברשות המקומית למיגור תופעות אלימות, בריונות ופגיעות רשת. רמת סמכות C (דברי יו\"ר בכנס שנתי)."
+        }
+      },
+      "targetAudience": [
+        "מנהלי מחלקות חינוך",
+        "מנהלי בתי ספר",
+        "הנהגות הורים",
+        "משטרת ישראל"
+      ],
+      "relatedIssues": [
+        "ISSUE-PROTECTION-SAFETY"
+      ],
+      "secondaryThemes": [
+        "THEME-PERSONNEL-STATUS",
+        "THEME-COMMUNITY-PARENTS"
+      ],
+      "claimStatus": "leadership_perspective",
+      "sourceAuthority": "C",
+      "authorityNote": "קול הנהגה מקצועי: דברי יו\"ר האיגוד שלי קרן בפתיחת כנס ההיערכות השנתי בחיפה."
+    }
+  ]
+}

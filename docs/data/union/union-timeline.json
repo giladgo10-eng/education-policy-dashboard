@@ -1,0 +1,225 @@
+{
+  "$schema": "./schemas/union-timeline.schema.json",
+  "metadata": {
+    "dataset": "union_timeline",
+    "version": "2.0.0",
+    "description": "ציר הזמן ההיסטורי של התפתחות עמדות ומעמד איגוד מנהלי אגפי החינוך (2001–2026) מותאם לטקסונומיה המורחבת",
+    "lastUpdated": "2026-09-04"
+  },
+  "events": [
+    {
+      "id": "EVT-UNION-2001-LAW",
+      "year": 2001,
+      "date": "2001-03-28",
+      "title": "חקיקת חוק הרשויות המקומיות (מנהל מחלקת חינוך), התשס\"א-2001",
+      "phase": "תחנה 1: מאבק על מעמד וכשירות (2001–2010)",
+      "theme": "THEME-DIRECTOR-STATUS",
+      "claimIds": [
+        "CLM-UNION-STA-001",
+        "CLM-UNION-STA-003"
+      ],
+      "documentId": "DOC-UNION-2001-MUNICIPAL-LAW",
+      "primarySourceAvailable": false,
+      "sourceAuthority": "F",
+      "significance": "ציון דרך היסטורי ראשון: חיוב מינוי מנהל מחלקת חינוך בכל רשות, דרישת תנאי כשירות מקצועיים והגנה פרוצדורלית מפני פיטורים פוליטיים."
+    },
+    {
+      "id": "EVT-UNION-2011-DORNER",
+      "year": 2011,
+      "date": "2011-06-15",
+      "title": "נייר עמדה לוועדת דורנר לבחינת מערכת החינוך המיוחד",
+      "phase": "תחנה 1: מאבק על מעמד וכשירות (2001–2010)",
+      "theme": "THEME-SPECIAL-EDU",
+      "claimIds": [
+        "CLM-UNION-SPE-001",
+        "CLM-UNION-SPE-002"
+      ],
+      "documentId": "DOC-UNION-2011-DORNER-COMMITTEE",
+      "primarySourceAvailable": false,
+      "sourceAuthority": "F",
+      "significance": "התייצבות מקצועית של האיגוד לצד שילוב תלמידים בחנ\"מ, תוך התרעה מפני חוסר שיפוי על הסעות והזנחת מעמד הסייעות."
+    },
+    {
+      "id": "EVT-UNION-2012-TRACHTENBERG",
+      "year": 2012,
+      "date": "2012-01-22",
+      "title": "נייר עמדה משותף עם מרכז השלטון המקומי: יישום חינוך חינם 3-4",
+      "phase": "תחנה 2: התרעות יישום מן השטח (2012–2014)",
+      "theme": "THEME-EARLY-CHILDHOOD",
+      "claimIds": [
+        "CLM-UNION-EAR-002"
+      ],
+      "documentId": "DOC-UNION-2012-TRACHTENBERG",
+      "primarySourceAvailable": true,
+      "sourceAuthority": "B",
+      "significance": "התרעה מוקדמת מן השטח: תקן 25 ילדים לגן, שיפוי בינוי מלא של 616 מלש\"ח והגנה על רשויות חלשות. דוח מבקר המדינה 2015 אישש בדיעבד את כל ממצאי המסמך."
+    },
+    {
+      "id": "EVT-UNION-2015-VAN-LEER",
+      "year": 2015,
+      "date": "2015-11-10",
+      "title": "הרצאת ון ליר: הצגת מודל הזיכיון הרשותי והביזור הדיפרנציאלי",
+      "phase": "תחנה 3: גיבוש תפיסת משילות רב-מפלסית (2015–2018)",
+      "theme": "THEME-GOVERNANCE-DECENTRALIZATION",
+      "claimIds": [
+        "CLM-UNION-GOV-001"
+      ],
+      "documentId": "DOC-UNION-2015-KAMINSKY-REFORM",
+      "primarySourceAvailable": true,
+      "sourceAuthority": "C",
+      "significance": "הצגת חלופה מערכתית מלאה: מעבר מריכוזיות לביזור במודל זיכיון רשותי ל-5 שנים, משרד החינוך כרגולטור בלבד והרשות כמנהלת החינוך היישובית."
+    },
+    {
+      "id": "EVT-UNION-2019-TIMELINE",
+      "year": 2019,
+      "date": "2019-03-15",
+      "title": "הצגת סקירת התפתחות מערכות החינוך בכנס האיגוד",
+      "phase": "תחנה 4: הרחבת אחריות מלידה והיפוך הפירמידה (2019–2020)",
+      "theme": "THEME-DIRECTOR-STATUS",
+      "claimIds": [
+        "CLM-UNION-STA-001"
+      ],
+      "documentId": "DOC-UNION-2019-KAMINSKY-TIMELINE",
+      "primarySourceAvailable": true,
+      "sourceAuthority": "C",
+      "significance": "הגדרה מחודשת של תפקיד מנהל האגף: מבט על כלל מערכת החינוך הלאומית ולא רק על הרשות המקומית הבודדת."
+    },
+    {
+      "id": "EVT-UNION-2019-CALL-PARTIES",
+      "year": 2019,
+      "date": "2019-08-15",
+      "title": "קריאה רשמית למפלגות ולבוחרים: הגיל הרך מלידה עד 3",
+      "phase": "תחנה 4: הרחבת אחריות מלידה והיפוך הפירמידה (2019–2020)",
+      "theme": "THEME-EARLY-CHILDHOOD",
+      "claimIds": [
+        "CLM-UNION-EAR-001",
+        "CLM-UNION-EAR-003"
+      ],
+      "documentId": "DOC-UNION-2019-CALL-PARTIES-0TO3",
+      "primarySourceAvailable": true,
+      "sourceAuthority": "A",
+      "significance": "דרישה רשמית להעברת מעונות היום למשרד החינוך, הקמת יחידות לידה-3 ברשויות, והיפוך פירמידת ההשקעה. הקדים את החלטת הממשלה בינואר 2022."
+    },
+    {
+      "id": "EVT-UNION-2020-FORMAL-INFORMAL",
+      "year": 2020,
+      "date": "2020-05-15",
+      "title": "פרסום מאמר 'מקומו של מנהל החינוך בשילוב פורמאלי ובלתי פורמאלי'",
+      "phase": "תחנה 4: הרחבת אחריות מלידה והיפוך הפירמידה (2019–2020)",
+      "theme": "THEME-FORMAL-INFORMAL",
+      "claimIds": [
+        "CLM-UNION-HOL-001"
+      ],
+      "documentId": "DOC-UNION-2020-KAMINSKY-FORMAL-INFORMAL",
+      "primarySourceAvailable": true,
+      "sourceAuthority": "C",
+      "significance": "ביסוס דוקטרינת 'אין ילד של בוקר וילד של אחה\"צ' וסנכרון תנועות הנוער והמתנ\"סים תחת הנהגה יישובית מתכללת."
+    },
+    {
+      "id": "EVT-UNION-2021-CORONA",
+      "year": 2021,
+      "date": "2021-01-15",
+      "title": "נייר עמדה רשמי: מנכיחים את הזדמנויות תקופת הקורונה בחינוך",
+      "phase": "תחנה 5: האוטונומיה במבחן החירום (2021)",
+      "theme": "THEME-GOVERNANCE-DECENTRALIZATION",
+      "claimIds": [
+        "CLM-UNION-GOV-002"
+      ],
+      "documentId": "DOC-UNION-2021-CORONA-OPP",
+      "primarySourceAvailable": true,
+      "sourceAuthority": "A",
+      "significance": "הוכחת יכולת האוטונומיה בשטח: קריאה להפיכת ההסדרים הגמישים, הלמידה ההיברידית והסמכויות המקומיות למבנה קבע ניהולי."
+    },
+    {
+      "id": "EVT-UNION-2021-CHINUCH-2030",
+      "year": 2021,
+      "date": "2021-09-15",
+      "title": "פרסום מסמך ההמלצות הרשמי 'איגוד חינוך – חינוך 2030'",
+      "phase": "תחנה 6: פדגוגיה ומיומנויות 2030 (2021)",
+      "theme": "THEME-PEDAGOGY-EVALUATION",
+      "claimIds": [
+        "CLM-UNION-PED-001",
+        "CLM-UNION-PED-002",
+        "CLM-UNION-HOL-002"
+      ],
+      "documentId": "DOC-UNION-2021-CHINUCH-2030",
+      "primarySourceAvailable": true,
+      "sourceAuthority": "A",
+      "significance": "תוכנית פעולה פדגוגית שלמה: רפורמת מודל הבגרות למיומנויות והערכה חלופית, חיבור הפורמלי לבלתי-פורמלי ואוטונומיה פדגוגית לרשות."
+    },
+    {
+      "id": "EVT-UNION-2022-GEFEN",
+      "year": 2022,
+      "date": "2022-09-23",
+      "title": "התערבות בוועדת שותפים להסדרת רכש גפ\"ן ופרסום הוראת שעה של משרד הפנים",
+      "phase": "תחנה 7: התערבות מנגנונית ישירה בגפ\"ן (2022)",
+      "theme": "THEME-BUDGET-FINANCE",
+      "claimIds": [
+        "CLM-UNION-GOV-003"
+      ],
+      "documentId": "DOC-UNION-2022-GEFEN-INTERVENTION",
+      "primarySourceAvailable": false,
+      "sourceAuthority": "F",
+      "significance": "השפעה ישירה מתועדת: התרת חסם הרכש המוניציפלי מול משרד הפנים ושמירה על סמכות מנהל האגף במדריך גפ\"ן."
+    },
+    {
+      "id": "EVT-UNION-2026-SECURITY-NET",
+      "year": 2026,
+      "date": "2026-09-01",
+      "title": "פרסום דוח סיכום תשפ\"ו: 'מרשת ביטחון לכוח משפיע'",
+      "phase": "תחנה 8: מהשטח למדיניות ומנהיגות מערכתית (2026)",
+      "theme": "THEME-DIRECTOR-STATUS",
+      "claimIds": [
+        "CLM-UNION-STA-002"
+      ],
+      "documentId": "DOC-UNION-2026-SECURITY-NET-IMPACT",
+      "primarySourceAvailable": true,
+      "sourceAuthority": "E",
+      "significance": "הגדרה עצמית בוגרת: מנהל אגף החינוך ככוח מקצועי משפיע המייצר ידע מן השטח לעיצוב מדיניות החינוך הלאומית."
+    },
+    {
+      "id": "EVT-UNION-2026-SYNTHESIS",
+      "year": 2026,
+      "date": "2026-08-31",
+      "title": "פרסום מונוגרפיית העומק 'מהשטח למדיניות: התפתחות סדר היום של האיגוד'",
+      "phase": "תחנה 8: מהשטח למדיניות ומנהיגות מערכתית (2026)",
+      "theme": "THEME-AUTHORITY-RESOURCES",
+      "claimIds": [
+        "CLM-UNION-STA-003"
+      ],
+      "documentId": "DOC-UNION-2026-SYNTHESIS-STUDY",
+      "primarySourceAvailable": true,
+      "sourceAuthority": "D",
+      "significance": "סינתזה מחקרית של 25 שנות התפתחות האיגוד וסולם ראיות מחמיר למבחן ההשפעה."
+    },
+    {
+      "id": "EVT-UNION-2026-EMERGENCY-DOCTRINE",
+      "date": "2026-04-19",
+      "year": 2026,
+      "title": "מפגש 'משלנו': עיצוב תורת הפעלה בחירום מהשטח ועדכון פקע\"ר",
+      "type": "operational_doctrine",
+      "summary": "למידת עמיתים של מנהלי אגפים ונציגי פקע\"ר שגיבשה את תורת ההפעלה המוניציפלית בחירום, הגדרת החינוך כ'מפעל חיוני' וביטול ההבחנה בין פורמלי לבלתי-פורמלי.",
+      "primaryDocumentId": "DOC-UNION-2026-EMERGENCY-DOCTRINE",
+      "relatedThemes": [
+        "THEME-EMERGENCY-RESILIENCE",
+        "THEME-FORMAL-INFORMAL"
+      ],
+      "sourceClassification": "C"
+    },
+    {
+      "id": "EVT-UNION-2026-HAIFA-CONFERENCE",
+      "date": "2026-08-20",
+      "year": 2026,
+      "title": "כנס חיפה תשפ\"ז: 'אלימות, תקווה ומה שביניהן' והשקת מהדורת חוק חינוך ממלכתי",
+      "type": "annual_conference",
+      "summary": "כנס ההיערכות השנתי באצטדיון סמי עופר בהשתתפות מנכ\"ל משרד החינוך. התמקדות במעטפת מוגנות רשותית, הגנה על עובדי הוראה, מחוון משילות גפ\"ן וחיזוק החינוך הממלכתי.",
+      "primaryDocumentId": "DOC-UNION-2026-HAIFA-CONFERENCE-SAFETY",
+      "relatedThemes": [
+        "THEME-PROTECTION-SAFETY",
+        "THEME-GOVERNANCE-DECENTRALIZATION",
+        "THEME-EQUITY-GAPS"
+      ],
+      "sourceClassification": "C"
+    }
+  ]
+}

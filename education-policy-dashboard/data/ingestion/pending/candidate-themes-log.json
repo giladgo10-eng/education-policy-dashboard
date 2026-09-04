@@ -1,0 +1,10 @@
+[
+  {
+    "themeId": "THEME-CANDIDATE-E652E1",
+    "nameHe": "חוק מנהלי מחלקות חינוך ומעמד מקומי",
+    "status": "rejected_as_duplicate",
+    "consolidatedInto": "THEME-DIRECTOR-STATUS",
+    "reason": "חוק מנהלי מחלקות חינוך 2001 ומעמד מנהל האגף כבר מוגדרים במלואם תחת THEME-DIRECTOR-STATUS (מעמד מנהל אגף החינוך). איחוד מלא למניעת כפילות נושאית.",
+    "auditedAt": "2026-09-05T01:46:37.000Z"
+  }
+]

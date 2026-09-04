@@ -1,0 +1,271 @@
+{
+  "$schema": "./schemas/union-themes.schema.json",
+  "metadata": {
+    "dataset": "union_themes",
+    "version": "2.0.0",
+    "description": "טקסונומיה מורחבת של תחומי המדיניות של איגוד מנהלי ומנהלות אגפי החינוך (15 תחומי ליבה + 2 תחומי מועמד)",
+    "lastUpdated": "2026-09-04",
+    "totalThemes": 17,
+    "coreThemesCount": 15,
+    "candidateThemesCount": 2
+  },
+  "themes": [
+    {
+      "id": "THEME-GOVERNANCE-DECENTRALIZATION",
+      "nameHe": "משילות וביזור",
+      "category": "governance_structure",
+      "isCandidateTheme": false,
+      "shortDescription": "מעבר מריכוזיות עודפת לביזור דיפרנציאלי, מודל זיכיון רב-שנתי, ומשרד החינוך כרגולטור ומתווה מדיניות.",
+      "coreProblem": "ריכוזיות פדגוגית ותפעולית נוקשה של המטה, חוסר יכולת להתאים מענים לצרכים המקומיים, ועומס רגולטורי.",
+      "coreDemand": "האצלת סמכויות ניהוליות ופדגוגיות לרשות המקומית במודל זיכיון ל-5 שנים, והגדרת משרד החינוך כרגולטור של סטנדרטים ובקרה בלבד.",
+      "corpusPresence": "high",
+      "primaryDocuments": [
+        "DOC-UNION-2015-VAN-LEER",
+        "DOC-UNION-2021-CORONA-OPPORTUNITIES",
+        "DOC-UNION-2026-SYNTHESIS-STUDY",
+        "DOC-UNION-2026-MABAT-8-HUB"
+      ]
+    },
+    {
+      "id": "THEME-AUTHORITY-RESOURCES",
+      "nameHe": "אחריות, סמכות ומשאבים",
+      "category": "governance_structure",
+      "isCandidateTheme": false,
+      "shortDescription": "סגירת הפער המובנה בין אחריות הרשות המקומית לתוצאות לבין היעדר סמכויות חוקיות ומשאבים גמישים.",
+      "coreProblem": "אחריות ללא סמכות: הרשות המקומית נדרשת לתת דין וחשבון לציבור אך נעדרת סמכות פיקוח, כלי ניהול ותקציבים עצמאיים.",
+      "coreDemand": "התאמה מלאה בין היקף האחריות היישובית לבין סל הסמכויות הסטטוטורי והעברת משאבים גמישים ללא צביעה עודפת.",
+      "corpusPresence": "high",
+      "primaryDocuments": [
+        "DOC-UNION-2015-VAN-LEER",
+        "DOC-UNION-2019-KAMINSKY-TIMELINE",
+        "DOC-UNION-2026-SYNTHESIS-STUDY"
+      ]
+    },
+    {
+      "id": "THEME-DIRECTOR-STATUS",
+      "nameHe": "מעמד מנהל אגף החינוך",
+      "category": "professional_leadership",
+      "isCandidateTheme": false,
+      "shortDescription": "הסדרת מעמד סטטוטורי וסל סמכויות בחקיקה ראשית, ומעבר ממנהלן תפעולי למנהיג מערכת חינוך יישובית.",
+      "coreProblem": "חוק מנהלי מחלקות חינוך 2001 הסדיר תנאי כשירות והגנה מפיטורים, אך הותיר את מנהל האגף ללא סמכות פדגוגית מול מנהלי בתי הספר והמחוז.",
+      "coreDemand": "תיקון חקיקה ראשי המגדיר סל סמכויות פדגוגי וניהולי למנהל האגף כמנהיג מערכת החינוך היישובית כולה, והכרה בשטח כמקור ידע לאומי.",
+      "corpusPresence": "high",
+      "primaryDocuments": [
+        "DOC-UNION-2019-KAMINSKY-TIMELINE",
+        "DOC-UNION-2026-SECURITY-NET-IMPACT",
+        "DOC-UNION-2026-SYNTHESIS-STUDY"
+      ]
+    },
+    {
+      "id": "THEME-EARLY-CHILDHOOD",
+      "nameHe": "גיל הרך",
+      "category": "educational_stages",
+      "isCandidateTheme": false,
+      "shortDescription": "היפוך הפירמידה החינוכית, השקעה בגילאי לידה עד 3, תקינה, פיקוח ויישום חוק חינוך חינם 3–4.",
+      "coreProblem": "תת-השקעה היסטורית בגילאי 0–3, פיצול רגולטורי בין משרדי ממשלה, וכשלי יישום בחוק חינם 3–4 (טרכטנברג) ללא שיפוי בינוי וכוח אדם.",
+      "coreDemand": "העברת מעונות היום מלידה עד שלוש לאחריות משרד החינוך והרשויות, הסטת משאבים תקציביים לגיל הרך, והבטחת תקינה הולמת לסייעות ובינוי כיתות.",
+      "corpusPresence": "high",
+      "primaryDocuments": [
+        "DOC-UNION-2012-TRACHTENBERG",
+        "DOC-UNION-2019-CALL-PARTIES-0TO3",
+        "DOC-UNION-2019-KAMINSKY-PYRAMID",
+        "DOC-UNION-2019-HOCHMAN-RESEARCH"
+      ]
+    },
+    {
+      "id": "THEME-SPECIAL-EDU",
+      "nameHe": "חינוך מיוחד ושילוב",
+      "category": "inclusion_special_needs",
+      "isCandidateTheme": false,
+      "shortDescription": "יישום עקרונות ועדת דורנר, שילוב תלמידים בחינוך הרגיל, שיפוי הוצאות הסעות ומניעת גירעונות מוניציפליים.",
+      "coreProblem": "עומס תקציבי בלתי נשלט על הרשויות המקומיות במימון הסעות ושירותים תומכים לחנ\"מ, היעדר תקצוב מלווה לתלמיד המשולב, ומחסור במענים רגשיים.",
+      "coreDemand": "הצמדת התקציב לתלמיד (סל שילוב גמיש), שיפוי ממשלתי מלא על עלויות ההסעות, שותפות מנהלי אגפים בוועדות ההיגוי, והסדרת תקינת המטפלים והסייעות.",
+      "corpusPresence": "medium",
+      "primaryDocuments": [
+        "DOC-UNION-2011-DORNER-COMMITTEE",
+        "DOC-UNION-2026-SYNTHESIS-STUDY"
+      ]
+    },
+    {
+      "id": "THEME-PERSONNEL-STATUS",
+      "nameHe": "כוח אדם ומעמד עובדי החינוך",
+      "category": "workforce_professionalism",
+      "isCandidateTheme": false,
+      "shortDescription": "הסדרת מעמד ותנאי העסקה של תומכות החינוך (סייעות), גננות ומנהלים, והתמודדות עם מחסור חמור בצוותי הוראה.",
+      "coreProblem": "שחיקה ומחסור אקוטי בסייעות, גננות ומורים, פערי שכר ומעמד בין עובדי הוראה של משרד החינוך לבין עובדי רשות מקומית, והיעדר מסלולי קידום.",
+      "coreDemand": "הסדרת מקצוע 'תומכת הוראה' (סייעת) בהסכם שכר ייעודי, מסלול הכשרה אקדמי וקידום, מתן תמריצים לצוותי הוראה ברשויות מאותגרות, וגמישות בקליטת מומחים.",
+      "corpusPresence": "high",
+      "primaryDocuments": [
+        "DOC-UNION-2011-DORNER-COMMITTEE",
+        "DOC-UNION-2012-TRACHTENBERG",
+        "DOC-UNION-2025-AI-BOT-SPEC",
+        "DOC-UNION-2026-KAFE-COMPENDIUM"
+      ]
+    },
+    {
+      "id": "THEME-PEDAGOGY-EVALUATION",
+      "nameHe": "פדגוגיה והערכה",
+      "category": "pedagogy_assessment",
+      "isCandidateTheme": false,
+      "shortDescription": "שינוי מודל הבגרות, מעבר להערכה מעצבת וחלופית, למידה רב-תחומית ופיתוח תוכניות לימודים מותאמות.",
+      "coreProblem": "שעבוד המערכת לבחינות בגרות עיוניות מסורתיות הפוגעות בלמידה משמעותית, ורידוד מקצועות הלימוד לשינון לקראת מבחנים.",
+      "coreDemand": "ביטול חלק מבחינות הבגרות החיצוניות, מעבר להערכה בית-ספרית ויישובית מבוססת עבודות חקר ופרויקטים, והתאמת תוכנית הלימודים לעולם משתנה (חינוך 2030).",
+      "corpusPresence": "high",
+      "primaryDocuments": [
+        "DOC-UNION-2021-CHINUCH-2030",
+        "DOC-UNION-2026-SYNTHESIS-STUDY"
+      ]
+    },
+    {
+      "id": "THEME-AI-FUTURE-SKILLS",
+      "nameHe": "AI, טכנולוגיה ומיומנויות עתיד",
+      "category": "future_skills",
+      "isCandidateTheme": false,
+      "shortDescription": "אוריינות דיגיטלית, למידה היברידית, בינה מלאכותית, יזמות ומיומנויות לעולם העבודה המשתנה.",
+      "coreProblem": "פער עמוק בין תוכניות הלימודים האנכרוניסטיות לבין דרישות שוק התעסוקה והטכנולוגיה, וחוסר תשתיות דיגיטליות שוויוניות.",
+      "coreDemand": "הטמעת מיומנויות יזמות, חשיבה ביקורתית ואוריינות דיגיטלית כמקצוע ליבה, שילוב בינה מלאכותית בתהליכי הוראה והערכה, וסגירת הפער הדיגיטלי ברשויות.",
+      "corpusPresence": "medium",
+      "primaryDocuments": [
+        "DOC-UNION-2021-CHINUCH-2030",
+        "DOC-UNION-2025-AI-BOT-SPEC",
+        "DOC-UNION-2026-KAFE-COMPENDIUM"
+      ]
+    },
+    {
+      "id": "THEME-EMERGENCY-RESILIENCE",
+      "nameHe": "חירום, חוסן ובריאות נפש",
+      "category": "resilience_crisis",
+      "isCandidateTheme": false,
+      "shortDescription": "ניהול מערכת החינוך במשברי קורונה ומלחמה, חוסן נפשי, טיפול בטראומה והאיגוד כרשת ביטחון לאומית.",
+      "coreProblem": "שיתוק מערכתי בעתות חירום בהנחיות מטה מנותקות, מצוקה נפשית וטראומה של תלמידים וצוותים, והיעדר סמכויות חירום מוגדרות לרשות.",
+      "coreDemand": "העברת ניהול החינוך בשעת חירום לאחריות ראשי הרשויות ומנהלי האגפים, תגבור מערכי בריאות הנפש והייעוץ (שפ\"ח), ומיסוד מעמד האיגוד כרשת ביטחון מקצועית.",
+      "corpusPresence": "high",
+      "primaryDocuments": [
+        "DOC-UNION-2021-CORONA-OPP",
+        "DOC-UNION-2025-EMERGENCY-DOSSIER",
+        "DOC-UNION-2026-SECURITY-NET-IMPACT",
+        "DOC-UNION-2026-KAFE-COMPENDIUM",
+        "DOC-UNION-2026-EMERGENCY-DOCTRINE"
+      ]
+    },
+    {
+      "id": "THEME-PROTECTION-SAFETY",
+      "nameHe": "אלימות ומוגנות",
+      "category": "safety_climate",
+      "isCandidateTheme": false,
+      "shortDescription": "אקלים בית-ספרי בטוח, מוגנות פיזית ורגשית, מניעת אלימות והתנהגויות סיכון בקרב ילדים ונוער.",
+      "coreProblem": "עלייה באירועי אלימות ובריונות במוסדות חינוך וברשתות החברתיות, היעדר כוח אבטחה ותוכניות מוגנות רשותיות מתואמות.",
+      "coreDemand": "בניית תוכנית מוגנות ואקלים בטוח אינטגרטיבית ברמת היישוב, חיזוק שומרי סף ותיאום בין פיקוח עירוני, משטרה ומערכת החינוך.",
+      "corpusPresence": "medium_documentation",
+      "primaryDocuments": [
+        "DOC-UNION-2026-KAFE-COMPENDIUM",
+        "DOC-UNION-2026-MABAT-7",
+        "DOC-UNION-2026-HAIFA-CONFERENCE-SAFETY"
+      ],
+      "notes": "עבר מסטטוס חסר לקיים: כנס פתיחת תשפ\"ז \"אלימות, תקווה ומה שביניהן\", תוכנית אפס סבלנות, מוגנות צוותים ומדריכי מוגנות (רמת סמכות E)."
+    },
+    {
+      "id": "THEME-FORMAL-INFORMAL",
+      "nameHe": "חינוך פורמלי ובלתי־פורמלי",
+      "category": "ecosystem_community",
+      "isCandidateTheme": false,
+      "shortDescription": "איחוד החינוך הפורמלי והבלתי-פורמלי לאקוסיסטם יישובי הוליסטי: אין ילד של בוקר וילד של אחה\"צ.",
+      "coreProblem": "הפרדה מיושנת ותקציבית בין בתי הספר לשעות הפנאי, פיצול בין מתנ\"סים ותנועות נוער למערכת הפורמלית, והיעדר ראייה כוללת של הילד.",
+      "coreDemand": "תכלול כלל מסגרות החינוך תחת אגף החינוך היישובי, יצירת רצף פדגוגי מהבוקר ועד הערב, ושימוש במבני בתי הספר לפעילות קהילתית ותנועות נוער.",
+      "corpusPresence": "high",
+      "primaryDocuments": [
+        "DOC-UNION-2020-FORMAL-INFORMAL",
+        "DOC-UNION-2021-CORONA-OPPORTUNITIES",
+        "DOC-UNION-2021-CHINUCH-2030"
+      ]
+    },
+    {
+      "id": "THEME-COMMUNITY-PARENTS",
+      "nameHe": "קהילה והורים",
+      "category": "ecosystem_community",
+      "isCandidateTheme": false,
+      "shortDescription": "שותפות קהילתית, מעורבות והנהגת הורים, שקיפות ופתיחת מוסדות החינוך לקהילה היישובית.",
+      "coreProblem": "מתחים מובנים בין הנהגות הורים לצוותי חינוך, חוסר שקיפות בהחלטות מטה, ותפיסת בתי הספר כמתחמים סגורים ומבודדים מסביבתם.",
+      "coreDemand": "מיסוד שותפות דיאלוגית עם הנהגות ההורים ברמת הרשות, הפיכת מוסדות החינוך לעוגנים קהילתיים הפועלים 24/7, וגיוס כוחות קהילתיים מקומיים.",
+      "corpusPresence": "high",
+      "primaryDocuments": [
+        "DOC-UNION-2020-KAMINSKY-FORMAL-INFORMAL",
+        "DOC-UNION-2021-CORONA-OPP",
+        "DOC-UNION-2026-KAFE-COMPENDIUM"
+      ]
+    },
+    {
+      "id": "THEME-EQUITY-GAPS",
+      "nameHe": "שוויון, פערים והכלה",
+      "category": "equity_society",
+      "isCandidateTheme": false,
+      "shortDescription": "תקצוב דיפרנציאלי, צמצום פערים בין מרכז לפריפריה, שוויון הזדמנויות לחברה הערבית ואוכלוסיות מוחלשות.",
+      "coreProblem": "פערים סוציו-אקונומיים עמוקים בין רשויות חזקות לחלשות, תלות של הרשות בשיעור הארנונה העסקית, ותת-תקצוב מבני של החברה הערבית והפריפריה.",
+      "coreDemand": "תקצוב דיפרנציאלי אמיתי ברמת הרשות ולא רק ברמת בית הספר, תיקון עיוותי שיטת המצ'ינג, והשקעה מועדפת ברשויות באשכולות למ\"ס 1–5.",
+      "corpusPresence": "medium_documentation",
+      "primaryDocuments": [
+        "DOC-UNION-2015-KAMINSKY-REFORM",
+        "DOC-UNION-2026-KAFE-COMPENDIUM",
+        "DOC-UNION-2026-MABAT-8-HUB"
+      ]
+    },
+    {
+      "id": "THEME-BUDGET-FINANCE",
+      "nameHe": "תקצוב ומימון",
+      "category": "budget_finance",
+      "isCandidateTheme": false,
+      "shortDescription": "מנגנון מצ'ינג הוגן, גמישות רכש ותקציב בתוכנית גפ\"ן, סל תלמיד יישובי והסרת חסמים רגולטוריים.",
+      "coreProblem": "שיטת המצ'ינג המנציחה אי-שוויון, התנגשות דיני המכרזים של משרד הפנים מול מאגרי ספקים של משרד החינוך, וסרבול בירוקרטי בהוצאת כספים.",
+      "coreDemand": "הסרת חסמי רכש מוניציפליים (הוראות שעה מותאמות), מעבר לתקציב גמיש וסל תלמיד יישובי, וביטול התניית תקציבים במצ'ינג ברשויות חלשות.",
+      "corpusPresence": "medium",
+      "primaryDocuments": [
+        "DOC-UNION-2022-GEFEN-INTERVENTION",
+        "DOC-UNION-2026-SYNTHESIS-STUDY"
+      ]
+    },
+    {
+      "id": "THEME-CONTINUUM-BIRTH-ADULT",
+      "nameHe": "רצף חינוכי מלידה לבגרות",
+      "category": "educational_stages",
+      "isCandidateTheme": false,
+      "shortDescription": "ראייה כוללת ורציפה של התפתחות הילד מגיל לידה ועד גיל 18+, ומניעת משברים ושברים במעברים בין שלבי החינוך.",
+      "coreProblem": "פיצול תפיסתי ומבני חמור בין גיל 0–3, גני ילדים, יסודי, חט\"ב ותיכון, הגורם לאובדן מידע, נשירה סמויה וטלטלות במעברים.",
+      "coreDemand": "הטמעת תפיסת רצף חינוכי 0–18 תחת הנהגה יישובית אחת, מעקב וליווי אישי של כל ילד במעברים, ותיאום פדגוגי רציף בין מנהלי כל השלבים.",
+      "corpusPresence": "high",
+      "primaryDocuments": [
+        "DOC-UNION-2019-CALL-PARTIES-0TO3",
+        "DOC-UNION-2019-KAMINSKY-TIMELINE",
+        "DOC-UNION-2020-FORMAL-INFORMAL"
+      ]
+    },
+    {
+      "id": "THEME-INFRASTRUCTURE-SPACES",
+      "nameHe": "תשתיות פיזיות, בינוי ומרחבי למידה",
+      "category": "candidate_theme",
+      "isCandidateTheme": true,
+      "shortDescription": "פרוגרמות בינוי כיתות וגנים, קיצור הליכי רישוי והיתרים, מרחבי למידה פדגוגיים חוץ-כיתתיים וגמישות תכנונית.",
+      "coreProblem": "מחסור כרוני בכיתות לימוד, בירוקרטיה נוקשה באישור היתרי בנייה ממשרד החינוך, ומבנים מיושנים שאינם מתאימים לפדגוגיה עתידית.",
+      "coreDemand": "האצלת סמכויות רישוי ובינוי לרשויות בעלות מנגנון הנדסי מאושר, עדכון הפרוגרמות למרחבי למידה מודולריים, ותקצוב מואץ לגני 0–4.",
+      "corpusPresence": "sparse_mentions",
+      "primaryDocuments": [
+        "DOC-UNION-2012-TRACHTENBERG",
+        "DOC-UNION-2021-CORONA-OPPORTUNITIES"
+      ]
+    },
+    {
+      "id": "THEME-PSYCHO-SOCIAL-SERVICES",
+      "nameHe": "שירות פסיכולוגי-ייעוצי (שפ\"ח) ומענה רגשי יישובי",
+      "category": "candidate_theme",
+      "isCandidateTheme": false,
+      "shortDescription": "הסדרת מעמד השירות הפסיכולוגי החינוכי ברשות, תקינה, שכר פסיכולוגים ויועצות, ומענה פסיכו-סוציאלי אינטגרטיבי.",
+      "coreProblem": "נטישת פסיכולוגים חינוכיים את המגזר הציבורי בשל פערי שכר מול השוק הפרטי, עומס טיפולי קיצוני בעקבות משברים, ומחסור בתקנים.",
+      "coreDemand": "הסכם שכר ייעודי לפסיכולוגים החינוכיים ברשויות, הגדלת תקינת שפ\"ח בהתאם לגידול באוכלוסייה, ושילובם במערך החוסן העירוני.",
+      "corpusPresence": "medium_operational",
+      "primaryDocuments": [
+        "DOC-UNION-2025-EMERGENCY-DOSSIER",
+        "DOC-UNION-2026-KAFE-COMPENDIUM"
+      ],
+      "notes": "עבר ממועמד לתחום ליבה קיים: נוהלי שפ\"ח במכלול חינוך בחירום ודיאלוג הנהגה עם אגף הפסיכולוגיה (רמת סמכות C/E)."
+    }
+  ]
+}

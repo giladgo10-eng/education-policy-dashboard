@@ -240,6 +240,94 @@
     }
   };
 
+  const AUTHORITY_LABELS = {
+    'A': 'עמדה רשמית של האיגוד',
+    'B': 'ביטוי מוסדי / נייר עמדה',
+    'C': 'קול הנהגה מקצועית',
+    'D': 'מחקר / הערכת מדיניות',
+    'E': 'תיעוד / פרסום מקצועי',
+    'F': 'מקור משני'
+  };
+
+  const ALIGNMENT_LABELS = {
+    'high_alignment': 'התאמה גבוהה',
+    'partial_alignment': 'התאמה חלקית',
+    'tension': 'פער/מתח מהותי',
+    'contradiction': 'סתירה',
+    'insufficient_evidence': 'אין מספיק מידע במצע'
+  };
+
+  const ALIGNMENT_CLASSES = {
+    'high_alignment': 'alignment-high',
+    'partial_alignment': 'alignment-partial',
+    'tension': 'alignment-tension',
+    'contradiction': 'alignment-contradiction',
+    'insufficient_evidence': 'alignment-insufficient'
+  };
+
+  const SUBSCORE_LABELS = {
+    'aligned': 'תואם',
+    'partial': 'חלקי',
+    'conflicting': 'מתנגש',
+    'insufficient_evidence': 'לא צוין במצע'
+  };
+
+  function generateHumanAlignmentReason(c) {
+    if (c.alignment === 'insufficient_evidence') {
+      return 'המצע הרשמי של המפלגה אינו כולל התייחסות מפורשת לסוגיה זו (היעדר מידע במצע ולא עמדת התנגדות).';
+    }
+    
+    const mechanism = c.mechanismAlignment;
+    const municipal = c.municipalRoleAlignment;
+
+    if (c.alignment === 'high_alignment') {
+      let text = 'קיימת הסכמה מלאה על היעד המרכזי והעקרון הפדגוגי';
+      if (municipal === 'aligned') {
+        text += ', לצד מנגנון יישום המעגן את מעמד הרשות המקומית כריבון בשטח.';
+      } else {
+        text += ', והמנגנונים המוצעים תואמים את תפיסת האיגוד.';
+      }
+      return text;
+    }
+
+    if (c.alignment === 'partial_alignment') {
+      let text = 'קיימת תמיכה עקרונית ביעד';
+      if (mechanism === 'partial' || mechanism === 'conflicting') {
+        text += ', אך המנגנון המוצע שונה';
+      }
+      if (municipal === 'partial' || municipal === 'conflicting') {
+        text += ' ומעמד הרשות המקומית מוגדר באופן חלקי בלבד לעומת תביעת האיגוד.';
+      } else {
+        text += ' או מתמקד בהיבטים חלקיים של המדיניות.';
+      }
+      return text;
+    }
+
+    if (c.alignment === 'tension') {
+      let text = 'קיים פער מהותי מול עמדת האיגוד: ';
+      if (municipal === 'conflicting' || municipal === 'partial') {
+        text += 'המדיניות המוצעת אינה מעניקה אוטונומיה לרשות המקומית או מחלישה את הפיקוח הממלכתי-עירוני.';
+      } else if (mechanism === 'conflicting') {
+        text += 'המנגנון המוצע עומד בניגוד להמלצות המקצועיות של הנהגת אגפי החינוך.';
+      } else {
+        text += (c.differences && c.differences[0]) ? c.differences[0] : 'קיים חוסר הלימה במטרות ובחלוקת הסמכויות.';
+      }
+      return text;
+    }
+
+    if (c.alignment === 'contradiction') {
+      let text = 'סתירה ישירה לעמדת האיגוד: ';
+      if (c.differences && c.differences[0]) {
+        text += c.differences[0];
+      } else {
+        text += 'מדיניות זו מנוגדת לחלוטין לעקרונות האיגוד ולמעמד הרשויות המקומיות.';
+      }
+      return text;
+    }
+
+    return 'נבחנו יעדי העקרון, מנגנון היישום ומעמד הרשות המקומית.';
+  }
+
   class AskEngine {
     constructor() {
       this.claims = [];
@@ -247,21 +335,44 @@
       this.commitments = [];
       this.evidence = [];
       this.coalitionClauses = [];
+      this.unionClaims = [];
+      this.unionDocuments = [];
+      this.unionThemes = [];
+      this.unionComparisons = [];
+      this.unionTimeline = [];
+      this.parties = [];
+      this.positionsData = [];
+      this.partyMap = new Map();
+      this.claimMap = new Map();
+      this.docMap = new Map();
+      this.posMap = new Map();
+      this.themeMap = new Map();
       this.isLoaded = false;
     }
 
     /**
-     * Load all knowledge datasets
+     * Load all knowledge datasets (Legacy + Union Research Layer)
      */
     async init() {
       if (this.isLoaded) return;
       try {
-        const [cRes, pRes, mRes, eRes, clRes] = await Promise.all([
+        const [
+          cRes, pRes, mRes, eRes, clRes,
+          uClaimsRes, uDocsRes, uThemesRes, uCompsRes, uTimeRes,
+          partiesRes, positionsRes
+        ] = await Promise.all([
           fetch("data/knowledge/claims.json?v=2.5.0").then(r => r.json()),
           fetch("data/knowledge/policy-positions.json?v=2.5.0").then(r => r.json()),
           fetch("data/knowledge/commitments.json?v=2.5.0").then(r => r.json()),
           fetch("data/knowledge/execution-evidence.json?v=2.5.0").then(r => r.json()),
-          fetch("data/knowledge/coalition-education-clauses.json?v=2.5.0").then(r => r.json())
+          fetch("data/knowledge/coalition-education-clauses.json?v=2.5.0").then(r => r.json()),
+          fetch("data/union/union-claims.json?v=2.5.0").then(r => r.json()),
+          fetch("data/union/union-documents.json?v=2.5.0").then(r => r.json()),
+          fetch("data/union/union-themes.json?v=2.5.0").then(r => r.json()),
+          fetch("data/union/union-party-comparison.json?v=2.5.0").then(r => r.json()),
+          fetch("data/union/union-timeline.json?v=2.5.0").then(r => r.json()),
+          fetch("data/parties.json?v=2.5.0").then(r => r.json()),
+          fetch("data/positions.json?v=2.5.0").then(r => r.json())
         ]);
 
         this.claims = cRes.claims || [];
@@ -269,8 +380,23 @@
         this.commitments = mRes.commitments || [];
         this.evidence = eRes.evidence || [];
         this.coalitionClauses = clRes.clauses || [];
+
+        this.unionClaims = uClaimsRes.claims || [];
+        this.unionDocuments = uDocsRes.documents || [];
+        this.unionThemes = uThemesRes.themes || [];
+        this.unionComparisons = uCompsRes.comparisons || [];
+        this.unionTimeline = (uTimeRes.events || uTimeRes.timeline || uTimeRes.milestones || []);
+        this.parties = partiesRes.parties || [];
+        this.positionsData = positionsRes.positions || [];
+
+        this.partyMap = new Map(this.parties.map(p => [p.id, p]));
+        this.claimMap = new Map(this.unionClaims.map(c => [c.id, c]));
+        this.docMap = new Map(this.unionDocuments.map(d => [d.id, d]));
+        this.posMap = new Map(this.positionsData.map(p => [p.id, p]));
+        this.themeMap = new Map(this.unionThemes.map(t => [t.id, t]));
+
         this.isLoaded = true;
-        console.log(`[AskEngine] Loaded knowledge layer: ${this.claims.length} claims, ${this.positions.length} positions, ${this.commitments.length} commitments, ${this.evidence.length} evidence, ${this.coalitionClauses.length} coalition clauses.`);
+        console.log(`[AskEngine] Loaded knowledge + union layer: ${this.unionClaims.length} union claims, ${this.unionComparisons.length} comparisons, ${this.unionDocuments.length} union docs, ${this.coalitionClauses.length} coalition clauses.`);
       } catch (err) {
         console.error("[AskEngine] Failed to load knowledge base:", err);
       }
@@ -717,9 +843,355 @@
     }
 
     /**
+     * Match query to Union Themes / Research Scenarios
+     */
+    matchUnionTheme(query) {
+      const norm = this.normalizeText(query);
+      
+      if (norm.includes('ביזור') || norm.includes('סמכויות') || norm.includes('משילות') || norm.includes('קמינסקי') || norm.includes('זיכיון') || norm.includes('גפנ') || (norm.includes('רשות') && (norm.includes('מקומי') || norm.includes('אגף')))) {
+        return {
+          themeId: 'THEME-GOVERNANCE-DECENTRALIZATION',
+          nameHe: 'משילות וביזור סמכויות לרשויות'
+        };
+      }
+      if ((norm.includes('גיל') && norm.includes('רך')) || norm.includes('0 3') || norm.includes('0–3') || norm.includes('מעונות') || norm.includes('פעוט') || norm.includes('חוק הפיקוח') || norm.includes('פירמידה')) {
+        return {
+          themeId: 'THEME-EARLY-CHILDHOOD',
+          nameHe: 'חינוך לגיל הרך (לידה עד 3)'
+        };
+      }
+      if ((norm.includes('חינוך') && norm.includes('מיוחד')) || norm.includes('חנמ') || norm.includes('הסעות') || norm.includes('סייעות שילוב') || norm.includes('מאצינג') || norm.includes('מאצ\'ינג')) {
+        return {
+          themeId: 'THEME-SPECIAL-EDU',
+          nameHe: 'חינוך מיוחד, הסעות ושילוב'
+        };
+      }
+      if (norm.includes('ai') || norm.includes('בינה מלאכותית') || norm.includes('טכנולוג') || norm.includes('בגרות') || norm.includes('בגרויות') || norm.includes('מיומנויות')) {
+        return {
+          themeId: 'THEME-AI-FUTURE-SKILLS',
+          nameHe: 'בינה מלאכותית, מיומנויות עתיד ומודל הבגרות'
+        };
+      }
+      if (norm.includes('חירום') || norm.includes('חוסן') || norm.includes('שפח') || norm.includes('פסיכולוג') || norm.includes('מפעל חיוני') || norm.includes('חרבות ברזל') || norm.includes('פינוי')) {
+        return {
+          themeId: 'THEME-EMERGENCY-RESILIENCE',
+          nameHe: 'חירום, חוסן נפשי ושפ"ח'
+        };
+      }
+      if (norm.includes('אלימות') || norm.includes('מוגנות') || norm.includes('מדריכי מוגנות')) {
+        return {
+          themeId: 'THEME-PROTECTION-SAFETY',
+          nameHe: 'אלימות ומוגנות צוותי הוראה'
+        };
+      }
+      if (norm.includes('פערים') || norm.includes('שוויון') || norm.includes('תלנ') || norm.includes('הפרטה') || norm.includes('חוק נהרי') || norm.includes('דיפרנציאלי')) {
+        return {
+          themeId: 'THEME-EQUITY-GAPS',
+          nameHe: 'שוויון הזדמנויות, צמצום פערים ותל"ן'
+        };
+      }
+      if (norm.includes('בלתי פורמלי') || norm.includes('תנועות נוער') || norm.includes('צהרונים')) {
+        return {
+          themeId: 'THEME-FORMAL-INFORMAL',
+          nameHe: 'חינוך בלתי פורמלי, נוער וקהילה'
+        };
+      }
+      if (norm.includes('קהילה') || norm.includes('הורים') || norm.includes('שותפות הורים')) {
+        return {
+          themeId: 'THEME-COMMUNITY-PARENTS',
+          nameHe: 'קהילה והורים'
+        };
+      }
+      if (norm.includes('כוח אדם') || norm.includes('מעמד עובדי הוראה') || norm.includes('תומכות הוראה') || norm.includes('שכר מורים') || norm.includes('מורים')) {
+        return {
+          themeId: 'THEME-TEACHER-STATUS',
+          nameHe: 'כוח אדם ומעמד עובדי החינוך'
+        };
+      }
+      if (norm.includes('פדגוגיה') || norm.includes('הערכה') || norm.includes('דרכי הוראה') || norm.includes('בחינות')) {
+        return {
+          themeId: 'THEME-PEDAGOGY-EVALUATION',
+          nameHe: 'פדגוגיה, הערכה ודרכי הוראה'
+        };
+      }
+      if (norm.includes('תקצוב') || norm.includes('מודל מימון') || norm.includes('בסיס תקציב')) {
+        return {
+          themeId: 'THEME-BUDGETING-FINANCE',
+          nameHe: 'תקצוב ומימון החינוך'
+        };
+      }
+      if (norm.includes('רצף חינוכי') || norm.includes('מלידה לבגרות')) {
+        return {
+          themeId: 'THEME-EDUCATION-CONTINUUM',
+          nameHe: 'רצף חינוכי מלידה לבגרות'
+        };
+      }
+      if (norm.includes('בינוי') || norm.includes('תשתיות') || norm.includes('כיתות לימוד')) {
+        return {
+          themeId: 'THEME-INFRASTRUCTURE-BUILDING',
+          nameHe: 'תשתיות ובינוי כיתות'
+        };
+      }
+      if (norm.includes('נשירה') || norm.includes('נוער בסיכון') || norm.includes('קידום נוער')) {
+        return {
+          themeId: 'THEME-DROPOUT-AT-RISK',
+          nameHe: 'נשירה וילדים ונוער בסיכון'
+        };
+      }
+      return null;
+    }
+
+    /**
+     * Synthesize 4-Layer Grounded Research Hub Answer
+     */
+    synthesizeResearchHubAnswer(query, topic, activeFilter = 'all') {
+      const relevantClaims = this.unionClaims.filter(c => c.theme === topic.themeId || (c.secondaryThemes && c.secondaryThemes.includes(topic.themeId)));
+      // Sort so 'A' and official documents come first
+      relevantClaims.sort((a, b) => (a.sourceAuthority || 'Z').localeCompare(b.sourceAuthority || 'Z'));
+      const primaryClaim = relevantClaims[0] || this.unionClaims.find(c => c.theme === topic.themeId);
+
+      // Find relevant comparisons
+      const themeComparisons = this.unionComparisons.filter(c => {
+        const clm = this.claimMap.get(c.unionClaimId);
+        return clm && (clm.theme === topic.themeId || (clm.secondaryThemes && clm.secondaryThemes.includes(topic.themeId)));
+      });
+
+      const platformComps = themeComparisons.filter(c => c.comparisonType === 'union_vs_platform');
+      const coalitionComps = themeComparisons.filter(c => c.comparisonType === 'union_vs_coalition_agreement');
+      const executionComps = themeComparisons.filter(c => c.comparisonType === 'union_vs_implementation');
+
+      // Layer 1: Short summary (2-3 sentences, clearly distinguishing Union -> Platforms -> Agreements/Execution)
+      let shortSummary = '';
+      if (topic.themeId === 'THEME-GOVERNANCE-DECENTRALIZATION') {
+        shortSummary = 'עמדת האיגוד: איגוד מנהלי אגפי החינוך דורש מעבר מריכוזיות לביזור דיפרנציאלי והכרה ברשות המקומית כריבון פדגוגי בשטח. מצעי המפלגות: קיימת הסכמה עקרונית רחבה על הרחבת האוטונומיה לרשויות (התאמה גבוהה עם מפלגת ישר!, התאמה חלקית עם ביחד והדמוקרטים). הסכמים וביצוע: בהסכמים הקואליציוניים (2022) ובהחלטת ממשלה 129 מוסדו מנגנוני פיקוח פוליטיים על תוכניות גפ״ן, בניגוד לדרישת האיגוד לאוטונומיה מקומית מלאה.';
+      } else if (topic.themeId === 'THEME-EARLY-CHILDHOOD') {
+        shortSummary = 'עמדת האיגוד: תביעה עקבית להעברת האחריות הכוללת על גילאי 0–3 למשרד החינוך, תקצוב חוק הפיקוח והקמת יחידות גיל רך יישוביות. מצעי המפלגות: התאמה גבוהה מול הדמוקרטים וביחד הדורשים חינוך חינם ומפוקח מגיל אפס, ותמיכה עקרונית בישראל ביתנו. הסכמים וביצוע: חרף התחייבות בהסכמים הקואליציוניים (2022) לחינוך חינם מגיל אפס, במבחן הביצוע (2023–2024) הוחלו נקודות זיכוי מס בלבד ולא הוקמו מעונות ציבוריים מפוקחים.';
+      } else if (topic.themeId === 'THEME-SPECIAL-EDU') {
+        shortSummary = 'עמדת האיגוד: התרעה על קריסת מערך השילוב והשירותים, דרישה לשותפות מלאה ברפורמות ומימון ממשלתי מלא (100%) של עלויות ההסעות העירוניות. מצעי המפלגות: מצעי המפלגות (הדמוקרטים, ישר!, ישראל ביתנו) אינם כוללים התייחסות מפורטת למימון ההסעות והמאצ\'ינג העירוני (היעדר מידע במצע ולא עמדת התנגדות). הסכמים וביצוע: בהסכמים הקואליציוניים (2022) הושוו שירותי החנ״מ למוסדות הפטור החרדיים, ללא שיפוי עלויות ההסעה העודפות שהוטלו על הרשויות המקומיות.';
+      } else if (topic.themeId === 'THEME-AI-FUTURE-SKILLS') {
+        shortSummary = 'עמדת האיגוד: שילוב בינה מלאכותית ככלי הוראה וניהול לצד דרישה לשינוי מבנה הבגרות להערכת מיומנויות ושימור המפגש האנושי כערך שאינו ניתן להחלפה. מצעי המפלגות: התאמה גבוהה מול מצעי ישר! והדמוקרטים הקוראים לביטול בחינות הבגרות במתכונתן הנוכחית ומעבר ללמידת חקר, והתאמה חלקית עם ביחד. הסכמים וביצוע: בהסכמים הקואליציוניים ובמדיניות הממשלה (2022–2026) לא קיימת תוכנית לאומית מוסדרת להטמעת AI או להערכת מיומנויות בשלטון המקומי.';
+      } else if (topic.themeId === 'THEME-EMERGENCY-RESILIENCE') {
+        shortSummary = 'עמדת האיגוד: דוקטרינת החירום דורשת הכרה באגפי החינוך כמפעל חיוני, חיזוק תקני השפ״ח וניהול רשותי עצמאי מול פיקוד העורף. מצעי המפלגות: במצעי ביחד והדמוקרטים קיימת תמיכה עקרונית בהאצלת סמכויות חירום לשלטון המקומי. הסכמים וביצוע: במלחמת חרבות ברזל (2023–2024) נוצר מתח מתמשך בין השלטון המקומי לממשלה בעקבות עיכובים בהכרה בחינוך כמפעל חיוני וקשיי תיאום בפינוי תושבים.';
+      } else {
+        shortSummary = `עמדת האיגוד: מסמכי האיגוד מדגישים מענה פדגוגי מקצועי וחיזוק האוטונומיה של הנהגת החינוך המקומית בנושא ${topic.nameHe}. מצעי המפלגות: נבחנו עמדות המפלגות הרשמיות ביחס ליעדים, למנגנון היישום ולמעמד הרשות המקומית. הסכמים וביצוע: סעיפי ההסכמים הקואליציוניים ומדיניות הממשלה (2022–2026) נבחנו אל מול המשאבים שהוקצו והביצוע בשטח.`;
+      }
+
+      // Chronological evolution stations for Union position
+      const rawStations = [];
+      (this.unionTimeline || []).forEach(m => {
+        const matchTheme = m.theme === topic.themeId ||
+          (m.claimIds && m.claimIds.some(cid => relevantClaims.some(rc => rc.id === cid))) ||
+          (m.title && topic.keywords && topic.keywords.some(kw => m.title.includes(kw))) ||
+          (m.significance && topic.keywords && topic.keywords.some(kw => m.significance.includes(kw)));
+        if (matchTheme) {
+          rawStations.push({
+            year: m.year,
+            title: m.title,
+            description: m.significance || m.phase || '',
+            authority: m.sourceAuthority || 'A'
+          });
+        }
+      });
+
+      relevantClaims.forEach(c => {
+        const d = this.docMap.get(c.documentId);
+        const yr = d?.date ? parseInt(d.date.substring(0, 4), 10) : 2026;
+        if (!rawStations.some(s => s.year === yr && s.title.includes(c.claim.substring(0, 20)))) {
+          rawStations.push({
+            year: yr,
+            title: d?.title || c.subTopic || 'עמדת איגוד',
+            description: c.claim,
+            authority: c.sourceAuthority || 'B'
+          });
+        }
+      });
+
+      rawStations.sort((a, b) => (a.year || 0) - (b.year || 0));
+
+      const evolutionStations = [];
+      const seenStationKeys = new Set();
+      rawStations.forEach(s => {
+        const normTitle = (s.title || '').replace(/[״""'׳\-:–]/g, ' ').toLowerCase();
+        let coreToken = '';
+        if (normTitle.includes('ון ליר') || normTitle.includes('קמינסקי')) coreToken = 'vanleer';
+        else if (normTitle.includes('קורונה')) coreToken = 'corona';
+        else if (normTitle.includes('גפ ן') || normTitle.includes('גפן')) coreToken = 'gefen';
+        else if (normTitle.includes('מרשת ביטחון') || normTitle.includes('תשפ ו') || normTitle.includes('תשפו')) coreToken = 'tashpo';
+        else if (normTitle.includes('מבט רחב')) coreToken = 'mabat';
+        else if (normTitle.includes('דורנר')) coreToken = 'dorner';
+        else if (normTitle.includes('טרכטנברג') || normTitle.includes('חינוך חינם 3')) coreToken = 'trachtenberg';
+        else if (normTitle.includes('היפוך הפירמידה') || normTitle.includes('לידה עד 3') || normTitle.includes('לידה עד שלוש')) coreToken = 'early_childhood';
+        else if (normTitle.includes('2030')) coreToken = 'edu2030';
+        else coreToken = normTitle.split(/\s+/).filter(w => w.length > 3).slice(0, 2).join('_');
+
+        const key = `${s.year}_${coreToken}`;
+        if (!seenStationKeys.has(key)) {
+          seenStationKeys.add(key);
+          evolutionStations.push(s);
+        }
+      });
+
+      const hasMultiYearEvolution = evolutionStations.length > 1 &&
+        evolutionStations.some(s => s.year !== evolutionStations[0].year);
+
+      // Layer 2: Union Section
+      let unionSection = null;
+      if (primaryClaim) {
+        const doc = this.docMap.get(primaryClaim.documentId);
+        unionSection = {
+          claimId: primaryClaim.id,
+          claimText: primaryClaim.claim,
+          subTopic: primaryClaim.subTopic,
+          sourceAuthority: primaryClaim.sourceAuthority,
+          sourceAuthorityLabel: AUTHORITY_LABELS[primaryClaim.sourceAuthority] || 'עמדת איגוד מתועדת',
+          quote: primaryClaim.layers?.fact?.quote || '',
+          sourceLocation: primaryClaim.layers?.fact?.sourceLocation || '',
+          documentTitle: doc?.title || 'מסמך איגוד רשמי',
+          documentYear: doc?.date ? doc.date.substring(0, 4) : '2026',
+          documentUrl: doc?.publicDriveUrl || DRIVE_UNION_FOLDER_URL,
+          evolutionStations: hasMultiYearEvolution ? evolutionStations : [],
+          secondaryClaims: relevantClaims.slice(1).map(c => {
+            const d = this.docMap.get(c.documentId);
+            return {
+              id: c.id,
+              claim: c.claim,
+              authorityLabel: AUTHORITY_LABELS[c.sourceAuthority] || c.sourceAuthority,
+              quote: c.layers?.fact?.quote || '',
+              documentTitle: d?.title || 'מסמך איגוד'
+            };
+          })
+        };
+      }
+
+      // Layer 3: Parties Comparison Section
+      const partiesSection = {
+        title: 'מה מציעות המפלגות?',
+        subtitle: 'השוואה בין עמדת האיגוד למצעי המפלגות הרשמיים',
+        comparisons: platformComps.map(c => {
+          const party = this.partyMap.get(c.partyId);
+          const pos = this.posMap.get(c.partyPositionId);
+          const docInfo = getPlatformDocInfo(party?.nameHe || c.partyId);
+          const humanReason = generateHumanAlignmentReason(c);
+          return {
+            partyId: c.partyId,
+            partyName: party?.nameHe || c.partyId,
+            partyEn: party?.nameEn || '',
+            alignment: c.alignment,
+            alignmentLabel: ALIGNMENT_LABELS[c.alignment] || c.alignment,
+            alignmentClass: ALIGNMENT_CLASSES[c.alignment] || 'alignment-insufficient',
+            humanReason,
+            similarities: c.similarities || [],
+            differences: c.differences || [],
+            evidence: c.evidence,
+            principleLabel: SUBSCORE_LABELS[c.principleAlignment] || c.principleAlignment,
+            mechanismLabel: SUBSCORE_LABELS[c.mechanismAlignment] || c.mechanismAlignment,
+            municipalRoleLabel: SUBSCORE_LABELS[c.municipalRoleAlignment] || c.municipalRoleAlignment,
+            sourceLocation: pos?.sourceLocation || 'מצע המפלגה הרשמי',
+            platformUrl: docInfo?.url || party?.officialWebsite || DRIVE_PLATFORMS_FOLDER_URL
+          };
+        })
+      };
+
+      // Layer 4: Agreements & Execution Section
+      const hasExecution = coalitionComps.length > 0 || executionComps.length > 0;
+      let executionSection = null;
+      if (hasExecution) {
+        executionSection = {
+          title: 'מה קרה בהסכמים הקואליציוניים ובמבחן הביצוע?',
+          items: [
+            ...coalitionComps.map(c => {
+              const party = this.partyMap.get(c.partyId);
+              return {
+                track: 'coalition_agreement',
+                trackLabel: 'הסכם קואליציוני חתום',
+                partyName: party?.nameHe || c.partyId,
+                alignment: c.alignment,
+                alignmentLabel: ALIGNMENT_LABELS[c.alignment] || c.alignment,
+                alignmentClass: ALIGNMENT_CLASSES[c.alignment] || 'alignment-tension',
+                differences: c.differences || [],
+                similarities: c.similarities || [],
+                evidence: c.evidence
+              };
+            }),
+            ...executionComps.map(c => {
+              return {
+                track: 'government_execution',
+                trackLabel: 'מדיניות וביצוע בפועל (ממשלת ישראל)',
+                partyName: 'ממשלת ישראל ה-37',
+                alignment: c.alignment,
+                alignmentLabel: ALIGNMENT_LABELS[c.alignment] || c.alignment,
+                alignmentClass: ALIGNMENT_CLASSES[c.alignment] || 'alignment-contradiction',
+                differences: c.differences || [],
+                similarities: c.similarities || [],
+                evidence: c.evidence
+              };
+            })
+          ]
+        };
+      }
+
+      // Layer 5: Sources List
+      const sourcesList = [];
+      if (unionSection) {
+        sourcesList.push({
+          title: unionSection.documentTitle,
+          year: unionSection.documentYear,
+          entity: 'איגוד מנהלי אגפי החינוך',
+          typeLabel: unionSection.sourceAuthorityLabel,
+          url: unionSection.documentUrl
+        });
+      }
+      platformComps.forEach(c => {
+        const party = this.partyMap.get(c.partyId);
+        if (party) {
+          const docInfo = getPlatformDocInfo(party.nameHe);
+          sourcesList.push({
+            title: `מצע החינוך של ${party.nameHe}`,
+            year: '2025/2026',
+            entity: party.nameHe,
+            typeLabel: 'מצע מפלגה רשמי',
+            url: docInfo?.url || party.officialWebsite || DRIVE_PLATFORMS_FOLDER_URL
+          });
+        }
+      });
+      if (coalitionComps.length > 0) {
+        sourcesList.push({
+          title: 'הסכמים קואליציוניים להקמת הממשלה ה-37',
+          year: '2022',
+          entity: 'מזכירות הממשלה / סיעות הקואליציה',
+          typeLabel: 'הסכם קואליציוני חתום',
+          url: DRIVE_COALITION_FOLDER_URL
+        });
+      }
+      if (executionComps.length > 0) {
+        sourcesList.push({
+          title: 'דוחות מעקב ביצוע, החלטות ממשלה ופרוטוקולים',
+          year: '2023-2026',
+          entity: 'משרד החינוך / משרד האוצר',
+          typeLabel: 'ביצוע מדיניות בפועל',
+          url: DRIVE_COALITION_FOLDER_URL
+        });
+      }
+
+      return {
+        found: true,
+        isResearchHub: true,
+        query,
+        activeFilter,
+        topicName: topic.nameHe,
+        shortSummary,
+        summaryParagraphs: [shortSummary],
+        unionSection,
+        partiesSection,
+        executionSection,
+        sourcesList
+      };
+    }
+
+    /**
      * Process query end-to-end
      */
-    async answer(query) {
+    async answer(query, activeFilter = 'all') {
       if (!this.isLoaded) await this.init();
       if (!query || !query.trim()) {
         return {
@@ -730,12 +1202,52 @@
         };
       }
 
+      // 1. Check if matches Research Hub theme
+      const unionTheme = this.matchUnionTheme(query);
+      if (unionTheme) {
+        return this.synthesizeResearchHubAnswer(query, unionTheme, activeFilter);
+      }
+
+      // 2. Legacy fallback
       const parsed = this.parseQuery(query);
+      const hasSpecificIntent = parsed.entities.length > 0 || 
+                                parsed.topics.length > 0 || 
+                                parsed.isClausesQuery || 
+                                parsed.isExecutionQuery || 
+                                parsed.isBudgetQuery || 
+                                parsed.isChareidiComparison || 
+                                parsed.isCoreComparison;
+
+      if (!hasSpecificIntent) {
+        return {
+          found: false,
+          query,
+          activeFilter,
+          message: 'לא נמצא במאגר מידע מספק להשיב על השאלה.',
+          summaryParagraphs: ['לא נמצא במאגר מידע מספק להשיב על השאלה.'],
+          keyFindings: [],
+          sources: []
+        };
+      }
+
       const retrieved = this.retrieve(parsed);
       const synthesis = this.synthesize(parsed, retrieved);
 
+      if (!synthesis.found) {
+        return {
+          found: false,
+          query,
+          activeFilter,
+          message: 'לא נמצא במאגר מידע מספק להשיב על השאלה.',
+          summaryParagraphs: ['לא נמצא במאגר מידע מספק להשיב על השאלה.'],
+          keyFindings: [],
+          sources: []
+        };
+      }
+
       return {
         query,
+        activeFilter,
         parsed,
         ...synthesis
       };

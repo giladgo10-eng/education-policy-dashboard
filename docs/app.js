@@ -20,7 +20,8 @@ const STATE = {
   selectedPartyId: "PARTY-BEYACHAD",
   selectedCoalitionPartyId: "PARTY-LIKUD",
   selectedIssueId: "ISSUE-CORE-CURRICULUM",
-  selectedUnionTopic: "ALL"
+  selectedUnionTopic: "ALL",
+  systemMetadata: null
 };
 
 const DRIVE_PLATFORMS_FOLDER_URL = "https://drive.google.com/drive/folders/1PvVXkV2KIxscPrIxE57-L1T_dF-0UxfM";
@@ -280,7 +281,8 @@ async function initApp() {
       commitmentsRes,
       executionRes,
       entitiesRes,
-      unionPositionsRes
+      unionPositionsRes,
+      sysMetaRes
     ] = await Promise.all([
       fetch("data/sources.json?v=2.5.0"),
       fetch("data/parties.json?v=2.5.0"),
@@ -289,7 +291,8 @@ async function initApp() {
       fetch("data/commitments.json?v=2.5.0"),
       fetch("data/execution.json?v=2.5.0"),
       fetch("data/professional-entities.json?v=2.5.0"),
-      fetch("data/union-positions.json?v=2.5.0")
+      fetch("data/union-positions.json?v=2.5.0"),
+      fetch("data/system-metadata.json?v=2.5.0").then(r => r.json()).catch(() => null)
     ]);
 
     STATE.sources = (await sourcesRes.json()).sources || [];
@@ -300,6 +303,7 @@ async function initApp() {
     STATE.execution = (await executionRes.json()).executionRecords || [];
     STATE.entities = (await entitiesRes.json()).entities || [];
     STATE.unionPositions = (await unionPositionsRes.json()).positions || [];
+    STATE.systemMetadata = sysMetaRes || null;
 
     // Initialize AskEngine
     if (window.AskEngine) {
@@ -375,6 +379,30 @@ function renderActiveView() {
   } else if (STATE.activeSection === "union") {
     renderUnionTopicSelectors();
     renderUnionScreen();
+  } else if (STATE.activeSection === "methodology") {
+    renderMethodologyScreen();
+  }
+}
+
+function renderMethodologyScreen() {
+  const meta = STATE.systemMetadata;
+  if (!meta) return;
+  const lastUpdateEl = document.getElementById("meta-last-update");
+  const docsCountEl = document.getElementById("meta-docs-count");
+  const claimsCountEl = document.getElementById("meta-claims-count");
+  const compsCountEl = document.getElementById("meta-comps-count");
+
+  if (lastUpdateEl && meta.lastKnowledgeUpdate) {
+    lastUpdateEl.textContent = meta.lastKnowledgeUpdate;
+  }
+  if (docsCountEl && meta.documentsCount) {
+    docsCountEl.textContent = meta.documentsCount + " מסמכים";
+  }
+  if (claimsCountEl && meta.claimsCount) {
+    claimsCountEl.textContent = meta.claimsCount + " טענות";
+  }
+  if (compsCountEl && meta.comparisonsCount) {
+    compsCountEl.textContent = meta.comparisonsCount + " השוואות";
   }
 }
 
@@ -962,18 +990,36 @@ function renderUnionScreen() {
 }
 
 // ----------------------------------------------------
-// SCREEN 3: ASK THE RESEARCH (שאל את המחקר)
 // ----------------------------------------------------
+// SCREEN 3: ASK THE RESEARCH / RESEARCH HUB (מרכז המחקר)
+// ----------------------------------------------------
+let currentResearchFilter = "all";
+
 function setupAskScreenEvents() {
   const queryInput = document.getElementById("ask-query-input");
   const submitBtn = document.getElementById("ask-submit-btn");
   const clearBtn = document.getElementById("ask-clear-btn");
   const chips = document.querySelectorAll(".sample-chip");
+  const filterPills = document.querySelectorAll(".filter-pill");
+
+  if (filterPills && filterPills.length > 0) {
+    filterPills.forEach(pill => {
+      pill.addEventListener("click", () => {
+        filterPills.forEach(p => p.classList.remove("active"));
+        pill.classList.add("active");
+        currentResearchFilter = pill.getAttribute("data-filter") || "all";
+        const q = queryInput ? queryInput.value.trim() : "";
+        if (q) {
+          handleAskQuery(q, currentResearchFilter);
+        }
+      });
+    });
+  }
 
   if (submitBtn) {
     submitBtn.addEventListener("click", () => {
       const q = queryInput ? queryInput.value.trim() : "";
-      handleAskQuery(q);
+      handleAskQuery(q, currentResearchFilter);
     });
   }
 
@@ -981,7 +1027,7 @@ function setupAskScreenEvents() {
     queryInput.addEventListener("keydown", (e) => {
       if (e.key === "Enter") {
         e.preventDefault();
-        handleAskQuery(queryInput.value.trim());
+        handleAskQuery(queryInput.value.trim(), currentResearchFilter);
       }
     });
   }
@@ -995,7 +1041,7 @@ function setupAskScreenEvents() {
           <div class="ask-empty-state">
             <div class="empty-icon">🔎</div>
             <h3>בחר שאלה לדוגמה או הקלד שאילתה משלך</h3>
-            <p>המנוע סורק בזמן אמת 48 טענות מחקריות, 24 עמדות מדיניות, 18 התחייבויות חתומות, 16 ראיות ביצוע ו-51 סעיפי הסכמים קואליציוניים ומציג תשובה מחקרית מסונתזת מבוססת עובדות.</p>
+            <p>המנוע סורק בזמן אמת עמדות רשמיות של איגוד מנהלי החינוך, 51 השוואות למצעי המפלגות, התחייבויות קואליציוניות ומבחן הביצוע, ומציג תשובה רב-שכבתית מבוססת מקורות.</p>
           </div>
         `;
       }
@@ -1006,12 +1052,12 @@ function setupAskScreenEvents() {
     chip.addEventListener("click", () => {
       const q = chip.getAttribute("data-query");
       if (queryInput) queryInput.value = q;
-      handleAskQuery(q);
+      handleAskQuery(q, currentResearchFilter);
     });
   });
 }
 
-async function handleAskQuery(query) {
+async function handleAskQuery(query, activeFilter = 'all') {
   if (!query) return;
   const resultsContainer = document.getElementById("ask-results-container");
   if (!resultsContainer) return;
@@ -1019,17 +1065,17 @@ async function handleAskQuery(query) {
   resultsContainer.innerHTML = `
     <div class="ask-empty-state">
       <div class="empty-icon">⏳</div>
-      <h3>מסנתז תשובה מחקרית מתוך בסיס הידע המאומת...</h3>
-      <p>מצליב עמדות, סעיפי הסכמים ונתוני ביצוע מתוך 106 יחידות הידע ו-51 סעיפי ההסכמים...</p>
+      <h3>מרכז המחקר מעבד את השאילתה ומצליב מקורות...</h3>
+      <p>סורק עמדות איגוד, מצעי מפלגות רשמיים, הסכמים קואליציוניים ומבחן ביצוע...</p>
     </div>
   `;
 
   if (!window.AskEngine) {
-    resultsContainer.innerHTML = '<div class="empty-notice"><p>מנוע החיפוש טרם נטען. אנא נסה שוב בעוד מספר שניות.</p></div>';
+    resultsContainer.innerHTML = '<div class="empty-notice"><p>מנוע המחקר טרם נטען. אנא נסה שוב בעוד מספר שניות.</p></div>';
     return;
   }
 
-  const result = await window.AskEngine.answer(query);
+  const result = await window.AskEngine.answer(query, activeFilter);
   renderAskAnswer(result);
 }
 
@@ -1042,22 +1088,241 @@ function renderAskAnswer(result) {
       <div class="ask-empty-state">
         <div class="empty-icon">🔍</div>
         <h3>לא נמצא מספיק מידע</h3>
-        <p>${(result && result.summaryParagraphs && result.summaryParagraphs[0]) || 'בבסיס הידע הקיים אין די מידע כדי לקבוע זאת בביטחון.'}</p>
+        <p>${(result && (result.message || (result.summaryParagraphs && result.summaryParagraphs[0]))) || 'לא נמצא במאגר מידע מספק להשיב על השאלה.'}</p>
       </div>
     `;
     return;
   }
 
+  // 1. Research Hub 4-Layer Mode
+  if (result.isResearchHub) {
+    const filter = result.activeFilter || 'all';
+    let html = '';
+    html += '<div class="ask-answer-card">';
+
+    // Format natural query display title
+    let displayTitle = result.query || '';
+    if (displayTitle) {
+      let q = displayTitle.trim().replace(/^["״']|["״']$/g, '').trim();
+      const prefixes = [
+        /^מה עמדת האיגוד בנושא\s*/i,
+        /^אילו מפלגות קרובות לעמדת האיגוד בנושא\s*/i,
+        /^מה הפער בין האיגוד למפלגות בנושא\s*/i,
+        /^מה אומר המחקר על\s*/i,
+        /^מה הובטח ומה בוצע בנושא\s*/i,
+        /^מה עמדת האיגוד לגבי\s*/i,
+        /^מה עמדת איגוד מנהלי החינוך לגבי\s*/i,
+        /^מה עמדת האיגוד ב\s*/i
+      ];
+      for (const prefix of prefixes) {
+        if (prefix.test(q)) {
+          q = q.replace(prefix, '').replace(/\?$/, '').trim();
+          break;
+        }
+      }
+      displayTitle = `תוצאות המחקר בנושא: ${q || result.topicName || 'מדיניות חינוך'}`;
+    } else {
+      displayTitle = `תוצאות המחקר בנושא: ${result.topicName || 'מדיניות חינוך'}`;
+    }
+
+    // Header
+    html += '<div class="answer-header">';
+    html += '<h3 class="answer-query-title">' + displayTitle + '</h3>';
+    html += '<span class="answer-meta-pill">מרכז המחקר | ' + (result.topicName || 'ניתוח רב-שכבתי מבוסס מקורות') + '</span>';
+    html += '</div>';
+
+    // Layer 1: Short Summary (2-3 sentences, 3-part bolded)
+    const formattedShortSummary = (result.shortSummary || '')
+      .replace(/(עמדת האיגוד:?)/g, '<strong>$1</strong>')
+      .replace(/(מצעי המפלגות:?)/g, '<strong>$1</strong>')
+      .replace(/(הסכמים וביצוע:?|הסכמים\/ביצוע:?)/g, '<strong>$1</strong>');
+
+    html += '<div class="answer-short-summary">';
+    html += '<span class="short-summary-badge">⚡ תשובה קצרה ומסונתזת</span>';
+    html += '<p class="short-summary-text">' + formattedShortSummary + '</p>';
+    html += '</div>';
+
+    // Layer 2: What Does the Union Say?
+    const showUnion = (filter === 'all' || filter === 'union' || filter === 'comparison') && result.unionSection;
+    if (showUnion) {
+      const u = result.unionSection;
+      html += '<div class="union-layer-card">';
+      html += '<div class="union-layer-header">';
+      html += '<h4 class="union-layer-title">🎓 מה אומר איגוד מנהלי ומנהלות אגפי החינוך?</h4>';
+      html += '<span class="union-authority-badge">' + u.sourceAuthorityLabel + '</span>';
+      html += '</div>';
+      html += '<p class="union-claim-p">' + u.claimText + '</p>';
+      if (u.quote) {
+        html += '<blockquote class="union-quote-box-clean">״' + u.quote + '״</blockquote>';
+      }
+      html += '<div class="union-source-ref-bar">';
+      html += '<span>📄 מקור: <strong>' + u.documentTitle + '</strong> (' + u.documentYear + ')</span>';
+      html += '<a href="' + u.documentUrl + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">📂 פתח מסמך מקור ב-Drive ↗</a>';
+      html += '</div>';
+
+      // Evolution stations over the years
+      if (u.evolutionStations && u.evolutionStations.length > 1) {
+        html += '<div class="union-evolution-box">';
+        html += '<h5 class="union-evolution-title">⏱️ התפתחות העמדה לאורך השנים</h5>';
+        html += '<div class="union-evolution-timeline">';
+        u.evolutionStations.forEach(st => {
+          html += '<div class="union-evolution-station">';
+          html += '<span class="union-station-year">' + st.year + '</span>';
+          html += '<div class="union-station-content">';
+          html += '<span class="union-station-title">' + st.title + '</span>';
+          if (st.description && st.description !== st.title) {
+            html += '<p class="union-station-desc">' + st.description + '</p>';
+          }
+          html += '</div>';
+          html += '</div>';
+        });
+        html += '</div>';
+        html += '</div>';
+      }
+
+      if (u.secondaryClaims && u.secondaryClaims.length > 0) {
+        html += '<div style="margin-top: 8px; border-top: 1px dashed #bbf7d0; padding-top: 8px;">';
+        html += '<span style="font-size: 0.78rem; font-weight: 700; color: #166534;">דגשים נוספים בעמדת האיגוד:</span>';
+        html += '<ul style="margin: 4px 0 0 0; padding-right: 18px; font-size: 0.84rem; color: #1e293b;">';
+        u.secondaryClaims.forEach(sc => {
+          html += '<li>' + sc.claim + ' <span style="font-size: 0.72rem; color: #047857;">[' + sc.authorityLabel + ']</span></li>';
+        });
+        html += '</ul>';
+        html += '</div>';
+      }
+      html += '</div>';
+    }
+
+    // Layer 3: What Do the Parties Offer?
+    const showParties = (filter === 'all' || filter === 'platforms' || filter === 'comparison') && result.partiesSection && result.partiesSection.comparisons && result.partiesSection.comparisons.length > 0;
+    if (showParties) {
+      html += '<div class="answer-section">';
+      html += '<h4 class="answer-section-title">⚖️ מה מציעות המפלגות? — השוואת עמדות מול האיגוד</h4>';
+      html += '<div style="font-size: 0.82rem; color: #64748b; margin-bottom: 8px;">';
+      html += 'ההשוואה נבחנה מול מצעי המפלגות הרשמיים. היעדר עמדה במצע מסומן כהיעדר מידע במצע ולא כהתנגדות.';
+      html += '</div>';
+      html += '<div class="party-comp-grid">';
+      result.partiesSection.comparisons.forEach(c => {
+        html += '<div class="party-comp-card">';
+        html += '<div class="party-comp-header">';
+        html += '<span class="party-comp-name">' + c.partyName + '</span>';
+        html += '<span class="alignment-badge ' + c.alignmentClass + '">' + c.alignmentLabel + '</span>';
+        html += '</div>';
+
+        if (c.humanReason) {
+          html += '<div class="comp-why-box">';
+          html += '<span class="comp-why-label">💡 למה?</span>';
+          html += '<span class="comp-why-text">' + c.humanReason + '</span>';
+          html += '</div>';
+        }
+
+        html += '<details class="comp-details-expand">';
+        html += '<summary class="comp-expand-summary">🔍 הצג פירוט מלא והשוואת מדדים</summary>';
+        html += '<div class="comp-expanded-content">';
+
+        html += '<div class="subscores-row">';
+        html += '<span class="subscore-pill">עיקרון: <strong>' + c.principleLabel + '</strong></span>';
+        html += '<span class="subscore-pill">מנגנון: <strong>' + c.mechanismLabel + '</strong></span>';
+        html += '<span class="subscore-pill">מעמד הרשות: <strong>' + c.municipalRoleLabel + '</strong></span>';
+        html += '</div>';
+
+        if (c.similarities && c.similarities.length > 0) {
+          html += '<div class="comp-points-block">';
+          html += '<div class="comp-points-title" style="color: #065f46;">✓ נקודות דמיון:</div>';
+          html += '<ul style="margin: 0; padding-right: 18px;">';
+          c.similarities.forEach(s => { html += '<li>' + s + '</li>'; });
+          html += '</ul>';
+          html += '</div>';
+        }
+
+        if (c.differences && c.differences.length > 0) {
+          html += '<div class="comp-points-block">';
+          html += '<div class="comp-points-title" style="color: #991b1b;">✕ הבדלים ופערים:</div>';
+          html += '<ul style="margin: 0; padding-right: 18px;">';
+          c.differences.forEach(d => { html += '<li>' + d + '</li>'; });
+          html += '</ul>';
+          html += '</div>';
+        }
+
+        if (c.evidence) {
+          html += '<div class="comp-evidence-box">';
+          html += '<strong>ראיה:</strong> ' + c.evidence;
+          html += '</div>';
+        }
+
+        html += '</div>'; // End comp-expanded-content
+        html += '</details>'; // End comp-details-expand
+
+        html += '<div class="party-comp-footer">';
+        html += '<span>מקור: ' + c.sourceLocation + '</span>';
+        html += '<a href="' + c.platformUrl + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">📄 מצע המפלגה ↗</a>';
+        html += '</div>';
+        html += '</div>';
+      });
+      html += '</div>';
+      html += '</div>';
+    }
+
+    // Layer 4: What was Promised & Executed?
+    const showExecution = (filter === 'all' || filter === 'execution') && result.executionSection && result.executionSection.items && result.executionSection.items.length > 0;
+    if (showExecution) {
+      html += '<div class="execution-layer-card">';
+      html += '<h4 class="execution-layer-title">🏛️ מה קרה בהסכמים הקואליציוניים ובמבחן הביצוע?</h4>';
+      html += '<div style="display: flex; flex-direction: column; gap: 10px;">';
+      result.executionSection.items.forEach(i => {
+        html += '<div class="execution-item">';
+        html += '<div class="execution-item-top">';
+        html += '<span class="track-badge">' + i.trackLabel + ' (' + i.partyName + ')</span>';
+        html += '<span class="alignment-badge ' + i.alignmentClass + '">' + i.alignmentLabel + '</span>';
+        html += '</div>';
+        if (i.evidence) {
+          html += '<div style="font-size: 0.88rem; color: #1e293b; line-height: 1.5;"><strong>ממצא וראיה:</strong> ' + i.evidence + '</div>';
+        }
+        if (i.differences && i.differences.length > 0) {
+          html += '<div style="font-size: 0.82rem; color: #9a3412;"><strong>פער מהותי:</strong> ' + i.differences.join('; ') + '</div>';
+        }
+        html += '</div>';
+      });
+      html += '</div>';
+      html += '</div>';
+    }
+
+    // Layer 5: Collapsible Sources & Evidence Drawer
+    if (result.sourcesList && result.sourcesList.length > 0) {
+      html += '<details class="research-sources-drawer">';
+      html += '<summary>📁 מקורות וראיות מאומתים במאגר (' + result.sourcesList.length + ' מקורות) — לחץ לצפייה</summary>';
+      html += '<div class="sources-drawer-body">';
+      html += '<table class="sources-table">';
+      html += '<thead><tr><th>מסמך / מקור</th><th>גוף / ישות</th><th>שנה</th><th>רמת סמכות / סוג מקור</th><th>קישור</th></tr></thead>';
+      html += '<tbody>';
+      result.sourcesList.forEach(s => {
+        html += '<tr>';
+        html += '<td><strong>' + s.title + '</strong></td>';
+        html += '<td>' + s.entity + '</td>';
+        html += '<td>' + s.year + '</td>';
+        html += '<td><span class="union-authority-badge" style="font-size: 0.72rem; padding: 2px 8px;">' + s.typeLabel + '</span></td>';
+        html += '<td class="source-link-cell"><a href="' + s.url + '" target="_blank" rel="noopener noreferrer">פתח מקור ↗</a></td>';
+        html += '</tr>';
+      });
+      html += '</tbody>';
+      html += '</table>';
+      html += '</div>';
+      html += '</details>';
+    }
+
+    html += '</div>'; // End ask-answer-card
+    container.innerHTML = html;
+    return;
+  }
+
+  // 2. Legacy Fallback Mode
   let html = '';
   html += '<div class="ask-answer-card">';
-
-  // 1. Header (Question title & methodology badge)
   html += '<div class="answer-header">';
   html += '<h3 class="answer-query-title">״' + result.query + '״</h3>';
   html += '<span class="answer-meta-pill">ניתוח מחקרי מסונתז מתוך בסיס הידע המאומת</span>';
   html += '</div>';
 
-  // 2. Structured Research Synthesis (2-4 paragraphs)
   if (result.summaryParagraphs && result.summaryParagraphs.length > 0) {
     html += '<div class="answer-synthesis-card">';
     html += '<div class="synthesis-header-label">📑 תשובה מחקרית מסונתזת:</div>';
@@ -1070,7 +1335,6 @@ function renderAskAnswer(result) {
     html += '</div>';
   }
 
-  // 3. Key Takeaways / Findings (3-5 items)
   if (result.keyFindings && result.keyFindings.length > 0) {
     html += '<div class="answer-section">';
     html += '<h4 class="answer-section-title">💡 נקודות מרכזיות וממצאים עיקריים:</h4>';
@@ -1083,7 +1347,6 @@ function renderAskAnswer(result) {
     html += '</div>';
   }
 
-  // 4. Contradiction Alert if exists
   if (result.contradictionAlert) {
     html += '<div class="contradiction-alert-box">';
     html += '<div class="alert-title">⚠️ ' + result.contradictionAlert.title + '</div>';
@@ -1091,7 +1354,6 @@ function renderAskAnswer(result) {
     html += '</div>';
   }
 
-  // 5. Epistemic Limitations Callout if exists
   if (result.limitations) {
     html += '<div class="limitations-callout-box">';
     html += '<div class="limitations-title">📌 מגבלות המידע והמתודולוגיה:</div>';
@@ -1099,7 +1361,6 @@ function renderAskAnswer(result) {
     html += '</div>';
   }
 
-  // 6. Grounded Evidence: Coalition Clauses Grid
   if (result.coalitionClausesList && result.coalitionClausesList.length > 0) {
     html += '<div class="answer-section">';
     html += '<h4 class="answer-section-title">📜 הראיות המרכזיות — סעיפי הסכמים קואליציוניים מאומתים:</h4>';
@@ -1132,69 +1393,6 @@ function renderAskAnswer(result) {
     html += '</div>';
   }
 
-  // 7. Grounded Evidence: Platform Comparisons Grid
-  if (result.comparisonList && result.comparisonList.length > 0) {
-    html += '<div class="answer-section">';
-    html += '<h4 class="answer-section-title">⚖️ מה אומרים המצעים ומסמכי המקור — השוואת עמדות:</h4>';
-    html += '<div class="answer-comparison-grid">';
-    result.comparisonList.forEach(comp => {
-      const badgeClass = comp.tier === "primary" ? "badge-primary" : "badge-secondary";
-      const badgeLabel = comp.tier === "primary" ? "מקור רשמי" : "מחקר משני";
-      const driveUrl = comp.driveUrl || DRIVE_PLATFORMS_FOLDER_URL;
-      const driveBtnText = comp.driveBtnText || (comp.tier === "primary" ? "📄 פתח את מסמך המקור ↗" : "📖 פתח את מסמך המחקר ↗");
-      const cleanSourceDoc = comp.sourceDocLabel || ('תוכנית החינוך של ' + comp.entity);
-
-      html += '<div class="answer-comp-card">';
-      html += '<div class="answer-comp-header">';
-      html += '<span class="answer-comp-name">' + comp.entity + '</span>';
-      html += '<span class="answer-comp-badge ' + badgeClass + '">' + badgeLabel + '</span>';
-      html += '</div>';
-      html += '<div class="answer-comp-body">' + comp.stanceText + '</div>';
-      if (comp.quote) {
-        html += '<blockquote class="answer-comp-quote">״' + comp.quote + '״</blockquote>';
-      }
-      html += '<div class="answer-comp-footer-clean">';
-      html += '<span class="clause-source-text">מקור: ' + cleanSourceDoc + '</span>';
-      html += '<a href="' + driveUrl + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">' + driveBtnText + '</a>';
-      html += '</div>';
-      html += '</div>';
-    });
-    html += '</div>';
-    html += '</div>';
-  }
-
-  // 8. Grounded Evidence: Execution Evidence List
-  if (result.executionList && result.executionList.length > 0) {
-    html += '<div class="answer-section">';
-    html += '<h4 class="answer-section-title">📊 הבטחה מול ביצוע ותקציבים בפועל:</h4>';
-    html += '<div class="answer-execution-list">';
-    result.executionList.forEach(exec => {
-      html += '<div class="answer-exec-item">';
-      html += '<div class="exec-item-top">';
-      html += '<span class="exec-item-title">' + (exec.beneficiary ? exec.beneficiary + ' — ' : '') + exec.title + '</span>';
-      html += '<span class="status-badge ' + (exec.statusClass || 'status-partial') + '">' + exec.status + '</span>';
-      html += '</div>';
-      if (exec.budget) {
-        html += '<div class="exec-item-budget">💰 היקף תקציבי: <strong>' + formatNIS(exec.budget) + '</strong></div>';
-      }
-      if (exec.notes) {
-        html += '<div class="exec-item-notes">' + exec.notes + '</div>';
-      }
-      html += '</div>';
-    });
-    html += '</div>';
-    html += '</div>';
-  }
-
-  // 9. Municipal Impact Callout
-  if (result.municipalSection) {
-    html += '<div class="municipal-impact-box">';
-    html += '<div class="municipal-title">🏛️ משמעות לשלטון המקומי ולרשויות:</div>';
-    html += '<div class="municipal-text">' + result.municipalSection + '</div>';
-    html += '</div>';
-  }
-
-  // 10. Sources Bar
   if (result.sources && result.sources.length > 0) {
     html += '<div class="answer-sources-wrap">';
     html += '<span class="sources-label">מקורות מאומתים שעליהם מתבססת התשובה:</span>';
@@ -1209,10 +1407,8 @@ function renderAskAnswer(result) {
   }
 
   html += '</div>'; // End ask-answer-card
-
   container.innerHTML = html;
 
-  // Bind source pill click events to drawer modal
   container.querySelectorAll(".source-pill-btn").forEach(btn => {
     btn.addEventListener("click", () => {
       const sourceId = btn.getAttribute("data-source-id");

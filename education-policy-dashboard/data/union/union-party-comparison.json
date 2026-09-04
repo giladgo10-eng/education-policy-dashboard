@@ -1,0 +1,1254 @@
+{
+  "$schema": "./schemas/union-party-comparison.schema.json",
+  "metadata": {
+    "dataset": "union_party_comparison",
+    "version": "2.0.0",
+    "phase": "all_themes_expanded",
+    "description": "מטריצת השוואת עמדות איגוד מנהלי אגפי החינוך מול מצעי המפלגות, הסכמים קואליציוניים ומדיניות ביצוע בפועל – גרסה מורחבת על פני כלל תחומי המחקר",
+    "status": "expansion_completed",
+    "lastUpdated": "2026-09-05",
+    "epistemicRules": {
+      "antiCausalityRule": "דמיון בין עמדת האיגוד לבין מצע מפלגה אינו הוכחה להשפעה או סיבתיות. ברירת מחדל: no_causality_inferred.",
+      "absenceOfEvidenceRule": "absence_of_evidence != evidence_of_opposition. היעדר אזכור של הרשות המקומית או סוגיה אינו מהווה עדות להתנגדות (Tension), אלא מחייב סיווג כ-insufficient_evidence או partial_alignment בהתאם לממצאים.",
+      "comparisonTypes": {
+        "union_vs_platform": "טענת/עמדת איגוד מסווגת מול מצע מפלגה רשמי (אין להניח שטענת האיגוד היא ברמה A; שמור תמיד את unionSourceAuthority)",
+        "union_vs_coalition_agreement": "איגוד מול הסכם קואליציוני חתום",
+        "union_vs_implementation": "איגוד מול מדיניות וביצוע ממשלתי בפועל"
+      },
+      "subScoreScales": {
+        "principleAlignment": [
+          "aligned",
+          "partial",
+          "conflicting",
+          "insufficient_evidence"
+        ],
+        "mechanismAlignment": [
+          "aligned",
+          "partial",
+          "conflicting",
+          "insufficient_evidence"
+        ],
+        "municipalRoleAlignment": [
+          "aligned",
+          "partial",
+          "conflicting",
+          "insufficient_evidence"
+        ]
+      },
+      "overallScaleDefinitions": {
+        "high_alignment": "התאמה רחבה בעקרון, במנגנון ובמשמעות לרשות המקומית",
+        "partial_alignment": "הסכמה עקרונית או יעד משותף, לצד שוני במנגנון או היעדר פירוט מוניציפלי ללא התנגדות פוזיטיבית",
+        "tension": "ראיה חיובית לכך שהמנגנון המוצע פועל בכיוון המתנגש עם עמדת האיגוד או עוקף את הרשות",
+        "contradiction": "שתי עמדות או פעולות מפורשות שאינן יכולות להתקיים יחד או פועלות בכיוונים מנוגדים לחלוטין",
+        "insufficient_evidence": "היעדר התייחסות במקור הרשמי של המפלגה לסוגיה זו"
+      }
+    },
+    "metrics": {
+      "totalComparisons": 51,
+      "byComparisonType": {
+        "union_vs_platform": 43,
+        "union_vs_coalition_agreement": 5,
+        "union_vs_implementation": 3
+      },
+      "byAlignment": {
+        "partial_alignment": 23,
+        "high_alignment": 11,
+        "insufficient_evidence": 10,
+        "tension": 3,
+        "contradiction": 4
+      },
+      "byConfidence": {
+        "medium": 36,
+        "low": 15
+      }
+    }
+  },
+  "comparisons": [
+    {
+      "id": "CMP-GOV-BEYACHAD-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-GOV-001",
+      "partyId": "PARTY-BEYACHAD",
+      "partyPositionId": "POS-BEY-DEC-001",
+      "issueId": "ISSUE-DECENTRALIZATION",
+      "unionSourceAuthority": "C",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "partial",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "הסכמה עקרונית רחבה על ביזור סמכויות והעברת כוח ניהולי ותקציבי מהמטה הריכוזי של משרד החינוך לשטח.",
+        "דגש על גמישות פדגוגית ותקציבית המותאמת לצרכים המקומיים."
+      ],
+      "differences": [
+        "תוכנית ביחד מציעה ביזור הדרגתי עם דיפרנציאציה על בסיס חוסן הרשות (התמקדות ברשויות חזקות בשלב ראשון), בעוד עמדת האיגוד במודל קמינסקי מדגישה זיכיון מוסדר ל-5 שנים תחת מדדי כשירות ובקרה ציבורית שוויונית לכלל הרשויות.",
+        "תוכנית ביחד מעניקה משקל רב לאוטונומיה מוסדית של מנהל בית הספר (גיוס, שכר בכיר), בעוד האיגוד מדגיש את תפקיד מנהל אגף החינוך כמתכלל יישובי."
+      ],
+      "evidence": "תוכנית החינוך של ביחד מציעה העברת סמכויות ניהוליות לרשויות חזקות במודל פיילוט, לצד אוטונומיה למנהלי בתי ספר.",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-GOV-YASHAR-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-GOV-001",
+      "partyId": "PARTY-YASHAR",
+      "partyPositionId": "POS-YAS-DEC-001",
+      "issueId": "ISSUE-DECENTRALIZATION",
+      "unionSourceAuthority": "C",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "aligned",
+      "municipalRoleAlignment": "aligned",
+      "alignment": "high_alignment",
+      "similarities": [
+        "תמיכה מפורשת ומנומקת בחקיקת חוק סמכויות שיעגן את מעמד הרשות המקומית כריבון חינוכי מקומי.",
+        "הקצאת סלי תקציב גמישים ישירות לרשויות המקומיות וצמצום רגולציית יתר של משרד החינוך.",
+        "הכרה בצורך בהגדרה ברורה של חלוקת האחריות והסמכות בין השלטון המרכזי לשלטון המקומי."
+      ],
+      "differences": [
+        "האיגוד הציע מנגנון זיכיון ספציפי של 5 שנים עם חידוש תקופתי; במצע ישר! (איזנקוט) הדגש הוא על חוק סמכויות כללי והסדרה מוסדית רחבה."
+      ],
+      "evidence": "מצע מפלגת ישר! (איזנקוט) כולל פרק מפורט על ביזור סמכויות לרשויות המקומיות וחקיקת חוק סמכויות ייעודי.",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-GOV-DEMOCRATS-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-GOV-001",
+      "partyId": "PARTY-DEMOCRATS",
+      "partyPositionId": "POS-DEM-DEC-001",
+      "issueId": "ISSUE-DECENTRALIZATION",
+      "unionSourceAuthority": "C",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "insufficient_evidence",
+      "municipalRoleAlignment": "partial",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "תמיכה עקרונית בחיזוק השלטון המקומי כזרוע ביצועית ופדגוגית מרכזית.",
+        "שאיפה לצמצום שליטת המטה ומתן מענה מותאם אוכלוסייה."
+      ],
+      "differences": [
+        "הדגש של הדמוקרטים מושם על הגנה מפני פוליטיזציה, חיזוק החינוך הממלכתי וביטול תקצוב יתר למגזרים פרטיים, ופחות על מנגנון רגולטורי של מודל זיכיון מוניציפלי.",
+        "המצע אינו מפרט מודל ביזור דיפרנציאלי לפי איתנות רשותית."
+      ],
+      "evidence": "מצע הדמוקרטים (גולן) תומך בביזור פדגוגי וניהולי לצד בלימת התערבות פוליטית של משרד החינוך.",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-GOV-BEYTENU-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-GOV-001",
+      "partyId": "PARTY-YISRAEL-BEYTENU",
+      "partyPositionId": "POS-YB-DEC-001",
+      "issueId": "ISSUE-DECENTRALIZATION",
+      "unionSourceAuthority": "C",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "insufficient_evidence",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "הסכמה עקרונית על נחיצות ביזור סמכויות, מתן אוטונומיה ניהולית ותקציבית וצמצום בירוקרטיה מרכזית של משרד החינוך."
+      ],
+      "differences": [
+        "ישראל ביתנו ממקדת את האוטונומיה באופן כמעט בלעדי במנהל בית הספר (אוטונומיה תקציבית ופדגוגית, שכר בכיר, סמכות גיוס ופיטורים).",
+        "מצע המפלגה אינו מתייחס למעמד הרשות המקומית או למנהל אגף החינוך כגורם מתכלל יישובי, אך אינו מתנגד להם פוזיטיבית (Absence of Evidence != Evidence of Opposition)."
+      ],
+      "evidence": "מצע החינוך 2026 של ישראל ביתנו מקדיש סעיף מפורש למתן עצמאות ניהולית מלאה למנהלי בתי הספר, תוך שתיקה לגבי השלטון המקומי.",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-GOV-RZ-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-GOV-001",
+      "partyId": "PARTY-RELIGIOUS-ZIONISM",
+      "partyPositionId": "POS-RZP-DEC-001",
+      "issueId": "ISSUE-DECENTRALIZATION",
+      "unionSourceAuthority": "C",
+      "partySourceType": "party_platform",
+      "principleAlignment": "insufficient_evidence",
+      "mechanismAlignment": "insufficient_evidence",
+      "municipalRoleAlignment": "insufficient_evidence",
+      "alignment": "insufficient_evidence",
+      "similarities": [],
+      "differences": [
+        "מצע הציונות הדתית מתמקד בעצמאות זרם החמ\"ד (חינוך ממלכתי-דתי) והשוואת תקציבי מוסדותיו, ואינו כולל התייחסות למבנה המשילות הכללי או לביזור סמכויות לרשויות מקומיות.",
+        "בהתאם לכלל האפיסטמי המחייב: היעדר עמדה במצע המפלגה אינו עמדה נגדית ואינו מעיד על התנגדות לביזור."
+      ],
+      "evidence": "במצע הציונות הדתית (2022) לא אותרה התייחסות ישירה לסוגיית ביזור סמכויות לרשויות מקומיות או למודל זיכיון.",
+      "confidence": "low",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-GOV-LIKUD-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-GOV-001",
+      "partyId": "PARTY-LIKUD",
+      "partyPositionId": null,
+      "issueId": "ISSUE-DECENTRALIZATION",
+      "unionSourceAuthority": "C",
+      "partySourceType": "none",
+      "principleAlignment": "insufficient_evidence",
+      "mechanismAlignment": "insufficient_evidence",
+      "municipalRoleAlignment": "insufficient_evidence",
+      "alignment": "insufficient_evidence",
+      "similarities": [],
+      "differences": [
+        "למפלגת הליכוד אין מצע בחירות רשמי ומפורט בנושא חינוך לכנסת ה-25.",
+        "לא ניתן להשוות עמדת איגוד רשמית למצע מפלגתי לא קיים; מדיניות הממשלה בפועל נבחנת בנפרד במסלול union_vs_implementation."
+      ],
+      "evidence": "מפלגת הליכוד לא פרסמה מצע חינוך רשמי מפורט לכנסת ה-25 (מסווג כ-insufficient_evidence).",
+      "confidence": "low",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-SPE-BEYACHAD-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-SPE-001",
+      "partyId": "PARTY-BEYACHAD",
+      "partyPositionId": "POS-BEY-SPE-001",
+      "issueId": "ISSUE-SPECIAL-EDUCATION",
+      "unionSourceAuthority": "F",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "insufficient_evidence",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "הכרה משותפת בעומס התקציבי והניהולי של מערך החינוך המיוחד ובצורך בשיפור המענה לתלמידים משולבים."
+      ],
+      "differences": [
+        "תוכנית ביחד מתמקדת בשיפור איכות השירותים והטיפולים הניתנים לתלמיד, אך אינה נוקבת בדרישה המפורשת של האיגוד לשיפוי ממשלתי מלא (100%) על עלויות הסעות וביטול המאצ'ינג הרשותי."
+      ],
+      "evidence": "תוכנית ביחד כוללת התייחסות לחיזוק החינוך המיוחד והשילוב, אך ללא התחייבות כספית קונקרטית לשיפוי הסעות רשותי מלא.",
+      "confidence": "low",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-SPE-RZ-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-SPE-001",
+      "partyId": "PARTY-RELIGIOUS-ZIONISM",
+      "partyPositionId": "POS-RZP-SPE-001",
+      "issueId": "ISSUE-SPECIAL-EDUCATION",
+      "unionSourceAuthority": "F",
+      "partySourceType": "party_platform",
+      "principleAlignment": "partial",
+      "mechanismAlignment": "insufficient_evidence",
+      "municipalRoleAlignment": "insufficient_evidence",
+      "alignment": "insufficient_evidence",
+      "similarities": [
+        "הכרה עקרונית בחשיבות שילוב ילדים ונוער עם צרכים מיוחדים."
+      ],
+      "differences": [
+        "מצע הציונות הדתית מתמקד אך ורק בתמיכה תקציבית בתנועות נוער המשלבות חניכים עם מוגבלויות.",
+        "תנועת נוער אינה תחליף למערכת הסטטוטורית המוניציפלית (ועדות זכאות ואפיון, מערכי הסעות, כיתות תקשורת וסל שילוב). אין במצע עמדה על מערכת החינוך המיוחד הרשמית, ולכן לפי כללי הביקורת מדובר בהיעדר ראיות ולא בהתנגדות."
+      ],
+      "evidence": "מצע הציונות הדתית עוסק בתמיכה בפעילות תנועות נוער לשילוב בעלי מוגבלויות ואינו נוגע במימון והפעלת החינוך המיוחד המוניציפלי.",
+      "confidence": "low",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-SPE-DEMOCRATS-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-SPE-001",
+      "partyId": "PARTY-DEMOCRATS",
+      "partyPositionId": "POS-DEM-SPE-001",
+      "issueId": "ISSUE-SPECIAL-EDUCATION",
+      "unionSourceAuthority": "F",
+      "partySourceType": "party_platform",
+      "principleAlignment": "insufficient_evidence",
+      "mechanismAlignment": "insufficient_evidence",
+      "municipalRoleAlignment": "insufficient_evidence",
+      "alignment": "insufficient_evidence",
+      "similarities": [],
+      "differences": [
+        "במצע הדמוקרטים (עבודה-מרצ 2025/2026) לא נכלל פרק ייעודי מפורט או עמדה קונקרטית בנושא מימון החינוך המיוחד ושיפוי הסעות לרשויות.",
+        "בהתאם לכללי הביקורת: היעדר עמדה מסווג כ-insufficient_evidence ולא כעמדה נגדית."
+      ],
+      "evidence": "סוגיית שיפוי הסעות החינוך המיוחד והמאצ'ינג הרשותי אינה נזכרת במצע הדמוקרטים.",
+      "confidence": "low",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-SPE-YASHAR-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-SPE-001",
+      "partyId": "PARTY-YASHAR",
+      "partyPositionId": "POS-YAS-SPE-001",
+      "issueId": "ISSUE-SPECIAL-EDUCATION",
+      "unionSourceAuthority": "F",
+      "partySourceType": "party_platform",
+      "principleAlignment": "insufficient_evidence",
+      "mechanismAlignment": "insufficient_evidence",
+      "municipalRoleAlignment": "insufficient_evidence",
+      "alignment": "insufficient_evidence",
+      "similarities": [],
+      "differences": [
+        "מצע ישר! (איזנקוט) עוסק בהרחבה במבנה המשילות, ביזור סמכויות ורפורמת בגרויות, אך אינו מפרט תוכנית פעולה ייעודית למערך החינוך המיוחד והסעותיו."
+      ],
+      "evidence": "מסמך תוכנית החינוך של ישר! מסווג כ-not_stated בסוגיית החינוך המיוחד (POS-YAS-SPE-001).",
+      "confidence": "low",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-SPE-BEYTENU-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-SPE-001",
+      "partyId": "PARTY-YISRAEL-BEYTENU",
+      "partyPositionId": "POS-YB-SPE-001",
+      "issueId": "ISSUE-SPECIAL-EDUCATION",
+      "unionSourceAuthority": "F",
+      "partySourceType": "party_platform",
+      "principleAlignment": "insufficient_evidence",
+      "mechanismAlignment": "insufficient_evidence",
+      "municipalRoleAlignment": "insufficient_evidence",
+      "alignment": "insufficient_evidence",
+      "similarities": [],
+      "differences": [
+        "מצע ישראל ביתנו אינו כולל התייחסות לתקצוב מערך החינוך המיוחד, שיפוי הסעות או מודל שילוב רשותי."
+      ],
+      "evidence": "מסמך מצע החינוך 2026 של ישראל ביתנו מסווג כ-not_stated בסוגיית החינוך המיוחד (POS-YB-SPE-001).",
+      "confidence": "low",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-SPE-COALITION-SHAS-UTJ-001",
+      "comparisonType": "union_vs_coalition_agreement",
+      "unionClaimId": "CLM-UNION-SPE-001",
+      "partyId": "PARTY-SHAS",
+      "partyPositionId": null,
+      "issueId": "ISSUE-SPECIAL-EDUCATION",
+      "unionSourceAuthority": "F",
+      "partySourceType": "coalition_agreement",
+      "principleAlignment": "partial",
+      "mechanismAlignment": "conflicting",
+      "municipalRoleAlignment": "conflicting",
+      "alignment": "tension",
+      "similarities": [
+        "דרישה להרחבת תקציבי חינוך מיוחד ושירותים פרא-רפואיים לאוכלוסיות הזכאיות."
+      ],
+      "differences": [
+        "ההסכמים הקואליציוניים (ש\"ס ויהדות התורה, דצמבר 2022) דרשו השוואת תקציבי חינוך מיוחד, סייעות והסעות למוסדות מוכש\"ר ופטור חרדיים ב-100% מימון מדינה, ללא כפיפות לנהלי הפיקוח והקריטריונים המוניציפליים הממלכתיים.",
+        "מנגנון זה מייצר מתח מבני מול הרשויות המקומיות המחויבות במימון עצמי (מאצ'ינג) ומטיל עליהן נטל הסעות ושינוע נוסף ללא שיפוי ממשלתי הולם."
+      ],
+      "evidence": "סעיף החינוך המיוחד בהסכם הקואליציוני של ש\"ס ויהדות התורה (סעיפים 48-52 בהסכם 2022).",
+      "confidence": "low",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-EMG-BEYACHAD-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-EMG-001",
+      "partyId": "PARTY-BEYACHAD",
+      "partyPositionId": "POS-BEY-SPE-001",
+      "issueId": "ISSUE-DECENTRALIZATION",
+      "unionSourceAuthority": "C",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "partial",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "תמיכה עקרונית בהאצלת סמכויות חירום לרשויות מקומיות והסתמכות על הנהגות מקומיות בעתות משבר."
+      ],
+      "differences": [
+        "האיגוד דורש הכרזה סטטוטורית קבועה על מערך החינוך כמפעל חיוני וניהול עצמאי מול פיקוד העורף; בתוכנית ביחד מדובר בתפיסה כללית של ביזור ללא מנגנון חירום חקיקתי ייעודי."
+      ],
+      "evidence": "ניתוח עמדות מפלגת ביחד בנושאי חוסן וניהול משברים.",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-EMG-DEMOCRATS-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-EMG-001",
+      "partyId": "PARTY-DEMOCRATS",
+      "partyPositionId": "POS-DEM-DEC-001",
+      "issueId": "ISSUE-DECENTRALIZATION",
+      "unionSourceAuthority": "C",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "aligned",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "הכרה מרכזית בתפקיד המכריע של הרשויות המקומיות בהחזקת החברה האזרחית בעת חירום.",
+        "דרישה לחיזוק החוסן הקהילתי והפעלת מערכות חינוך גמישות בזמן מלחמה."
+      ],
+      "differences": [
+        "הדמוקרטים מתמקדים בשיקום הפריפריה ויישובי העימות (צפון ועוטף) ופחות במעמד המשפטי של עובדי ההוראה והאגפים כמפעל חיוני במל\"ח."
+      ],
+      "evidence": "מצע הדמוקרטים בנושאי ביטחון פנים, חירום ושיקום הקהילות המפונות.",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-EMG-GOV-LIKUD-001",
+      "comparisonType": "union_vs_implementation",
+      "unionClaimId": "CLM-UNION-EMG-001",
+      "partyId": "PARTY-LIKUD",
+      "partyPositionId": null,
+      "issueId": "ISSUE-DECENTRALIZATION",
+      "unionSourceAuthority": "C",
+      "partySourceType": "government_execution",
+      "principleAlignment": "partial",
+      "mechanismAlignment": "conflicting",
+      "municipalRoleAlignment": "conflicting",
+      "alignment": "contradiction",
+      "similarities": [
+        "הצהרות ממשלתיות רטוריות על חשיבות הרציפות הלימודית בזמן מלחמת חרבות ברזל."
+      ],
+      "differences": [
+        "בפועל, במהלך מלחמת חרבות ברזל סירבה הממשלה להכיר באגפי החינוך וצוותי ההוראה כמפעל חיוני, מה שהוביל להיעדרות רבבות עובדים ולשיתוק מסגרות.",
+        "משרד החינוך הפעיל מנגנונים ריכוזיים ומנחים מנותקים מהשטח ללא תיאום עם אגפי החינוך המקומיים ועם מרכזי המפונים ברשויות הקולטות, תוך יצירת כאוס ניהולי ופערים חריפים במענה הרגשי והפדגוגי."
+      ],
+      "evidence": "דוחות מצב וניירות עמדה של איגוד מנהלי אגפי החינוך ומסמכי מעקב אחר ביצוע משרד החינוך במלחמת חרבות ברזל (2023-2024).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-EMG-YASHAR-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-EMG-001",
+      "partyId": "PARTY-YASHAR",
+      "partyPositionId": null,
+      "issueId": "ISSUE-DECENTRALIZATION",
+      "unionSourceAuthority": "C",
+      "partySourceType": "party_platform",
+      "principleAlignment": "insufficient_evidence",
+      "mechanismAlignment": "insufficient_evidence",
+      "municipalRoleAlignment": "insufficient_evidence",
+      "alignment": "insufficient_evidence",
+      "similarities": [],
+      "differences": [
+        "תוכנית החינוך של מפלגת ישר! (איזנקוט) מתמקדת בשינויים מבניים בשגרה (חוק סמכויות, מבנה בגרויות) ואינה מציגה דוקטרינת הפעלת חינוך בחירום או התייחסות להגדרת מפעל חיוני."
+      ],
+      "evidence": "מצע ישר! אינו כולל התייחסות קונקרטית לדוקטרינת הפעלת מערכת החינוך בחירום.",
+      "confidence": "low",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-EMG-BEYTENU-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-EMG-001",
+      "partyId": "PARTY-YISRAEL-BEYTENU",
+      "partyPositionId": null,
+      "issueId": "ISSUE-DECENTRALIZATION",
+      "unionSourceAuthority": "C",
+      "partySourceType": "party_platform",
+      "principleAlignment": "insufficient_evidence",
+      "mechanismAlignment": "insufficient_evidence",
+      "municipalRoleAlignment": "insufficient_evidence",
+      "alignment": "insufficient_evidence",
+      "similarities": [],
+      "differences": [
+        "מצע ישראל ביתנו 2026 אינו כולל התייחסות לסוגיית היערכות מערכת החינוך לשעת חירום או מעמד מפעל חיוני."
+      ],
+      "evidence": "במסמך מצע החינוך 2026 של ישראל ביתנו לא אותרה התייחסות למערך החינוך בשעת חירום.",
+      "confidence": "low",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-EAR-BEYACHAD-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-EAR-001",
+      "partyId": "PARTY-BEYACHAD",
+      "partyPositionId": "POS-BEY-EAR-001",
+      "issueId": "ISSUE-EARLY-CHILDHOOD",
+      "unionSourceAuthority": "C",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "aligned",
+      "municipalRoleAlignment": "partial",
+      "alignment": "high_alignment",
+      "similarities": [
+        "הסכמה עקרונית מוחלטת על העברת כלל האחריות על גילאי לידה עד 3 למשרד החינוך.",
+        "דרישה להחלת סטנדרטים לאומיים אחידים ותקינה מוגברת במעונות היום והגנים."
+      ],
+      "differences": [
+        "מצע ביחד מתמקד בסבסוד ממשלתי להורים עובדים וקביעת תו איכות, בעוד האיגוד מדגיש הקמת יחידות גיל רך מתכללות באגפי החינוך ברשויות."
+      ],
+      "evidence": "תוכנית החינוך של ביחד מציעה תו איכות לאומי לגילאי 0-3, איחוד אחריות במשרד החינוך וסבסוד מוגדל (POS-BEY-EAR-001).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-EAR-YASHAR-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-EAR-001",
+      "partyId": "PARTY-YASHAR",
+      "partyPositionId": "POS-YAS-EAR-001",
+      "issueId": "ISSUE-EARLY-CHILDHOOD",
+      "unionSourceAuthority": "C",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "partial",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "תמיכה עקרונית בהעברת גיל הרך 0-3 לאחריות מלאה של משרד החינוך.",
+        "הכרה בחשיבות הפיקוח הממשלתי והסבסוד הדיפרנציאלי לשיפור איכות המסגרות."
+      ],
+      "differences": [
+        "מצע ישר! אינו מפרט את תפקיד יחידות הגיל הרך באגפי החינוך המוניציפליים או את סל השירותים היישובי."
+      ],
+      "evidence": "מצע ישר! (איזנקוט) כולל פרק ייעודי לחינוך לגיל הרך המדגיש העברת אחריות למשרד החינוך והרחבת ההיצע (POS-YAS-EAR-001).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-EAR-DEMOCRATS-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-EAR-001",
+      "partyId": "PARTY-DEMOCRATS",
+      "partyPositionId": "POS-DEM-EAR-001",
+      "issueId": "ISSUE-EARLY-CHILDHOOD",
+      "unionSourceAuthority": "C",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "aligned",
+      "municipalRoleAlignment": "partial",
+      "alignment": "high_alignment",
+      "similarities": [
+        "התאמה מלאה בדרישה להחלת חינוך חינם אוניברסלי, מפוקח ומסובסד מגיל לידה עד 3.",
+        "העלאת שכר הצוותים והרחבת היצע המסגרות המפוקחות תחת משרד החינוך."
+      ],
+      "differences": [
+        "המצע מתמקד במימון ממשלתי ישיר ושיקום מעונות, ללא פירוט הממשק המבני של יחידות הגיל הרך באגפי החינוך המקומיים."
+      ],
+      "evidence": "מצע החינוך של הדמוקרטים דורש שיקום מערך מעונות 0-3, העלאת שכר צוותים והרחבת מסגרות מפוקחות ומסובסדות (POS-DEM-EAR-001).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-EAR-BEYTENU-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-EAR-001",
+      "partyId": "PARTY-YISRAEL-BEYTENU",
+      "partyPositionId": "POS-YB-EAR-001",
+      "issueId": "ISSUE-EARLY-CHILDHOOD",
+      "unionSourceAuthority": "C",
+      "partySourceType": "party_platform",
+      "principleAlignment": "partial",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "partial",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "הכרה בחשיבות החינוך לגיל הרך ומתן מענקים תומכים לצוותים המטפלים והסייעות בגנים."
+      ],
+      "differences": [
+        "התמקדות במענקים נקודתיים לצוותים לקראת פתיחת השנה ולא ברפורמה מבנית של העברת 0-3 והקמת יחידות רשותיות."
+      ],
+      "evidence": "מצע ישראל ביתנו 2026 מתמקד במענקים לסייעות בגני הילדים (תומכות חינוך) וסבסוד חלקי, ללא מודל מבני כולל ל-0-3 (POS-YB-EAR-001).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-EAR-COALITION-FREE-001",
+      "comparisonType": "union_vs_coalition_agreement",
+      "unionClaimId": "CLM-UNION-EAR-001",
+      "partyId": "PARTY-LIKUD",
+      "partyPositionId": null,
+      "issueId": "ISSUE-EARLY-CHILDHOOD",
+      "unionSourceAuthority": "C",
+      "partySourceType": "coalition_agreement",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "insufficient_evidence",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "התחייבות רשמית להחלת חינוך חינם מגיל 0 עד 3 בהסכם הקואליציוני של ממשלת ישראל ה-37."
+      ],
+      "differences": [
+        "ההסכם הקואליציוני אינו קובע את מנגנון ההפעלה הרשותי, תקצוב חוק הפיקוח או בינוי מעונות ציבוריים."
+      ],
+      "evidence": "סעיף בהסכמים הקואליציוניים להקמת הממשלה ה-37 (סעיף COM-37-FREE-0-3) התחייב לחינוך חינם מגיל 0 עד 3.",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-EAR-GOV-EXEC-001",
+      "comparisonType": "union_vs_implementation",
+      "unionClaimId": "CLM-UNION-EAR-001",
+      "partyId": "PARTY-LIKUD",
+      "partyPositionId": null,
+      "issueId": "ISSUE-EARLY-CHILDHOOD",
+      "unionSourceAuthority": "C",
+      "partySourceType": "government_execution",
+      "principleAlignment": "partial",
+      "mechanismAlignment": "conflicting",
+      "municipalRoleAlignment": "conflicting",
+      "alignment": "tension",
+      "similarities": [
+        "הצהרה ממשלתית על תמיכה כלכלית בהורים לגילאי 0-3."
+      ],
+      "differences": [
+        "בפועל, הממשלה יישמה את התוכנית באמצעות נקודות זיכוי במס ומענקים מוגבלים ולא בהקמת מעונות ציבוריים, תקצוב חוק הפיקוח או ביזור סמכויות לאגפי החינוך ברשויות.",
+        "מחסור חמור בכוח אדם ובמסגרות מפוקחות נותר ללא מענה מוניציפלי מתוקצב."
+      ],
+      "evidence": "דו\"ח ביצוע EXEC-FREE-0-3-2024 מצביע על ביצוע חלופי מבוסס הטבות מס ומענקים במקום רשת מעונות ציבורית מפוקחת.",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-EAR3-BEYACHAD-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-EAR-003",
+      "partyId": "PARTY-BEYACHAD",
+      "partyPositionId": "POS-BEY-DIF-001",
+      "issueId": "ISSUE-EARLY-CHILDHOOD",
+      "unionSourceAuthority": "A",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "partial",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "הכרה עקרונית בכך שהשקעה בשנים הראשונות היא המנוף הקריטי ביותר לסגירת פערים חברתיים ומוביליות."
+      ],
+      "differences": [
+        "האיגוד דורש הסטת תקציבי מאקרו ממשלתיים מסיבית (היפוך הפירמידה), בעוד ביחד מתמקדת במודל שקלי דיפרנציאלי כללי."
+      ],
+      "evidence": "תוכנית ביחד מדגישה השקעה מוקדמת ותקצוב דיפרנציאלי לצמצום פערים (POS-BEY-DIF-001, POS-BEY-EAR-001).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-EAR3-DEMOCRATS-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-EAR-003",
+      "partyId": "PARTY-DEMOCRATS",
+      "partyPositionId": "POS-DEM-EAR-001",
+      "issueId": "ISSUE-EARLY-CHILDHOOD",
+      "unionSourceAuthority": "A",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "aligned",
+      "municipalRoleAlignment": "partial",
+      "alignment": "high_alignment",
+      "similarities": [
+        "תמיכה מובהקת בהפיכת הגיל הרך לקדימות לאומית תקציבית עליונה לצמצום אי-שוויון מובנה.",
+        "השקעה ממשלתית מאסיבית בבניית מעונות והעלאת שכר מטפלות."
+      ],
+      "differences": [
+        "הדגש הוא על אחריות מדינתית ישירה ופחות על עיגון מנגנוני הניהול באגף החינוך הרשותי."
+      ],
+      "evidence": "מצע הדמוקרטים מציב את השקעת המדינה בגיל הרך כמנוף המרכזי לחיסול הפערים החברתיים (POS-DEM-EAR-001).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-PER-BEYTENU-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-SPE-002",
+      "partyId": "PARTY-YISRAEL-BEYTENU",
+      "partyPositionId": "POS-YB-EAR-001",
+      "issueId": "ISSUE-TEACHER-SHORTAGE",
+      "unionSourceAuthority": "F",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "partial",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "הכרה פוזיטיבית בחשיבות תומכות החינוך והסייעות ודרישה לתגמולן הכספי."
+      ],
+      "differences": [
+        "המצע מתמקד במענקים לפתיחת שנה לסייעות בגנים, בעוד תביעת האיגוד היא להסדרה מקצועית, הגדרת עיסוק לאומית ושכר מבני לסייעות שילוב ורפואיות בחנ\"מ."
+      ],
+      "evidence": "מצע ישראל ביתנו 2026 כולל מענקים ייעודיים לסייעות גני ילדים לקראת פתיחת שנת הלימודים (POS-YB-EAR-001).",
+      "confidence": "low",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-PER-COALITION-UTJ-001",
+      "comparisonType": "union_vs_coalition_agreement",
+      "unionClaimId": "CLM-UNION-SPE-002",
+      "partyId": "PARTY-UTJ",
+      "partyPositionId": null,
+      "issueId": "ISSUE-SPECIAL-EDUCATION",
+      "unionSourceAuthority": "F",
+      "partySourceType": "coalition_agreement",
+      "principleAlignment": "partial",
+      "mechanismAlignment": "conflicting",
+      "municipalRoleAlignment": "conflicting",
+      "alignment": "tension",
+      "similarities": [
+        "הכרה בצורך בשירותי סייעות וטיפולים פרא-רפואיים לתלמידים עם צרכים מיוחדים."
+      ],
+      "differences": [
+        "ההסכם מחייב השוואת שירותי סייעות במוסדות פטור ומוכש\"ר ב-100% ללא כפיפות לפיקוח המקצועי ולסל התקינה של אגפי החינוך ברשויות, תוך יצירת מעקף לתקצוב העירוני."
+      ],
+      "evidence": "סעיף COM-37-UTJ-SPECIAL-EDU-001 בהסכם הקואליציוני של יהדות התורה משווה שירותי סייעות ללא מנגנון פיקוח רשותי אחיד.",
+      "confidence": "low",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-PED-YASHAR-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-PED-001",
+      "partyId": "PARTY-YASHAR",
+      "partyPositionId": "POS-YAS-AI-001",
+      "issueId": "ISSUE-CURRICULUM-STRUCTURE",
+      "unionSourceAuthority": "A",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "aligned",
+      "municipalRoleAlignment": "partial",
+      "alignment": "high_alignment",
+      "similarities": [
+        "הסכמה עקרונית ומעשית מלאה על ביצוע רפורמה כוללת במבנה הבגרויות.",
+        "מעבר משינון להערכת מיומנויות מתקדמות (PISA), למידה מבוססת פרויקטים (PBL) ועבודות חקר."
+      ],
+      "differences": [
+        "מצע ישר! מדגיש התאמה למדדי PISA בינלאומיים כעוגן, בעוד האיגוד מדגיש גמישות פדגוגית ואוטונומיה רשותית בהובלת תהליכי הלמידה."
+      ],
+      "evidence": "מצע ישר! (איזנקוט) קורא מפורשות לרפורמה כוללת במבנה הבגרויות למעבר להערכת מיומנויות PISA ועבודות חקר (POS-YAS-AI-001, POS-024).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-PED-DEMOCRATS-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-PED-001",
+      "partyId": "PARTY-DEMOCRATS",
+      "partyPositionId": "POS-DEM-AI-001",
+      "issueId": "ISSUE-CURRICULUM-STRUCTURE",
+      "unionSourceAuthority": "A",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "aligned",
+      "municipalRoleAlignment": "partial",
+      "alignment": "high_alignment",
+      "similarities": [
+        "דרישה לביטול מתכונת בחינות הבגרות החיצוניות המסורתיות.",
+        "מעבר למודל הערכה פנימית, חלופית ובית-ספרית מבוססת עבודות חקר ומיומנויות."
+      ],
+      "differences": [
+        "הדמוקרטים מציעים ביטול גורף ומהיר של הבגרויות החיצוניות, בעוד האיגוד מציע מודל משולב המאזן בין סטנדרטים ארציים להערכה בית-ספרית."
+      ],
+      "evidence": "מצע הדמוקרטים (גולן) דורש ביטול בחינות הבגרות החיצוניות ומעבר למודל הערכה חלופית בית-ספרית ושימוש ב-AI (POS-022, POS-DEM-AI-001).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-PED-BEYACHAD-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-PED-001",
+      "partyId": "PARTY-BEYACHAD",
+      "partyPositionId": "POS-BEY-AI-001",
+      "issueId": "ISSUE-CURRICULUM-STRUCTURE",
+      "unionSourceAuthority": "A",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "partial",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "הכרה בחשיבות פיתוח מיומנויות המאה ה-21, STEM ולמידה מותאמת אישית."
+      ],
+      "differences": [
+        "ביחד שמה דגש מרכזי על יעדי מדידה כמותיים (יעד 5 יח\"ל מתמטיקה ומדעים) לצד שמירה על מבחני ליבה, בניגוד לדגש של האיגוד על הפחתת עומס המבחנים החיצוניים."
+      ],
+      "evidence": "תוכנית ביחד מתמקדת בהטמעת טכנולוגיה ומצוינות מתמטית-מדעית לצד שמירה על מדדי הצלחה ומדידה (POS-BEY-AI-001, POS-023).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-PED-BEYTENU-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-PED-001",
+      "partyId": "PARTY-YISRAEL-BEYTENU",
+      "partyPositionId": "POS-YB-CUR-001",
+      "issueId": "ISSUE-CURRICULUM-STRUCTURE",
+      "unionSourceAuthority": "A",
+      "partySourceType": "party_platform",
+      "principleAlignment": "insufficient_evidence",
+      "mechanismAlignment": "insufficient_evidence",
+      "municipalRoleAlignment": "insufficient_evidence",
+      "alignment": "insufficient_evidence",
+      "similarities": [],
+      "differences": [
+        "מצע ישראל ביתנו 2026 במבנה הלימודים מתמקד אך ורק בסנכרון לוח החופשות עם המשק ואינו מתייחס למודל הבגרויות או לשיטות הערכה פנימיות."
+      ],
+      "evidence": "במסמך מצע החינוך 2026 של ישראל ביתנו לא אותרה התייחסות למבנה בחינות הבגרות או שיטות ההערכה הפדגוגיות (POS-YB-CUR-001).",
+      "confidence": "low",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-PED2-BEYACHAD-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-PED-002",
+      "partyId": "PARTY-BEYACHAD",
+      "partyPositionId": "POS-BEY-IDE-001",
+      "issueId": "ISSUE-DECENTRALIZATION",
+      "unionSourceAuthority": "A",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "aligned",
+      "municipalRoleAlignment": "aligned",
+      "alignment": "high_alignment",
+      "similarities": [
+        "התאמה מלאה בדרישה להקצאת נתח פדגוגי עצמאי קבוע (20% מתוכנית הלימודים) לסמכות הרשות המקומית.",
+        "צמצום תוכניות החובה האחידות של משרד החינוך לטובת התאמה קהילתית ויישובית."
+      ],
+      "differences": [
+        "האיגוד שם דגש על מנהל האגף כמתכלל הפדגוגי הרשותי, בעוד ביחד מאזנת זאת עם אוטונומיה של מנהלי בתי הספר."
+      ],
+      "evidence": "תוכנית ביחד קובעת חלוקה מוגדרת שבה 20% מתוכנית הלימודים נתונה להכרעת הרשות המקומית (POS-BEY-IDE-001).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-PED2-YASHAR-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-PED-002",
+      "partyId": "PARTY-YASHAR",
+      "partyPositionId": "POS-YAS-DEC-001",
+      "issueId": "ISSUE-DECENTRALIZATION",
+      "unionSourceAuthority": "A",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "aligned",
+      "municipalRoleAlignment": "aligned",
+      "alignment": "high_alignment",
+      "similarities": [
+        "הכרה מפורשת במתן סמכות פדגוגית מלאה לרשויות המקומיות לבחירת תוכניות לימודים מותאמות אוכלוסייה.",
+        "חקיקת חוק סמכויות להגנה על האוטונומיה הפדגוגית המוניציפלית מפני הנחתות מטה."
+      ],
+      "differences": [
+        "המצע רואה במועצה הלאומית לחינוך עוגן בקרה ארצי, לצד האוטונומיה היישובית."
+      ],
+      "evidence": "מצע ישר! תומך בהעברת סמכויות פדגוגיות מלאות לרשויות המקומיות וצמצום תוכניות חובה מונחתות (POS-YAS-DEC-001).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-AI-BEYACHAD-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-AI-001",
+      "partyId": "PARTY-BEYACHAD",
+      "partyPositionId": "POS-BEY-AI-001",
+      "issueId": "ISSUE-AI-TECH",
+      "unionSourceAuthority": "E",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "partial",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "תמיכה נרחבת בהטמעת כלי בינה מלאכותית (AI) בהוראה ובלמידה מותאמת אישית.",
+        "השקעה במרכזי מצוינות וכלים טכנולוגיים לתלמידים ולמורים."
+      ],
+      "differences": [
+        "מצע ביחד מתמקד בטכנולוגיה וב-STEM כמנוף כלכלי-לאומי מכיתה א', בעוד נייר האיגוד מדגיש את הסייג האתי: ה-AI ככלי עזר בלבד שאינו מחליף את המפגש האנושי והקשר החינוכי."
+      ],
+      "evidence": "תוכנית ביחד מציעה הטמעת AI גנרטיבי מכיתה א', הוראה מותאמת ותקציב רב-שנתי ל-STEM (POS-BEY-AI-001).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-AI-YASHAR-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-AI-001",
+      "partyId": "PARTY-YASHAR",
+      "partyPositionId": "POS-YAS-AI-001",
+      "issueId": "ISSUE-AI-TECH",
+      "unionSourceAuthority": "E",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "partial",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "הכרה בצורך בהטמעת טכנולוגיות מתקדמות ו-AI בלמידה מותאמת אישית."
+      ],
+      "differences": [
+        "המצע רואה ב-AI כלי להערכת מיומנויות ולמידה, אך אינו מפתח את תפיסת גבולות הטכנולוגיה ושימור הקשר האנושי כפי שמציג האיגוד."
+      ],
+      "evidence": "מצע ישר! כולל הטמעת AI בלמידה מותאמת אישית כחלק מרפורמת המיומנויות (POS-YAS-AI-001).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-AI-DEMOCRATS-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-AI-001",
+      "partyId": "PARTY-DEMOCRATS",
+      "partyPositionId": "POS-DEM-AI-001",
+      "issueId": "ISSUE-AI-TECH",
+      "unionSourceAuthority": "E",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "insufficient_evidence",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "דגש על הכשרת צוותי ההוראה בשימוש בבינה מלאכותית (AI) ככלי עזר פדגוגי."
+      ],
+      "differences": [
+        "המצע מתמקד בהכשרת מורים כללית ללא התייחסות לתשתיות הדיגיטליות המוניציפליות או לאתיקה של המפגש האנושי."
+      ],
+      "evidence": "מצע הדמוקרטים מציע הכשרת כלל המורים בבינה מלאכותית וטכנולוגיות מתקדמות (POS-DEM-AI-001).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-AI-BEYTENU-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-AI-001",
+      "partyId": "PARTY-YISRAEL-BEYTENU",
+      "partyPositionId": "POS-YB-AI-001",
+      "issueId": "ISSUE-AI-TECH",
+      "unionSourceAuthority": "E",
+      "partySourceType": "party_platform",
+      "principleAlignment": "insufficient_evidence",
+      "mechanismAlignment": "insufficient_evidence",
+      "municipalRoleAlignment": "insufficient_evidence",
+      "alignment": "insufficient_evidence",
+      "similarities": [],
+      "differences": [
+        "מצע ישראל ביתנו אינו מתייחס כלל לנושא בינה מלאכותית, חדשנות דיגיטלית או טכנולוגיה בחינוך."
+      ],
+      "evidence": "במסמך מצע החינוך 2026 של ישראל ביתנו לא אותרה התייחסות לבינה מלאכותית (POS-YB-AI-001).",
+      "confidence": "low",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-MAM-BEYACHAD-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-MAM-001",
+      "partyId": "PARTY-BEYACHAD",
+      "partyPositionId": "POS-BEY-IDE-001",
+      "issueId": "ISSUE-JEWISH-IDENTITY",
+      "unionSourceAuthority": "E",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "aligned",
+      "municipalRoleAlignment": "aligned",
+      "alignment": "high_alignment",
+      "similarities": [
+        "הכרה מפורשת במתן אוטונומיה של 20% מתוכנית הלימודים לרשות המקומית לעיצוב תכנים יישוביים.",
+        "הגנה על ערכי החינוך הממלכתי ומניעת השתלטות גורמים פוליטיים באמצעות מועצה לאומית סטטוטורית."
+      ],
+      "differences": [
+        "ביחד מציעה חלוקה נוקשה באחוזים (60% ליבה, 20% זרם, 20% רשות), בעוד האיגוד מדגיש משילות פדגוגית רחבה ומנגנון סינון ספקים רשותי לכלל תוכניות גפ\"ן."
+      ],
+      "evidence": "תוכנית ביחד קובעת חלוקת תוכנית לימודים (20% רשות) והקמת מועצה לאומית סטטוטורית לחינוך (POS-BEY-IDE-001).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-MAM-YASHAR-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-MAM-001",
+      "partyId": "PARTY-YASHAR",
+      "partyPositionId": "POS-YAS-IDE-001",
+      "issueId": "ISSUE-JEWISH-IDENTITY",
+      "unionSourceAuthority": "E",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "aligned",
+      "alignment": "high_alignment",
+      "similarities": [
+        "הגנה נחרצת על ערכי החינוך הממלכתי, הדמוקרטי והציוני על פי מגילת העצמאות.",
+        "שילוב ביזור סמכויות לרשויות לצד הקמת מועצה לאומית עצמאית לחינוך."
+      ],
+      "differences": [
+        "המצע ממקד את הבקרה ברמה הלאומית (מועצה במתכונת מל\"ל), בעוד האיגוד דורש סמכות חוקית ישירה למנהל אגף החינוך לסנן ולפסול תוכניות גפ\"ן שאינן הולמות את ערכי הקהילה."
+      ],
+      "evidence": "מצע ישר! מדגיש חיזוק החינוך הממלכתי הדמוקרטי לפי מגילת העצמאות והקמת מועצה לאומית סטטוטורית (POS-YAS-IDE-001).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-MAM-DEMOCRATS-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-MAM-001",
+      "partyId": "PARTY-DEMOCRATS",
+      "partyPositionId": "POS-DEM-IDE-001",
+      "issueId": "ISSUE-JEWISH-IDENTITY",
+      "unionSourceAuthority": "E",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "partial",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "התנגדות חריפה להתערבות פוליטית בתכנים חיצוניים ובתוכניות גפ\"ן.",
+        "דרישה להגנה סטטוטורית על החינוך הממלכתי באמצעות מועצה ייעודית בעלת סמכויות מקבילות למועצת החמ\"ד."
+      ],
+      "differences": [
+        "הדמוקרטים מציעים פיקוח ממלכתי ריכוזי והוצאה גורפת של עמותות דתיות, בעוד האיגוד מבקש סמכות הכרעה וסינון פדגוגי ברמת הרשות המקומית בהתאם לאופייה."
+      ],
+      "evidence": "מצע הדמוקרטים דורש הקמת מועצה לחינוך ממלכתי והוצאת עמותות דתיות מגפ\"ן (POS-DEM-IDE-001, POS-012).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-MAM-COALITION-NOAM-001",
+      "comparisonType": "union_vs_coalition_agreement",
+      "unionClaimId": "CLM-UNION-MAM-001",
+      "partyId": "PARTY-NOAM",
+      "partyPositionId": null,
+      "issueId": "ISSUE-JEWISH-IDENTITY",
+      "unionSourceAuthority": "E",
+      "partySourceType": "coalition_agreement",
+      "principleAlignment": "conflicting",
+      "mechanismAlignment": "conflicting",
+      "municipalRoleAlignment": "conflicting",
+      "alignment": "contradiction",
+      "similarities": [
+        "שני הצדדים מכירים בצורך בבקרה ופיקוח על תוכניות חיצוניות הנכנסות לבתי הספר."
+      ],
+      "differences": [
+        "ההסכם הקואליציוני מעביר את הפיקוח על תוכניות חיצוניות בגפ\"ן לרשות פוליטית מרכזית (הרשות לזהות לאומית-יהודית) במשרד רה\"מ, תוך הפקעת סמכות הפיקוח והסינון מידי אגפי החינוך ברשויות ושבירת עקרון הממלכתיות.",
+        "האיגוד דורש משילות מקומית מבוססת מגילת העצמאות וסמכות רשותית לסינון ספקים."
+      ],
+      "evidence": "הסכמים קואליציוניים COM-37-NOAM-IDENTITY-001 ו-002: הקמת הרשות לזהות לאומית-יהודית ומתן סמכויות בקרה על תכנים חיצוניים בגפ\"ן.",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-MAM-GOV-EXEC-001",
+      "comparisonType": "union_vs_implementation",
+      "unionClaimId": "CLM-UNION-MAM-001",
+      "partyId": "PARTY-LIKUD",
+      "partyPositionId": null,
+      "issueId": "ISSUE-JEWISH-IDENTITY",
+      "unionSourceAuthority": "E",
+      "partySourceType": "government_execution",
+      "principleAlignment": "conflicting",
+      "mechanismAlignment": "conflicting",
+      "municipalRoleAlignment": "conflicting",
+      "alignment": "contradiction",
+      "similarities": [],
+      "differences": [
+        "בפועל, הממשלה הקימה את הרשות לזהות לאומית-יהודית והקצתה עשרות מיליוני שקלים לתכנים פוליטיים/אידאולוגיים, מה שעורר התנגדות ישירה והצהרות מרי של עשרות רשויות מקומיות ומנהלי אגפי חינוך.",
+        "משרד החינוך קבע בנוסף רצפת חובה של 4% בגפ\"ן לתוכניות מורשת, בניגוד לדרישת האיגוד לאוטונומיה פדגוגית מלאה לרשות ולבית הספר."
+      ],
+      "evidence": "תיעוד ביצוע EXEC-NOAM-INSTITUTIONAL-001 והחלטות משרד החינוך על רצפת תקציב ייעודית בגפ\"ן.",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-PSY-BEYTENU-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-PSY-001",
+      "partyId": "PARTY-YISRAEL-BEYTENU",
+      "partyPositionId": "POS-YB-EAR-001",
+      "issueId": "ISSUE-TEACHER-SHORTAGE",
+      "unionSourceAuthority": "C",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "partial",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "הכרה פוזיטיבית בחשיבות השירות הפסיכולוגי החינוכי והצורך בחיזוקו הכלכלי.",
+        "מתן מענקים ישירים לפסיכולוגים חינוכיים ברשויות."
+      ],
+      "differences": [
+        "המצע מתמקד במענק כספי חד-פעמי/שנתי (עד 4,500 ₪) לפסיכולוגים, בעוד תביעת האיגוד היא להעמקת המעמד האסטרטגי של השפ\"ח, תקני קבע ושותפות בעיצוב מדיניות החוסן והטראומה העירונית."
+      ],
+      "evidence": "מצע ישראל ביתנו 2026 כולל מענקים לפסיכולוגים חינוכיים עד 4,500 ₪ והעלאת שכר עובדים סוציאליים (POS-YB-EAR-001).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-EQU-BEYACHAD-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-EQU-001",
+      "partyId": "PARTY-BEYACHAD",
+      "partyPositionId": "POS-BEY-DIF-001",
+      "issueId": "ISSUE-DIFFERENTIAL-FUNDING",
+      "unionSourceAuthority": "E",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "partial",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "מחויבות עקרונית לצמצום פערים בין רשויות ואוכלוסיות מוחלשות.",
+        "תמיכה בתקצוב דיפרנציאלי לחיזוק הפריפריה החברתית והגיאוגרפית."
+      ],
+      "differences": [
+        "ביחד מציעה מודל תקצוב שקלי פר-תלמיד ברמה הלאומית, אך אינה עוסקת ברגולציה עירונית של תשלומי הורים (תל\"ן) או בלימת הפרטה סמויה ברמה המוניציפלית."
+      ],
+      "evidence": "מצע ביחד מציע מעבר לתקצוב שקלי פר-תלמיד לפי נוסחה דיפרנציאלית (POS-BEY-DIF-001).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-EQU-DEMOCRATS-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-EQU-001",
+      "partyId": "PARTY-DEMOCRATS",
+      "partyPositionId": "POS-DEM-DIF-001",
+      "issueId": "ISSUE-DIFFERENTIAL-FUNDING",
+      "unionSourceAuthority": "E",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "aligned",
+      "municipalRoleAlignment": "partial",
+      "alignment": "high_alignment",
+      "similarities": [
+        "התאמה מלאה במאבק בהפרטה ובפערים הנוצרים כתוצאה מתשלומי הורים ותקצוב מגזרי עודף.",
+        "דרישה להגבלת תל\"ן והשוואת תנאי התקצוב לפי רקע סוציו-אקונומי ומספר תלמידים."
+      ],
+      "differences": [
+        "הדמוקרטים ממקדים את הרגולציה בחקיקה ואיסורים ארציים, בעוד האיגוד מציע כלי אבחון רשותי (מחוון) ואמנה עירונית מוסכמת."
+      ],
+      "evidence": "מצע הדמוקרטים דורש ביטול פערים תקציביים, תקצוב לפי רקע סוציו-אקונומי ומאבק בהפרטה ובתשלומי הורים (POS-DEM-DIF-001).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-EQU-HADASH-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-EQU-001",
+      "partyId": "PARTY-HADASH",
+      "partyPositionId": "POS-HAD-HIST-DIF-001",
+      "issueId": "ISSUE-DIFFERENTIAL-FUNDING",
+      "unionSourceAuthority": "E",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "partial",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "התנגדות עקרונית נחרצת להפרטת החינוך ולתשלומי הורים מפלים.",
+        "דרישה לחינוך חינם מלא ושוויוני וסגירת פערי תקצוב ותשתיות."
+      ],
+      "differences": [
+        "מצע חד\"ש מתמקד בשוויון אזרחי ולאומי ובניית כיתות במגזר הערבי, ללא פירוט מנגנוני הבקרה המוניציפליים של אגפי החינוך."
+      ],
+      "evidence": "מצע חד\"ש דורש חינוך חינם ממעונות עד אקדמיה וסגירת פערי תקצוב בחינוך הערבי (POS-HAD-HIST-DIF-001).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-EQU-COALITION-UTJ-NAHARI-001",
+      "comparisonType": "union_vs_coalition_agreement",
+      "unionClaimId": "CLM-UNION-EQU-001",
+      "partyId": "PARTY-UTJ",
+      "partyPositionId": null,
+      "issueId": "ISSUE-DIFFERENTIAL-FUNDING",
+      "unionSourceAuthority": "E",
+      "partySourceType": "coalition_agreement",
+      "principleAlignment": "conflicting",
+      "mechanismAlignment": "conflicting",
+      "municipalRoleAlignment": "conflicting",
+      "alignment": "contradiction",
+      "similarities": [],
+      "differences": [
+        "ההסכם הקואליציוני מחייב הרחבה של חוק נהרי על מוסדות פטור ומוכש\"ר ומפעיל מנגנון קיזוז כפוי של תקציבי הרשויות המקומיות לטובת מוסדות אלו.",
+        "עמדת האיגוד שוללת כפיית קיזוז תקציבי על הרשויות ודורשת התניית תקצוב בפיקוח שוויוני ומניעת הסללה מגזרית."
+      ],
+      "evidence": "הסכם קואליציוני COM-37-UTJ-NAHARI-001 ו-COM-37-SHAS-OFFSET-001: הרחבת חוק נהרי ונוהל קיזוז תקציב מרשויות מקומיות.",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-SAF-BEYACHAD-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-SAF-001",
+      "partyId": "PARTY-BEYACHAD",
+      "partyPositionId": "POS-BEY-AI-001",
+      "issueId": "ISSUE-PROTECTION-SAFETY",
+      "unionSourceAuthority": "E",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "partial",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "הכרה בצורך בהגנה על צוותי ההוראה ובלימת האלימות בבתי הספר.",
+        "מתן גיבוי למורים ולמנהלים לשמירה על ביטחונם האישי."
+      ],
+      "differences": [
+        "ביחד מתמקדת בהצהרת כוונות על הגנה מאלימות, בעוד האיגוד מציג תוכנית מפורטת: מדריכי מוגנות ככוח אדם משלים, החמרת סנקציות כלפי הורים ותלמידים ומעטפת רשותית."
+      ],
+      "evidence": "תוכנית החינוך של ביחד כוללת הגנה מאלימות בבתי ספר וביטחון אישי לצוותי הוראה (POS-023).",
+      "confidence": "low",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-HOL-DEMOCRATS-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-HOL-001",
+      "partyId": "PARTY-DEMOCRATS",
+      "partyPositionId": "POS-DEM-DEC-001",
+      "issueId": "ISSUE-CURRICULUM-STRUCTURE",
+      "unionSourceAuthority": "C",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "partial",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "הכרה בחשיבות החינוך הבלתי פורמלי, תנועות הנוער וסבסוד צהרונים להרחבת יום הלימודים."
+      ],
+      "differences": [
+        "המצע מתמקד בסבסוד צהרונים ותנועות נוער כתוכניות נפרדות, בעוד דוקטרינת האיגוד דורשת רצף פדגוגי אורגני אחד מ-08:00 עד 20:00 בהובלת אגף החינוך הרשותי (\"אין ילד של בוקר וילד של אחה\"צ\")."
+      ],
+      "evidence": "מצע הדמוקרטים מדגיש חיזוק תנועות הנוער והחינוך הבלתי פורמלי וסבסוד צהרונים (POS-DEM-DEC-001).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-STA-YASHAR-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-STA-001",
+      "partyId": "PARTY-YASHAR",
+      "partyPositionId": "POS-YAS-DEC-001",
+      "issueId": "ISSUE-DECENTRALIZATION",
+      "unionSourceAuthority": "C",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "aligned",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "תמיכה בחקיקת חוק סמכויות מוניציפלי וביסוס מעמד ההנהגה החינוכית המקומית."
+      ],
+      "differences": [
+        "המצע מתמקד בביזור לרשות המקומית בכללותה ואינו מגדיר במפורש את מעמדו הסטטוטורי של מנהל אגף החינוך בחקיקה ייעודית."
+      ],
+      "evidence": "מצע ישר! תומך בהסדרת יחסי שלטון מרכזי-מקומי בחקיקה ראשית והעברת סמכויות ניהול לרשויות (POS-YAS-DEC-001).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    },
+    {
+      "id": "CMP-STA-BEYACHAD-001",
+      "comparisonType": "union_vs_platform",
+      "unionClaimId": "CLM-UNION-STA-001",
+      "partyId": "PARTY-BEYACHAD",
+      "partyPositionId": "POS-BEY-DEC-001",
+      "issueId": "ISSUE-DECENTRALIZATION",
+      "unionSourceAuthority": "C",
+      "partySourceType": "party_platform",
+      "principleAlignment": "aligned",
+      "mechanismAlignment": "partial",
+      "municipalRoleAlignment": "partial",
+      "alignment": "partial_alignment",
+      "similarities": [
+        "תמיכה בהעברת סמכויות ביצועיות וניהוליות לשלטון המקומי."
+      ],
+      "differences": [
+        "הדגש בביחד מושם על אוטונומיה למנהלי בתי הספר ושכר בכיר למנהלים, ללא הגדרת סל סמכויות סטטוטורי למנהל האגף הרשותי."
+      ],
+      "evidence": "תוכנית ביחד מציעה ביזור דיפרנציאלי לרשויות חזקות לצד אוטונומיה מוסדית למנהלי מוסדות (POS-BEY-DEC-001).",
+      "confidence": "medium",
+      "causalityAssessment": "no_causality_inferred"
+    }
+  ]
+}

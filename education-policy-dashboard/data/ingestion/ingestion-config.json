@@ -1,0 +1,56 @@
+{
+  "$schema": "./schemas/ingestion-config.schema.json",
+  "version": "1.0.0",
+  "pipelineName": "Education Policy Ingestion Pipeline V1",
+  "sourceFolders": [
+    {
+      "id": "SRC-INBOX",
+      "name": "תיקיית קליטה מקומית ייעודית (Inbox)",
+      "path": "data/ingestion/inbox",
+      "type": "local_inbox",
+      "enabled": true
+    },
+    {
+      "id": "SRC-GDRIVE-LOCAL",
+      "name": "תיקיית Google Drive מסונכרנת למחשב (מדיניות האיגוד לאורך השנים)",
+      "path": "C:/Users/giladgo/Documents/AAAגלעד כללי/איגוד תשפו 2025-2026/מדיניות האיגוד לאורך השנים",
+      "type": "gdrive_synced_local",
+      "enabled": true
+    }
+  ],
+  "supportedExtensions": [
+    ".txt",
+    ".md",
+    ".docx",
+    ".pptx",
+    ".pdf"
+  ],
+  "maxFileSizeBytes": 52428800,
+  "stagingPaths": {
+    "index": "data/ingestion/ingestion-index.json",
+    "report": "data/ingestion/ingestion-report.json",
+    "pendingDocuments": "data/ingestion/pending/pending-documents.json",
+    "pendingClaims": "data/ingestion/pending/pending-claims.json",
+    "pendingComparisons": "data/ingestion/pending/pending-comparison-updates.json",
+    "systemMetadata": "data/system-metadata.json"
+  },
+  "safetyRules": {
+    "requireManualApproval": true,
+    "preventActiveOverwrite": true,
+    "preventComparisonAutoUpdate": true,
+    "treatMissingAsOpposition": false,
+    "preventCausalityInference": true,
+    "authorityTierLimits": {
+      "officialPositionAllowedTiers": [
+        "A",
+        "B"
+      ],
+      "requiresReviewTiers": [
+        "C",
+        "D",
+        "E",
+        "F"
+      ]
+    }
+  }
+}

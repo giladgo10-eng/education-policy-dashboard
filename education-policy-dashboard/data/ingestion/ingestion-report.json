@@ -1,0 +1,14 @@
+{
+  "timestamp": "2026-09-04T22:53:14.779Z",
+  "runType": "scan",
+  "scannedCount": 15,
+  "newCount": 0,
+  "changedCount": 0,
+  "unchangedCount": 15,
+  "candidateClaimsCount": 0,
+  "candidateThemesCount": 0,
+  "affectedComparisons": [],
+  "needsHumanReview": [],
+  "errors": [],
+  "summary": "סריקה הושלמה: 15 קבצים נסרקו (0 חדשים, 0 השתנו, 15 ללא שינוי). חולצו 0 טענות מועמדות. 0 פריטים דורשים בדיקה אנושית."
+}

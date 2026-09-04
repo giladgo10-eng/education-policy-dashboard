@@ -1,0 +1,362 @@
+{
+  "$schema": "./schemas/pending-comparisons.schema.json",
+  "metadata": {
+    "version": "1.0.0",
+    "lastUpdated": "2026-09-04T22:53:14.779Z",
+    "count": 44
+  },
+  "comparisonUpdates": [
+    {
+      "updateId": "CMP-UPDATE-3F23C9-CMP-SPE-BEYACHAD-001",
+      "comparisonId": "CMP-SPE-BEYACHAD-001",
+      "pendingDocId": "DOC-PENDING-3F23C9DB",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.594Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-3F23C9-CMP-SPE-RZ-001",
+      "comparisonId": "CMP-SPE-RZ-001",
+      "pendingDocId": "DOC-PENDING-3F23C9DB",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.594Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-3F23C9-CMP-SPE-DEMOCRATS-001",
+      "comparisonId": "CMP-SPE-DEMOCRATS-001",
+      "pendingDocId": "DOC-PENDING-3F23C9DB",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.594Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-3F23C9-CMP-SPE-YASHAR-001",
+      "comparisonId": "CMP-SPE-YASHAR-001",
+      "pendingDocId": "DOC-PENDING-3F23C9DB",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.594Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-3F23C9-CMP-SPE-BEYTENU-001",
+      "comparisonId": "CMP-SPE-BEYTENU-001",
+      "pendingDocId": "DOC-PENDING-3F23C9DB",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.594Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-3F23C9-CMP-SPE-COALITION-SHAS-UTJ-001",
+      "comparisonId": "CMP-SPE-COALITION-SHAS-UTJ-001",
+      "pendingDocId": "DOC-PENDING-3F23C9DB",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.594Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-3F23C9-CMP-PER-COALITION-UTJ-001",
+      "comparisonId": "CMP-PER-COALITION-UTJ-001",
+      "pendingDocId": "DOC-PENDING-3F23C9DB",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.594Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-3F23C9-CMP-GOV-BEYACHAD-001",
+      "comparisonId": "CMP-GOV-BEYACHAD-001",
+      "pendingDocId": "DOC-PENDING-3F23C9DB",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.594Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-3F23C9-CMP-GOV-YASHAR-001",
+      "comparisonId": "CMP-GOV-YASHAR-001",
+      "pendingDocId": "DOC-PENDING-3F23C9DB",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.594Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-3F23C9-CMP-GOV-DEMOCRATS-001",
+      "comparisonId": "CMP-GOV-DEMOCRATS-001",
+      "pendingDocId": "DOC-PENDING-3F23C9DB",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.594Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-3F23C9-CMP-GOV-BEYTENU-001",
+      "comparisonId": "CMP-GOV-BEYTENU-001",
+      "pendingDocId": "DOC-PENDING-3F23C9DB",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.594Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-3F23C9-CMP-GOV-RZ-001",
+      "comparisonId": "CMP-GOV-RZ-001",
+      "pendingDocId": "DOC-PENDING-3F23C9DB",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.594Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-3F23C9-CMP-GOV-LIKUD-001",
+      "comparisonId": "CMP-GOV-LIKUD-001",
+      "pendingDocId": "DOC-PENDING-3F23C9DB",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.594Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-3F23C9-CMP-EMG-BEYACHAD-001",
+      "comparisonId": "CMP-EMG-BEYACHAD-001",
+      "pendingDocId": "DOC-PENDING-3F23C9DB",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.594Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-3F23C9-CMP-EMG-DEMOCRATS-001",
+      "comparisonId": "CMP-EMG-DEMOCRATS-001",
+      "pendingDocId": "DOC-PENDING-3F23C9DB",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.594Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-3F23C9-CMP-EMG-GOV-LIKUD-001",
+      "comparisonId": "CMP-EMG-GOV-LIKUD-001",
+      "pendingDocId": "DOC-PENDING-3F23C9DB",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.594Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-3F23C9-CMP-EMG-YASHAR-001",
+      "comparisonId": "CMP-EMG-YASHAR-001",
+      "pendingDocId": "DOC-PENDING-3F23C9DB",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.594Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-3F23C9-CMP-EMG-BEYTENU-001",
+      "comparisonId": "CMP-EMG-BEYTENU-001",
+      "pendingDocId": "DOC-PENDING-3F23C9DB",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.594Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-3F23C9-CMP-PED2-BEYACHAD-001",
+      "comparisonId": "CMP-PED2-BEYACHAD-001",
+      "pendingDocId": "DOC-PENDING-3F23C9DB",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.594Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-3F23C9-CMP-PED2-YASHAR-001",
+      "comparisonId": "CMP-PED2-YASHAR-001",
+      "pendingDocId": "DOC-PENDING-3F23C9DB",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.594Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-3F23C9-CMP-STA-YASHAR-001",
+      "comparisonId": "CMP-STA-YASHAR-001",
+      "pendingDocId": "DOC-PENDING-3F23C9DB",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.594Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-3F23C9-CMP-STA-BEYACHAD-001",
+      "comparisonId": "CMP-STA-BEYACHAD-001",
+      "pendingDocId": "DOC-PENDING-3F23C9DB",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.594Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-B03B6C-CMP-SPE-BEYACHAD-001",
+      "comparisonId": "CMP-SPE-BEYACHAD-001",
+      "pendingDocId": "DOC-PENDING-B03B6C77",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.966Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-B03B6C-CMP-SPE-RZ-001",
+      "comparisonId": "CMP-SPE-RZ-001",
+      "pendingDocId": "DOC-PENDING-B03B6C77",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.966Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-B03B6C-CMP-SPE-DEMOCRATS-001",
+      "comparisonId": "CMP-SPE-DEMOCRATS-001",
+      "pendingDocId": "DOC-PENDING-B03B6C77",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.966Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-B03B6C-CMP-SPE-YASHAR-001",
+      "comparisonId": "CMP-SPE-YASHAR-001",
+      "pendingDocId": "DOC-PENDING-B03B6C77",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.966Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-B03B6C-CMP-SPE-BEYTENU-001",
+      "comparisonId": "CMP-SPE-BEYTENU-001",
+      "pendingDocId": "DOC-PENDING-B03B6C77",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.966Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-B03B6C-CMP-SPE-COALITION-SHAS-UTJ-001",
+      "comparisonId": "CMP-SPE-COALITION-SHAS-UTJ-001",
+      "pendingDocId": "DOC-PENDING-B03B6C77",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.966Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-B03B6C-CMP-PER-COALITION-UTJ-001",
+      "comparisonId": "CMP-PER-COALITION-UTJ-001",
+      "pendingDocId": "DOC-PENDING-B03B6C77",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.966Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-B03B6C-CMP-GOV-BEYACHAD-001",
+      "comparisonId": "CMP-GOV-BEYACHAD-001",
+      "pendingDocId": "DOC-PENDING-B03B6C77",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.966Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-B03B6C-CMP-GOV-YASHAR-001",
+      "comparisonId": "CMP-GOV-YASHAR-001",
+      "pendingDocId": "DOC-PENDING-B03B6C77",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.966Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-B03B6C-CMP-GOV-DEMOCRATS-001",
+      "comparisonId": "CMP-GOV-DEMOCRATS-001",
+      "pendingDocId": "DOC-PENDING-B03B6C77",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.966Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-B03B6C-CMP-GOV-BEYTENU-001",
+      "comparisonId": "CMP-GOV-BEYTENU-001",
+      "pendingDocId": "DOC-PENDING-B03B6C77",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.966Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-B03B6C-CMP-GOV-RZ-001",
+      "comparisonId": "CMP-GOV-RZ-001",
+      "pendingDocId": "DOC-PENDING-B03B6C77",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.966Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-B03B6C-CMP-GOV-LIKUD-001",
+      "comparisonId": "CMP-GOV-LIKUD-001",
+      "pendingDocId": "DOC-PENDING-B03B6C77",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.966Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-B03B6C-CMP-EMG-BEYACHAD-001",
+      "comparisonId": "CMP-EMG-BEYACHAD-001",
+      "pendingDocId": "DOC-PENDING-B03B6C77",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.966Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-B03B6C-CMP-EMG-DEMOCRATS-001",
+      "comparisonId": "CMP-EMG-DEMOCRATS-001",
+      "pendingDocId": "DOC-PENDING-B03B6C77",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.966Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-B03B6C-CMP-EMG-GOV-LIKUD-001",
+      "comparisonId": "CMP-EMG-GOV-LIKUD-001",
+      "pendingDocId": "DOC-PENDING-B03B6C77",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.966Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-B03B6C-CMP-EMG-YASHAR-001",
+      "comparisonId": "CMP-EMG-YASHAR-001",
+      "pendingDocId": "DOC-PENDING-B03B6C77",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.966Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-B03B6C-CMP-EMG-BEYTENU-001",
+      "comparisonId": "CMP-EMG-BEYTENU-001",
+      "pendingDocId": "DOC-PENDING-B03B6C77",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.966Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-B03B6C-CMP-PED2-BEYACHAD-001",
+      "comparisonId": "CMP-PED2-BEYACHAD-001",
+      "pendingDocId": "DOC-PENDING-B03B6C77",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.966Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-B03B6C-CMP-PED2-YASHAR-001",
+      "comparisonId": "CMP-PED2-YASHAR-001",
+      "pendingDocId": "DOC-PENDING-B03B6C77",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.966Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-B03B6C-CMP-STA-YASHAR-001",
+      "comparisonId": "CMP-STA-YASHAR-001",
+      "pendingDocId": "DOC-PENDING-B03B6C77",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.966Z"
+    },
+    {
+      "updateId": "CMP-UPDATE-B03B6C-CMP-STA-BEYACHAD-001",
+      "comparisonId": "CMP-STA-BEYACHAD-001",
+      "pendingDocId": "DOC-PENDING-B03B6C77",
+      "reason": "התגלו טענות או מקורות חדשים הנוגעים לסוגיה זו",
+      "status": "pending_review",
+      "timestamp": "2026-09-04T22:39:19.966Z"
+    }
+  ]
+}

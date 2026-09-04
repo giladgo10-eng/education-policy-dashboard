@@ -30,7 +30,8 @@
       <button class="nav-tab active" data-section="platforms">📋 מצעי המפלגות — מה המפלגות מציעות</button>
       <button class="nav-tab" data-section="coalition">🏛️ הסכמים קואליציוניים ומבחן הביצוע</button>
       <button class="nav-tab" data-section="union">🎓 עמדות איגוד מנהלי החינוך</button>
-      <button class="nav-tab" data-section="ask">💡 שאל את המחקר</button>
+      <button class="nav-tab" data-section="ask">🔬 מרכז המחקר</button>
+      <button class="nav-tab" data-section="methodology">💡 איך המערכת עובדת?</button>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLScCSJ_E1DkAn9Qa8d43FexpeSFFrIWLgPPQWz5nC_5j78Ts9g/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="nav-tab nav-tab-link">💬 למידה שיתופית</a>
     </div>
   </nav>
@@ -97,31 +98,35 @@
         <div class="party-buttons" id="coalition-party-buttons-container"></div>
       </div>
       <div id="execution-content-area"></div>
-    </div>
-
-    <!-- AREA 3: עמדות איגוד מנהלי אגפי החינוך (הנהגה מקצועית רשותית) -->
-    <div class="main-section-view" id="section-union">
-      <div class="union-header-card">
-        <div class="union-header-badge">🏛️ הנהגה מקצועית רשותית • שכבת מדיניות בלתי-מפלגתית</div>
-        <h2 class="union-header-title">עמדות איגוד מנהלי ומנהלות אגפי החינוך ברשויות המקומיות</h2>
-        <p class="union-header-desc">
-          איגוד מנהלי אגפי החינוך (ע״ר) מייצג את שדרת הניהול המקצועית של מערכות החינוך המקומיות בישראל מאז 1990 (ראשיתו בשנות ה-60). 
-          האיגוד אינו מפלגה פוליטית אלא גוף מקצועי הפועל מול משרד החינוך, מרכז השלטון המקומי וועדת החינוך של הכנסת. 
-          שכבה זו מציגה את עמדות הדרג המקצועי הרשותי, תוך הבחנה אפיסטמית מחמירה בין ציטוטים מדויקים ממסמכי המקור, ניתוח מחקרי, והערכת השפעה ומדיניות (קדימות / התאמה / השפעה מתועדת).
-        </p>
-        <div class="union-header-actions">
-          <a href="https://drive.google.com/drive/folders/19ScYmoBNpvxFndPh5sNQElzhNN42Im05?usp=sharing" target="_blank" rel="noopener noreferrer" class="drive-all-btn">
-            📂 צפייה בארכיון 16 מסמכי המקור של האיגוד ב־Drive ↗
-          </a>
-          <span class="drive-all-hint">ספריית המקורות המלאה של ניירות העמדה, מצגות היו״ר ודוחות המומחים של האיגוד</span>
-        </div>
+      <div class="sub-nav-bar">
+        <button class="sub-tab active" data-subview="agreements">📜 הסכמים לפי מפלגות</button>
+        <button class="sub-tab" data-subview="execution">📊 מבחן הביצוע והתקציב</button>
+        <button class="sub-tab" data-subview="gap">🔍 פערים בין הבטחה לביצוע</button>
       </div>
 
-      <!-- Filter by Topic / Issue -->
-      <div class="selector-card">
-        <div class="selector-label-wrap">
-          <label class="selector-label">סינון עמדות לפי תחום מדיניות:</label>
-          <span class="selector-hint">הצגת עמדות מפורטות, ציטוטים מאומתים ורמת השפעה מתועדת מול מדיניות הממשלה</span>
+      <div id="coalition-content-area"></div>
+    </div>
+
+    <!-- AREA 3: עמדות איגוד מנהלי החינוך -->
+    <div class="main-section-view" id="section-union">
+      <div class="union-header-banner">
+        <div class="union-badge-tag">שכבת ידע מקצועית • איגוד מנהלי אגפי החינוך ברשויות המקומיות</div>
+        <h2 class="union-title">עמדות איגוד מנהלי אגפי החינוך</h2>
+        <p class="union-description">
+          עמדות, ניירות מדיניות ודרישות האיגוד לקראת שנת הלימודים תשפ״ז והבחירות לכנסת — על פי 6 סוגיות הליבה של מערכת החינוך.
+        </p>
+      </div>
+
+      <!-- Sub Navigation for Union -->
+      <div class="sub-nav-bar">
+        <button class="sub-tab active" data-unionsubview="cards">📑 כרטיסי עמדות לפי סוגיות</button>
+        <button class="sub-tab" data-unionsubview="timeline">⏳ ציר זמן והתפתחות רעיונית</button>
+      </div>
+
+      <!-- Topic Filter Pills for Union Cards View -->
+      <div class="filter-card" id="union-filter-card" style="margin-bottom: 24px;">
+        <div class="filter-header">
+          <span class="filter-label">סינון לפי סוגיית ליבה:</span>
         </div>
         <div class="party-buttons" id="union-topic-buttons-container"></div>
       </div>
@@ -129,59 +134,65 @@
       <div id="union-content-area"></div>
     </div>
 
-    <!-- AREA 4: שאל את המחקר (Ask the Research) -->
+    <!-- AREA 4: מרכז המחקר (Research Center) -->
     <div class="main-section-view" id="section-ask">
       <div class="ask-header-box">
-        <div class="ask-badge-tag">מנוע שליפה והשוואת ידע מחקרי • 106 יחידות מאומתות ו-51 סעיפי הסכמים</div>
-        <h2 class="ask-main-title">💡 שאל את המחקר</h2>
-        <p class="ask-subtitle">שאל שאלות בשפה חופשית וקבל תשובות מבוססות מקורות, השוואות עמדות בין מפלגות, סעיפי הסכמים קואליציוניים ומבחני ביצוע מתוך בסיס הידע המאומת של הפרויקט.</p>
+        <div class="ask-badge-tag">מאגר ידע משולב • עמדות האיגוד, מצעי מפלגות, הסכמים קואליציוניים ומבחן הביצוע</div>
+        <h2 class="ask-main-title">🔬 מרכז המחקר</h2>
+        <p class="ask-subtitle">חיפוש והשוואה בין מסמכי איגוד מנהלי ומנהלות אגפי החינוך, מצעי המפלגות, הסכמים קואליציוניים ומבחן הביצוע.</p>
       </div>
 
       <!-- Search Input Card -->
       <div class="ask-search-card">
-        <label class="ask-search-label" for="ask-query-input">מה תרצו לדעת על מדיניות החינוך בישראל?</label>
+        <label class="ask-search-label" for="ask-query-input">מה תרצו לבדוק?</label>
         <div class="ask-input-group">
           <input 
             type="text" 
             id="ask-query-input" 
             class="ask-input" 
-            placeholder="הקלד שאלה (למשל: מה סעיפי החינוך בהסכם ש״ס? מה הובטח לגיל הרך?)" 
+            placeholder="הקלד שאלה (למשל: מה עמדת האיגוד בנושא ביזור סמכויות? מה מציעות המפלגות בגיל הרך?)" 
             autocomplete="off"
           />
-          <button id="ask-submit-btn" class="ask-btn">🔍 שאל את המחקר</button>
+          <button id="ask-submit-btn" class="ask-btn">🔍 חפש במחקר</button>
           <button id="ask-clear-btn" class="ask-btn-secondary" title="נקה שאלה">✕</button>
+        </div>
+
+        <!-- Research Filters -->
+        <div class="research-filters-bar" id="research-filters-bar">
+          <span class="filters-label">מסנני מחקר:</span>
+          <div class="filter-pills-wrap">
+            <button class="filter-pill active" data-filter="all">הכול</button>
+            <button class="filter-pill" data-filter="union">עמדות האיגוד</button>
+            <button class="filter-pill" data-filter="platforms">מצעי המפלגות</button>
+            <button class="filter-pill" data-filter="comparison">איגוד מול מפלגות</button>
+            <button class="filter-pill" data-filter="execution">הסכמים וביצוע</button>
+          </div>
         </div>
 
         <!-- Sample Questions Chips -->
         <div class="ask-sample-questions-box">
-          <span class="sample-label">שאלות לדוגמה מתוך מאגר המחקר:</span>
+          <span class="sample-label">שאלות מפתח לדוגמה מתוך מאגר המחקר:</span>
           <div class="sample-chips-wrap">
-            <button class="sample-chip" data-query="מה מציעות המפלגות בנושא לימודי ליבה?">
-              מה מציעות המפלגות בנושא לימודי ליבה?
+            <button class="sample-chip" data-query="מה עמדת האיגוד בנושא ביזור סמכויות?">
+              מה עמדת האיגוד בנושא ביזור סמכויות?
             </button>
-            <button class="sample-chip" data-query="אילו סעיפי חינוך קיימים בהסכם עם ש״ס?">
-              אילו סעיפי חינוך קיימים בהסכם עם ש״ס?
+            <button class="sample-chip" data-query="אילו מפלגות קרובות לעמדת האיגוד בנושא הגיל הרך?">
+              אילו מפלגות קרובות לעמדת האיגוד בנושא הגיל הרך?
             </button>
-            <button class="sample-chip" data-query="מה התחייבה הממשלה ליהדות התורה בתחום החינוך?">
-              מה התחייבה הממשלה ליהדות התורה בתחום החינוך?
+            <button class="sample-chip" data-query="מה הפער בין האיגוד למפלגות בנושא החינוך המיוחד?">
+              מה הפער בין האיגוד למפלגות בנושא החינוך המיוחד?
+            </button>
+            <button class="sample-chip" data-query="מה אומר המחקר על AI בחינוך?">
+              מה אומר המחקר על AI בחינוך?
+            </button>
+            <button class="sample-chip" data-query="מה הובטח ומה בוצע בנושא חירום וחוסן?">
+              מה הובטח ומה בוצע בנושא חירום וחוסן?
             </button>
             <button class="sample-chip" data-query="איזה הסכם כולל הכי הרבה סעיפי חינוך?">
               איזה הסכם כולל הכי הרבה סעיפי חינוך?
             </button>
             <button class="sample-chip" data-query="באילו הסכמים מופיעות התחייבויות לבינוי מוסדות?">
               באילו הסכמים מופיעות התחייבויות לבינוי מוסדות?
-            </button>
-            <button class="sample-chip" data-query="אילו סעיפים כוללים סכום תקציבי מפורש?">
-              אילו סעיפים כוללים סכום תקציבי מפורש?
-            </button>
-            <button class="sample-chip" data-query="מה עמדת איגוד מנהלי החינוך לגבי ביזור וגפ״ן?">
-              מה עמדת איגוד מנהלי החינוך לגבי ביזור וגפ״ן?
-            </button>
-            <button class="sample-chip" data-query="כיצד הציע האיגוד להסדיר את החינוך מלידה עד 3?">
-              כיצד הציע האיגוד להסדיר את החינוך מלידה עד 3?
-            </button>
-            <button class="sample-chip" data-query="אילו התחייבויות קואליציוניות בוצעו רק חלקית?">
-              אילו התחייבויות קואליציוניות בוצעו רק חלקית?
             </button>
           </div>
         </div>
@@ -193,7 +204,7 @@
         <div class="ask-empty-state">
           <div class="empty-icon">🔎</div>
           <h3>בחר שאלה לדוגמה או הקלד שאילתה משלך</h3>
-          <p>המנוע סורק בזמן אמת 48 טענות מחקריות, 24 עמדות מדיניות, 18 התחייבויות חתומות, 16 ראיות ביצוע ו-51 סעיפי הסכמים קואליציוניים ומציג תשובה מסונתזת מבוססת עובדות.</p>
+          <p>המנוע סורק בזמן אמת עמדות רשמיות של איגוד מנהלי החינוך, 51 השוואות למצעי המפלגות, התחייבויות קואליציוניות ומבחן הביצוע, ומציג תשובה רב-שכבתית מבוססת מקורות.</p>
         </div>
       </div>
 
@@ -231,6 +242,197 @@
               </a>
             </div>
           </div>
+        </div>
+      </div>
+
+      <!-- Research Transparency Note -->
+      <div class="research-transparency-note">
+        המחקר מבוסס על מאגר מקורות מתפתח. המערכת מבחינה בין עמדה רשמית, פרשנות ומידע משני ואינה מסיקה קשר סיבתי ללא ראיה מפורשת.
+      </div>
+    </div>
+
+    <!-- AREA 5: איך המערכת עובדת? (Methodology & Architecture) -->
+    <div class="main-section-view" id="section-methodology">
+      <div class="methodology-header-banner">
+        <div class="methodology-badge-tag">מדריך שקוף למשתמש • מתודולוגיה, מקורות ומנגנון הטיוב</div>
+        <h2 class="methodology-title">💡 איך המערכת עובדת?</h2>
+        <p class="methodology-subtitle">
+          הסבר פשוט, נגיש ונטול קוד על אופן איסוף הנתונים, סיווג מדרג סמכות המקורות, מנגנון ההשוואה בין האיגוד למפלגות ועדכניות המאגר.
+        </p>
+
+        <!-- Freshness Status Bar -->
+        <div class="methodology-freshness-bar" id="methodology-freshness-bar">
+          <div class="freshness-item">
+            <span class="freshness-label">📅 עדכון ידע אחרון:</span>
+            <strong class="freshness-value" id="meta-last-update">5 בספטמבר 2026</strong>
+          </div>
+          <div class="freshness-item">
+            <span class="freshness-label">📑 מסמכי מקור מאומתים:</span>
+            <strong class="freshness-value" id="meta-docs-count">21 מסמכים</strong>
+          </div>
+          <div class="freshness-item">
+            <span class="freshness-label">🎓 טענות איגוד מסווגות:</span>
+            <strong class="freshness-value" id="meta-claims-count">22 טענות</strong>
+          </div>
+          <div class="freshness-item">
+            <span class="freshness-label">⚖️ השוואות פעילות:</span>
+            <strong class="freshness-value" id="meta-comps-count">51 השוואות</strong>
+          </div>
+          <div class="freshness-item">
+            <span class="freshness-label">🔄 סטטוס קליטת חומרים:</span>
+            <span class="freshness-pill pill-live">Pipeline V1 פעיל</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="methodology-content-grid">
+        <!-- Card 1: Sources -->
+        <div class="methodology-card">
+          <div class="m-card-header">
+            <span class="m-card-icon">📚</span>
+            <h3 class="m-card-title">1. אילו מקורות מידע המערכת מכירה?</h3>
+          </div>
+          <p class="m-card-desc">המערכת אינה מסתמכת על שמועות או פרשנויות עיתונאיות, אלא על ארבעה מאגרי מקור ראשוניים מאומתים בלבד:</p>
+          <ul class="m-feature-list">
+            <li><strong>מצעי המפלגות הרשמיים:</strong> מצעים שפורסמו לקראת הבחירות (יש עתיד, הדמוקרטים, ביחד, ישר!, ישראל ביתנו, הציונות הדתית).</li>
+            <li><strong>הסכמים קואליציוניים חתומים:</strong> נוסחי ההסכמים המקוריים של הממשלה ה-37 (ש"ס, יהדות התורה, הציונות הדתית, עוצמה יהודית, נעם, הימין הממלכתי).</li>
+            <li><strong>מסמכי איגוד מנהלי אגפי החינוך:</strong> אמנות, ניירות עמדה רשמיים, דוחות כנסים ופרסומי 'מבט רחב'.</li>
+            <li><strong>מבחן הביצוע והחלטות ממשלה:</strong> החלטות ממשלה, דוחות תקציב המדינה, דוחות החשב הכללי ומעקב ביצוע.</li>
+          </ul>
+        </div>
+
+        <!-- Card 2: Authority Tiers A-F -->
+        <div class="methodology-card">
+          <div class="m-card-header">
+            <span class="m-card-icon">🏛️</span>
+            <h3 class="m-card-title">2. מדרג סמכות עמדות האיגוד (A עד F)</h3>
+          </div>
+          <p class="m-card-desc">כדי למנוע הטעיה, המערכת מבחינה בקפידה בין עמדה רשמית מחייבת לבין שיח מקצועי או מחקר משני:</p>
+          <div class="m-tiers-list">
+            <div class="m-tier-row">
+              <span class="m-tier-badge tier-a">רמה A</span>
+              <div class="m-tier-info"><strong>עמדה רשמית מאושרת:</strong> מסמכי יסוד, אמנת האיגוד, דוחות סיכום תשפ"ו והחלטות הנהלה רשמיות.</div>
+            </div>
+            <div class="m-tier-row">
+              <span class="m-tier-badge tier-b">רמה B</span>
+              <div class="m-tier-info"><strong>ביטוי מוסדי משותף:</strong> ניירות עמדה רשמיים שהוגשו לוועדות הכנסת או פניות משותפות עם מרכז השלטון המקומי.</div>
+            </div>
+            <div class="m-tier-row">
+              <span class="m-tier-badge tier-c">רמה C</span>
+              <div class="m-tier-info"><strong>קול הנהגה והרצאות מפתח:</strong> הרצאות ון ליר, נאום יו"ר האיגוד או ניירות עמדה של מומחים מטעם האיגוד.</div>
+            </div>
+            <div class="m-tier-row">
+              <span class="m-tier-badge tier-d">רמה D</span>
+              <div class="m-tier-info"><strong>מחקר מקצועי ואקדמי:</strong> ניירות מדיניות יישומיים (כגון 'חינוך 2030') ודוחות מחקר מלווים.</div>
+            </div>
+            <div class="m-tier-row">
+              <span class="m-tier-badge tier-e">רמה E</span>
+              <div class="m-tier-info"><strong>ביטאונים ומאמרים:</strong> מבזקי 'תוך כדי קפה' ומדורי 'מבט רחב' המבטאים שיח מקצועי שוטף.</div>
+            </div>
+            <div class="m-tier-row">
+              <span class="m-tier-badge tier-f">רמה F</span>
+              <div class="m-tier-info"><strong>מקור משני או תיעוד היסטורי:</strong> סיקור תקשורתי, חקיקה כללית או תיעוד רטרוספקטיבי.</div>
+            </div>
+          </div>
+          <div class="m-callout-box">
+            🛡️ <strong>כלל ברזל:</strong> חומרים ברמות C–F אינם מוגדרים כעמדה רשמית מחייבת של האיגוד, אלא כעדות מקצועית משלימה.
+          </div>
+        </div>
+
+        <!-- Card 3: Alignment Taxonomy -->
+        <div class="methodology-card">
+          <div class="m-card-header">
+            <span class="m-card-icon">⚖️</span>
+            <h3 class="m-card-title">3. איך נקבעת השוואה ומה פירוש רמות ההתאמה?</h3>
+          </div>
+          <p class="m-card-desc">ההשוואה אינה בודקת דמיון מילולי שטחי אלא נשענת על 3 מדדי עומק: <strong>היעד העקרוני</strong>, <strong>מנגנון היישום</strong> ו<strong>מעמד הרשות המקומית</strong>.</p>
+          <div class="m-alignment-legend">
+            <div class="m-align-item">
+              <span class="alignment-badge alignment-high">התאמה גבוהה</span>
+              <span>הסכמה מלאה על היעד הפדגוגי והכרה מפורשת במעמד הרשות כריבון מקומי.</span>
+            </div>
+            <div class="m-align-item">
+              <span class="alignment-badge alignment-partial">התאמה חלקית</span>
+              <span>תמיכה עקרונית ביעד, אך מנגנון היישום שונה או שמעמד הרשות הוגדר באופן חלקי.</span>
+            </div>
+            <div class="m-align-item">
+              <span class="alignment-badge alignment-tension">פער / מתח</span>
+              <span>מחלוקת פדגוגית או מנהלית מהותית (למשל צמצום האוטונומיה המקומית לטובת פיקוח פוליטי).</span>
+            </div>
+            <div class="m-align-item">
+              <span class="alignment-badge alignment-contradiction">סתירה</span>
+              <span>מדיניות מנוגדת לחלוטין לקווי היסוד של האיגוד או החלשת השלטון המקומי.</span>
+            </div>
+            <div class="m-align-item">
+              <span class="alignment-badge alignment-insufficient">אין מספיק מידע במצע</span>
+              <span>המצע הרשמי של המפלגה אינו מתייחס לסוגיה (היעדר מידע שאינו התנגדות).</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Scientific Neutrality & Transparency -->
+        <div class="methodology-card">
+          <div class="m-card-header">
+            <span class="m-card-icon">🛡️</span>
+            <h3 class="m-card-title">4. עקרונות זהירות, שקיפות ואי-סיבתיות</h3>
+          </div>
+          <ul class="m-feature-list">
+            <li>
+              <strong>היעדר מידע אינו התנגדות:</strong> אם מפלגה לא פירטה במצעה נושא מסוים (למשל תקצוב הסעות חינוך מיוחד), המערכת מסמנת זאת כחוסר מידע במצע ולא כעמדת התנגדות.
+            </li>
+            <li>
+              <strong>שלילת סיבתיות אוטומטית:</strong> המערכת לעולם אינה קובעת שהאיגוד גרם לעמדת מפלגה או השפיע עליה ישירות, אלא אם קיימת ראיה היסטורית בכתב המאמתת זאת.
+            </li>
+            <li>
+              <strong>הפרדה חדה בין מצע, הסכם וביצוע:</strong> הבטחה במצע אינה הסכם קואליציוני, והסכם חתום אינו מעיד על ביצוע בפועל. כל מסלול נבדק בנפרד.
+            </li>
+            <li>
+              <strong>שקיפות ופתיחת מקורות עצמאית:</strong> לכל מסמך, סעיף וטענה מוצמד קישור ישיר למסמך המקורי ב-Google Drive ובמצעי המפלגות לצפייה חופשית.
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <!-- FAQ Section -->
+      <div class="methodology-faq-section">
+        <h3 class="methodology-faq-title">❓ שאלות עזרה נפוצות על המערכת</h3>
+        <div class="methodology-faq-grid">
+          
+          <details class="faq-item">
+            <summary class="faq-summary">על איזה מקור מבוססת התשובה?</summary>
+            <div class="faq-body">
+              כל תשובה במערכת מבוססת על מקורות מאומתים מתוך המאגר המחקרי. בתחתית כל כרטיסייה במרכז המחקר ובחלונות ההשוואה מופיע שם המסמך המדויק, שנת הפרסום וכפתור קישור לצפייה במסמך המקור השלם (PDF / מצע רשמי).
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">למה קבעת התאמה חלקית?</summary>
+            <div class="faq-body">
+              התאמה חלקית ניתנת כאשר מפלגה תומכת עקרונית ביעד של האיגוד (למשל ביזור סמכויות או חינוך חינם 0–3), אך מנגנון היישום שהיא מציעה שונה מתוכנית האיגוד, או שאינה מעגנת באופן מלא את סמכויות מנהל אגף החינוך והרשות המקומית כריבון פדגוגי בשטח.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">איך נקבעה רמת האמינות של מסמך?</summary>
+            <div class="faq-body">
+              רמת האמינות נקבעת על פי מדרג סמכות מובנה: רמות A–B מייצגות מסמכי מדיניות רשמיים ומאושרים (אמנות, דוחות סיכום תשפ"ו, ניירות עמדה רשמיים לוועדות הכנסת); רמות C–D מייצגות נאומים, הרצאות ומחקרים אקדמיים; ורמות E–F מייצגות מאמרי דעה וביטאונים מקצועיים.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">מה ההבדל בין עמדה רשמית למחקר?</summary>
+            <div class="faq-body">
+              עמדה רשמית (רמה A) היא מסמך מדיניות מחייב שאושר על ידי הנהגת האיגוד או מרכז השלטון המקומי. לעומת זאת, מחקר (רמה D) או מאמר דעה (רמה E) הוא ניתוח מקצועי המציג המלצות, תובנות מן השטח או סקירות משוות, אך אינו מהווה הצהרת מדיניות רשמית מחייבת.
+            </div>
+          </details>
+
+          <details class="faq-item">
+            <summary class="faq-summary">מתי עודכן המאגר לאחרונה ואיך הוא מתפתח?</summary>
+            <div class="faq-body">
+              המאגר מתעדכן באופן מתמשך ומבוקר באמצעות צינור קליטה (Ingestion Pipeline V1). תאריך העדכון האחרון מוצג בסרגל העדכניות בראש עמוד זה. כל חומר חדש נבדק, מחולץ ומסווג תחילה לאזור ביניים (Pending), ורק לאחר אימות ובקרה אנושית מדוקדקת הוא משולב במאגר הפעיל.
+            </div>
+          </details>
+
         </div>
       </div>
     </div>

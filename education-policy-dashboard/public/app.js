@@ -7,7 +7,7 @@
  */
 
 const STATE = {
-  activeSection: "platforms", // "platforms" | "coalition" | "union" | "ask"
+  activeSection: "home", // "home" | "platforms" | "coalition" | "union" | "ask" | "methodology"
   activeSubview: "party",     // "party" | "issue"
   sources: [],
   parties: [],
@@ -329,21 +329,60 @@ async function initApp() {
 // ----------------------------------------------------
 // NAVIGATION LOGIC (Section -> Subview)
 // ----------------------------------------------------
+function navigateToSection(section) {
+  if (!section) return;
+  STATE.activeSection = section;
+
+  document.querySelectorAll(".main-nav-bar .nav-tab").forEach(t => {
+    if (t.getAttribute("data-section") === section) {
+      t.classList.add("active");
+    } else {
+      t.classList.remove("active");
+    }
+  });
+
+  document.querySelectorAll(".main-section-view").forEach(s => s.classList.remove("active"));
+  const targetSec = document.getElementById("section-" + section);
+  if (targetSec) targetSec.classList.add("active");
+
+  renderActiveView();
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
 function setupTopNavigation() {
   document.querySelectorAll(".main-nav-bar .nav-tab").forEach(tab => {
     tab.addEventListener("click", () => {
       const section = tab.getAttribute("data-section");
       if (!section) return;
-      STATE.activeSection = section;
+      navigateToSection(section);
+    });
+  });
 
-      document.querySelectorAll(".main-nav-bar .nav-tab").forEach(t => t.classList.remove("active"));
-      tab.classList.add("active");
+  // Enable clicking the header brand logo/title to return to home
+  const brandBlock = document.querySelector(".site-header .brand-block");
+  if (brandBlock) {
+    brandBlock.style.cursor = "pointer";
+    brandBlock.title = "חזרה לדף הבית";
+    brandBlock.addEventListener("click", () => {
+      navigateToSection("home");
+    });
+  }
 
-      document.querySelectorAll(".main-section-view").forEach(s => s.classList.remove("active"));
-      const targetSec = document.getElementById("section-" + section);
-      if (targetSec) targetSec.classList.add("active");
+  // Setup home entrance cards and methodology strip
+  setupHomeNavigation();
+}
 
-      renderActiveView();
+function setupHomeNavigation() {
+  const homeSec = document.getElementById("section-home");
+  if (!homeSec) return;
+
+  homeSec.querySelectorAll("[data-navigate]").forEach(el => {
+    el.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const target = el.getAttribute("data-navigate");
+      if (target) {
+        navigateToSection(target);
+      }
     });
   });
 }
@@ -366,8 +405,31 @@ function setupSubNavigation() {
   });
 }
 
+function formatHebrewDate(isoDateStr) {
+  if (!isoDateStr) return '';
+  const parts = isoDateStr.split('-');
+  if (parts.length === 3) {
+    const months = ['ינואר', 'פברואר', 'מרץ', 'אפריל', 'מאי', 'יוני', 'יולי', 'אוגוסט', 'ספטמבר', 'אוקטובר', 'נובמבר', 'דצמבר'];
+    const day = parseInt(parts[2], 10);
+    const month = months[parseInt(parts[1], 10) - 1];
+    const year = parts[0];
+    if (month) return `${day} ב${month} ${year}`;
+  }
+  return isoDateStr;
+}
+
+function renderHomeScreen() {
+  const meta = STATE.systemMetadata;
+  const updateEl = document.getElementById("home-meta-last-update");
+  if (updateEl && meta && meta.lastKnowledgeUpdate) {
+    updateEl.textContent = formatHebrewDate(meta.lastKnowledgeUpdate);
+  }
+}
+
 function renderActiveView() {
-  if (STATE.activeSection === "platforms") {
+  if (STATE.activeSection === "home") {
+    renderHomeScreen();
+  } else if (STATE.activeSection === "platforms") {
     if (STATE.activeSubview === "party") {
       renderPartyScreen(STATE.selectedPartyId);
     } else if (STATE.activeSubview === "issue") {

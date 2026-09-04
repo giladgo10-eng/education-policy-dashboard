@@ -24,10 +24,11 @@
     </div>
   </header>
 
-  <!-- Top Main Navigation Bar (3 Core Areas) -->
+  <!-- Top Main Navigation Bar (Core Areas) -->
   <nav class="main-nav-bar">
     <div class="nav-inner">
-      <button class="nav-tab active" data-section="platforms">📋 מצעי המפלגות — מה המפלגות מציעות</button>
+      <button class="nav-tab active" data-section="home">🏠 דף הבית</button>
+      <button class="nav-tab" data-section="platforms">📋 מצעי המפלגות — מה המפלגות מציעות</button>
       <button class="nav-tab" data-section="coalition">🏛️ הסכמים קואליציוניים ומבחן הביצוע</button>
       <button class="nav-tab" data-section="union">🎓 עמדות איגוד מנהלי החינוך</button>
       <button class="nav-tab" data-section="ask">🔬 מרכז המחקר</button>
@@ -39,8 +40,93 @@
   <!-- Main Container -->
   <main class="app-container">
 
+    <!-- AREA 0: דף הבית (Home View V1.1) -->
+    <div class="main-section-view active" id="section-home">
+      <!-- Hero Section -->
+      <div class="home-hero-banner">
+        <div class="home-hero-tag">מרחב מחקר דינמי • V1.1</div>
+        <h2 class="home-main-title">מערכת החינוך 2026 — ממדיניות להחלטות ולביצוע</h2>
+        <p class="home-sub-title">
+          מרחב מחקר דינמי לבחינת מדיניות החינוך בישראל — מה מבטיחות המפלגות, מה נקבע בהסכמים הקואליציוניים, מה בוצע בפועל, וכיצד הדברים מתכתבים עם הידע והעמדות המקצועיות של איגוד מנהלי ומנהלות אגפי החינוך.
+        </p>
+      </div>
+
+      <!-- 4 Central Entrances -->
+      <div class="home-cards-grid">
+        <!-- Card 1: מה מבטיחות המפלגות? -->
+        <div class="home-entry-card" data-navigate="platforms">
+          <div class="home-card-header">
+            <span class="home-card-icon">📋</span>
+            <h3 class="home-card-title">מה מבטיחות המפלגות?</h3>
+          </div>
+          <p class="home-card-desc">בחינת מצעי המפלגות והשוואת עמדות בנושאי החינוך המרכזיים.</p>
+          <div class="home-card-footer">
+            <button class="home-card-btn" data-navigate="platforms">למצעי המפלגות ←</button>
+          </div>
+        </div>
+
+        <!-- Card 2: מה קורה מהבטחה לביצוע? -->
+        <div class="home-entry-card" data-navigate="coalition">
+          <div class="home-card-header">
+            <span class="home-card-icon">🏛️</span>
+            <h3 class="home-card-title">מה קורה מהבטחה לביצוע?</h3>
+          </div>
+          <p class="home-card-desc">בחינת ההסכמים הקואליציוניים והמעבר מהתחייבויות למדיניות ולביצוע בפועל.</p>
+          <div class="home-card-footer">
+            <button class="home-card-btn" data-navigate="coalition">להסכמים ולמבחן הביצוע ←</button>
+          </div>
+        </div>
+
+        <!-- Card 3: מה אומר השטח המקצועי? -->
+        <div class="home-entry-card" data-navigate="union">
+          <div class="home-card-header">
+            <span class="home-card-icon">🎓</span>
+            <h3 class="home-card-title">מה אומר השטח המקצועי?</h3>
+          </div>
+          <p class="home-card-desc">עמדות איגוד מנהלי ומנהלות אגפי החינוך, התפתחותן לאורך השנים והקשר ביניהן לבין המדיניות הפוליטית.</p>
+          <div class="home-card-footer">
+            <button class="home-card-btn" data-navigate="union">לעמדות האיגוד ←</button>
+          </div>
+        </div>
+
+        <!-- Card 4: שאל את המחקר (Featured) -->
+        <div class="home-entry-card home-entry-card-featured" data-navigate="ask">
+          <div class="home-card-header">
+            <span class="home-card-icon">🔬</span>
+            <h3 class="home-card-title">שאל את המחקר</h3>
+          </div>
+          <p class="home-card-desc">חיפוש וחיבור בין מצעים, הסכמים קואליציוניים, ביצוע בפועל ועמדות האיגוד.</p>
+          <div class="home-card-footer">
+            <button class="home-card-btn home-card-btn-featured" data-navigate="ask">למרכז המחקר ←</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Methodology Strip -->
+      <div class="home-methodology-strip">
+        <div class="home-strip-content">
+          <div class="home-strip-header">
+            <span class="home-strip-icon">💡</span>
+            <h4 class="home-strip-title">איך המערכת עובדת?</h4>
+          </div>
+          <p class="home-strip-desc">
+            המערכת מבוססת על מסמכי מקור, מפרידה בין עובדה, פרשנות והערכה, ומאפשרת לפתוח את המקורות שעליהם מבוססים הממצאים. המאגר מתעדכן ומתפתח עם הוספת מקורות חדשים.
+          </p>
+        </div>
+        <div class="home-strip-action">
+          <button class="home-strip-btn" data-navigate="methodology">להסבר על המתודולוגיה ←</button>
+        </div>
+      </div>
+
+      <!-- Freshness Footer -->
+      <div class="home-freshness-footer" id="home-freshness-footer">
+        <span class="home-freshness-dot"></span>
+        <span class="home-freshness-text">המאגר מתעדכן ומתפתח | עודכן לאחרונה: <strong id="home-meta-last-update">...</strong></span>
+      </div>
+    </div>
+
     <!-- AREA 1: מצעי המפלגות -->
-    <div class="main-section-view active" id="section-platforms">
+    <div class="main-section-view" id="section-platforms">
       <!-- Sub Navigation for Platforms -->
       <div class="sub-nav-bar">
         <button class="sub-tab active" data-subview="party">🏛️ מפלגה במבט אחד</button>

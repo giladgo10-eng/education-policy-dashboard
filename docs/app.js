@@ -284,15 +284,15 @@ async function initApp() {
       unionPositionsRes,
       sysMetaRes
     ] = await Promise.all([
-      fetch("data/sources.json?v=2.5.0"),
-      fetch("data/parties.json?v=2.5.0"),
-      fetch("data/issues.json?v=2.5.0"),
-      fetch("data/positions.json?v=2.5.0"),
-      fetch("data/commitments.json?v=2.5.0"),
-      fetch("data/execution.json?v=2.5.0"),
-      fetch("data/professional-entities.json?v=2.5.0"),
-      fetch("data/union-positions.json?v=2.5.0"),
-      fetch("data/system-metadata.json?v=2.5.0").then(r => r.json()).catch(() => null)
+      fetch("data/sources.json?v=2.6.0"),
+      fetch("data/parties.json?v=2.6.0"),
+      fetch("data/issues.json?v=2.6.0"),
+      fetch("data/positions.json?v=2.6.0"),
+      fetch("data/commitments.json?v=2.6.0"),
+      fetch("data/execution.json?v=2.6.0"),
+      fetch("data/professional-entities.json?v=2.6.0"),
+      fetch("data/union-positions.json?v=2.6.0"),
+      fetch("data/system-metadata.json?v=2.6.0").then(r => r.json()).catch(() => null)
     ]);
 
     STATE.sources = (await sourcesRes.json()).sources || [];
@@ -327,12 +327,32 @@ async function initApp() {
 }
 
 // ----------------------------------------------------
+// ----------------------------------------------------
 // NAVIGATION LOGIC (Section -> Subview)
 // ----------------------------------------------------
+const SECTION_NAMES = {
+  home: "דף הבית",
+  platforms: "📋 מצעי המפלגות",
+  coalition: "🏛️ הסכמים ומבחן הביצוע",
+  union: "🎓 עמדות איגוד מנהלי החינוך",
+  ask: "🔬 מרכז המחקר",
+  methodology: "💡 איך המערכת עובדת?"
+};
+
 function navigateToSection(section) {
   if (!section) return;
   STATE.activeSection = section;
 
+  // Toggle layout mode on body: mode-home vs mode-content
+  if (section === "home") {
+    document.body.classList.remove("mode-content");
+    document.body.classList.add("mode-home");
+  } else {
+    document.body.classList.remove("mode-home");
+    document.body.classList.add("mode-content");
+  }
+
+  // Update top main nav bar tabs (Home Mode)
   document.querySelectorAll(".main-nav-bar .nav-tab").forEach(t => {
     if (t.getAttribute("data-section") === section) {
       t.classList.add("active");
@@ -341,6 +361,36 @@ function navigateToSection(section) {
     }
   });
 
+  // Update compact content header pills and title (Content Mode)
+  document.querySelectorAll(".content-nav-pills .cnav-pill").forEach(p => {
+    if (p.getAttribute("data-section") === section) {
+      p.classList.add("active");
+    } else {
+      p.classList.remove("active");
+    }
+  });
+
+  // Update mobile dropdown items
+  document.querySelectorAll(".mobile-modules-dropdown .mobile-menu-item").forEach(item => {
+    if (item.getAttribute("data-section") === section) {
+      item.classList.add("active");
+    } else {
+      item.classList.remove("active");
+    }
+  });
+
+  // Close mobile dropdown menu whenever navigation occurs
+  const mobileDropdown = document.getElementById("mobile-modules-dropdown");
+  if (mobileDropdown) {
+    mobileDropdown.classList.remove("open");
+  }
+
+  const activeModuleLabel = document.getElementById("content-active-module-name");
+  if (activeModuleLabel) {
+    activeModuleLabel.textContent = SECTION_NAMES[section] || section;
+  }
+
+  // Toggle section visibility
   document.querySelectorAll(".main-section-view").forEach(s => s.classList.remove("active"));
   const targetSec = document.getElementById("section-" + section);
   if (targetSec) targetSec.classList.add("active");
@@ -350,6 +400,7 @@ function navigateToSection(section) {
 }
 
 function setupTopNavigation() {
+  // Main nav bar tabs
   document.querySelectorAll(".main-nav-bar .nav-tab").forEach(tab => {
     tab.addEventListener("click", () => {
       const section = tab.getAttribute("data-section");
@@ -368,8 +419,73 @@ function setupTopNavigation() {
     });
   }
 
+  // Setup 1-click back to home button in compact content header
+  const backHomeBtn = document.getElementById("btn-back-home");
+  if (backHomeBtn) {
+    backHomeBtn.addEventListener("click", () => {
+      navigateToSection("home");
+    });
+  }
+
+  // Setup brand click in compact content header to return to home
+  const contentBrand = document.getElementById("content-header-brand");
+  if (contentBrand) {
+    contentBrand.addEventListener("click", () => {
+      navigateToSection("home");
+    });
+  }
+
+  // Setup compact content header pills (desktop)
+  document.querySelectorAll(".content-nav-pills .cnav-pill[data-section]").forEach(pill => {
+    pill.addEventListener("click", () => {
+      const sec = pill.getAttribute("data-section");
+      if (sec) navigateToSection(sec);
+    });
+  });
+
+  // Setup mobile menu button (hamburger ☰)
+  const mobileMenuBtn = document.getElementById("btn-mobile-menu");
+  const mobileDropdown = document.getElementById("mobile-modules-dropdown");
+  const closeMobileMenuBtn = document.getElementById("btn-close-mobile-menu");
+
+  if (mobileMenuBtn && mobileDropdown) {
+    mobileMenuBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      mobileDropdown.classList.toggle("open");
+    });
+  }
+
+  if (closeMobileMenuBtn && mobileDropdown) {
+    closeMobileMenuBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      mobileDropdown.classList.remove("open");
+    });
+  }
+
+  // Mobile menu items click
+  document.querySelectorAll(".mobile-modules-dropdown .mobile-menu-item[data-section]").forEach(item => {
+    item.addEventListener("click", () => {
+      const sec = item.getAttribute("data-section");
+      if (sec) {
+        navigateToSection(sec);
+      }
+    });
+  });
+
+  // Close dropdown when clicking outside
+  document.addEventListener("click", (e) => {
+    if (mobileDropdown && mobileDropdown.classList.contains("open")) {
+      if (!mobileDropdown.contains(e.target) && e.target !== mobileMenuBtn) {
+        mobileDropdown.classList.remove("open");
+      }
+    }
+  });
+
   // Setup home entrance cards and methodology strip
   setupHomeNavigation();
+
+  // Set initial mode
+  navigateToSection(STATE.activeSection || "home");
 }
 
 function setupHomeNavigation() {

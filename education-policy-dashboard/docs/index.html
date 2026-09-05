@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>מפת החינוך 2026 | מצעים, הסכמים ומבחן הביצוע</title>
-  <link rel="stylesheet" href="style.css?v=2.5.0">
+  <link rel="stylesheet" href="style.css?v=2.6.0">
 </head>
 <body>
 
@@ -36,6 +36,57 @@
       <a href="https://docs.google.com/forms/d/e/1FAIpQLScCSJ_E1DkAn9Qa8d43FexpeSFFrIWLgPPQWz5nC_5j78Ts9g/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="nav-tab nav-tab-link">💬 למידה שיתופית</a>
     </div>
   </nav>
+
+  <!-- Slim Sticky Navigation Bar for Content View Mode (מצב עבודה של מודול פנימי) -->
+  <header class="content-header-bar" id="content-header-bar">
+    <div class="content-header-inner">
+      <div class="content-header-start">
+        <button class="btn-back-home" id="btn-back-home" title="חזרה לדף הבית">
+          <span class="back-arrow">←</span>
+          <span class="back-text">דף הבית</span>
+        </button>
+        <div class="content-header-brand" id="content-header-brand" title="חזרה לדף הבית">
+          <span class="brand-title">מפת החינוך 2026</span>
+          <span class="brand-divider">•</span>
+          <span class="active-module-name" id="content-active-module-name">מצעי המפלגות</span>
+        </div>
+      </div>
+      <!-- Desktop Navigation Pills (Hidden on Mobile) -->
+      <div class="content-header-nav">
+        <div class="content-nav-pills">
+          <button class="cnav-pill" data-section="platforms" title="מצעי המפלגות">📋 מצעים</button>
+          <button class="cnav-pill" data-section="coalition" title="הסכמים ומבחן הביצוע">🏛️ הסכמים</button>
+          <button class="cnav-pill" data-section="union" title="עמדות איגוד מנהלי החינוך">🎓 איגוד</button>
+          <button class="cnav-pill" data-section="ask" title="מרכז המחקר">🔬 מחקר</button>
+          <button class="cnav-pill" data-section="methodology" title="איך המערכת עובדת?">💡 מתודולוגיה</button>
+          <a href="https://docs.google.com/forms/d/e/1FAIpQLScCSJ_E1DkAn9Qa8d43FexpeSFFrIWLgPPQWz5nC_5j78Ts9g/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="cnav-pill cnav-link" title="טופס למידה שיתופית">💬 למידה שיתופית</a>
+        </div>
+      </div>
+
+      <!-- Mobile Menu Button (Visible on Mobile Only) -->
+      <div class="content-header-mobile-action">
+        <button class="btn-mobile-menu" id="btn-mobile-menu" aria-label="תפריט מודולים" title="מעבר בין מודולים">
+          <span class="menu-icon">☰</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div class="mobile-modules-dropdown" id="mobile-modules-dropdown">
+      <div class="mobile-dropdown-header">
+        <span>מעבר מהיר למודול:</span>
+        <button class="btn-close-mobile-menu" id="btn-close-mobile-menu" aria-label="סגור תפריט">✕</button>
+      </div>
+      <div class="mobile-dropdown-links">
+        <button class="mobile-menu-item" data-section="platforms">📋 מצעי המפלגות</button>
+        <button class="mobile-menu-item" data-section="coalition">🏛️ הסכמים קואליציוניים ומבחן הביצוע</button>
+        <button class="mobile-menu-item" data-section="union">🎓 עמדות איגוד מנהלי החינוך</button>
+        <button class="mobile-menu-item" data-section="ask">🔬 מרכז המחקר (שאל את המחקר)</button>
+        <button class="mobile-menu-item" data-section="methodology">💡 איך המערכת עובדת?</button>
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScCSJ_E1DkAn9Qa8d43FexpeSFFrIWLgPPQWz5nC_5j78Ts9g/viewform?usp=publish-editor" target="_blank" rel="noopener noreferrer" class="mobile-menu-item mobile-menu-link">💬 למידה שיתופית ↗</a>
+      </div>
+    </div>
+  </header>
 
   <!-- Main Container -->
   <main class="app-container">
@@ -539,7 +590,7 @@
     </aside>
   </div>
 
-  <script src="askEngine.js?v=2.5.0"></script>
-  <script src="app.js?v=2.5.0"></script>
+  <script src="askEngine.js?v=2.6.0"></script>
+  <script src="app.js?v=2.6.0"></script>
 </body>
 </html>

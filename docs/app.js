@@ -284,15 +284,15 @@ async function initApp() {
       unionPositionsRes,
       sysMetaRes
     ] = await Promise.all([
-      fetch("data/sources.json?v=2.6.0"),
-      fetch("data/parties.json?v=2.6.0"),
-      fetch("data/issues.json?v=2.6.0"),
-      fetch("data/positions.json?v=2.6.0"),
-      fetch("data/commitments.json?v=2.6.0"),
-      fetch("data/execution.json?v=2.6.0"),
-      fetch("data/professional-entities.json?v=2.6.0"),
-      fetch("data/union-positions.json?v=2.6.0"),
-      fetch("data/system-metadata.json?v=2.6.0").then(r => r.json()).catch(() => null)
+      fetch("data/sources.json?v=2.6.1"),
+      fetch("data/parties.json?v=2.6.1"),
+      fetch("data/issues.json?v=2.6.1"),
+      fetch("data/positions.json?v=2.6.1"),
+      fetch("data/commitments.json?v=2.6.1"),
+      fetch("data/execution.json?v=2.6.1"),
+      fetch("data/professional-entities.json?v=2.6.1"),
+      fetch("data/union-positions.json?v=2.6.1"),
+      fetch("data/system-metadata.json?v=2.6.1").then(r => r.json()).catch(() => null)
     ]);
 
     STATE.sources = (await sourcesRes.json()).sources || [];

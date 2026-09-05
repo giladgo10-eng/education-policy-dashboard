@@ -848,6 +848,35 @@ body.mode-content .app-container {
   background-color: #9a3412;
 }
 
+/* NotebookLM Authentication Notice */
+.notebook-auth-note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+  padding: 8px 12px;
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: var(--radius-sm);
+  color: #475569;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  text-align: center;
+  direction: rtl;
+}
+
+.notebook-auth-note .auth-note-icon {
+  font-size: 0.95rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.notebook-auth-note .auth-note-text {
+  font-weight: 500;
+  color: #334155;
+}
+
 /* Selector Card */
 .selector-card {
   background-color: #ffffff;
@@ -1547,8 +1576,13 @@ body.mode-content .app-container {
 }
 
 @media (max-width: 768px) {
-  .positions-grid, .comparison-grid {
+  .positions-grid, .comparison-grid, .ask-cards-grid {
     grid-template-columns: 1fr;
+  }
+  .notebook-auth-note {
+    font-size: 0.8rem;
+    padding: 6px 10px;
+    gap: 6px;
   }
   .header-inner {
     flex-direction: column;

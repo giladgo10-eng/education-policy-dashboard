@@ -361,18 +361,18 @@
           uClaimsRes, uDocsRes, uThemesRes, uCompsRes, uTimeRes,
           partiesRes, positionsRes
         ] = await Promise.all([
-          fetch("data/knowledge/claims.json?v=2.6.0").then(r => r.json()),
-          fetch("data/knowledge/policy-positions.json?v=2.6.0").then(r => r.json()),
-          fetch("data/knowledge/commitments.json?v=2.6.0").then(r => r.json()),
-          fetch("data/knowledge/execution-evidence.json?v=2.6.0").then(r => r.json()),
-          fetch("data/knowledge/coalition-education-clauses.json?v=2.6.0").then(r => r.json()),
-          fetch("data/union/union-claims.json?v=2.6.0").then(r => r.json()),
-          fetch("data/union/union-documents.json?v=2.6.0").then(r => r.json()),
-          fetch("data/union/union-themes.json?v=2.6.0").then(r => r.json()),
-          fetch("data/union/union-party-comparison.json?v=2.6.0").then(r => r.json()),
-          fetch("data/union/union-timeline.json?v=2.6.0").then(r => r.json()),
-          fetch("data/parties.json?v=2.6.0").then(r => r.json()),
-          fetch("data/positions.json?v=2.6.0").then(r => r.json())
+          fetch("data/knowledge/claims.json?v=2.6.1").then(r => r.json()),
+          fetch("data/knowledge/policy-positions.json?v=2.6.1").then(r => r.json()),
+          fetch("data/knowledge/commitments.json?v=2.6.1").then(r => r.json()),
+          fetch("data/knowledge/execution-evidence.json?v=2.6.1").then(r => r.json()),
+          fetch("data/knowledge/coalition-education-clauses.json?v=2.6.1").then(r => r.json()),
+          fetch("data/union/union-claims.json?v=2.6.1").then(r => r.json()),
+          fetch("data/union/union-documents.json?v=2.6.1").then(r => r.json()),
+          fetch("data/union/union-themes.json?v=2.6.1").then(r => r.json()),
+          fetch("data/union/union-party-comparison.json?v=2.6.1").then(r => r.json()),
+          fetch("data/union/union-timeline.json?v=2.6.1").then(r => r.json()),
+          fetch("data/parties.json?v=2.6.1").then(r => r.json()),
+          fetch("data/positions.json?v=2.6.1").then(r => r.json())
         ]);
 
         this.claims = cRes.claims || [];

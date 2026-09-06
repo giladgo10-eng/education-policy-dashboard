@@ -29,6 +29,7 @@ const STATE = {
   impactTrajectory: null,
   trajectoryCategoryFilter: "ALL",
   trajectoryActiveTab: "future",
+  trajectoryOpenGoalId: null,
   selectedPartyId: "PARTY-BEYACHAD",
   selectedCoalitionPartyId: "PARTY-LIKUD",
   selectedIssueId: "ISSUE-CORE-CURRICULUM",
@@ -2003,6 +2004,66 @@ function renderTrajectoryCategoryButtons() {
   });
 }
 
+function toggleTrajectoryAccordion(goalId) {
+  const currentOpen = STATE.trajectoryOpenGoalId;
+  const container = document.getElementById("trajectory-future-cards-grid");
+  if (!container) return;
+
+  if (currentOpen === goalId) {
+    // Close it
+    STATE.trajectoryOpenGoalId = null;
+    const card = document.getElementById("traj-card-" + goalId);
+    if (card) {
+      card.classList.remove("is-open");
+      const btn = card.querySelector(".traj-accordion-toggle-btn");
+      if (btn) {
+        const textSpan = btn.querySelector(".toggle-text");
+        const iconSpan = btn.querySelector(".toggle-icon");
+        if (textSpan) textSpan.textContent = "פתח ניתוח מלא";
+        if (iconSpan) iconSpan.textContent = "▾";
+        btn.setAttribute("aria-expanded", "false");
+      }
+      const header = card.querySelector(".trajectory-accordion-header");
+      if (header) header.setAttribute("aria-expanded", "false");
+    }
+  } else {
+    // Close previously opened card if any
+    if (currentOpen) {
+      const prevCard = document.getElementById("traj-card-" + currentOpen);
+      if (prevCard) {
+        prevCard.classList.remove("is-open");
+        const prevBtn = prevCard.querySelector(".traj-accordion-toggle-btn");
+        if (prevBtn) {
+          const textSpan = prevBtn.querySelector(".toggle-text");
+          const iconSpan = prevBtn.querySelector(".toggle-icon");
+          if (textSpan) textSpan.textContent = "פתח ניתוח מלא";
+          if (iconSpan) iconSpan.textContent = "▾";
+          prevBtn.setAttribute("aria-expanded", "false");
+        }
+        const prevHeader = prevCard.querySelector(".trajectory-accordion-header");
+        if (prevHeader) prevHeader.setAttribute("aria-expanded", "false");
+      }
+    }
+
+    // Open target card
+    STATE.trajectoryOpenGoalId = goalId;
+    const targetCard = document.getElementById("traj-card-" + goalId);
+    if (targetCard) {
+      targetCard.classList.add("is-open");
+      const btn = targetCard.querySelector(".traj-accordion-toggle-btn");
+      if (btn) {
+        const textSpan = btn.querySelector(".toggle-text");
+        const iconSpan = btn.querySelector(".toggle-icon");
+        if (textSpan) textSpan.textContent = "סגור ניתוח";
+        if (iconSpan) iconSpan.textContent = "▴";
+        btn.setAttribute("aria-expanded", "true");
+      }
+      const header = targetCard.querySelector(".trajectory-accordion-header");
+      if (header) header.setAttribute("aria-expanded", "true");
+    }
+  }
+}
+
 function renderTrajectoryFutureCards() {
   const container = document.getElementById("trajectory-future-cards-grid");
   const counterText = document.getElementById("trajectory-counter-text");
@@ -2026,6 +2087,7 @@ function renderTrajectoryFutureCards() {
   filtered.forEach(item => {
     const p2026 = item.platforms2026 || {};
     const c2022 = item.coalition2022 || {};
+    const isOpen = STATE.trajectoryOpenGoalId === item.id;
 
     // 2026 Platforms overall status pill
     let platformStatusPill = '';
@@ -2093,28 +2155,88 @@ function renderTrajectoryFutureCards() {
       coalClausesHtml += '</div>';
     }
 
-    html += '<div class="trajectory-card">';
+    // Collapsible Accordion Card
+    html += '<div class="trajectory-card trajectory-accordion-card ' + (isOpen ? 'is-open' : '') + '" id="traj-card-' + item.id + '" data-goal-id="' + item.id + '">';
     
-    // Header
-    html += '<div class="trajectory-card-header">';
-    html += '<div class="traj-header-meta">';
+    // Compact Summary Header (Always visible)
+    html += '<div class="trajectory-accordion-header" data-goal-id="' + item.id + '" role="button" tabindex="0" aria-expanded="' + (isOpen ? 'true' : 'false') + '">';
+    html += '<div class="traj-acc-main">';
+    html += '<div class="traj-acc-badges">';
     html += '<span class="traj-category-badge">' + item.category + '</span>';
     html += '<span class="traj-tier-badge tier-' + item.unionSourceAuthority + '">עוגן סמכות רמה ' + item.unionSourceAuthority + '</span>';
     html += '</div>';
-    html += '<span class="status-source-note">מסלול השפעה (4 שלבים)</span>';
+    html += '<h3 class="traj-acc-title">' + item.titleHe + '</h3>';
     html += '</div>';
 
-    // Title
-    html += '<h3 class="trajectory-card-title">' + item.titleHe + '</h3>';
+    // Status Summary Pills in header
+    html += '<div class="traj-acc-summary-pills">';
+    html += '<div class="traj-acc-pill-group">';
+    html += '<span class="traj-pill-label">מצעי 2026:</span>';
+    html += platformStatusPill;
+    html += '</div>';
+    html += '<div class="traj-acc-pill-group">';
+    html += '<span class="traj-pill-label">הסכמי 2022:</span>';
+    html += coalStatusPill;
+    html += '</div>';
+    html += '</div>';
 
-    // 4-Step Stepper Grid
+    // Action toggle button
+    html += '<div class="traj-acc-action">';
+    html += '<button type="button" class="traj-accordion-toggle-btn" aria-expanded="' + (isOpen ? 'true' : 'false') + '" data-goal-id="' + item.id + '">';
+    html += '<span class="toggle-text">' + (isOpen ? 'סגור ניתוח' : 'פתח ניתוח מלא') + '</span>';
+    html += '<span class="toggle-icon">' + (isOpen ? '▴' : '▾') + '</span>';
+    html += '</button>';
+    html += '</div>';
+
+    html += '</div>'; // /.trajectory-accordion-header
+
+    // Collapsible Body containing all 4 windows in one full row
+    html += '<div class="trajectory-accordion-body" id="traj-body-' + item.id + '">';
     html += '<div class="trajectory-stepper-grid">';
 
     // Step 1: מטרת האיגוד
     html += '<div class="stepper-col stepper-col-step1">';
     html += '<div class="step-header"><span class="step-num-badge step1-badge">שלב 1</span><span class="step-title-text">מטרת האיגוד (עוגן מקצועי)</span></div>';
     html += '<div class="step-body">' + item.unionGoal + '</div>';
-    html += '<div class="step1-source-box">📚 מקור: ' + item.unionSourceDoc + '</div>';
+        // Step 1: Union Sources rendering (primary & secondary)
+    const uSources = item.unionSources || [];
+    const primarySources = uSources.filter(s => s.sourceRelation === "primary");
+    const secondarySources = uSources.filter(s => s.sourceRelation === "secondary");
+
+    html += '<div class="step1-source-box">';
+    html += '<div class="source-header-row"><span class="source-icon">📚</span> <strong>מסמך מקור:</strong> <span class="source-doc-name">' + item.unionSourceDoc + '</span></div>';
+
+    if (primarySources.length > 0) {
+      html += '<div class="primary-sources-list">';
+      primarySources.forEach(s => {
+        if (s.sourceUrl && s.sourceUrl !== "source_link_missing") {
+          const linkLabel = primarySources.length === 1 && secondarySources.length === 0
+            ? 'למסמך המקור ↗'
+            : 'למסמך המקור (' + s.sourceTitle + ') ↗';
+          html += '<a href="' + s.sourceUrl + '" target="_blank" rel="noopener noreferrer" class="source-link primary-source-link" title="' + s.sourceTitle + ' (' + s.sourceType + ')">' + linkLabel + '</a>';
+        } else {
+          html += '<div class="source-missing-item"><span class="source-missing-tag">⚠️</span> <span class="source-missing-text">מסמך המקור הישיר טרם זמין</span> <span class="source-missing-detail">(' + s.sourceTitle + ')</span></div>';
+        }
+      });
+      html += '</div>';
+    }
+
+    if (secondarySources.length > 0) {
+      html += '<div class="secondary-sources-list">';
+      secondarySources.forEach(s => {
+        html += '<div class="secondary-source-row">';
+        html += '<span class="secondary-badge">מקור מסכם / מקור משלים:</span> ';
+        if (s.sourceUrl && s.sourceUrl !== "source_link_missing") {
+          html += '<a href="' + s.sourceUrl + '" target="_blank" rel="noopener noreferrer" class="source-link secondary-source-link" title="' + s.sourceTitle + ' (' + s.sourceType + ')">' + s.sourceTitle + ' ↗</a>';
+        } else {
+          html += '<span class="source-missing-text">' + s.sourceTitle + ' (טרם זמין)</span>';
+        }
+        html += '</div>';
+      });
+      html += '</div>';
+    }
+
+    html += '</div>'; // /.step1-source-box
     html += '</div>';
 
     // Step 2: מצעי 2026
@@ -2156,10 +2278,26 @@ function renderTrajectoryFutureCards() {
     html += '</div>';
 
     html += '</div>'; // /.trajectory-stepper-grid
-    html += '</div>'; // /.trajectory-card
+    html += '</div>'; // /.trajectory-accordion-body
+    html += '</div>'; // /.trajectory-card.trajectory-accordion-card
   });
 
   container.innerHTML = html;
+
+  // Setup accordion toggle events
+  container.querySelectorAll(".trajectory-accordion-header").forEach(header => {
+    header.addEventListener("click", (e) => {
+      const goalId = header.getAttribute("data-goal-id");
+      toggleTrajectoryAccordion(goalId);
+    });
+    header.addEventListener("keydown", (e) => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        const goalId = header.getAttribute("data-goal-id");
+        toggleTrajectoryAccordion(goalId);
+      }
+    });
+  });
 }
 
 function renderTrajectoryHistoricalCards() {

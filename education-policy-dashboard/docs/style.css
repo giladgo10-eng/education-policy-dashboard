@@ -5158,12 +5158,7 @@ body.mode-content .app-container {
   font-weight: 700;
 }
 
-@media (max-width: 1200px) {
-  .trajectory-stepper-grid {
-    grid-template-columns: 1fr 1fr;
-    gap: 14px;
-  }
-}
+/* Removed 1200px 2-column split so 4 windows remain in 1 full row on desktop */
 
 @media (max-width: 768px) {
   .trajectory-stepper-grid {
@@ -5179,3 +5174,288 @@ body.mode-content .app-container {
 
 
 
+
+/* ====================================================
+ * Trajectory Collapsible Accordion Cards (UX Upgrade)
+ * ==================================================== */
+.trajectory-accordion-card {
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-light);
+  background: #ffffff;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.trajectory-accordion-card:hover {
+  border-color: #cbd5e1;
+  box-shadow: var(--shadow-md);
+}
+
+.trajectory-accordion-card.is-open {
+  border-color: #93c5fd;
+  box-shadow: 0 4px 16px rgba(37, 99, 235, 0.08);
+}
+
+.trajectory-accordion-header {
+  background: #ffffff;
+  padding: 16px 22px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.15s ease;
+}
+
+.trajectory-accordion-header:hover {
+  background: #f8fafc;
+}
+
+.trajectory-accordion-card.is-open .trajectory-accordion-header {
+  background: #f1f5f9;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.traj-acc-main {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+.traj-acc-badges {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.traj-acc-title {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-main);
+  line-height: 1.35;
+}
+
+.traj-acc-summary-pills {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+  flex-wrap: wrap;
+}
+
+.traj-acc-pill-group {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.traj-pill-label {
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--text-muted);
+}
+
+.traj-acc-action {
+  flex-shrink: 0;
+}
+
+.traj-accordion-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 18px;
+  background: #ffffff;
+  border: 1.5px solid #0284c7;
+  border-radius: 8px;
+  color: #0284c7;
+  font-size: 0.88rem;
+  font-weight: 700;
+  font-family: inherit;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  box-shadow: 0 1px 2px rgba(2, 132, 199, 0.08);
+}
+
+.trajectory-accordion-header:hover .traj-accordion-toggle-btn,
+.traj-accordion-toggle-btn:hover {
+  background: #0284c7;
+  color: #ffffff;
+}
+
+.trajectory-accordion-card.is-open .traj-accordion-toggle-btn {
+  background: #eff6ff;
+  border-color: #0369a1;
+  color: #0369a1;
+}
+
+.trajectory-accordion-card.is-open .trajectory-accordion-header:hover .traj-accordion-toggle-btn {
+  background: #0369a1;
+  color: #ffffff;
+}
+
+.toggle-icon {
+  font-size: 0.92rem;
+  line-height: 1;
+}
+
+/* Collapsible Accordion Body */
+.trajectory-accordion-body {
+  display: none;
+  background: #fafbfc;
+}
+
+.trajectory-accordion-card.is-open .trajectory-accordion-body {
+  display: block;
+  animation: trajFadeIn 0.2s ease;
+}
+
+@keyframes trajFadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .trajectory-accordion-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 16px;
+  }
+  .traj-acc-summary-pills {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+  .traj-acc-action {
+    width: 100%;
+  }
+  .traj-accordion-toggle-btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
+/* ====================================================
+ * Step 1 Union Sources Links & Badges
+ * ==================================================== */
+.step1-source-box {
+  margin-top: 14px;
+  padding-top: 10px;
+  border-top: 1px solid #bae6fd;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.source-header-row {
+  font-size: 0.8rem;
+  color: #0369a1;
+  line-height: 1.4;
+}
+
+.source-doc-name {
+  color: #0c4a6e;
+  font-weight: 600;
+}
+
+.primary-sources-list {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.source-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.79rem;
+  font-weight: 700;
+  text-decoration: none;
+  border-radius: 6px;
+  padding: 4px 10px;
+  transition: all 0.15s ease;
+  width: fit-content;
+}
+
+.primary-source-link {
+  background: #0284c7;
+  color: #ffffff !important;
+  box-shadow: 0 1px 2px rgba(2, 132, 199, 0.2);
+}
+
+.primary-source-link:hover {
+  background: #0369a1;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
+
+.source-missing-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #f8fafc;
+  border: 1px dashed #cbd5e1;
+  border-radius: 6px;
+  padding: 4px 8px;
+  font-size: 0.77rem;
+  color: #64748b;
+  margin-top: 2px;
+}
+
+.source-missing-tag {
+  font-size: 0.82rem;
+}
+
+.source-missing-text {
+  font-weight: 700;
+  color: #475569;
+}
+
+.source-missing-detail {
+  color: #94a3b8;
+  font-size: 0.74rem;
+}
+
+.secondary-sources-list {
+  margin-top: 4px;
+  padding-top: 6px;
+  border-top: 1px dashed #e0f2fe;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.secondary-source-row {
+  font-size: 0.77rem;
+  line-height: 1.45;
+  color: #475569;
+}
+
+.secondary-badge {
+  font-size: 0.71rem;
+  font-weight: 700;
+  color: #475569;
+  background: #e2e8f0;
+  padding: 1px 6px;
+  border-radius: 4px;
+  margin-left: 4px;
+  display: inline-block;
+}
+
+.secondary-source-link {
+  color: #0284c7 !important;
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+.secondary-source-link:hover {
+  color: #0369a1 !important;
+}

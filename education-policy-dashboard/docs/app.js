@@ -26,6 +26,9 @@ const STATE = {
     directness: "ALL",
     search: ""
   },
+  impactTrajectory: null,
+  trajectoryCategoryFilter: "ALL",
+  trajectoryActiveTab: "future",
   selectedPartyId: "PARTY-BEYACHAD",
   selectedCoalitionPartyId: "PARTY-LIKUD",
   selectedIssueId: "ISSUE-CORE-CURRICULUM",
@@ -292,18 +295,20 @@ async function initApp() {
       entitiesRes,
       unionPositionsRes,
       coalitionClausesRes,
-      sysMetaRes
+      sysMetaRes,
+      impactTrajectoryRes
     ] = await Promise.all([
-      fetch("data/sources.json?v=2.6.1"),
-      fetch("data/parties.json?v=2.6.1"),
-      fetch("data/issues.json?v=2.6.1"),
-      fetch("data/positions.json?v=2.6.1"),
-      fetch("data/commitments.json?v=2.6.1"),
-      fetch("data/execution.json?v=2.6.1"),
-      fetch("data/professional-entities.json?v=2.6.1"),
-      fetch("data/union-positions.json?v=2.6.1"),
-      fetch("data/knowledge/coalition-education-clauses.json?v=2.6.1").then(r => r.json()).catch(() => ({ clauses: [] })),
-      fetch("data/system-metadata.json?v=2.6.1").then(r => r.json()).catch(() => null)
+      fetch("data/sources.json?v=2.7.0"),
+      fetch("data/parties.json?v=2.7.0"),
+      fetch("data/issues.json?v=2.7.0"),
+      fetch("data/positions.json?v=2.7.0"),
+      fetch("data/commitments.json?v=2.7.0"),
+      fetch("data/execution.json?v=2.7.0"),
+      fetch("data/professional-entities.json?v=2.7.0"),
+      fetch("data/union-positions.json?v=2.7.0"),
+      fetch("data/knowledge/coalition-education-clauses.json?v=2.7.0").then(r => r.json()).catch(() => ({ clauses: [] })),
+      fetch("data/system-metadata.json?v=2.7.0").then(r => r.json()).catch(() => null),
+      fetch("data/knowledge/impact-trajectory.json?v=2.7.0").then(r => r.json()).catch(() => null)
     ]);
 
     STATE.sources = (await sourcesRes.json()).sources || [];
@@ -316,6 +321,7 @@ async function initApp() {
     STATE.unionPositions = (await unionPositionsRes.json()).positions || [];
     STATE.coalitionClauses = (coalitionClausesRes && coalitionClausesRes.clauses) || [];
     STATE.systemMetadata = sysMetaRes || null;
+    STATE.impactTrajectory = impactTrajectoryRes || null;
 
     // Initialize AskEngine
     if (window.AskEngine) {
@@ -328,6 +334,7 @@ async function initApp() {
     renderIssueScreenSelectors();
     renderCoalitionPartySelectors();
     setupCoalitionSubViewEvents();
+    setupTrajectorySubViewEvents();
     renderUnionTopicSelectors();
     setupAskScreenEvents();
     renderActiveView();
@@ -345,6 +352,7 @@ async function initApp() {
 // ----------------------------------------------------
 const SECTION_NAMES = {
   home: "דף הבית",
+  trajectory: "🎯 מסלול ההשפעה",
   platforms: "📋 מצעי המפלגות",
   coalition: "🏛️ הסכמים ומבחן הביצוע",
   union: "🎓 עמדות איגוד מנהלי החינוך",
@@ -558,6 +566,8 @@ function renderHomeScreen() {
 function renderActiveView() {
   if (STATE.activeSection === "home") {
     renderHomeScreen();
+  } else if (STATE.activeSection === "trajectory") {
+    renderTrajectoryScreen();
   } else if (STATE.activeSection === "platforms") {
     if (STATE.activeSubview === "party") {
       renderPartyScreen(STATE.selectedPartyId);
@@ -1900,6 +1910,319 @@ function renderAskAnswer(result) {
       openSourceDrawer(sourceId);
     });
   });
+}
+
+// ----------------------------------------------------
+// SCREEN 1.5: TRAJECTORY SCREEN (מסלול ההשפעה)
+// ----------------------------------------------------
+function setupTrajectorySubViewEvents() {
+  const tabFuture = document.getElementById("tab-trajectory-future");
+  const tabHistorical = document.getElementById("tab-trajectory-historical");
+  const containerFuture = document.getElementById("trajectory-future-container");
+  const containerHistorical = document.getElementById("trajectory-historical-container");
+
+  if (tabFuture && tabHistorical) {
+    tabFuture.addEventListener("click", () => {
+      STATE.trajectoryActiveTab = "future";
+      tabFuture.classList.add("active");
+      tabHistorical.classList.remove("active");
+      if (containerFuture) {
+        containerFuture.classList.add("active");
+        containerFuture.style.display = "block";
+      }
+      if (containerHistorical) {
+        containerHistorical.classList.remove("active");
+        containerHistorical.style.display = "none";
+      }
+      renderTrajectoryScreen();
+    });
+
+    tabHistorical.addEventListener("click", () => {
+      STATE.trajectoryActiveTab = "historical";
+      tabHistorical.classList.add("active");
+      tabFuture.classList.remove("active");
+      if (containerHistorical) {
+        containerHistorical.classList.add("active");
+        containerHistorical.style.display = "block";
+      }
+      if (containerFuture) {
+        containerFuture.classList.remove("active");
+        containerFuture.style.display = "none";
+      }
+      renderTrajectoryScreen();
+    });
+  }
+}
+
+function renderTrajectoryScreen() {
+  if (!STATE.impactTrajectory) return;
+
+  if (STATE.trajectoryActiveTab === "future") {
+    renderTrajectoryCategoryButtons();
+    renderTrajectoryFutureCards();
+  } else if (STATE.trajectoryActiveTab === "historical") {
+    renderTrajectoryHistoricalCards();
+  }
+}
+
+function renderTrajectoryCategoryButtons() {
+  const container = document.getElementById("trajectory-category-buttons-container");
+  if (!container || !STATE.impactTrajectory) return;
+
+  const allItems = STATE.impactTrajectory.futureTrajectory || [];
+  const categoryCounts = {};
+  allItems.forEach(item => {
+    categoryCounts[item.category] = (categoryCounts[item.category] || 0) + 1;
+  });
+
+  const categories = [
+    { id: "ALL", name: "כל התחומים (" + allItems.length + " מטרות)" }
+  ];
+
+  Object.keys(categoryCounts).forEach(cat => {
+    categories.push({
+      id: cat,
+      name: cat + " (" + categoryCounts[cat] + ")"
+    });
+  });
+
+  container.innerHTML = categories.map(cat => {
+    const isActive = cat.id === STATE.trajectoryCategoryFilter ? "active" : "";
+    return '<button type="button" class="party-btn ' + isActive + '" data-traj-cat="' + cat.id + '">' +
+      '<span class="btn-name">' + cat.name + '</span>' +
+      '</button>';
+  }).join("");
+
+  container.querySelectorAll(".party-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      STATE.trajectoryCategoryFilter = btn.getAttribute("data-traj-cat");
+      container.querySelectorAll(".party-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderTrajectoryFutureCards();
+    });
+  });
+}
+
+function renderTrajectoryFutureCards() {
+  const container = document.getElementById("trajectory-future-cards-grid");
+  const counterText = document.getElementById("trajectory-counter-text");
+  if (!container || !STATE.impactTrajectory) return;
+
+  const allItems = STATE.impactTrajectory.futureTrajectory || [];
+  const filtered = STATE.trajectoryCategoryFilter === "ALL"
+    ? allItems
+    : allItems.filter(item => item.category === STATE.trajectoryCategoryFilter);
+
+  if (counterText) {
+    counterText.textContent = 'מציג ' + filtered.length + ' מתוך ' + allItems.length + ' מטרות השפעה';
+  }
+
+  if (filtered.length === 0) {
+    container.innerHTML = '<div class="empty-notice"><p>לא אותרו מטרות בתחום שנבחר.</p></div>';
+    return;
+  }
+
+  let html = '';
+  filtered.forEach(item => {
+    const p2026 = item.platforms2026 || {};
+    const c2022 = item.coalition2022 || {};
+
+    // 2026 Platforms overall status pill
+    let platformStatusPill = '';
+    if (p2026.overallStatus === "present") {
+      platformStatusPill = '<span class="platforms-overall-status status-present-pill">✓ מופיע במצעים</span>';
+    } else if (p2026.overallStatus === "partial") {
+      platformStatusPill = '<span class="platforms-overall-status status-partial-pill">⚡ מופיע חלקית במצעים</span>';
+    } else {
+      platformStatusPill = '<span class="platforms-overall-status status-absent-pill">✕ חסר במצעים</span>';
+    }
+
+    // Present list (2026)
+    let presentHtml = '';
+    if (p2026.present && p2026.present.length > 0) {
+      presentHtml += '<div class="breakdown-group">';
+      presentHtml += '<span class="breakdown-label present-lbl">מופיע במפורש:</span>';
+      p2026.present.forEach(p => {
+        presentHtml += '<span class="breakdown-party-pill pill-present" title="' + (p.summary || '') + '">' + p.partyName + '</span> ';
+      });
+      presentHtml += '</div>';
+    }
+
+    // Partial list (2026)
+    let partialHtml = '';
+    if (p2026.partial && p2026.partial.length > 0) {
+      partialHtml += '<div class="breakdown-group">';
+      partialHtml += '<span class="breakdown-label partial-lbl">התייחסות חלקית:</span>';
+      p2026.partial.forEach(p => {
+        partialHtml += '<span class="breakdown-party-pill pill-partial" title="' + (p.summary || '') + '">' + p.partyName + '</span> ';
+      });
+      presentHtml += '</div>';
+    }
+
+    // Unmentioned list (2026 platforms that didn't mention this goal)
+    let unmentionedHtml = '';
+    const unmentionedParties = p2026.unmentioned || p2026.absent || [];
+    if (unmentionedParties.length > 0) {
+      unmentionedHtml += '<div class="breakdown-group">';
+      unmentionedHtml += '<span class="breakdown-label unmentioned-lbl">אינן מתייחסות במצע:</span>';
+      unmentionedParties.forEach(pName => {
+        unmentionedHtml += '<span class="breakdown-party-pill pill-unmentioned">' + pName + '</span> ';
+      });
+      unmentionedHtml += '</div>';
+    }
+
+    // 2022 Coalition Status Pill
+    let coalStatusPill = '';
+    if (c2022.statusKey === "aligned") {
+      coalStatusPill = '<span class="coal-status-pill coal-status-aligned">✓ ' + (c2022.status || 'מופיע ותואם לעמדת האיגוד') + '</span>';
+    } else if (c2022.statusKey === "partial") {
+      coalStatusPill = '<span class="coal-status-pill coal-status-partial">⚡ ' + (c2022.status || 'מופיע חלקית / התאמה חלקית') + '</span>';
+    } else if (c2022.statusKey === "contrary") {
+      coalStatusPill = '<span class="coal-status-pill coal-status-contrary">⚠️ ' + (c2022.status || 'מופיע בהסכמים, אך בכיוון מנוגד לעמדת האיגוד') + '</span>';
+    } else {
+      coalStatusPill = '<span class="coal-status-pill coal-status-absent">✕ ' + (c2022.status || 'נעדר מההסכמים הקואליציוניים 2022') + '</span>';
+    }
+
+    // 2022 Coalition matched clauses
+    let coalClausesHtml = '';
+    if (c2022.matchedClauses && c2022.matchedClauses.length > 0) {
+      coalClausesHtml += '<div class="coal-matched-clauses-box">';
+      c2022.matchedClauses.forEach(cl => {
+        coalClausesHtml += '<div class="coal-clause-item"><strong>' + cl.party + ' (' + cl.sectionRef + '):</strong> ' + cl.title + '</div>';
+      });
+      coalClausesHtml += '</div>';
+    }
+
+    html += '<div class="trajectory-card">';
+    
+    // Header
+    html += '<div class="trajectory-card-header">';
+    html += '<div class="traj-header-meta">';
+    html += '<span class="traj-category-badge">' + item.category + '</span>';
+    html += '<span class="traj-tier-badge tier-' + item.unionSourceAuthority + '">עוגן סמכות רמה ' + item.unionSourceAuthority + '</span>';
+    html += '</div>';
+    html += '<span class="status-source-note">מסלול השפעה (4 שלבים)</span>';
+    html += '</div>';
+
+    // Title
+    html += '<h3 class="trajectory-card-title">' + item.titleHe + '</h3>';
+
+    // 4-Step Stepper Grid
+    html += '<div class="trajectory-stepper-grid">';
+
+    // Step 1: מטרת האיגוד
+    html += '<div class="stepper-col stepper-col-step1">';
+    html += '<div class="step-header"><span class="step-num-badge step1-badge">שלב 1</span><span class="step-title-text">מטרת האיגוד (עוגן מקצועי)</span></div>';
+    html += '<div class="step-body">' + item.unionGoal + '</div>';
+    html += '<div class="step1-source-box">📚 מקור: ' + item.unionSourceDoc + '</div>';
+    html += '</div>';
+
+    // Step 2: מצעי 2026
+    html += '<div class="stepper-col stepper-col-step2">';
+    html += '<div class="step-header"><span class="step-num-badge step2-badge">שלב 2</span><span class="step-title-text">מצעי המפלגות 2026</span></div>';
+    html += '<div class="step-body">';
+    html += platformStatusPill;
+    html += '<div class="platforms-breakdown">' + presentHtml + partialHtml + unmentionedHtml + '</div>';
+    if (p2026.centralGap) {
+      html += '<div class="traj-gap-box"><strong class="traj-gap-title">💡 הפער המרכזי מול השטח:</strong>' + p2026.centralGap + '</div>';
+    }
+    html += '</div>';
+    html += '</div>';
+
+    // Step 3: הסכמי 2022 (הממשלה ה-37)
+    html += '<div class="stepper-col stepper-col-step3">';
+    html += '<div class="step-header"><span class="step-num-badge step3-badge">שלב 3</span><span class="step-title-text">הסכמי 2022 (הממשלה ה-37)</span></div>';
+    html += '<div class="step-body">';
+    html += coalStatusPill;
+    html += coalClausesHtml;
+    if (c2022.fact || c2022.assessment) {
+      html += '<div class="coal-analysis-text">';
+      if (c2022.fact) html += '<div class="coal-epistemic-row"><span class="epistemic-tag fact-tag">📋 עובדה בהסכם:</span> ' + c2022.fact + '</div>';
+      if (c2022.analysis) html += '<div class="coal-epistemic-row"><span class="epistemic-tag analysis-tag">🔍 ניתוח:</span> ' + c2022.analysis + '</div>';
+      if (c2022.assessment) html += '<div class="coal-epistemic-row"><span class="epistemic-tag assessment-tag">⚖️ הערכת התאמה:</span> ' + c2022.assessment + '</div>';
+      html += '</div>';
+    } else if (c2022.analysis) {
+      html += '<div class="coal-analysis-text">' + c2022.analysis + '</div>';
+    }
+    html += '</div>';
+    html += '</div>';
+
+    // Step 4: היעד להסכם הקואליציוני הבא
+    html += '<div class="stepper-col stepper-col-step4">';
+    html += '<div class="step-header"><span class="step-num-badge step4-badge">שלב 4</span><span class="step-title-text">יעד להסכם הבא (ממשלה 38)</span></div>';
+    html += '<div class="step-body">';
+    html += '<div class="step4-target-box">' + item.targetNextCoalition + '</div>';
+    html += '</div>';
+    html += '</div>';
+
+    html += '</div>'; // /.trajectory-stepper-grid
+    html += '</div>'; // /.trajectory-card
+  });
+
+  container.innerHTML = html;
+}
+
+function renderTrajectoryHistoricalCards() {
+  const container = document.getElementById("trajectory-historical-cards-grid");
+  if (!container || !STATE.impactTrajectory || !STATE.impactTrajectory.historicalLessons37thGov) return;
+
+  const cases = STATE.impactTrajectory.historicalLessons37thGov.caseStudies || [];
+
+  let html = '';
+  cases.forEach(cs => {
+    html += '<div class="hist-case-card">';
+
+    // Header
+    html += '<div class="hist-case-header">';
+    html += '<div class="hist-case-badges">';
+    html += '<span class="hist-badge-topic">' + cs.topic + '</span>';
+    html += '<span class="hist-badge-party">' + cs.party + '</span>';
+    html += '<span class="hist-badge-verdict">' + cs.verdict + '</span>';
+    html += '</div>';
+    html += '<span class="hist-badge-amount">' + cs.allocatedAmountText + '</span>';
+    html += '</div>';
+
+    // Title
+    html += '<h3 class="hist-case-title">' + cs.titleHe + '</h3>';
+
+    // 2-Step Evidence Grid
+    html += '<div class="hist-evidence-grid">';
+
+    // Step 1: הסכם קואליציוני
+    html += '<div class="hist-step-box hist-step1-box">';
+    html += '<div class="hist-box-title">';
+    html += '<span>צעד 1: התחייבות קואליציונית (הממשלה ה-37)</span>';
+    if (cs.sourceUrl) {
+      html += '<a href="' + cs.sourceUrl + '" target="_blank" rel="noopener noreferrer" class="clause-doc-link-btn" title="צפייה במסמך ההסכם">📄 למסמך המקור ↗</a>';
+    }
+    html += '</div>';
+    html += '<div class="hist-clause-ref-row"><span>מקור: ' + cs.clauseRef + '</span></div>';
+    html += '<div class="hist-quote-text">"' + cs.verbatimCommitment + '"</div>';
+    html += '</div>';
+
+    // Step 2: החלטת ממשלה והקצאה תקציבית
+    html += '<div class="hist-step-box hist-step2-box">';
+    html += '<div class="hist-box-title"><span>צעד 2: עיגון ממשלתי והקצאה בספר התקציב</span></div>';
+    html += '<div class="hist-budget-details">';
+    html += '<div class="hist-budget-row"><span class="hist-budget-lbl">החלטת ממשלה:</span><span>' + cs.officialDecision + '</span></div>';
+    html += '<div class="hist-budget-row"><span class="hist-budget-lbl">סעיף תקציב:</span><span>תקנה ' + cs.budgetLineCode + '</span></div>';
+    html += '<div class="hist-budget-row"><span class="hist-budget-lbl">ישות מתוקצבת:</span><span>' + cs.budgetEntity + '</span></div>';
+    html += '<div class="hist-budget-row"><span class="hist-budget-lbl">סכום מאומת:</span><span><strong>' + cs.allocatedAmountText + '</strong> (' + cs.budgetYear + ')</span></div>';
+    html += '</div>';
+    html += '</div>';
+
+    html += '</div>'; // /.hist-evidence-grid
+
+    // Footer Analysis & Strategic Recommendation
+    html += '<div class="hist-case-footer">';
+    html += '<div class="hist-analysis-box"><strong>🔍 ניתוח מורכבות וביצוע בשטח:</strong> ' + cs.analysis + '</div>';
+    html += '<div class="hist-recommendation-box"><strong>🎯 לקראת הממשלה ה-38:</strong> ' + cs.strategicRecommendation + '</div>';
+    html += '</div>';
+
+    html += '</div>'; // /.hist-case-card
+  });
+
+  container.innerHTML = html;
 }
 
 // ----------------------------------------------------

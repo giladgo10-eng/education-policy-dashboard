@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>מפת החינוך 2026 | מצעים, הסכמים ומבחן הביצוע</title>
-  <link rel="stylesheet" href="style.css?v=2.6.1">
+  <link rel="stylesheet" href="style.css?v=2.7.0">
 </head>
 <body>
 
@@ -28,6 +28,7 @@
   <nav class="main-nav-bar">
     <div class="nav-inner">
       <button class="nav-tab active" data-section="home">🏠 דף הבית</button>
+      <button class="nav-tab" data-section="trajectory">🎯 מסלול ההשפעה</button>
       <button class="nav-tab" data-section="platforms">📋 מצעי המפלגות — מה המפלגות מציעות</button>
       <button class="nav-tab" data-section="coalition">🏛️ הסכמים קואליציוניים ומבחן הביצוע</button>
       <button class="nav-tab" data-section="union">🎓 עמדות איגוד מנהלי החינוך</button>
@@ -48,12 +49,13 @@
         <div class="content-header-brand" id="content-header-brand" title="חזרה לדף הבית">
           <span class="brand-title">מפת החינוך 2026</span>
           <span class="brand-divider">•</span>
-          <span class="active-module-name" id="content-active-module-name">מצעי המפלגות</span>
+          <span class="active-module-name" id="content-active-module-name">מסלול ההשפעה</span>
         </div>
       </div>
       <!-- Desktop Navigation Pills (Hidden on Mobile) -->
       <div class="content-header-nav">
         <div class="content-nav-pills">
+          <button class="cnav-pill" data-section="trajectory" title="מסלול ההשפעה">🎯 מסלול ההשפעה</button>
           <button class="cnav-pill" data-section="platforms" title="מצעי המפלגות">📋 מצעים</button>
           <button class="cnav-pill" data-section="coalition" title="הסכמים ומבחן הביצוע">🏛️ הסכמים</button>
           <button class="cnav-pill" data-section="union" title="עמדות איגוד מנהלי החינוך">🎓 איגוד</button>
@@ -78,6 +80,7 @@
         <button class="btn-close-mobile-menu" id="btn-close-mobile-menu" aria-label="סגור תפריט">✕</button>
       </div>
       <div class="mobile-dropdown-links">
+        <button class="mobile-menu-item" data-section="trajectory">🎯 מסלול ההשפעה</button>
         <button class="mobile-menu-item" data-section="platforms">📋 מצעי המפלגות</button>
         <button class="mobile-menu-item" data-section="coalition">🏛️ הסכמים קואליציוניים ומבחן הביצוע</button>
         <button class="mobile-menu-item" data-section="union">🎓 עמדות איגוד מנהלי החינוך</button>
@@ -102,8 +105,20 @@
         </p>
       </div>
 
-      <!-- 4 Central Entrances -->
+      <!-- 5 Central Entrances -->
       <div class="home-cards-grid">
+        <!-- Card 0: מסלול ההשפעה (Strategic Hero) -->
+        <div class="home-entry-card home-entry-card-trajectory" data-navigate="trajectory">
+          <div class="home-card-header">
+            <span class="home-card-icon">🎯</span>
+            <h3 class="home-card-title">מסלול ההשפעה 2026</h3>
+          </div>
+          <p class="home-card-desc">מטרות האיגוד ← מצעי 2026 ← ההסכם הבא, לצד הדגמת מנגנון המעבר לתקציב בממשלה ה-37.</p>
+          <div class="home-card-footer">
+            <button class="home-card-btn" data-navigate="trajectory">למסלול ההשפעה ←</button>
+          </div>
+        </div>
+
         <!-- Card 1: מה מבטיחות המפלגות? -->
         <div class="home-entry-card" data-navigate="platforms">
           <div class="home-card-header">
@@ -173,6 +188,74 @@
       <div class="home-freshness-footer" id="home-freshness-footer">
         <span class="home-freshness-dot"></span>
         <span class="home-freshness-text">המאגר מתעדכן ומתפתח | עודכן לאחרונה: <strong id="home-meta-last-update">...</strong></span>
+      </div>
+    </div>
+
+    <!-- AREA TRAJECTORY: מסלול ההשפעה (Policy Trajectory) -->
+    <div class="main-section-view" id="section-trajectory">
+      <!-- Header Banner -->
+      <div class="trajectory-header-banner">
+        <div class="trajectory-badge-tag">שכבת השפעה אסטרטגית • מטרות האיגוד, מצעי 2026 ומנגנון המעבר לתקציב</div>
+        <h2 class="trajectory-title">🎯 מסלול ההשפעה: ממטרות מקצועיות למדיניות ולתקציב</h2>
+        <div class="trajectory-strategic-box">
+          <span class="strategic-box-icon">💡</span>
+          <p class="trajectory-strategic-quote">
+            שני המסלולים נפרדים לחלוטין מבחינת הנתונים והמדידה, אך הם מתחברים ברמת המסר האסטרטגי: המסלול ההיסטורי של הממשלה ה־37 נועד להמחיש באמצעות דוגמאות מאומתות שהתחייבות שנכנסת להסכם קואליציוני יכולה לעבור להחלטת ממשלה ולהקצאה תקציבית. מכאן נובעת החשיבות האסטרטגית של הכנסת מטרות האיגוד, שכבר מופיעות בחלק ממצעי 2026, להסכם הקואליציוני הבא.
+          </p>
+        </div>
+      </div>
+
+      <!-- Sub Navigation Toggle Tabs -->
+      <div class="sub-nav-bar trajectory-sub-nav">
+        <button class="sub-tab active" id="tab-trajectory-future" data-trajectory-view="future">🧭 מסלול עתידי 2026 (מטרות האיגוד ← מצעי 2026 ← יעד להסכם הבא)</button>
+        <button class="sub-tab" id="tab-trajectory-historical" data-trajectory-view="historical">🏛️ מה למדנו מהממשלה היוצאת? (הדגמת מנגנון המעבר לתקציב)</button>
+      </div>
+
+      <!-- VIEW 1: Future Trajectory (3 Steps) -->
+      <div id="trajectory-future-container" class="trajectory-subview-panel active">
+        <!-- Category Filter Bar -->
+        <div class="trajectory-filter-card">
+          <div class="filter-header">
+            <span class="filter-label">סינון לפי תחום / קטגוריה:</span>
+          </div>
+          <div class="party-buttons" id="trajectory-category-buttons-container">
+            <!-- Dynamically populated category buttons -->
+          </div>
+        </div>
+
+        <!-- Explanatory note -->
+        <div class="trajectory-meta-notice">
+          <span class="notice-icon">ℹ️</span>
+          <div class="notice-text">
+            <strong>מתודולוגיית המסלול העתידי:</strong>
+            מוצגות 15 מטרות הליבה של איגוד מנהלי החינוך, מידת נוכחותן במצעי המפלגות לקראת בחירות 2026, והיעד האסטרטגי לעיגונן בהסכם הקואליציוני של הממשלה ה-38. מצעי 2026 הם הצהרות כוונות עתידיות ואינם כוללים כל ניתוח ביצוע או תקצוב.
+          </div>
+        </div>
+
+        <!-- Counter Bar -->
+        <div class="trajectory-counter-bar">
+          <span id="trajectory-counter-text">מציג 15 מתוך 15 מטרות השפעה</span>
+        </div>
+
+        <!-- Future Cards Grid / Stepper Container -->
+        <div id="trajectory-future-cards-grid" class="trajectory-cards-list"></div>
+      </div>
+
+      <!-- VIEW 2: Historical Lessons (37th Government) -->
+      <div id="trajectory-historical-container" class="trajectory-subview-panel" style="display: none;">
+        <!-- Mandatory Caveat Alert -->
+        <div class="trajectory-caveat-card">
+          <div class="caveat-header">
+            <span class="caveat-icon">⚠️</span>
+            <h4 class="caveat-title">סייג מתודולוגי ומגבלות הסקת מסקנות</h4>
+          </div>
+          <p class="caveat-text">
+            הדגמת מנגנון המעבר מהתחייבות קואליציונית לביטוי תקציבי רשמי באמצעות שבעה מקרי בוחן מאומתים. אין להסיק מכך שכל סעיף בהסכם קואליציוני מתוקצב, ואין לטעון שהקצאה תקציבית מוכיחה ביצוע מלא או הצלחת מדיניות. ההקצאה מעידה על עיגון בהחלטות ממשלה ובספר התקציב הרשמי, אך אינה מוכיחה מיצוי תקציבי מלא בפועל בשטח ואינה מעידה על עמידה במדדי תוצאה.
+          </p>
+        </div>
+
+        <!-- Historical Cases Grid -->
+        <div id="trajectory-historical-cards-grid" class="historical-cases-grid"></div>
       </div>
     </div>
 
@@ -667,7 +750,7 @@
     </aside>
   </div>
 
-  <script src="askEngine.js?v=2.6.1"></script>
-  <script src="app.js?v=2.6.1"></script>
+  <script src="askEngine.js?v=2.7.0"></script>
+  <script src="app.js?v=2.7.0"></script>
 </body>
 </html>

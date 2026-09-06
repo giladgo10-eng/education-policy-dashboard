@@ -17,7 +17,7 @@
       "category": "משילות ומעמד הרשות",
       "unionGoal": "האצלת סמכויות ניהוליות, תקציביות ופדגוגיות לרשות המקומית במודל זיכיון רב-שנתי (5 שנים), והגדרת משרד החינוך כרגולטור סטנדרטים ובקרה בלבד.",
       "unionSourceAuthority": "A",
-      "unionSourceDoc": "אמנת מנהלי החינוך 2026 ומודל קמינסקי (DOC-UNION-2015-VAN-LEER)",
+      "unionSourceDoc": "הרצאת ון ליר: מודל קמינסקי (2015)",
       "platforms2026": {
         "overallStatus": "partial",
         "present": [
@@ -60,7 +60,7 @@
           "sourceRelation": "primary"
         },
         {
-          "sourceTitle": "מהשטח למדיניות: התפתחות סדר היום המקצועי של איגוד מנהלי אגפי החינוך בישראל (2026)",
+          "sourceTitle": "מהשטח למדיניות 2026 – ביזור סמכויות והרשות כריבון פדגוגי",
           "sourceType": "מונוגרפיית מחקר מסכמת",
           "sourceUrl": "https://drive.google.com/file/d/1Q2-EhDThUNX_7rQJTcQYkn79oglgxwyN/view?usp=sharing",
           "sourceRelation": "secondary",
@@ -76,7 +76,7 @@
       "category": "משילות ומעמד הרשות",
       "unionGoal": "סגירת הפער המובנה שבו הרשות המקומית נושאת באחריות ציבורית ומשפטית מלאה אך נעדרת סמכויות חוקיות ומשאבים גמישים ללא צביעה עודפת.",
       "unionSourceAuthority": "A",
-      "unionSourceDoc": "אמנת מנהלי החינוך 2026 (DOC-UNION-2026-SYNTHESIS-STUDY)",
+      "unionSourceDoc": "מהשטח למדיניות 2026 – פרק ג': סמכות ואחריות",
       "platforms2026": {
         "overallStatus": "partial",
         "present": [],
@@ -108,7 +108,7 @@
       "targetNextCoalition": "קביעת סעיף יסוד בהסכם הקואליציוני: איסור הטלת חובות או תוכניות חדשות על רשויות מקומיות ללא העמדת 100% מקור תקציבי וסמכות ניהולית מקבילה.",
       "unionSources": [
         {
-          "sourceTitle": "אמנת מנהלי החינוך 2026 – מהשטח למדיניות (פרק ג': סמכות ואחריות)",
+          "sourceTitle": "מהשטח למדיניות 2026 – פרק ג': התאמת סמכות, אחריות ומשאבים",
           "sourceType": "מונוגרפיית מחקר מסכמת",
           "sourceUrl": "https://drive.google.com/file/d/1Q2-EhDThUNX_7rQJTcQYkn79oglgxwyN/view?usp=sharing",
           "sourceRelation": "primary"
@@ -123,7 +123,7 @@
       "category": "מערכי ליבה",
       "unionGoal": "העברת האחריות הכוללת על גילאי 0–3 למשרד החינוך ולרשויות, פרוגרמת בינוי מעונות ציבוריים ביישובים, והשוואת תקינת סייעות ואיכות פדגוגית.",
       "unionSourceAuthority": "A",
-      "unionSourceDoc": "אמנת מנהלי החינוך 2026 ומחקר טרכטנברג (DOC-UNION-2012-TRACHTENBERG, DOC-UNION-2019-CALL-PARTIES-0TO3)",
+      "unionSourceDoc": "נייר עמדה טרכטנברג (2012) וקריאה למפלגות לגיל הרך 0–3 (2019)",
       "platforms2026": {
         "overallStatus": "present",
         "present": [
@@ -223,7 +223,7 @@
       "category": "מערכי ליבה",
       "unionGoal": "שיפוי ממשלתי מלא (100%) על עלויות ההסעות המאמירות, סל שילוב גמיש הצמוד לתלמיד המשולב בחינוך הרגיל, וביטול מנגנון המאצ'ינג השוחק את קופת הרשות.",
       "unionSourceAuthority": "A",
-      "unionSourceDoc": "אמנת מנהלי החינוך 2026 ומכתב החירום להנהלת משרד החינוך (DOC-UNION-2025-EMERGENCY-SHORTAGE)",
+      "unionSourceDoc": "מהשטח למדיניות 2026 – פרק החינוך המיוחד (עמ' 4–5)",
       "platforms2026": {
         "overallStatus": "partial",
         "present": [
@@ -281,14 +281,8 @@
       "targetNextCoalition": "הסדרת שיפוי ממשלתי מלא (100%) בחוק להסעות וליווי בחינוך המיוחד, וקביעת תקציב שילוב דיפרנציאלי המנוהל ישירות על ידי הרשות המקומית.",
       "unionSources": [
         {
-          "sourceTitle": "מכתב חירום להנהלת משרד החינוך: מצוקת כוח אדם ושיפוי הסעות (2025)",
-          "sourceType": "מכתב חירום",
-          "sourceUrl": "source_link_missing",
-          "sourceRelation": "primary"
-        },
-        {
-          "sourceTitle": "מהשטח למדיניות: התפתחות סדר היום המקצועי (פרק החינוך המיוחד, 2026)",
-          "sourceType": "מונוגרפיית מחקר מסכמת",
+          "sourceTitle": "מהשטח למדיניות 2026 – החינוך המיוחד ושיפוי הסעות (עמ' 4–5)",
+          "sourceType": "מונוגרפיית מחקר מסכמת ומבססת",
           "sourceUrl": "https://drive.google.com/file/d/1Q2-EhDThUNX_7rQJTcQYkn79oglgxwyN/view?usp=sharing",
           "sourceRelation": "secondary",
           "sourceNote": "מקור מסכם / מקור משלים"
@@ -303,7 +297,7 @@
       "category": "משילות ומעמד הרשות",
       "unionGoal": "תיקון חוק מנהלי מחלקות חינוך (2001) המעגן בחקיקה ראשית סל סמכויות פדגוגי וניהולי למנהל האגף כסמכות החינוכית העליונה ביישוב.",
       "unionSourceAuthority": "A",
-      "unionSourceDoc": "אמנת מנהלי החינוך 2026 (DOC-UNION-2026-CHARTER-DRAFT)",
+      "unionSourceDoc": "מהשטח למדיניות 2026 – מעמד מנהל אגף החינוך וסל הסמכויות",
       "platforms2026": {
         "overallStatus": "partial",
         "present": [
@@ -336,22 +330,15 @@
       "targetNextCoalition": "הכללת התחייבות בהסכם הקואליציוני לחקיקת תיקון לחוק מנהלי מחלקות חינוך בתוך 180 יום מהקמת הממשלה.",
       "unionSources": [
         {
-          "sourceTitle": "טיוטת אמנת מנהלי החינוך – סל סמכויות סטטוטורי (2026)",
-          "sourceType": "טיוטת אמנה פנימית",
-          "sourceUrl": "source_link_missing",
+          "sourceTitle": "מהשטח למדיניות 2026 – מעמד מנהל אגף החינוך וסל הסמכויות (עמ' 3, 9–10)",
+          "sourceType": "מונוגרפיית מחקר מסכמת",
+          "sourceUrl": "https://drive.google.com/file/d/1Q2-EhDThUNX_7rQJTcQYkn79oglgxwyN/view?usp=sharing",
           "sourceRelation": "primary"
         },
         {
           "sourceTitle": "מבט רחב מס' 8: מן החוק אל הרשות – מחזקים את החינוך הממלכתי (אוגוסט 2026)",
           "sourceType": "ביטאון רשמי",
           "sourceUrl": "https://lp.vp4.me/isy4",
-          "sourceRelation": "secondary",
-          "sourceNote": "מקור מסכם / מקור משלים"
-        },
-        {
-          "sourceTitle": "מהשטח למדיניות: התפתחות סדר היום המקצועי (סקירת חוק מנהלי מחלקות חינוך 2001, 2026)",
-          "sourceType": "מונוגרפיית מחקר מסכמת",
-          "sourceUrl": "https://drive.google.com/file/d/1Q2-EhDThUNX_7rQJTcQYkn79oglgxwyN/view?usp=sharing",
           "sourceRelation": "secondary",
           "sourceNote": "מקור מסכם / מקור משלים"
         }
@@ -365,7 +352,7 @@
       "category": "כוח אדם והוראה",
       "unionGoal": "הסדרת מעמד תומכות החינוך כמקצוע פרופסיונלי בהסכם שכר ייעודי, מסלולי קידום אקדמיים, וגמישות ניהולית לרשות בגיוס ותגמול מומחים ומורים.",
       "unionSourceAuthority": "A",
-      "unionSourceDoc": "כנס חירום מנהלי אגפים (DOC-UNION-2025-EMERGENCY-SHORTAGE)",
+      "unionSourceDoc": "מהשטח למדיניות 2026 – פרק כוח אדם וסייעות (עמ' 5–6)",
       "platforms2026": {
         "overallStatus": "present",
         "present": [
@@ -402,14 +389,8 @@
       "targetNextCoalition": "הסכם שכר לאומי משלים לתומכות החינוך בשלטון המקומי עם מסלול פיתוח מקצועי, והענקת סמכות לרשות לתמרץ צוותי הוראה במקצועות במחסור.",
       "unionSources": [
         {
-          "sourceTitle": "כנס חירום מנהלי אגפים: מצוקת כוח אדם ותומכות חינוך (2025)",
-          "sourceType": "סיכום כנס חירום",
-          "sourceUrl": "source_link_missing",
-          "sourceRelation": "primary"
-        },
-        {
-          "sourceTitle": "מהשטח למדיניות: התפתחות סדר היום המקצועי (2026)",
-          "sourceType": "מונוגרפיית מחקר מסכמת",
+          "sourceTitle": "מהשטח למדיניות 2026 – כוח אדם, סייעות ומעמד המורה (עמ' 5–6)",
+          "sourceType": "מונוגרפיית מחקר מסכמת ומבססת",
           "sourceUrl": "https://drive.google.com/file/d/1Q2-EhDThUNX_7rQJTcQYkn79oglgxwyN/view?usp=sharing",
           "sourceRelation": "secondary",
           "sourceNote": "מקור מסכם / מקור משלים"
@@ -424,7 +405,7 @@
       "category": "תשתיות ובינוי",
       "unionGoal": "האצלת סמכויות תכנון ורישוי בינוי מוסדות חינוך לרשויות בעלות מנגנון הנדסי מאושר, עדכון פרוגרמות מודרניות למרחבי למידה, ותקצוב מואץ לגני 0–4.",
       "unionSourceAuthority": "B",
-      "unionSourceDoc": "עמדות מרכז השלטון המקומי ואיגוד מנהלי החינוך (DOC-UNION-2026-LOCAL-GOV-CENTRAL)",
+      "unionSourceDoc": "נייר עמדה משותף: מרכז השלטון המקומי ואיגוד מנהלי החינוך (2012)",
       "platforms2026": {
         "overallStatus": "partial",
         "present": [
@@ -476,13 +457,13 @@
       "targetNextCoalition": "האצלת סמכויות תכנון ואישור פרוגרמות בינוי ישירות למהנדסי הרשויות המקומיות, ותקצוב הרשאה לבינוי 3,000 כיתות לשנה בפריסה ארצית שוויונית.",
       "unionSources": [
         {
-          "sourceTitle": "עמדות מרכז השלטון המקומי ואיגוד מנהלי החינוך: בינוי והאצלת סמכויות רישוי (2026)",
+          "sourceTitle": "נייר עמדה משותף: בינוי מוסדות חינוך, מעונות וסמכויות רישוי לרשויות (2012)",
           "sourceType": "נייר עמדה בין-ארגוני",
-          "sourceUrl": "source_link_missing",
+          "sourceUrl": "https://drive.google.com/file/d/1_5sZEQiAN459eLOE4NkvQn4lpCY7VMiV/view?usp=sharing",
           "sourceRelation": "primary"
         },
         {
-          "sourceTitle": "מהשטח למדיניות: התפתחות סדר היום המקצועי (2026)",
+          "sourceTitle": "מהשטח למדיניות 2026 – האצלת סמכויות בינוי ומרחבי למידה",
           "sourceType": "מונוגרפיית מחקר מסכמת",
           "sourceUrl": "https://drive.google.com/file/d/1Q2-EhDThUNX_7rQJTcQYkn79oglgxwyN/view?usp=sharing",
           "sourceRelation": "secondary",
@@ -498,7 +479,7 @@
       "category": "חוסן וחירום",
       "unionGoal": "עיגון סטטוטורי של אגפי החינוך ברשויות כמפעל חיוני בשעת חירום, האצלת ניהול מערכי החינוך בחירום לראשי הרשויות, ותגבור תקני שפ\"ח ובריאות הנפש.",
       "unionSourceAuthority": "A",
-      "unionSourceDoc": "כנס אילת תשפ\"ו והלקחים ממלחמת חרבות ברזל (DOC-UNION-2026-EILAT-CONFERENCE)",
+      "unionSourceDoc": "משלנו: עיצוב תורת הפעלה בחירום (אוגוסט 2026)",
       "platforms2026": {
         "overallStatus": "partial",
         "present": [
@@ -556,10 +537,11 @@
           "sourceRelation": "primary"
         },
         {
-          "sourceTitle": "כנס אילת תשפ\"ו: לקחים ממלחמת חרבות ברזל ומכלול חינוך",
-          "sourceType": "סיכום כנס",
-          "sourceUrl": "source_link_missing",
-          "sourceRelation": "primary"
+          "sourceTitle": "תוך כדי קפה ומבט רחב: מכלול חינוך בחירום ולקחי מלחמת חרבות ברזל (2025–2026)",
+          "sourceType": "לקט פרסומים רשמי",
+          "sourceUrl": "https://lp.vp4.me/igzo",
+          "sourceRelation": "secondary",
+          "sourceNote": "מקור מסכם / מקור משלים"
         }
       ]
     },
@@ -571,7 +553,7 @@
       "category": "קהילה ורצף",
       "unionGoal": "איחוד מערכי החינוך הפורמלי, תנועות הנוער, מרכזים קהילתיים וצהרונים תחת מנהיגות אגף החינוך: 'אין ילד של בוקר וילד של אחה\"צ'.",
       "unionSourceAuthority": "A",
-      "unionSourceDoc": "אמנת מנהלי החינוך 2026 (DOC-UNION-2026-SYNTHESIS-STUDY)",
+      "unionSourceDoc": "מקומו של מנהל מחלקת החינוך: חינוך פורמאלי ובלתי פורמאלי (קמינסקי 2020)",
       "platforms2026": {
         "overallStatus": "partial",
         "present": [
@@ -633,7 +615,7 @@
           "sourceRelation": "primary"
         },
         {
-          "sourceTitle": "מהשטח למדיניות: התפתחות סדר היום המקצועי (2026)",
+          "sourceTitle": "מהשטח למדיניות 2026 – איחוד פורמלי ובלתי-פורמלי לאקוסיסטם יישובי",
           "sourceType": "מונוגרפיית מחקר מסכמת",
           "sourceUrl": "https://drive.google.com/file/d/1Q2-EhDThUNX_7rQJTcQYkn79oglgxwyN/view?usp=sharing",
           "sourceRelation": "secondary",
@@ -649,7 +631,7 @@
       "category": "תקצוב ומימון",
       "unionGoal": "הסרת חסמי רכש מוניציפליים והתאמת דיני המכרזים להוצאת תקציבי גפ\"ן, מעבר לתקציב גמיש וסל תלמיד יישובי ללא צביעה עודפת.",
       "unionSourceAuthority": "A",
-      "unionSourceDoc": "כנס פתיחת שנת הלימודים תשפ\"ז ונייר עמדה רכש (DOC-UNION-2026-HAIFA-CONFERENCE-SAFETY)",
+      "unionSourceDoc": "כנס חיפה תשפ\"ז: גיליון מיוחד ונייר עמדה רכש (אוגוסט 2026)",
       "platforms2026": {
         "overallStatus": "partial",
         "present": [
@@ -703,9 +685,9 @@
           "sourceRelation": "primary"
         },
         {
-          "sourceTitle": "מבט רחב מס' 8: מן החוק אל הרשות – מחזקים את החינוך הממלכתי (אוגוסט 2026)",
-          "sourceType": "ביטאון רשמי",
-          "sourceUrl": "https://lp.vp4.me/isy4",
+          "sourceTitle": "מהשטח למדיניות 2026 – גמישות רכש, ביטול חסמים וסל גפ\"ן",
+          "sourceType": "מונוגרפיית מחקר מסכמת",
+          "sourceUrl": "https://drive.google.com/file/d/1Q2-EhDThUNX_7rQJTcQYkn79oglgxwyN/view?usp=sharing",
           "sourceRelation": "secondary",
           "sourceNote": "מקור מסכם / מקור משלים"
         }
@@ -719,7 +701,7 @@
       "category": "פדגוגיה ועתיד",
       "unionGoal": "ביטול חלק מבחינות הבגרות העיוניות המסורתיות (שינון לקראת מבחן), מעבר להערכה בית-ספרית מבוססת עבודות חקר ופרויקטים (חינוך 2030).",
       "unionSourceAuthority": "A",
-      "unionSourceDoc": "מסמך תפיסה חינוך 2030 ואמנת האיגוד (DOC-UNION-2026-VISION-2030)",
+      "unionSourceDoc": "איגוד חינוך – חינוך 2030: המלצות ליישום (ספטמבר 2021)",
       "platforms2026": {
         "overallStatus": "present",
         "present": [
@@ -771,7 +753,7 @@
       "targetNextCoalition": "עיגון מחדש של מודל הבגרות החדש (הערכה מעצבת ועבודות חקר) בחקיקה ראשית שלא תהיה נתונה לביטול בהסכמים קואליציוניים עתידיים.",
       "unionSources": [
         {
-          "sourceTitle": "איגוד חינוך – חינוך 2030: המלצות ליישום (עמ' 3-7, ספטמבר 2021)",
+          "sourceTitle": "איגוד חינוך – חינוך 2030: המלצות ליישום (עמ' 3–7: מודל הבגרות, הערכה מעצבת ומיומנויות חקר)",
           "sourceType": "נייר עמדה ותוכנית עבודה רשמית",
           "sourceUrl": "https://drive.google.com/file/d/1__eoCnVd8o6_6fQ9aSWALuEL7I2T7BJA/view?usp=sharing",
           "sourceRelation": "primary"
@@ -786,7 +768,7 @@
       "category": "פדגוגיה ועתיד",
       "unionGoal": "הטמעת בינה מלאכותית בהוראה מותאמת אישית, אוריינות דיגיטלית וחשיבה ביקורתית כמקצוע ליבה, וסגירת הפער הדיגיטלי בין רשויות חזקות לחלשות.",
       "unionSourceAuthority": "B",
-      "unionSourceDoc": "הרצאת ון ליר תשפ\"ד וכנס פתיחת תשפ\"ז (DOC-UNION-2023-VAN-LEER-AI)",
+      "unionSourceDoc": "חינוך 2030 (מיומנויות עתיד עמ' 12–15) ולקט פרסומי האיגוד",
       "platforms2026": {
         "overallStatus": "present",
         "present": [
@@ -830,14 +812,8 @@
       "targetNextCoalition": "השקת תוכנית חומש לאומית: 'ישראל AI בחינוך' בהסכם הקואליציוני, עם תקצוב שוויוני לתשתיות דיגיטליות מתקדמות בכלל הרשויות המקומיות.",
       "unionSources": [
         {
-          "sourceTitle": "הרצאת ון ליר תשפ\"ד: בינה מלאכותית ומערכות חינוך מקומיות",
-          "sourceType": "הרצאת מומחה",
-          "sourceUrl": "source_link_missing",
-          "sourceRelation": "primary"
-        },
-        {
-          "sourceTitle": "איגוד חינוך – חינוך 2030: מיומנויות המאה ה-21 ואוריינות דיגיטלית (2021)",
-          "sourceType": "נייר עמדה רשמי",
+          "sourceTitle": "איגוד חינוך – חינוך 2030: מיומנויות העתיד, אוריינות דיגיטלית וטכנולוגיה (עמ' 12–15)",
+          "sourceType": "נייר עמדה רשמי מסכם",
           "sourceUrl": "https://drive.google.com/file/d/1__eoCnVd8o6_6fQ9aSWALuEL7I2T7BJA/view?usp=sharing",
           "sourceRelation": "secondary",
           "sourceNote": "מקור מסכם / מקור משלים"
@@ -859,7 +835,7 @@
       "category": "קהילה ורצף",
       "unionGoal": "תקצוב דיפרנציאלי אמיתי ברמת הרשות (ולא רק ברמת ביה\"ס), תיקון עיוותי המאצ'ינג, והשקעה מועדפת ברשויות באשכולות למ\"ס 1–5 ובחברה הערבית.",
       "unionSourceAuthority": "A",
-      "unionSourceDoc": "אמנת מנהלי החינוך 2026 ודוח מדד טיפוח יישובי (DOC-UNION-2026-SYNTHESIS-STUDY)",
+      "unionSourceDoc": "מהשטח למדיניות 2026 – פרק ד': שוויון ותקצוב דיפרנציאלי",
       "platforms2026": {
         "overallStatus": "present",
         "present": [
@@ -911,7 +887,7 @@
       "targetNextCoalition": "חקיקת מודל תקצוב דיפרנציאלי יישובי מחייב, הכולל קרן שיפוי ממשלתית לרשויות באשכולות למ\"ס 1–5 וביטול מוחלט של מנגנוני מאצ'ינג בשירותי חובה.",
       "unionSources": [
         {
-          "sourceTitle": "אמנת מנהלי החינוך 2026 – מהשטח למדיניות (פרק ד': תקצוב דיפרנציאלי ושוויון)",
+          "sourceTitle": "מהשטח למדיניות 2026 – פרק ד': תקצוב דיפרנציאלי, שוויון ומדד טיפוח יישובי",
           "sourceType": "מונוגרפיית מחקר מסכמת",
           "sourceUrl": "https://drive.google.com/file/d/1Q2-EhDThUNX_7rQJTcQYkn79oglgxwyN/view?usp=sharing",
           "sourceRelation": "primary"
@@ -926,7 +902,7 @@
       "category": "קהילה ורצף",
       "unionGoal": "ראייה כוללת ורציפה של התפתחות הילד מלידה ועד גיל 18+ תחת הנהגה יישובית אחת, ומניעת משברים ושברים במעברים בין שלבי החינוך.",
       "unionSourceAuthority": "A",
-      "unionSourceDoc": "אמנת מנהלי החינוך 2026 (DOC-UNION-2026-SYNTHESIS-STUDY)",
+      "unionSourceDoc": "מהשטח למדיניות 2026 (רצף 0–18) ומסמך רמי הוכמן (2019)",
       "platforms2026": {
         "overallStatus": "partial",
         "present": [
@@ -959,15 +935,15 @@
       "targetNextCoalition": "הטמעת 'תוכנית רצף יישובית 0–18' באחריות אגף החינוך המקומי, לרבות מערכת מעקב וליווי אישית לתלמידים במעברים.",
       "unionSources": [
         {
-          "sourceTitle": "אמנת מנהלי החינוך 2026 – מהשטח למדיניות (פרק רצף חינוכי 0–18)",
+          "sourceTitle": "מהשטח למדיניות 2026 – פרק רצף חינוכי מקומי מלידה לבגרות (0–18)",
           "sourceType": "מונוגרפיית מחקר מסכמת",
           "sourceUrl": "https://drive.google.com/file/d/1Q2-EhDThUNX_7rQJTcQYkn79oglgxwyN/view?usp=sharing",
           "sourceRelation": "primary"
         },
         {
-          "sourceTitle": "מצגת היפוך הפירמידה: מלידה עד 3 (2019)",
-          "sourceType": "מצגת עמדה מקצועית",
-          "sourceUrl": "https://drive.google.com/file/d/13LmMLvPXK0xEIufCbktXyv2WnQjgFTdo/view?usp=sharing",
+          "sourceTitle": "ייעוד, סטטוס ומחויבות הרשות המקומית לחינוך – מערך הגיל הרך מלידה עד שלוש (רמי הוכמן, 2019)",
+          "sourceType": "מחקר מקצועי מקיף",
+          "sourceUrl": "https://drive.google.com/file/d/1ZqQspxgCxW6UGmQWjcya3JHlfTKoxTpA/view?usp=sharing",
           "sourceRelation": "secondary",
           "sourceNote": "מקור מסכם / מקור משלים"
         }
@@ -981,7 +957,7 @@
       "category": "קהילה ורצף",
       "unionGoal": "תוכנית מוגנות ואקלים בטוח אינטגרטיבית ברמת היישוב, חיזוק שומרי סף ותיאום בין פיקוח עירוני, משטרה ומערכת החינוך.",
       "unionSourceAuthority": "B",
-      "unionSourceDoc": "כנס פתיחת תשפ\"ז מוגנות ואלימות (DOC-UNION-2026-HAIFA-CONFERENCE-SAFETY)",
+      "unionSourceDoc": "כנס חיפה תשפ\"ז וביטאון מבט רחב מס' 7 (אוגוסט 2026)",
       "platforms2026": {
         "overallStatus": "partial",
         "present": [

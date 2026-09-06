@@ -2204,13 +2204,13 @@ function renderTrajectoryFutureCards() {
     const secondarySources = uSources.filter(s => s.sourceRelation === "secondary");
 
     html += '<div class="step1-source-box">';
-    html += '<div class="source-header-row"><span class="source-icon">📚</span> <strong>מסמך מקור:</strong> <span class="source-doc-name">' + item.unionSourceDoc + '</span></div>';
 
     if (primarySources.length > 0) {
+      html += '<div class="source-header-row"><span class="source-icon">📚</span> <strong>מסמך מקור:</strong> <span class="source-doc-name">' + item.unionSourceDoc + '</span></div>';
       html += '<div class="primary-sources-list">';
       primarySources.forEach(s => {
         if (s.sourceUrl && s.sourceUrl !== "source_link_missing") {
-          const linkLabel = primarySources.length === 1 && secondarySources.length === 0
+          const linkLabel = primarySources.length === 1
             ? 'למסמך המקור ↗'
             : 'למסמך המקור (' + s.sourceTitle + ') ↗';
           html += '<a href="' + s.sourceUrl + '" target="_blank" rel="noopener noreferrer" class="source-link primary-source-link" title="' + s.sourceTitle + ' (' + s.sourceType + ')">' + linkLabel + '</a>';
@@ -2219,6 +2219,9 @@ function renderTrajectoryFutureCards() {
         }
       });
       html += '</div>';
+    } else {
+      // Complementary / Supporting Source only (goals 4, 6, 12)
+      html += '<div class="source-header-row source-header-complementary"><span class="source-icon">📖</span> <strong>מקור משלים ומבסס:</strong> <span class="source-doc-name">' + item.unionSourceDoc + '</span></div>';
     }
 
     if (secondarySources.length > 0) {

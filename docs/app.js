@@ -17,6 +17,15 @@ const STATE = {
   execution: [],
   entities: [],
   unionPositions: [],
+  coalitionClauses: [],
+  coalitionActiveSubTab: "clauses", // "clauses" | "macro"
+  coalitionFilter: {
+    party: "ALL",
+    topic: "ALL",
+    municipalDirectOnly: false,
+    directness: "ALL",
+    search: ""
+  },
   selectedPartyId: "PARTY-BEYACHAD",
   selectedCoalitionPartyId: "PARTY-LIKUD",
   selectedIssueId: "ISSUE-CORE-CURRICULUM",
@@ -282,6 +291,7 @@ async function initApp() {
       executionRes,
       entitiesRes,
       unionPositionsRes,
+      coalitionClausesRes,
       sysMetaRes
     ] = await Promise.all([
       fetch("data/sources.json?v=2.6.1"),
@@ -292,6 +302,7 @@ async function initApp() {
       fetch("data/execution.json?v=2.6.1"),
       fetch("data/professional-entities.json?v=2.6.1"),
       fetch("data/union-positions.json?v=2.6.1"),
+      fetch("data/knowledge/coalition-education-clauses.json?v=2.6.1").then(r => r.json()).catch(() => ({ clauses: [] })),
       fetch("data/system-metadata.json?v=2.6.1").then(r => r.json()).catch(() => null)
     ]);
 
@@ -303,6 +314,7 @@ async function initApp() {
     STATE.execution = (await executionRes.json()).executionRecords || [];
     STATE.entities = (await entitiesRes.json()).entities || [];
     STATE.unionPositions = (await unionPositionsRes.json()).positions || [];
+    STATE.coalitionClauses = (coalitionClausesRes && coalitionClausesRes.clauses) || [];
     STATE.systemMetadata = sysMetaRes || null;
 
     // Initialize AskEngine
@@ -315,6 +327,7 @@ async function initApp() {
     renderPartyScreenSelectors();
     renderIssueScreenSelectors();
     renderCoalitionPartySelectors();
+    setupCoalitionSubViewEvents();
     renderUnionTopicSelectors();
     setupAskScreenEvents();
     renderActiveView();
@@ -552,8 +565,7 @@ function renderActiveView() {
       renderIssueScreen(STATE.selectedIssueId);
     }
   } else if (STATE.activeSection === "coalition") {
-    renderCoalitionPartySelectors();
-    renderExecutionScreen(STATE.selectedCoalitionPartyId);
+    renderCoalitionScreen();
   } else if (STATE.activeSection === "union") {
     renderUnionTopicSelectors();
     renderUnionScreen();
@@ -910,8 +922,303 @@ function renderIssueScreen(issueId) {
 }
 
 // ----------------------------------------------------
-// SCREEN 2: COALITION SCREEN (הסכמים קואליציוניים ומבחן הביצוע)
+// SCREEN 2: COALITION SCREEN (הסכמים קואליציוניים ומבחן הביצוע - V2.1)
 // ----------------------------------------------------
+
+const COALITION_PARTY_FILTER_OPTIONS = [
+  { id: "ALL", label: "כלל הסיעות (194)" },
+  { id: "ש״ס", label: "ש״ס (60)" },
+  { id: "יהדות התורה", label: "יהדות התורה (52)" },
+  { id: "הציונות הדתית", label: "הציונות הדתית (42)" },
+  { id: "עוצמה יהודית", label: "עוצמה יהודית (25)" },
+  { id: "סיעת נעם", label: "סיעת נעם (10)" },
+  { id: "הימין הממלכתי", label: "הימין הממלכתי (4)" },
+  { id: "אגודת ישראל", label: "אגודת ישראל (1)" }
+];
+
+function setupCoalitionSubViewEvents() {
+  const tabClauses = document.getElementById("tab-coalition-clauses");
+  const tabMacro = document.getElementById("tab-coalition-macro");
+  const panelClauses = document.getElementById("coalition-clauses-container");
+  const panelMacro = document.getElementById("coalition-macro-container");
+
+  if (tabClauses && tabMacro) {
+    tabClauses.addEventListener("click", () => {
+      STATE.coalitionActiveSubTab = "clauses";
+      tabClauses.classList.add("active");
+      tabMacro.classList.remove("active");
+      if (panelClauses) panelClauses.style.display = "block";
+      if (panelMacro) panelMacro.style.display = "none";
+      renderCoalitionClausesList();
+    });
+
+    tabMacro.addEventListener("click", () => {
+      STATE.coalitionActiveSubTab = "macro";
+      tabMacro.classList.add("active");
+      tabClauses.classList.remove("active");
+      if (panelClauses) panelClauses.style.display = "none";
+      if (panelMacro) panelMacro.style.display = "block";
+      renderCoalitionPartySelectors();
+      renderExecutionScreen(STATE.selectedCoalitionPartyId);
+    });
+  }
+
+  renderCoalitionPartyPills();
+
+  const searchInput = document.getElementById("clause-search-input");
+  if (searchInput) {
+    let debounceTimer;
+    searchInput.addEventListener("input", (e) => {
+      clearTimeout(debounceTimer);
+      debounceTimer = setTimeout(() => {
+        STATE.coalitionFilter.search = e.target.value.trim().toLowerCase();
+        renderCoalitionClausesList();
+      }, 200);
+    });
+  }
+
+  const topicSelect = document.getElementById("clause-topic-select");
+  if (topicSelect) {
+    topicSelect.addEventListener("change", (e) => {
+      STATE.coalitionFilter.topic = e.target.value;
+      renderCoalitionClausesList();
+    });
+  }
+
+  const munToggleBtn = document.getElementById("btn-toggle-mun-filter");
+  if (munToggleBtn) {
+    munToggleBtn.addEventListener("click", () => {
+      STATE.coalitionFilter.municipalDirectOnly = !STATE.coalitionFilter.municipalDirectOnly;
+      if (STATE.coalitionFilter.municipalDirectOnly) {
+        munToggleBtn.classList.add("active");
+      } else {
+        munToggleBtn.classList.remove("active");
+      }
+      renderCoalitionClausesList();
+    });
+  }
+
+  const directSelect = document.getElementById("clause-direct-select");
+  if (directSelect) {
+    directSelect.addEventListener("change", (e) => {
+      STATE.coalitionFilter.directness = e.target.value;
+      renderCoalitionClausesList();
+    });
+  }
+
+  const resetBtn = document.getElementById("btn-reset-clause-filters");
+  if (resetBtn) {
+    resetBtn.addEventListener("click", () => {
+      STATE.coalitionFilter.party = "ALL";
+      STATE.coalitionFilter.topic = "ALL";
+      STATE.coalitionFilter.municipalDirectOnly = false;
+      STATE.coalitionFilter.directness = "ALL";
+      STATE.coalitionFilter.search = "";
+
+      if (searchInput) searchInput.value = "";
+      if (topicSelect) topicSelect.value = "ALL";
+      if (directSelect) directSelect.value = "ALL";
+      if (munToggleBtn) munToggleBtn.classList.remove("active");
+
+      document.querySelectorAll("#clauses-party-filters .party-pill-btn").forEach(p => {
+        if (p.getAttribute("data-party-code") === "ALL") p.classList.add("active");
+        else p.classList.remove("active");
+      });
+
+      renderCoalitionClausesList();
+    });
+  }
+}
+
+function renderCoalitionPartyPills() {
+  const container = document.getElementById("clauses-party-filters");
+  if (!container) return;
+
+  container.innerHTML = COALITION_PARTY_FILTER_OPTIONS.map(opt => {
+    const isActive = (STATE.coalitionFilter.party === opt.id) ? "active" : "";
+    return `<button type="button" class="party-pill-btn ${isActive}" data-party-code="${opt.id}">${opt.label}</button>`;
+  }).join("");
+
+  container.querySelectorAll(".party-pill-btn").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const pCode = btn.getAttribute("data-party-code");
+      STATE.coalitionFilter.party = pCode;
+      container.querySelectorAll(".party-pill-btn").forEach(b => b.classList.remove("active"));
+      btn.classList.add("active");
+      renderCoalitionClausesList();
+    });
+  });
+}
+
+function getPartyColorClass(party) {
+  if (!party) return "";
+  if (party.includes("ש״ס") || party.includes("ש\"ס")) return "shas";
+  if (party.includes("אגודת ישראל")) return "agudat";
+  if (party.includes("יהדות התורה")) return "utj";
+  if (party.includes("הציונות הדתית")) return "rz";
+  if (party.includes("עוצמה יהודית")) return "otzma";
+  if (party.includes("נעם") || party.includes("נועם")) return "noam";
+  if (party.includes("הימין הממלכתי")) return "ym";
+  return "";
+}
+
+function renderCoalitionClausesList() {
+  const grid = document.getElementById("clauses-cards-grid");
+  const counterEl = document.getElementById("clauses-counter-text");
+  const resetBtn = document.getElementById("btn-reset-clause-filters");
+  if (!grid) return;
+
+  const allClauses = STATE.coalitionClauses || [];
+  const filter = STATE.coalitionFilter;
+
+  const filtered = allClauses.filter(c => {
+    if (filter.party !== "ALL") {
+      const isShasMatch = (filter.party === "ש״ס" || filter.party === "שס") && (c.party === "ש״ס" || c.party === "שס");
+      if (c.party !== filter.party && c.partyId !== filter.party && !isShasMatch) {
+        return false;
+      }
+    }
+    if (filter.topic !== "ALL") {
+      if (c.education_topic !== filter.topic) return false;
+    }
+    if (filter.municipalDirectOnly) {
+      if (!c.localAuthorityImpact || !c.localAuthorityImpact.isDirect) return false;
+    }
+    if (filter.directness !== "ALL") {
+      if (c.directness !== filter.directness && c.relevance_type !== filter.directness) return false;
+    }
+    if (filter.search) {
+      const term = filter.search.toLowerCase();
+      const areasStr = (c.localAuthorityImpact && c.localAuthorityImpact.areasAffected) ? c.localAuthorityImpact.areasAffected.join(" ") : "";
+      const hay = [
+        c.clauseNumber,
+        c.section_number,
+        c.title,
+        c.category,
+        c.summary,
+        c.verbatim_text,
+        c.party,
+        (c.localAuthorityImpact && c.localAuthorityImpact.description) || "",
+        areasStr
+      ].join(" ").toLowerCase();
+      if (!hay.includes(term)) return false;
+    }
+    return true;
+  });
+
+  if (counterEl) {
+    counterEl.textContent = `מציג ${filtered.length} מתוך ${allClauses.length} סעיפים מאומתים`;
+  }
+
+  const isAnyFilterActive = filter.party !== "ALL" || filter.topic !== "ALL" || filter.municipalDirectOnly || filter.directness !== "ALL" || !!filter.search;
+  if (resetBtn) {
+    resetBtn.style.display = isAnyFilterActive ? "inline-block" : "none";
+  }
+
+  if (filtered.length === 0) {
+    grid.innerHTML = `
+      <div class="empty-notice" style="grid-column: 1 / -1; padding: 40px 20px;">
+        <h3>לא נמצאו סעיפים התואמים את הסינון</h3>
+        <p>נסה לאפס את הסינונים או לחפש מילות מפתח אחרות.</p>
+      </div>
+    `;
+    return;
+  }
+
+  grid.innerHTML = filtered.map(c => {
+    const pColor = getPartyColorClass(c.party);
+    const hasDirectMun = c.localAuthorityImpact && c.localAuthorityImpact.isDirect;
+    const isDirectRelevance = c.directness === "direct" || c.relevance_type === "direct";
+    const dirBadgeClass = isDirectRelevance ? "direct" : "indirect";
+    const dirBadgeLabel = isDirectRelevance ? "זיקה ישירה" : "זיקה עקיפה";
+
+    let budgetBadgeHtml = "";
+    if (c.budgetCommitment && c.budgetCommitment.hasBudget) {
+      const bText = c.budgetCommitment.rawText || (c.budget_amount_nis ? formatNIS(c.budget_amount_nis) : "תקציב נקוב");
+      budgetBadgeHtml = `<span class="clause-budget-badge" title="התחייבות תקציבית">💰 ${bText}</span>`;
+    }
+
+    let munBoxHtml = "";
+    if (c.localAuthorityImpact && c.localAuthorityImpact.hasImpact) {
+      const munDesc = c.localAuthorityImpact.description || "";
+      const areas = c.localAuthorityImpact.areasAffected || [];
+      const areasHtml = areas.map(a => `<span class="clause-mun-area-pill">${a}</span>`).join("");
+
+      munBoxHtml = `
+        <div class="clause-mun-impact-box">
+          <div class="clause-mun-impact-title">🏛️ משמעות מוניציפלית (השלטון המקומי):</div>
+          <p class="clause-mun-impact-desc">${munDesc}</p>
+          ${areasHtml ? `<div class="clause-mun-areas-wrap">${areasHtml}</div>` : ''}
+        </div>
+      `;
+    }
+
+    let reviewBoxHtml = "";
+    if (c.verification === "review_required" || c.coverageStatus === "review_required") {
+      reviewBoxHtml = `
+        <div class="clause-review-box">
+          ⚠️ <strong>דורש בחינה / סעיף עקרוני:</strong> סעיף זה מבטא קווי יסוד או עקרונות מדיניות הדורשים בחינה נוספת.
+        </div>
+      `;
+    }
+
+    const driveUrl = c.drive_url || c.source_url || DRIVE_COALITION_FOLDER_URL;
+    const pageLabel = c.page ? `עמ' ${c.page}` : '';
+
+    return `
+      <div class="clause-card ${hasDirectMun ? 'has-direct-mun' : ''}" id="card-${c.id}">
+        <div class="clause-card-header">
+          <div class="clause-header-left">
+            <span class="clause-party-badge ${pColor}">${c.party}</span>
+            <span class="clause-sec-tag">${c.section_number || ('סעיף ' + c.clauseNumber)}</span>
+            ${pageLabel ? `<span class="clause-page-tag">${pageLabel}</span>` : ''}
+          </div>
+          <div class="clause-header-right">
+            <span class="clause-direct-badge ${dirBadgeClass}">${dirBadgeLabel}</span>
+            ${budgetBadgeHtml}
+          </div>
+        </div>
+
+        <div class="clause-card-body">
+          <h4 class="clause-card-title">${c.title || c.category}</h4>
+          <p class="clause-card-text">${c.verbatim_text || c.summary}</p>
+          ${munBoxHtml}
+          ${reviewBoxHtml}
+        </div>
+
+        <div class="clause-card-footer">
+          <span class="clause-responsible-tag">${c.responsible_body ? 'גורם אחראי: ' + c.responsible_body : ''}</span>
+          <a href="${driveUrl}" target="_blank" rel="noopener noreferrer" class="clause-doc-link-btn" title="צפייה במסמך המקור החתום ב-Google Drive">
+            📄 למסמך המקור ↗
+          </a>
+        </div>
+      </div>
+    `;
+  }).join("");
+}
+
+function renderCoalitionScreen() {
+  const panelClauses = document.getElementById("coalition-clauses-container");
+  const panelMacro = document.getElementById("coalition-macro-container");
+  const tabClauses = document.getElementById("tab-coalition-clauses");
+  const tabMacro = document.getElementById("tab-coalition-macro");
+
+  if (STATE.coalitionActiveSubTab === "clauses") {
+    if (panelClauses) panelClauses.style.display = "block";
+    if (panelMacro) panelMacro.style.display = "none";
+    if (tabClauses) tabClauses.classList.add("active");
+    if (tabMacro) tabMacro.classList.remove("active");
+    renderCoalitionClausesList();
+  } else {
+    if (panelClauses) panelClauses.style.display = "none";
+    if (panelMacro) panelMacro.style.display = "block";
+    if (tabClauses) tabClauses.classList.remove("active");
+    if (tabMacro) tabMacro.classList.add("active");
+    renderCoalitionPartySelectors();
+    renderExecutionScreen(STATE.selectedCoalitionPartyId);
+  }
+}
+
 function renderCoalitionPartySelectors() {
   const container = document.getElementById("coalition-party-buttons-container");
   if (!container) return;

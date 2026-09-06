@@ -212,10 +212,10 @@
     <!-- AREA 2: הסכמים קואליציוניים ומבחן הביצוע -->
     <div class="main-section-view" id="section-coalition">
       <div class="disclosure-banner">
-        <div class="disclosure-icon">⚠️</div>
+        <div class="disclosure-icon">📜</div>
         <div class="disclosure-content">
-          <h4>גרסת מחקר חלקית — מאגר ההתחייבויות והביצוע נמצא בהרחבה</h4>
-          <p>הנתונים המוצגים להלן כוללים התחייבויות מאומתות שנבדקו מילה במילה מול מסמכי המקור של ההסכמים הקואליציוניים החתומים (הממשלה ה-37). אין להסיק מרשימה זו כי היא מייצגת את מלוא ההסכמים הקואליציוניים שנחתמו.</p>
+          <h4>מאגר ההסכמים הקואליציוניים המורחב — 194 סעיפים מאומתים</h4>
+          <p>הסכמי הממשלה ה-37 בתחומי חינוך, ילדים, נוער, צעירים, שלטון מקומי ותחומים משיקים, מאומתים מילה במילה מול מסמכי המקור החתומים.</p>
         </div>
       </div>
 
@@ -227,21 +227,90 @@
         <span class="drive-all-hint">ספריית המקורות המלאה של 7 ההסכמים החתומים (הממשלה ה-37) ב-Google Drive</span>
       </div>
 
-      <div class="selector-card">
-        <div class="selector-label-wrap">
-          <label class="selector-label">בחר מפלגת / סיעת קואליציה:</label>
-          <span class="selector-hint">הצגת התחייבויות החינוך החתומות בהסכם הקואליציוני ומבחן הביצוע המאומת</span>
-        </div>
-        <div class="party-buttons" id="coalition-party-buttons-container"></div>
-      </div>
-      <div id="execution-content-area"></div>
-      <div class="sub-nav-bar">
-        <button class="sub-tab active" data-subview="agreements">📜 הסכמים לפי מפלגות</button>
-        <button class="sub-tab" data-subview="execution">📊 מבחן הביצוע והתקציב</button>
-        <button class="sub-tab" data-subview="gap">🔍 פערים בין הבטחה לביצוע</button>
+      <!-- Coalition Area View Toggle Tabs -->
+      <div class="sub-nav-bar coalition-sub-nav">
+        <button class="sub-tab active" id="tab-coalition-clauses" data-coalition-view="clauses">📜 מאגר כלל הסעיפים (194 סעיפים מאומתים)</button>
+        <button class="sub-tab" id="tab-coalition-macro" data-coalition-view="macro">📊 מבחן הביצוע והתקציב (התחייבויות מאקרו)</button>
       </div>
 
-      <div id="coalition-content-area"></div>
+      <!-- VIEW A: Granular 194 Clauses Database -->
+      <div id="coalition-clauses-container" class="coalition-subview-panel active">
+        <!-- Filter Bar -->
+        <div class="clauses-filter-card">
+          <div class="filter-row filter-parties">
+            <label class="filter-label">סיעת קואליציה:</label>
+            <div class="party-filter-pills" id="clauses-party-filters">
+              <!-- Dynamically populated party pills -->
+            </div>
+          </div>
+
+          <div class="filter-controls-grid">
+            <!-- Search -->
+            <div class="filter-item filter-search">
+              <label class="filter-label" for="clause-search-input">חיפוש חופשי:</label>
+              <input type="text" id="clause-search-input" class="search-input" placeholder="חיפוש לפי סעיף, נושא, מילות מפתח...">
+            </div>
+
+            <!-- Topic Select -->
+            <div class="filter-item filter-topic">
+              <label class="filter-label" for="clause-topic-select">תחום / נושא:</label>
+              <select id="clause-topic-select" class="filter-select">
+                <option value="ALL">כל התחומים (194 סעיפים)</option>
+                <option value="teacher_wages_and_status">שכר ותנאי עובדי הוראה / אופק חדש</option>
+                <option value="core_curriculum">לימודי ליבה, פיקוח ובגרויות</option>
+                <option value="chareidi_networks_and_ptor">מוכש״ר, רשתות ומוסדות פטור</option>
+                <option value="school_construction_and_physical">בינוי כיתות, מבנים יבילים ותשתיות</option>
+                <option value="feeding_and_transport">הסעות, ליווי ומפעל ההזנה</option>
+                <option value="special_education">חינוך מיוחד, סייעות ושפ״ח</option>
+                <option value="early_childhood">הגיל הרך ומעונות יום (0–3)</option>
+                <option value="informal_education_and_youth">נוער בסיכון, תנועות נוער ובלתי-פורמלי</option>
+                <option value="jewish_identity_and_gefen">זהות יהודית, מורשת וגפ״ן</option>
+                <option value="higher_education_and_academies">השכלה גבוהה, מכינות ומה״ט</option>
+                <option value="governance_and_autonomy">משילות ואוטונומיה פדגוגית</option>
+              </select>
+            </div>
+
+            <!-- Municipal Filter Toggle Button -->
+            <div class="filter-item filter-mun">
+              <label class="filter-label">מיקוד מוניציפלי:</label>
+              <button type="button" id="btn-toggle-mun-filter" class="mun-toggle-btn">
+                🏛️ הצג סעיפים בעלי השפעה מוניציפלית ישירה (<span id="mun-count-badge">48</span>)
+              </button>
+            </div>
+
+            <!-- Directness Select -->
+            <div class="filter-item filter-directness">
+              <label class="filter-label" for="clause-direct-select">זיקה למערכת:</label>
+              <select id="clause-direct-select" class="filter-select">
+                <option value="ALL">כל הזיקות</option>
+                <option value="direct">זיקה ישירה</option>
+                <option value="indirect">זיקה עקיפה</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Counter Bar -->
+          <div class="clauses-counter-bar">
+            <span id="clauses-counter-text">מציג 194 מתוך 194 סעיפים מאומתים</span>
+            <button type="button" id="btn-reset-clause-filters" class="reset-filters-btn" style="display: none;">איפוס סינונים ↺</button>
+          </div>
+        </div>
+
+        <!-- Cards Container -->
+        <div id="clauses-cards-grid" class="clauses-grid"></div>
+      </div>
+
+      <!-- VIEW B: Macro Commitments 4-Tier Execution View -->
+      <div id="coalition-macro-container" class="coalition-subview-panel" style="display: none;">
+        <div class="selector-card">
+          <div class="selector-label-wrap">
+            <label class="selector-label">בחר מפלגת / סיעת קואליציה:</label>
+            <span class="selector-hint">הצגת התחייבויות החינוך החתומות בהסכם הקואליציוני ומבחן הביצוע המאומת</span>
+          </div>
+          <div class="party-buttons" id="coalition-party-buttons-container"></div>
+        </div>
+        <div id="execution-content-area"></div>
+      </div>
     </div>
 
     <!-- AREA 3: עמדות איגוד מנהלי החינוך -->

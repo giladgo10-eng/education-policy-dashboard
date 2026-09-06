@@ -41,3 +41,6 @@ __pycache__/
 # Temporary downloads and archives
 *.zip
 *.tar.gz
+
+# Staging backups
+staging/backup/

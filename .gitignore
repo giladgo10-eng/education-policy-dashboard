@@ -46,3 +46,6 @@ npm-debug.log*
 
 # Distribution Archives
 *.zip
+
+# Staging backups
+education-policy-dashboard/staging/backup/

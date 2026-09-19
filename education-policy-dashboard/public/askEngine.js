@@ -59,6 +59,18 @@
       label: "ניתוח מצע החינוך של חד״ש–תע״ל (מחקר משני)",
       btnText: "📖 פתח את מסמך המחקר ↗"
     },
+    "חד״ש": {
+      url: "https://drive.google.com/file/d/1p1RzD-Z-wy6N_-vCdch_ffIHlp4Bkglm/view?usp=sharing",
+      isPrimary: false,
+      label: "ניתוח מצע החינוך של חד״ש–תע״ל (מחקר משני)",
+      btnText: "📖 פתח את מסמך המחקר ↗"
+    },
+    "יש עתיד": {
+      url: "https://yeshatid.org.il/%D7%A0%D7%97%D7%96%D7%95%D7%A8-%D7%A0%D7%AA%D7%A7%D7%9F",
+      isPrimary: true,
+      label: "תוכנית החינוך של יש עתיד (נחזור, נתקן)",
+      btnText: "📄 פתח את מסמך המקור ↗"
+    },
     "איגוד מנהלי אגפי החינוך": {
       url: "https://drive.google.com/drive/folders/19ScYmoBNpvxFndPh5sNQElzhNN42Im05?usp=sharing",
       isPrimary: true,

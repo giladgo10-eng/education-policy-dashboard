@@ -90,6 +90,12 @@ const PLATFORM_DOC_MAP = {
     isPrimary: false,
     label: "ניתוח מצע החינוך של חד״ש–תע״ל (מחקר משני)",
     btnText: "📖 לצפייה במסמך המחקר ↗"
+  },
+  "PARTY-YESHATID": {
+    url: "https://yeshatid.org.il/%D7%A0%D7%97%D7%96%D7%95%D7%A8-%D7%A0%D7%AA%D7%A7%D7%9F",
+    isPrimary: true,
+    label: "תוכנית החינוך של יש עתיד (נחזור, נתקן)",
+    btnText: "📄 לצפייה במצע / מסמך המקור ↗"
   }
 };
 
@@ -2415,10 +2421,12 @@ function openSourceDrawer(sourceId, citation) {
     
     const specificPdfUrl = COALITION_PDF_MAP[sourceId] || (src.url || null);
     if (specificPdfUrl) {
+      const isDrive = specificPdfUrl.includes("drive.google.com");
       const btnLabel = (src.id && src.id.startsWith("SRC-UNION-")) 
         ? "📄 לצפייה במסמך המקור ב-Drive ↗" 
-        : (COALITION_PDF_MAP[sourceId] ? "📄 לצפייה בהסכם המקורי ↗" : "📄 לצפייה במסמך המקור ב-Drive ↗");
-      html += '<div class="drawer-field"><label>קישור למסמך המקורי ב-Google Drive:</label><div class="drawer-val"><a href="' + specificPdfUrl + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">' + btnLabel + '</a></div></div>';
+        : (COALITION_PDF_MAP[sourceId] ? "📄 לצפייה בהסכם המקורי ↗" : (isDrive ? "📄 לצפייה במסמך המקור ב-Drive ↗" : "📄 לצפייה במסמך המקור ↗"));
+      const labelText = isDrive ? "קישור למסמך המקורי ב-Google Drive:" : "קישור למסמך המקור:";
+      html += '<div class="drawer-field"><label>' + labelText + '</label><div class="drawer-val"><a href="' + specificPdfUrl + '" target="_blank" rel="noopener noreferrer" class="drive-doc-link-btn">' + btnLabel + '</a></div></div>';
     }
 
     if (src.notes) {

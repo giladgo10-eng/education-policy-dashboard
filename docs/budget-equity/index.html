@@ -19,7 +19,7 @@
     </div>
     <div class="header-actions">
       <button id="btnQuickSim" class="btn btn-accent">⚡ הפעל סימולטור מתקן</button>
-      <button id="btnQuickReport" class="btn btn-outline">📄 הדו״ח הפרלמנטרי</button>
+      <button id="btnQuickReport" class="btn btn-outline">📄 דוחות ומסמכי מדיניות</button>
       <button id="btnExportExcel" class="btn btn-primary">📊 ייצוא לאקסל</button>
       <a href="https://docs.google.com/forms/d/e/1FAIpQLScoYrhhbX1VwVyA60IjQxB91Fa7iDy27DnAghc5bEWJU5UXuQ/viewform?usp=dialog" 
          target="_blank" 
@@ -188,7 +188,11 @@
     </button>
     <button class="tab-btn" data-tab="tab-advocacy">
       <span>📄</span>
-      <span>הדו״ח הפרלמנטרי</span>
+      <span>דוחות: הדו״ח הארצי והדו״ח היישובי</span>
+    </button>
+    <button class="tab-btn" data-tab="tab-methodology">
+      <span>📚</span>
+      <span>מתודולוגיה, מקורות ושקיפות</span>
     </button>
     <button class="tab-btn" data-tab="tab-table">
       <span>📋</span>
@@ -296,19 +300,19 @@
 
         <div class="profile-kpis">
           <div class="prof-kpi-box">
-            <div class="prof-kpi-lbl">אוכלוסייה 2024</div>
+            <div class="prof-kpi-lbl">אוכלוסייה 2024 <button class="btn-how-calc" data-field="population" title="הסבר מקור וחישוב">🔍</button></div>
             <div class="prof-kpi-val" id="profPop">494,900</div>
           </div>
           <div class="prof-kpi-box">
-            <div class="prof-kpi-lbl">אשכול חברתי-כלכלי</div>
+            <div class="prof-kpi-lbl">אשכול חברתי-כלכלי <button class="btn-how-calc" data-field="cbs_socio_cluster" title="הסבר מקור וחישוב">🔍</button></div>
             <div class="prof-kpi-val" id="profSocio">8 (0.978)</div>
           </div>
           <div class="prof-kpi-box">
-            <div class="prof-kpi-lbl">אשכול פריפריאליות</div>
+            <div class="prof-kpi-lbl">אשכול פריפריאליות <button class="btn-how-calc" data-field="cbs_periphery_cluster" title="הסבר מקור וחישוב">🔍</button></div>
             <div class="prof-kpi-val" id="profPeri">8 (0.954)</div>
           </div>
           <div class="prof-kpi-box">
-            <div class="prof-kpi-lbl">שיעור הכנסות עצמיות</div>
+            <div class="prof-kpi-lbl">שיעור הכנסות עצמיות <button class="btn-how-calc" data-field="own_revenue_share_pct" title="הסבר מקור וחישוב">🔍</button></div>
             <div class="prof-kpi-val" id="profOwnRevShare">72.4%</div>
           </div>
         </div>
@@ -317,11 +321,17 @@
         <div style="background: var(--surface-2); border: 2px solid var(--border-color); border-radius: 12px; padding: 18px; margin: 16px 0;">
           <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
             <div>
-              <div style="font-size: 13px; color: var(--text-muted);">שיעור השתתפות עצמית בחינוך (מדד מרכזי):</div>
+              <div style="font-size: 13px; color: var(--text-muted);">
+                שיעור השתתפות עצמית בחינוך (מדד מרכזי):
+                <button class="btn-how-calc" data-field="municipal_education_self_funding_rate" title="הסבר מקור וחישוב">🔍 איך חושב?</button>
+              </div>
               <div style="font-size: 32px; font-weight: 800; color: var(--primary);" id="profSelfFundingRate">43.3%</div>
             </div>
             <div>
-              <div style="font-size: 13px; color: var(--text-muted);">מימון עצמי נטו בחינוך (1486-1384):</div>
+              <div style="font-size: 13px; color: var(--text-muted);">
+                מימון עצמי נטו בחינוך (1486-1384):
+                <button class="btn-how-calc" data-field="education_net_expenditure_per_capita_nis" title="הסבר מקור וחישוב">🔍 לנפש</button>
+              </div>
               <div style="font-size: 24px; font-weight: 700; color: var(--success);" id="profNetEduDiff">₪732,963 אלפי ש"ח</div>
               <div style="font-size: 13px; color: var(--text-muted);" id="profNetEduPerCapita">₪1,481 לנפש</div>
             </div>
@@ -333,32 +343,32 @@
         <table class="table" style="font-size: 13.5px;">
           <tbody>
             <tr>
-              <td><strong>סך הוצאות חינוך (קוד 1486)</strong></td>
+              <td><strong>סך הוצאות חינוך (קוד 1486)</strong> <button class="btn-how-calc" data-field="education_expense_1486_tk" title="הסבר מקור">🔍</button></td>
               <td class="text-left font-mono" id="profExp1486">₪1,693,050K</td>
               <td class="text-left font-mono" id="profExp1486PerCapita">₪3,421 לנפש</td>
             </tr>
             <tr>
-              <td><strong>סך תקבולי חינוך ומשה"ח (קוד 1384)</strong></td>
+              <td><strong>סך תקבולי חינוך ומשה"ח (קוד 1384)</strong> <button class="btn-how-calc" data-field="education_revenue_1384_tk" title="הסבר מקור">🔍</button></td>
               <td class="text-left font-mono" id="profRev1384">₪960,087K</td>
               <td class="text-left font-mono" id="profRev1384PerCapita">₪1,940 לנפש</td>
             </tr>
             <tr>
-              <td><strong>סך הכנסות עצמיות (קוד 1805)</strong></td>
+              <td><strong>סך הכנסות עצמיות (קוד 1805)</strong> <button class="btn-how-calc" data-field="own_revenue_1805_tk" title="הסבר מקור">🔍</button></td>
               <td class="text-left font-mono" id="profOwnRev1805">₪4,682,100K</td>
               <td class="text-left font-mono" id="profOwnRevPerCapita">₪9,461 לנפש</td>
             </tr>
             <tr>
-              <td><strong>ארנונה אחרת (עסקית/תעשייתית) (קוד 4146)</strong></td>
+              <td><strong>ארנונה אחרת (עסקית/תעשייתית) (קוד 4146)</strong> <button class="btn-how-calc" data-field="arnona_other_4146_tk" title="הסבר מקור">🔍</button></td>
               <td class="text-left font-mono" id="profArnonaOther">₪2,654,120K</td>
               <td class="text-left font-mono" id="profArnonaOtherPerCapita">₪5,363 לנפש</td>
             </tr>
             <tr>
-              <td><strong>סך ארנונה (כללית) (קוד 4162)</strong></td>
+              <td><strong>סך ארנונה (כללית) (קוד 4162)</strong> <button class="btn-how-calc" data-field="arnona_total_4162_tk" title="הסבר מקור">🔍</button></td>
               <td class="text-left font-mono" id="profArnonaTotal">₪3,890,400K</td>
               <td class="text-left font-mono" id="profArnonaTotalPerCapita">₪7,861 לנפש</td>
             </tr>
             <tr>
-              <td><strong>מענק איזון (קוד 1819)</strong></td>
+              <td><strong>מענק איזון (קוד 1819)</strong> <button class="btn-how-calc" data-field="balancing_grant_1819_tk" title="הסבר מקור">🔍</button></td>
               <td class="text-left font-mono" id="profBalancingGrant">₪0 (אין זכאות)</td>
               <td class="text-left font-mono">-</td>
             </tr>
@@ -539,32 +549,44 @@
     </div>
   </main>
 
-  <!-- Tab 5: Parliamentary Report -->
+  <!-- Tab 5: Dynamic Reports (National & Municipal) -->
   <main id="tab-advocacy" class="tab-panel">
-    <div class="card parliamentary-card">
-      <div class="parliamentary-badge">🛡️ איגוד מנהלי אגפי ומחלקות החינוך ברשויות המקומיות</div>
-      <h2 class="parliamentary-title">הדו״ח הפרלמנטרי</h2>
-      <p class="parliamentary-desc">
-        נייר עמדה ומסמך מדיניות רשמי המציג את תמונת המצב הפיסקלית של פערי ההשתתפות העצמית בחינוך ברשויות המקומיות בישראל (דוחות כספיים מבוקרים 2024) ומודל התקצוב הדיפרנציאלי המתקן.
-      </p>
+    <div class="card" style="margin-bottom: 16px; padding: 14px 20px;">
+      <div class="report-toggle-bar" style="margin-bottom: 0;">
+        <button id="btnSubReportNational" class="btn-toggle-report active">
+          🏛️ הדו״ח המערכתי הארצי (257 רשויות)
+        </button>
+        <button id="btnSubReportMunicipal" class="btn-toggle-report">
+          📑 הדו״ח היישובי (כרטיס 360°)
+        </button>
+      </div>
       
-      <div class="parliamentary-actions" style="justify-content: center;">
-        <div style="background: var(--bg-card); border: 2px dashed var(--border); border-radius: 8px; padding: 24px 32px; text-align: center; max-width: 550px; width: 100%;">
-          <div style="font-size: 32px; margin-bottom: 12px;">⏳</div>
-          <h3 style="margin: 0 0 8px 0; color: var(--text-main); font-size: 18px; font-weight: 700;">הדו״ח מושבת זמנית לצורך אימות מקורות הנתונים</h3>
-          <p style="margin: 0; color: var(--text-muted); font-size: 14px; line-height: 1.5;">
-            קבצי המסמך (Word / PDF) עוברים כעת הליך אימות ובקרה מתודולוגית, ויועלו להורדה ישירה עם השלמת האימות.
-          </p>
+      <div id="municipalSelectRow" style="display: none; align-items: center; justify-content: space-between; gap: 12px; margin-top: 14px; padding-top: 12px; border-top: 1px solid var(--border); flex-wrap: wrap;">
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <label for="reportAuthoritySelect" style="font-weight: 700; font-size: 13.5px;">בחר רשות מקומית להפקה:</label>
+          <select id="reportAuthoritySelect" class="form-control" style="min-width: 260px; font-weight: 600;">
+            <!-- Populated via JS -->
+          </select>
+        </div>
+        <div style="font-size: 13px; color: var(--text-muted);">
+          הדו״ח כולל פירוק מלא של נוסחת הסימולציה והקצאת המענק לרשות זו.
         </div>
       </div>
+    </div>
 
-      <div class="parliamentary-note">
-        📌 המערכת פועלת בהתאם לפרוטוקול עקיבות נתונים קשיח (Data Provenance & Traceability).
-      </div>
+    <div id="advocacyPaperContainer">
+      <!-- Dynamically generated by NationalReportEngine or EducationAdvocacy -->
     </div>
   </main>
 
-  <!-- Tab 6: Full Data Table (257) -->
+  <!-- Tab 6: Methodology, Sources & Provenance -->
+  <main id="tab-methodology" class="tab-panel">
+    <div id="methodologyContainer">
+      <!-- Dynamically generated by DataTraceabilityEngine.renderMethodologyTab -->
+    </div>
+  </main>
+
+  <!-- Tab 7: Full Data Table (257) -->
   <main id="tab-table" class="tab-panel">
     <div class="card">
       <div class="card-header">
@@ -639,6 +661,8 @@
 <script src="data/master_data.js"></script>
 <script src="charts.js"></script>
 <script src="simulator.js"></script>
+<script src="traceability.js"></script>
+<script src="national_report.js"></script>
 <script src="advocacy.js"></script>
 <script src="app.js"></script>
 </body>

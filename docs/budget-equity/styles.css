@@ -1338,14 +1338,485 @@ table.data-table tr.clickable {
     background: white;
     color: black;
   }
-  .app-header, .tabs-nav, .filter-card, .btn, .no-print, .kpi-grid, .insights-grid {
+  .app-header, .tab-nav, .filter-section, .btn, .no-print, .kpi-grid, .report-actions-bar, .app-footer {
     display: none !important;
   }
-  .advocacy-paper {
-    box-shadow: none;
-    border: none;
-    padding: 0;
-    width: 100%;
-    max-width: 100%;
+  .tab-panel {
+    display: none !important;
   }
+  .tab-panel.active {
+    display: block !important;
+  }
+  .national-report-wrapper, .paper-wrapper {
+    box-shadow: none !important;
+    border: none !important;
+    padding: 0 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+}
+
+/* ==============================================================================
+   Methodology & Traceability System Styles
+   ============================================================================== */
+.tax-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 4px;
+  font-size: 11.5px;
+  font-weight: 700;
+}
+
+.btn-how-calc {
+  background: transparent;
+  border: 1px dashed var(--border);
+  color: var(--primary);
+  font-size: 11px;
+  padding: 2px 6px;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-right: 6px;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+}
+.btn-how-calc:hover {
+  background: #eff6ff;
+  border-color: var(--primary);
+}
+
+/* How Calculated / Traceability Buttons */
+.btn-how-calc {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  background: #eff6ff;
+  color: var(--primary);
+  border: 1px solid #bfdbfe;
+  border-radius: 4px;
+  padding: 2px 6px;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  line-height: 1.2;
+  margin-right: 6px;
+  vertical-align: middle;
+  text-decoration: none;
+}
+.btn-how-calc:hover {
+  background: var(--primary);
+  color: #ffffff;
+  border-color: var(--primary);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Traceability Modal */
+.trace-modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(15, 23, 42, 0.6);
+  backdrop-filter: blur(3px);
+  z-index: 99999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+.trace-modal-dialog {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-xl);
+  max-width: 600px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+}
+.trace-modal-header {
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.trace-modal-title {
+  margin: 6px 0 0 0;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-main);
+}
+.trace-modal-close {
+  background: transparent;
+  border: none;
+  font-size: 24px;
+  color: var(--text-muted);
+  cursor: pointer;
+  line-height: 1;
+}
+.trace-modal-body {
+  padding: 20px;
+}
+.trace-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  border-bottom: 1px dashed var(--border);
+  font-size: 13.5px;
+}
+.trace-label {
+  color: var(--text-muted);
+}
+.trace-val {
+  color: var(--text-main);
+  text-align: left;
+}
+.trace-box {
+  background: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px;
+}
+.trace-box-title {
+  font-weight: 700;
+  font-size: 13px;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+.trace-formula {
+  background: #0f172a;
+  color: #38bdf8;
+  padding: 10px 12px;
+  border-radius: 4px;
+  font-size: 12px;
+  direction: ltr;
+  text-align: left;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+.trace-box-alert {
+  background: #fef2f2;
+  border-color: #fca5a5;
+}
+.trace-modal-footer {
+  padding: 14px 20px;
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #f8fafc;
+}
+
+/* Methodology Tab Layout */
+.methodology-banner {
+  background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+  border: 1px solid #bfdbfe;
+}
+.methodology-badge {
+  display: inline-block;
+  background: #dbeafe;
+  color: #1e40af;
+  padding: 4px 10px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 700;
+}
+.taxonomy-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 14px;
+  margin-top: 14px;
+}
+.taxonomy-card {
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.taxonomy-card p {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-main);
+  line-height: 1.45;
+}
+.tax-example {
+  margin-top: auto;
+  font-size: 11.5px;
+  color: var(--text-muted);
+  background: var(--bg-main);
+  padding: 6px 8px;
+  border-radius: 4px;
+}
+
+.pipeline-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+  margin-top: 14px;
+}
+.pipeline-step {
+  background: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  position: relative;
+}
+.step-num {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  width: 24px;
+  height: 24px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+.step-title {
+  font-weight: 700;
+  font-size: 13.5px;
+  color: var(--text-main);
+  margin-bottom: 4px;
+}
+.step-desc {
+  font-size: 12px;
+  color: var(--text-muted);
+  line-height: 1.4;
+}
+
+.formula-block {
+  background: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+}
+.formula-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.formula-code {
+  background: #0f172a;
+  color: #38bdf8;
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 13px;
+  direction: ltr;
+  text-align: left;
+  line-height: 1.5;
+  overflow-x: auto;
+}
+.formula-expl {
+  font-size: 13px;
+  color: var(--text-main);
+  margin: 10px 0 0 0;
+  line-height: 1.5;
+}
+.formula-expl ul {
+  margin: 6px 0;
+  padding-right: 20px;
+}
+
+/* Source Cards */
+.sources-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+.source-card {
+  background: var(--bg-main);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 16px;
+}
+.source-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.source-title {
+  font-weight: 700;
+  font-size: 15px;
+  color: var(--text-main);
+}
+.source-badge {
+  background: #10b98120;
+  color: #059669;
+  border: 1px solid #10b98140;
+  padding: 2px 8px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 700;
+}
+.source-meta {
+  font-size: 13px;
+  color: var(--text-muted);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 6px;
+  margin-bottom: 10px;
+}
+.source-vars {
+  font-size: 12.5px;
+  color: var(--text-main);
+}
+.source-vars ul {
+  margin: 4px 0 0 0;
+  padding-right: 20px;
+}
+.source-notes {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #0369a1;
+  background: #f0f9ff;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+
+/* Reports Styles (National & Municipal) */
+.report-toggle-bar {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 16px;
+  background: var(--bg-card);
+  padding: 6px;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--border);
+}
+.btn-toggle-report {
+  flex: 1;
+  padding: 10px 16px;
+  border-radius: 6px;
+  border: none;
+  background: transparent;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.2s;
+}
+.btn-toggle-report.active {
+  background: var(--primary);
+  color: white;
+  box-shadow: var(--shadow-sm);
+}
+
+.national-report-wrapper, .paper-wrapper {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  padding: 32px;
+  box-shadow: var(--shadow-md);
+  max-width: 950px;
+  margin: 0 auto;
+}
+.report-actions-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 16px;
+  margin-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+.report-meta-tag {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary);
+}
+.national-report-header, .paper-header {
+  text-align: center;
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 20px;
+  margin-bottom: 24px;
+}
+.report-emblem, .paper-emblem {
+  font-size: 36px;
+  margin-bottom: 8px;
+}
+.report-main-title, .paper-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: #0f172a;
+  margin: 0 0 6px 0;
+}
+.report-sub-title, .paper-sub {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+.report-institution, .paper-meta {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--primary-dark);
+}
+
+.national-report-section, .paper-section {
+  margin-bottom: 24px;
+}
+.section-title, .paper-section-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #0f172a;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 6px;
+  margin-bottom: 12px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.report-table, .paper-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+  margin: 12px 0;
+}
+.report-table th, .paper-table th {
+  background: #f8fafc;
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+  font-weight: 700;
+  text-align: right;
+}
+.report-table td, .paper-table td {
+  border: 1px solid var(--border);
+  padding: 8px 12px;
+}
+.report-callout, .paper-box {
+  background: var(--bg-main);
+  border: 1px solid var(--border);
+  border-right: 4px solid var(--primary);
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.national-report-footer, .paper-footer {
+  text-align: center;
+  font-size: 12px;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  padding-top: 16px;
+  margin-top: 24px;
+  line-height: 1.5;
 }

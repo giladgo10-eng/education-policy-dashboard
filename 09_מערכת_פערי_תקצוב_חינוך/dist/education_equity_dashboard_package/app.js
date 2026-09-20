@@ -13,6 +13,7 @@
     nationalWeightedAvg: 26.85,
     nationalUnweightedAvg: 24.10,
     activeTab: 'tab-explorer',
+    reportSubType: 'national',
     scatterXKey: 'own_revenue_share_pct',
     scatterXLabel: 'שיעור הכנסות עצמיות מתוך התקציב (%)',
     excludeTamar: false,
@@ -34,6 +35,8 @@
 
     // Filters
     filterSearch: document.getElementById('filterSearch'),
+    btnClearSearch: document.getElementById('btnClearSearch'),
+    searchDropdown: document.getElementById('searchDropdown'),
     filterDistrict: document.getElementById('filterDistrict'),
     filterType: document.getElementById('filterType'),
     filterSocio: document.getElementById('filterSocio'),
@@ -97,8 +100,13 @@
     simGainersBody: document.getElementById('simGainersBody'),
     btnRunSim: document.getElementById('btnRunSim'),
 
-    // Advocacy & Table
+    // Reports, Methodology & Table
     advocacyPaperContainer: document.getElementById('advocacyPaperContainer'),
+    btnSubReportNational: document.getElementById('btnSubReportNational'),
+    btnSubReportMunicipal: document.getElementById('btnSubReportMunicipal'),
+    reportAuthoritySelect: document.getElementById('reportAuthoritySelect'),
+    municipalSelectRow: document.getElementById('municipalSelectRow'),
+    methodologyContainer: document.getElementById('methodologyContainer'),
     fullDataBody: document.getElementById('fullDataBody'),
     fullDataTable: document.getElementById('fullDataTable'),
 
@@ -167,14 +175,254 @@
     // Setup Event Listeners
     setupEventListeners();
 
+    // Populate Report Select
+    populateReportAuthoritySelect();
+
     // Render Initial Views
     applyFilters();
     runSimulator();
+    renderReports();
+  }
+
+  let activeDropdownIndex = -1;
+
+  // Hebrew & String Normalization Helpers
+  function normalizeHebrew(str) {
+    if (!str) return '';
+    return String(str)
+      .toLowerCase()
+      .replace(/[\u0591-\u05C7]/g, '') // remove niqqud
+      .replace(/["'״׳`”“]/g, '')       // remove quotes/geresh
+      .replace(/[-–—_./\\]/g, ' ')     // replace hyphens/delimiters with space
+      .replace(/\s+/g, ' ')            // collapse multiple whitespace
+      .trim();
+  }
+
+  function normalizeSpelling(str) {
+    // Common Hebrew spelling variations (ktiv male / haser: יי -> י, וו -> ו)
+    return normalizeHebrew(str)
+      .replace(/יי/g, 'י')
+      .replace(/וו/g, 'ו');
+  }
+
+  function authorityMatchesSearch(item, rawQuery) {
+    if (!rawQuery) return true;
+    const query = rawQuery.trim();
+    if (!query) return true;
+
+    // Code matching
+    if (/^\d+$/.test(query)) {
+      const code = String(item.code || '');
+      const cbs = String(item.cbs_code || '');
+      const moinA = String(item.moin_code_col_a || '');
+      const moinC = String(item.moin_code_col_c || '');
+      const queryNum = parseInt(query, 10).toString();
+      if (code === query || code.includes(query) ||
+          cbs === query || cbs.includes(query) ||
+          moinA === query || moinC === query ||
+          code === queryNum || cbs === queryNum) {
+        return true;
+      }
+    }
+
+    const normQuery = normalizeHebrew(query);
+    const spellQuery = normalizeSpelling(query);
+
+    const queryTokens = normQuery.split(' ').filter(Boolean);
+    const spellTokens = spellQuery.split(' ').filter(Boolean);
+
+    const searchTargets = [
+      item.name,
+      item.authority_name,
+      item.authority_name_moin,
+      item.code,
+      item.cbs_code
+    ].filter(Boolean).map(String);
+
+    const normTarget = searchTargets.map(normalizeHebrew).join(' ');
+    const spellTarget = searchTargets.map(normalizeSpelling).join(' ');
+
+    return queryTokens.every((token, idx) => {
+      const spellToken = spellTokens[idx] || token;
+      return normTarget.includes(token) ||
+             spellTarget.includes(spellToken) ||
+             normTarget.includes(spellToken) ||
+             spellTarget.includes(token);
+    });
+  }
+
+  function handleSearchInput() {
+    const rawQuery = el.filterSearch ? el.filterSearch.value : '';
+    const query = rawQuery.trim();
+
+    if (el.btnClearSearch) {
+      el.btnClearSearch.style.display = query ? 'block' : 'none';
+    }
+
+    if (!query) {
+      hideSearchDropdown();
+      applyFilters();
+      return;
+    }
+
+    renderSearchDropdown(query);
+    applyFilters();
+  }
+
+  function renderSearchDropdown(query) {
+    if (!el.searchDropdown) return;
+
+    const normQ = normalizeHebrew(query);
+    const matches = state.allData.filter(item => authorityMatchesSearch(item, query));
+    activeDropdownIndex = -1;
+
+    if (matches.length === 0) {
+      el.searchDropdown.innerHTML = '<div class="search-dropdown-empty">לא נמצאו רשויות תואמות לחיפוש</div>';
+      el.searchDropdown.style.display = 'block';
+      return;
+    }
+
+    // Sort by relevance (exact match first, then prefix, then population)
+    matches.sort((a, b) => {
+      const aNorm = normalizeHebrew(a.name);
+      const bNorm = normalizeHebrew(b.name);
+      const aExact = (aNorm === normQ || a.code === query);
+      const bExact = (bNorm === normQ || b.code === query);
+      if (aExact && !bExact) return -1;
+      if (!aExact && bExact) return 1;
+      const aStarts = aNorm.startsWith(normQ);
+      const bStarts = bNorm.startsWith(normQ);
+      if (aStarts && !bStarts) return -1;
+      if (!aStarts && bStarts) return 1;
+      return (b.population || 0) - (a.population || 0);
+    });
+
+    // Show top 8 matches
+    const topMatches = matches.slice(0, 8);
+    let html = '';
+    topMatches.forEach((auth, idx) => {
+      html += `
+        <div class="search-dropdown-item" data-index="${idx}" data-code="${auth.code}">
+          <div class="search-dropdown-info">
+            <span class="search-dropdown-name">${auth.name}</span>
+            <span class="search-dropdown-meta">${auth.type} • מחוז ${auth.district} • סמל ${auth.code} • אשכול ${auth.cbs_socio_cluster}</span>
+          </div>
+          <div class="search-dropdown-rate">${auth.municipal_education_self_funding_rate}%</div>
+        </div>
+      `;
+    });
+
+    el.searchDropdown.innerHTML = html;
+    el.searchDropdown.style.display = 'block';
+
+    el.searchDropdown.querySelectorAll('.search-dropdown-item').forEach(itemEl => {
+      itemEl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const code = itemEl.getAttribute('data-code');
+        const auth = state.allData.find(a => a.code === code);
+        if (auth) {
+          selectAuthorityFromSearch(auth);
+        }
+      });
+    });
+  }
+
+  function hideSearchDropdown() {
+    if (el.searchDropdown) {
+      el.searchDropdown.style.display = 'none';
+      el.searchDropdown.innerHTML = '';
+      activeDropdownIndex = -1;
+    }
+  }
+
+  function updateDropdownHighlight(items) {
+    items.forEach((it, idx) => {
+      if (idx === activeDropdownIndex) {
+        it.classList.add('active');
+        it.scrollIntoView({ block: 'nearest' });
+      } else {
+        it.classList.remove('active');
+      }
+    });
+  }
+
+  function selectAuthorityFromSearch(auth) {
+    if (!auth) return;
+    if (el.filterSearch) {
+      el.filterSearch.value = auth.name;
+    }
+    if (el.btnClearSearch) {
+      el.btnClearSearch.style.display = 'block';
+    }
+    hideSearchDropdown();
+    selectAuthority(auth);
+    applyFilters();
   }
 
   function setupEventListeners() {
     // Filter controls
-    if (el.filterSearch) el.filterSearch.addEventListener('input', applyFilters);
+    if (el.filterSearch) {
+      el.filterSearch.addEventListener('input', handleSearchInput);
+
+      el.filterSearch.addEventListener('keydown', (e) => {
+        const items = el.searchDropdown ? el.searchDropdown.querySelectorAll('.search-dropdown-item') : [];
+
+        if (e.key === 'ArrowDown') {
+          if (items.length > 0) {
+            e.preventDefault();
+            activeDropdownIndex = (activeDropdownIndex + 1) % items.length;
+            updateDropdownHighlight(items);
+          }
+        } else if (e.key === 'ArrowUp') {
+          if (items.length > 0) {
+            e.preventDefault();
+            activeDropdownIndex = (activeDropdownIndex - 1 + items.length) % items.length;
+            updateDropdownHighlight(items);
+          }
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          if (items.length > 0 && activeDropdownIndex >= 0 && activeDropdownIndex < items.length) {
+            const code = items[activeDropdownIndex].getAttribute('data-code');
+            const auth = state.allData.find(a => a.code === code);
+            if (auth) selectAuthorityFromSearch(auth);
+          } else if (state.filteredData.length > 0) {
+            selectAuthorityFromSearch(state.filteredData[0]);
+          }
+        } else if (e.key === 'Escape') {
+          hideSearchDropdown();
+        }
+      });
+
+      el.filterSearch.addEventListener('focus', () => {
+        const q = el.filterSearch.value.trim();
+        if (q) renderSearchDropdown(q);
+      });
+    }
+
+    if (el.btnClearSearch) {
+      el.btnClearSearch.addEventListener('click', () => {
+        if (el.filterSearch) el.filterSearch.value = '';
+        el.btnClearSearch.style.display = 'none';
+        hideSearchDropdown();
+        applyFilters();
+        if (el.filterSearch) el.filterSearch.focus();
+      });
+    }
+
+    // Click outside closes dropdown and unpins chart tooltips
+    document.addEventListener('click', (e) => {
+      if (el.searchDropdown && !e.target.closest('.search-group')) {
+        hideSearchDropdown();
+      }
+      const tooltipEl = document.getElementById('chartTooltip');
+      if (tooltipEl && !e.target.closest('canvas') && !e.target.closest('#chartTooltip')) {
+        tooltipEl.style.display = 'none';
+        if (el.canvasScatterExplorer) el.canvasScatterExplorer._pinnedAuth = null;
+        if (el.canvasBalancingAll) el.canvasBalancingAll._pinnedAuth = null;
+        if (el.canvasBalancingLow) el.canvasBalancingLow._pinnedAuth = null;
+      }
+    });
+
     if (el.filterDistrict) el.filterDistrict.addEventListener('change', applyFilters);
     if (el.filterType) el.filterType.addEventListener('change', applyFilters);
     if (el.filterSocio) el.filterSocio.addEventListener('change', applyFilters);
@@ -218,6 +466,55 @@
     if (el.btnExportExcel) el.btnExportExcel.addEventListener('click', exportToExcel);
     if (el.btnTableExport) el.btnTableExport.addEventListener('click', exportToExcel);
     if (el.btnRunSim) el.btnRunSim.addEventListener('click', runSimulator);
+
+    // Report Sub-Tab Navigation
+    if (el.btnSubReportNational) {
+      el.btnSubReportNational.addEventListener('click', () => {
+        state.reportSubType = 'national';
+        el.btnSubReportNational.classList.add('active');
+        if (el.btnSubReportMunicipal) el.btnSubReportMunicipal.classList.remove('active');
+        if (el.municipalSelectRow) el.municipalSelectRow.style.display = 'none';
+        renderReports();
+      });
+    }
+
+    if (el.btnSubReportMunicipal) {
+      el.btnSubReportMunicipal.addEventListener('click', () => {
+        state.reportSubType = 'municipal';
+        el.btnSubReportMunicipal.classList.add('active');
+        if (el.btnSubReportNational) el.btnSubReportNational.classList.remove('active');
+        if (el.municipalSelectRow) el.municipalSelectRow.style.display = 'flex';
+        renderReports();
+      });
+    }
+
+    if (el.reportAuthoritySelect) {
+      el.reportAuthoritySelect.addEventListener('change', (e) => {
+        const code = e.target.value;
+        const auth = state.allData.find(a => String(a.code) === String(code));
+        if (auth) {
+          selectAuthority(auth);
+        }
+      });
+    }
+
+    const btnPrint = document.getElementById('btnSubReportPrint');
+    if (btnPrint) {
+      btnPrint.addEventListener('click', () => {
+        window.print();
+      });
+    }
+
+    // Global Traceability ("איך חושב?") Modal Trigger
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.btn-how-calc, [data-trace-field]');
+      if (btn) {
+        const field = btn.getAttribute('data-field') || btn.getAttribute('data-trace-field');
+        if (field && window.DataTraceabilityEngine) {
+          window.DataTraceabilityEngine.showTraceabilityModal(field);
+        }
+      }
+    });
 
     // Table Sorting
     if (el.fullDataTable) {
@@ -265,17 +562,22 @@
     if (btn) btn.classList.add('active');
     if (panel) panel.classList.add('active');
 
-    // Trigger re-render of canvases
+    // Trigger re-render of canvases / tabs
     setTimeout(() => {
       if (tabId === 'tab-explorer') renderExplorer();
       if (tabId === 'tab-profile' && state.selectedAuthority) renderProfileCharts(state.selectedAuthority);
       if (tabId === 'tab-research') renderResearch();
-      if (tabId === 'tab-advocacy' && state.selectedAuthority) renderAdvocacy(state.selectedAuthority);
+      if (tabId === 'tab-advocacy') renderReports();
+      if (tabId === 'tab-methodology' && window.DataTraceabilityEngine) {
+        window.DataTraceabilityEngine.renderMethodologyTab('methodologyContainer');
+      }
     }, 50);
   }
 
   function resetFilters() {
     if (el.filterSearch) el.filterSearch.value = '';
+    if (el.btnClearSearch) el.btnClearSearch.style.display = 'none';
+    hideSearchDropdown();
     if (el.filterDistrict) el.filterDistrict.value = '';
     if (el.filterType) el.filterType.value = '';
     if (el.filterSocio) el.filterSocio.value = '';
@@ -288,7 +590,8 @@
   }
 
   function applyFilters() {
-    const search = el.filterSearch ? el.filterSearch.value.trim().toLowerCase() : '';
+    const rawSearch = el.filterSearch ? el.filterSearch.value : '';
+    const search = rawSearch.trim();
     const district = el.filterDistrict ? el.filterDistrict.value : '';
     const type = el.filterType ? el.filterType.value : '';
     const socio = el.filterSocio ? el.filterSocio.value : '';
@@ -298,7 +601,7 @@
       if (state.excludeTamar && item.is_tamar_outlier) return false;
       if (state.excludeWar && item.is_war_evacuated_2024) return false;
 
-      if (search && !item.name.toLowerCase().includes(search) && !item.code.includes(search)) {
+      if (search && !authorityMatchesSearch(item, search)) {
         return false;
       }
       if (district && item.district !== district) return false;
@@ -319,6 +622,15 @@
 
       return true;
     });
+
+    // Auto-sync selected authority if filter reduces results
+    if (state.filteredData.length === 1) {
+      selectAuthority(state.filteredData[0]);
+    } else if (state.filteredData.length > 0) {
+      if (state.selectedAuthority && !state.filteredData.some(d => d.code === state.selectedAuthority.code)) {
+        selectAuthority(state.filteredData[0]);
+      }
+    }
 
     if (el.explorerCountBadge) {
       el.explorerCountBadge.textContent = `מציג ${state.filteredData.length} מתוך ${state.allData.length} רשויות`;
@@ -428,8 +740,28 @@
     // Render Charts
     renderProfileCharts(auth);
 
-    // Update Advocacy Paper
-    renderAdvocacy(auth);
+    // Sync Report Selector
+    if (el.reportAuthoritySelect) {
+      el.reportAuthoritySelect.value = auth.code;
+    }
+
+    // Update Reports
+    renderReports();
+  }
+
+  function populateReportAuthoritySelect() {
+    if (!el.reportAuthoritySelect || !state.allData || state.allData.length === 0) return;
+    el.reportAuthoritySelect.innerHTML = '';
+    const sorted = [...state.allData].sort((a, b) => a.name.localeCompare(b.name, 'he'));
+    sorted.forEach(a => {
+      const opt = document.createElement('option');
+      opt.value = a.code;
+      opt.textContent = `${a.name} (${a.type}, אשכול ${a.cbs_socio_cluster})`;
+      el.reportAuthoritySelect.appendChild(opt);
+    });
+    if (state.selectedAuthority) {
+      el.reportAuthoritySelect.value = state.selectedAuthority.code;
+    }
   }
 
   function renderProfileCharts(auth) {
@@ -443,7 +775,17 @@
 
   function renderResearch() {
     if (el.canvasBalancingAll && el.canvasBalancingLow) {
-      EducationCharts.renderBalancingGrantResearch(el.canvasBalancingAll, el.canvasBalancingLow, state.allData);
+      EducationCharts.renderBalancingGrantResearch(
+        el.canvasBalancingAll,
+        el.canvasBalancingLow,
+        state.allData,
+        {
+          selectedCode: state.selectedAuthority ? state.selectedAuthority.code : null,
+          onSelectCallback: (selected) => {
+            selectAuthority(selected);
+          }
+        }
+      );
     }
   }
 
@@ -471,10 +813,12 @@
     if (el.simGainersBody) {
       el.simGainersBody.innerHTML = '';
       simResults.top_gainers.slice(0, 10).forEach(g => {
+        const clusterVal = (g.cbs_socio_cluster !== undefined && g.cbs_socio_cluster !== null) ? g.cbs_socio_cluster : ((g.socio_cluster_2021 !== undefined && g.socio_cluster_2021 !== null) ? g.socio_cluster_2021 : g.socio_cluster);
+        const clusterDisplay = (clusterVal !== undefined && clusterVal !== null && clusterVal !== '') ? `אשכול ${clusterVal}` : 'אשכול לא זמין';
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td><strong>${g.name}</strong> (${g.type})</td>
-          <td>אשכול ${g.socio_cluster}</td>
+          <td>${clusterDisplay}</td>
           <td>${g.population.toLocaleString()}</td>
           <td class="font-mono text-left" style="color: var(--success); font-weight:700;">+₪${g.grant_per_capita_nis.toLocaleString()}</td>
           <td class="font-mono text-left">₪${g.allocated_grant_k_nis.toLocaleString()}K</td>
@@ -492,24 +836,43 @@
       });
     }
 
-    if (state.selectedAuthority) {
-      renderAdvocacy(state.selectedAuthority);
+    renderReports();
+  }
+
+  function renderReports() {
+    if (!el.advocacyPaperContainer) return;
+
+    if (state.reportSubType === 'municipal') {
+      const auth = state.selectedAuthority || state.allData[0];
+      let simAuthData = null;
+      if (state.lastSimResults && state.lastSimResults.authority_allocations) {
+        simAuthData = state.lastSimResults.authority_allocations.find(a => a.code === auth.code);
+      }
+      const options = {
+        wSocio: Number(el.sliderWSocio ? el.sliderWSocio.value : 50),
+        wPeri: Number(el.sliderWPeri ? el.sliderWPeri.value : 30),
+        wFiscal: Number(el.sliderWFiscal ? el.sliderWFiscal.value : 20)
+      };
+      if (window.EducationAdvocacy) {
+        el.advocacyPaperContainer.innerHTML = EducationAdvocacy.generateReport(
+          auth,
+          state.nationalUnweightedAvg,
+          simAuthData,
+          options
+        );
+      }
+    } else {
+      if (window.NationalReportEngine) {
+        el.advocacyPaperContainer.innerHTML = NationalReportEngine.generateReportHtml(
+          state.allData,
+          state.lastSimResults
+        );
+      }
     }
   }
 
   function renderAdvocacy(auth) {
-    if (!el.advocacyPaperContainer || !window.EducationAdvocacy) return;
-
-    let simAuthData = null;
-    if (state.lastSimResults && state.lastSimResults.authority_allocations) {
-      simAuthData = state.lastSimResults.authority_allocations.find(a => a.code === auth.code);
-    }
-
-    el.advocacyPaperContainer.innerHTML = EducationAdvocacy.generateReport(
-      auth,
-      state.nationalUnweightedAvg,
-      simAuthData
-    );
+    renderReports();
   }
 
   function renderTable() {
@@ -601,10 +964,16 @@
     document.body.removeChild(link);
   }
 
-  // Global helper for profile selection from outside / console
+  // Global helper for profile selection from outside / console / tooltip
   window.selectAuthorityByCode = function (code) {
     const found = state.allData.find(a => a.code === String(code) || a.cbs_code === String(code));
     if (found) {
+      const tooltipEl = document.getElementById('chartTooltip');
+      if (tooltipEl) tooltipEl.style.display = 'none';
+      if (el.canvasScatterExplorer) el.canvasScatterExplorer._pinnedAuth = null;
+      if (el.canvasBalancingAll) el.canvasBalancingAll._pinnedAuth = null;
+      if (el.canvasBalancingLow) el.canvasBalancingLow._pinnedAuth = null;
+
       selectAuthority(found);
       switchTab('tab-profile');
     }

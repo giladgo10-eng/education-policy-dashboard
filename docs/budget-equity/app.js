@@ -13,6 +13,7 @@
     nationalWeightedAvg: 26.85,
     nationalUnweightedAvg: 24.10,
     activeTab: 'tab-explorer',
+    reportSubType: 'national',
     scatterXKey: 'own_revenue_share_pct',
     scatterXLabel: 'שיעור הכנסות עצמיות מתוך התקציב (%)',
     excludeTamar: false,
@@ -99,8 +100,13 @@
     simGainersBody: document.getElementById('simGainersBody'),
     btnRunSim: document.getElementById('btnRunSim'),
 
-    // Advocacy & Table
+    // Reports, Methodology & Table
     advocacyPaperContainer: document.getElementById('advocacyPaperContainer'),
+    btnSubReportNational: document.getElementById('btnSubReportNational'),
+    btnSubReportMunicipal: document.getElementById('btnSubReportMunicipal'),
+    reportAuthoritySelect: document.getElementById('reportAuthoritySelect'),
+    municipalSelectRow: document.getElementById('municipalSelectRow'),
+    methodologyContainer: document.getElementById('methodologyContainer'),
     fullDataBody: document.getElementById('fullDataBody'),
     fullDataTable: document.getElementById('fullDataTable'),
 
@@ -169,9 +175,13 @@
     // Setup Event Listeners
     setupEventListeners();
 
+    // Populate Report Select
+    populateReportAuthoritySelect();
+
     // Render Initial Views
     applyFilters();
     runSimulator();
+    renderReports();
   }
 
   let activeDropdownIndex = -1;
@@ -457,6 +467,55 @@
     if (el.btnTableExport) el.btnTableExport.addEventListener('click', exportToExcel);
     if (el.btnRunSim) el.btnRunSim.addEventListener('click', runSimulator);
 
+    // Report Sub-Tab Navigation
+    if (el.btnSubReportNational) {
+      el.btnSubReportNational.addEventListener('click', () => {
+        state.reportSubType = 'national';
+        el.btnSubReportNational.classList.add('active');
+        if (el.btnSubReportMunicipal) el.btnSubReportMunicipal.classList.remove('active');
+        if (el.municipalSelectRow) el.municipalSelectRow.style.display = 'none';
+        renderReports();
+      });
+    }
+
+    if (el.btnSubReportMunicipal) {
+      el.btnSubReportMunicipal.addEventListener('click', () => {
+        state.reportSubType = 'municipal';
+        el.btnSubReportMunicipal.classList.add('active');
+        if (el.btnSubReportNational) el.btnSubReportNational.classList.remove('active');
+        if (el.municipalSelectRow) el.municipalSelectRow.style.display = 'flex';
+        renderReports();
+      });
+    }
+
+    if (el.reportAuthoritySelect) {
+      el.reportAuthoritySelect.addEventListener('change', (e) => {
+        const code = e.target.value;
+        const auth = state.allData.find(a => String(a.code) === String(code));
+        if (auth) {
+          selectAuthority(auth);
+        }
+      });
+    }
+
+    const btnPrint = document.getElementById('btnSubReportPrint');
+    if (btnPrint) {
+      btnPrint.addEventListener('click', () => {
+        window.print();
+      });
+    }
+
+    // Global Traceability ("איך חושב?") Modal Trigger
+    document.addEventListener('click', (e) => {
+      const btn = e.target.closest('.btn-how-calc, [data-trace-field]');
+      if (btn) {
+        const field = btn.getAttribute('data-field') || btn.getAttribute('data-trace-field');
+        if (field && window.DataTraceabilityEngine) {
+          window.DataTraceabilityEngine.showTraceabilityModal(field);
+        }
+      }
+    });
+
     // Table Sorting
     if (el.fullDataTable) {
       el.fullDataTable.querySelectorAll('th[data-sort]').forEach(th => {
@@ -503,12 +562,15 @@
     if (btn) btn.classList.add('active');
     if (panel) panel.classList.add('active');
 
-    // Trigger re-render of canvases
+    // Trigger re-render of canvases / tabs
     setTimeout(() => {
       if (tabId === 'tab-explorer') renderExplorer();
       if (tabId === 'tab-profile' && state.selectedAuthority) renderProfileCharts(state.selectedAuthority);
       if (tabId === 'tab-research') renderResearch();
-      if (tabId === 'tab-advocacy' && state.selectedAuthority) renderAdvocacy(state.selectedAuthority);
+      if (tabId === 'tab-advocacy') renderReports();
+      if (tabId === 'tab-methodology' && window.DataTraceabilityEngine) {
+        window.DataTraceabilityEngine.renderMethodologyTab('methodologyContainer');
+      }
     }, 50);
   }
 
@@ -678,8 +740,28 @@
     // Render Charts
     renderProfileCharts(auth);
 
-    // Update Advocacy Paper
-    renderAdvocacy(auth);
+    // Sync Report Selector
+    if (el.reportAuthoritySelect) {
+      el.reportAuthoritySelect.value = auth.code;
+    }
+
+    // Update Reports
+    renderReports();
+  }
+
+  function populateReportAuthoritySelect() {
+    if (!el.reportAuthoritySelect || !state.allData || state.allData.length === 0) return;
+    el.reportAuthoritySelect.innerHTML = '';
+    const sorted = [...state.allData].sort((a, b) => a.name.localeCompare(b.name, 'he'));
+    sorted.forEach(a => {
+      const opt = document.createElement('option');
+      opt.value = a.code;
+      opt.textContent = `${a.name} (${a.type}, אשכול ${a.cbs_socio_cluster})`;
+      el.reportAuthoritySelect.appendChild(opt);
+    });
+    if (state.selectedAuthority) {
+      el.reportAuthoritySelect.value = state.selectedAuthority.code;
+    }
   }
 
   function renderProfileCharts(auth) {
@@ -754,24 +836,43 @@
       });
     }
 
-    if (state.selectedAuthority) {
-      renderAdvocacy(state.selectedAuthority);
+    renderReports();
+  }
+
+  function renderReports() {
+    if (!el.advocacyPaperContainer) return;
+
+    if (state.reportSubType === 'municipal') {
+      const auth = state.selectedAuthority || state.allData[0];
+      let simAuthData = null;
+      if (state.lastSimResults && state.lastSimResults.authority_allocations) {
+        simAuthData = state.lastSimResults.authority_allocations.find(a => a.code === auth.code);
+      }
+      const options = {
+        wSocio: Number(el.sliderWSocio ? el.sliderWSocio.value : 50),
+        wPeri: Number(el.sliderWPeri ? el.sliderWPeri.value : 30),
+        wFiscal: Number(el.sliderWFiscal ? el.sliderWFiscal.value : 20)
+      };
+      if (window.EducationAdvocacy) {
+        el.advocacyPaperContainer.innerHTML = EducationAdvocacy.generateReport(
+          auth,
+          state.nationalUnweightedAvg,
+          simAuthData,
+          options
+        );
+      }
+    } else {
+      if (window.NationalReportEngine) {
+        el.advocacyPaperContainer.innerHTML = NationalReportEngine.generateReportHtml(
+          state.allData,
+          state.lastSimResults
+        );
+      }
     }
   }
 
   function renderAdvocacy(auth) {
-    if (!el.advocacyPaperContainer || !window.EducationAdvocacy) return;
-
-    let simAuthData = null;
-    if (state.lastSimResults && state.lastSimResults.authority_allocations) {
-      simAuthData = state.lastSimResults.authority_allocations.find(a => a.code === auth.code);
-    }
-
-    el.advocacyPaperContainer.innerHTML = EducationAdvocacy.generateReport(
-      auth,
-      state.nationalUnweightedAvg,
-      simAuthData
-    );
+    renderReports();
   }
 
   function renderTable() {

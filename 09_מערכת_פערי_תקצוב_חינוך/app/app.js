@@ -731,10 +731,12 @@
     if (el.simGainersBody) {
       el.simGainersBody.innerHTML = '';
       simResults.top_gainers.slice(0, 10).forEach(g => {
+        const clusterVal = (g.cbs_socio_cluster !== undefined && g.cbs_socio_cluster !== null) ? g.cbs_socio_cluster : ((g.socio_cluster_2021 !== undefined && g.socio_cluster_2021 !== null) ? g.socio_cluster_2021 : g.socio_cluster);
+        const clusterDisplay = (clusterVal !== undefined && clusterVal !== null && clusterVal !== '') ? `אשכול ${clusterVal}` : 'אשכול לא זמין';
         const tr = document.createElement('tr');
         tr.innerHTML = `
           <td><strong>${g.name}</strong> (${g.type})</td>
-          <td>אשכול ${g.socio_cluster}</td>
+          <td>${clusterDisplay}</td>
           <td>${g.population.toLocaleString()}</td>
           <td class="font-mono text-left" style="color: var(--success); font-weight:700;">+₪${g.grant_per_capita_nis.toLocaleString()}</td>
           <td class="font-mono text-left">₪${g.allocated_grant_k_nis.toLocaleString()}K</td>

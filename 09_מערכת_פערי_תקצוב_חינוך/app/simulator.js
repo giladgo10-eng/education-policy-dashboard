@@ -80,6 +80,7 @@ window.EducationSimulator = {
 
       return {
         ...auth,
+        socio_cluster: (auth.cbs_socio_cluster !== undefined && auth.cbs_socio_cluster !== null) ? auth.cbs_socio_cluster : auth.socio_cluster_2021,
         allocated_grant_k_nis: Math.round(allocatedGrantNIS / 1000),
         grant_per_capita_nis: grantPerCapitaNIS,
         orig_net_exp_per_capita: origExpPerCapita,

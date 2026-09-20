@@ -34,6 +34,8 @@
 
     // Filters
     filterSearch: document.getElementById('filterSearch'),
+    btnClearSearch: document.getElementById('btnClearSearch'),
+    searchDropdown: document.getElementById('searchDropdown'),
     filterDistrict: document.getElementById('filterDistrict'),
     filterType: document.getElementById('filterType'),
     filterSocio: document.getElementById('filterSocio'),
@@ -172,9 +174,238 @@
     runSimulator();
   }
 
+  let activeDropdownIndex = -1;
+
+  // Hebrew & String Normalization Helpers
+  function normalizeHebrew(str) {
+    if (!str) return '';
+    return String(str)
+      .toLowerCase()
+      .replace(/[\u0591-\u05C7]/g, '') // remove niqqud
+      .replace(/["'״׳`”“]/g, '')       // remove quotes/geresh
+      .replace(/[-–—_./\\]/g, ' ')     // replace hyphens/delimiters with space
+      .replace(/\s+/g, ' ')            // collapse multiple whitespace
+      .trim();
+  }
+
+  function normalizeSpelling(str) {
+    // Common Hebrew spelling variations (ktiv male / haser: יי -> י, וו -> ו)
+    return normalizeHebrew(str)
+      .replace(/יי/g, 'י')
+      .replace(/וו/g, 'ו');
+  }
+
+  function authorityMatchesSearch(item, rawQuery) {
+    if (!rawQuery) return true;
+    const query = rawQuery.trim();
+    if (!query) return true;
+
+    // Code matching
+    if (/^\d+$/.test(query)) {
+      const code = String(item.code || '');
+      const cbs = String(item.cbs_code || '');
+      const moinA = String(item.moin_code_col_a || '');
+      const moinC = String(item.moin_code_col_c || '');
+      const queryNum = parseInt(query, 10).toString();
+      if (code === query || code.includes(query) ||
+          cbs === query || cbs.includes(query) ||
+          moinA === query || moinC === query ||
+          code === queryNum || cbs === queryNum) {
+        return true;
+      }
+    }
+
+    const normQuery = normalizeHebrew(query);
+    const spellQuery = normalizeSpelling(query);
+
+    const queryTokens = normQuery.split(' ').filter(Boolean);
+    const spellTokens = spellQuery.split(' ').filter(Boolean);
+
+    const searchTargets = [
+      item.name,
+      item.authority_name,
+      item.authority_name_moin,
+      item.code,
+      item.cbs_code
+    ].filter(Boolean).map(String);
+
+    const normTarget = searchTargets.map(normalizeHebrew).join(' ');
+    const spellTarget = searchTargets.map(normalizeSpelling).join(' ');
+
+    return queryTokens.every((token, idx) => {
+      const spellToken = spellTokens[idx] || token;
+      return normTarget.includes(token) ||
+             spellTarget.includes(spellToken) ||
+             normTarget.includes(spellToken) ||
+             spellTarget.includes(token);
+    });
+  }
+
+  function handleSearchInput() {
+    const rawQuery = el.filterSearch ? el.filterSearch.value : '';
+    const query = rawQuery.trim();
+
+    if (el.btnClearSearch) {
+      el.btnClearSearch.style.display = query ? 'block' : 'none';
+    }
+
+    if (!query) {
+      hideSearchDropdown();
+      applyFilters();
+      return;
+    }
+
+    renderSearchDropdown(query);
+    applyFilters();
+  }
+
+  function renderSearchDropdown(query) {
+    if (!el.searchDropdown) return;
+
+    const normQ = normalizeHebrew(query);
+    const matches = state.allData.filter(item => authorityMatchesSearch(item, query));
+    activeDropdownIndex = -1;
+
+    if (matches.length === 0) {
+      el.searchDropdown.innerHTML = '<div class="search-dropdown-empty">לא נמצאו רשויות תואמות לחיפוש</div>';
+      el.searchDropdown.style.display = 'block';
+      return;
+    }
+
+    // Sort by relevance (exact match first, then prefix, then population)
+    matches.sort((a, b) => {
+      const aNorm = normalizeHebrew(a.name);
+      const bNorm = normalizeHebrew(b.name);
+      const aExact = (aNorm === normQ || a.code === query);
+      const bExact = (bNorm === normQ || b.code === query);
+      if (aExact && !bExact) return -1;
+      if (!aExact && bExact) return 1;
+      const aStarts = aNorm.startsWith(normQ);
+      const bStarts = bNorm.startsWith(normQ);
+      if (aStarts && !bStarts) return -1;
+      if (!aStarts && bStarts) return 1;
+      return (b.population || 0) - (a.population || 0);
+    });
+
+    // Show top 8 matches
+    const topMatches = matches.slice(0, 8);
+    let html = '';
+    topMatches.forEach((auth, idx) => {
+      html += `
+        <div class="search-dropdown-item" data-index="${idx}" data-code="${auth.code}">
+          <div class="search-dropdown-info">
+            <span class="search-dropdown-name">${auth.name}</span>
+            <span class="search-dropdown-meta">${auth.type} • מחוז ${auth.district} • סמל ${auth.code} • אשכול ${auth.cbs_socio_cluster}</span>
+          </div>
+          <div class="search-dropdown-rate">${auth.municipal_education_self_funding_rate}%</div>
+        </div>
+      `;
+    });
+
+    el.searchDropdown.innerHTML = html;
+    el.searchDropdown.style.display = 'block';
+
+    el.searchDropdown.querySelectorAll('.search-dropdown-item').forEach(itemEl => {
+      itemEl.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const code = itemEl.getAttribute('data-code');
+        const auth = state.allData.find(a => a.code === code);
+        if (auth) {
+          selectAuthorityFromSearch(auth);
+        }
+      });
+    });
+  }
+
+  function hideSearchDropdown() {
+    if (el.searchDropdown) {
+      el.searchDropdown.style.display = 'none';
+      el.searchDropdown.innerHTML = '';
+      activeDropdownIndex = -1;
+    }
+  }
+
+  function updateDropdownHighlight(items) {
+    items.forEach((it, idx) => {
+      if (idx === activeDropdownIndex) {
+        it.classList.add('active');
+        it.scrollIntoView({ block: 'nearest' });
+      } else {
+        it.classList.remove('active');
+      }
+    });
+  }
+
+  function selectAuthorityFromSearch(auth) {
+    if (!auth) return;
+    if (el.filterSearch) {
+      el.filterSearch.value = auth.name;
+    }
+    if (el.btnClearSearch) {
+      el.btnClearSearch.style.display = 'block';
+    }
+    hideSearchDropdown();
+    selectAuthority(auth);
+    applyFilters();
+  }
+
   function setupEventListeners() {
     // Filter controls
-    if (el.filterSearch) el.filterSearch.addEventListener('input', applyFilters);
+    if (el.filterSearch) {
+      el.filterSearch.addEventListener('input', handleSearchInput);
+
+      el.filterSearch.addEventListener('keydown', (e) => {
+        const items = el.searchDropdown ? el.searchDropdown.querySelectorAll('.search-dropdown-item') : [];
+
+        if (e.key === 'ArrowDown') {
+          if (items.length > 0) {
+            e.preventDefault();
+            activeDropdownIndex = (activeDropdownIndex + 1) % items.length;
+            updateDropdownHighlight(items);
+          }
+        } else if (e.key === 'ArrowUp') {
+          if (items.length > 0) {
+            e.preventDefault();
+            activeDropdownIndex = (activeDropdownIndex - 1 + items.length) % items.length;
+            updateDropdownHighlight(items);
+          }
+        } else if (e.key === 'Enter') {
+          e.preventDefault();
+          if (items.length > 0 && activeDropdownIndex >= 0 && activeDropdownIndex < items.length) {
+            const code = items[activeDropdownIndex].getAttribute('data-code');
+            const auth = state.allData.find(a => a.code === code);
+            if (auth) selectAuthorityFromSearch(auth);
+          } else if (state.filteredData.length > 0) {
+            selectAuthorityFromSearch(state.filteredData[0]);
+          }
+        } else if (e.key === 'Escape') {
+          hideSearchDropdown();
+        }
+      });
+
+      el.filterSearch.addEventListener('focus', () => {
+        const q = el.filterSearch.value.trim();
+        if (q) renderSearchDropdown(q);
+      });
+    }
+
+    if (el.btnClearSearch) {
+      el.btnClearSearch.addEventListener('click', () => {
+        if (el.filterSearch) el.filterSearch.value = '';
+        el.btnClearSearch.style.display = 'none';
+        hideSearchDropdown();
+        applyFilters();
+        if (el.filterSearch) el.filterSearch.focus();
+      });
+    }
+
+    // Click outside closes dropdown
+    document.addEventListener('click', (e) => {
+      if (el.searchDropdown && !e.target.closest('.search-group')) {
+        hideSearchDropdown();
+      }
+    });
+
     if (el.filterDistrict) el.filterDistrict.addEventListener('change', applyFilters);
     if (el.filterType) el.filterType.addEventListener('change', applyFilters);
     if (el.filterSocio) el.filterSocio.addEventListener('change', applyFilters);
@@ -276,6 +507,8 @@
 
   function resetFilters() {
     if (el.filterSearch) el.filterSearch.value = '';
+    if (el.btnClearSearch) el.btnClearSearch.style.display = 'none';
+    hideSearchDropdown();
     if (el.filterDistrict) el.filterDistrict.value = '';
     if (el.filterType) el.filterType.value = '';
     if (el.filterSocio) el.filterSocio.value = '';
@@ -288,7 +521,8 @@
   }
 
   function applyFilters() {
-    const search = el.filterSearch ? el.filterSearch.value.trim().toLowerCase() : '';
+    const rawSearch = el.filterSearch ? el.filterSearch.value : '';
+    const search = rawSearch.trim();
     const district = el.filterDistrict ? el.filterDistrict.value : '';
     const type = el.filterType ? el.filterType.value : '';
     const socio = el.filterSocio ? el.filterSocio.value : '';
@@ -298,7 +532,7 @@
       if (state.excludeTamar && item.is_tamar_outlier) return false;
       if (state.excludeWar && item.is_war_evacuated_2024) return false;
 
-      if (search && !item.name.toLowerCase().includes(search) && !item.code.includes(search)) {
+      if (search && !authorityMatchesSearch(item, search)) {
         return false;
       }
       if (district && item.district !== district) return false;
@@ -319,6 +553,15 @@
 
       return true;
     });
+
+    // Auto-sync selected authority if filter reduces results
+    if (state.filteredData.length === 1) {
+      selectAuthority(state.filteredData[0]);
+    } else if (state.filteredData.length > 0) {
+      if (state.selectedAuthority && !state.filteredData.some(d => d.code === state.selectedAuthority.code)) {
+        selectAuthority(state.filteredData[0]);
+      }
+    }
 
     if (el.explorerCountBadge) {
       el.explorerCountBadge.textContent = `מציג ${state.filteredData.length} מתוך ${state.allData.length} רשויות`;

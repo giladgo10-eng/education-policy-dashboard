@@ -102,9 +102,13 @@
   <!-- Global Filter Card -->
   <section class="filter-card">
     <div class="filter-grid">
-      <div class="form-group">
+      <div class="form-group search-group">
         <label for="filterSearch">חיפוש רשות מקומית</label>
-        <input type="text" id="filterSearch" class="form-control" placeholder="הקלד שם רשות או סמל למ״ס (לדוגמה: בני ברק, 6100, תל אביב, רהט)...">
+        <div class="search-input-wrapper">
+          <input type="text" id="filterSearch" class="form-control" placeholder="הקלד שם רשות או סמל למ״ס (לדוגמה: בני ברק, 6100, תל אביב, רהט)..." autocomplete="off" spellcheck="false">
+          <button type="button" id="btnClearSearch" class="search-clear-btn" title="נקה חיפוש" style="display: none;">&times;</button>
+          <div id="searchDropdown" class="search-dropdown" style="display: none;"></div>
+        </div>
       </div>
 
       <div class="form-group">

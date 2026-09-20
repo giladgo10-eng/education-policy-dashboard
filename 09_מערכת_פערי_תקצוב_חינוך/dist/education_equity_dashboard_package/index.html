@@ -19,8 +19,15 @@
     </div>
     <div class="header-actions">
       <button id="btnQuickSim" class="btn btn-accent">⚡ הפעל סימולטור מתקן</button>
-      <button id="btnQuickReport" class="btn btn-outline">📄 הפק נייר עמדה</button>
-      <button id="btnExportExcel" class="btn btn-primary">📊 ייצוא נתונים לאקסל</button>
+      <button id="btnQuickReport" class="btn btn-outline">📄 הדו״ח הפרלמנטרי</button>
+      <button id="btnExportExcel" class="btn btn-primary">📊 ייצוא לאקסל</button>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScoYrhhbX1VwVyA60IjQxB91Fa7iDy27DnAghc5bEWJU5UXuQ/viewform?usp=dialog" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         class="btn btn-feedback" 
+         title="פתיחת טופס משוב והצעות לשיפור">
+        💬 משוב והצעות לשיפור
+      </a>
     </div>
   </header>
 
@@ -102,9 +109,13 @@
   <!-- Global Filter Card -->
   <section class="filter-card">
     <div class="filter-grid">
-      <div class="form-group">
+      <div class="form-group search-group">
         <label for="filterSearch">חיפוש רשות מקומית</label>
-        <input type="text" id="filterSearch" class="form-control" placeholder="הקלד שם רשות או סמל למ״ס (לדוגמה: בני ברק, 6100, תל אביב, רהט)...">
+        <div class="search-input-wrapper">
+          <input type="text" id="filterSearch" class="form-control" placeholder="הקלד שם רשות או סמל למ״ס (לדוגמה: בני ברק, 6100, תל אביב, רהט)..." autocomplete="off" spellcheck="false">
+          <button type="button" id="btnClearSearch" class="search-clear-btn" title="נקה חיפוש" style="display: none;">&times;</button>
+          <div id="searchDropdown" class="search-dropdown" style="display: none;"></div>
+        </div>
       </div>
 
       <div class="form-group">
@@ -177,7 +188,7 @@
     </button>
     <button class="tab-btn" data-tab="tab-advocacy">
       <span>📄</span>
-      <span>מחולל נייר עמדה פרלמנטרי</span>
+      <span>הדו״ח הפרלמנטרי</span>
     </button>
     <button class="tab-btn" data-tab="tab-table">
       <span>📋</span>
@@ -394,30 +405,50 @@
         </div>
       </div>
 
-      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 14px;">
-        <div>
-          <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--danger);">פאנל א': כלל הרשויות (N=257) — r = -0.2249 (p = 0.0003)</h4>
-          <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 10px;">ברמה הארצית, מענק האיזון מרוכז ברשויות חלשות ששיעור השתתפותן נמוך עקב מצוקה כלכלית.</p>
-          <div class="chart-container" style="height: 380px;">
+      <div class="research-grid">
+        <div class="research-chart-card">
+          <div class="research-chart-header">
+            <h4 class="research-panel-title text-danger">פאנל א': כלל הרשויות (N=257) — r = -0.2249 (p = 0.0003)</h4>
+            <p class="research-panel-desc">ברמה הארצית, מענק האיזון מרוכז ברשויות חלשות ששיעור השתתפותן נמוך עקב מצוקה כלכלית.</p>
+          </div>
+          <div class="chart-container research-canvas-container">
             <canvas id="canvasBalancingAll"></canvas>
           </div>
         </div>
 
-        <div>
-          <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--success);">פאנל ב': אשכולות 1–3 בלבד (N=76) — r = +0.4138 (p = 0.0002)</h4>
-          <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 10px;">בתוך אשכולות המצוקה, ככל שהמענק לנפש גבוה יותר — שיעור ההשתתפות העצמית עולה במובהק.</p>
-          <div class="chart-container" style="height: 380px;">
+        <div class="research-chart-card">
+          <div class="research-chart-header">
+            <h4 class="research-panel-title text-success">פאנל ב': אשכולות 1–3 בלבד (N=76) — r = +0.4138 (p = 0.0002)</h4>
+            <p class="research-panel-desc">בתוך אשכולות המצוקה, ככל שהמענק לנפש גבוה יותר — שיעור ההשתתפות העצמית עולה במובהק.</p>
+          </div>
+          <div class="chart-container research-canvas-container">
             <canvas id="canvasBalancingLow"></canvas>
           </div>
         </div>
       </div>
 
-      <!-- Empirical Disclaimer Box (Stage 5b requirement) -->
-      <div style="margin-top: 20px; padding: 16px; background: rgba(59, 130, 246, 0.05); border: 1px solid var(--primary); border-radius: 10px;">
-        <h4 style="color: var(--primary); font-size: 14px; margin-bottom: 6px;">📌 גילוי נאות מתודולוגי ומגבלות מחקר:</h4>
-        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin: 0;">
-          ניתוח זה הוא מתאמי ומבני בלבד (Cross-Sectional Correlation). הנתונים אינם מוכיחים קשר סיבתי ואינם מודדים את מנגנון ההקצאה הפנימי של הרשות (האם כספי המענק עצמם נותבו ישירות לחינוך או שחררו מקורות אחרים). הממצא מצביע על כך שמענק האיזון מהווה עוגן פיסקלי קריטי המאפשר לרשויות מוחלשות להקצות משאבים לחינוך מעבר לתקבולי משה"ח הייעודיים.
-        </p>
+      <!-- Methodology Disclosure Box (Dedicated Row, Spaced & Bulleted) -->
+      <div class="methodology-disclosure-box">
+        <div class="methodology-header">
+          <span class="methodology-icon">📌</span>
+          <h4 class="methodology-title">גילוי נאות מתודולוגי ומגבלות מחקר</h4>
+        </div>
+        <div class="methodology-content">
+          <ul class="methodology-list">
+            <li>
+              <strong>אופי הניתוח:</strong>
+              <span>ניתוח זה הינו מתאמי ומבני בלבד (Cross-Sectional Correlation) ואינו מציג או מוכיח קשר סיבתי.</span>
+            </li>
+            <li>
+              <strong>מנגנון חשבונאי פנימי:</strong>
+              <span>הנתונים נגזרים מדוחות כספיים מבוקרים של משרד הפנים ואינם מודדים האם שקלי המענק נותבו במישרין לסעיפי חינוך או שחררו מקורות תקציביים אחרים ברשות.</span>
+            </li>
+            <li>
+              <strong>מסקנה אמפירית מבוקרת:</strong>
+              <span>הממצא מצביע על כך שמענק האיזון מהווה עוגן פיסקלי קריטי המאפשר לרשויות מוחלשות להשתתף במימון החינוך מעבר לתקבולי משה"ח הייעודיים.</span>
+            </li>
+          </ul>
+        </div>
       </div>
     </div>
   </main>
@@ -508,19 +539,27 @@
     </div>
   </main>
 
-  <!-- Tab 5: Advocacy Paper Generator -->
+  <!-- Tab 5: Parliamentary Report -->
   <main id="tab-advocacy" class="tab-panel">
-    <div class="card">
-      <div class="card-header">
-        <div>
-          <div class="card-title">📄 מחולל נייר עמדה פרלמנטרי ומסמך מדיניות</div>
-          <div class="card-subtitle">הפקת מסמך מדיניות רשמי מותאם אישית לרשות הנבחרת לצורך דיוני ועדות הכנסת, משרד האוצר ומשרד החינוך</div>
+    <div class="card parliamentary-card">
+      <div class="parliamentary-badge">🛡️ איגוד מנהלי אגפי ומחלקות החינוך ברשויות המקומיות</div>
+      <h2 class="parliamentary-title">הדו״ח הפרלמנטרי</h2>
+      <p class="parliamentary-desc">
+        נייר עמדה ומסמך מדיניות רשמי המציג את תמונת המצב הפיסקלית של פערי ההשתתפות העצמית בחינוך ברשויות המקומיות בישראל (דוחות כספיים מבוקרים 2024) ומודל התקצוב הדיפרנציאלי המתקן.
+      </p>
+      
+      <div class="parliamentary-actions" style="justify-content: center;">
+        <div style="background: var(--bg-card); border: 2px dashed var(--border); border-radius: 8px; padding: 24px 32px; text-align: center; max-width: 550px; width: 100%;">
+          <div style="font-size: 32px; margin-bottom: 12px;">⏳</div>
+          <h3 style="margin: 0 0 8px 0; color: var(--text-main); font-size: 18px; font-weight: 700;">הדו״ח מושבת זמנית לצורך אימות מקורות הנתונים</h3>
+          <p style="margin: 0; color: var(--text-muted); font-size: 14px; line-height: 1.5;">
+            קבצי המסמך (Word / PDF) עוברים כעת הליך אימות ובקרה מתודולוגית, ויועלו להורדה ישירה עם השלמת האימות.
+          </p>
         </div>
-        <button onclick="window.print()" class="btn btn-outline">🖨️ הדפס / שמור כ-PDF</button>
       </div>
 
-      <div class="advocacy-paper" id="advocacyPaperContainer">
-        <!-- Rendered via advocacy.js -->
+      <div class="parliamentary-note">
+        📌 המערכת פועלת בהתאם לפרוטוקול עקיבות נתונים קשיח (Data Provenance & Traceability).
       </div>
     </div>
   </main>
@@ -569,11 +608,28 @@
 
   <!-- Footer -->
   <footer class="app-footer">
-    <div>
-      מערכת ניתוח פערי תקצוב וצדק חלוקתי בחינוך המוניציפלי • איגוד מנהלי אגפי ומחלקות החינוך ברשויות המקומיות
-    </div>
-    <div style="margin-top: 4px; font-size: 11.5px; opacity: 0.85;">
-      מקורות: משרד הפנים (דוחות כספיים מבוקרים 2024), הלשכה המרכזית לסטטיסטיקה (מפקד אוכלוסין 2024, אשכול חברתי-כלכלי 2021, פריפריאליות 2020)
+    <div class="footer-container">
+      <div class="footer-main-text">
+        <strong>מערכת ניתוח פערי תקצוב וצדק חלוקתי בחינוך המוניציפלי</strong> • איגוד מנהלי אגפי ומחלקות החינוך ברשויות המקומיות
+      </div>
+      <div class="footer-sub-text">
+        מקורות: משרד הפנים (דוחות כספיים מבוקרים 2024), הלשכה המרכזית לסטטיסטיקה (מפקד אוכלוסין 2024, אשכול חברתי-כלכלי 2021, פריפריאליות 2020)
+      </div>
+      <div class="footer-meta-bar">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScoYrhhbX1VwVyA60IjQxB91Fa7iDy27DnAghc5bEWJU5UXuQ/viewform?usp=dialog" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="footer-feedback-link">
+          💬 משוב והצעות לשיפור
+        </a>
+        <span class="footer-separator">•</span>
+        <div class="footer-counter-wrap">
+          <img src="https://komarev.com/ghpvc/?username=giladgo10-budget-equity&color=2563eb&style=flat-square&label=%D7%A6%D7%A4%D7%99%D7%95%D7%AA+%D7%91%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA" 
+               alt="צפיות במערכת" 
+               class="footer-counter-badge"
+               loading="lazy">
+        </div>
+      </div>
     </div>
   </footer>
 

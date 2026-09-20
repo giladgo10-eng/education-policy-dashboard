@@ -1,0 +1,6 @@
+﻿=== WORKBOOK SHEETS ===
+Sheet: Sheet1 | id: 1 | r:id: rId1
+
+=== ZIP ENTRIES SUMMARY ===
+xl/worksheets/sheet1.xml (Size: 466482867 bytes, Compressed: 54527079)
+xl/sharedStrings.xml (Size: 84903 bytes, Compressed: 15041)

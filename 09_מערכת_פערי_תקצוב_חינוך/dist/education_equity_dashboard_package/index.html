@@ -13,41 +13,89 @@
   <!-- Header -->
   <header class="app-header">
     <div class="header-title-group">
-      <div class="header-badge">🏛️ איגוד מנהלי אגפי ומחלקות החינוך ברשויות המקומיות</div>
-      <h1>מערכת ניתוח פערי תקצוב וצדק חלוקתי בחינוך</h1>
-      <p>חשיפת הפערים הכלכליים, הצלבת עושר מוניציפלי, נטל חינוך מיוחד והסעות, ומודל תקצוב דיפרנציאלי מתקן</p>
+      <div class="header-badge">🛡️ איגוד מנהלי אגפי ומחלקות החינוך ברשויות המקומיות</div>
+      <h1>מערכת ניתוח פערי תקצוב וצדק חלוקתי בחינוך המוניציפלי</h1>
+      <p>ניתוח הוצאות והכנסות החינוך, השתתפות עצמית של הרשויות ויכולת פיסקלית (דוחות כספיים מבוקרים 2024)</p>
     </div>
     <div class="header-actions">
       <button id="btnQuickSim" class="btn btn-accent">⚡ הפעל סימולטור מתקן</button>
       <button id="btnQuickReport" class="btn btn-outline">📄 הפק נייר עמדה</button>
-      <button id="btnExportExcel" class="btn btn-primary">📊 יצוא נתונים לאקסל</button>
+      <button id="btnExportExcel" class="btn btn-primary">📊 ייצוא נתונים לאקסל</button>
     </div>
   </header>
 
   <!-- National KPI Cards -->
   <section class="kpi-grid">
     <div class="kpi-card blue">
-      <div class="kpi-label">ממוצע השקעה ארצי לתלמיד</div>
-      <div class="kpi-value" id="kpiNationalAvg">₪29,225</div>
-      <div class="kpi-sub">משוקלל עבור <span class="highlight" id="kpiTotalPupils">2.1M</span> תלמידים</div>
+      <div class="kpi-label">סך הוצאות חינוך ברשויות (קוד 1486)</div>
+      <div class="kpi-value" id="kpiTotal1486">₪37.1 מיליארד</div>
+      <div class="kpi-sub">תקציב רגיל מבוקר עבור <span class="highlight" id="kpiTotalPop">10.0M</span> תושבים (257 רשויות)</div>
     </div>
 
-    <div class="kpi-card red">
-      <div class="kpi-label">פערי השקעה מקסימליים</div>
-      <div class="kpi-value" id="kpiMaxGap">פי 2.2</div>
-      <div class="kpi-sub">₪34,600 (ת"א) מול ₪15,700 (רהט)</div>
+    <div class="kpi-card purple">
+      <div class="kpi-label">סך תקבולי חינוך ומשה"ח (קוד 1384)</div>
+      <div class="kpi-value" id="kpiTotal1384">₪27.1 מיליארד</div>
+      <div class="kpi-sub">השתתפויות המדינה וגורמי חוץ בחינוך הרגיל</div>
     </div>
 
-    <div class="kpi-card amber">
-      <div class="kpi-label">תקציבי מאצ'ינג אבודים</div>
-      <div class="kpi-value" id="kpiLostMatching">₪1.15 מיליארד</div>
-      <div class="kpi-sub">תקציבי מדינה שלא מומשו עקב חוסר בהשתתפות</div>
+    <div class="kpi-card green">
+      <div class="kpi-label">סך מימון עצמי מתקציב הרשות (1486-1384)</div>
+      <div class="kpi-value" id="kpiTotalNet">₪9.96 מיליארד</div>
+      <div class="kpi-sub">הפרש נטו הממומן מקופת הרשות המקומית</div>
     </div>
 
     <div class="kpi-card teal">
-      <div class="kpi-label">גירעון הסעות וחינוך מיוחד</div>
-      <div class="kpi-value" id="kpiSpecialEdBurden">₪1.82 מיליארד</div>
-      <div class="kpi-sub">נטל עודף שנופל על תקציבי הרשויות</div>
+      <div class="kpi-label">שיעור השתתפות עצמית ממוצע (משוקלל)</div>
+      <div class="kpi-value" id="kpiWeightedRate">26.9%</div>
+      <div class="kpi-sub">ממוצע רשויות: <span class="highlight">24.1%</span> | חציון: <span class="highlight">23.9%</span></div>
+    </div>
+
+    <div class="kpi-card amber">
+      <div class="kpi-label">טווח פערי השתתפות בין אשכולות</div>
+      <div class="kpi-value" id="kpiDisparityGap">פי 2.4</div>
+      <div class="kpi-sub">33.2% (אשכולות 7-10) מול 13.9% (אשכולות 1-3)</div>
+    </div>
+  </section>
+
+  <!-- 3 Core Public Insights (Stage 5b) -->
+  <section class="insights-grid">
+    <div class="insight-card accent-blue">
+      <div class="insight-header">
+        <div class="insight-title">📊 1. עצמאות פיסקלית והשתתפות עצמית</div>
+        <div class="insight-stat-chip">r = +0.6771 (p &lt; 0.0001)</div>
+      </div>
+      <div class="insight-body">
+        רשויות בעלות שיעור הכנסות עצמיות גבוה מקצות בממוצע <strong>נתח גדול יותר מתקציבן להשתתפות עצמית בחינוך</strong>. בקרב ערים ועירייות עוצמת המתאם גבוהה במיוחד (<strong>r = +0.7944</strong>, r² ≈ 0.63).
+      </div>
+      <div class="insight-footer">
+        📌 נתוני חתך תקציב רגיל 2024. קשר מתאמי-מבני מובהק.
+      </div>
+    </div>
+
+    <div class="insight-card accent-purple">
+      <div class="insight-header">
+        <div class="insight-title">📈 2. הגרדיאנט החברתי-כלכלי</div>
+        <div class="insight-stat-chip">אשכולות 7-10: 33.2% מול 1-3: 13.9%</div>
+      </div>
+      <div class="insight-body">
+        קיים מתאם חיובי מובהק בין דירוג הלמ"ס החברתי-כלכלי של הרשות לבין שיעור ההשתתפות העצמית בחינוך (<strong>r = +0.4293</strong>; בהחרגת יישובי מלחמה: <strong>r = +0.4928</strong>).
+      </div>
+      <div class="insight-footer">
+        📌 מדד חברתי-כלכלי למ"ס 2021. יחס פער ממוצע של פי 2.4.
+      </div>
+    </div>
+
+    <div class="insight-card accent-teal">
+      <div class="insight-header">
+        <div class="insight-title">🏛️ 3. שונות מבנית לפי סוג רשות</div>
+        <div class="insight-stat-chip">מועצות אזוריות r = +0.5519 לפריפריה</div>
+      </div>
+      <div class="insight-body">
+        מועצות אזוריות מציגות שיעור השתתפות ממוצע של <strong>22.8%</strong>, עיריות <strong>26.3%</strong>, ומועצות מקומיות <strong>23.2%</strong>. במועצות אזוריות, המיקום הפריפריאלי הוא בעל המתאם החזק ביותר.
+      </div>
+      <div class="insight-footer">
+        📌 מדד פריפריאליות למ"ס 2020.
+      </div>
     </div>
   </section>
 
@@ -56,7 +104,7 @@
     <div class="filter-grid">
       <div class="form-group">
         <label for="filterSearch">חיפוש רשות מקומית</label>
-        <input type="text" id="filterSearch" class="form-control" placeholder="הקלד שם רשות (לדוגמה: בני ברק, ראש העין, רהט)...">
+        <input type="text" id="filterSearch" class="form-control" placeholder="הקלד שם רשות או סמל למ״ס (לדוגמה: בני ברק, 6100, תל אביב, רהט)...">
       </div>
 
       <div class="form-group">
@@ -64,12 +112,12 @@
         <select id="filterDistrict" class="form-control">
           <option value="">כל המחוזות</option>
           <option value="תל אביב">תל אביב</option>
-          <option value="מרכז">מרכז</option>
+          <option value="המרכז">המרכז</option>
           <option value="חיפה">חיפה</option>
           <option value="ירושלים">ירושלים</option>
-          <option value="צפון">צפון</option>
-          <option value="דרום">דרום</option>
-          <option value="יהודה ושומרון">יהודה ושומרון</option>
+          <option value="הצפון">הצפון</option>
+          <option value="הדרום">הדרום</option>
+          <option value="יהודה והשומרון">יהודה והשומרון</option>
         </select>
       </div>
 
@@ -94,384 +142,448 @@
       </div>
 
       <div class="form-group">
-        <label for="filterCategory">סיווג עיוות תקציבי</label>
-        <select id="filterCategory" class="form-control">
-          <option value="">כל הקטגוריות</option>
-          <option value="PARADOX_LOW_SOCIO_HIGH_ARNONA">רשויות פרדוקסליות (סוציו נמוך + ארנונה)</option>
-          <option value="MIDDLE_TRAP">מלכודת הביניים (ללא טיפוח וללא ארנונה)</option>
-          <option value="VULNERABLE_LOCKED">רשויות מוחלשות כלואות (פגיעה כפולה)</option>
-          <option value="AFFLUENT_HIGH">רשויות איתנות באשכול גבוה</option>
+        <label for="filterAnomaly">סיווג ובקרת איכות</label>
+        <select id="filterAnomaly" class="form-control">
+          <option value="">כל הרשויות (257)</option>
+          <option value="STANDARD">רשויות סטנדרטיות בלבד</option>
+          <option value="WAR">יישובי קו עימות מפונים (15)</option>
+          <option value="TAMAR">מועצה אזורית תמר (חריג מבני)</option>
         </select>
       </div>
 
-      <div class="form-group">
-        <label>&nbsp;</label>
-        <button id="btnResetFilters" class="btn btn-secondary">איפוס מסננים</button>
+      <div class="form-group" style="align-self: flex-end;">
+        <button id="btnResetFilters" class="btn btn-outline" style="width: 100%;">🔄 איפוס מסננים</button>
       </div>
     </div>
   </section>
 
-  <!-- Navigation Tabs -->
-  <nav class="tabs-nav">
-    <button class="tab-btn active" data-tab="tab-matrix">📈 מטריצת העיוותים ופערי השקעה</button>
-    <button class="tab-btn" data-tab="tab-profile">👤 כרטיס רשות 360° והשוואת עמיתים</button>
-    <button class="tab-btn" data-tab="tab-special-ed">♿ נטל חינוך מיוחד, הסעות ובינוי</button>
-    <button class="tab-btn" data-tab="tab-simulator">⚡ סימולטור מודל תקצוב מתקן</button>
-    <button class="tab-btn" data-tab="tab-advocacy">📑 מחולל ניירות עמדה לוועדות</button>
-    <button class="tab-btn" data-tab="tab-table">📋 מאגר נתונים מלא</button>
+  <!-- Tab Navigation -->
+  <nav class="tab-nav">
+    <button class="tab-btn active" data-tab="tab-explorer">
+      <span>📊</span>
+      <span>חקר מתאמים ורגישות (Scatter)</span>
+    </button>
+    <button class="tab-btn" data-tab="tab-profile">
+      <span>🏛️</span>
+      <span>כרטיס רשות 360° והשוואת עמיתים</span>
+    </button>
+    <button class="tab-btn" data-tab="tab-research">
+      <span>🔬</span>
+      <span>מחקר: פרדוקס מענק האיזון</span>
+    </button>
+    <button class="tab-btn" data-tab="tab-simulator">
+      <span>⚙️</span>
+      <span>סימולטור תקצוב מתקן</span>
+    </button>
+    <button class="tab-btn" data-tab="tab-advocacy">
+      <span>📄</span>
+      <span>מחולל נייר עמדה פרלמנטרי</span>
+    </button>
+    <button class="tab-btn" data-tab="tab-table">
+      <span>📋</span>
+      <span>מאגר נתונים ארצי מלא (257)</span>
+    </button>
   </nav>
 
-  <!-- Tab 1: Matrix View -->
-  <main id="tab-matrix" class="tab-panel active">
+  <!-- Tab 1: Explorer & Sensitivity -->
+  <main id="tab-explorer" class="tab-panel active">
     <div class="card">
       <div class="card-header">
         <div>
-          <h2 class="card-title">מטריצת העיוותים: מדד סוציו-אקונומי מול עושר מארנונה עסקית</h2>
-          <div class="card-subtitle">גרף פיזור של כלל רשויות ישראל (גודל בועה = מספר תלמידים, לחץ על נקודה לצפייה בפרופיל הרשות)</div>
+          <div class="card-title">מפת מתאמים אינטראקטיבית: שיעור השתתפות עצמית מול משתנים פיסקליים וסוציו-אקונומיים</div>
+          <div class="card-subtitle">ציר Y קבוע: שיעור השתתפות עצמית בחינוך (%) = ((1486 - 1384) / 1486) * 100</div>
         </div>
-        <span class="badge badge-affluent" id="matrixCountBadge">מציג 224 רשויות</span>
+        <div class="badge badge-accent" id="explorerCountBadge">מציג 257 רשויות</div>
       </div>
 
-      <div class="chart-wrapper">
-        <canvas id="canvasScatterMatrix"></canvas>
+      <!-- Explorer Controls Toolbar -->
+      <div class="toolbar">
+        <div class="toolbar-group">
+          <label for="selectXAxis">בחר משתנה ציר X:</label>
+          <select id="selectXAxis" class="form-control" style="min-width: 320px;">
+            <option value="own_revenue_share_pct">שיעור הכנסות עצמיות מתוך התקציב (%) [r = +0.6771]</option>
+            <option value="own_revenues_per_capita_nis">הכנסות עצמיות לנפש (₪) [r = +0.4541]</option>
+            <option value="arnona_other_per_capita_nis">ארנונה אחרת (עסקית/תעשייתית) לנפש (₪) [r = +0.3777]</option>
+            <option value="arnona_total_per_capita_nis">סך הכנסות מארנונה לנפש (₪) [r = +0.4553]</option>
+            <option value="socio_value_2021">מדד חברתי-כלכלי רציף (למ"ס) [r = +0.4293]</option>
+            <option value="socio_cluster_2021">אשכול חברתי-כלכלי (1–10) [r = +0.4159]</option>
+            <option value="balancing_grant_per_capita_nis">מענק איזון לנפש (₪) [r = -0.2249]</option>
+            <option value="periphery_value_2020">מדד פריפריאליות רציף (למ"ס) [r = +0.3541]</option>
+          </select>
+        </div>
+
+        <div class="toolbar-group">
+          <label class="toggle-control">
+            <input type="checkbox" id="chkExcludeTamar">
+            <span>החרג מ.א. תמר (N=256, r=+0.6673)</span>
+          </label>
+
+          <label class="toggle-control">
+            <input type="checkbox" id="chkExcludeWar">
+            <span>החרג 15 רשויות מפונות/קו עימות (N=242, r=+0.6738)</span>
+          </label>
+        </div>
       </div>
 
-      <div class="matrix-legend">
-        <div class="legend-item">
-          <div class="legend-dot" style="background: #2563eb;"></div>
-          <span><strong>רשויות איתנות:</strong> סוציו גבוה + ארנונה עסקית גבוהה</span>
+      <!-- Live Statistical Summary Ribbon -->
+      <div class="stats-ribbon">
+        <div class="stat-pill">
+          <span class="stat-pill-label">מדגם נוכחי (N):</span>
+          <span class="stat-pill-val" id="statN">257</span>
         </div>
-        <div class="legend-item">
-          <div class="legend-dot" style="background: #d97706;"></div>
-          <span><strong>רשויות פרדוקסליות:</strong> סוציו נמוך + ארנונה עסקית (זכאיות לדיפרנציאלי + כסף עצמי)</span>
+        <div class="stat-pill">
+          <span class="stat-pill-label">מקדם מתאם פירסון (r):</span>
+          <span class="stat-pill-val highlight" id="statR">+0.6771</span>
         </div>
-        <div class="legend-item">
-          <div class="legend-dot" style="background: #ea580c;"></div>
-          <span><strong>מלכודת הביניים:</strong> אשכול 5-7 ללא ארנונה (לא זכאיות לדיפרנציאלי ואין כסף עצמי)</span>
+        <div class="stat-pill">
+          <span class="stat-pill-label">מקדם קביעה (r²):</span>
+          <span class="stat-pill-val" id="statR2">0.4585</span>
         </div>
-        <div class="legend-item">
-          <div class="legend-dot" style="background: #dc2626;"></div>
-          <span><strong>רשויות כלואות:</strong> סוציו נמוך ללא ארנונה (פגיעה כפולה, אובדן מאצ'ינג)</span>
+        <div class="stat-pill">
+          <span class="stat-pill-label">משוואת קו רגרסיה:</span>
+          <span class="stat-pill-val" id="statEq">y = 0.445x + 3.6</span>
         </div>
+      </div>
+
+      <!-- Scatter Canvas -->
+      <div class="chart-container" style="height: 520px;">
+        <canvas id="canvasScatterExplorer"></canvas>
+      </div>
+
+      <div style="font-size: 12px; color: var(--text-muted); margin-top: 8px; text-align: center;">
+        💡 לחץ על נקודה בגרף לצפייה בכרטיס המלא של הרשות • העבר עכבר להצגת נתוני הרשות והערכים המדויקים
+      </div>
+    </div>
+
+    <!-- Cluster Disparity Step Chart -->
+    <div class="card" style="margin-top: 20px;">
+      <div class="card-header">
+        <div>
+          <div class="card-title">הגרדיאנט החברתי-כלכלי: שיעור השתתפות עצמית לפי אשכולות למ"ס (1–10)</div>
+          <div class="card-subtitle">השוואת ממוצע וחציון השתתפות עצמית בכל אשכול (פער של פי 2.4 בין אשכולות 7-10 ל-1-3)</div>
+        </div>
+      </div>
+      <div class="chart-container" style="height: 340px;">
+        <canvas id="canvasClusterStep"></canvas>
       </div>
     </div>
   </main>
 
-  <!-- Tab 2: Authority Profile -->
+  <!-- Tab 2: Profile 360 & Peers -->
   <main id="tab-profile" class="tab-panel">
     <div class="profile-grid">
-      <!-- Profile Sidebar -->
-      <aside class="profile-sidebar">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 12px;">
+      
+      <!-- Profile Main Stats Card -->
+      <div class="card">
+        <div class="card-header">
           <div>
-            <div class="profile-heading" id="profName">בני ברק</div>
-            <div style="font-size: 13px; color: var(--text-muted);" id="profSub">עירייה • מחוז תל אביב • סמל 6100</div>
+            <div class="profile-header-title" id="profName">תל אביב -יפו</div>
+            <div class="profile-sub" id="profSub">עירייה • מחוז תל אביב • סמל למ"ס 5000</div>
           </div>
-          <span class="badge badge-paradox" id="profCategoryBadge">רשות פרדוקסלית</span>
+          <div id="profAuditBadge" class="badge badge-accent">רשות סטנדרטית</div>
         </div>
 
-        <ul class="profile-meta-list">
-          <li class="profile-meta-item">
-            <span class="profile-meta-label">אוכלוסייה כללית:</span>
-            <span class="profile-meta-val" id="profPop">222,000</span>
-          </li>
-          <li class="profile-meta-item">
-            <span class="profile-meta-label">מספר תלמידים כולל:</span>
-            <span class="profile-meta-val" id="profPupils">79,500</span>
-          </li>
-          <li class="profile-meta-item">
-            <span class="profile-meta-label">אשכול חברתי-כלכלי (למ"ס):</span>
-            <span class="profile-meta-val" id="profSocio">אשכול 2</span>
-          </li>
-          <li class="profile-meta-item">
-            <span class="profile-meta-label">מדד פריפריאליות:</span>
-            <span class="profile-meta-val" id="profPeri">אשכול 10 (מרכז)</span>
-          </li>
-          <li class="profile-meta-item">
-            <span class="profile-meta-label">ארנונה עסקית לתלמיד:</span>
-            <span class="profile-meta-val" id="profArnonaPerPupil">₪4,340</span>
-          </li>
-          <li class="profile-meta-item">
-            <span class="profile-meta-label">ציון כושר מאצ'ינג:</span>
-            <span class="profile-meta-val" id="profMatchingScore">59 / 100</span>
-          </li>
-        </ul>
-
-        <div style="background: white; border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 14px; margin-top: 16px;">
-          <div style="font-size: 12px; font-weight: 700; color: var(--text-muted); margin-bottom: 4px;">תקציבי מאצ'ינג אבודים / בסיכון ברשות:</div>
-          <div style="font-size: 20px; font-weight: 800; color: var(--danger);" id="profLostMatching">₪700 לתלמיד</div>
-          <div style="font-size: 11px; color: var(--text-muted);">סכום שלא נוצל בשל אי-עמידה בחובת מימון תואם</div>
-        </div>
-      </aside>
-
-      <!-- Profile Details & Charts -->
-      <section>
-        <div class="card" style="margin-bottom: 24px;">
-          <div class="card-header">
-            <h3 class="card-title">פירוק 4 שכבות המימון: סל ההשקעה השנתי לתלמיד</h3>
-            <div class="kpi-value" style="font-size: 22px; color: var(--primary);" id="profTotalSpend">₪27,750</div>
+        <div class="profile-kpis">
+          <div class="prof-kpi-box">
+            <div class="prof-kpi-lbl">אוכלוסייה 2024</div>
+            <div class="prof-kpi-val" id="profPop">494,900</div>
           </div>
+          <div class="prof-kpi-box">
+            <div class="prof-kpi-lbl">אשכול חברתי-כלכלי</div>
+            <div class="prof-kpi-val" id="profSocio">8 (0.978)</div>
+          </div>
+          <div class="prof-kpi-box">
+            <div class="prof-kpi-lbl">אשכול פריפריאליות</div>
+            <div class="prof-kpi-val" id="profPeri">8 (0.954)</div>
+          </div>
+          <div class="prof-kpi-box">
+            <div class="prof-kpi-lbl">שיעור הכנסות עצמיות</div>
+            <div class="prof-kpi-val" id="profOwnRevShare">72.4%</div>
+          </div>
+        </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1.4fr; gap: 20px; align-items: center;">
-            <div style="display: flex; justify-content: center;">
-              <canvas id="canvasDonutBreakdown"></canvas>
+        <!-- Highlight Box: Self-Funding Rate -->
+        <div style="background: var(--surface-2); border: 2px solid var(--border-color); border-radius: 12px; padding: 18px; margin: 16px 0;">
+          <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px;">
+            <div>
+              <div style="font-size: 13px; color: var(--text-muted);">שיעור השתתפות עצמית בחינוך (מדד מרכזי):</div>
+              <div style="font-size: 32px; font-weight: 800; color: var(--primary);" id="profSelfFundingRate">43.3%</div>
             </div>
             <div>
-              <div class="breakdown-row">
-                <div><span class="breakdown-color" style="background: #3b82f6;"></span> <strong>תקצוב משה"ח בסיסי (שעות תקן):</strong></div>
-                <div id="profGovStd" style="font-weight: 700;">₪13,800</div>
-              </div>
-              <div class="breakdown-row">
-                <div><span class="breakdown-color" style="background: #8b5cf6;"></span> <strong>תוספת טיפוח דיפרנציאלית (גפ"ן):</strong></div>
-                <div id="profGovDiff" style="font-weight: 700;">₪7,400</div>
-              </div>
-              <div class="breakdown-row">
-                <div><span class="breakdown-color" style="background: #10b981;"></span> <strong>השקעה עצמית של הרשות:</strong></div>
-                <div id="profMuniSpend" style="font-weight: 700;">₪4,950</div>
-              </div>
-              <div class="breakdown-row">
-                <div><span class="breakdown-color" style="background: #f59e0b;"></span> <strong>תשלומי הורים ותרומות:</strong></div>
-                <div id="profParentsPay" style="font-weight: 700;">₪1,600</div>
-              </div>
+              <div style="font-size: 13px; color: var(--text-muted);">מימון עצמי נטו בחינוך (1486-1384):</div>
+              <div style="font-size: 24px; font-weight: 700; color: var(--success);" id="profNetEduDiff">₪732,963 אלפי ש"ח</div>
+              <div style="font-size: 13px; color: var(--text-muted);" id="profNetEduPerCapita">₪1,481 לנפש</div>
             </div>
+          </div>
+        </div>
+
+        <!-- Financial Breakdown Table -->
+        <h4 style="margin: 16px 0 10px 0; font-size: 15px;">פירוט סעיפי תקציב רגיל מבוקר 2024 (באלפי ₪):</h4>
+        <table class="table" style="font-size: 13.5px;">
+          <tbody>
+            <tr>
+              <td><strong>סך הוצאות חינוך (קוד 1486)</strong></td>
+              <td class="text-left font-mono" id="profExp1486">₪1,693,050K</td>
+              <td class="text-left font-mono" id="profExp1486PerCapita">₪3,421 לנפש</td>
+            </tr>
+            <tr>
+              <td><strong>סך תקבולי חינוך ומשה"ח (קוד 1384)</strong></td>
+              <td class="text-left font-mono" id="profRev1384">₪960,087K</td>
+              <td class="text-left font-mono" id="profRev1384PerCapita">₪1,940 לנפש</td>
+            </tr>
+            <tr>
+              <td><strong>סך הכנסות עצמיות (קוד 1805)</strong></td>
+              <td class="text-left font-mono" id="profOwnRev1805">₪4,682,100K</td>
+              <td class="text-left font-mono" id="profOwnRevPerCapita">₪9,461 לנפש</td>
+            </tr>
+            <tr>
+              <td><strong>ארנונה אחרת (עסקית/תעשייתית) (קוד 4146)</strong></td>
+              <td class="text-left font-mono" id="profArnonaOther">₪2,654,120K</td>
+              <td class="text-left font-mono" id="profArnonaOtherPerCapita">₪5,363 לנפש</td>
+            </tr>
+            <tr>
+              <td><strong>סך ארנונה (כללית) (קוד 4162)</strong></td>
+              <td class="text-left font-mono" id="profArnonaTotal">₪3,890,400K</td>
+              <td class="text-left font-mono" id="profArnonaTotalPerCapita">₪7,861 לנפש</td>
+            </tr>
+            <tr>
+              <td><strong>מענק איזון (קוד 1819)</strong></td>
+              <td class="text-left font-mono" id="profBalancingGrant">₪0 (אין זכאות)</td>
+              <td class="text-left font-mono">-</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Profile Charts & Peer Benchmark -->
+      <div style="display: flex; flex-direction: column; gap: 20px;">
+        <div class="card">
+          <div class="card-header">
+            <div class="card-title">הרכב מימון הוצאות החינוך (1486)</div>
+          </div>
+          <div class="chart-container" style="height: 240px;">
+            <canvas id="canvasDonutBreakdown"></canvas>
+          </div>
+          <div style="display: flex; justify-content: space-around; font-size: 13px; margin-top: 10px;">
+            <div>🏛️ משרד החינוך (1384): <strong id="profDonutGovVal">56.7%</strong></div>
+            <div>💰 מימון עצמי הרשות: <strong id="profDonutMuniVal">43.3%</strong></div>
           </div>
         </div>
 
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">השוואת עמיתים (Peer Benchmarking)</h3>
-            <div class="card-subtitle">השוואת הרשות מול רשויות מאותו אשכול/מחוז ומול הממוצע הארצי</div>
+            <div class="card-title">השוואת עמיתים (Peer Benchmark)</div>
+            <div class="card-subtitle">השוואת הרשות מול ממוצע האשכול, ממוצע סוג הרשות והממוצע הארצי</div>
           </div>
-          <div style="height: 260px;">
+          <div class="chart-container" style="height: 240px;">
             <canvas id="canvasPeerBenchmark"></canvas>
           </div>
         </div>
-      </section>
+      </div>
+
     </div>
   </main>
 
-  <!-- Tab 3: Special Ed & Transport Burden View -->
-  <main id="tab-special-ed" class="tab-panel">
+  <!-- Tab 3: Research - Balancing Grant Paradox -->
+  <main id="tab-research" class="tab-panel">
     <div class="card">
       <div class="card-header">
         <div>
-          <h2 class="card-title">ניתוח מעמיק: נטל חינוך מיוחד, גירעונות הסעות ומחסור בכיתות</h2>
-          <div class="card-subtitle">ההוצאות הקשיחות שאינן מכוסות במלואן על ידי משרד החינוך ומכבידות על תקציב הרשות</div>
-        </div>
-        <span class="badge badge-trap" id="specialEdAuthBadge">רשות נבחרת: בני ברק</span>
-      </div>
-
-      <div class="kpi-grid" style="grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-bottom: 20px;">
-        <div class="kpi-card blue">
-          <div class="kpi-label">תלמידי חינוך מיוחד ברשות</div>
-          <div class="kpi-value" id="sePupilCount">7,155</div>
-          <div class="kpi-sub"><span id="sePupilPct" class="highlight">9.0%</span> מכלל תלמידי הרשות</div>
-        </div>
-
-        <div class="kpi-card red">
-          <div class="kpi-label">נטל עודף עירוני לחנ"מ</div>
-          <div class="kpi-value" id="seMuniBurden">₪14,800</div>
-          <div class="kpi-sub">הוצאה עירונית שנתית עודפת לתלמיד חנ"מ</div>
-        </div>
-
-        <div class="kpi-card amber">
-          <div class="kpi-label">גירעון הסעות לתלמיד</div>
-          <div class="kpi-value" id="seTransportDeficit">₪1,420</div>
-          <div class="kpi-sub">עלות הסעות שאינה ממומנת ע"י משה"ח</div>
-        </div>
-
-        <div class="kpi-card teal">
-          <div class="kpi-label">מחסור בכיתות לימוד קבועות</div>
-          <div class="kpi-value" id="seClassroomShortage">420 כיתות</div>
-          <div class="kpi-sub">מבנים יבילים/קראוונים והשכרות</div>
+          <div class="card-title">🔬 תובנה 5: מענק האיזון וההשתתפות העצמית בחינוך — ניתוח מבני אמפירי</div>
+          <div class="card-subtitle">היפוך מתאמים מובהק: מתאם שלילי ברמה הארצית מול מתאם חיובי מובהק בתוך אשכולות הזכאות (1–3)</div>
         </div>
       </div>
 
-      <div class="grid-2">
-        <div class="card" style="margin-bottom: 0;">
-          <h3 class="card-title" style="margin-bottom: 12px;">פירוט הוצאות הסעות וחינוך בלתי-פורמלי</h3>
-          <ul class="profile-meta-list">
-            <li class="profile-meta-item">
-              <span class="profile-meta-label">סה"כ תקציב הסעות תלמידים שנתי:</span>
-              <span class="profile-meta-val" id="seTotalTransport">₪165,000 אלף</span>
-            </li>
-            <li class="profile-meta-item">
-              <span class="profile-meta-label">השקעה בחינוך בלתי פורמלי וצהרונים:</span>
-              <span class="profile-meta-val" id="seInformalSpend">₪1,100 לתלמיד</span>
-            </li>
-            <li class="profile-meta-item">
-              <span class="profile-meta-label">תקציב סל גפ"ן גמיש בית ספרי:</span>
-              <span class="profile-meta-val" id="seGafenBasket">₪2,700 לתלמיד</span>
-            </li>
-          </ul>
+      <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 14px;">
+        <div>
+          <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--danger);">פאנל א': כלל הרשויות (N=257) — r = -0.2249 (p = 0.0003)</h4>
+          <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 10px;">ברמה הארצית, מענק האיזון מרוכז ברשויות חלשות ששיעור השתתפותן נמוך עקב מצוקה כלכלית.</p>
+          <div class="chart-container" style="height: 380px;">
+            <canvas id="canvasBalancingAll"></canvas>
+          </div>
         </div>
 
-        <div class="card" style="margin-bottom: 0; background: var(--bg-alt);">
-          <h3 class="card-title" style="margin-bottom: 12px; color: var(--danger);">המשמעות התקציבית למנהל אגף החינוך</h3>
-          <p style="font-size: 14px; line-height: 1.7; color: var(--text-main);">
-            ברשויות באשכול נמוך או פריפריאליות, <strong>גירעון ההסעות וההשתתפות בסייעות חינוך מיוחד</strong> "בולעים" את רוב תקציב החינוך העצמי של הרשות. 
-            כתוצאה מכך, לא נותרים תקציבים לתוכניות העשרה, למצוינות מדעית, לחוגים אחר הצהריים ולתחזוקת מוסדות חינוך.
-          </p>
+        <div>
+          <h4 style="font-size: 14px; margin-bottom: 8px; color: var(--success);">פאנל ב': אשכולות 1–3 בלבד (N=76) — r = +0.4138 (p = 0.0002)</h4>
+          <p style="font-size: 12.5px; color: var(--text-muted); margin-bottom: 10px;">בתוך אשכולות המצוקה, ככל שהמענק לנפש גבוה יותר — שיעור ההשתתפות העצמית עולה במובהק.</p>
+          <div class="chart-container" style="height: 380px;">
+            <canvas id="canvasBalancingLow"></canvas>
+          </div>
         </div>
+      </div>
+
+      <!-- Empirical Disclaimer Box (Stage 5b requirement) -->
+      <div style="margin-top: 20px; padding: 16px; background: rgba(59, 130, 246, 0.05); border: 1px solid var(--primary); border-radius: 10px;">
+        <h4 style="color: var(--primary); font-size: 14px; margin-bottom: 6px;">📌 גילוי נאות מתודולוגי ומגבלות מחקר:</h4>
+        <p style="font-size: 13px; color: var(--text-muted); line-height: 1.6; margin: 0;">
+          ניתוח זה הוא מתאמי ומבני בלבד (Cross-Sectional Correlation). הנתונים אינם מוכיחים קשר סיבתי ואינם מודדים את מנגנון ההקצאה הפנימי של הרשות (האם כספי המענק עצמם נותבו ישירות לחינוך או שחררו מקורות אחרים). הממצא מצביע על כך שמענק האיזון מהווה עוגן פיסקלי קריטי המאפשר לרשויות מוחלשות להקצות משאבים לחינוך מעבר לתקבולי משה"ח הייעודיים.
+        </p>
       </div>
     </div>
   </main>
 
   <!-- Tab 4: Simulator -->
   <main id="tab-simulator" class="tab-panel">
-    <div class="grid-2">
-      <!-- Simulator Controls -->
-      <div class="card">
-        <div class="card-header">
-          <div>
-            <h3 class="card-title">בקרת מודל התקצוב הדיפרנציאלי המתקן</h3>
-            <div class="card-subtitle">הגדרת משקולות הנוסחה לבחינת חלוקה מחדש וצמצום פערי החינוך</div>
-          </div>
-        </div>
-
-        <div class="slider-group">
-          <div class="slider-header">
-            <span>תוספת תקציב ממשלתי ייעודי לצדק חלוקתי:</span>
-            <span class="slider-val" id="valPoolM">1,000 מיליון ₪</span>
-          </div>
-          <input type="range" id="sliderPoolM" min="200" max="3000" step="100" value="1000">
-        </div>
-
-        <div class="slider-group">
-          <div class="slider-header">
-            <span>משקל אשכול חברתי-כלכלי של התושבים:</span>
-            <span class="slider-val" id="valWSocio">35%</span>
-          </div>
-          <input type="range" id="sliderWSocio" min="0" max="100" step="5" value="35">
-        </div>
-
-        <div class="slider-group">
-          <div class="slider-header">
-            <span>משקל מדד פריפריאליות ומרחק:</span>
-            <span class="slider-val" id="valWPeri">20%</span>
-          </div>
-          <input type="range" id="sliderWPeri" min="0" max="100" step="5" value="20">
-        </div>
-
-        <div class="slider-group">
-          <div class="slider-header">
-            <span>משקל 'חוסר בארנונה עסקית' (פיצוי על היעדר אזורי תעסוקה):</span>
-            <span class="slider-val" id="valWArnona">30%</span>
-          </div>
-          <input type="range" id="sliderWArnona" min="0" max="100" step="5" value="30">
-        </div>
-
-        <div class="slider-group">
-          <div class="slider-header">
-            <span>משקל נטל חינוך מיוחד והסעות (קרן ייעודית):</span>
-            <span class="slider-val" id="valWSpecialEd">15%</span>
-          </div>
-          <input type="range" id="sliderWSpecialEd" min="0" max="100" step="5" value="15">
-        </div>
-
-        <div style="background: var(--bg-alt); padding: 14px; border-radius: var(--radius-sm); border: 1px solid var(--border); margin-top: 20px;">
-          <label style="display: flex; align-items: center; gap: 10px; font-weight: 700; cursor: pointer;">
-            <input type="checkbox" id="chkExemptMatching" checked style="width: 18px; height: 18px;">
-            <span>ביטול חובת מאצ'ינג לרשויות מוחלשות וללא הכנסות עסקיות (הצלת תקציבים אבודים)</span>
-          </label>
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">⚙️ סימולטור תקצוב מתקן וצדק חלוקתי בחינוך המוניציפלי</div>
+          <div class="card-subtitle">בדיקת תרחישי מדיניות לסגירת פערי ההשתתפות העצמית באמצעות קרן ייעודית דיפרנציאלית</div>
         </div>
       </div>
 
-      <!-- Simulator Live Results -->
-      <div class="card">
-        <div class="card-header">
-          <h3 class="card-title">תוצאות הסימולציה והשפעה לאומית</h3>
-          <span class="badge badge-affluent">מחושב בזמן אמת</span>
-        </div>
+      <div style="display: grid; grid-template-columns: 360px 1fr; gap: 24px; margin-top: 14px;">
+        
+        <!-- Controls -->
+        <div style="background: var(--surface-2); padding: 20px; border-radius: 12px; border: 1px solid var(--border-color);">
+          <h4 style="font-size: 15px; margin-bottom: 16px;">פרמטרי מודל התיקון:</h4>
 
-        <div class="kpi-grid" style="grid-template-columns: 1fr 1fr; margin-bottom: 16px;">
-          <div class="kpi-card teal">
-            <div class="kpi-label">ירידה במדד ג'יני (אי-שוויון בחינוך)</div>
-            <div class="kpi-value" id="simGiniDrop">-36.2%</div>
-            <div class="kpi-sub">מ-0.218 ל-0.139</div>
+          <div class="form-group" style="margin-bottom: 18px;">
+            <label for="sliderPoolM">היקף קרן תיקון שנתית (מיליוני ₪):</label>
+            <input type="range" id="sliderPoolM" min="100" max="3000" step="100" value="1000" class="form-control">
+            <div style="display: flex; justify-content: space-between; font-size: 12px; color: var(--text-muted); margin-top: 4px;">
+              <span>100M ₪</span>
+              <strong id="valPoolM" style="color: var(--primary);">1,000 מיליון ₪</strong>
+              <span>3,000M ₪</span>
+            </div>
           </div>
 
-          <div class="kpi-card blue">
-            <div class="kpi-label">צמצום יחס הפער המקסימלי</div>
-            <div class="kpi-value" id="simGapDrop">פי 1.5</div>
-            <div class="kpi-sub">במקום פי 2.2 במודל הנוכחי</div>
+          <div class="form-group" style="margin-bottom: 18px;">
+            <label for="sliderWSocio">משקל מדד חברתי-כלכלי:</label>
+            <input type="range" id="sliderWSocio" min="0" max="100" step="5" value="50" class="form-control">
+            <div style="text-align: left; font-size: 12px; color: var(--primary); font-weight: 700;" id="valWSocio">50%</div>
           </div>
+
+          <div class="form-group" style="margin-bottom: 18px;">
+            <label for="sliderWPeri">משקל פריפריאליות:</label>
+            <input type="range" id="sliderWPeri" min="0" max="100" step="5" value="30" class="form-control">
+            <div style="text-align: left; font-size: 12px; color: var(--primary); font-weight: 700;" id="valWPeri">30%</div>
+          </div>
+
+          <div class="form-group" style="margin-bottom: 18px;">
+            <label for="sliderWFiscal">משקל חולשה פיסקלית (שיעור הכנסות עצמיות):</label>
+            <input type="range" id="sliderWFiscal" min="0" max="100" step="5" value="20" class="form-control">
+            <div style="text-align: left; font-size: 12px; color: var(--primary); font-weight: 700;" id="valWFiscal">20%</div>
+          </div>
+
+          <button id="btnRunSim" class="btn btn-primary" style="width: 100%; margin-top: 10px;">🔄 הרץ סימולציה מחדש</button>
         </div>
 
-        <div style="margin-top: 10px;">
-          <div style="font-weight: 700; font-size: 14px; margin-bottom: 10px;">10 הרשויות שהכי ירוויחו מהמודל המתקן:</div>
-          <div class="table-responsive">
-            <table class="data-table" id="simGainersTable">
+        <!-- Simulation Results -->
+        <div>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 14px; margin-bottom: 20px;">
+            <div class="kpi-card green" style="padding: 16px;">
+              <div class="kpi-label">ירידה באי-שוויון (מדד ג'יני)</div>
+              <div class="kpi-value" id="simGiniDrop">-24.1%</div>
+              <div class="kpi-sub">צמצום משמעותי בפערי השקעה</div>
+            </div>
+            <div class="kpi-card teal" style="padding: 16px;">
+              <div class="kpi-label">צמצום יחס הפער בין אשכולות</div>
+              <div class="kpi-value" id="simGapDrop">מפי 2.4 ל-1.6</div>
+              <div class="kpi-sub">שיפור יחסי מובהק</div>
+            </div>
+          </div>
+
+          <h4 style="font-size: 15px; margin-bottom: 10px;">רשויות הנהנות ביותר מהמודל המתקן (מדגם 10 מובילות):</h4>
+          <div class="table-container">
+            <table class="table">
               <thead>
                 <tr>
-                  <th>רשות</th>
+                  <th>רשות מקומית</th>
                   <th>אשכול</th>
-                  <th>תוספת לתלמיד</th>
-                  <th>סה"כ תוספת לרשות</th>
-                  <th>עלייה באחוזים</th>
+                  <th>אוכלוסייה</th>
+                  <th>תוספת מענק מתקן (₪ לנפש)</th>
+                  <th>סך תקציב תוספתי (אלפי ₪)</th>
+                  <th>שיעור גידול בהשקעה עצמית</th>
                 </tr>
               </thead>
-              <tbody id="simGainersBody"></tbody>
+              <tbody id="simGainersBody">
+                <!-- Populated via JS -->
+              </tbody>
             </table>
           </div>
         </div>
+
       </div>
     </div>
   </main>
 
-  <!-- Tab 5: Advocacy -->
+  <!-- Tab 5: Advocacy Paper Generator -->
   <main id="tab-advocacy" class="tab-panel">
-    <div style="display: flex; justify-content: flex-end; margin-bottom: 16px; gap: 12px;">
-      <button class="btn btn-primary" onclick="window.print()">🖨️ הדפס / שמור כ-PDF</button>
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">📄 מחולל נייר עמדה פרלמנטרי ומסמך מדיניות</div>
+          <div class="card-subtitle">הפקת מסמך מדיניות רשמי מותאם אישית לרשות הנבחרת לצורך דיוני ועדות הכנסת, משרד האוצר ומשרד החינוך</div>
+        </div>
+        <button onclick="window.print()" class="btn btn-outline">🖨️ הדפס / שמור כ-PDF</button>
+      </div>
+
+      <div class="advocacy-paper" id="advocacyPaperContainer">
+        <!-- Rendered via advocacy.js -->
+      </div>
     </div>
-    <div id="advocacyPaperContainer"></div>
   </main>
 
-  <!-- Tab 6: Data Table -->
+  <!-- Tab 6: Full Data Table (257) -->
   <main id="tab-table" class="tab-panel">
     <div class="card">
       <div class="card-header">
         <div>
-          <h3 class="card-title">מאגר הנתונים המלא של רשויות ישראל</h3>
-          <div class="card-subtitle">נתוני למ"ס, משרד הפנים ומשרד החינוך (לחץ על שורה לבחירת רשות)</div>
+          <div class="card-title">מאגר נתוני 2024 המאומת המלא — 257 רשויות מקומיות בישראל</div>
+          <div class="card-subtitle">הצלבה שלמה: דוחות מבוקרי משרד הפנים 2024 + למ"ס חברתי-כלכלי ופריפריאליות (ללא נתון סינתטי בודד)</div>
         </div>
-        <button id="btnTableExport" class="btn btn-secondary">📥 הורד טבלה זו (Excel)</button>
+        <button id="btnTableExport" class="btn btn-primary">📊 ייצוא טבלה לאקסל (CSV)</button>
       </div>
 
-      <div class="table-responsive">
-        <table class="data-table" id="fullDataTable">
+      <div class="table-container" style="max-height: 650px; overflow-y: auto;">
+        <table class="table font-mono" id="fullDataTable">
           <thead>
             <tr>
+              <th data-sort="code">סמל למ"ס</th>
               <th data-sort="name">שם רשות</th>
-              <th data-sort="type">סוג</th>
               <th data-sort="district">מחוז</th>
+              <th data-sort="type">סוג רשות</th>
+              <th data-sort="population">אוכלוסייה</th>
               <th data-sort="cbs_socio_cluster">אשכול למ"ס</th>
-              <th data-sort="total_pupils">מספר תלמידים</th>
-              <th data-sort="arnona_per_pupil_nis">ארנונה עסקית לתלמיד</th>
-              <th data-sort="special_ed_pct">חנ"מ (%)</th>
-              <th data-sort="transport_deficit_per_pupil_nis">גירעון הסעות</th>
-              <th data-sort="gov_total_per_pupil_nis">תקצוב משה"ח</th>
-              <th data-sort="muni_self_spend_per_pupil_nis">השקעת הרשות</th>
-              <th data-sort="total_spending_per_pupil_nis">סל תלמיד כולל</th>
-              <th data-sort="national_avg_diff_pct">פער מהממוצע</th>
-              <th data-sort="equity_category">סיווג עיוות</th>
+              <th data-sort="education_expense_1486_tk">הוצאות 1486 (K₪)</th>
+              <th data-sort="education_revenue_1384_tk">תקבולים 1384 (K₪)</th>
+              <th data-sort="education_net_difference_tk">הפרש נטו (K₪)</th>
+              <th data-sort="municipal_education_self_funding_rate">שיעור השתתפות (%)</th>
+              <th data-sort="own_revenue_share_pct">הכנסות עצמיות (%)</th>
+              <th data-sort="arnona_other_per_capita_nis">ארנונה אחרת לנפש (₪)</th>
+              <th data-sort="balancing_grant_per_capita_nis">מענק איזון לנפש (₪)</th>
+              <th data-sort="anomaly_classification">סיווג ובקרה</th>
             </tr>
           </thead>
-          <tbody id="fullDataBody"></tbody>
+          <tbody id="fullDataBody">
+            <!-- Populated via JS -->
+          </tbody>
         </table>
       </div>
     </div>
   </main>
 
+  <!-- Floating Chart Tooltip -->
+  <div id="chartTooltip" class="chart-tooltip"></div>
+
+  <!-- Footer -->
+  <footer class="app-footer">
+    <div>
+      מערכת ניתוח פערי תקצוב וצדק חלוקתי בחינוך המוניציפלי • איגוד מנהלי אגפי ומחלקות החינוך ברשויות המקומיות
+    </div>
+    <div style="margin-top: 4px; font-size: 11.5px; opacity: 0.85;">
+      מקורות: משרד הפנים (דוחות כספיים מבוקרים 2024), הלשכה המרכזית לסטטיסטיקה (מפקד אוכלוסין 2024, אשכול חברתי-כלכלי 2021, פריפריאליות 2020)
+    </div>
+  </footer>
+
 </div>
 
 <!-- Scripts -->
-<script src="libs/xlsx.full.min.js"></script>
 <script src="data/master_data.js"></script>
 <script src="charts.js"></script>
 <script src="simulator.js"></script>
 <script src="advocacy.js"></script>
 <script src="app.js"></script>
-
 </body>
 </html>

@@ -1,5 +1,5 @@
 // ==============================================================================
-// app.js - Main Dashboard Controller for Education Equity System
+// app.js - Main Dashboard Controller for Education Equity System (Stage 6)
 // ==============================================================================
 
 (function () {
@@ -10,87 +10,115 @@
     allData: [],
     filteredData: [],
     selectedAuthority: null,
-    nationalAvg: 29225,
-    activeTab: 'tab-matrix',
-    sortCol: 'total_spending_per_pupil_nis',
+    nationalWeightedAvg: 26.85,
+    nationalUnweightedAvg: 24.10,
+    activeTab: 'tab-explorer',
+    scatterXKey: 'own_revenue_share_pct',
+    scatterXLabel: 'שיעור הכנסות עצמיות מתוך התקציב (%)',
+    excludeTamar: false,
+    excludeWar: false,
+    sortCol: 'municipal_education_self_funding_rate',
     sortAsc: false,
     lastSimResults: null
   };
 
   // DOM Elements
   const el = {
-    kpiNationalAvg: document.getElementById('kpiNationalAvg'),
-    kpiTotalPupils: document.getElementById('kpiTotalPupils'),
-    kpiMaxGap: document.getElementById('kpiMaxGap'),
-    kpiLostMatching: document.getElementById('kpiLostMatching'),
-    kpiSpecialEdBurden: document.getElementById('kpiSpecialEdBurden'),
+    // National KPIs
+    kpiTotal1486: document.getElementById('kpiTotal1486'),
+    kpiTotal1384: document.getElementById('kpiTotal1384'),
+    kpiTotalNet: document.getElementById('kpiTotalNet'),
+    kpiWeightedRate: document.getElementById('kpiWeightedRate'),
+    kpiDisparityGap: document.getElementById('kpiDisparityGap'),
+    kpiTotalPop: document.getElementById('kpiTotalPop'),
 
+    // Filters
     filterSearch: document.getElementById('filterSearch'),
     filterDistrict: document.getElementById('filterDistrict'),
     filterType: document.getElementById('filterType'),
     filterSocio: document.getElementById('filterSocio'),
-    filterCategory: document.getElementById('filterCategory'),
+    filterAnomaly: document.getElementById('filterAnomaly'),
     btnResetFilters: document.getElementById('btnResetFilters'),
 
-    matrixCountBadge: document.getElementById('matrixCountBadge'),
-    canvasScatterMatrix: document.getElementById('canvasScatterMatrix'),
+    // Explorer Tab
+    explorerCountBadge: document.getElementById('explorerCountBadge'),
+    selectXAxis: document.getElementById('selectXAxis'),
+    chkExcludeTamar: document.getElementById('chkExcludeTamar'),
+    chkExcludeWar: document.getElementById('chkExcludeWar'),
+    canvasScatterExplorer: document.getElementById('canvasScatterExplorer'),
+    canvasClusterStep: document.getElementById('canvasClusterStep'),
+    statN: document.getElementById('statN'),
+    statR: document.getElementById('statR'),
+    statR2: document.getElementById('statR2'),
+    statEq: document.getElementById('statEq'),
 
-    // Profile Elements
+    // Profile Tab
     profName: document.getElementById('profName'),
     profSub: document.getElementById('profSub'),
-    profCategoryBadge: document.getElementById('profCategoryBadge'),
+    profAuditBadge: document.getElementById('profAuditBadge'),
     profPop: document.getElementById('profPop'),
-    profPupils: document.getElementById('profPupils'),
     profSocio: document.getElementById('profSocio'),
     profPeri: document.getElementById('profPeri'),
-    profArnonaPerPupil: document.getElementById('profArnonaPerPupil'),
-    profMatchingScore: document.getElementById('profMatchingScore'),
-    profLostMatching: document.getElementById('profLostMatching'),
-    profTotalSpend: document.getElementById('profTotalSpend'),
-    profGovStd: document.getElementById('profGovStd'),
-    profGovDiff: document.getElementById('profGovDiff'),
-    profMuniSpend: document.getElementById('profMuniSpend'),
-    profParentsPay: document.getElementById('profParentsPay'),
+    profOwnRevShare: document.getElementById('profOwnRevShare'),
+    profSelfFundingRate: document.getElementById('profSelfFundingRate'),
+    profNetEduDiff: document.getElementById('profNetEduDiff'),
+    profNetEduPerCapita: document.getElementById('profNetEduPerCapita'),
+    profExp1486: document.getElementById('profExp1486'),
+    profExp1486PerCapita: document.getElementById('profExp1486PerCapita'),
+    profRev1384: document.getElementById('profRev1384'),
+    profRev1384PerCapita: document.getElementById('profRev1384PerCapita'),
+    profOwnRev1805: document.getElementById('profOwnRev1805'),
+    profOwnRevPerCapita: document.getElementById('profOwnRevPerCapita'),
+    profArnonaOther: document.getElementById('profArnonaOther'),
+    profArnonaOtherPerCapita: document.getElementById('profArnonaOtherPerCapita'),
+    profArnonaTotal: document.getElementById('profArnonaTotal'),
+    profArnonaTotalPerCapita: document.getElementById('profArnonaTotalPerCapita'),
+    profBalancingGrant: document.getElementById('profBalancingGrant'),
     canvasDonutBreakdown: document.getElementById('canvasDonutBreakdown'),
     canvasPeerBenchmark: document.getElementById('canvasPeerBenchmark'),
+    profDonutGovVal: document.getElementById('profDonutGovVal'),
+    profDonutMuniVal: document.getElementById('profDonutMuniVal'),
 
-    // Special Ed & Transport Elements
-    specialEdAuthBadge: document.getElementById('specialEdAuthBadge'),
-    sePupilCount: document.getElementById('sePupilCount'),
-    sePupilPct: document.getElementById('sePupilPct'),
-    seMuniBurden: document.getElementById('seMuniBurden'),
-    seTransportDeficit: document.getElementById('seTransportDeficit'),
-    seClassroomShortage: document.getElementById('seClassroomShortage'),
-    seTotalTransport: document.getElementById('seTotalTransport'),
-    seInformalSpend: document.getElementById('seInformalSpend'),
-    seGafenBasket: document.getElementById('seGafenBasket'),
+    // Research Tab
+    canvasBalancingAll: document.getElementById('canvasBalancingAll'),
+    canvasBalancingLow: document.getElementById('canvasBalancingLow'),
 
-    // Simulator Elements
+    // Simulator Tab
     sliderPoolM: document.getElementById('sliderPoolM'),
     sliderWSocio: document.getElementById('sliderWSocio'),
     sliderWPeri: document.getElementById('sliderWPeri'),
-    sliderWArnona: document.getElementById('sliderWArnona'),
-    sliderWSpecialEd: document.getElementById('sliderWSpecialEd'),
+    sliderWFiscal: document.getElementById('sliderWFiscal'),
     valPoolM: document.getElementById('valPoolM'),
     valWSocio: document.getElementById('valWSocio'),
     valWPeri: document.getElementById('valWPeri'),
-    valWArnona: document.getElementById('valWArnona'),
-    valWSpecialEd: document.getElementById('valWSpecialEd'),
-    chkExemptMatching: document.getElementById('chkExemptMatching'),
+    valWFiscal: document.getElementById('valWFiscal'),
     simGiniDrop: document.getElementById('simGiniDrop'),
     simGapDrop: document.getElementById('simGapDrop'),
     simGainersBody: document.getElementById('simGainersBody'),
+    btnRunSim: document.getElementById('btnRunSim'),
 
     // Advocacy & Table
     advocacyPaperContainer: document.getElementById('advocacyPaperContainer'),
     fullDataBody: document.getElementById('fullDataBody'),
     fullDataTable: document.getElementById('fullDataTable'),
 
-    // Buttons
+    // Action Buttons
     btnQuickSim: document.getElementById('btnQuickSim'),
     btnQuickReport: document.getElementById('btnQuickReport'),
     btnExportExcel: document.getElementById('btnExportExcel'),
     btnTableExport: document.getElementById('btnTableExport')
+  };
+
+  // Label Map for X-Axis selector
+  const axisLabelMap = {
+    'own_revenue_share_pct': 'שיעור הכנסות עצמיות מתוך התקציב (%)',
+    'own_revenues_per_capita_nis': 'הכנסות עצמיות לנפש (₪)',
+    'arnona_other_per_capita_nis': 'ארנונה אחרת (עסקית/תעשייתית) לנפש (₪)',
+    'arnona_total_per_capita_nis': 'סך הכנסות מארנונה לנפש (₪)',
+    'socio_value_2021': 'מדד חברתי-כלכלי רציף (למ"ס)',
+    'socio_cluster_2021': 'אשכול חברתי-כלכלי (1–10)',
+    'balancing_grant_per_capita_nis': 'מענק איזון לנפש (₪)',
+    'periphery_value_2020': 'מדד פריפריאליות רציף (למ"ס)'
   };
 
   // Initialize App
@@ -114,25 +142,26 @@
   function finishInit() {
     state.filteredData = [...state.allData];
 
-    // Compute Overall Stats
-    let totalSpending = 0, totalPupils = 0, totalLostMatching = 0, totalSpecialEdBurden = 0;
+    // Compute Overall Verified 2024 Stats
+    let total1486 = 0, total1384 = 0, totalNet = 0, totalPop = 0;
     state.allData.forEach(d => {
-      totalSpending += (d.total_spending_per_pupil_nis * d.total_pupils);
-      totalPupils += d.total_pupils;
-      totalLostMatching += (d.lost_matching_per_pupil_nis * d.total_pupils);
-      totalSpecialEdBurden += ((d.special_ed_muni_burden_nis || 12000) * (d.pupils_special_ed || (d.total_pupils * 0.08))) + ((d.transport_deficit_per_pupil_nis || 800) * d.total_pupils);
+      total1486 += (d.education_expense_1486_tk || 0);
+      total1384 += (d.education_revenue_1384_tk || 0);
+      totalNet += (d.education_net_difference_tk || 0);
+      totalPop += (d.population || 0);
     });
 
-    state.nationalAvg = Math.round(totalSpending / Math.max(1, totalPupils));
+    state.nationalWeightedAvg = (totalNet / total1486) * 100;
 
     // Update KPI Card UI
-    el.kpiNationalAvg.textContent = '₪' + state.nationalAvg.toLocaleString();
-    el.kpiTotalPupils.textContent = (Math.round(totalPupils / 100000) / 10).toFixed(1) + 'M';
-    el.kpiLostMatching.textContent = '₪' + (Math.round(totalLostMatching / 10000000) / 100).toFixed(2) + ' מיליארד';
-    el.kpiSpecialEdBurden.textContent = '₪' + (Math.round(totalSpecialEdBurden / 10000000) / 100).toFixed(2) + ' מיליארד';
+    if (el.kpiTotal1486) el.kpiTotal1486.textContent = '₪' + (total1486 / 1000000).toFixed(1) + ' מיליארד';
+    if (el.kpiTotal1384) el.kpiTotal1384.textContent = '₪' + (total1384 / 1000000).toFixed(1) + ' מיליארד';
+    if (el.kpiTotalNet) el.kpiTotalNet.textContent = '₪' + (totalNet / 1000000).toFixed(2) + ' מיליארד';
+    if (el.kpiWeightedRate) el.kpiWeightedRate.textContent = state.nationalWeightedAvg.toFixed(1) + '%';
+    if (el.kpiTotalPop) el.kpiTotalPop.textContent = (totalPop / 1000000).toFixed(1) + 'M';
 
-    // Default Selection: Bnei Brak (6100) or first
-    const defaultAuth = state.allData.find(a => a.code === '6100') || state.allData[0];
+    // Default Selection: Tel Aviv (5000)
+    const defaultAuth = state.allData.find(a => a.code === '5000') || state.allData[0];
     selectAuthority(defaultAuth);
 
     // Setup Event Listeners
@@ -145,12 +174,35 @@
 
   function setupEventListeners() {
     // Filter controls
-    el.filterSearch.addEventListener('input', applyFilters);
-    el.filterDistrict.addEventListener('change', applyFilters);
-    el.filterType.addEventListener('change', applyFilters);
-    el.filterSocio.addEventListener('change', applyFilters);
-    el.filterCategory.addEventListener('change', applyFilters);
-    el.btnResetFilters.addEventListener('click', resetFilters);
+    if (el.filterSearch) el.filterSearch.addEventListener('input', applyFilters);
+    if (el.filterDistrict) el.filterDistrict.addEventListener('change', applyFilters);
+    if (el.filterType) el.filterType.addEventListener('change', applyFilters);
+    if (el.filterSocio) el.filterSocio.addEventListener('change', applyFilters);
+    if (el.filterAnomaly) el.filterAnomaly.addEventListener('change', applyFilters);
+    if (el.btnResetFilters) el.btnResetFilters.addEventListener('click', resetFilters);
+
+    // Explorer controls
+    if (el.selectXAxis) {
+      el.selectXAxis.addEventListener('change', () => {
+        state.scatterXKey = el.selectXAxis.value;
+        state.scatterXLabel = axisLabelMap[state.scatterXKey] || state.scatterXKey;
+        renderExplorer();
+      });
+    }
+
+    if (el.chkExcludeTamar) {
+      el.chkExcludeTamar.addEventListener('change', () => {
+        state.excludeTamar = el.chkExcludeTamar.checked;
+        applyFilters();
+      });
+    }
+
+    if (el.chkExcludeWar) {
+      el.chkExcludeWar.addEventListener('change', () => {
+        state.excludeWar = el.chkExcludeWar.checked;
+        applyFilters();
+      });
+    }
 
     // Tab Navigation
     document.querySelectorAll('.tab-btn').forEach(btn => {
@@ -161,44 +213,45 @@
     });
 
     // Quick Action Buttons
-    el.btnQuickSim.addEventListener('click', () => switchTab('tab-simulator'));
-    el.btnQuickReport.addEventListener('click', () => switchTab('tab-advocacy'));
-    el.btnExportExcel.addEventListener('click', exportToExcel);
-    el.btnTableExport.addEventListener('click', exportToExcel);
+    if (el.btnQuickSim) el.btnQuickSim.addEventListener('click', () => switchTab('tab-simulator'));
+    if (el.btnQuickReport) el.btnQuickReport.addEventListener('click', () => switchTab('tab-advocacy'));
+    if (el.btnExportExcel) el.btnExportExcel.addEventListener('click', exportToExcel);
+    if (el.btnTableExport) el.btnTableExport.addEventListener('click', exportToExcel);
+    if (el.btnRunSim) el.btnRunSim.addEventListener('click', runSimulator);
 
     // Table Sorting
-    el.fullDataTable.querySelectorAll('th[data-sort]').forEach(th => {
-      th.addEventListener('click', () => {
-        const col = th.getAttribute('data-sort');
-        if (state.sortCol === col) {
-          state.sortAsc = !state.sortAsc;
-        } else {
-          state.sortCol = col;
-          state.sortAsc = false;
-        }
-        renderTable();
+    if (el.fullDataTable) {
+      el.fullDataTable.querySelectorAll('th[data-sort]').forEach(th => {
+        th.addEventListener('click', () => {
+          const col = th.getAttribute('data-sort');
+          if (state.sortCol === col) {
+            state.sortAsc = !state.sortAsc;
+          } else {
+            state.sortCol = col;
+            state.sortAsc = false;
+          }
+          renderTable();
+        });
       });
-    });
+    }
 
     // Simulator Sliders
-    [el.sliderPoolM, el.sliderWSocio, el.sliderWPeri, el.sliderWArnona, el.sliderWSpecialEd, el.chkExemptMatching].forEach(inp => {
+    [el.sliderPoolM, el.sliderWSocio, el.sliderWPeri, el.sliderWFiscal].forEach(inp => {
       if (!inp) return;
       inp.addEventListener('input', () => {
-        el.valPoolM.textContent = Number(el.sliderPoolM.value).toLocaleString() + ' מיליון ₪';
-        el.valWSocio.textContent = el.sliderWSocio.value + '%';
-        el.valWPeri.textContent = el.sliderWPeri.value + '%';
-        el.valWArnona.textContent = el.sliderWArnona.value + '%';
-        if (el.valWSpecialEd) el.valWSpecialEd.textContent = el.sliderWSpecialEd.value + '%';
+        if (el.valPoolM) el.valPoolM.textContent = Number(el.sliderPoolM.value).toLocaleString() + ' מיליון ₪';
+        if (el.valWSocio) el.valWSocio.textContent = el.sliderWSocio.value + '%';
+        if (el.valWPeri) el.valWPeri.textContent = el.sliderWPeri.value + '%';
+        if (el.valWFiscal) el.valWFiscal.textContent = el.sliderWFiscal.value + '%';
         runSimulator();
       });
     });
 
-    // Window Resize -> Redraw Charts
+    // Window Resize
     window.addEventListener('resize', () => {
-      if (state.activeTab === 'tab-matrix') renderMatrix();
-      if (state.activeTab === 'tab-profile' && state.selectedAuthority) {
-        renderProfileCharts(state.selectedAuthority);
-      }
+      if (state.activeTab === 'tab-explorer') renderExplorer();
+      if (state.activeTab === 'tab-profile' && state.selectedAuthority) renderProfileCharts(state.selectedAuthority);
+      if (state.activeTab === 'tab-research') renderResearch();
     });
   }
 
@@ -212,37 +265,44 @@
     if (btn) btn.classList.add('active');
     if (panel) panel.classList.add('active');
 
-    // Trigger re-render of charts if tab becomes visible
-    if (tabId === 'tab-matrix') {
-      setTimeout(renderMatrix, 50);
-    } else if (tabId === 'tab-profile' && state.selectedAuthority) {
-      setTimeout(() => renderProfileCharts(state.selectedAuthority), 50);
-    }
+    // Trigger re-render of canvases
+    setTimeout(() => {
+      if (tabId === 'tab-explorer') renderExplorer();
+      if (tabId === 'tab-profile' && state.selectedAuthority) renderProfileCharts(state.selectedAuthority);
+      if (tabId === 'tab-research') renderResearch();
+      if (tabId === 'tab-advocacy' && state.selectedAuthority) renderAdvocacy(state.selectedAuthority);
+    }, 50);
   }
 
   function resetFilters() {
-    el.filterSearch.value = '';
-    el.filterDistrict.value = '';
-    el.filterType.value = '';
-    el.filterSocio.value = '';
-    el.filterCategory.value = '';
+    if (el.filterSearch) el.filterSearch.value = '';
+    if (el.filterDistrict) el.filterDistrict.value = '';
+    if (el.filterType) el.filterType.value = '';
+    if (el.filterSocio) el.filterSocio.value = '';
+    if (el.filterAnomaly) el.filterAnomaly.value = '';
+    if (el.chkExcludeTamar) el.chkExcludeTamar.checked = false;
+    if (el.chkExcludeWar) el.chkExcludeWar.checked = false;
+    state.excludeTamar = false;
+    state.excludeWar = false;
     applyFilters();
   }
 
   function applyFilters() {
-    const search = el.filterSearch.value.trim().toLowerCase();
-    const district = el.filterDistrict.value;
-    const type = el.filterType.value;
-    const socio = el.filterSocio.value;
-    const category = el.filterCategory.value;
+    const search = el.filterSearch ? el.filterSearch.value.trim().toLowerCase() : '';
+    const district = el.filterDistrict ? el.filterDistrict.value : '';
+    const type = el.filterType ? el.filterType.value : '';
+    const socio = el.filterSocio ? el.filterSocio.value : '';
+    const anomaly = el.filterAnomaly ? el.filterAnomaly.value : '';
 
     state.filteredData = state.allData.filter(item => {
+      if (state.excludeTamar && item.is_tamar_outlier) return false;
+      if (state.excludeWar && item.is_war_evacuated_2024) return false;
+
       if (search && !item.name.toLowerCase().includes(search) && !item.code.includes(search)) {
         return false;
       }
       if (district && item.district !== district) return false;
       if (type && item.type !== type) return false;
-      if (category && item.equity_category_code !== category) return false;
 
       if (socio) {
         const s = item.cbs_socio_cluster;
@@ -250,25 +310,53 @@
         if (socio === '4-6' && (s < 4 || s > 6)) return false;
         if (socio === '7-10' && (s < 7 || s > 10)) return false;
       }
+
+      if (anomaly) {
+        if (anomaly === 'STANDARD' && item.anomaly_classification !== 'STANDARD') return false;
+        if (anomaly === 'WAR' && !item.is_war_evacuated_2024) return false;
+        if (anomaly === 'TAMAR' && !item.is_tamar_outlier) return false;
+      }
+
       return true;
     });
 
-    el.matrixCountBadge.textContent = `מציג ${state.filteredData.length} מתוך ${state.allData.length} רשויות`;
+    if (el.explorerCountBadge) {
+      el.explorerCountBadge.textContent = `מציג ${state.filteredData.length} מתוך ${state.allData.length} רשויות`;
+    }
 
-    renderMatrix();
+    renderExplorer();
     renderTable();
   }
 
-  function renderMatrix() {
-    EducationCharts.renderScatterMatrix(
-      el.canvasScatterMatrix,
+  function renderExplorer() {
+    if (!el.canvasScatterExplorer) return;
+
+    const stats = EducationCharts.renderScatterExplorer(
+      el.canvasScatterExplorer,
       state.filteredData,
-      state.selectedAuthority ? state.selectedAuthority.code : null,
-      (selected) => {
-        selectAuthority(selected);
-        switchTab('tab-profile');
+      {
+        xKey: state.scatterXKey,
+        xLabel: state.scatterXLabel,
+        selectedCode: state.selectedAuthority ? state.selectedAuthority.code : null,
+        excludeTamar: state.excludeTamar,
+        excludeWar: state.excludeWar,
+        onSelectCallback: (selected) => {
+          selectAuthority(selected);
+          switchTab('tab-profile');
+        }
       }
     );
+
+    if (stats) {
+      if (el.statN) el.statN.textContent = stats.n;
+      if (el.statR) el.statR.textContent = (stats.r >= 0 ? '+' : '') + stats.r.toFixed(4);
+      if (el.statR2) el.statR2.textContent = stats.r2.toFixed(4);
+      if (el.statEq) el.statEq.textContent = `y = ${stats.slope}x + ${stats.intercept}`;
+    }
+
+    if (el.canvasClusterStep) {
+      EducationCharts.renderClusterStepChart(el.canvasClusterStep, state.filteredData);
+    }
   }
 
   function selectAuthority(auth) {
@@ -276,215 +364,259 @@
     state.selectedAuthority = auth;
 
     // Update Profile Metadata
-    el.profName.textContent = auth.name;
-    el.profSub.textContent = `${auth.type} • מחוז ${auth.district} • סמל ${auth.code}`;
+    if (el.profName) el.profName.textContent = auth.name;
+    if (el.profSub) el.profSub.textContent = `${auth.type} • מחוז ${auth.district} • סמל למ"ס ${auth.code}`;
 
-    // Badge styling
-    el.profCategoryBadge.className = 'badge ' + getBadgeClass(auth.equity_category_code);
-    el.profCategoryBadge.textContent = auth.equity_category;
+    // Audit Badge
+    if (el.profAuditBadge) {
+      if (auth.is_war_evacuated_2024) {
+        el.profAuditBadge.className = 'badge badge-war';
+        el.profAuditBadge.textContent = '⚠️ יישוב קו עימות / מפונה (2024)';
+      } else if (auth.is_tamar_outlier) {
+        el.profAuditBadge.className = 'badge badge-tamar';
+        el.profAuditBadge.textContent = '⚠️ חריג מבני (מ.א. תמר)';
+      } else {
+        el.profAuditBadge.className = 'badge badge-accent';
+        el.profAuditBadge.textContent = 'רשות סטנדרטית';
+      }
+    }
 
-    el.profPop.textContent = auth.population.toLocaleString();
-    el.profPupils.textContent = auth.total_pupils.toLocaleString();
-    el.profSocio.textContent = `אשכול ${auth.cbs_socio_cluster}`;
-    el.profPeri.textContent = `אשכול ${auth.cbs_periphery_cluster}`;
-    el.profArnonaPerPupil.textContent = '₪' + auth.arnona_per_pupil_nis.toLocaleString();
-    el.profMatchingScore.textContent = auth.matching_capacity_score + ' / 100';
-    el.profLostMatching.textContent = '₪' + auth.lost_matching_per_pupil_nis.toLocaleString() + ' לתלמיד';
+    // Profile KPIs
+    if (el.profPop) el.profPop.textContent = (auth.population || 0).toLocaleString();
+    if (el.profSocio) el.profSocio.textContent = `${auth.cbs_socio_cluster} (${(auth.socio_value_2021 !== null ? Number(auth.socio_value_2021).toFixed(3) : '-')})`;
+    if (el.profPeri) el.profPeri.textContent = `${auth.cbs_periphery_cluster || '-'} (${(auth.periphery_value_2020 !== null ? Number(auth.periphery_value_2020).toFixed(3) : '-')})`;
+    if (el.profOwnRevShare) el.profOwnRevShare.textContent = `${auth.own_revenue_share_pct || 0}%`;
 
-    el.profTotalSpend.textContent = '₪' + auth.total_spending_per_pupil_nis.toLocaleString();
-    el.profGovStd.textContent = '₪' + auth.gov_standard_per_pupil_nis.toLocaleString();
-    el.profGovDiff.textContent = '₪' + auth.gov_differential_per_pupil_nis.toLocaleString();
-    el.profMuniSpend.textContent = '₪' + auth.muni_self_spend_per_pupil_nis.toLocaleString();
-    el.profParentsPay.textContent = '₪' + auth.parents_co_pay_per_pupil_nis.toLocaleString();
+    // Highlight Box
+    if (el.profSelfFundingRate) el.profSelfFundingRate.textContent = `${auth.municipal_education_self_funding_rate || 0}%`;
+    if (el.profNetEduDiff) el.profNetEduDiff.textContent = `₪${(auth.education_net_difference_tk || 0).toLocaleString()} אלפי ש"ח`;
+    const netPerCap = auth.population ? Math.round(((auth.education_net_difference_tk || 0) * 1000) / auth.population) : 0;
+    if (el.profNetEduPerCapita) el.profNetEduPerCapita.textContent = `₪${netPerCap.toLocaleString()} לנפש`;
 
-    // Update Special Ed & Transport Tab elements
-    if (el.specialEdAuthBadge) el.specialEdAuthBadge.textContent = `רשות נבחרת: ${auth.name}`;
-    if (el.sePupilCount) el.sePupilCount.textContent = (auth.pupils_special_ed || Math.round(auth.total_pupils * 0.08)).toLocaleString();
-    if (el.sePupilPct) el.sePupilPct.textContent = (auth.special_ed_pct || 8.0) + '%';
-    if (el.seMuniBurden) el.seMuniBurden.textContent = '₪' + (auth.special_ed_muni_burden_nis || 12000).toLocaleString();
-    if (el.seTransportDeficit) el.seTransportDeficit.textContent = '₪' + (auth.transport_deficit_per_pupil_nis || 800).toLocaleString();
-    if (el.seClassroomShortage) el.seClassroomShortage.textContent = (auth.classroom_shortage_units || 0) + ' כיתות';
-    if (el.seTotalTransport) el.seTotalTransport.textContent = '₪' + (auth.transport_expense_k_nis || 25000).toLocaleString() + ' אלף';
-    if (el.seInformalSpend) el.seInformalSpend.textContent = '₪' + (auth.informal_edu_per_pupil_nis || 1500).toLocaleString() + ' לתלמיד';
-    if (el.seGafenBasket) el.seGafenBasket.textContent = '₪' + (auth.gafen_basket_per_pupil_nis || 2000).toLocaleString() + ' לתלמיד';
+    // Table of accounts
+    const pop = auth.population || 1;
+    if (el.profExp1486) el.profExp1486.textContent = `₪${(auth.education_expense_1486_tk || 0).toLocaleString()}K`;
+    if (el.profExp1486PerCapita) el.profExp1486PerCapita.textContent = `₪${Math.round(((auth.education_expense_1486_tk || 0) * 1000) / pop).toLocaleString()} לנפש`;
 
+    if (el.profRev1384) el.profRev1384.textContent = `₪${(auth.education_revenue_1384_tk || 0).toLocaleString()}K`;
+    if (el.profRev1384PerCapita) el.profRev1384PerCapita.textContent = `₪${Math.round(((auth.education_revenue_1384_tk || 0) * 1000) / pop).toLocaleString()} לנפש`;
+
+    if (el.profOwnRev1805) el.profOwnRev1805.textContent = `₪${(auth.own_revenue_1805_tk || 0).toLocaleString()}K`;
+    if (el.profOwnRevPerCapita) el.profOwnRevPerCapita.textContent = `₪${(auth.own_revenues_per_capita_nis || 0).toLocaleString()} לנפש`;
+
+    if (el.profArnonaOther) el.profArnonaOther.textContent = `₪${(auth.arnona_other_4146_tk || 0).toLocaleString()}K`;
+    if (el.profArnonaOtherPerCapita) el.profArnonaOtherPerCapita.textContent = `₪${(auth.arnona_other_per_capita_nis || 0).toLocaleString()} לנפש`;
+
+    if (el.profArnonaTotal) el.profArnonaTotal.textContent = `₪${(auth.arnona_total_4162_tk || 0).toLocaleString()}K`;
+    if (el.profArnonaTotalPerCapita) el.profArnonaTotalPerCapita.textContent = `₪${(auth.arnona_total_per_capita_nis || 0).toLocaleString()} לנפש`;
+
+    if (el.profBalancingGrant) {
+      if (auth.balancing_grant_1819_tk > 0) {
+        el.profBalancingGrant.textContent = `₪${auth.balancing_grant_1819_tk.toLocaleString()}K (₪${auth.balancing_grant_per_capita_nis.toLocaleString()} לנפש)`;
+      } else {
+        el.profBalancingGrant.textContent = '₪0 (אין זכאות)';
+      }
+    }
+
+    // Donut percentages
+    const exp1486 = auth.education_expense_1486_tk || 1;
+    const rev1384 = auth.education_revenue_1384_tk || 0;
+    const netMuni = Math.max(0, auth.education_net_difference_tk || 0);
+    if (el.profDonutGovVal) el.profDonutGovVal.textContent = ((rev1384 / exp1486) * 100).toFixed(1) + '%';
+    if (el.profDonutMuniVal) el.profDonutMuniVal.textContent = ((netMuni / exp1486) * 100).toFixed(1) + '%';
+
+    // Render Charts
     renderProfileCharts(auth);
-    updateAdvocacyReport();
+
+    // Update Advocacy Paper
+    renderAdvocacy(auth);
   }
 
   function renderProfileCharts(auth) {
-    // 1. Donut Chart
-    EducationCharts.renderPerPupilDonut(el.canvasDonutBreakdown, auth);
-
-    // 2. Peer Benchmarks (3 similar authorities)
-    const peers = state.allData
-      .filter(a => a.code !== auth.code && (a.cbs_socio_cluster === auth.cbs_socio_cluster || a.district === auth.district))
-      .slice(0, 3);
-
-    EducationCharts.renderPeerComparison(el.canvasPeerBenchmark, auth, peers, state.nationalAvg);
+    if (el.canvasDonutBreakdown) {
+      EducationCharts.renderDonutBreakdown(el.canvasDonutBreakdown, auth);
+    }
+    if (el.canvasPeerBenchmark) {
+      EducationCharts.renderPeerBenchmark(el.canvasPeerBenchmark, auth, state.allData);
+    }
   }
 
-  function getBadgeClass(code) {
-    switch (code) {
-      case 'AFFLUENT_HIGH': return 'badge-affluent';
-      case 'PARADOX_LOW_SOCIO_HIGH_ARNONA': return 'badge-paradox';
-      case 'MIDDLE_TRAP': return 'badge-trap';
-      case 'VULNERABLE_LOCKED': return 'badge-vulnerable';
-      default: return 'badge-affluent';
+  function renderResearch() {
+    if (el.canvasBalancingAll && el.canvasBalancingLow) {
+      EducationCharts.renderBalancingGrantResearch(el.canvasBalancingAll, el.canvasBalancingLow, state.allData);
     }
   }
 
   function runSimulator() {
-    const poolM = Number(el.sliderPoolM.value);
-    const wSocio = Number(el.sliderWSocio.value);
-    const wPeri = Number(el.sliderWPeri.value);
-    const wArnona = Number(el.sliderWArnona.value);
-    const wSpecialEd = el.sliderWSpecialEd ? Number(el.sliderWSpecialEd.value) : 15;
-    const exemptMatching = el.chkExemptMatching.checked;
+    if (!window.EducationSimulator) return;
 
-    const sim = EducationSimulator.runSimulation(state.allData, {
-      budgetPoolM: poolM,
-      wSocio: wSocio,
-      wPeri: wPeri,
-      wArnona: wArnona,
-      wSpecialEd: wSpecialEd,
-      exemptMatching: exemptMatching
+    const poolM = Number(el.sliderPoolM ? el.sliderPoolM.value : 1000);
+    const wSocio = Number(el.sliderWSocio ? el.sliderWSocio.value : 50);
+    const wPeri = Number(el.sliderWPeri ? el.sliderWPeri.value : 30);
+    const wFiscal = Number(el.sliderWFiscal ? el.sliderWFiscal.value : 20);
+
+    const simResults = EducationSimulator.runSimulation(state.allData, {
+      totalPoolM: poolM,
+      weightSocio: wSocio,
+      weightPeri: wPeri,
+      weightFiscal: wFiscal
     });
 
-    state.lastSimResults = sim;
+    state.lastSimResults = simResults;
 
-    // Update Simulator KPIs
-    el.simGiniDrop.textContent = `-${sim.giniReductionPct}%`;
-    el.simGapDrop.textContent = `פי ${sim.simDisparityRatio}`;
+    if (el.simGiniDrop) el.simGiniDrop.textContent = `${simResults.gini_drop_pct}%`;
+    if (el.simGapDrop) el.simGapDrop.textContent = `מפי ${simResults.orig_gap} ל-${simResults.sim_gap}`;
 
     // Render Top Gainers Table
-    el.simGainersBody.innerHTML = '';
-    sim.topGainers.forEach(g => {
-      const tr = document.createElement('tr');
-      tr.className = 'clickable';
-      tr.innerHTML = `
-        <td><strong>${g.name}</strong></td>
-        <td><span class="badge badge-trap">אשכול ${g.cbs_socio_cluster}</span></td>
-        <td class="text-positive">+₪${g.gain_nis_per_pupil.toLocaleString()}</td>
-        <td style="font-weight: 700;">₪${g.allocated_grant_k_nis.toLocaleString()} אלף</td>
-        <td class="text-positive">+${g.gain_pct}%</td>
-      `;
-      tr.addEventListener('click', () => {
-        const found = state.allData.find(a => a.code === g.code);
-        if (found) {
-          selectAuthority(found);
-          switchTab('tab-profile');
-        }
+    if (el.simGainersBody) {
+      el.simGainersBody.innerHTML = '';
+      simResults.top_gainers.slice(0, 10).forEach(g => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td><strong>${g.name}</strong> (${g.type})</td>
+          <td>אשכול ${g.socio_cluster}</td>
+          <td>${g.population.toLocaleString()}</td>
+          <td class="font-mono text-left" style="color: var(--success); font-weight:700;">+₪${g.grant_per_capita_nis.toLocaleString()}</td>
+          <td class="font-mono text-left">₪${g.allocated_grant_k_nis.toLocaleString()}K</td>
+          <td class="font-mono text-left">+${g.gain_pct}%</td>
+        `;
+        tr.style.cursor = 'pointer';
+        tr.onclick = () => {
+          const found = state.allData.find(a => a.code === g.code);
+          if (found) {
+            selectAuthority(found);
+            switchTab('tab-profile');
+          }
+        };
+        el.simGainersBody.appendChild(tr);
       });
-      el.simGainersBody.appendChild(tr);
-    });
+    }
 
-    updateAdvocacyReport();
+    if (state.selectedAuthority) {
+      renderAdvocacy(state.selectedAuthority);
+    }
   }
 
-  function updateAdvocacyReport() {
-    if (!state.selectedAuthority) return;
+  function renderAdvocacy(auth) {
+    if (!el.advocacyPaperContainer || !window.EducationAdvocacy) return;
 
-    let simMatch = null;
-    if (state.lastSimResults && state.lastSimResults.results) {
-      simMatch = state.lastSimResults.results.find(r => r.code === state.selectedAuthority.code);
+    let simAuthData = null;
+    if (state.lastSimResults && state.lastSimResults.authority_allocations) {
+      simAuthData = state.lastSimResults.authority_allocations.find(a => a.code === auth.code);
     }
 
     el.advocacyPaperContainer.innerHTML = EducationAdvocacy.generateReport(
-      state.selectedAuthority,
-      state.nationalAvg,
-      simMatch
+      auth,
+      state.nationalUnweightedAvg,
+      simAuthData
     );
   }
 
   function renderTable() {
-    // Sort filtered data
+    if (!el.fullDataBody) return;
+    el.fullDataBody.innerHTML = '';
+
+    // Sort
     const sorted = [...state.filteredData].sort((a, b) => {
-      let vA = a[state.sortCol];
-      let vB = b[state.sortCol];
-      if (typeof vA === 'string') {
-        return state.sortAsc ? vA.localeCompare(vB) : vB.localeCompare(vA);
+      let va = a[state.sortCol];
+      let vb = b[state.sortCol];
+      if (typeof va === 'string') {
+        return state.sortAsc ? va.localeCompare(vb, 'he') : vb.localeCompare(va, 'he');
       }
-      return state.sortAsc ? (vA - vB) : (vB - vA);
+      va = (va === null || isNaN(va)) ? -Infinity : va;
+      vb = (vb === null || isNaN(vb)) ? -Infinity : vb;
+      return state.sortAsc ? va - vb : vb - va;
     });
 
-    el.fullDataBody.innerHTML = '';
     sorted.forEach(row => {
       const tr = document.createElement('tr');
-      tr.className = 'clickable';
-      if (state.selectedAuthority && state.selectedAuthority.code === row.code) {
-        tr.style.backgroundColor = '#eff6ff';
-        tr.style.fontWeight = 'bold';
-      }
-
-      const diffClass = row.national_avg_diff_pct < 0 ? 'text-negative' : 'text-positive';
-      const diffSign = row.national_avg_diff_pct < 0 ? '' : '+';
-
       tr.innerHTML = `
+        <td>${row.code}</td>
         <td><strong>${row.name}</strong></td>
-        <td>${row.type}</td>
         <td>${row.district}</td>
+        <td>${row.type}</td>
+        <td>${(row.population || 0).toLocaleString()}</td>
         <td>${row.cbs_socio_cluster}</td>
-        <td>${row.total_pupils.toLocaleString()}</td>
-        <td>₪${row.arnona_per_pupil_nis.toLocaleString()}</td>
-        <td>${row.special_ed_pct || 8}%</td>
-        <td>₪${(row.transport_deficit_per_pupil_nis || 0).toLocaleString()}</td>
-        <td>₪${row.gov_total_per_pupil_nis.toLocaleString()}</td>
-        <td>₪${row.muni_self_spend_per_pupil_nis.toLocaleString()}</td>
-        <td><strong>₪${row.total_spending_per_pupil_nis.toLocaleString()}</strong></td>
-        <td class="${diffClass}">${diffSign}${row.national_avg_diff_pct}%</td>
-        <td><span class="badge ${getBadgeClass(row.equity_category_code)}">${row.equity_category}</span></td>
+        <td class="text-left">₪${(row.education_expense_1486_tk || 0).toLocaleString()}</td>
+        <td class="text-left">₪${(row.education_revenue_1384_tk || 0).toLocaleString()}</td>
+        <td class="text-left" style="color: ${row.education_net_difference_tk < 0 ? 'var(--danger)' : 'var(--text-main)'}">₪${(row.education_net_difference_tk || 0).toLocaleString()}</td>
+        <td class="text-left" style="font-weight: 700; color: ${row.municipal_education_self_funding_rate < 15 ? 'var(--danger)' : 'var(--primary)'}">${row.municipal_education_self_funding_rate}%</td>
+        <td class="text-left">${row.own_revenue_share_pct}%</td>
+        <td class="text-left">₪${(row.arnona_other_per_capita_nis || 0).toLocaleString()}</td>
+        <td class="text-left">₪${(row.balancing_grant_per_capita_nis || 0).toLocaleString()}</td>
+        <td><span class="badge ${row.is_war_evacuated_2024 ? 'badge-war' : (row.is_tamar_outlier ? 'badge-tamar' : 'badge-accent')}">${row.anomaly_classification}</span></td>
       `;
-
-      tr.addEventListener('click', () => {
+      tr.style.cursor = 'pointer';
+      tr.onclick = () => {
         selectAuthority(row);
         switchTab('tab-profile');
-      });
-
+      };
       el.fullDataBody.appendChild(tr);
     });
   }
 
   function exportToExcel() {
-    if (typeof XLSX === 'undefined') {
-      alert('ספריית הייצוא אינה זמינה.');
-      return;
-    }
+    const headers = [
+      'סמל למ"ס', 'שם רשות', 'מחוז', 'סוג רשות', 'אוכלוסייה 2024',
+      'אשכול חברתי-כלכלי', 'הוצאות חינוך 1486 (אלפי ₪)', 'תקבולי חינוך 1384 (אלפי ₪)',
+      'הפרש נטו 1486-1384 (אלפי ₪)', 'שיעור השתתפות עצמית בחינוך (%)',
+      'סך תקציב רגיל 40811 (אלפי ₪)', 'סך הכנסות עצמיות 1805 (אלפי ₪)',
+      'שיעור הכנסות עצמיות (%)', 'הכנסות עצמיות לנפש (₪)',
+      'ארנונה אחרת 4146 (אלפי ₪)', 'ארנונה אחרת לנפש (₪)',
+      'סך ארנונה 4162 (אלפי ₪)', 'מענק איזון 1819 (אלפי ₪)',
+      'מענק איזון לנפש (₪)', 'סיווג אנומליה ובקרה'
+    ];
 
-    const exportRows = state.filteredData.map(d => ({
-      'סמל רשות': d.code,
-      'שם רשות': d.name,
-      'סוג רשות': d.type,
-      'מחוז': d.district,
-      'אוכלוסייה': d.population,
-      'אשכול למ"ס': d.cbs_socio_cluster,
-      'מדד פריפריאליות': d.cbs_periphery_cluster,
-      'סה"כ תלמידים': d.total_pupils,
-      'תלמידי חנ"מ': d.pupils_special_ed,
-      'שיעור חנ"מ (%)': d.special_ed_pct,
-      'נטל עירוני עודף לחנ"מ (₪)': d.special_ed_muni_burden_nis,
-      'גירעון הסעות לתלמיד (₪)': d.transport_deficit_per_pupil_nis,
-      'תקציב חינוך בלתי פורמלי לתלמיד (₪)': d.informal_edu_per_pupil_nis,
-      'מחסור בכיתות לימוד': d.classroom_shortage_units,
-      'ארנונה עסקית לתלמיד (₪)': d.arnona_per_pupil_nis,
-      'השקעה עצמית של הרשות לתלמיד (₪)': d.muni_self_spend_per_pupil_nis,
-      'תקצוב משרד החינוך בסיס לתלמיד (₪)': d.gov_standard_per_pupil_nis,
-      'תוספת טיפוח דיפרנציאלי לתלמיד (₪)': d.gov_differential_per_pupil_nis,
-      'סה"כ תקצוב משרד החינוך לתלמיד (₪)': d.gov_total_per_pupil_nis,
-      'תשלומי הורים לתלמיד (₪)': d.parents_co_pay_per_pupil_nis,
-      'תקציבי מאצ\'ינג אבודים לתלמיד (₪)': d.lost_matching_per_pupil_nis,
-      'סל השקעה כולל לתלמיד (₪)': d.total_spending_per_pupil_nis,
-      'פער מהממוצע הארצי (%)': d.national_avg_diff_pct,
-      'סיווג עיוות תקציבי': d.equity_category
-    }));
+    const rows = state.filteredData.map(d => [
+      d.code,
+      `"${d.name}"`,
+      `"${d.district}"`,
+      `"${d.type}"`,
+      d.population,
+      d.cbs_socio_cluster,
+      d.education_expense_1486_tk,
+      d.education_revenue_1384_tk,
+      d.education_net_difference_tk,
+      d.municipal_education_self_funding_rate,
+      d.regular_budget_expense_40811_tk,
+      d.own_revenue_1805_tk,
+      d.own_revenue_share_pct,
+      d.own_revenues_per_capita_nis,
+      d.arnona_other_4146_tk,
+      d.arnona_other_per_capita_nis,
+      d.arnona_total_4162_tk,
+      d.balancing_grant_1819_tk,
+      d.balancing_grant_per_capita_nis,
+      `"${d.anomaly_classification}"`
+    ]);
 
-    const ws = XLSX.utils.json_to_sheet(exportRows);
-    const wb = XLSX.utils.book_new();
-    XLSX.utils.book_append_sheet(wb, ws, 'פערי_תקצוב_חינוך');
-    XLSX.writeFile(wb, 'פערי_תקצוב_וצדק_חלוקתי_בחינוך_איגוד_מנהלי_חינוך.xlsx');
+    const csvContent = '\uFEFF' + [headers.join(','), ...rows.map(r => r.join(','))].join('\r\n');
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const link = document.createElement('a');
+    const url = URL.createObjectURL(blob);
+    link.setAttribute('href', url);
+    link.setAttribute('download', `education_budget_equity_2024_${new Date().toISOString().slice(0,10)}.csv`);
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
   }
 
-  // Auto boot
-  window.addEventListener('DOMContentLoaded', init);
+  // Global helper for profile selection from outside / console
+  window.selectAuthorityByCode = function (code) {
+    const found = state.allData.find(a => a.code === String(code) || a.cbs_code === String(code));
+    if (found) {
+      selectAuthority(found);
+      switchTab('tab-profile');
+    }
+  };
+
+  window.switchTab = switchTab;
+
+  // Run on DOM Ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
+  }
 
 })();

@@ -1,0 +1,256 @@
+﻿Code 1015 | Name: יבנאל | MuniType: קריית אתא | Pop: 26534
+Code 1020 | Name: עבירות כלפי הסדר הציבורי | MuniType: אלפי מ"ק  | Pop: 25922
+Code 1031 | Name: ערד | MuniType: אלפי מ"ק  | Pop: 37239
+Code 1034 | Name: נס ציונה | MuniType: אלפי מ"ק  | Pop: 27959
+Code 1054 | Name: פרדס חנה-כרכור | MuniType: קריית אתא | Pop: 24782
+Code 1059 | Name: זכרון יעקב | MuniType: קריית אתא | Pop: 21849
+Code 1060 | Name: מעלה הגליל | MuniType: קריית אתא | Pop: 19362
+Code 1061 | Name: טירת כרמל | MuniType: אלפי מ"ק  | Pop: 45805
+Code 1063 | Name: טייבה | MuniType: אלפי מ"ק  | Pop: 23042
+Code 1066 | Name: אבן יהודה | MuniType: קריית אתא | Pop: 6579
+Code 1113 | Name: מענק מיוחד - מענק שמתקבל ברשות בעקבות החלטה מיוחדת של שר הפנים. לדוגמה מענק ביטחון, מענק בחירות. מענק מיועד - מענק שמתקבל ממשרד הפנים ומיועד לסעיף ספציפי. אינו  מענק לכיסוי גירעון.  | MuniType: קריית אתא | Pop: 10459
+Code 1137 | Name: סביון | MuniType: קריית אתא | Pop: 7839
+Code 1139 | Name: גבעת שמואל | MuniType: אלפי מ"ק  | Pop: 47941
+Code 1161 | Name: נתניה | MuniType: אלפי מ"ק  | Pop: 77997
+Code 1192 | Name: מזרעה | MuniType: קריית אתא | Pop: 21259
+Code 1200 | Name: חדרה | MuniType: אלפי מ"ק  | Pop: 100052
+Code 122 | Name: עמנואל | MuniType: קריית אתא | Pop: 7953
+Code 1224 | Name: הר אדר | MuniType: קריית אתא | Pop: 9008
+Code 1247 | Name: ג'ולס | MuniType: אלפי מ"ק  | Pop: 41574
+Code 1263 | Name: חורה | MuniType: קריית אתא | Pop: 5534
+Code 1268 | Name: כסיפה | MuniType: קריית אתא | Pop: 11608
+Code 1271 | Name: יאנוח-ג'ת | MuniType: קריית אתא | Pop: 8027
+Code 1286 | Name: ערערה | MuniType: קריית אתא | Pop: 16736
+Code 1290 | Name: בנימינה-גבעת עדה | MuniType: קריית אתא | Pop: 7953
+Code 1292 | Name: אלקנה | MuniType: קריית אתא | Pop: 20231
+Code 1295 | Name: גני תקווה | MuniType: קריית אתא | Pop: 6890
+Code 1296 | Name: זמר | MuniType: קריית אתא | Pop: 9549
+Code 1303 | Name: בענה | MuniType: קריית אתא | Pop: 23034
+Code 1304 | Name: ערערה-בנגב | MuniType: קריית אתא | Pop: 23592
+Code 1309 | Name: עבירות רכוש | MuniType: אלפי מ"ק  | Pop: 50846
+Code 1326 | Name: אזור | MuniType: קריית אתא | Pop: 12002
+Code 1327 | Name: כפר ורדים | MuniType: קריית אתא | Pop: 15486
+Code 154 | Name: פקיעין (בוקייעה) | MuniType: קריית אתא | Pop: 14771
+Code 166 | Name: בועיינה-נוג'ידאת | MuniType: קריית אתא | Pop: 25144
+Code 168 | Name: ירושלים | MuniType: אלפי מ"ק  | Pop: 29820
+Code 171 | Name: מעלה אפרים | MuniType: קריית אתא | Pop: 7973
+Code 182 | Name: קריית ים | MuniType: קריית אתא | Pop: 15370
+Code 195 | Name: מצפה רמון | MuniType: קריית אתא | Pop: 22655
+Code 2034 | Name: ג'דיידה-מכר | MuniType: קריית אתא | Pop: 11013
+Code 2100 | Name: אשקלון | MuniType: אלפי מ"ק  | Pop: 32167
+Code 2200 | Name: אור עקיבא | MuniType: אלפי מ"ק  | Pop: 39590
+Code 229 | Name: בוקעאתא | MuniType: אלפי מ"ק  | Pop: 25488
+Code 2300 | Name: סאג'ור | MuniType: קריית אתא | Pop: 19158
+Code 240 | Name: בית שמש | MuniType: אלפי מ"ק  | Pop: 24928
+Code 2400 | Name: קלה | MuniType: אלפי מ"ק  | Pop: 41130
+Code 246 | Name: יבנה | MuniType: אלפי מ"ק  | Pop: 56019
+Code 2500 | Name: שפלת הגליל | MuniType: אלפי מ"ק  | Pop: 22896
+Code 2530 | Name: נפשות לקמ"ר | MuniType: אלפי מ"ק  | Pop: 37491
+Code 2550 | Name: אעבלין | MuniType: קריית אתא | Pop: 31389
+Code 2560 | Name: קסם | MuniType: אלפי מ"ק  | Pop: 29504
+Code 26 | Name: עילוט | MuniType: קריית אתא | Pop: 3308
+Code 2600 | Name: עבירות מוסר | MuniType: אלפי מ"ק  | Pop: 56004
+Code 2610 | Name: עירון | MuniType: אלפי מ"ק  | Pop: 176786
+Code 2620 | Name: מגדל העמק | MuniType: אלפי מ"ק  | Pop: 45049
+Code 2630 | Name: מעלות-תרשיחא | MuniType: אלפי מ"ק  | Pop: 72140
+Code 2640 | Name: נשר | MuniType: אלפי מ"ק  | Pop: 79023
+Code 2650 | Name: עפולה | MuniType: אלפי מ"ק  | Pop: 48860
+Code 2660 | Name: באר שבע | MuniType: אלפי מ"ק  | Pop: 58090
+Code 267 | Name: טובא-זנגרייה | MuniType: קריית אתא | Pop: 1981
+Code 2710 | Name: לבנייה | MuniType: אלפי מ"ק  | Pop: 60209
+Code 2720 | Name: אשדוד | MuniType: אלפי מ"ק  | Pop: 27680
+Code 2730 | Name: אזור יהודה והשומרון | MuniType: אלפי מ"ק  | Pop: 46870
+Code 28 | Name: ירכא | MuniType: קריית אתא | Pop: 16334
+Code 29 | Name: ג'ת | MuniType: קריית אתא | Pop: 1930
+Code 3000 | Name: - | MuniType: אלפי מ"ק  | Pop: 1050153
+Code 31 | Name: קטלנית | MuniType: אלפי מ"ק  | Pop: 39893
+Code 3557 | Name: מעלה עירון | MuniType: קריית אתא | Pop: 4564
+Code 3560 | Name: רמלה | MuniType: קריית אתא | Pop: 4493
+Code 3570 | Name: עבירות רישוי | MuniType: אלפי מ"ק  | Pop: 22191
+Code 3574 | Name: תל אביב-יפו | MuniType: קריית אתא | Pop: 6359
+Code 3608 | Name: כפר ברא | MuniType: קריית אתא | Pop: 1747
+Code 3611 | Name: נחף | MuniType: קריית אתא | Pop: 7698
+Code 3616 | Name: טבריה | MuniType: אלפי מ"ק  | Pop: 35846
+Code 3640 | Name: עומר | MuniType: קריית אתא | Pop: 10541
+Code 3650 | Name: רמת השרון | MuniType: קריית אתא | Pop: 12114
+Code 3652 | Name: אבו גוש | MuniType: קריית אתא | Pop: 5627
+Code 3660 | Name: מגדל | MuniType: קריית אתא | Pop: 5675
+Code 3730 | Name: אלפי מנשה | MuniType: קריית אתא | Pop: 25104
+Code 3750 | Name: רחובות | MuniType: קריית אתא | Pop: 8038
+Code 3760 | Name: קריית מלאכי | MuniType: קריית אתא | Pop: 10089
+Code 3769 | Name: בני עי"ש | MuniType: קריית אתא | Pop: 4339
+Code 3780 | Name: .. | MuniType: אלפי מ"ק  | Pop: 71697
+Code 3797 | Name: חולון | MuniType: אלפי מ"ק  | Pop: 89627
+Code 3826 | Name: מטה בנימין | MuniType: קריית אתא | Pop: 8836
+Code 4000 | Name: סה"כ  | MuniType: אלפי מ"ק  | Pop: 297082
+Code 4001 | Name: שפרעם | MuniType: קריית אתא | Pop: 6982
+Code 41 | Name: רהט | MuniType: קריית אתא | Pop: 3855
+Code 4100 | Name: משהד | MuniType: קריית אתא | Pop: 8013
+Code 4201 | Name: ירוחם | MuniType: קריית אתא | Pop: 11264
+Code 4203 | Name: כסרא-סמיע | MuniType: קריית אתא | Pop: 4205
+Code 43 | Name: כוכב יאיר | MuniType: קריית אתא | Pop: 2248
+Code 4501 | Name: כפר שמריהו | MuniType: קריית אתא | Pop: 2738
+Code 4502 | Name: מג'ד אל-כרום | MuniType: קריית אתא | Pop: 2470
+Code 46 | Name: ג'ש (גוש חלב) | MuniType: קריית אתא | Pop: 4801
+Code 466 | Name: הגליל המרכזי | MuniType: קריית אתא | Pop: 7728
+Code 469 | Name: ע'ג'ר | MuniType: קריית אתא | Pop: 11283
+Code 47 | Name: טורעאן | MuniType: קריית אתא | Pop: 4276
+Code 472 | Name: קריית אונו | MuniType: קריית אתא | Pop: 8848
+Code 473 | Name: קריות | MuniType: קריית אתא | Pop: 14542
+Code 478 | Name: ראש העין | MuniType: קריית אתא | Pop: 15134
+Code 480 | Name: הראל | MuniType: קריית אתא | Pop: 12446
+Code 481 | Name: דימונה | MuniType: אלפי מ"ק  | Pop: 23486
+Code 482 | Name: שדרות | MuniType: קריית אתא | Pop: 10630
+Code 483 | Name: מבוא העמקים | MuniType: קריית אתא | Pop: 8714
+Code 485 | Name: אפרת | MuniType: קריית אתא | Pop: 6821
+Code 487 | Name: ביר אל-מכסור | MuniType: קריית אתא | Pop: 3243
+Code 489 | Name: בית ג'ן | MuniType: קריית אתא | Pop: 10830
+Code 490 | Name: מעלה נפתלי | MuniType: קריית אתא | Pop: 12619
+Code 492 | Name: בית דגן | MuniType: קריית אתא | Pop: 10762
+Code 494 | Name: בית אריה-עופרים | MuniType: קריית אתא | Pop: 18364
+Code 496 | Name: גבעת זאב | MuniType: קריית אתא | Pop: 6877
+Code 498 | Name: גן יבנה | MuniType: קריית אתא | Pop: 14931
+Code 499 | Name: דאלית אל-כרמל | MuniType: קריית אתא | Pop: 18837
+Code 5000 | Name: קלנסווה | MuniType: אלפי מ"ק  | Pop: 494900
+Code 502 | Name: דבורייה | MuniType: קריית אתא | Pop: 16823
+Code 504 | Name: דייר אל-אסד | MuniType: קריית אתא | Pop: 12589
+Code 505 | Name: דייר חנא | MuniType: קריית אתא | Pop: 4037
+Code 507 | Name: נגב מזרחי | MuniType: קריית אתא | Pop: 10526
+Code 508 | Name: חורפיש | MuniType: קריית אתא | Pop: 3545
+Code 509 | Name: חצור הגלילית | MuniType: קריית אתא | Pop: 25374
+Code 510 | Name: אצבע הגליל | MuniType: קריית אתא | Pop: 22268
+Code 511 | Name: לקיה | MuniType: קריית אתא | Pop: 9077
+Code 516 | Name: יסוד המעלה | MuniType: קריית אתא | Pop: 15429
+Code 517 | Name: כאבול | MuniType: קריית אתא | Pop: 3920
+Code 518 | Name: כעביה-טבאש-חג'אג'רה | MuniType: קריית אתא | Pop: 3323
+Code 520 | Name: כפר כמא | MuniType: קריית אתא | Pop: 8822
+Code 522 | Name: כפר כנא | MuniType: קריית אתא | Pop: 13995
+Code 525 | Name: כפר מנדא | MuniType: קריית אתא | Pop: 4303
+Code 529 | Name: רמת גן | MuniType: קריית אתא | Pop: 13634
+Code 530 | Name: להבים | MuniType: קריית אתא | Pop: 5849
+Code 531 | Name: כפר קאסם | MuniType: אלפי מ"ק  | Pop: 27175
+Code 532 | Name: מבשרת ציון | MuniType: קריית אתא | Pop: 14029
+Code 534 | Name: מג'דל שמס | MuniType: קריית אתא | Pop: 13403
+Code 535 | Name: מטולה | MuniType: קריית אתא | Pop: 3426
+Code 536 | Name: מיתר | MuniType: קריית אתא | Pop: 6114
+Code 537 | Name: חבל אשר | MuniType: קריית אתא | Pop: 13548
+Code 538 | Name: פסוטה | MuniType: קריית אתא | Pop: 7789
+Code 541 | Name: מעלה חרמון | MuniType: קריית אתא | Pop: 15824
+Code 542 | Name: עין מאהל | MuniType: קריית אתא | Pop: 20653
+Code 543 | Name: עיילבון | MuniType: קריית אתא | Pop: 8405
+Code 5501 | Name: תל מונד | MuniType: פרדסייה | Pop: 20681
+Code 5502 | Name: הגליל התחתון | MuniType: פרדסייה | Pop: 17361
+Code 5503 | Name: תל שבע | MuniType: פרדסייה | Pop: 13414
+Code 5504 | Name: גזר | MuniType: פרדסייה | Pop: 32033
+Code 5506 | Name: חבל יבנה | MuniType: פרדסייה | Pop: 16551
+Code 5507 | Name: חבל מודיעין | MuniType: פרדסייה | Pop: 16631
+Code 5508 | Name: שעב | MuniType: פרדסייה | Pop: 35090
+Code 5509 | Name: חוף הכרמל | MuniType: פרדסייה | Pop: 41445
+Code 5512 | Name: אבו בסמה | MuniType: פרדסייה | Pop: 13244
+Code 5513 | Name: גדרות | MuniType: פרדסייה | Pop: 12836
+Code 5514 | Name: הגלבוע | MuniType: פרדסייה | Pop: 22676
+Code 5515 | Name: נגב מערבי | MuniType: פרדסייה | Pop: 35970
+Code 5516 | Name: חוף אשקלון | MuniType: פרדסייה | Pop: 43173
+Code 5518 | Name: בני שמעון | MuniType: פרדסייה | Pop: 24252
+Code 5519 | Name: באר טוביה | MuniType: פרדסייה | Pop: 14587
+Code 5520 | Name: שלומי | MuniType: פרדסייה | Pop: 34938
+Code 5525 | Name: מנשה-אלונה | MuniType: פרדסייה | Pop: 24085
+Code 5526 | Name: דרום השרון | MuniType: פרדסייה | Pop: 51017
+Code 5527 | Name: שוהם | MuniType: פרדסייה | Pop: 6418
+Code 5528 | Name: ראש פינה | MuniType: פרדסייה | Pop: 8263
+Code 5529 | Name: אלונה | MuniType: פרדסייה | Pop: 6630
+Code 5530 | Name: שגב-שלום | MuniType: פרדסייה | Pop: 29370
+Code 5531 | Name: חבל אילות | MuniType: פרדסייה | Pop: 10682
+Code 5532 | Name: רכסים | MuniType: פרדסייה | Pop: 5112
+Code 5533 | Name: קריית עקרון | MuniType: פרדסייה | Pop: 25131
+Code 5534 | Name: מגילות | MuniType: פרדסייה | Pop: 14842
+Code 5535 | Name: בוסתן אל-מרג' | MuniType: פרדסייה | Pop: 9297
+Code 5536 | Name: אשכול | MuniType: פרדסייה | Pop: 20872
+Code 5537 | Name: מגילות ים המלח | MuniType: פרדסייה | Pop: 9806
+Code 5538 | Name: קריית טבעון | MuniType: פרדסייה | Pop: 19886
+Code 5539 | Name: מבואות החרמון | MuniType: פרדסייה | Pop: 12777
+Code 5540 | Name: לכיש | MuniType: פרדסייה | Pop: 16283
+Code 5541 | Name: ראמה | MuniType: פרדסייה | Pop: 12034
+Code 5542 | Name: הערבה התיכונה | MuniType: פרדסייה | Pop: 16015
+Code 5545 | Name: קצרין | MuniType: פרדסייה | Pop: 2161
+Code 5548 | Name: יואב | MuniType: פרדסייה | Pop: 10023
+Code 5550 | Name: ברנר | MuniType: פרדסייה | Pop: 16252
+Code 5551 | Name: מטה אשר | MuniType: פרדסייה | Pop: 2138
+Code 5552 | Name: הגליל העליון | MuniType: פרדסייה | Pop: 12506
+Code 5553 | Name: אל-בטוף | MuniType: פרדסייה | Pop: 5441
+Code 5554 | Name: אל קסום | MuniType: פרדסייה | Pop: 6780
+Code 5555 | Name: שורקות | MuniType: פרדסייה | Pop: 9011
+Code 5556 | Name: הר חברון | MuniType: פרדסייה | Pop: 30505
+Code 5565 | Name: קדימה-צורן | MuniType: פרדסייה | Pop: 9387
+Code 5566 | Name: קרני שומרון | MuniType: פרדסייה | Pop: 8450
+Code 5568 | Name: זבולון | MuniType: פרדסייה | Pop: 14992
+Code 5569 | Name: פרדס חנה כרכור | MuniType: פרדסייה | Pop: 21328
+Code 5571 | Name: רמת ישי | MuniType: פרדסייה | Pop: 21957
+Code 5572 | Name: מגידו | MuniType: פרדסייה | Pop: 48038
+Code 5573 | Name: גן רווה | MuniType: פרדסייה | Pop: 80968
+Code 5574 | Name: גולן | MuniType: פרדסייה | Pop: 2786
+Code 5575 | Name: חוף השרון | MuniType: פרדסייה | Pop: 7847
+Code 5576 | Name: שבלי - אום אל-גנם | MuniType: פרדסייה | Pop: 28523
+Code 5578 | Name: מועצה אזורית | MuniType: פרדסייה | Pop: 11848
+Code 565 | Name: קריית שמונה | MuniType: קריית אתא | Pop: 13067
+Code 587 | Name: כפר קרע | MuniType: קריית אתא | Pop: 4405
+Code 6000 | Name: אחוז מסך כל שטח שיפוט | MuniType: אלפי מ"ק  | Pop: 31275
+Code 6100 | Name: אופקים | MuniType: אלפי מ"ק  | Pop: 229996
+Code 6200 | Name: הדרום | MuniType: אלפי מ"ק  | Pop: 129494
+Code 627 | Name: אפרתה | MuniType: קריית אתא | Pop: 10992
+Code 628 | Name: בית אל | MuniType: קריית אתא | Pop: 12834
+Code 6300 | Name: תל אביב | MuniType: אלפי מ"ק  | Pop: 58601
+Code 633 | Name: יזרעאלים | MuniType: קריית אתא | Pop: 3962
+Code 634 | Name: בני ברק | MuniType: אלפי מ"ק  | Pop: 27996
+Code 637 | Name: מזכרת בתיה | MuniType: קריית אתא | Pop: 20734
+Code 638 | Name: מגאר | MuniType: אלפי מ"ק  | Pop: 25167
+Code 6400 | Name: אילת | MuniType: אלפי מ"ק  | Pop: 110884
+Code 65 | Name: יפיע | MuniType: קריית אתא | Pop: 2162
+Code 6500 | Name: אלעד | MuniType: אלפי מ"ק  | Pop: 107974
+Code 654 | Name: חריש | MuniType: אלפי מ"ק  | Pop: 21066
+Code 6600 | Name: המרכז | MuniType: אלפי מ"ק  | Pop: 191829
+Code 666 | Name: כפר תבור | MuniType: קריית אתא | Pop: 8078
+Code 6700 | Name: אריאל | MuniType: אלפי מ"ק  | Pop: 52123
+Code 6800 | Name: מודיעין-מכבים-רעות | MuniType: אלפי מ"ק  | Pop: 62585
+Code 681 | Name: אור יהודה | MuniType: אלפי מ"ק  | Pop: 29405
+Code 6900 | Name: ביתר עילית | MuniType: אלפי מ"ק  | Pop: 99410
+Code 70 | Name: בקמ"ר  | MuniType: אלפי מ"ק  | Pop: 228562
+Code 7000 | Name: גבעתיים | MuniType: אלפי מ"ק  | Pop: 94189
+Code 7100 | Name: שטח בקמ"ר | MuniType: אלפי מ"ק  | Pop: 166864
+Code 7200 | Name: מורדות הכרמל | MuniType: אלפי מ"ק  | Pop: 47267
+Code 7300 | Name: טמרה | MuniType: אלפי מ"ק  | Pop: 75704
+Code 7400 | Name: יהוד-מונוסון | MuniType: אלפי מ"ק  | Pop: 234813
+Code 7500 | Name: יהוד-נווה אפרים | MuniType: אלפי מ"ק  | Pop: 33728
+Code 7600 | Name: כפר יונה | MuniType: אלפי מ"ק  | Pop: 52885
+Code 7700 | Name: כפר סבא | MuniType: אלפי מ"ק  | Pop: 66362
+Code 7800 | Name: מסעדה | MuniType: קריית אתא | Pop: 46601
+Code 7900 | Name: כרמיאל | MuniType: אלפי מ"ק  | Pop: 270403
+Code 8000 | Name: לוד | MuniType: אלפי מ"ק  | Pop: 38687
+Code 812 | Name: פוריידיס | MuniType: קריית אתא | Pop: 8225
+Code 8200 | Name: נוף הגליל | MuniType: אלפי מ"ק  | Pop: 51488
+Code 8300 | Name: נתיבות | MuniType: אלפי מ"ק  | Pop: 259275
+Code 831 | Name: רכס הכרמל | MuniType: קריית אתא | Pop: 11989
+Code 8400 | Name: סח'נין | MuniType: אלפי מ"ק  | Pop: 155049
+Code 8500 | Name: לב הגליל | MuniType: אלפי מ"ק  | Pop: 86052
+Code 8600 | Name: עכו | MuniType: אלפי מ"ק  | Pop: 172242
+Code 8700 | Name: עראבה | MuniType: אלפי מ"ק  | Pop: 82964
+Code 874 | Name: הרצלייה | MuniType: אלפי מ"ק  | Pop: 28430
+Code 8800 | Name: פתח תקווה | MuniType: אלפי מ"ק  | Pop: 43858
+Code 8900 | Name: באר יעקב | MuniType: אלפי מ"ק  | Pop: 36918
+Code 9000 | Name: אום אל-פחם | MuniType: אלפי מ"ק  | Pop: 223587
+Code 9100 | Name: טירה | MuniType: אלפי מ"ק  | Pop: 67877
+Code 913 | Name: עספיא | MuniType: קריית אתא | Pop: 6476
+Code 9200 | Name: חיפה | MuniType: אלפי מ"ק  | Pop: 20252
+Code 922 | Name: עין קנייא | MuniType: קריית אתא | Pop: 15086
+Code 9300 | Name: זמורה | MuniType: קריית אתא | Pop: 24201
+Code 9400 | Name: בית שאן | MuniType: אלפי מ"ק  | Pop: 32146
+Code 944 | Name: אכסאל | MuniType: קריית אתא | Pop: 8268
+Code 9500 | Name: מודיעין עילית | MuniType: אלפי מ"ק  | Pop: 47073
+Code 9600 | Name: נהרייה | MuniType: אלפי מ"ק  | Pop: 41957
+Code 962 | Name: ג'לג'וליה | MuniType: קריית אתא | Pop: 7173
+Code 9700 | Name: יישובי הברון | MuniType: אלפי מ"ק  | Pop: 66398
+Code 975 | Name: בסמ"ה | MuniType: קריית אתא | Pop: 9149
+Code 978 | Name: זרזיר | MuniType: קריית אתא | Pop: 6545
+Code 9800 | Name: אורנית | MuniType: קריית אתא | Pop: 15566
+Code 99 | Name: כפר יאסיף | MuniType: קריית אתא | Pop: 5843
+Code 998 | Name: תל אביב -יפו | MuniType: קריית אתא | Pop: 11068

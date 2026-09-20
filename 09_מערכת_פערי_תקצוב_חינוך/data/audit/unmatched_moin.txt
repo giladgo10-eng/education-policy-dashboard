@@ -1,0 +1,259 @@
+﻿Code 2751 | Name: מטה יהודה | MoinCode: 1026
+Code 2752 | Name: ירושלים | MoinCode: 13000
+Code 2753 | Name: חיפה | MoinCode: 14000
+Code 2754 | Name: תל אביב-יפו | MoinCode: 15000
+Code 2755 | Name: רמת גן | MoinCode: 18600
+Code 2756 | Name: הגליל העליון | MoinCode: 2101
+Code 2757 | Name: מרום הגליל | MoinCode: 2102
+Code 2758 | Name: מבואות החרמון | MoinCode: 2155
+Code 2759 | Name: הגליל התחתון | MoinCode: 2203
+Code 2760 | Name: עמק הירדן | MoinCode: 2206
+Code 2761 | Name: עמק המעיינות | MoinCode: 2307
+Code 2762 | Name: הגלבוע | MoinCode: 2308
+Code 2763 | Name: עמק יזרעאל | MoinCode: 2309
+Code 2764 | Name: מגידו | MoinCode: 2313
+Code 2765 | Name: מטה אשר | MoinCode: 2404
+Code 2766 | Name: משגב | MoinCode: 2456
+Code 2768 | Name: בני ברק | MoinCode: 26100
+Code 2769 | Name: בת ים | MoinCode: 26200
+Code 2770 | Name: גבעתיים | MoinCode: 26300
+Code 2771 | Name: הרצליה | MoinCode: 26400
+Code 2772 | Name: חדרה | MoinCode: 26500
+Code 2773 | Name: חולון | MoinCode: 26600
+Code 2774 | Name: כפר סבא | MoinCode: 26900
+Code 2775 | Name: נתניה | MoinCode: 27400
+Code 2776 | Name: פתח תקווה | MoinCode: 27900
+Code 2777 | Name: ראשון לציון | MoinCode: 28300
+Code 2778 | Name: רחובות | MoinCode: 28400
+Code 2779 | Name: נהריה | MoinCode: 29100
+Code 2780 | Name: גולן | MoinCode: 2971
+Code 2781 | Name: אשדוד | MoinCode: 30070
+Code 2782 | Name: נוף הגליל | MoinCode: 31061
+Code 2783 | Name: זבולון | MoinCode: 3112
+Code 2784 | Name: מנשה | MoinCode: 3214
+Code 2785 | Name: חוף הכרמל | MoinCode: 3215
+Code 2786 | Name: דימונה | MoinCode: 32200
+Code 2787 | Name: אלונה | MoinCode: 3245
+Code 2788 | Name: אילת | MoinCode: 32600
+Code 2789 | Name: קרית גת | MoinCode: 32630
+Code 2790 | Name: קרית שמונה | MoinCode: 32800
+Code 2791 | Name: טבריה | MoinCode: 36700
+Code 2792 | Name: קרית אתא | MoinCode: 36800
+Code 2793 | Name: לוד | MoinCode: 37000
+Code 2794 | Name: אשקלון | MoinCode: 37100
+Code 2795 | Name: נצרת | MoinCode: 37300
+Code 2796 | Name: עכו | MoinCode: 37600
+Code 2797 | Name: עפולה | MoinCode: 37700
+Code 2798 | Name: צפת | MoinCode: 38000
+Code 2799 | Name: קרית מוצקין | MoinCode: 38200
+Code 2801 | Name: שפרעם | MoinCode: 38800
+Code 2802 | Name: באר שבע | MoinCode: 39000
+Code 2803 | Name: קרית ביאליק | MoinCode: 39500
+Code 2804 | Name: קרית ים | MoinCode: 39600
+Code 2805 | Name: אזור | MoinCode: 40565
+Code 2806 | Name: גבעת שמואל | MoinCode: 40681
+Code 2807 | Name: עמק חפר | MoinCode: 4116
+Code 2808 | Name: לב השרון | MoinCode: 4118
+Code 2809 | Name: חוף השרון | MoinCode: 4119
+Code 2810 | Name: דרום השרון | MoinCode: 4220
+Code 2811 | Name: חבל מודיעין | MoinCode: 4225
+Code 2812 | Name: קרית טבעון | MoinCode: 42300
+Code 2813 | Name: נשר | MoinCode: 42500
+Code 2814 | Name: קרית אונו | MoinCode: 42620
+Code 2815 | Name: רמת השרון | MoinCode: 42650
+Code 2816 | Name: גזר | MoinCode: 4330
+Code 2817 | Name: שדות דן | MoinCode: 4340
+Code 2818 | Name: גן רווה | MoinCode: 4427
+Code 2819 | Name: ברנר | MoinCode: 4428
+Code 2820 | Name: חבל יבנה | MoinCode: 4429
+Code 2821 | Name: נחל שורק | MoinCode: 4431
+Code 2822 | Name: גדרות | MoinCode: 4432
+Code 2823 | Name: נס ציונה | MoinCode: 47200
+Code 2824 | Name: רעננה | MoinCode: 48700
+Code 2825 | Name: אופקים | MoinCode: 50031
+Code 2826 | Name: מצפה רמון | MoinCode: 50099
+Code 2827 | Name: גני תקווה | MoinCode: 50229
+Code 2828 | Name: נתיבות | MoinCode: 50246
+Code 2829 | Name: בית דגן | MoinCode: 50466
+Code 2830 | Name: קרית עקרון | MoinCode: 50469
+Code 2831 | Name: שלומי | MoinCode: 50812
+Code 2832 | Name: ירוחם | MoinCode: 50831
+Code 2833 | Name: מגדל העמק | MoinCode: 50874
+Code 2834 | Name: רכסים | MoinCode: 50922
+Code 2835 | Name: מבשרת ציון | MoinCode: 51015
+Code 2836 | Name: אור עקיבא | MoinCode: 51020
+Code 2837 | Name: שדרות | MoinCode: 51031
+Code 2838 | Name: קרית מלאכי | MoinCode: 51034
+Code 2839 | Name: מעלות-תרשיחא | MoinCode: 51063
+Code 2840 | Name: כרמיאל | MoinCode: 51139
+Code 2842 | Name: חצור הגלילית | MoinCode: 52034
+Code 2843 | Name: טירת כרמל | MoinCode: 52100
+Code 2844 | Name: אור יהודה | MoinCode: 52400
+Code 2845 | Name: ערד | MoinCode: 52560
+Code 2846 | Name: בית שמש | MoinCode: 52610
+Code 2847 | Name: ראש העין | MoinCode: 52640
+Code 2848 | Name: יבנה | MoinCode: 52660
+Code 2849 | Name: עמנואל | MoinCode: 53660
+Code 2850 | Name: ביתר עילית | MoinCode: 53780
+Code 2851 | Name: בית שאן | MoinCode: 59200
+Code 2852 | Name: יהוד-מונוסון | MoinCode: 59400
+Code 2853 | Name: אליכין | MoinCode: 60041
+Code 2855 | Name: תל מונד | MoinCode: 60154
+Code 2856 | Name: גן יבנה | MoinCode: 60166
+Code 2857 | Name: כפר יונה | MoinCode: 60168
+Code 2858 | Name: אבן יהודה | MoinCode: 60182
+Code 2860 | Name: יקנעם עילית | MoinCode: 60240
+Code 2861 | Name: באר טוביה | MoinCode: 6133
+Code 2862 | Name: שפיר | MoinCode: 6134
+Code 2863 | Name: יואב | MoinCode: 6135
+Code 2864 | Name: חוף אשקלון | MoinCode: 6136
+Code 2865 | Name: שער הנגב | MoinCode: 6137
+Code 2866 | Name: לכיש | MoinCode: 6150
+Code 2867 | Name: אשכול | MoinCode: 6238
+Code 2868 | Name: שדות נגב | MoinCode: 6239
+Code 2869 | Name: בני שמעון | MoinCode: 6241
+Code 2870 | Name: מרחבים | MoinCode: 6242
+Code 2871 | Name: רמת נגב | MoinCode: 6248
+Code 2872 | Name: תמר | MoinCode: 6251
+Code 2873 | Name: מעלה יוסף | MoinCode: 6252
+Code 2874 | Name: חבל אילות | MoinCode: 6253
+Code 2875 | Name: באר יעקב | MoinCode: 62530
+Code 2876 | Name: הערבה התיכונה | MoinCode: 6254
+Code 2877 | Name: גדרה | MoinCode: 62550
+Code 2879 | Name: פרדס חנה-כרכור | MoinCode: 67800
+Code 2880 | Name: זכרון יעקב | MoinCode: 69300
+Code 2881 | Name: הוד השרון | MoinCode: 69700
+Code 2882 | Name: בנימינה-גבעת עדה | MoinCode: 1352
+Code 2883 | Name: מטולה | MoinCode: 70043
+Code 2885 | Name: כפר שמריהו | MoinCode: 70267
+Code 2887 | Name: סביון | MoinCode: 70587
+Code 2888 | Name: עומר | MoinCode: 70666
+Code 2890 | Name: בני עי"ש | MoinCode: 71066
+Code 2891 | Name: כוכב יאיר צור יגאל | MoinCode: 71224
+Code 2892 | Name: מיתר | MoinCode: 71268
+Code 2893 | Name: להבים | MoinCode: 71271
+Code 2894 | Name: שומרון | MoinCode: 7372
+Code 2895 | Name: אלפי מנשה | MoinCode: 73750
+Code 2896 | Name: מטה בנימין | MoinCode: 7473
+Code 2897 | Name: מגילות ים המלח | MoinCode: 7574
+Code 2898 | Name: ערבות הירדן | MoinCode: 7575
+Code 2899 | Name: גוש עציון | MoinCode: 7676
+Code 2900 | Name: הר חברון | MoinCode: 7778
+Code 2901 | Name: ראש פינה | MoinCode: 80026
+Code 2902 | Name: מזכרת בתיה | MoinCode: 80028
+Code 2903 | Name: יסוד המעלה | MoinCode: 80029
+Code 2904 | Name: יבנאל | MoinCode: 80046
+Code 2905 | Name: כפר תבור | MoinCode: 80047
+Code 2909 | Name: מגדל | MoinCode: 80065
+Code 2910 | Name: רמת ישי | MoinCode: 80122
+Code 2911 | Name: פרדסיה | MoinCode: 80171
+Code 2912 | Name: קרית יערים | MoinCode: 81137
+Code 2913 | Name: מודיעין-מכבים-רעות | MoinCode: 81200
+Code 2914 | Name: חריש | MoinCode: 81247
+Code 2915 | Name: כפר ורדים | MoinCode: 81263
+Code 2916 | Name: שוהם | MoinCode: 81304
+Code 2918 | Name: אלעד | MoinCode: 81309
+Code 2920 | Name: קדומים | MoinCode: 83557
+Code 2921 | Name: אלקנה | MoinCode: 83560
+Code 2922 | Name: אריאל | MoinCode: 83570
+Code 2923 | Name: בית אל | MoinCode: 83574
+Code 2924 | Name: מעלה אפרים | MoinCode: 83608
+Code 2925 | Name: קרית ארבע | MoinCode: 83611
+Code 2926 | Name: מעלה אדומים | MoinCode: 83616
+Code 2927 | Name: קרני שומרון | MoinCode: 83640
+Code 2928 | Name: אפרתה | MoinCode: 83650
+Code 2929 | Name: בית אריה | MoinCode: 83652
+Code 2930 | Name: גבעת זאב | MoinCode: 83730
+Code 2931 | Name: אורנית | MoinCode: 83760
+Code 2932 | Name: הר אדר | MoinCode: 83769
+Code 2933 | Name: מודיעין עילית | MoinCode: 83797
+Code 2934 | Name: קצרין | MoinCode: 84100
+Code 2935 | Name: נאות חובב | MoinCode: 88001
+Code 2936 | Name: מגדל תפן | MoinCode: 88002
+Code 2937 | Name: אבו גוש | MoinCode: 90472
+Code 2938 | Name: אבו סנאן | MoinCode: 90473
+Code 2939 | Name: אכסאל | MoinCode: 90478
+Code 2940 | Name: בית ג'ן | MoinCode: 90480
+Code 2941 | Name: מגאר | MoinCode: 90481
+Code 2942 | Name: בועיינה-נוג'ידאת | MoinCode: 90482
+Code 2943 | Name: בענה | MoinCode: 90483
+Code 2944 | Name: ג'וליס | MoinCode: 90485
+Code 2945 | Name: ג'דיידה-מכר | MoinCode: 90486
+Code 2946 | Name: ג'ש (גוש חלב) | MoinCode: 90487
+Code 2947 | Name: דבוריה | MoinCode: 90489
+Code 2948 | Name: דיר אל-אסד | MoinCode: 90490
+Code 2949 | Name: דיר חנא | MoinCode: 90492
+Code 2950 | Name: דאלית אל-כרמל | MoinCode: 90494
+Code 2951 | Name: חורפיש | MoinCode: 90496
+Code 2952 | Name: טורעאן | MoinCode: 90498
+Code 2953 | Name: יפיע | MoinCode: 90499
+Code 2954 | Name: יאנוח-ג'ת | MoinCode: 90500
+Code 2955 | Name: ירכא | MoinCode: 90502
+Code 2956 | Name: כאבול | MoinCode: 90504
+Code 2957 | Name: כאוכב אבו אל-היג'א | MoinCode: 90505
+Code 2958 | Name: כסרא-סמיע | MoinCode: 90506
+Code 2959 | Name: כפר יאסיף | MoinCode: 90507
+Code 2960 | Name: כפר כמא | MoinCode: 90508
+Code 2961 | Name: כפר כנא | MoinCode: 90509
+Code 2962 | Name: כפר מנדא | MoinCode: 90510
+Code 2963 | Name: עילוט | MoinCode: 90511
+Code 2964 | Name: מג'ד אל-כרום | MoinCode: 90516
+Code 2965 | Name: מזרעה | MoinCode: 90517
+Code 2966 | Name: מעיליא | MoinCode: 90518
+Code 2967 | Name: משהד | MoinCode: 90520
+Code 2968 | Name: נחף | MoinCode: 90522
+Code 2969 | Name: סאג'ור | MoinCode: 90525
+Code 2970 | Name: אעבלין | MoinCode: 90529
+Code 2971 | Name: עיילבון | MoinCode: 90530
+Code 2972 | Name: עראבה | MoinCode: 90531
+Code 2973 | Name: עין מאהל | MoinCode: 90532
+Code 2974 | Name: עספיא | MoinCode: 90534
+Code 2975 | Name: פסוטה | MoinCode: 90535
+Code 2976 | Name: פקיעין (בוקייעה) | MoinCode: 90536
+Code 2977 | Name: פוריידיס | MoinCode: 90537
+Code 2978 | Name: שעב | MoinCode: 90538
+Code 2979 | Name: ג'סר א-זרקא | MoinCode: 90541
+Code 2980 | Name: ריינה | MoinCode: 90542
+Code 2981 | Name: ראמה | MoinCode: 90543
+Code 2982 | Name: ג'לג'וליה | MoinCode: 90627
+Code 2983 | Name: ג'ת | MoinCode: 90628
+Code 2984 | Name: כפר ברא | MoinCode: 90633
+Code 2985 | Name: כפר קאסם | MoinCode: 90634
+Code 2986 | Name: ערערה | MoinCode: 90637
+Code 2987 | Name: קלנסווה | MoinCode: 90638
+Code 2988 | Name: כפר קרע | MoinCode: 90654
+Code 2989 | Name: שבלי-אום אל ג'נם | MoinCode: 90913
+Code 2990 | Name: בסמת טבעון | MoinCode: 90944
+Code 2991 | Name: טובא-זנגריה | MoinCode: 90962
+Code 2992 | Name: זרזיר | MoinCode: 90975
+Code 2993 | Name: כעביה-טבאש-חג'אג'רה | MoinCode: 90978
+Code 2994 | Name: ביר אל-מכסור | MoinCode: 90998
+Code 2995 | Name: תל שבע | MoinCode: 91054
+Code 2996 | Name: כסיפה | MoinCode: 91059
+Code 2997 | Name: לקיה | MoinCode: 91060
+Code 2998 | Name: רהט | MoinCode: 91161
+Code 2999 | Name: ערערה-בנגב | MoinCode: 91192
+Code 3001 | Name: שגב-שלום | MoinCode: 91286
+Code 3002 | Name: זמר | MoinCode: 91290
+Code 3003 | Name: חורה | MoinCode: 91303
+Code 3004 | Name: בסמ"ה | MoinCode: 91326
+Code 3005 | Name: מעלה עירון | MoinCode: 91327
+Code 3006 | Name: אל-בטוף | MoinCode: 92565
+Code 3007 | Name: בוסתאן אל-מרג' | MoinCode: 92566
+Code 3008 | Name: אום אל-פחם | MoinCode: 92710
+Code 3009 | Name: טירה | MoinCode: 92720
+Code 3010 | Name: טייבה | MoinCode: 92730
+Code 3011 | Name: בוקעאתא | MoinCode: 94001
+Code 3012 | Name: מג'דל שמס | MoinCode: 94201
+Code 3013 | Name: מסעדה | MoinCode: 94203
+Code 3014 | Name: ע'ג'ר | MoinCode: 94501
+Code 3015 | Name: עין קנייא | MoinCode: 94502
+Code 3016 | Name: באקה אל-גרבייה | MoinCode: 96000
+Code 3017 | Name: סח'נין | MoinCode: 97500
+Code 3018 | Name: טמרה | MoinCode: 98900
+Code 3814 | Name: צור הדסה | MoinCode: 11113
+Code 4137 | Name: קדימה-צורן | MoinCode: 1350
+Code 5455 | Name: נווה מדבר | MoinCode: 6268
+Code 5456 | Name: אל קסום | MoinCode: 6269
+Code 5467 | Name: חברון וע. מוניציפלית | MoinCode: NULL
+Code 5814 | Name: שער שומרון | MoinCode: 3826

@@ -49,3 +49,5 @@ npm-debug.log*
 
 # Staging backups
 education-policy-dashboard/staging/backup/
+_backup_stage6_pre_integration/
+*_backup*

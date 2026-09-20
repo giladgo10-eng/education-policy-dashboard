@@ -25,12 +25,12 @@ window.EducationCharts = {
   },
 
   // Renders the Interactive Scatter Explorer with Linear Regression and Tooltip
-  renderScatterExplorer: function(canvas, data, options) {
+  renderScatterExplorer: function(canvas, data, options = {}) {
     if (!canvas || !data || data.length === 0) return null;
     const ctx = canvas.getContext('2d');
     const dpr = window.devicePixelRatio || 1;
-    const width = canvas.parentElement.clientWidth || 800;
-    const height = 500;
+    const width = canvas.parentElement ? (canvas.parentElement.clientWidth || 800) : 800;
+    const height = (canvas.parentElement && canvas.parentElement.clientHeight > 150) ? canvas.parentElement.clientHeight : (options.height || 420);
 
     canvas.width = width * dpr;
     canvas.height = height * dpr;
@@ -83,10 +83,10 @@ window.EducationCharts = {
     minY = Math.floor(minY - yPad);
     maxY = Math.ceil(maxY + yPad);
 
-    const padLeft = 70;
-    const padRight = 30;
-    const padTop = 30;
-    const padBottom = 60;
+    const padLeft = 65;
+    const padRight = 25;
+    const padTop = 25;
+    const padBottom = 55;
     const plotWidth = width - padLeft - padRight;
     const plotHeight = height - padTop - padBottom;
 
@@ -105,7 +105,7 @@ window.EducationCharts = {
     ctx.strokeStyle = '#e2e8f0';
     ctx.lineWidth = 1;
     ctx.fillStyle = '#64748b';
-    ctx.font = '11.5px Assistant, sans-serif';
+    ctx.font = '11px Assistant, sans-serif';
     ctx.textAlign = 'right';
 
     // Y ticks
@@ -117,12 +117,12 @@ window.EducationCharts = {
       ctx.moveTo(padLeft, y);
       ctx.lineTo(width - padRight, y);
       ctx.stroke();
-      ctx.fillText(val.toFixed(1) + '%', padLeft - 10, y + 4);
+      ctx.fillText(val.toFixed(1) + '%', padLeft - 8, y + 4);
     }
 
     // X ticks
     ctx.textAlign = 'center';
-    const xSteps = 7;
+    const xSteps = 6;
     for (let i = 0; i <= xSteps; i++) {
       const val = minX + (i / xSteps) * (maxX - minX);
       const x = scaleX(val);
@@ -130,17 +130,17 @@ window.EducationCharts = {
       ctx.moveTo(x, padTop);
       ctx.lineTo(x, height - padBottom);
       ctx.stroke();
-      ctx.fillText(val >= 1000 ? (val / 1000).toFixed(1) + 'K' : val.toFixed(1), x, height - padBottom + 18);
+      ctx.fillText(val >= 1000 ? (val / 1000).toFixed(1) + 'K' : val.toFixed(0), x, height - padBottom + 16);
     }
 
     // Axis Labels
     ctx.fillStyle = '#1e293b';
-    ctx.font = 'bold 13px Assistant, sans-serif';
+    ctx.font = 'bold 12.5px Assistant, sans-serif';
     ctx.textAlign = 'center';
     ctx.fillText(xLabel, padLeft + plotWidth / 2, height - 12);
 
     ctx.save();
-    ctx.translate(18, padTop + plotHeight / 2);
+    ctx.translate(16, padTop + plotHeight / 2);
     ctx.rotate(-Math.PI / 2);
     ctx.fillText(yLabel, 0, 0);
     ctx.restore();
@@ -180,7 +180,7 @@ window.EducationCharts = {
     ctx.clip();
 
     ctx.strokeStyle = '#2563eb';
-    ctx.lineWidth = 2.5;
+    ctx.lineWidth = 2.2;
     ctx.setLineDash([6, 4]);
     ctx.beginPath();
     ctx.moveTo(scaleX(regX1), scaleY(regY1));
@@ -199,67 +199,115 @@ window.EducationCharts = {
       const isSelected = selectedCode && (p.code === selectedCode || p.cbs_code === selectedCode);
 
       ctx.beginPath();
-      ctx.arc(cx, cy, isSelected ? 9 : 5.5, 0, Math.PI * 2);
+      ctx.arc(cx, cy, isSelected ? 8.5 : 5.5, 0, Math.PI * 2);
       ctx.fillStyle = isSelected ? '#fbbf24' : color;
       ctx.fill();
-      ctx.lineWidth = isSelected ? 3 : 1.2;
-      ctx.strokeStyle = isSelected ? '#1e293b' : '#ffffff';
+      ctx.lineWidth = isSelected ? 2.5 : 1.2;
+      ctx.strokeStyle = isSelected ? '#0f172a' : '#ffffff';
       ctx.stroke();
 
-      // Highlight War / Evacuated or Outlier Authority
       if (p.is_war_evacuated_2024) {
         ctx.beginPath();
         ctx.arc(cx, cy, 7.5, 0, Math.PI * 2);
         ctx.strokeStyle = '#dc2626';
-        ctx.lineWidth = 1.8;
+        ctx.lineWidth = 1.6;
         ctx.stroke();
       }
 
-      drawnPoints.push({ x: cx, y: cy, radius: isSelected ? 10 : 7, data: p });
+      drawnPoints.push({ x: cx, y: cy, radius: isSelected ? 9 : 6, data: p });
     });
 
-    // Setup Interactive Mouse Move / Hover / Click Handlers
+    canvas._drawnPoints = drawnPoints;
+
+    // Helper: Find closest point to coordinates
+    function findPoint(px, py, maxDist = 14) {
+      let closest = null;
+      let closestDist = Infinity;
+      for (let i = drawnPoints.length - 1; i >= 0; i--) {
+        const dp = drawnPoints[i];
+        const dist = Math.hypot(dp.x - px, dp.y - py);
+        if (dist <= maxDist && dist < closestDist) {
+          closest = dp;
+          closestDist = dist;
+        }
+      }
+      return closest;
+    }
+
+    // Helper: Show Tooltip
+    function showTooltip(auth, clientX, clientY) {
+      if (!tooltipEl || !auth) return;
+
+      const balancingStr = (typeof auth.balancing_grant_per_capita_nis === 'number' && auth.balancing_grant_per_capita_nis > 0)
+        ? `₪${auth.balancing_grant_per_capita_nis.toLocaleString()} לנפש`
+        : '₪0 (אין זכאות)';
+      
+      const rateStr = (typeof auth.municipal_education_self_funding_rate === 'number')
+        ? `${auth.municipal_education_self_funding_rate}%`
+        : '-';
+
+      tooltipEl.innerHTML = `
+        <div class="chart-tooltip-title">
+          <span>${auth.name}</span>
+          <span style="font-size: 11px; font-weight: 500; color: #94a3b8;">${auth.type}</span>
+        </div>
+        <div class="chart-tooltip-row"><span>סמל למ"ס:</span> <strong>${auth.code}</strong></div>
+        <div class="chart-tooltip-row"><span>מחוז / אשכול:</span> <strong>${auth.district} | אשכול ${auth.cbs_socio_cluster}</strong></div>
+        <div class="chart-tooltip-row"><span>מענק איזון לנפש:</span> <strong style="color: #60a5fa;">${balancingStr}</strong></div>
+        <div class="chart-tooltip-row"><span>שיעור השתתפות עצמית:</span> <strong style="color: #34d399;">${rateStr}</strong></div>
+        ${xKey !== 'balancing_grant_per_capita_nis' ? `<div class="chart-tooltip-row"><span>${xLabel}:</span> <strong>${auth[xKey]}</strong></div>` : ''}
+        <div class="chart-tooltip-row"><span>אוכלוסייה 2024:</span> <strong>${(auth.population || 0).toLocaleString()}</strong></div>
+        ${auth.is_war_evacuated_2024 ? '<div class="tt-badge" style="background:#fee2e2;color:#991b1b;padding:2px 6px;border-radius:4px;margin-top:4px;font-size:11px;font-weight:700;">⚠️ יישוב קו עימות / מפונה (2024)</div>' : ''}
+        ${auth.is_tamar_outlier ? '<div class="tt-badge" style="background:#fef3c7;color:#92400e;padding:2px 6px;border-radius:4px;margin-top:4px;font-size:11px;font-weight:700;">⚠️ חריג מבני (מ.א. תמר)</div>' : ''}
+        <button type="button" class="chart-tooltip-btn" onclick="window.selectAuthorityByCode('${auth.code}')">
+          🔍 פתח כרטיס רשות 360°
+        </button>
+      `;
+
+      tooltipEl.style.display = 'block';
+
+      // Smart viewport boundary adjustment
+      const ttW = tooltipEl.offsetWidth || 250;
+      const ttH = tooltipEl.offsetHeight || 200;
+      let left = clientX + 16;
+      let top = clientY - 20;
+
+      if (left + ttW > window.innerWidth - 12) {
+        left = clientX - ttW - 16;
+      }
+      if (left < 10) left = 10;
+
+      if (top + ttH > window.innerHeight - 12) {
+        top = clientY - ttH - 10;
+      }
+      if (top < 10) top = 10;
+
+      tooltipEl.style.left = left + 'px';
+      tooltipEl.style.top = top + 'px';
+    }
+
+    // Mouse events
     canvas.onmousemove = function(e) {
       const rect = canvas.getBoundingClientRect();
       const mouseX = e.clientX - rect.left;
       const mouseY = e.clientY - rect.top;
 
-      let found = null;
-      for (let i = drawnPoints.length - 1; i >= 0; i--) {
-        const dp = drawnPoints[i];
-        const dist = Math.hypot(dp.x - mouseX, dp.y - mouseY);
-        if (dist <= dp.radius + 3) {
-          found = dp.data;
-          break;
-        }
-      }
-
-      if (found && tooltipEl) {
-        tooltipEl.style.display = 'block';
-        tooltipEl.style.left = (e.clientX + 14) + 'px';
-        tooltipEl.style.top = (e.clientY - 10) + 'px';
-        tooltipEl.innerHTML = `
-          <div class="tt-title">${found.name} (${found.type})</div>
-          <div class="tt-row"><span>סמל למ"ס:</span> <strong>${found.code}</strong></div>
-          <div class="tt-row"><span>מחוז / אשכול:</span> <strong>${found.district} | אשכול ${found.cbs_socio_cluster}</strong></div>
-          <div class="tt-row"><span>אוכלוסייה:</span> <strong>${(found.population || 0).toLocaleString()}</strong></div>
-          <div class="tt-row"><span>הוצאות חינוך (1486):</span> <strong>₪${(found.education_expense_1486_tk || 0).toLocaleString()}K</strong></div>
-          <div class="tt-row"><span>תקבולי חינוך (1384):</span> <strong>₪${(found.education_revenue_1384_tk || 0).toLocaleString()}K</strong></div>
-          <div class="tt-row"><span>הפרש נטו (מימון עצמי):</span> <strong>₪${(found.education_net_difference_tk || 0).toLocaleString()}K</strong></div>
-          <div class="tt-row"><span>שיעור השתתפות עצמית:</span> <strong style="color: #2563eb;">${found.municipal_education_self_funding_rate}%</strong></div>
-          <div class="tt-row"><span>${xLabel}:</span> <strong>${found[xKey]}</strong></div>
-          ${found.is_war_evacuated_2024 ? '<div class="tt-badge" style="background:#fee2e2;color:#991b1b;padding:2px 6px;border-radius:4px;margin-top:4px;font-size:11px;">⚠️ יישוב קו עימות / מפונה (2024)</div>' : ''}
-          ${found.is_tamar_outlier ? '<div class="tt-badge" style="background:#fef3c7;color:#92400e;padding:2px 6px;border-radius:4px;margin-top:4px;font-size:11px;">⚠️ חריג מבני (מ.א. תמר)</div>' : ''}
-        `;
+      const hit = findPoint(mouseX, mouseY, 12);
+      if (hit) {
+        showTooltip(hit.data, e.clientX, e.clientY);
         canvas.style.cursor = 'pointer';
-      } else if (tooltipEl) {
-        tooltipEl.style.display = 'none';
+      } else {
+        if (!canvas._pinnedAuth && tooltipEl) {
+          tooltipEl.style.display = 'none';
+        }
         canvas.style.cursor = 'default';
       }
     };
 
     canvas.onmouseleave = function() {
-      if (tooltipEl) tooltipEl.style.display = 'none';
+      if (!canvas._pinnedAuth && tooltipEl) {
+        tooltipEl.style.display = 'none';
+      }
     };
 
     canvas.onclick = function(e) {
@@ -267,12 +315,30 @@ window.EducationCharts = {
       const mouseX = e.clientX - rect.left;
       const mouseY = e.clientY - rect.top;
 
-      for (let i = drawnPoints.length - 1; i >= 0; i--) {
-        const dp = drawnPoints[i];
-        const dist = Math.hypot(dp.x - mouseX, dp.y - mouseY);
-        if (dist <= dp.radius + 4) {
-          if (options.onSelectCallback) options.onSelectCallback(dp.data);
-          break;
+      const hit = findPoint(mouseX, mouseY, 14);
+      if (hit) {
+        canvas._pinnedAuth = hit.data;
+        showTooltip(hit.data, e.clientX, e.clientY);
+        if (options.onSelectCallback) options.onSelectCallback(hit.data);
+      } else {
+        canvas._pinnedAuth = null;
+        if (tooltipEl) tooltipEl.style.display = 'none';
+      }
+    };
+
+    // Touch support for mobile
+    canvas.ontouchstart = function(e) {
+      if (e.touches.length === 1) {
+        const touch = e.touches[0];
+        const rect = canvas.getBoundingClientRect();
+        const touchX = touch.clientX - rect.left;
+        const touchY = touch.clientY - rect.top;
+        const hit = findPoint(touchX, touchY, 18);
+        if (hit) {
+          e.preventDefault();
+          canvas._pinnedAuth = hit.data;
+          showTooltip(hit.data, touch.clientX, touch.clientY);
+          if (options.onSelectCallback) options.onSelectCallback(hit.data);
         }
       }
     };
@@ -515,14 +581,18 @@ window.EducationCharts = {
   },
 
   // Renders the Balancing Grant Two-Panel Correlation Paradox (Research Tab)
-  renderBalancingGrantResearch: function(canvasAll, canvasLow, allData) {
+  renderBalancingGrantResearch: function(canvasAll, canvasLow, allData, options = {}) {
     if (!canvasAll || !canvasLow || !allData) return;
+
+    const tooltipEl = options.tooltipEl || document.getElementById('chartTooltip');
 
     // Panel A: All 257 Authorities
     window.EducationCharts.renderScatterExplorer(canvasAll, allData, {
       xKey: 'balancing_grant_per_capita_nis',
       xLabel: 'מענק איזון לנפש (₪)',
-      tooltipEl: document.getElementById('chartTooltip')
+      tooltipEl: tooltipEl,
+      selectedCode: options.selectedCode,
+      onSelectCallback: options.onSelectCallback
     });
 
     // Panel B: Low Socio Clusters 1-3 (N=76)
@@ -530,7 +600,9 @@ window.EducationCharts = {
     window.EducationCharts.renderScatterExplorer(canvasLow, lowData, {
       xKey: 'balancing_grant_per_capita_nis',
       xLabel: 'מענק איזון לנפש (₪) [אשכולות 1–3 בלבד]',
-      tooltipEl: document.getElementById('chartTooltip')
+      tooltipEl: tooltipEl,
+      selectedCode: options.selectedCode,
+      onSelectCallback: options.onSelectCallback
     });
   }
 };

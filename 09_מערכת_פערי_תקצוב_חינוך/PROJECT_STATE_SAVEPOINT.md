@@ -1,10 +1,11 @@
 # נקודת שמירה ומצב פרויקט: PROJECT_STATE_SAVEPOINT
 **תאריך עדכון:** 20.9.2026  
-**שעת עדכון:** 14:18  
+**שעת עדכון:** 14:31  
 **פרויקט:** `09_מערכת_פערי_תקצוב_חינוך`  
 **מדיניות יסוד:** Zero Synthetic Data + Full Provenance + No Premature Claims + Non-Causal Phrasing  
 **סטטוס שער גרסאות ופרסום:** `PUBLIC_DEPLOYMENT_VERIFIED = YES`  
-**סטטוס שער חיפוש רשויות:** `PUBLIC_SEARCH_VERIFIED = YES`
+**סטטוס שער חיפוש רשויות:** `PUBLIC_SEARCH_VERIFIED = YES`  
+**סטטוס שער חוויית משתמש ומחקר:** `RESEARCH_UX_FIX_VERIFIED = YES`
 
 ---
 

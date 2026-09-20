@@ -399,10 +399,17 @@
       });
     }
 
-    // Click outside closes dropdown
+    // Click outside closes dropdown and unpins chart tooltips
     document.addEventListener('click', (e) => {
       if (el.searchDropdown && !e.target.closest('.search-group')) {
         hideSearchDropdown();
+      }
+      const tooltipEl = document.getElementById('chartTooltip');
+      if (tooltipEl && !e.target.closest('canvas') && !e.target.closest('#chartTooltip')) {
+        tooltipEl.style.display = 'none';
+        if (el.canvasScatterExplorer) el.canvasScatterExplorer._pinnedAuth = null;
+        if (el.canvasBalancingAll) el.canvasBalancingAll._pinnedAuth = null;
+        if (el.canvasBalancingLow) el.canvasBalancingLow._pinnedAuth = null;
       }
     });
 
@@ -686,7 +693,17 @@
 
   function renderResearch() {
     if (el.canvasBalancingAll && el.canvasBalancingLow) {
-      EducationCharts.renderBalancingGrantResearch(el.canvasBalancingAll, el.canvasBalancingLow, state.allData);
+      EducationCharts.renderBalancingGrantResearch(
+        el.canvasBalancingAll,
+        el.canvasBalancingLow,
+        state.allData,
+        {
+          selectedCode: state.selectedAuthority ? state.selectedAuthority.code : null,
+          onSelectCallback: (selected) => {
+            selectAuthority(selected);
+          }
+        }
+      );
     }
   }
 
@@ -844,10 +861,16 @@
     document.body.removeChild(link);
   }
 
-  // Global helper for profile selection from outside / console
+  // Global helper for profile selection from outside / console / tooltip
   window.selectAuthorityByCode = function (code) {
     const found = state.allData.find(a => a.code === String(code) || a.cbs_code === String(code));
     if (found) {
+      const tooltipEl = document.getElementById('chartTooltip');
+      if (tooltipEl) tooltipEl.style.display = 'none';
+      if (el.canvasScatterExplorer) el.canvasScatterExplorer._pinnedAuth = null;
+      if (el.canvasBalancingAll) el.canvasBalancingAll._pinnedAuth = null;
+      if (el.canvasBalancingLow) el.canvasBalancingLow._pinnedAuth = null;
+
       selectAuthority(found);
       switchTab('tab-profile');
     }

@@ -36,6 +36,12 @@ UNION_MASTER_OPERATIONAL.csv
 UNION_MASTER_OPERATIONAL.xlsx
 *.docx
 *.pdf
+!app/docs/*.docx
+!app/docs/*.pdf
+!docs/budget-equity/docs/*.docx
+!docs/budget-equity/docs/*.pdf
+!09_מערכת_פערי_תקצוב_חינוך/app/docs/*.docx
+!09_מערכת_פערי_תקצוב_חינוך/app/docs/*.pdf
 
 # Python & Node Temp Cache (if any)
 __pycache__/

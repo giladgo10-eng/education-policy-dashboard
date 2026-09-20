@@ -19,8 +19,15 @@
     </div>
     <div class="header-actions">
       <button id="btnQuickSim" class="btn btn-accent">⚡ הפעל סימולטור מתקן</button>
-      <button id="btnQuickReport" class="btn btn-outline">📄 הפק נייר עמדה</button>
-      <button id="btnExportExcel" class="btn btn-primary">📊 ייצוא נתונים לאקסל</button>
+      <button id="btnQuickReport" class="btn btn-outline">📄 הדו״ח הפרלמנטרי</button>
+      <button id="btnExportExcel" class="btn btn-primary">📊 ייצוא לאקסל</button>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScoYrhhbX1VwVyA60IjQxB91Fa7iDy27DnAghc5bEWJU5UXuQ/viewform?usp=dialog" 
+         target="_blank" 
+         rel="noopener noreferrer" 
+         class="btn btn-feedback" 
+         title="פתיחת טופס משוב והצעות לשיפור">
+        💬 משוב והצעות לשיפור
+      </a>
     </div>
   </header>
 
@@ -181,7 +188,7 @@
     </button>
     <button class="tab-btn" data-tab="tab-advocacy">
       <span>📄</span>
-      <span>מחולל נייר עמדה פרלמנטרי</span>
+      <span>הדו״ח הפרלמנטרי</span>
     </button>
     <button class="tab-btn" data-tab="tab-table">
       <span>📋</span>
@@ -532,19 +539,28 @@
     </div>
   </main>
 
-  <!-- Tab 5: Advocacy Paper Generator -->
+  <!-- Tab 5: Parliamentary Report -->
   <main id="tab-advocacy" class="tab-panel">
-    <div class="card">
-      <div class="card-header">
-        <div>
-          <div class="card-title">📄 מחולל נייר עמדה פרלמנטרי ומסמך מדיניות</div>
-          <div class="card-subtitle">הפקת מסמך מדיניות רשמי מותאם אישית לרשות הנבחרת לצורך דיוני ועדות הכנסת, משרד האוצר ומשרד החינוך</div>
-        </div>
-        <button onclick="window.print()" class="btn btn-outline">🖨️ הדפס / שמור כ-PDF</button>
+    <div class="card parliamentary-card">
+      <div class="parliamentary-badge">🛡️ איגוד מנהלי אגפי ומחלקות החינוך ברשויות המקומיות</div>
+      <h2 class="parliamentary-title">הדו״ח הפרלמנטרי</h2>
+      <p class="parliamentary-desc">
+        נייר עמדה ומסמך מדיניות רשמי המציג את תמונת המצב הפיסקלית של פערי ההשתתפות העצמית בחינוך ברשויות המקומיות בישראל (דוחות כספיים מבוקרים 2024) ומודל התקצוב הדיפרנציאלי המתקן.
+      </p>
+      
+      <div class="parliamentary-actions">
+        <a href="docs/parliamentary_report.docx" download="דוח_פרלמנטרי_איגוד_מנהלי_חינוך.docx" class="btn-doc btn-word">
+          <span class="btn-doc-icon">📝</span>
+          <span class="btn-doc-text">פתיחת/הורדת הדו״ח – Word</span>
+        </a>
+        <a href="docs/parliamentary_report.pdf" target="_blank" download="דוח_פרלמנטרי_איגוד_מנהלי_חינוך.pdf" class="btn-doc btn-pdf">
+          <span class="btn-doc-icon">📕</span>
+          <span class="btn-doc-text">פתיחת/הורדת הדו״ח – PDF</span>
+        </a>
       </div>
 
-      <div class="advocacy-paper" id="advocacyPaperContainer">
-        <!-- Rendered via advocacy.js -->
+      <div class="parliamentary-note">
+        📌 הקבצים מותאמים לצפייה והורדה ישירה הן במחשב (Desktop) והן בסמארטפון (Mobile).
       </div>
     </div>
   </main>
@@ -593,11 +609,28 @@
 
   <!-- Footer -->
   <footer class="app-footer">
-    <div>
-      מערכת ניתוח פערי תקצוב וצדק חלוקתי בחינוך המוניציפלי • איגוד מנהלי אגפי ומחלקות החינוך ברשויות המקומיות
-    </div>
-    <div style="margin-top: 4px; font-size: 11.5px; opacity: 0.85;">
-      מקורות: משרד הפנים (דוחות כספיים מבוקרים 2024), הלשכה המרכזית לסטטיסטיקה (מפקד אוכלוסין 2024, אשכול חברתי-כלכלי 2021, פריפריאליות 2020)
+    <div class="footer-container">
+      <div class="footer-main-text">
+        <strong>מערכת ניתוח פערי תקצוב וצדק חלוקתי בחינוך המוניציפלי</strong> • איגוד מנהלי אגפי ומחלקות החינוך ברשויות המקומיות
+      </div>
+      <div class="footer-sub-text">
+        מקורות: משרד הפנים (דוחות כספיים מבוקרים 2024), הלשכה המרכזית לסטטיסטיקה (מפקד אוכלוסין 2024, אשכול חברתי-כלכלי 2021, פריפריאליות 2020)
+      </div>
+      <div class="footer-meta-bar">
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLScoYrhhbX1VwVyA60IjQxB91Fa7iDy27DnAghc5bEWJU5UXuQ/viewform?usp=dialog" 
+           target="_blank" 
+           rel="noopener noreferrer" 
+           class="footer-feedback-link">
+          💬 משוב והצעות לשיפור
+        </a>
+        <span class="footer-separator">•</span>
+        <div class="footer-counter-wrap">
+          <img src="https://komarev.com/ghpvc/?username=giladgo10-budget-equity&color=2563eb&style=flat-square&label=%D7%A6%D7%A4%D7%99%D7%95%D7%AA+%D7%91%D7%9E%D7%A2%D7%A8%D7%9B%D7%AA" 
+               alt="צפיות במערכת" 
+               class="footer-counter-badge"
+               loading="lazy">
+        </div>
+      </div>
     </div>
   </footer>
 

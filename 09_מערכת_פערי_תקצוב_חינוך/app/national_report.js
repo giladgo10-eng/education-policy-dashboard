@@ -1,6 +1,6 @@
 // ==============================================================================
 // national_report.js - Dynamic National Systemic & Parliamentary Report Engine
-// Methodology Version: Methodology v0.9 — Draft / Baseline 2024
+// Methodology Version: Methodology v1.0 — Baseline 2024
 // ==============================================================================
 
 window.NationalReportEngine = {
@@ -107,33 +107,45 @@ window.NationalReportEngine = {
     // Simulation Section
     let simSectionHtml = '';
     if (simResults) {
+      // Calculate cluster redistribution in simulation
+      let simCluster1_3 = 0, simCluster4_6 = 0, simCluster7_10 = 0;
+      if (simResults.results) {
+        simResults.results.forEach(a => {
+          const c = a.cbs_socio_cluster || 5;
+          const g = a.allocated_grant_nis || (a.allocated_grant_k_nis * 1000) || 0;
+          if (c <= 3) simCluster1_3 += g;
+          else if (c <= 6) simCluster4_6 += g;
+          else simCluster7_10 += g;
+        });
+      }
+
       simSectionHtml = `
         <div class="national-report-section">
           <div class="section-title">
-            <span>5. תרחיש מודל התקצוב הדיפרנציאלי המתקן (סימולציית מדיניות)</span>
-            <span class="tax-tag" style="background:#f59e0b20; color:#b45309; font-size:12px;">🟠 תוצאת סימולציה</span>
+            <span>5. תרחיש מודל התקצוב הדיפרנציאלי המתקן (סימולציית מדיניות — Methodology v1.0)</span>
+            <span class="tax-tag" style="background:#f59e0b20; color:#b45309; font-size:12px;">🟠 4. תוצאת סימולציה</span>
           </div>
           
           <div class="report-callout" style="background:#fef3c7; border-color:#f59e0b; margin-bottom:16px;">
-            <strong>הבהרה משפטית ומתודולוגית:</strong>
-            סעיף זה מתאר סימולציה היפותטית של סל תקציב מתקן בסך <strong>₪${(simResults.poolM || 1000).toLocaleString()} מיליון ₪</strong> המוצע ע"י איגוד מנהלי החינוך. אין מדובר בתקציב ממשלתי שהוקצה בפועל.
+            <strong>הבהרה מתודולוגית ומשפטית:</strong>
+            סעיף זה מתאר סימולציה היפותטית של סל תקציב מתקן בסך <strong>₪${(simResults.poolM || 1000).toLocaleString()} מיליון ₪</strong> המוצע ע"י איגוד מנהלי החינוך במסגרת Methodology v1.0 (מעריך לינארי 1.0, משקולות 50/30/20, וטייפר פיסקלי P80). <strong>אין מדובר בתקציב ממשלתי שהוקצה בפועל.</strong>
           </div>
 
           <div class="kpi-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom:16px;">
             <div class="kpi-card" style="border-right: 4px solid #f59e0b;">
-              <div class="kpi-label">צמצום מדד ג'יני בהוצאה עצמית</div>
-              <div class="kpi-value font-mono" style="color:#b45309;">${simResults.gini_drop_pct || '-17.0'}%</div>
-              <div class="kpi-sub">מ-${stats.origGini} ל-${simResults.simGini || '0.192'}</div>
+              <div class="kpi-label">צמצום מדד ג'יני בהוצאה עצמית לנפש</div>
+              <div class="kpi-value font-mono" style="color:#b45309;">${simResults.gini_drop_pct || '-3.0'}%</div>
+              <div class="kpi-sub">מ-${stats.origGini} ל-${simResults.simGini || '0.225'}</div>
             </div>
             <div class="kpi-card" style="border-right: 4px solid #10b981;">
-              <div class="kpi-label">יחס פער אשכולות 8-10 מול 1-3</div>
-              <div class="kpi-value font-mono" style="color:#10b981;">מפי ${stats.clusterGapRatio} ל-1.76</div>
-              <div class="kpi-sub">צמצום פער מובהק של ~18%</div>
+              <div class="kpi-label">חלוקת הסל לאשכולות 1–3 (החלשים)</div>
+              <div class="kpi-value font-mono" style="color:#10b981;">₪${(simCluster1_3 / 1000000).toFixed(1)}M</div>
+              <div class="kpi-sub">${((simCluster1_3 / (simResults.poolNIS || 1e9)) * 100).toFixed(1)}% מסך קרן התיקון</div>
             </div>
             <div class="kpi-card" style="border-right: 4px solid #2563eb;">
-              <div class="kpi-label">מענק ממוצע לנפש בפריפריה חלשה</div>
-              <div class="kpi-value font-mono" style="color:#2563eb;">+₪230</div>
-              <div class="kpi-sub">תוספת של מעל 50% להוצאה העצמית</div>
+              <div class="kpi-label">סף טייפר פיסקלי אמפירי (P80)</div>
+              <div class="kpi-value font-mono" style="color:#2563eb;">${simResults.p80Threshold || '64.61'}%</div>
+              <div class="kpi-sub">ריסון רציף של 20% הרשויות העשירות ביותר</div>
             </div>
           </div>
 
@@ -143,35 +155,38 @@ window.NationalReportEngine = {
                 <tr>
                   <th>רשות מקומית</th>
                   <th>אשכול חברתי</th>
-                  <th>אוכלוסייה</th>
+                  <th>אוכלוסייה (תושבים)</th>
                   <th style="text-align:left;">הוצאה מקורית לנפש</th>
                   <th style="text-align:left;">מענק מוצע לנפש</th>
-                  <th style="text-align:left;">סך מענק מוצע</th>
+                  <th style="text-align:left;">סך מענק מוצע בתרחיש</th>
                   <th style="text-align:left;">גידול באחוזים</th>
                 </tr>
               </thead>
               <tbody>
-                ${simResults.top_gainers ? simResults.top_gainers.slice(0, 8).map(g => `
+                ${(simResults.top_gainers || []).slice(0, 8).map(g => `
                   <tr>
                     <td><strong>${g.name}</strong> (${g.type})</td>
-                    <td>אשכול ${g.cbs_socio_cluster || g.socio_cluster}</td>
+                    <td>אשכול ${g.cbs_socio_cluster}</td>
                     <td class="font-mono text-left">${g.population.toLocaleString()}</td>
-                    <td class="font-mono text-left">₪${(g.orig_net_exp_per_capita || 0).toLocaleString()}</td>
-                    <td class="font-mono text-left font-bold" style="color:#16a34a;">+₪${g.grant_per_capita_nis.toLocaleString()}</td>
+                    <td class="font-mono text-left">₪${g.orig_net_exp_per_capita.toLocaleString()} לנפש</td>
+                    <td class="font-mono text-left font-bold" style="color:#10b981;">+₪${g.grant_per_capita_nis.toLocaleString()} לנפש</td>
                     <td class="font-mono text-left">₪${g.allocated_grant_k_nis.toLocaleString()}K</td>
-                    <td class="font-mono text-left" style="color:#16a34a;">+${g.gain_pct}%</td>
+                    <td class="font-mono text-left font-bold" style="color:#10b981;">+${g.gain_pct}%</td>
                   </tr>
-                `).join('') : ''}
+                `).join('')}
               </tbody>
             </table>
+          </div>
+          <div style="font-size:12px; color:var(--text-muted); margin-top:6px;">
+            * מוצג מדגם של רשויות מובילות בתוספת מענק מוצע לנפש מתוך 257 הרשויות בסימולציה.
           </div>
         </div>
       `;
     }
 
     return `
-      <div class="national-report-wrapper" id="nationalPrintableArea">
-        <!-- Print / Action Toolbar -->
+      <div class="national-report-paper" id="nationalPrintableArea">
+        <!-- Action Toolbar -->
         <div class="report-actions-bar">
           <div class="report-meta-tag">
             <span>🛡️ ${window.METHODOLOGY_VERSION}</span>
@@ -179,70 +194,75 @@ window.NationalReportEngine = {
           </div>
           <button class="btn btn-primary" onclick="window.print()">
             <span>🖨️</span>
-            <span>הדפסה / שמירה כ-PDF</span>
+            <span>הדפסת הדו״ח המערכתי / שמירה כ-PDF</span>
           </button>
         </div>
 
         <!-- Official Header -->
-        <div class="national-report-header">
-          <div class="report-emblem">🛡️</div>
-          <h1 class="report-main-title">דו״ח מערכתי ופרלמנטרי: פערי ההשתתפות העצמית בחינוך המוניציפלי בישראל</h1>
-          <div class="report-sub-title">ניתוח פיסקלי ארצי מבוסס דוחות כספיים מבוקרים 2024 של משרד הפנים ונתוני הלשכה המרכזית לסטטיסטיקה</div>
-          <div class="report-institution">איגוד מנהלי אגפי ומחלקות החינוך ברשויות המקומיות בישראל</div>
+        <div class="report-header">
+          <div class="report-emblem">🏛️</div>
+          <div class="report-org">איגוד מנהלי אגפי ומחלקות החינוך ברשויות המקומיות</div>
+          <h1 class="report-main-title">דו״ח מערכתי ופרלמנטרי: פערי השתתפות עצמית בחינוך המוניציפלי בישראל</h1>
+          <div class="report-subtitle">ניתוח נתוני אמת מבוקרים של 257 הרשויות המקומיות בישראל לשנת 2024</div>
+          <div class="report-meta-strip">
+            <span><strong>מקורות נתונים:</strong> משרד הפנים (דוחות כספיים מבוקרים 2024) והלמ״ס (מדד סוציו 2021, פריפריה 2020)</span>
+            <span><strong>אוכלוסיית הניתוח:</strong> 100% מכלל 257 הרשויות בישראל (${stats.totalPop.toLocaleString()} תושבים)</span>
+          </div>
         </div>
 
         <!-- Section 1: Executive Summary -->
         <div class="national-report-section">
           <div class="section-title">
             <span>1. תמצית מנהלים וממצאי מפתח ארציים</span>
-            <span class="tax-tag" style="background:#10b98120; color:#059669; font-size:12px;">🟢 נתונים רשמיים מבוקרים</span>
+            <span class="tax-tag" style="background:#10b98120; color:#059669; font-size:12px;">🟢 1. נתונים מבוקרים רשמיים</span>
           </div>
-          <p>
-            דו״ח זה מציג ניתוח עומק כמותי של תקציבי החינוך בכל <strong>${stats.totalAuthorities} הרשויות המקומיות בישראל</strong> לשנת הכספים 2024. הנתונים מתבססים באופן בלעדי על הדוחות המבוקרים על ידי רואי חשבון מטעם משרד הפנים (פרק 6 - חינוך, סעיפים 1486 ו-1384) והצלבתם עם נתוני הלמ"ס.
-          </p>
           
-          <div class="kpi-grid" style="grid-template-columns: repeat(4, 1fr); margin: 16px 0;">
-            <div class="kpi-card" style="border-right: 4px solid #10b981;">
-              <div class="kpi-label">סך הוצאות חינוך ברשויות (1486)</div>
-              <div class="kpi-value font-mono">₪${(Math.round(stats.totalExp1486NIS / 1000000000 * 10) / 10).toFixed(1)}B</div>
-              <div class="kpi-sub">סך התקציב הרגיל בחינוך</div>
-            </div>
+          <div class="kpi-grid" style="grid-template-columns: repeat(4, 1fr); margin-bottom:16px;">
             <div class="kpi-card" style="border-right: 4px solid #2563eb;">
-              <div class="kpi-label">סך השתתפות עצמית נטו של הרשויות</div>
-              <div class="kpi-value font-mono">₪${(Math.round(stats.totalNetSelfFundNIS / 1000000000 * 10) / 10).toFixed(1)}B</div>
-              <div class="kpi-sub">מימון מקופת הרשות (ארנונה)</div>
+              <div class="kpi-label">סך הוצאות חינוך ברשויות (1486)</div>
+              <div class="kpi-value font-mono">₪${(stats.totalExp1486NIS / 1000000000).toFixed(2)}B</div>
+              <div class="kpi-sub">תקציב רגיל מבוקר 2024</div>
             </div>
             <div class="kpi-card" style="border-right: 4px solid #8b5cf6;">
-              <div class="kpi-label">שיעור השתתפות עצמית ממוצע</div>
-              <div class="kpi-value font-mono">${stats.weightedSelfFundingRate}%</div>
-              <div class="kpi-sub">משוקלל סך ההוצאה הארצית</div>
+              <div class="kpi-label">סך השתתפות המדינה (1384)</div>
+              <div class="kpi-value font-mono">₪${(stats.totalRev1384NIS / 1000000000).toFixed(2)}B</div>
+              <div class="kpi-sub">תקבולי משה"ח וגורמי חוץ</div>
             </div>
-            <div class="kpi-card" style="border-right: 4px solid #ef4444;">
-              <div class="kpi-label">פער הוצאה לנפש: אשכול 8-10 מול 1-3</div>
+            <div class="kpi-card" style="border-right: 4px solid #10b981;">
+              <div class="kpi-label">סך מימון עצמי של הרשויות</div>
+              <div class="kpi-value font-mono">₪${(stats.totalNetSelfFundNIS / 1000000000).toFixed(2)}B</div>
+              <div class="kpi-sub">ממומן ישירות מקופת הרשות</div>
+            </div>
+            <div class="kpi-card" style="border-right: 4px solid #dc2626;">
+              <div class="kpi-label">יחס פער בין אשכולות 8-10 ל-1-3</div>
               <div class="kpi-value font-mono" style="color:#dc2626;">פי ${stats.clusterGapRatio}</div>
               <div class="kpi-sub">₪${stats.topAvgPerCapita.toLocaleString()} מול ₪${stats.botAvgPerCapita.toLocaleString()} לנפש</div>
             </div>
           </div>
+
+          <p style="line-height:1.6; font-size:14.5px; color:#1e293b;">
+            על פי הדוחות הכספיים המבוקרים לשנת 2024, סך הוצאות החינוך בתקציב הרגיל של 257 הרשויות המקומיות בישראל עמדו על <strong>₪${(stats.totalExp1486NIS / 1000000000).toFixed(2)} מיליארד ₪</strong>. מתוכם, תקבולי משרד החינוך והשתתפויות המדינה הסתכמו ב-<strong>₪${(stats.totalRev1384NIS / 1000000000).toFixed(2)} מיליארד ₪</strong>.
+          </p>
+          <p style="line-height:1.6; font-size:14.5px; color:#1e293b;">
+            ההפרש נטו — <strong>₪${(stats.totalNetSelfFundNIS / 1000000000).toFixed(2)} מיליארד ₪</strong> (המהווים <strong>${stats.weightedSelfFundingRate}%</strong> מכלל הוצאות החינוך) — מומן כולו מקופתן העצמית של הרשויות המקומיות (מארנונה ומקורות עצמיים). השקעה עצמית זו מתפלגת באופן בלתי שוויוני מובהק, ויוצרת פער מבני עמוק בשירותי החינוך הניתנים לתושב.
+          </p>
         </div>
 
-        <!-- Section 2: Gaps by Socioeconomic Clusters -->
+        <!-- Section 2: Socioeconomic Gradient Table -->
         <div class="national-report-section">
           <div class="section-title">
-            <span>2. פערי ההשקעה העצמית לפי אשכולות חברתיים-כלכליים (למ"ס)</span>
-            <span class="tax-tag" style="background:#2563eb20; color:#1d4ed8; font-size:12px;">🔵 מחושב מתוך נתונים מבוקרים</span>
+            <span>2. הגרדיאנט החברתי-כלכלי: התפלגות השתתפות עצמית לפי אשכולות למ״ס</span>
+            <span class="tax-tag" style="background:#2563eb20; color:#1d4ed8; font-size:12px;">🔵 2. נתונים מחושבים מבוקרים</span>
           </div>
-          <p>
-            הניתוח חושף אי-שוויון עמוק ומבני: רשויות באשכולות הגבוהים (8–10) משקיעות בממוצע <strong>₪${stats.topAvgPerCapita.toLocaleString()} לנפש</strong> מקופתן העצמית בחינוך, לעומת <strong>₪${stats.botAvgPerCapita.toLocaleString()} לנפש בלבד</strong> ברשויות אשכולות 1–3 — פער של <strong>פי ${stats.clusterGapRatio}</strong>.
-          </p>
 
           <div class="table-container">
             <table class="report-table">
               <thead>
                 <tr>
-                  <th>אשכול חברתי-כלכלי</th>
+                  <th>אשכול למ״ס</th>
                   <th style="text-align:left;">מספר רשויות</th>
-                  <th style="text-align:left;">אוכלוסייה</th>
-                  <th style="text-align:left;">סך השתתפות עצמית (מ' ₪)</th>
+                  <th style="text-align:left;">אוכלוסייה (תושבים)</th>
+                  <th style="text-align:left;">סך מימון עצמי (1486-1384)</th>
                   <th style="text-align:left;">הוצאה עצמית ממוצעת לנפש</th>
                   <th style="text-align:left;">שיעור השתתפות עצמית (%)</th>
                 </tr>
@@ -254,53 +274,49 @@ window.NationalReportEngine = {
           </div>
         </div>
 
-        <!-- Section 3: Root Cause - Commercial Arnona -->
+        <!-- Section 3: Statistical Core Insights -->
         <div class="national-report-section">
           <div class="section-title">
-            <span>3. שורש הפער: אי-שוויון בהכנסות מארנונה עסקית ומקורות עצמיים</span>
-            <span class="tax-tag" style="background:#10b98120; color:#059669; font-size:12px;">🟢 נתון מבוקר (סעיף 1805 ו-4146)</span>
+            <span>3. תובנות סטטיסטיות ומבניות מאומתות</span>
+            <span class="tax-tag" style="background:#2563eb20; color:#1d4ed8; font-size:12px;">🔵 2. ניתוח מתאמי מבוקר</span>
           </div>
-          <p>
-            נמצא מתאם חיובי מובהק וגבוה (<strong>r = +0.677</strong>) בין שיעור ההכנסות העצמיות של הרשות (ארנונה שאינה למגורים, מסחר ומשרדים) לבין שיעור ההשתתפות העצמית בחינוך. רשויות בעלות בסיס מס מסחרי עשיר מייצרות עודף תקציבי המאפשר להן להעשיר את שירותי החינוך, בעוד שרשויות עניות בבסיס מס נותרות תלויות אך ורק בתקציב הממשלתי הבסיסי.
-          </p>
+
+          <div class="report-callout" style="margin-bottom:12px;">
+            <strong>תובנה 1 — הקשר המבני בין עצמאות פיסקלית להשקעה בחינוך:</strong>
+            נמצא מתאם חיובי חזק ומובהק (<strong>r = +0.6771</strong>, p &lt; 0.0001) בין שיעור ההכנסות העצמיות של הרשות לבין שיעור השתתפותה בחינוך. רשויות בעלות בסיס ארנונה עסקית רחב מסוגלות להשקיע מאות שקלים יותר בכל תושב.
+          </div>
+
+          <div class="report-callout" style="margin-bottom:12px;">
+            <strong>תובנה 2 — הגרדיאנט הסוציו-אקונומי:</strong>
+            תושב ברשויות באשכולות 8–10 נהנה מהשקעה מוניציפלית עצמית ממוצעת של <strong>₪${stats.topAvgPerCapita.toLocaleString()} לנפש</strong>, לעומת <strong>₪${stats.botAvgPerCapita.toLocaleString()} לנפש</strong> בלבד באשכולות 1–3 (פער של <strong>פי ${stats.clusterGapRatio}</strong>).
+          </div>
+
+          <div class="report-callout">
+            <strong>תובנה 3 — פרדוקס מענק האיזון:</strong>
+            בעוד שברמה הארצית מענק האיזון מתואם שלילית עם השתתפות עצמית (r = -0.2249), בתוך אשכולות המצוקה (1–3) קיים מתאם חיובי מובהק (<strong>r = +0.4138</strong>). מענק האיזון מהווה חבל הצלה פיסקלי המאפשר לרשויות מוחלשות להשתתף במימון החינוך.
+          </div>
         </div>
 
-        <!-- Section 4: Edge Cases and Structural Outliers -->
+        <!-- Section 4: Policy Recommendations -->
         <div class="national-report-section">
           <div class="section-title">
-            <span>4. ביקורת מקרי קצה וחריגים מבניים</span>
-            <span class="tax-tag" style="background:#8b5cf620; color:#6d28d9; font-size:12px;">🟣 ניתוח שקיפות</span>
+            <span>4. המלצות מדיניות של איגוד מנהלי החינוך</span>
+            <span class="tax-tag" style="background:#8b5cf620; color:#6d28d9; font-size:12px;">🟣 3. עמדת מדיניות</span>
           </div>
-          <div class="report-callout" style="background:#faf5ff; border-color:#d8b4fe;">
-            <strong>מועצה אזורית תמר (חריג בסיס מס קיצוני):</strong>
-            המועצה מתאפיינת באוכלוסייה קטנה (2,138 תושבים) לצד בסיס ארנונה עסקית עתיר הכנסות (מפעלי ומלונות ים המלח), המניב שיעור הכנסות עצמיות של 95.1% והוצאה עצמית בחינוך של 11,015 ₪ לנפש. בדשבורד קיים מתג ייעודי המאפשר לבחון את המדדים עם ובלעדי תמר.
-          </div>
-          <div class="report-callout" style="background:#fef2f2; border-color:#fca5a5; margin-top:8px;">
-            <strong>רשויות קו העימות המפונות (שנת מלחמה 2024):</strong>
-            ברשויות כגון קריית שמונה, מטולה ושלומי, נתוני 2024 משקפים את המציאות החשבונאית המיוחדת של שנת המלחמה והפינוי (כולל מקדמות ושינויי רישום זמניים).
-          </div>
+          <ol style="line-height:1.7; font-size:14px; padding-right:20px; color:#1e293b;">
+            <li><strong>הקמת קרן תקצוב דיפרנציאלי מתקן לחינוך המוניציפלי:</strong> הקצאת תקציב ייעודי לצמצום פערי ההשתתפות העצמית על בסיס מודל צורך משולב (סוציו, פריפריה ועצמאות פיסקלית).</li>
+            <li><strong>שמירה על מנגנון ריסון פיסקלי (Fiscal Taper):</strong> ריסון הדרגתי של רשויות בעלות עצמאות פיסקלית גבוהה (מעל P80 = 64.61%) כדי להבטיח ניתוב מרבי של המשאבים לרשויות הזקוקות לכך.</li>
+            <li><strong>עדכון נוסחאות ההשתתפות הממשלתיות:</strong> התאמת שיעורי המאצ'ינג הממשלתיים ליכולת הגבייה העצמית הריאלית של הרשויות.</li>
+          </ol>
         </div>
 
         <!-- Section 5: Simulation Scenario -->
         ${simSectionHtml}
 
-        <!-- Section 6: Limitations & Methodology -->
-        <div class="national-report-section">
-          <div class="section-title">
-            <span>6. מגבלות מתודולוגיות וגילוי נאות</span>
-            <span class="tax-tag" style="background:#2563eb20; color:#1d4ed8; font-size:12px;">📘 מתודולוגיה</span>
-          </div>
-          <ul style="font-size:14px; line-height:1.6; color:var(--text-main);">
-            <li><strong>תקציב רגיל בלבד:</strong> הנתונים משקפים את התקציב השוטף הרגיל (סעיף 1486 ו-1384) ואינם כוללים תקציבי בינוי ופיתוח בלתי רגילים (תב"ר).</li>
-            <li><strong>השתתפות מוניציפלית נטו:</strong> הדו"ח מודד את ההשקעה מקופת הרשות ואינו מודד תשלומי הורים ישירים, תרומות פילנתרופיות או שעות טיפוח משרדיות.</li>
-            <li><strong>עקיבות מקורות מלאה:</strong> כל שדה בדו"ח ניתן לעקיבה ישירה לקובצי המקור הממשלתיים בלשונית 'מתודולוגיה ומקורות'.</li>
-          </ul>
-        </div>
-
-        <!-- Footer -->
-        <div class="national-report-footer">
-          <div>הופק באמצעות המערכת הלאומית לניתוח פערי תקצוב בחינוך | ${window.METHODOLOGY_VERSION}</div>
-          <div>מקורות: משרד הפנים (דוחות מבוקרים 2024), הלשכה המרכזית לסטטיסטיקה (מפקד 2024, מדד סוציו 2021, מדד פריפריה 2020)</div>
+        <!-- Footer Sign-off -->
+        <div class="report-footer-sign">
+          <div style="font-weight:700; color:#0f172a;">איגוד מנהלי אגפי ומחלקות החינוך ברשויות המקומיות בישראל</div>
+          <div style="font-size:13px; color:#64748b;">מסמך מדיניות ומחקר אמפירי | ${window.METHODOLOGY_VERSION}</div>
         </div>
       </div>
     `;

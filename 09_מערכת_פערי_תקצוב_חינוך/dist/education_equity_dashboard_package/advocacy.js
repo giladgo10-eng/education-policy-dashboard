@@ -1,6 +1,6 @@
 // ==============================================================================
 // advocacy.js - 257 Municipal 360° Report Engine & Policy Brief Generator
-// Methodology Version: Methodology v0.9 — Draft / Baseline 2024
+// Methodology Version: Methodology v1.0 — Baseline 2024
 // ==============================================================================
 
 window.EducationAdvocacy = {
@@ -26,64 +26,82 @@ window.EducationAdvocacy = {
     // 1. Simulation Detailed Breakdown ("מדוע התקבלה תוצאת הסימולציה הזאת?")
     let simDetailedBreakdownHtml = '';
     if (simData && simData.grant_per_capita_nis !== undefined) {
-      const wSocio = (options && options.wSocio) ? options.wSocio : 50;
-      const wPeri = (options && options.wPeri) ? options.wPeri : 30;
-      const wFiscal = (options && options.wFiscal) ? options.wFiscal : 20;
+      const wSocio = (options && options.wSocio !== undefined) ? options.wSocio : 50;
+      const wPeri = (options && options.wPeri !== undefined) ? options.wPeri : 30;
+      const wFiscal = (options && options.wFiscal !== undefined) ? options.wFiscal : 20;
 
-      const socioScore = (11 - (authority.cbs_socio_cluster || 5)) / 10;
-      const periScore = (11 - (authority.cbs_periphery_cluster || 5)) / 10;
-      const fiscalDeficit = Math.max(0, 100 - (authority.own_revenue_share_pct || 30)) / 100;
+      const socioCluster = (authority.cbs_socio_cluster !== undefined && authority.cbs_socio_cluster !== null) ? authority.cbs_socio_cluster : (authority.socio_cluster_2021 || 5);
+      const periCluster = (authority.cbs_periphery_cluster !== undefined && authority.cbs_periphery_cluster !== null) ? authority.cbs_periphery_cluster : (authority.periphery_cluster_2020 || 5);
+      const ownRevPct = typeof authority.own_revenue_share_pct === 'number' ? authority.own_revenue_share_pct : 30;
+
+      const socioScore = Math.max(0, Math.min(1, (10 - socioCluster) / 9));
+      const periScore = Math.max(0, Math.min(1, (10 - periCluster) / 9));
+      const fiscalDep = Math.max(0, Math.min(1, (100 - ownRevPct) / 100));
 
       const contribSocio = (wSocio / 100) * socioScore;
       const contribPeri = (wPeri / 100) * periScore;
-      const contribFiscal = (wFiscal / 100) * fiscalDeficit;
+      const contribFiscal = (wFiscal / 100) * fiscalDep;
       const compositeNeed = contribSocio + contribPeri + contribFiscal;
+
+      const p80 = simData.p80_threshold || 64.61;
+      const taperFactor = simData.taper_factor !== undefined ? simData.taper_factor : (ownRevPct > p80 ? (1.0 - 0.90 * ((ownRevPct - p80) / (100 - p80))) : 1.0);
+
+      let taperStatusText = '';
+      if (ownRevPct <= p80) {
+        taperStatusText = `<span style="color:#059669; font-weight:700;">ללא ריסון (100% מענק)</span> — הכנסות עצמיות (${ownRevPct}%) מתחת לסף P80 (${p80}%).`;
+      } else {
+        taperStatusText = `<span style="color:#b45309; font-weight:700;">מופעל טייפר פיסקלי (${(taperFactor * 100).toFixed(1)}%)</span> — הכנסות עצמיות (${ownRevPct}%) מעל סף P80 (${p80}%).`;
+      }
 
       simDetailedBreakdownHtml = `
         <div class="paper-section">
           <div class="paper-section-title">
-            <span>3. תרחיש מודל התקצוב הדיפרנציאלי המתקן (סימולציה)</span>
-            <span class="tax-tag" style="background:#f59e0b20; color:#b45309; font-size:12px;">🟠 תוצאת סימולציה</span>
+            <span>3. תרחיש מודל התקצוב הדיפרנציאלי המתקן (סימולציית מדיניות — Methodology v1.0)</span>
+            <span class="tax-tag" style="background:#f59e0b20; color:#b45309; font-size:12px;">🟠 4. תוצאת סימולציה</span>
           </div>
 
           <div class="paper-box" style="background: #ecfdf5; border-color: #a7f3d0; margin-bottom: 16px;">
             <div style="font-weight: 700; color: #065f46; font-size: 16px; margin-bottom: 6px;">
-              תוספת שנתית מוצעת לרשות: ₪${(simData.allocated_grant_k_nis).toLocaleString()} אלפי ₪ (+₪${simData.grant_per_capita_nis.toLocaleString()} לנפש, גידול של +${simData.gain_pct}%)
+              תוספת שנתית מוצעת בתרחיש לרשות: ₪${(simData.allocated_grant_k_nis).toLocaleString()} אלפי ₪ (+₪${simData.grant_per_capita_nis.toLocaleString()} לנפש, גידול של +${simData.gain_pct}%)
             </div>
             <p style="font-size: 13px; color: #047857; margin: 0; line-height: 1.5;">
-              על פי מודל התקצוב הדיפרנציאלי המוצע ע"י האיגוד, ההשקעה העצמית של <strong>${authority.name}</strong> תעלה מ-₪${(simData.orig_net_exp_per_capita || expPerCapita).toLocaleString()} ל-<strong>₪${(simData.simulated_net_exp_per_capita || (expPerCapita + simData.grant_per_capita_nis)).toLocaleString()} לנפש</strong>.
+              על פי מודל התקצוב הדיפרנציאלי המוצע ע"י האיגוד (בסל סימולציה של 1 מיליארד ₪), ההשקעה העצמית של <strong>${authority.name}</strong> תעלה מ-₪${(simData.orig_net_exp_per_capita || expPerCapita).toLocaleString()} ל-<strong>₪${(simData.simulated_net_exp_per_capita || (expPerCapita + simData.grant_per_capita_nis)).toLocaleString()} לנפש</strong>.
             </p>
           </div>
 
           <!-- Why this grant was allocated -->
           <div class="paper-box" style="background: #f8fafc; border-color: #cbd5e1;">
             <div style="font-weight: 700; color: #1e293b; font-size: 14px; margin-bottom: 8px;">
-              🔍 מדוע התקבלה תוצאת הסימולציה הזאת? (פירוק תרומת רכיבי המודל)
+              🔍 מדוע התקבלה תוצאת הסימולציה הזאת? (פירוק תרומת רכיבי המודל וטייפר P80)
             </div>
             <p style="font-size: 13px; color: #475569; margin: 0 0 10px 0;">
-              ציון הצורך המשוקלל של הרשות נקבע ל-<strong>${compositeNeed.toFixed(3)}</strong> (בסולם 0.0 עד 1.0) על בסיס שקלול שלושת הממדים:
+              ציון הצורך המשולב של הרשות נקבע ל-<strong>${compositeNeed.toFixed(3)}</strong> (בסולם 0.0 עד 1.0) על בסיס שקלול שלושת הממדים:
             </p>
             
             <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; font-size: 13px;">
               <div style="background: #ffffff; padding: 10px; border-radius: 6px; border: 1px solid #e2e8f0;">
-                <div style="color: #64748b; font-size: 11px;">1. רכיב סוציו-אקונומי (${wSocio}%)</div>
-                <div style="font-weight: 700; color: #0f172a; font-size: 14px;">אשכול ${authority.cbs_socio_cluster} (${socioScore.toFixed(2)})</div>
+                <div style="color: #64748b; font-size: 11px;">1. צורך סוציו-אקונומי (${wSocio}%)</div>
+                <div style="font-weight: 700; color: #0f172a; font-size: 14px;">אשכול ${socioCluster} (${socioScore.toFixed(2)})</div>
                 <div style="color: #2563eb; font-size: 12px; font-family: monospace;">תרומה: +${contribSocio.toFixed(3)}</div>
               </div>
               <div style="background: #ffffff; padding: 10px; border-radius: 6px; border: 1px solid #e2e8f0;">
-                <div style="color: #64748b; font-size: 11px;">2. רכיב פריפריאליות (${wPeri}%)</div>
-                <div style="font-weight: 700; color: #0f172a; font-size: 14px;">אשכול ${authority.cbs_periphery_cluster} (${periScore.toFixed(2)})</div>
+                <div style="color: #64748b; font-size: 11px;">2. צורך פריפריאלי (${wPeri}%)</div>
+                <div style="font-weight: 700; color: #0f172a; font-size: 14px;">אשכול ${periCluster} (${periScore.toFixed(2)})</div>
                 <div style="color: #2563eb; font-size: 12px; font-family: monospace;">תרומה: +${contribPeri.toFixed(3)}</div>
               </div>
               <div style="background: #ffffff; padding: 10px; border-radius: 6px; border: 1px solid #e2e8f0;">
-                <div style="color: #64748b; font-size: 11px;">3. גירעון פיסקלי (${wFiscal}%)</div>
-                <div style="font-weight: 700; color: #0f172a; font-size: 14px;">הכנסות עצמיות ${authority.own_revenue_share_pct}%</div>
+                <div style="color: #64748b; font-size: 11px;">3. תלות פיסקלית (${wFiscal}%)</div>
+                <div style="font-weight: 700; color: #0f172a; font-size: 14px;">הכנסות עצמיות ${ownRevPct}%</div>
                 <div style="color: #2563eb; font-size: 12px; font-family: monospace;">תרומה: +${contribFiscal.toFixed(3)}</div>
               </div>
             </div>
 
+            <div style="margin-top: 10px; padding: 8px 10px; background: #ffffff; border-radius: 6px; border: 1px solid #e2e8f0; font-size: 12.5px;">
+              <strong>🛡️ סטטוס ריסון פיסקלי (P80 Fiscal Taper):</strong> ${taperStatusText}
+            </div>
+
             <div style="margin-top: 10px; font-size: 12px; color: #64748b;">
-              נוסחת ההקצאה: <code class="font-mono" style="color: #0f172a;">ציון הרשות = אוכלוסייה (${pop.toLocaleString()}) × (${compositeNeed.toFixed(3)})^1.4</code>
+              נוסחת ההקצאה (Methodology v1.0 לינארי): <code class="font-mono" style="color: #0f172a;">ציון משוקלל = ${pop.toLocaleString()} תושבים × (${compositeNeed.toFixed(3)} צורך × ${taperFactor.toFixed(3)} טייפר)</code>
             </div>
           </div>
         </div>
@@ -103,7 +121,7 @@ window.EducationAdvocacy = {
       anomalyNotice = `
         <div class="paper-box" style="background: #faf5ff; border-color: #d8b4fe; margin-bottom: 16px;">
           <strong style="color: #6b21a8;">🔍 הערת שקיפות — חריג מבני קיצוני (מועצה אזורית תמר):</strong>
-          <span style="font-size: 13px; color: #581c87;"> הרשות מתאפיינת בבסיס ארנונה עסקית חריג ביותר לנפש (מלונות ומפעלי ים המלח) לצד אוכלוסייה קטנה (2,138 תושבים).</span>
+          <span style="font-size: 13px; color: #581c87;"> הרשות מתאפיינת בבסיס ארנונה עסקית חריג ביותר לנפש (שיעור הכנסות עצמיות של 95.1%) לצד אוכלוסייה קטנה (2,138 תושבים). במתודולוגיה v1.0 מופעל טייפר פיסקלי המרסן את המענק המוצע ל-₪23 לנפש בלבד.</span>
         </div>
       `;
     }
@@ -137,7 +155,7 @@ window.EducationAdvocacy = {
         <div class="paper-section">
           <div class="paper-section-title">
             <span>1. תמצית מנהלים ונתוני מפתח מבוקרים</span>
-            <span class="tax-tag" style="background:#10b98120; color:#059669; font-size:12px;">🟢 נתונים רשמיים מבוקרים</span>
+            <span class="tax-tag" style="background:#10b98120; color:#059669; font-size:12px;">🟢 1. נתונים רשמיים מבוקרים</span>
           </div>
           <p>
             על פי הדוחות הכספיים המבוקרים לשנת 2024, סך הוצאות החינוך בתקציב הרגיל של <strong>${authority.name}</strong> עמדו על <strong>₪${exp1486.toLocaleString()} אלפי ₪</strong> (קוד סעיף 1486), בעוד שתקבולי החינוך והשתתפויות המדינה (קוד 1384) הסתכמו ב-<strong>₪${rev1384.toLocaleString()} אלפי ₪</strong>.
@@ -155,53 +173,60 @@ window.EducationAdvocacy = {
         <div class="paper-section">
           <div class="paper-section-title">
             <span>2. פירוט תקציבי מבוקר (משרד הפנים 2024)</span>
-            <span class="tax-tag" style="background:#2563eb20; color:#1d4ed8; font-size:12px;">🔵 מחושב מתוך נתונים מבוקרים</span>
+            <span class="tax-tag" style="background:#2563eb20; color:#1d4ed8; font-size:12px;">🔵 2. נתונים מחושבים מבוקרים</span>
           </div>
           <table class="paper-table">
             <thead>
               <tr>
-                <th>סעיף תקציבי מבוקר (קוד משרד הפנים)</th>
+                <th>סעיף תקציבי מבוקר</th>
+                <th>קוד סעיף</th>
                 <th style="text-align: left;">סכום באלפי ₪</th>
-                <th style="text-align: left;">סכום לנפש (₪)</th>
-                <th style="text-align: left;">סיווג מקור</th>
+                <th style="text-align: left;">סכום לנפש (₪/תושב)</th>
+                <th>הערות מקור והגדרה</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td><strong>סך הוצאות חינוך (קוד 1486)</strong></td>
-                <td style="text-align: left;">₪${exp1486.toLocaleString()}</td>
-                <td style="text-align: left;">₪${Math.round((exp1486 * 1000) / pop).toLocaleString()}</td>
-                <td style="text-align: left;"><span class="tax-tag" style="background:#10b98120; color:#059669;">🟢 רשמי</span></td>
+                <td><strong>סך הוצאות חינוך בתקציב הרגיל</strong></td>
+                <td class="font-mono">1486</td>
+                <td class="font-mono text-left font-bold">₪${exp1486.toLocaleString()}K</td>
+                <td class="font-mono text-left">₪${Math.round((exp1486 * 1000) / pop).toLocaleString()} לנפש</td>
+                <td>דוח ביצוע תקציב רגיל (פרק 6)</td>
               </tr>
               <tr>
-                <td><strong>סך תקבולי חינוך ומשה"ח (קוד 1384)</strong></td>
-                <td style="text-align: left;">₪${rev1384.toLocaleString()}</td>
-                <td style="text-align: left;">₪${Math.round((rev1384 * 1000) / pop).toLocaleString()}</td>
-                <td style="text-align: left;"><span class="tax-tag" style="background:#10b98120; color:#059669;">🟢 רשמי</span></td>
+                <td><strong>סך תקבולי חינוך והשתתפות משה"ח</strong></td>
+                <td class="font-mono">1384</td>
+                <td class="font-mono text-left">₪${rev1384.toLocaleString()}K</td>
+                <td class="font-mono text-left">₪${Math.round((rev1384 * 1000) / pop).toLocaleString()} לנפש</td>
+                <td>השתתפויות ייעודיות שכר ופעילות</td>
               </tr>
-              <tr style="background:#f1f5f9; font-weight:700;">
+              <tr style="background: #f1f5f9;">
                 <td><strong>השתתפות עצמית נטו של הרשות בחינוך</strong></td>
-                <td style="text-align: left; color:var(--primary);">₪${netDiff.toLocaleString()}</td>
-                <td style="text-align: left; color:var(--primary);">₪${expPerCapita.toLocaleString()}</td>
-                <td style="text-align: left;"><span class="tax-tag" style="background:#2563eb20; color:#1d4ed8;">🔵 מחושב</span></td>
+                <td class="font-mono">1486-1384</td>
+                <td class="font-mono text-left font-bold" style="color: #2563eb;">₪${netDiff.toLocaleString()}K</td>
+                <td class="font-mono text-left font-bold" style="color: #2563eb;">₪${expPerCapita.toLocaleString()} לנפש</td>
+                <td>מימון ישיר מקופת הרשות</td>
               </tr>
               <tr>
-                <td>סך הכנסות עצמיות מארנונה ואגרות (קוד 1805)</td>
-                <td style="text-align: left;">₪${(authority.own_revenue_1805_tk || 0).toLocaleString()}</td>
-                <td style="text-align: left;">₪${(authority.own_revenues_per_capita_nis || 0).toLocaleString()}</td>
-                <td style="text-align: left;"><span class="tax-tag" style="background:#10b98120; color:#059669;">🟢 רשמי</span></td>
+                <td><strong>סך הכנסות עצמיות (ארנונה, אגרות והיטלים)</strong></td>
+                <td class="font-mono">1805</td>
+                <td class="font-mono text-left">₪${(authority.own_revenue_1805_tk || 0).toLocaleString()}K</td>
+                <td class="font-mono text-left">₪${(authority.own_revenues_per_capita_nis || 0).toLocaleString()} לנפש</td>
+                <td>שיעור עצמאות פיסקלית: <strong>${authority.own_revenue_share_pct}%</strong></td>
               </tr>
               <tr>
-                <td>ארנונה שאינה למגורים - עסקים ותעשייה (קוד 4146)</td>
-                <td style="text-align: left;">₪${(authority.arnona_other_4146_tk || 0).toLocaleString()}</td>
-                <td style="text-align: left;">₪${(authority.arnona_other_per_capita_nis || 0).toLocaleString()}</td>
-                <td style="text-align: left;"><span class="tax-tag" style="background:#10b98120; color:#059669;">🟢 רשמי</span></td>
+                <td><strong>הכנסות מארנונה עסקית ומסחרית</strong></td>
+                <td class="font-mono">4146</td>
+                <td class="font-mono text-left">₪${(authority.arnona_other_4146_tk || 0).toLocaleString()}K</td>
+                <td class="font-mono text-left">₪${(authority.arnona_other_per_capita_nis || 0).toLocaleString()} לנפש</td>
+                <td>בסיס מס שאינו ממגורים</td>
               </tr>
               <tr>
-                <td>מענק איזון כללי ממשרד הפנים (קוד 1819)</td>
-                <td style="text-align: left;">₪${(authority.balancing_grant_1819_tk || 0).toLocaleString()}</td>
-                <td style="text-align: left;">₪${(authority.balancing_grant_per_capita_nis || 0).toLocaleString()}</td>
-                <td style="text-align: left;"><span class="tax-tag" style="background:#10b98120; color:#059669;">🟢 רשמי</span></td>
+                <td><strong>מענק איזון כללי ממשרד הפנים</strong></td>
+                <td class="font-mono">1819</td>
+                <td class="font-mono text-left">${authority.balancing_grant_1819_tk > 0 ? '₪' + authority.balancing_grant_1819_tk.toLocaleString() + 'K' : '₪0'}</td>
+                <td class="font-mono text-left">${authority.balancing_grant_per_capita_nis > 0 ? '₪' + authority.balancing_grant_per_capita_nis.toLocaleString() + ' לנפש' : 'אין זכאות'}</td>
+                <td>מענק סיוע כללי לגישור פער פיסקלי</td>
               </tr>
             </tbody>
           </table>
@@ -210,10 +235,10 @@ window.EducationAdvocacy = {
         <!-- Section 3: Simulation Breakdown -->
         ${simDetailedBreakdownHtml}
 
-        <!-- Footer -->
-        <div class="paper-footer">
-          <div>הופק מתוך מאגר 257 הרשויות המאומת | ${window.METHODOLOGY_VERSION}</div>
-          <div>מקורות מבוקרים: משרד הפנים (דוחות 2024) והלשכה המרכזית לסטטיסטיקה</div>
+        <!-- Footer Sign-off -->
+        <div class="report-footer-sign">
+          <div style="font-weight:700; color:#0f172a;">איגוד מנהלי אגפי ומחלקות החינוך ברשויות המקומיות בישראל</div>
+          <div style="font-size:13px; color:#64748b;">מסמך מדיניות ומחקר אמפירי | ${window.METHODOLOGY_VERSION}</div>
         </div>
       </div>
     `;

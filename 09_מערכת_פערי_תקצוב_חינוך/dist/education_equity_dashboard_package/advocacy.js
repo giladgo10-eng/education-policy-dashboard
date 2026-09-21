@@ -142,8 +142,8 @@ window.EducationAdvocacy = {
 
         <!-- Official Header -->
         <div class="paper-header">
-          <div class="paper-emblem">🛡️</div>
-          <div class="paper-org">איגוד מנהלי אגפי ומחלקות החינוך ברשויות המקומיות</div>
+          <div class="paper-emblem">📊</div>
+          <div class="paper-org">פיילוט מחקרי — מערכת ניסיונית לניתוח פערי תקצוב וצדק חלוקתי</div>
           <div class="paper-title">דו״ח יישובי 360°: פערי השתתפות עצמית ותקציב חינוך</div>
           <div class="paper-sub">רשות מקומית: <strong>${authority.name}</strong> (${authority.type}) | סמל למ"ס: <strong>${authority.code}</strong> | מחוז: <strong>${authority.district}</strong></div>
           <div class="paper-meta">בסיס נתונים: דוחות כספיים מבוקרים 2024 (משרד הפנים) + למ"ס (מדד סוציו 2021, פריפריה 2020)</div>
@@ -237,8 +237,8 @@ window.EducationAdvocacy = {
 
         <!-- Footer Sign-off -->
         <div class="report-footer-sign">
-          <div style="font-weight:700; color:#0f172a;">איגוד מנהלי אגפי ומחלקות החינוך ברשויות המקומיות בישראל</div>
-          <div style="font-size:13px; color:#64748b;">מסמך מדיניות ומחקר אמפירי | ${window.METHODOLOGY_VERSION}</div>
+          <div style="font-weight:700; color:#0f172a;">פיילוט — מערכת ניסיונית לניתוח פערי תקצוב וצדק חלוקתי בחינוך המוניציפלי</div>
+          <div style="font-size:13px; color:#64748b;">פיתוח וניהול הפיילוט: גלעד גולדמן | giladgo10@gmail.com | ${window.METHODOLOGY_VERSION}</div>
         </div>
       </div>
     `;

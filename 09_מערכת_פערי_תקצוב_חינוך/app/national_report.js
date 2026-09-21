@@ -178,7 +178,7 @@ window.NationalReportEngine = {
             </table>
           </div>
           <div style="font-size:12px; color:var(--text-muted); margin-top:6px;">
-            * מוצג מדגם של רשויות מובילות בתוספת מענק מוצע לנפש מתוך 257 הרשויות בסימולציה.
+            * מוצג מדגם של רשויות המצוקה והחלשות ביותר הזוכות לתוספת המענק המוצע הגבוהה ביותר לנפש לגישור על פערי התקצוב.
           </div>
         </div>
       `;
@@ -200,8 +200,8 @@ window.NationalReportEngine = {
 
         <!-- Official Header -->
         <div class="report-header">
-          <div class="report-emblem">🏛️</div>
-          <div class="report-org">איגוד מנהלי אגפי ומחלקות החינוך ברשויות המקומיות</div>
+          <div class="report-emblem">📊</div>
+          <div class="report-org">פיילוט מחקרי — מערכת ניסיונית לניתוח פערי תקצוב וצדק חלוקתי</div>
           <h1 class="report-main-title">דו״ח מערכתי ופרלמנטרי: פערי השתתפות עצמית בחינוך המוניציפלי בישראל</h1>
           <div class="report-subtitle">ניתוח נתוני אמת מבוקרים של 257 הרשויות המקומיות בישראל לשנת 2024</div>
           <div class="report-meta-strip">
@@ -251,7 +251,7 @@ window.NationalReportEngine = {
         <!-- Section 2: Socioeconomic Gradient Table -->
         <div class="national-report-section">
           <div class="section-title">
-            <span>2. הגרדיאנט החברתי-כלכלי: התפלגות השתתפות עצמית לפי אשכולות למ״ס</span>
+            <span>2. המדרג החברתי-כלכלי: התפלגות השתתפות עצמית לפי אשכולות למ״ס</span>
             <span class="tax-tag" style="background:#2563eb20; color:#1d4ed8; font-size:12px;">🔵 2. נתונים מחושבים מבוקרים</span>
           </div>
 
@@ -287,7 +287,7 @@ window.NationalReportEngine = {
           </div>
 
           <div class="report-callout" style="margin-bottom:12px;">
-            <strong>תובנה 2 — הגרדיאנט הסוציו-אקונומי:</strong>
+            <strong>תובנה 2 — המדרג הסוציו-אקונומי:</strong>
             תושב ברשויות באשכולות 8–10 נהנה מהשקעה מוניציפלית עצמית ממוצעת של <strong>₪${stats.topAvgPerCapita.toLocaleString()} לנפש</strong>, לעומת <strong>₪${stats.botAvgPerCapita.toLocaleString()} לנפש</strong> בלבד באשכולות 1–3 (פער של <strong>פי ${stats.clusterGapRatio}</strong>).
           </div>
 
@@ -315,8 +315,8 @@ window.NationalReportEngine = {
 
         <!-- Footer Sign-off -->
         <div class="report-footer-sign">
-          <div style="font-weight:700; color:#0f172a;">איגוד מנהלי אגפי ומחלקות החינוך ברשויות המקומיות בישראל</div>
-          <div style="font-size:13px; color:#64748b;">מסמך מדיניות ומחקר אמפירי | ${window.METHODOLOGY_VERSION}</div>
+          <div style="font-weight:700; color:#0f172a;">פיילוט — מערכת ניסיונית לניתוח פערי תקצוב וצדק חלוקתי בחינוך המוניציפלי</div>
+          <div style="font-size:13px; color:#64748b;">פיתוח וניהול הפיילוט: גלעד גולדמן | giladgo10@gmail.com | ${window.METHODOLOGY_VERSION}</div>
         </div>
       </div>
     `;

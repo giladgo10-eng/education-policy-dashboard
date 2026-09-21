@@ -27,6 +27,9 @@ ehthumbs.db
 scratch/
 */scratch/
 **/scratch/
+archive_google_drive/
+*/archive_google_drive/
+**/archive_google_drive/
 
 # Private Raw Member Lists & Sensitive PII Files
 01_source_files/

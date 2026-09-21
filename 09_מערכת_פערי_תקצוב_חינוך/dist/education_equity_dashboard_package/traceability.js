@@ -5,73 +5,108 @@
 
 window.METHODOLOGY_VERSION = "Methodology v1.0 — Baseline 2024";
 
-// 1. Official Sources Catalog
-window.OfficialSourcesCatalog = [
-  {
-    id: "moin_audited_2024",
-    name: "דוחות כספיים מבוקרים של הרשויות המקומיות בישראל (טופס 2 ופרק 6 - חינוך)",
+// 1. Central Verified Google Drive Sources Index
+window.DRIVE_SOURCES = {
+  moin_2024: {
+    id: "moin_2024",
+    title: "דוחות כספיים מבוקרים של הרשויות המקומיות לשנת 2024",
+    shortTitle: "משרד הפנים — דוחות כספיים מבוקרים 2024",
     publisher: "משרד הפנים — מינהל השלטון המקומי, אגף בכיר לתקצוב ופיתוח",
-    dataYear: "2024 (מבוקר)",
+    fileName: "moin_audited_local_authorities_2024.xlsx",
+    fileSize: "54.55 MB (1,024,771 שורות)",
+    driveUrl: "https://docs.google.com/spreadsheets/d/1sPNpvv7PY7HDLL1U-iw4SKqxqphQu5fl/edit?usp=sharing&ouid=111380842784605458811&rtpof=true&sd=true",
     officialUrl: "https://www.gov.il/he/departments/ministry_of_interior",
-    projectFile: "data/raw/moin/moin_audited_local_authorities_2024.xlsx",
+    description: "דוחות ביצוע מבוקרים מלאים (טופס 1, טופס 2 ופרק 6 חינוך) לכל 257 הרשויות המקומיות.",
     variables: [
       "סך הוצאות חינוך בתקציב הרגיל (קוד 1486)",
       "סך תקבולי חינוך והשתתפות משה\"ח בתקציב הרגיל (קוד 1384)",
       "סך הכנסות עצמיות (קוד 1805)",
-      "סך הכנסות התקציב הרגיל (קוד 4162)",
-      "הכנסות מארנונה שאינה למגורים - מסחר, תעשייה ומשרדים (קוד 4146)",
-      "מענק איזון כללי ממשרד הפנים (קוד 1819)"
-    ],
+      "סך הכנסות התקציב הרגיל (קוד 4162 / 40814)",
+      "ארנונה שאינה למגורים — עסקית, מסחר ותעשייה (קוד 4146)",
+      "ארנונה למגורים (קוד 4138)",
+      "מענק איזון כללי ממשרד הפנים (קוד 1819 / 43150)"
+    ]
+  },
+  cbs_socio_pop_2024: {
+    id: "cbs_socio_pop_2024",
+    title: "קובץ הרשויות המקומיות בישראל 2024 — אוכלוסייה רשמית 2024 ומדד חברתי־כלכלי 2021",
+    shortTitle: "הלמ״ס — רשויות מקומיות, אוכלוסייה 2024 ואשכול ח״כ 2021",
+    publisher: "הלשכה המרכזית לסטטיסטיקה (למ״ס)",
+    fileName: "p_libud_24.xlsx",
+    fileSize: "1.13 MB",
+    driveUrl: "https://docs.google.com/spreadsheets/d/1gdJKpOtYoJXsyVD0Zo7QuaVoofAkbcfj/edit?usp=drive_link&ouid=111380842784605458811&rtpof=true&sd=true",
+    officialUrl: "https://www.cbs.gov.il/he/settlements/Pages/default.aspx",
+    description: "מאגר נתונים רשמי לעיבוד — 257 רשויות מקומיות: אוכלוסייה רשמית 2024, אשכול חברתי־כלכלי 2021 (פרסום 1904), דירוג, ציונים, סיווג ומחוז.",
+    variables: [
+      "אוכלוסייה רשמית לסוף 2024 (נפשות)",
+      "אשכול חברתי-כלכלי רשמי (1–10)",
+      "דירוג סוציו-אקונומי ארצי וציון תקן (Z-Score)",
+      "סיווג מוניציפלי (עירייה / מועצה מקומית / מועצה אזורית)",
+      "שיוך מחוזי מנהלי רשמי"
+    ]
+  },
+  cbs_periphery_2020: {
+    id: "cbs_periphery_2020",
+    title: "מדד הפריפריאליות של הרשויות המקומיות 2020 (לוח 1, הודעה לתקשורת 420/2022)",
+    shortTitle: "הלמ״ס — מדד פריפריאליות 2020",
+    publisher: "הלשכה המרכזית לסטטיסטיקה (למ״ס)",
+    fileName: "table_01.xlsx",
+    fileSize: "64.36 KB",
+    driveUrl: "https://docs.google.com/spreadsheets/d/16RFIDdYd7Xm2S2kpnCcDHuwGP7d4S6KN/edit?usp=drive_link&ouid=111380842784605458811&rtpof=true&sd=true",
+    officialUrl: "https://www.cbs.gov.il/he/publications/Pages/2022/periphery-index-2020.aspx",
+    description: "לוח 1 רשמי של הודעה 420/2022: דירוג פריפריאליות, ציון נגישות רציף ואשכול פריפריאליות 2020 לכלל הרשויות.",
+    variables: [
+      "אשכול פריפריאליות רשמי (1 = פריפריאלי ביותר, 10 = מרכזי ביותר)",
+      "ציון מדד פריפריאליות רציף",
+      "דירוג פריפריאליות ארצי"
+    ]
+  }
+};
+
+// 2. Official Sources Catalog for Methodology Tab
+window.OfficialSourcesCatalog = [
+  {
+    id: "moin_audited_2024",
+    driveKey: "moin_2024",
+    name: "דוחות כספיים מבוקרים של הרשויות המקומיות לשנת 2024 (טופס 2 ופרק 6 - חינוך)",
+    publisher: "משרד הפנים — מינהל השלטון המקומי, אגף בכיר לתקצוב ופיתוח",
+    dataYear: "2024 (מבוקר)",
+    fileName: "moin_audited_local_authorities_2024.xlsx",
+    driveUrl: window.DRIVE_SOURCES.moin_2024.driveUrl,
+    officialUrl: window.DRIVE_SOURCES.moin_2024.officialUrl,
+    variables: window.DRIVE_SOURCES.moin_2024.variables,
     status: "VERIFIED_PROJECT_SOURCE",
     notes: "דוחות מבוקרים ע\"י רואי חשבון מטעם משרד הפנים לכל 257 הרשויות המקומיות."
   },
   {
-    id: "cbs_socio_2021",
-    name: "מדד חברתי-כלכלי של הרשויות המקומיות (פרסום רשמי 1904)",
+    id: "cbs_socio_pop_2024",
+    driveKey: "cbs_socio_pop_2024",
+    name: "קובץ הרשויות המקומיות בישראל 2024 (אוכלוסייה 2024 ומדד חברתי־כלכלי 2021)",
     publisher: "הלשכה המרכזית לסטטיסטיקה (למ\"ס)",
-    dataYear: "2021 (עדכון אחרון תקף)",
-    officialUrl: "https://www.cbs.gov.il/he/publications/Pages/2023/socio-economic-index-2021.aspx",
-    projectFile: "data/raw/cbs/table_01.xlsx",
-    variables: [
-      "אשכול חברתי-כלכלי רשמי (1–10)",
-      "דירוג סוציו-אקונומי ארצי (1–257)",
-      "ציון מדד חברתי-כלכלי רציף (Z-Score)"
-    ],
+    dataYear: "אוכלוסייה 2024 / מדד ח״כ 2021 (פרסום 1904)",
+    fileName: "p_libud_24.xlsx",
+    driveUrl: window.DRIVE_SOURCES.cbs_socio_pop_2024.driveUrl,
+    officialUrl: window.DRIVE_SOURCES.cbs_socio_pop_2024.officialUrl,
+    variables: window.DRIVE_SOURCES.cbs_socio_pop_2024.variables,
     status: "VERIFIED_PROJECT_SOURCE",
-    notes: "מדד רב-משתני הכולל 14 אינדיקטורים של רמת חיים, תעסוקה, השכלה והכנסה."
+    notes: "משמש כמכנה המדויק לכלל חישובי ההוצאה והמענקים לנפש, וכמדד חברתי-כלכלי רשמי (1–10)."
   },
   {
     id: "cbs_periphery_2020",
-    name: "מדד פריפריאליות של הרשויות המקומיות (מיפוי מרחק ונגישות פוטנציאלית)",
+    driveKey: "cbs_periphery_2020",
+    name: "מדד פריפריאליות של הרשויות המקומיות 2020 (מיפוי מרחק ונגישות פוטנציאלית)",
     publisher: "הלשכה המרכזית לסטטיסטיקה (למ\"ס)",
-    dataYear: "2020 (עדכון אחרון תקף)",
-    officialUrl: "https://www.cbs.gov.il/he/publications/Pages/2022/periphery-index-2020.aspx",
-    projectFile: "data/raw/cbs/p_libud_24.xlsx",
-    variables: [
-      "אשכול פריפריאליות (1–10)",
-      "ציון מדד פריפריאליות רציף (1 = פריפריאלי ביותר, 10 = מרכזי ביותר)"
-    ],
+    dataYear: "2020 (הודעה לתקשורת 420/2022 מיום 26.12.2022)",
+    fileName: "table_01.xlsx",
+    driveUrl: window.DRIVE_SOURCES.cbs_periphery_2020.driveUrl,
+    officialUrl: window.DRIVE_SOURCES.cbs_periphery_2020.officialUrl,
+    variables: window.DRIVE_SOURCES.cbs_periphery_2020.variables,
     status: "VERIFIED_PROJECT_SOURCE",
-    notes: "מודד נגישות תחבורתית ומרחק גיאוגרפי משוקלל למוקדי תעסוקה ומרכז הארץ."
-  },
-  {
-    id: "cbs_population_2024",
-    name: "מפקד ואומדני אוכלוסייה רשמיים ברשויות המקומיות",
-    publisher: "הלשכה המרכזית לסטטיסטיקה ומשרד הפנים",
-    dataYear: "2024",
-    officialUrl: "https://www.cbs.gov.il/he/settlements/Pages/default.aspx",
-    projectFile: "משולב בדוחות המבוקרים ובנתוני הלמ\"ס",
-    variables: [
-      "מספר תושבים רשמי ברשות מקומית",
-      "סיווג מוניציפלי (עירייה / מועצה מקומית / מועצה אזורית)",
-      "שיוך מחוזי מנהלי"
-    ],
-    status: "VERIFIED_PROJECT_SOURCE",
-    notes: "משמש כמכנה המדויק לכלל חישובי ההוצאה והמענקים לנפש (לתושב)."
+    notes: "מודד נגישות תחבורתית ומרחק גיאוגרפי משוקלל למוקדי תעסוקה ומרכז הארץ (אשכול 1–10)."
   }
 ];
 
-// 2. Data Traceability Dictionary ("איך חושב?") - 4-Tier Taxonomy
+// 3. Data Traceability Dictionary ("איך חושב?") - 4-Tier Taxonomy
 window.DataTraceabilityDictionary = {
   "cbs_socio_cluster": {
     label: "אשכול חברתי-כלכלי (למ\"ס)",
@@ -81,7 +116,8 @@ window.DataTraceabilityDictionary = {
     categoryColor: "#10b981",
     sourceBody: "הלשכה המרכזית לסטטיסטיקה (למ\"ס)",
     sourceDoc: "מדד חברתי-כלכלי של הרשויות המקומיות 2021 (פרסום 1904)",
-    sourceField: "עמודת 'אשכול' בלוח 1 של פרסום הלמ\"ס",
+    sourceField: "עמודת 'אשכול' בקובץ הרשויות המקומיות לעיבוד (p_libud_24.xlsx)",
+    sourceKeys: ["cbs_socio_pop_2024"],
     calculation: "סיווג רשמי של הלמ\"ס מ-1 (החלש ביותר) עד 10 (האיתן ביותר). ללא עיבוד נוסף.",
     formula: "ערך מקור גולמי מהלמ\"ס (1 עד 10)",
     limitations: "מתעדכן אחת למספר שנים; נתוני המדד הרשמי העדכני ביותר מתייחסים לשנת 2021."
@@ -93,8 +129,9 @@ window.DataTraceabilityDictionary = {
     categoryLabel: "🟢 1. נתון מקור רשמי",
     categoryColor: "#10b981",
     sourceBody: "הלשכה המרכזית לסטטיסטיקה (למ\"ס)",
-    sourceDoc: "מדד פריפריאליות של הרשויות המקומיות 2020",
-    sourceField: "עמודת 'אשכול פריפריאליות' בקובץ p_libud_24",
+    sourceDoc: "מדד פריפריאליות של הרשויות המקומיות 2020 (הודעה לתקשורת 420/2022)",
+    sourceField: "עמודת 'אשכול פריפריאליות 2020' בלוח 1 (table_01.xlsx)",
+    sourceKeys: ["cbs_periphery_2020"],
     calculation: "סיווג רשמי של הלמ\"ס מ-1 (פריפריאלי ביותר) עד 10 (מרכזי ביותר).",
     formula: "ערך מקור גולמי מהלמ\"ס (1 עד 10)",
     limitations: "מתמקד במרחק גיאוגרפי ונגישות תחבורתית, אינו מודד מצב כלכלי של התושבים."
@@ -105,12 +142,13 @@ window.DataTraceabilityDictionary = {
     category: "OFFICIAL_DATA",
     categoryLabel: "🟢 1. נתון מקור רשמי",
     categoryColor: "#10b981",
-    sourceBody: "הלשכה המרכזית לסטטיסטיקה ומשרד הפנים",
-    sourceDoc: "דוחות כספיים מבוקרים 2024 וקובץ יישובים רשמי",
-    sourceField: "אוכלוסייה רשמית לסוף שנת 2024",
-    calculation: "מספר התושבים הרשומים ברשות המקומית.",
+    sourceBody: "הלשכה המרכזית לסטטיסטיקה (למ\"ס)",
+    sourceDoc: "קובץ הרשויות המקומיות בישראל 2024",
+    sourceField: "עמודה C ('אוכלוסייה בסוף השנה 2024') בקובץ p_libud_24.xlsx",
+    sourceKeys: ["cbs_socio_pop_2024"],
+    calculation: "מספר התושבים הרשומים ברשות המקומית לסוף שנת 2024.",
     formula: "ערך מקור רשמי גולמי (נפשות)",
-    limitations: "מבוסס מרשם אוכלוסין רשמי. משמש כיחידת הבסיס לחישוב מדדים לנפש."
+    limitations: "מבוסס מרשם אוכלוסין רשמי של הלמ\"ס. משמש כיחידת הבסיס לחישוב מדדים לנפש."
   },
   "education_expense_1486_tk": {
     label: "סך הוצאות חינוך בתקציב הרגיל (קוד 1486)",
@@ -119,8 +157,9 @@ window.DataTraceabilityDictionary = {
     categoryLabel: "🟢 1. נתון מקור רשמי",
     categoryColor: "#10b981",
     sourceBody: "משרד הפנים (דוחות כספיים מבוקרים 2024)",
-    sourceDoc: "פרק 6 (דוח ביצוע תקציב רגיל - הוצאות חינוך)",
-    sourceField: "קוד סעיף תקציבי 1486 — 'סך הוצאות חינוך'",
+    sourceDoc: "טופס 2 ופרק 6 (דוח ביצוע תקציב רגיל - הוצאות חינוך)",
+    sourceField: "קוד סעיף תקציבי 1486 — 'חינוך: תשלומים - ביצוע'",
+    sourceKeys: ["moin_2024"],
     calculation: "סך כל ההוצאות הרשמיות של הרשות המקומית על שירותי חינוך (הוראה, מנהלה, אחזקה, הסעות ושירותים תומכים).",
     formula: "ערך מבוקר גולמי (באלפי ש\"ח)",
     limitations: "משקף תקציב רגיל בלבד; אינו כולל השקעות בינוי ופיתוח מתוך תקציב בלתי רגיל (תב\"ר)."
@@ -132,11 +171,68 @@ window.DataTraceabilityDictionary = {
     categoryLabel: "🟢 1. נתון מקור רשמי",
     categoryColor: "#10b981",
     sourceBody: "משרד הפנים (דוחות כספיים מבוקרים 2024)",
-    sourceDoc: "פרק 6 (דוח ביצוע תקציב רגיל - הכנסות חינוך)",
-    sourceField: "קוד סעיף תקציבי 1384 — 'סך הכנסות חינוך והשתתפויות'",
+    sourceDoc: "טופס 2 ופרק 6 (דוח ביצוע תקציב רגיל - הכנסות חינוך)",
+    sourceField: "קוד סעיף תקציבי 1384 — 'חינוך: תקבולים - ביצוע'",
+    sourceKeys: ["moin_2024"],
     calculation: "סך כל התקבולים הייעודיים שהועברו לרשות ממשרד החינוך, משרדי ממשלה אחרים וגורמי חוץ עבור סעיפי חינוך.",
     formula: "ערך מבוקר גולמי (באלפי ש\"ח)",
     limitations: "מבטא החזרי שכר והשתתפויות בפועל המדווחות בדוח הכספי של הרשות."
+  },
+  "own_revenue_1805_tk": {
+    label: "סך הכנסות עצמיות (קוד 1805)",
+    tier: "1_OFFICIAL",
+    category: "OFFICIAL_DATA",
+    categoryLabel: "🟢 1. נתון מקור רשמי",
+    categoryColor: "#10b981",
+    sourceBody: "משרד הפנים (דוחות כספיים מבוקרים 2024)",
+    sourceDoc: "טופס 2 (דוח ביצוע תקציב רגיל - הכנסות)",
+    sourceField: "קוד סעיף תקציבי 1805 — 'הכנסות עצמיות: תקבולים - ביצוע'",
+    sourceKeys: ["moin_2024"],
+    calculation: "סך ההכנסות שנגבו ישירות ע\"י הרשות (ארנונה, אגרות, היטלים, דמי שימוש ונכסים).",
+    formula: "ערך מבוקר גולמי (באלפי ש\"ח)",
+    limitations: "מבטא גבייה בפועל בתקציב הרגיל בשנת הדוח."
+  },
+  "arnona_other_4146_tk": {
+    label: "ארנונה אחרת / שאינה למגורים (קוד 4146)",
+    tier: "1_OFFICIAL",
+    category: "OFFICIAL_DATA",
+    categoryLabel: "🟢 1. נתון מקור רשמי",
+    categoryColor: "#10b981",
+    sourceBody: "משרד הפנים (דוחות כספיים מבוקרים 2024)",
+    sourceDoc: "נספח 2 לטופס 1 (דוח גביית ארנונה ומים)",
+    sourceField: "שורה 'ארנונה אחרת', עמודה 'סהכ גביות בשנת הדוח', קוד 4146",
+    sourceKeys: ["moin_2024"],
+    calculation: "גביית ארנונה בפועל (שוטף ופיגורים) מנכסים שאינם למגורים (מסחר, תעשייה, משרדים, שירותים, מבני ציבור ועסקים).",
+    formula: "ערך מבוקר גולמי (באלפי ש\"ח)",
+    limitations: "משקף גבייה בפועל באלפי ש\"ח ללא הערכות שווי מלאכותיות."
+  },
+  "arnona_total_4162_tk": {
+    label: "סך גביית ארנונה כללית (קוד 4162)",
+    tier: "1_OFFICIAL",
+    category: "OFFICIAL_DATA",
+    categoryLabel: "🟢 1. נתון מקור רשמי",
+    categoryColor: "#10b981",
+    sourceBody: "משרד הפנים (דוחות כספיים מבוקרים 2024)",
+    sourceDoc: "נספח 2 לטופס 1 (דוח גביית ארנונה ומים)",
+    sourceField: "שורה 'סה\"כ ארנונה', קוד 4162 (זהות חשבונאית: 4138 + 4146 = 4162)",
+    sourceKeys: ["moin_2024"],
+    calculation: "סך כל גביית הארנונה ברשות (ארנונה למגורים + ארנונה אחרת).",
+    formula: "ערך מבוקר גולמי (באלפי ש\"ח)",
+    limitations: "זהות חשבונאית אומתה ב-100% מכל 257 הרשויות המקומיות."
+  },
+  "balancing_grant_1819_tk": {
+    label: "מענק איזון כללי (קוד 1819)",
+    tier: "1_OFFICIAL",
+    category: "OFFICIAL_DATA",
+    categoryLabel: "🟢 1. נתון מקור רשמי",
+    categoryColor: "#10b981",
+    sourceBody: "משרד הפנים (דוחות כספיים מבוקרים 2024)",
+    sourceDoc: "טופס 2 (דוח ביצוע תקציב רגיל - הכנסות)",
+    sourceField: "שורה 'מענק כללי / מענק איזון', קוד 1819 / 43150",
+    sourceKeys: ["moin_2024"],
+    calculation: "סכום מענק האיזון שהועבר לרשות ממשרד הפנים לצמצום הפער התקציבי הכללי.",
+    formula: "ערך מבוקר גולמי (באלפי ש\"ח)",
+    limitations: "198 רשויות זכאיות למענק איזון; 59 רשויות עצמאיות מקבלות 0 ש\"ח."
   },
   "education_net_difference_tk": {
     label: "השתתפות עצמית נטו של הרשות בחינוך (מימון עצמי)",
@@ -145,8 +241,9 @@ window.DataTraceabilityDictionary = {
     categoryLabel: "🔵 2. נתון מחושב",
     categoryColor: "#2563eb",
     sourceBody: "נגזר מדוחות כספיים מבוקרים 2024 (משרד הפנים)",
-    sourceDoc: "פרק 6 — הפרש סעיפים מבוקרים",
+    sourceDoc: "טופס 2 ופרק 6 — הפרש סעיפים מבוקרים",
     sourceField: "הפרש בין סעיף 1486 לסעיף 1384",
+    sourceKeys: ["moin_2024"],
     calculation: "הפחתת תקבולי משרד החינוך (1384) מסך הוצאות החינוך הכוללות (1486). זהו הסכום המדויק שמומן מקופתה העצמית של הרשות (מארנונה ומקורות עצמיים).",
     formula: "השתתפות עצמית נטו (אלפי ₪) = הוצאות חינוך (1486) - תקבולי חינוך (1384)",
     limitations: "ערך זה מייצג השקעה מוניציפלית נטו מתוך תקציב הרשות בלבד."
@@ -158,8 +255,9 @@ window.DataTraceabilityDictionary = {
     categoryLabel: "🔵 2. נתון מחושב",
     categoryColor: "#2563eb",
     sourceBody: "נגזר מדוחות כספיים מבוקרים 2024 (משרד הפנים)",
-    sourceDoc: "פרק 6 — יחס תקציבי",
+    sourceDoc: "טופס 2 ופרק 6 — יחס תקציבי",
     sourceField: "חישוב מנה: (השתתפות עצמית נטו / הוצאות חינוך 1486) * 100",
+    sourceKeys: ["moin_2024"],
     calculation: "אחוז ההוצאה שמומן ממקורותיה העצמיים של הרשות מתוך כלל תקציב החינוך המקומי שלה.",
     formula: "שיעור השתתפות עצמית (%) = [(1486 - 1384) / 1486] × 100",
     limitations: "ברשויות שבהן ההוצאה נמוכה מאוד, אחוז נמוך משקף תלות מוחלטת בהשתתפות ממשלתית."
@@ -170,11 +268,12 @@ window.DataTraceabilityDictionary = {
     category: "CALCULATED_METRIC",
     categoryLabel: "🔵 2. נתון מחושב",
     categoryColor: "#2563eb",
-    sourceBody: "שקלול דוחות מבוקרים 2024 עם מפקד אוכלוסין",
-    sourceDoc: "פרק 6 + למ\"ס אוכלוסייה",
-    sourceField: "השתתפות עצמית נטו כפול 1,000 מחולק באוכלוסייה",
-    calculation: "סך ההשתתפות העצמית נטו של הרשות בשקלים מחולק במספר תושבי הרשות (אוכלוסייה רשמית).",
-    formula: "הוצאה לנפש (₪) = [השתתפות עצמית נטו (אלפי ₪) × 1,000] / אוכלוסייה",
+    sourceBody: "שקלול דוחות מבוקרים 2024 (משרד הפנים) עם מפקד אוכלוסין 2024 (הלמ\"ס)",
+    sourceDoc: "פרק 6 (דוחות כספיים) + למ\"ס (p_libud_24.xlsx)",
+    sourceField: "השתתפות עצמית נטו כפול 1,000 מחולק באוכלוסייה רשמית 2024",
+    sourceKeys: ["moin_2024", "cbs_socio_pop_2024"],
+    calculation: "סך ההשתתפות העצמית נטו של הרשות בשקלים מחולק במספר תושבי הרשות (אוכלוסייה רשמית לסוף 2024).",
+    formula: "הוצאה לנפש (₪) = [השתתפות עצמית נטו (אלפי ₪) × 1,000] / אוכלוסייה 2024",
     limitations: "מחושב לכלל תושבי הרשות (לנפש). מודד את ההשקעה המוניציפלית העצמית הממוצעת לתושב."
   },
   "own_revenue_share_pct": {
@@ -184,11 +283,12 @@ window.DataTraceabilityDictionary = {
     categoryLabel: "🔵 2. נתון מחושב",
     categoryColor: "#2563eb",
     sourceBody: "משרד הפנים (דוחות כספיים מבוקרים 2024)",
-    sourceDoc: "דוח ביצוע תקציב רגיל — הכנסות",
-    sourceField: "יחס בין סעיף 1805 (הכנסות עצמיות) לסעיף 4162 (סך הכנסות)",
+    sourceDoc: "טופס 2 — דוח ביצוע תקציב רגיל (הכנסות)",
+    sourceField: "יחס בין סעיף 1805 (הכנסות עצמיות) לסעיף 4162 / 40814 (סך הכנסות)",
+    sourceKeys: ["moin_2024"],
     calculation: "מדד העצמאות והאיתנות הפיסקלית של הרשות: אחוז ההכנסות מארנונה, אגרות והיטלים מתוך סך התקציב.",
     formula: "שיעור הכנסות עצמיות (%) = [סך הכנסות עצמיות (1805) / סך כל הכנסות הרשות (4162)] × 100",
-    limitations: "רשויות עם אזורי תעשייה ומסחר גדולים נהנות משיעור גבוה במיוחד (חציון ארצי 45.2%, אחוזון 80 עומד על 64.6%)."
+    limitations: "רשויות עם אזורי תעשייה ומסחר גדולים נהנות משיעור גבוה במיוחד (חציון ארצי 45.2%, אחוזון 80 עומד על 64.61%)."
   },
   "empirical_p80_threshold": {
     label: "סף אחוזון 80 של הכנסות עצמיות (P80 Threshold)",
@@ -196,12 +296,13 @@ window.DataTraceabilityDictionary = {
     category: "CALCULATED_METRIC",
     categoryLabel: "🔵 2. נתון מחושב",
     categoryColor: "#2563eb",
-    sourceBody: "גזירה סטטיסטית אמפירית מתוך מאגר 257 הרשויות (2024)",
-    sourceDoc: "התפלגות own_revenue_share_pct בכל רשויות ישראל",
-    sourceField: "P80(own_revenue_share_pct)",
+    sourceBody: "גזירה סטטיסטית אמפירית מתוך מאגר 257 הרשויות (משרד הפנים 2024)",
+    sourceDoc: "התפלגות own_revenue_share_pct בכל 257 רשויות ישראל",
+    sourceField: "P80(own_revenue_share_pct) = 64.61%",
+    sourceKeys: ["moin_2024"],
     calculation: "הסף האמפירי שמעליו נמצאות בדיוק 20% מהרשויות בעלות העצמאות הפיסקלית הגבוהה ביותר בישראל (P80 = 64.61%).",
     formula: "P80 = אחוזון 80 מתוך מערך ממוין של 257 ערכי own_revenue_share_pct",
-    limitations: "נגזר אמפירית מהנתונים המבוקרים; מתעדכן אוטומטית בהתאם למאגר השנתי."
+    limitations: "נגזר אמפירית מהנתונים המבוקרים 2024; מתעדכן אוטומטית בהתאם למאגר השנתי."
   },
   "composite_need_score": {
     label: "ציון צורך משולב של הרשות (Composite Need)",
@@ -211,7 +312,8 @@ window.DataTraceabilityDictionary = {
     categoryColor: "#8b5cf6",
     sourceBody: "איגוד מנהלי אגפי ומחלקות החינוך — מודל מדיניות מוצע (Methodology v1.0)",
     sourceDoc: "מתודולוגיית תקצוב דיפרנציאלי מתקן v1.0",
-    sourceField: "שקלול 50% סוציו + 30% פריפריה + 20% תלות פיסקלית",
+    sourceField: "שקלול 50% סוציו (למ\"ס) + 30% פריפריה (למ\"ס) + 20% תלות פיסקלית (משרד הפנים)",
+    sourceKeys: ["cbs_socio_pop_2024", "cbs_periphery_2020", "moin_2024"],
     calculation: "ציון מנורמל בטווח 0.0 עד 1.0 המבטא את מידת הצורך היחסי של הרשות במשאבי חינוך מתקנים.",
     formula: "CompositeNeed = (0.50 × SocioScore) + (0.30 × PeriScore) + (0.20 × FiscalDependency)\nכאשר:\n• SocioScore = (10 - אשכול למ\"ס) / 9\n• PeriScore = (10 - אשכול פריפריה) / 9\n• FiscalDependency = 1.0 - (שיעור הכנסות עצמיות / 100)",
     limitations: "משקולות 50/30/20 הן בחירת מדיניות נורמטיבית של המודל לצורך סימולציה, ולא הוראה ממשלתית מחייבת."
@@ -225,6 +327,7 @@ window.DataTraceabilityDictionary = {
     sourceBody: "איגוד מנהלי החינוך — כיול מתודולוגי v1.0",
     sourceDoc: "מנגנון ריסון לינארי רציף לרשויות עשירות פיסקלית",
     sourceField: "TaperFactor(own_revenue_share_pct)",
+    sourceKeys: ["moin_2024", "cbs_socio_pop_2024"],
     calculation: "20% מהרשויות בעלות שיעור ההכנסות העצמיות הגבוה ביותר (מעל P80 = 64.61%) מקבלות הפחתה הדרגתית במענק המוצע. ככל שהעצמאות הפיסקלית גבוהה יותר, ההפחתה גדלה. ההפחתה רציפה ואינה מבטלת לחלוטין את ההכרה בצרכים החברתיים והגאוגרפיים (רצפת 10%). אין אינטראקציית פיסקלי-פריפריה.",
     formula: "עבור הכנסות עצמיות <= P80 (64.61%): TaperFactor = 1.0\nעבור הכנסות עצמיות > P80: TaperFactor = 1.0 - (1.0 - 0.10) × [(הכנסות עצמיות - 64.61) / (100 - 64.61)]",
     limitations: "P80 נגזר אמפירית מנתוני 2024; רצפת 10% (Floor) היא בחירת מדיניות של המודל להבטחת רציפות והכרה בצרכים בסיסיים."
@@ -238,6 +341,7 @@ window.DataTraceabilityDictionary = {
     sourceBody: "מנוע סימולציית הקצאה מתקנת (EducationSimulator v1.0)",
     sourceDoc: "תרחיש סל תקציב מתקן מוצע (ברירת מחדל: 1 מיליארד ₪)",
     sourceField: "הקצאה יחסית מתוך סל התקציב",
+    sourceKeys: ["moin_2024", "cbs_socio_pop_2024", "cbs_periphery_2020"],
     calculation: "סכום המענק שהרשות הייתה מקבלת אילו הופעל מודל ההקצאה המוצע ע\"י האיגוד (מעריך לינארי 1.0 עם טייפר P80).",
     formula: "ציון הרשות = אוכלוסייה × (CompositeNeed × TaperFactor)\nמענק לרשות (₪) = סל התקציב × [ציון הרשות / סך כל ציוני הרשויות בארץ]\nמענק לנפש (₪) = מענק לרשות / אוכלוסייה",
     limitations: "זוהי סימולציה היפותטית של תרחיש מדיניות מוצע! אין מדובר בתקציב שהוקצה בפועל ע\"י הממשלה."
@@ -248,9 +352,10 @@ window.DataTraceabilityDictionary = {
     category: "CALCULATED_METRIC",
     categoryLabel: "🔵 2. נתון מחושב",
     categoryColor: "#2563eb",
-    sourceBody: "חישוב סטטיסטי משוקלל אוכלוסייה",
+    sourceBody: "חישוב סטטיסטי משוקלל אוכלוסייה מתוך דוחות משרד הפנים והלמ\"ס",
     sourceDoc: "עקומת לורנץ של התפלגות ההוצאה העצמית נטו לנפש",
     sourceField: "אינטגרציית עקומת לורנץ לפי אוכלוסיית 257 הרשויות",
+    sourceKeys: ["moin_2024", "cbs_socio_pop_2024"],
     calculation: "מדד סטטיסטי תקני (0 עד 1) המודד את רמת הריכוזיות ואי-השוויון בהוצאה העצמית נטו לנפש של הרשויות המקומיות בישראל.",
     formula: "G = 1 - 2 × שטח מתחת לעקומת לורנץ המשוקללת באוכלוסייה",
     limitations: "מודד אך ורק אי-שוויון בהוצאה העצמית של הרשויות (מתקציבן המקומי); אינו מודד את כלל אי-השוויון במערכת החינוך."
@@ -258,7 +363,30 @@ window.DataTraceabilityDictionary = {
 };
 
 window.DataTraceabilityEngine = {
-  // Shows modal dialog explaining "איך חושב?"
+  // Generates HTML for Single or Multi-source Drive links
+  renderSourcesDriveBox: function(sourceKeys) {
+    if (!sourceKeys || sourceKeys.length === 0) return '';
+    const sources = sourceKeys.map(k => window.DRIVE_SOURCES[k]).filter(Boolean);
+    if (sources.length === 0) return '';
+
+    const isMulti = sources.length > 1;
+    const title = isMulti ? '📎 קובצי המקור ששימשו לניתוח:' : '📎 קובץ המקור ששימש לניתוח:';
+
+    const linksHtml = sources.map(s => `
+      <a href="${s.driveUrl}" target="_blank" rel="noopener noreferrer" class="source-drive-link" title="פתיחת הקובץ המקורי לצפייה ב-Google Drive">
+        📊 ${s.shortTitle} (<code>${s.fileName}</code>) ↗
+      </a>
+    `).join('');
+
+    return `
+      <div class="source-drive-box">
+        <div class="source-drive-title">${title}</div>
+        <div class="source-drive-links">${linksHtml}</div>
+      </div>
+    `;
+  },
+
+  // Shows modal dialog explaining "איך חושב?" with verified Drive link(s)
   showTraceabilityModal: function(varKey) {
     const info = window.DataTraceabilityDictionary[varKey];
     if (!info) {
@@ -273,6 +401,8 @@ window.DataTraceabilityEngine = {
       modal.className = "trace-modal-backdrop";
       document.body.appendChild(modal);
     }
+
+    const driveLinksBox = this.renderSourcesDriveBox(info.sourceKeys || []);
 
     modal.innerHTML = `
       <div class="trace-modal-dialog">
@@ -299,6 +429,8 @@ window.DataTraceabilityEngine = {
             <span class="trace-label">🔍 שדה / קוד סעיף:</span>
             <span class="trace-val font-mono">${info.sourceField}</span>
           </div>
+
+          ${driveLinksBox}
           
           <div class="trace-box" style="margin-top:14px;">
             <div class="trace-box-title">📐 שיטת החישוב והגזירה:</div>
@@ -338,8 +470,14 @@ window.DataTraceabilityEngine = {
         <div class="source-meta">
           <div><strong>גוף מפרסם:</strong> ${s.publisher}</div>
           <div><strong>שנת נתונים:</strong> ${s.dataYear}</div>
-          <div><strong>קובץ בפרויקט:</strong> <code class="font-mono">${s.projectFile}</code></div>
-          ${s.officialUrl ? `<div><strong>קישור למאגר הרשמי:</strong> <a href="${s.officialUrl}" target="_blank" rel="noopener noreferrer" style="color:var(--primary); text-decoration:underline;">פתיחת מקור ממשלתי רשמי ↗</a></div>` : ''}
+          <div><strong>קובץ בפרויקט:</strong> <code class="font-mono">${s.fileName}</code></div>
+          <div style="margin-top: 6px;">
+            <strong>קישור לקובץ המקור:</strong> 
+            <a href="${s.driveUrl}" target="_blank" rel="noopener noreferrer" class="source-drive-link" style="margin-top: 4px;">
+              📎 פתיחת קובץ המקור ב-Google Drive ↗
+            </a>
+            ${s.officialUrl ? `<a href="${s.officialUrl}" target="_blank" rel="noopener noreferrer" class="source-official-link">🌐 אתר הגוף המפרסם ↗</a>` : ''}
+          </div>
         </div>
         <div class="source-vars">
           <strong>משתנים שנלקחו מהמקור:</strong>
@@ -361,7 +499,7 @@ window.DataTraceabilityEngine = {
             גרסה פעילה: <strong>${window.METHODOLOGY_VERSION}</strong> | בסיס נתונים: דוחות כספיים מבוקרים 2024 (משרד הפנים והלמ"ס)
           </div>
           <p style="margin: 12px 0 0 0; font-size: 14px; line-height: 1.6; color: var(--text-main);">
-            מערכת זו פועלת על פי סטנדרט מדעי קפדני של שקיפות מלאה. כל נתון מוצג משויך למקור רשמי מאומת, וכל נוסחה או הנחת מדיניות מפורטת בשפה גלויה וברורה על פי 4 שכבות השקיפות.
+            מערכת זו פועלת על פי סטנדרט מדעי קפדני של שקיפות מלאה. כל נתון מוצג מקושר ישירות לקובץ המקור המדויק ב-Google Drive ששימש לבנייתו, וכל נוסחה או הנחת מדיניות מפורטת בשפה גלויה וברורה על פי 4 שכבות השקיפות.
           </p>
         </div>
 
@@ -412,7 +550,7 @@ window.DataTraceabilityEngine = {
             <div class="pipeline-step">
               <div class="step-num">1</div>
               <div class="step-title">איסוף מקורות גלם</div>
-              <div class="step-desc">דוחות כספיים מבוקרים 2024 (משרד הפנים) + קובצי למ"ס רשמיים (חברתי-כלכלי ופריפריאליות).</div>
+              <div class="step-desc">דוחות כספיים מבוקרים 2024 (משרד הפנים) + קובצי למ"ס רשמיים (חברתי-כלכלי, אוכלוסייה ופריפריאליות).</div>
             </div>
             <div class="pipeline-step">
               <div class="step-num">2</div>
@@ -517,7 +655,7 @@ window.DataTraceabilityEngine = {
                 <li><strong>שילוב מנגנון ריסון פיסקלי אמפירי (P80 Fiscal Taper):</strong> הפחתה רציפה לרשויות מעל אחוזון 80 של הכנסות עצמיות (64.61%) עד רצפת 10%. פותר את עיוות תמר ורשויות עשירות בפריפריה.</li>
                 <li><strong>שלילת אינטראקציית פיסקלי-פריפריה:</strong> שמירה על מודל חיבורי שקוף ופשוט ללא כפל משתנים שרירותי.</li>
                 <li><strong>סיווג שקיפות ב-4 שכבות קשיחות:</strong> הפרדה מלאה בין נתוני מקור רשמיים, נתונים מחושבים, בחירות מדיניות ותוצאות סימולציה.</li>
-                <li><strong>דיוק טרמינולוגי:</strong> הגדרה עקבית ומדויקת של כלל המענקים כ"מענק מוצע לנפש" (₪/נפש) על בסיס אוכלוסיית הרשות.</li>
+                <li><strong>דיוק טרמינולוגי:</strong> הגדרה עקבית ומדויקת של כלל המענקים כ\"מענק מוצע לנפש\" (₪/נפש) על בסיס אוכלוסיית הרשות.</li>
               </ul>
             </div>
             <div style="border-right: 3px solid var(--text-muted); padding-right: 12px; opacity: 0.8;">
@@ -531,8 +669,8 @@ window.DataTraceabilityEngine = {
 
         <!-- Official Sources Catalog -->
         <div class="card" style="margin-top: 16px;">
-          <h3 class="card-title">5. קטלוג מקורות רשמיים וקובצי נתונים (Verified Source Catalog)</h3>
-          <p class="card-subtitle">כל המקורות עברו אימות ובידוד מוחלט בתוך גבולות הפרויקט:</p>
+          <h3 class="card-title">5. קטלוג מקורות רשמיים וקובצי נתונים ב-Google Drive (Verified Source Catalog)</h3>
+          <p class="card-subtitle">שלושת קובצי המקור המאומתים ששימשו בפועל לבניית מאגר 257 הרשויות זמינים לצפייה ישירה:</p>
           <div class="sources-list" style="margin-top: 12px;">
             ${sourcesHtml}
           </div>

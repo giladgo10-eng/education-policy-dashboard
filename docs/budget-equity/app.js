@@ -16,6 +16,7 @@
     gapsSubView: 'profile',
     researchSubView: 'scatter',
     reportSubType: 'national',
+    scatterPopulation: 'ALL',
     scatterXKey: 'own_revenue_share_pct',
     scatterXLabel: 'שיעור הכנסות עצמיות מתוך התקציב (%)',
     excludeTamar: false,
@@ -48,6 +49,7 @@
     // Explorer Tab
     explorerCountBadge: document.getElementById('explorerCountBadge'),
     selectXAxis: document.getElementById('selectXAxis'),
+    selectScatterPopulation: document.getElementById('selectScatterPopulation'),
     chkExcludeTamar: document.getElementById('chkExcludeTamar'),
     chkExcludeWar: document.getElementById('chkExcludeWar'),
     canvasScatterExplorer: document.getElementById('canvasScatterExplorer'),
@@ -447,9 +449,18 @@
       });
     }
 
+    if (el.selectScatterPopulation) {
+      el.selectScatterPopulation.addEventListener('change', () => {
+        state.scatterPopulation = el.selectScatterPopulation.value;
+        renderExplorer();
+      });
+    }
+
     if (el.chkExcludeTamar) {
       el.chkExcludeTamar.addEventListener('change', () => {
         state.excludeTamar = el.chkExcludeTamar.checked;
+        renderExplorer();
+        renderResearch();
         applyFilters();
       });
     }
@@ -457,6 +468,8 @@
     if (el.chkExcludeWar) {
       el.chkExcludeWar.addEventListener('change', () => {
         state.excludeWar = el.chkExcludeWar.checked;
+        renderExplorer();
+        renderResearch();
         applyFilters();
       });
     }
@@ -717,6 +730,74 @@
     state.excludeTamar = false;
     state.excludeWar = false;
     applyFilters();
+    renderExplorer();
+  }
+
+  // Common Population Filtering Definition for Research & Scatter
+  const researchPopulationMeta = {
+    'ALL': {
+      title: 'כלל הרשויות',
+      desc: 'ניתוח רחב על כלל 257 הרשויות המקומיות בישראל.',
+      filter: (d) => true
+    },
+    'GROUP_1_3': {
+      title: 'אשכולות 1–3 (מצוקה וזכאות מוגברת)',
+      desc: 'בתוך אשכולות המצוקה (1–3), ככל שהמענק לנפש גבוה יותר — שיעור ההשתתפות העצמית עולה במובהק (r = +0.4138, p = 0.0002).',
+      filter: (d) => {
+        const c = (d.cbs_socio_cluster !== undefined && d.cbs_socio_cluster !== null && d.cbs_socio_cluster !== '') ? d.cbs_socio_cluster : d.socio_cluster_2021;
+        return c >= 1 && c <= 3;
+      }
+    },
+    'GROUP_4_5': {
+      title: 'אשכולות 4–5 (ביניים נמוכים)',
+      desc: 'באשכולות הביניים הנמוכים (4–5), הקשר בין מענק האיזון להשתתפות עצמית מתון ולא מובהק סטטיסטית.',
+      filter: (d) => {
+        const c = (d.cbs_socio_cluster !== undefined && d.cbs_socio_cluster !== null && d.cbs_socio_cluster !== '') ? d.cbs_socio_cluster : d.socio_cluster_2021;
+        return c >= 4 && c <= 5;
+      }
+    },
+    'GROUP_6_7': {
+      title: 'אשכולות 6–7 (ביניים גבוהים)',
+      desc: 'באשכולות הביניים הגבוהים (6–7), מענק האיזון מצומצם ונצפה מתאם שלילי מובהק מול רשויות ללא זכאות למענק.',
+      filter: (d) => {
+        const c = (d.cbs_socio_cluster !== undefined && d.cbs_socio_cluster !== null && d.cbs_socio_cluster !== '') ? d.cbs_socio_cluster : d.socio_cluster_2021;
+        return c >= 6 && c <= 7;
+      }
+    },
+    'GROUP_8_10': {
+      title: 'אשכולות 8–10 (מבוססים)',
+      desc: 'באשכולות המבוססים (8–10), רוב הרשויות אינן זכאיות למענק איזון (מענק 0 ₪) ולכן השונות במענק נמוכה.',
+      filter: (d) => {
+        const c = (d.cbs_socio_cluster !== undefined && d.cbs_socio_cluster !== null && d.cbs_socio_cluster !== '') ? d.cbs_socio_cluster : d.socio_cluster_2021;
+        return c >= 8 && c <= 10;
+      }
+    }
+  };
+
+  // Add individual clusters 1..10 to metadata
+  for (let cl = 1; cl <= 10; cl++) {
+    const clNum = cl;
+    researchPopulationMeta[`CLUSTER_${clNum}`] = {
+      title: `אשכול ${clNum} בלבד`,
+      desc: clNum <= 3
+        ? `ניתוח ממוקד לאשכול ${clNum}: בחינת הקשר התוך-אשכולי בין גובה מענק האיזון לנפש להשתתפות העצמית בחינוך.`
+        : `ניתוח ממוקד לאשכול ${clNum}: בחינת שיעור ההשתתפות העצמית מול מענק האיזון ברשויות האשכול.`,
+      filter: (d) => {
+        const c = (d.cbs_socio_cluster !== undefined && d.cbs_socio_cluster !== null && d.cbs_socio_cluster !== '') ? d.cbs_socio_cluster : d.socio_cluster_2021;
+        return c === clNum;
+      }
+    };
+  }
+
+  function getScatterData() {
+    const popKey = state.scatterPopulation || (el.selectScatterPopulation ? el.selectScatterPopulation.value : 'ALL');
+    const meta = researchPopulationMeta[popKey] || researchPopulationMeta['ALL'];
+
+    return state.allData.filter(item => {
+      if (state.excludeTamar && item.is_tamar_outlier) return false;
+      if (state.excludeWar && item.is_war_evacuated_2024) return false;
+      return meta.filter(item);
+    });
   }
 
   function applyFilters() {
@@ -738,7 +819,7 @@
       if (type && item.type !== type) return false;
 
       if (socio) {
-        const s = item.cbs_socio_cluster;
+        const s = (item.cbs_socio_cluster !== undefined && item.cbs_socio_cluster !== null) ? item.cbs_socio_cluster : item.socio_cluster_2021;
         if (socio === '1-3' && (s < 1 || s > 3)) return false;
         if (socio === '4-6' && (s < 4 || s > 6)) return false;
         if (socio === '7-10' && (s < 7 || s > 10)) return false;
@@ -762,26 +843,27 @@
       }
     }
 
-    if (el.explorerCountBadge) {
-      el.explorerCountBadge.textContent = `מציג ${state.filteredData.length} מתוך ${state.allData.length} רשויות`;
-    }
-
-    renderExplorer();
     renderTable();
   }
 
   function renderExplorer() {
     if (!el.canvasScatterExplorer) return;
 
+    const scatterData = getScatterData();
+
+    if (el.explorerCountBadge) {
+      el.explorerCountBadge.textContent = `מציג ${scatterData.length} מתוך ${state.allData.length} רשויות`;
+    }
+
     const stats = EducationCharts.renderScatterExplorer(
       el.canvasScatterExplorer,
-      state.filteredData,
+      scatterData,
       {
         xKey: state.scatterXKey,
         xLabel: state.scatterXLabel,
         selectedCode: state.selectedAuthority ? state.selectedAuthority.code : null,
-        excludeTamar: state.excludeTamar,
-        excludeWar: state.excludeWar,
+        excludeTamar: false,
+        excludeWar: false,
         onSelectCallback: (selected) => {
           selectAuthority(selected);
           navigateTo('gaps', 'profile');
@@ -794,10 +876,15 @@
       if (el.statR) el.statR.textContent = (stats.r >= 0 ? '+' : '') + stats.r.toFixed(4);
       if (el.statR2) el.statR2.textContent = stats.r2.toFixed(4);
       if (el.statEq) el.statEq.textContent = `y = ${stats.slope}x + ${stats.intercept}`;
+    } else {
+      if (el.statN) el.statN.textContent = '0';
+      if (el.statR) el.statR.textContent = '-';
+      if (el.statR2) el.statR2.textContent = '-';
+      if (el.statEq) el.statEq.textContent = '-';
     }
 
     if (el.canvasClusterStep) {
-      EducationCharts.renderClusterStepChart(el.canvasClusterStep, state.filteredData);
+      EducationCharts.renderClusterStepChart(el.canvasClusterStep, scatterData);
     }
   }
 
@@ -901,61 +988,6 @@
     if (el.canvasPeerBenchmark) {
       EducationCharts.renderPeerBenchmark(el.canvasPeerBenchmark, auth, state.allData);
     }
-  }
-
-  const researchPopulationMeta = {
-    'ALL': {
-      title: 'כלל הרשויות',
-      desc: 'ברמה הארצית, מענק האיזון מרוכז ברשויות חלשות ששיעור השתתפותן נמוך עקב מצוקה כלכלית כוללת.',
-      filter: (d) => true
-    },
-    'GROUP_1_3': {
-      title: 'אשכולות 1–3 (מצוקה וזכאות מוגברת)',
-      desc: 'בתוך אשכולות המצוקה (1–3), ככל שהמענק לנפש גבוה יותר — שיעור ההשתתפות העצמית עולה במובהק (r = +0.4138, p = 0.0002).',
-      filter: (d) => {
-        const c = (d.cbs_socio_cluster !== undefined && d.cbs_socio_cluster !== null && d.cbs_socio_cluster !== '') ? d.cbs_socio_cluster : d.socio_cluster_2021;
-        return c >= 1 && c <= 3;
-      }
-    },
-    'GROUP_4_5': {
-      title: 'אשכולות 4–5 (ביניים נמוכים)',
-      desc: 'באשכולות הביניים הנמוכים (4–5), הקשר בין מענק האיזון להשתתפות עצמית מתון ולא מובהק סטטיסטית.',
-      filter: (d) => {
-        const c = (d.cbs_socio_cluster !== undefined && d.cbs_socio_cluster !== null && d.cbs_socio_cluster !== '') ? d.cbs_socio_cluster : d.socio_cluster_2021;
-        return c >= 4 && c <= 5;
-      }
-    },
-    'GROUP_6_7': {
-      title: 'אשכולות 6–7 (ביניים גבוהים)',
-      desc: 'באשכולות הביניים הגבוהים (6–7), מענק האיזון מצומצם ונצפה מתאם שלילי מובהק מול רשויות ללא זכאות למענק.',
-      filter: (d) => {
-        const c = (d.cbs_socio_cluster !== undefined && d.cbs_socio_cluster !== null && d.cbs_socio_cluster !== '') ? d.cbs_socio_cluster : d.socio_cluster_2021;
-        return c >= 6 && c <= 7;
-      }
-    },
-    'GROUP_8_10': {
-      title: 'אשכולות 8–10 (מבוססים)',
-      desc: 'באשכולות המבוססים (8–10), רוב הרשויות אינן זכאיות למענק איזון (מענק 0 ₪) ולכן השונות במענק נמוכה.',
-      filter: (d) => {
-        const c = (d.cbs_socio_cluster !== undefined && d.cbs_socio_cluster !== null && d.cbs_socio_cluster !== '') ? d.cbs_socio_cluster : d.socio_cluster_2021;
-        return c >= 8 && c <= 10;
-      }
-    }
-  };
-
-  // Add individual clusters 1..10 to metadata
-  for (let cl = 1; cl <= 10; cl++) {
-    const clNum = cl;
-    researchPopulationMeta[`CLUSTER_${clNum}`] = {
-      title: `אשכול ${clNum} בלבד`,
-      desc: clNum <= 3
-        ? `ניתוח ממוקד לאשכול ${clNum}: בחינת הקשר התוך-אשכולי בין גובה מענק האיזון לנפש להשתתפות העצמית בחינוך.`
-        : `ניתוח ממוקד לאשכול ${clNum}: בחינת שיעור ההשתתפות העצמית מול מענק האיזון ברשויות האשכול.`,
-      filter: (d) => {
-        const c = (d.cbs_socio_cluster !== undefined && d.cbs_socio_cluster !== null && d.cbs_socio_cluster !== '') ? d.cbs_socio_cluster : d.socio_cluster_2021;
-        return c === clNum;
-      }
-    };
   }
 
   function renderResearch() {

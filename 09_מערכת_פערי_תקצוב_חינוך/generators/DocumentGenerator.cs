@@ -110,6 +110,9 @@ namespace EducationDocumentGenerator
             Console.WriteLine("Output Dir:   " + outputDir);
             Console.WriteLine("=========================================================================================================\n");
 
+            bool isResume = args != null && Array.Exists(args, x => x.Equals("--resume", StringComparison.OrdinalIgnoreCase));
+            if (isResume) Console.WriteLine("[CHECKPOINT/RESUME] Resume mode active: existing valid files will be preserved.");
+
             // 1. Pre-Flight Verification & Master Dataset Loading
             Console.WriteLine("--- Pre-Flight Verification ---");
             JavaScriptSerializer serializer = new JavaScriptSerializer();
@@ -151,9 +154,11 @@ namespace EducationDocumentGenerator
                     string htmlPath = Path.Combine(outputDir, baseName + "_Print.html");
                     string pdfPath = Path.Combine(outputDir, baseName + ".pdf");
 
-                    GenerateMunicipalDocx(a, summary, docxPath);
-                    GenerateMunicipalHtml(a, summary, htmlPath);
-                    ConvertHtmlToPdf(htmlPath, pdfPath);
+                    if (!isResume || !File.Exists(docxPath) || new FileInfo(docxPath).Length < 1000)
+                        GenerateMunicipalDocx(a, summary, docxPath);
+                    if (!isResume || !File.Exists(htmlPath) || new FileInfo(htmlPath).Length < 500)
+                        GenerateMunicipalHtml(a, summary, htmlPath);
+                    ConvertHtmlToPdf(htmlPath, pdfPath, isResume);
 
                     int pCount = GetPdfPageCount(pdfPath);
                     Console.WriteLine(string.Format("  Initial Test {0} ({1}): Pages={2} (Expected=1) -> {3}",
@@ -166,9 +171,11 @@ namespace EducationDocumentGenerator
             string natHtmlPath = Path.Combine(outputDir, "National_Systemic_Report_2024_Print.html");
             string natPdfPath = Path.Combine(outputDir, "National_Systemic_Report_2024.pdf");
 
-            GenerateNationalDocx(dataset, summary, natDocxPath);
-            GenerateNationalHtml(dataset, summary, natHtmlPath);
-            ConvertHtmlToPdf(natHtmlPath, natPdfPath);
+            if (!isResume || !File.Exists(natDocxPath) || new FileInfo(natDocxPath).Length < 1000)
+                GenerateNationalDocx(dataset, summary, natDocxPath);
+            if (!isResume || !File.Exists(natHtmlPath) || new FileInfo(natHtmlPath).Length < 500)
+                GenerateNationalHtml(dataset, summary, natHtmlPath);
+            ConvertHtmlToPdf(natHtmlPath, natPdfPath, isResume);
             Console.WriteLine("  Initial Test National Report: Generated DOCX, HTML, PDF.");
 
             // 4. Generate All 257 Municipal Word Docx & Print HTML
@@ -180,8 +187,10 @@ namespace EducationDocumentGenerator
                 string docxPath = Path.Combine(outputDir, baseName + ".docx");
                 string htmlPath = Path.Combine(outputDir, baseName + "_Print.html");
 
-                GenerateMunicipalDocx(a, summary, docxPath);
-                GenerateMunicipalHtml(a, summary, htmlPath);
+                if (!isResume || !File.Exists(docxPath) || new FileInfo(docxPath).Length < 1000)
+                    GenerateMunicipalDocx(a, summary, docxPath);
+                if (!isResume || !File.Exists(htmlPath) || new FileInfo(htmlPath).Length < 500)
+                    GenerateMunicipalHtml(a, summary, htmlPath);
 
                 if ((i + 1) % 50 == 0 || i == dataset.Count - 1)
                 {
@@ -201,7 +210,7 @@ namespace EducationDocumentGenerator
                 string htmlPath = Path.Combine(outputDir, baseName + "_Print.html");
                 string pdfPath = Path.Combine(outputDir, baseName + ".pdf");
 
-                ConvertHtmlToPdf(htmlPath, pdfPath);
+                ConvertHtmlToPdf(htmlPath, pdfPath, isResume);
 
                 lock (lockObj)
                 {
@@ -1124,8 +1133,13 @@ namespace EducationDocumentGenerator
             }
         }
 
-        static void ConvertHtmlToPdf(string htmlPath, string pdfPath)
+        static void ConvertHtmlToPdf(string htmlPath, string pdfPath, bool resume = false)
         {
+            if (resume && File.Exists(pdfPath) && new FileInfo(pdfPath).Length > 1000)
+            {
+                return; // Resume checkpoint hit: PDF already valid
+            }
+
             string[] browserPaths = new string[]
             {
                 @"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe",
@@ -1159,7 +1173,11 @@ namespace EducationDocumentGenerator
                 psi.UseShellExecute = false;
                 using (Process p = Process.Start(psi))
                 {
-                    p.WaitForExit(25000);
+                    bool finished = p.WaitForExit(15000);
+                    if (!finished)
+                    {
+                        try { p.Kill(); } catch { }
+                    }
                 }
             }
             catch (Exception ex)

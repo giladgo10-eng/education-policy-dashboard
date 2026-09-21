@@ -5,8 +5,9 @@
 bin/
 obj/
 
-# Generated output files (can be deterministically regenerated with DocumentGenerator.cs)
+# Generated output files & snapshots
 output/
+snapshots/
 
 # OS & Editor files
 .DS_Store

@@ -1,0 +1,19 @@
+{
+  "description": "Ledger of raw data intakes for Education Equity System",
+  "active_baseline": "Baseline-2024-v1.0",
+  "intakes": [
+    {
+      "intake_id": "INTAKE-2024-BASELINE",
+      "file_name": "moin_audited_local_authorities_2024.xlsx",
+      "source": "Ministry of Interior (MOIN) - Audited Financial Statements 2024",
+      "data_year": 2024,
+      "received_at": "2026-09-15T00:00:00Z",
+      "sha256": "4abdc60_audited_baseline_2024",
+      "record_count": 257,
+      "data_type": "moin_audited_financials",
+      "replaces_version": null,
+      "status": "ACTIVE_PRODUCTION",
+      "notes": "Verified audited dataset for 257 local authorities, chapters 6 & Form 1/2."
+    }
+  ]
+}

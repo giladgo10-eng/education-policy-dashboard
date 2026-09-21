@@ -476,6 +476,7 @@ window.DataTraceabilityEngine = {
             <a href="${s.driveUrl}" target="_blank" rel="noopener noreferrer" class="source-drive-link" style="margin-top: 4px;">
               📁 פתיחת תיקיית המקור ב-Google Drive ↗
             </a>
+            <span class="source-print-url font-mono">${s.driveUrl}</span>
             ${s.officialUrl ? `<a href="${s.officialUrl}" target="_blank" rel="noopener noreferrer" class="source-official-link">🌐 אתר הגוף המפרסם ↗</a>` : ''}
           </div>
         </div>
@@ -489,14 +490,42 @@ window.DataTraceabilityEngine = {
       </div>
     `).join('');
 
+    const formattedDate = new Date().toLocaleDateString('he-IL', { year: 'numeric', month: 'long', day: 'numeric' });
+
     containerEl.innerHTML = `
       <div class="methodology-container">
+        <!-- Print Header (Visible only in Print / PDF Export) -->
+        <div class="methodology-print-header">
+          <div class="print-header-top">
+            <span class="print-header-badge">מסמך מתודולוגיה ושקיפות נתונים</span>
+            <span class="print-header-version">${window.METHODOLOGY_VERSION}</span>
+          </div>
+          <h1 class="print-header-title">פיילוט — מערכת ניסיונית לניתוח פערי תקצוב וצדק חלוקתי בחינוך המוניציפלי</h1>
+          <div class="print-header-subtitle">מתודולוגיה, מקורות נתונים מאומתים ושיטת החישוב</div>
+          <div class="print-header-meta-grid">
+            <div class="print-meta-item"><strong>פיתוח וניהול הפיילוט:</strong> גלעד גולדמן | giladgo10@gmail.com</div>
+            <div class="print-meta-item"><strong>בסיס נתונים:</strong> דוחות כספיים מבוקרים 2024 (משרד הפנים) וקובצי למ"ס 2024</div>
+            <div class="print-meta-item"><strong>היקף מאגר:</strong> 257 רשויות מקומיות (כיסוי ארצי 100% מאומת)</div>
+            <div class="print-meta-item"><strong>תאריך הפקה:</strong> ${formattedDate}</div>
+          </div>
+        </div>
+
         <!-- Banner -->
         <div class="card methodology-banner">
-          <div class="methodology-badge">🛡️ שקיפות מלאה ועקיבות נתונים (Data Provenance)</div>
-          <h2 style="margin: 8px 0; font-size: 24px; color: var(--text-main);">מתודולוגיה, מקורות ושיטת החישוב</h2>
-          <div style="font-size: 14px; color: var(--text-muted);">
-            גרסה פעילה: <strong>${window.METHODOLOGY_VERSION}</strong> | בסיס נתונים: דוחות כספיים מבוקרים 2024 (משרד הפנים והלמ"ס)
+          <div style="display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; flex-wrap: wrap;">
+            <div style="flex: 1; min-width: 280px;">
+              <div class="methodology-badge">🛡️ שקיפות מלאה ועקיבות נתונים (Data Provenance)</div>
+              <h2 style="margin: 8px 0; font-size: 24px; color: var(--text-main);">מתודולוגיה, מקורות ושיטת החישוב</h2>
+              <div style="font-size: 14px; color: var(--text-muted);">
+                גרסה פעילה: <strong>${window.METHODOLOGY_VERSION}</strong> | בסיס נתונים: דוחות כספיים מבוקרים 2024 (משרד הפנים והלמ"ס)
+              </div>
+            </div>
+            <div class="no-print" style="display: flex; gap: 8px; align-items: center;">
+              <button class="btn btn-primary" onclick="window.print()" style="display: inline-flex; align-items: center; gap: 6px; font-weight: 700; padding: 8px 16px; box-shadow: var(--shadow-sm); cursor: pointer;" title="הורדת מסמך המתודולוגיה המלא כ-PDF או הדפסה">
+                <span>📄</span>
+                <span>הורדת המתודולוגיה כ־PDF</span>
+              </button>
+            </div>
           </div>
           <p style="margin: 12px 0 0 0; font-size: 14px; line-height: 1.6; color: var(--text-main);">
             מערכת זו פועלת על פי סטנדרט מדעי קפדני של שקיפות מלאה. כל נתון מוצג מקושר ישירות לקובץ המקור המדויק ב-Google Drive ששימש לבנייתו, וכל נוסחה או הנחת מדיניות מפורטת בשפה גלויה וברורה על פי 4 שכבות השקיפות.
@@ -673,6 +702,20 @@ window.DataTraceabilityEngine = {
           <p class="card-subtitle">שלושת קובצי המקור המאומתים ששימשו בפועל לבניית מאגר 257 הרשויות זמינים לצפייה ישירה:</p>
           <div class="sources-list" style="margin-top: 12px;">
             ${sourcesHtml}
+          </div>
+        </div>
+
+        <!-- Print Footer (Visible only in Print / PDF Export) -->
+        <div class="methodology-print-footer">
+          <div class="print-footer-inner">
+            <div class="print-footer-brand">
+              <strong>פיילוט — מערכת ניסיונית לניתוח פערי תקצוב וצדק חלוקתי בחינוך המוניציפלי</strong>
+              <span> | פיתוח וניהול הפיילוט: גלעד גולדמן (giladgo10@gmail.com)</span>
+            </div>
+            <div class="print-footer-meta">
+              <span>גרסת מתודולוגיה: <strong>${window.METHODOLOGY_VERSION}</strong></span>
+              <span> | תאריך הפקה: ${formattedDate}</span>
+            </div>
           </div>
         </div>
       </div>

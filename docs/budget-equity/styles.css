@@ -1341,26 +1341,330 @@ table.data-table tr.clickable {
   }
 }
 
+/* Methodology Screen & Print Elements */
+.methodology-print-header,
+.methodology-print-footer,
+.source-print-url {
+  display: none;
+}
+
 @media print {
+  @page {
+    size: A4 portrait;
+    margin: 12mm 12mm 14mm 12mm;
+  }
+
+  *, *::before, *::after {
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
   body {
-    background: white;
-    color: black;
+    background: #ffffff !important;
+    color: #111827 !important;
+    font-size: 11pt;
+    line-height: 1.45;
+    direction: rtl;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
   }
-  .app-header, .tab-nav, .filter-section, .btn, .no-print, .kpi-grid, .report-actions-bar, .app-footer {
+
+  /* Hide app navigation, headers, footers, interactive buttons, tooltips */
+  .app-header, 
+  .tab-nav, 
+  .filter-section, 
+  .btn, 
+  .btn-doc-pdf,
+  .inner-quick-link,
+  .inner-header-bar,
+  .no-print, 
+  .kpi-grid, 
+  .report-actions-bar, 
+  .app-footer,
+  .chart-tooltip,
+  .trace-modal-backdrop,
+  #chartTooltip {
     display: none !important;
   }
-  .tab-panel {
+
+  /* Only show active view */
+  .app-view {
     display: none !important;
   }
-  .tab-panel.active {
+  .app-view.active {
     display: block !important;
+    opacity: 1 !important;
   }
+
+  /* National and Municipal Report Wrappers in Print */
   .national-report-wrapper, .paper-wrapper {
     box-shadow: none !important;
     border: none !important;
     padding: 0 !important;
     width: 100% !important;
     max-width: 100% !important;
+  }
+
+  /* Methodology Print Document Styling */
+  .methodology-container {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    background: #ffffff !important;
+  }
+
+  .methodology-print-header {
+    display: block !important;
+    border-bottom: 2px solid #2563eb;
+    padding-bottom: 12px;
+    margin-bottom: 16px;
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+
+  .print-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 6px;
+  }
+
+  .print-header-badge {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #1d4ed8;
+    background: #eff6ff !important;
+    border: 1px solid #bfdbfe;
+    padding: 2px 8px;
+    border-radius: 4px;
+    display: inline-block;
+  }
+
+  .print-header-version {
+    font-size: 10pt;
+    font-weight: 700;
+    color: #4b5563;
+    font-family: monospace;
+  }
+
+  .print-header-title {
+    font-size: 16pt;
+    font-weight: 800;
+    color: #1e3a8a;
+    margin: 4px 0 6px 0;
+    line-height: 1.3;
+  }
+
+  .print-header-subtitle {
+    font-size: 12pt;
+    font-weight: 700;
+    color: #374151;
+    margin-bottom: 10px;
+  }
+
+  .print-header-meta-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6px 16px;
+    font-size: 9.5pt;
+    color: #4b5563;
+    background: #f8fafc !important;
+    border: 1px solid #e2e8f0;
+    border-radius: 6px;
+    padding: 8px 12px;
+  }
+
+  .methodology-container .card {
+    border: 1px solid #cbd5e1 !important;
+    box-shadow: none !important;
+    background: #ffffff !important;
+    color: #111827 !important;
+    padding: 14px 16px !important;
+    margin-top: 14px !important;
+    border-radius: 6px !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .methodology-banner {
+    border: 1.5px solid #2563eb !important;
+    background: #f8fafc !important;
+  }
+
+  .methodology-badge {
+    background: #eff6ff !important;
+    color: #1e40af !important;
+    border: 1px solid #bfdbfe !important;
+    display: inline-block !important;
+    font-size: 9.5pt !important;
+    padding: 2px 8px !important;
+  }
+
+  .taxonomy-grid {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 10px !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .taxonomy-card {
+    border: 1px solid #d1d5db !important;
+    background: #ffffff !important;
+    padding: 10px 12px !important;
+    border-radius: 6px !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .tax-tag {
+    font-size: 9pt !important;
+    padding: 2px 6px !important;
+  }
+
+  .tax-example {
+    font-size: 9pt !important;
+    margin-top: 6px !important;
+    padding: 6px !important;
+    background: #f8fafc !important;
+    border: 1px dashed #cbd5e1 !important;
+    color: #334155 !important;
+  }
+
+  .pipeline-steps {
+    display: grid !important;
+    grid-template-columns: repeat(5, 1fr) !important;
+    gap: 8px !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .pipeline-step {
+    border: 1px solid #d1d5db !important;
+    background: #ffffff !important;
+    padding: 10px 8px !important;
+    border-radius: 6px !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .pipeline-step .step-num {
+    top: -8px !important;
+    right: -8px !important;
+    width: 20px !important;
+    height: 20px !important;
+    font-size: 10px !important;
+  }
+
+  .pipeline-step .step-title {
+    font-size: 10.5pt !important;
+    margin-bottom: 2px !important;
+  }
+
+  .pipeline-step .step-desc {
+    font-size: 8.5pt !important;
+    line-height: 1.35 !important;
+  }
+
+  .formula-block {
+    background: #f8fafc !important;
+    border: 1px solid #cbd5e1 !important;
+    border-right: 4px solid #2563eb !important;
+    padding: 12px !important;
+    margin-top: 10px !important;
+    border-radius: 6px !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .formula-code {
+    background: #f1f5f9 !important;
+    color: #0f172a !important;
+    border: 1px solid #cbd5e1 !important;
+    padding: 8px 10px !important;
+    font-size: 9.5pt !important;
+    direction: ltr !important;
+    text-align: left !important;
+  }
+
+  .formula-expl {
+    font-size: 9.5pt !important;
+    color: #1f2937 !important;
+    margin-top: 6px !important;
+    line-height: 1.4 !important;
+  }
+
+  .sources-list {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  .source-card {
+    border: 1px solid #cbd5e1 !important;
+    background: #ffffff !important;
+    padding: 12px 14px !important;
+    border-radius: 6px !important;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .source-title {
+    font-size: 11pt !important;
+    color: #1e3a8a !important;
+    font-weight: 700 !important;
+  }
+
+  .source-badge {
+    background: #ecfdf5 !important;
+    color: #047857 !important;
+    border: 1px solid #a7f3d0 !important;
+    font-size: 8.5pt !important;
+  }
+
+  .source-drive-link {
+    display: inline-block !important;
+    font-size: 9.5pt !important;
+    font-weight: 700 !important;
+    color: #1d4ed8 !important;
+    text-decoration: underline !important;
+  }
+
+  .source-print-url {
+    display: block !important;
+    font-size: 8.5pt !important;
+    color: #475569 !important;
+    margin-top: 3px !important;
+    direction: ltr !important;
+    text-align: left !important;
+    word-break: break-all !important;
+  }
+
+  .source-official-link {
+    display: none !important;
+  }
+
+  .methodology-print-footer {
+    display: block !important;
+    margin-top: 20px;
+    padding-top: 10px;
+    border-top: 1.5px solid #cbd5e1;
+    font-size: 8.5pt;
+    color: #64748b;
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  .print-footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  h2, h3, .card-title {
+    page-break-after: avoid;
+    break-after: avoid;
   }
 }
 

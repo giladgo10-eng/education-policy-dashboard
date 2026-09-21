@@ -10,11 +10,11 @@ window.DRIVE_SOURCES = {
   moin_2024: {
     id: "moin_2024",
     title: "דוחות כספיים מבוקרים של הרשויות המקומיות לשנת 2024",
-    shortTitle: "משרד הפנים — דוחות כספיים מבוקרים 2024 — הורדת קובץ המקור",
+    shortTitle: "משרד הפנים — דוחות כספיים מבוקרים 2024",
     publisher: "משרד הפנים — מינהל השלטון המקומי, אגף בכיר לתקצוב ופיתוח",
     fileName: "moin_audited_local_authorities_2024.xlsx",
     fileSize: "54.55 MB (1,024,771 שורות)",
-    driveUrl: "https://drive.google.com/file/d/1sPNpvv7PY7HDLL1U-iw4SKqxqphQu5fl/view?usp=sharing",
+    driveUrl: "https://drive.google.com/drive/folders/1ZlvGPW-Reuf4n5bKUE61F7-kgvNQhyRl?usp=drive_link",
     officialUrl: "https://www.gov.il/he/departments/ministry_of_interior",
     description: "דוחות ביצוע מבוקרים מלאים (טופס 1, טופס 2 ופרק 6 חינוך) לכל 257 הרשויות המקומיות.",
     variables: [
@@ -30,11 +30,11 @@ window.DRIVE_SOURCES = {
   cbs_socio_pop_2024: {
     id: "cbs_socio_pop_2024",
     title: "קובץ הרשויות המקומיות בישראל 2024 — אוכלוסייה רשמית 2024 ומדד חברתי־כלכלי 2021",
-    shortTitle: "למ״ס — אוכלוסייה ואשכול חברתי־כלכלי — הורדת קובץ המקור",
+    shortTitle: "הלמ״ס — רשויות מקומיות, אוכלוסייה ואשכול ח״כ",
     publisher: "הלשכה המרכזית לסטטיסטיקה (למ״ס)",
     fileName: "p_libud_24.xlsx",
     fileSize: "1.13 MB",
-    driveUrl: "https://drive.google.com/file/d/1gdJKpOtYoJXsyVD0Zo7QuaVoofAkbcfj/view?usp=sharing",
+    driveUrl: "https://drive.google.com/drive/folders/19MzHzBmw8sZbuyt0VMPIBQozZhkuv3Md?usp=drive_link",
     officialUrl: "https://www.cbs.gov.il/he/settlements/Pages/default.aspx",
     description: "מאגר נתונים רשמי לעיבוד — 257 רשויות מקומיות: אוכלוסייה רשמית 2024, אשכול חברתי־כלכלי 2021 (פרסום 1904), דירוג, ציונים, סיווג ומחוז.",
     variables: [
@@ -48,11 +48,11 @@ window.DRIVE_SOURCES = {
   cbs_periphery_2020: {
     id: "cbs_periphery_2020",
     title: "מדד הפריפריאליות של הרשויות המקומיות 2020 (לוח 1, הודעה לתקשורת 420/2022)",
-    shortTitle: "למ״ס — מדד פריפריאליות — הורדת קובץ המקור",
+    shortTitle: "הלמ״ס — מדד פריפריאליות 2020",
     publisher: "הלשכה המרכזית לסטטיסטיקה (למ״ס)",
     fileName: "table_01.xlsx",
     fileSize: "64.36 KB",
-    driveUrl: "https://drive.google.com/file/d/16RFIDdYd7Xm2S2kpnCcDHuwGP7d4S6KN/view?usp=sharing",
+    driveUrl: "https://drive.google.com/drive/folders/10POgWI8LVxb-DPvtf6caVX8oNeVM55hd?usp=drive_link",
     officialUrl: "https://www.cbs.gov.il/he/publications/Pages/2022/periphery-index-2020.aspx",
     description: "לוח 1 רשמי של הודעה 420/2022: דירוג פריפריאליות, ציון נגישות רציף ואשכול פריפריאליות 2020 לכלל הרשויות.",
     variables: [
@@ -370,11 +370,11 @@ window.DataTraceabilityEngine = {
     if (sources.length === 0) return '';
 
     const isMulti = sources.length > 1;
-    const title = isMulti ? '📎 קובצי המקור ששימשו לניתוח:' : '📎 קובץ המקור ששימש לניתוח:';
+    const title = isMulti ? '📎 תיקיות המקור ב-Google Drive:' : '📎 תיקיית המקור ב-Google Drive:';
 
     const linksHtml = sources.map(s => `
-      <a href="${s.driveUrl}" target="_blank" rel="noopener noreferrer" class="source-drive-link" title="הורדת קובץ המקור (${s.fileName}) מ-Google Drive">
-        📥 ${s.shortTitle} (<code>${s.fileName}</code>) ↗
+      <a href="${s.driveUrl}" target="_blank" rel="noopener noreferrer" class="source-drive-link" title="פתיחת תיקיית המקור (${s.fileName}) ב-Google Drive">
+        📁 ${s.shortTitle} — פתיחת תיקיית המקור ב-Google Drive ↗
       </a>
     `).join('');
 
@@ -470,11 +470,11 @@ window.DataTraceabilityEngine = {
         <div class="source-meta">
           <div><strong>גוף מפרסם:</strong> ${s.publisher}</div>
           <div><strong>שנת נתונים:</strong> ${s.dataYear}</div>
-          <div><strong>קובץ בפרויקט:</strong> <code class="font-mono">${s.fileName}</code></div>
+          <div><strong>קובץ בתיקייה:</strong> <code class="font-mono">${s.fileName}</code></div>
           <div style="margin-top: 6px;">
-            <strong>הורדת קובץ מקור:</strong> 
+            <strong>תיקיית קובץ המקור:</strong> 
             <a href="${s.driveUrl}" target="_blank" rel="noopener noreferrer" class="source-drive-link" style="margin-top: 4px;">
-              📥 הורדת קובץ המקור ב-Google Drive (Excel) ↗
+              📁 פתיחת תיקיית המקור ב-Google Drive ↗
             </a>
             ${s.officialUrl ? `<a href="${s.officialUrl}" target="_blank" rel="noopener noreferrer" class="source-official-link">🌐 אתר הגוף המפרסם ↗</a>` : ''}
           </div>

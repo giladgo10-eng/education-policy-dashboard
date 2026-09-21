@@ -24,6 +24,9 @@ ehthumbs.db
 *.bak
 *.tmp
 *.log
+scratch/
+*/scratch/
+**/scratch/
 
 # Private Raw Member Lists & Sensitive PII Files
 01_source_files/

@@ -343,13 +343,79 @@ window.EducationCharts = {
       }
     };
 
+    const pVal = window.EducationCharts.calculatePValue(r, N);
+
     return {
       n: N,
       r: r,
       r2: r2,
+      p: pVal,
       slope: slope.toFixed(3),
       intercept: intercept.toFixed(1)
     };
+  },
+
+  // Calculates exact Two-Tailed Student's t p-value from Pearson r and sample size n
+  calculatePValue: function(r, n) {
+    if (!n || n <= 2 || Math.abs(r) >= 1.0 || isNaN(r) || isNaN(n)) {
+      if (n <= 2) return 1.0;
+      if (Math.abs(r) >= 1.0) return 0.0001;
+      return 1.0;
+    }
+    const df = n - 2;
+    const t = Math.abs(r) * Math.sqrt(df / (1 - r * r));
+    const x = df / (df + t * t);
+
+    function logGamma(z) {
+      const cof = [76.18009172947146, -86.50532032941677, 24.01409824083091, -1.231739572450155, 0.1208650973866179e-2, -0.5395239384953e-5];
+      let y = z, tmp = z + 5.5;
+      tmp -= (z + 0.5) * Math.log(tmp);
+      let ser = 1.000000000190015;
+      for (let j = 0; j <= 5; j++) ser += cof[j] / ++y;
+      return -tmp + Math.log(2.5066282746310005 * ser / z);
+    }
+
+    function betacf(a, b, val) {
+      const maxIt = 100, eps = 3.0e-7;
+      const qab = a + b, qap = a + 1.0, qam = a - 1.0;
+      let c = 1.0, d = 1.0 - qab * val / qap;
+      if (Math.abs(d) < 1e-30) d = 1e-30;
+      d = 1.0 / d;
+      let h = d;
+      for (let m = 1; m <= maxIt; m++) {
+        const m2 = 2 * m;
+        let aa = m * (b - m) * val / ((qam + m2) * (a + m2));
+        d = 1.0 + aa * d;
+        if (Math.abs(d) < 1e-30) d = 1e-30;
+        c = 1.0 + aa / c;
+        if (Math.abs(c) < 1e-30) c = 1e-30;
+        d = 1.0 / d;
+        h *= d * c;
+        aa = -(a + m) * (qab + m) * val / ((a + m2) * (qap + m2));
+        d = 1.0 + aa * d;
+        if (Math.abs(d) < 1e-30) d = 1e-30;
+        c = 1.0 + aa / c;
+        if (Math.abs(c) < 1e-30) c = 1e-30;
+        d = 1.0 / d;
+        const del = d * c;
+        h *= del;
+        if (Math.abs(del - 1.0) < eps) break;
+      }
+      return h;
+    }
+
+    function betaInc(a, b, val) {
+      if (val <= 0) return 0;
+      if (val >= 1) return 1;
+      const bt = Math.exp(logGamma(a + b) - logGamma(a) - logGamma(b) + a * Math.log(val) + b * Math.log(1.0 - val));
+      if (val < (a + 1.0) / (a + b + 2.0))
+        return bt * betacf(a, b, val) / a;
+      else
+        return 1.0 - bt * betacf(b, a, 1.0 - val) / b;
+    }
+
+    const p = betaInc(df / 2.0, 0.5, x);
+    return Math.max(0.0001, Math.min(1.0, p));
   },
 
   // Renders the Cluster Step / Bar Chart (Socio-Economic Gradient 1-10)
@@ -581,13 +647,13 @@ window.EducationCharts = {
   },
 
   // Renders the Balancing Grant Two-Panel Correlation Paradox (Research Tab)
-  renderBalancingGrantResearch: function(canvasAll, canvasLow, allData, options = {}) {
-    if (!canvasAll || !canvasLow || !allData) return;
+  renderBalancingGrantResearch: function(canvasAll, canvasTarget, allData, targetData, options = {}) {
+    if (!canvasAll || !canvasTarget || !allData) return null;
 
     const tooltipEl = options.tooltipEl || document.getElementById('chartTooltip');
 
     // Panel A: All 257 Authorities
-    window.EducationCharts.renderScatterExplorer(canvasAll, allData, {
+    const resA = window.EducationCharts.renderScatterExplorer(canvasAll, allData, {
       xKey: 'balancing_grant_per_capita_nis',
       xLabel: 'מענק איזון לנפש (₪)',
       tooltipEl: tooltipEl,
@@ -595,14 +661,18 @@ window.EducationCharts = {
       onSelectCallback: options.onSelectCallback
     });
 
-    // Panel B: Low Socio Clusters 1-3 (N=76)
-    const lowData = allData.filter(d => d.cbs_socio_cluster >= 1 && d.cbs_socio_cluster <= 3);
-    window.EducationCharts.renderScatterExplorer(canvasLow, lowData, {
+    // Panel B: Selected Population (default: clusters 1-3)
+    const effectiveTargetData = targetData || allData.filter(d => (d.cbs_socio_cluster || d.socio_cluster_2021) >= 1 && (d.cbs_socio_cluster || d.socio_cluster_2021) <= 3);
+    const xLabelB = options.xLabelB || 'מענק איזון לנפש (₪)';
+
+    const resB = window.EducationCharts.renderScatterExplorer(canvasTarget, effectiveTargetData, {
       xKey: 'balancing_grant_per_capita_nis',
-      xLabel: 'מענק איזון לנפש (₪) [אשכולות 1–3 בלבד]',
+      xLabel: xLabelB,
       tooltipEl: tooltipEl,
       selectedCode: options.selectedCode,
       onSelectCallback: options.onSelectCallback
     });
+
+    return { panelA: resA, panelB: resB };
   }
 };

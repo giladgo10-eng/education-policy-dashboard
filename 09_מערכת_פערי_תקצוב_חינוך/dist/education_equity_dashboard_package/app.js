@@ -12,7 +12,9 @@
     selectedAuthority: null,
     nationalWeightedAvg: 26.85,
     nationalUnweightedAvg: 24.10,
-    activeTab: 'tab-explorer',
+    currentView: 'home',
+    gapsSubView: 'profile',
+    researchSubView: 'scatter',
     reportSubType: 'national',
     scatterXKey: 'own_revenue_share_pct',
     scatterXLabel: 'שיעור הכנסות עצמיות מתוך התקציב (%)',
@@ -85,6 +87,10 @@
     // Research Tab
     canvasBalancingAll: document.getElementById('canvasBalancingAll'),
     canvasBalancingLow: document.getElementById('canvasBalancingLow'),
+    selectResearchPopulation: document.getElementById('selectResearchPopulation'),
+    researchPopBadge: document.getElementById('researchPopBadge'),
+    researchPanelBTitle: document.getElementById('researchPanelBTitle'),
+    researchPanelBDesc: document.getElementById('researchPanelBDesc'),
 
     // Simulator Tab
     sliderPoolM: document.getElementById('sliderPoolM'),
@@ -111,10 +117,10 @@
     fullDataTable: document.getElementById('fullDataTable'),
 
     // Action Buttons
-    btnQuickSim: document.getElementById('btnQuickSim'),
-    btnQuickReport: document.getElementById('btnQuickReport'),
     btnExportExcel: document.getElementById('btnExportExcel'),
-    btnTableExport: document.getElementById('btnTableExport')
+    btnGapsExportExcel: document.getElementById('btnGapsExportExcel'),
+    btnTableExport: document.getElementById('btnTableExport'),
+    btnSubReportPrint: document.getElementById('btnSubReportPrint')
   };
 
   // Label Map for X-Axis selector
@@ -182,6 +188,9 @@
     applyFilters();
     runSimulator();
     renderReports();
+
+    // Initial Route via URL Hash
+    handleHashChange();
   }
 
   let activeDropdownIndex = -1;
@@ -452,18 +461,35 @@
       });
     }
 
-    // Tab Navigation
-    document.querySelectorAll('.tab-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const tabId = btn.getAttribute('data-tab');
-        switchTab(tabId);
-      });
+    // Global Navigation Click Handler (data-nav)
+    document.addEventListener('click', (e) => {
+      const navBtn = e.target.closest('[data-nav]');
+      if (navBtn) {
+        e.preventDefault();
+        const targetNav = navBtn.getAttribute('data-nav');
+        navigateTo(targetNav);
+        return;
+      }
+
+      const subBtn = e.target.closest('.subview-btn[data-subview]');
+      if (subBtn) {
+        e.preventDefault();
+        const parentViewEl = subBtn.closest('.app-view');
+        if (parentViewEl) {
+          const parentView = parentViewEl.id.replace('view-', '');
+          const targetSub = subBtn.getAttribute('data-subview');
+          navigateTo(parentView, targetSub);
+        }
+        return;
+      }
     });
 
-    // Quick Action Buttons
-    if (el.btnQuickSim) el.btnQuickSim.addEventListener('click', () => switchTab('tab-simulator'));
-    if (el.btnQuickReport) el.btnQuickReport.addEventListener('click', () => switchTab('tab-advocacy'));
+    // Hash Change Event (Back/Forward browser buttons and direct links)
+    window.addEventListener('hashchange', handleHashChange);
+
+    // Export & Print Buttons
     if (el.btnExportExcel) el.btnExportExcel.addEventListener('click', exportToExcel);
+    if (el.btnGapsExportExcel) el.btnGapsExportExcel.addEventListener('click', exportToExcel);
     if (el.btnTableExport) el.btnTableExport.addEventListener('click', exportToExcel);
     if (el.btnRunSim) el.btnRunSim.addEventListener('click', runSimulator);
 
@@ -498,9 +524,8 @@
       });
     }
 
-    const btnPrint = document.getElementById('btnSubReportPrint');
-    if (btnPrint) {
-      btnPrint.addEventListener('click', () => {
+    if (el.btnSubReportPrint) {
+      el.btnSubReportPrint.addEventListener('click', () => {
         window.print();
       });
     }
@@ -544,34 +569,139 @@
       });
     });
 
+    // Research Population Filter
+    if (el.selectResearchPopulation) {
+      el.selectResearchPopulation.addEventListener('change', () => {
+        renderResearch();
+      });
+    }
+
     // Window Resize
     window.addEventListener('resize', () => {
-      if (state.activeTab === 'tab-explorer') renderExplorer();
-      if (state.activeTab === 'tab-profile' && state.selectedAuthority) renderProfileCharts(state.selectedAuthority);
-      if (state.activeTab === 'tab-research') renderResearch();
+      if (state.currentView === 'research') {
+        if (state.researchSubView === 'scatter') renderExplorer();
+        if (state.researchSubView === 'balancing') renderResearch();
+      }
+      if (state.currentView === 'gaps' && state.gapsSubView === 'profile' && state.selectedAuthority) {
+        renderProfileCharts(state.selectedAuthority);
+      }
     });
   }
 
-  function switchTab(tabId) {
-    state.activeTab = tabId;
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+  function navigateTo(viewId, subViewId, updateHash = true) {
+    const validViews = ['home', 'gaps', 'research', 'simulator', 'reports', 'methodology'];
+    if (!validViews.includes(viewId)) {
+      viewId = 'home';
+    }
 
-    const btn = document.querySelector(`.tab-btn[data-tab="${tabId}"]`);
-    const panel = document.getElementById(tabId);
-    if (btn) btn.classList.add('active');
-    if (panel) panel.classList.add('active');
+    state.currentView = viewId;
+    if (viewId === 'gaps' && subViewId) {
+      state.gapsSubView = subViewId;
+    }
+    if (viewId === 'research' && subViewId) {
+      state.researchSubView = subViewId;
+    }
 
-    // Trigger re-render of canvases / tabs
+    // Hide all views and activate target view
+    document.querySelectorAll('.app-view').forEach(v => {
+      v.classList.remove('active');
+    });
+
+    const targetViewEl = document.getElementById(`view-${viewId}`);
+    if (targetViewEl) {
+      targetViewEl.classList.add('active');
+    }
+
+    // Activate appropriate subview inside gaps or research
+    if (viewId === 'gaps') {
+      const sub = state.gapsSubView || 'profile';
+      document.querySelectorAll('#view-gaps .subview-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-subview') === sub);
+      });
+      document.querySelectorAll('#view-gaps .subview-panel').forEach(p => {
+        p.classList.toggle('active', p.id === `gaps-sub-${sub}`);
+      });
+    }
+
+    if (viewId === 'research') {
+      const sub = state.researchSubView || 'scatter';
+      document.querySelectorAll('#view-research .subview-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-subview') === sub);
+      });
+      document.querySelectorAll('#view-research .subview-panel').forEach(p => {
+        p.classList.toggle('active', p.id === `research-sub-${sub}`);
+      });
+    }
+
+    // Hash sync
+    if (updateHash) {
+      let targetHash = `#${viewId}`;
+      if (viewId === 'gaps' && state.gapsSubView === 'table') targetHash = '#table';
+      if (viewId === 'research' && state.researchSubView === 'balancing') targetHash = '#balancing';
+      if (window.location.hash !== targetHash) {
+        window.history.pushState(null, '', targetHash);
+      }
+    }
+
+    // Scroll to top
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
+    // Trigger canvas/view re-renders after layout update
     setTimeout(() => {
-      if (tabId === 'tab-explorer') renderExplorer();
-      if (tabId === 'tab-profile' && state.selectedAuthority) renderProfileCharts(state.selectedAuthority);
-      if (tabId === 'tab-research') renderResearch();
-      if (tabId === 'tab-advocacy') renderReports();
-      if (tabId === 'tab-methodology' && window.DataTraceabilityEngine) {
+      if (viewId === 'gaps') {
+        if (state.gapsSubView === 'profile' && state.selectedAuthority) {
+          renderProfileCharts(state.selectedAuthority);
+        } else if (state.gapsSubView === 'table') {
+          renderTable();
+        }
+      } else if (viewId === 'research') {
+        if (state.researchSubView === 'scatter') {
+          renderExplorer();
+        } else if (state.researchSubView === 'balancing') {
+          renderResearch();
+        }
+      } else if (viewId === 'simulator') {
+        runSimulator();
+      } else if (viewId === 'reports') {
+        renderReports();
+      } else if (viewId === 'methodology' && window.DataTraceabilityEngine) {
         window.DataTraceabilityEngine.renderMethodologyTab('methodologyContainer');
       }
     }, 50);
+  }
+
+  function handleHashChange() {
+    const hash = window.location.hash.replace('#', '').toLowerCase();
+    if (!hash || hash === 'home') {
+      navigateTo('home', null, false);
+    } else if (hash === 'gaps' || hash === 'profile') {
+      navigateTo('gaps', 'profile', false);
+    } else if (hash === 'table') {
+      navigateTo('gaps', 'table', false);
+    } else if (hash === 'research' || hash === 'scatter' || hash === 'explorer') {
+      navigateTo('research', 'scatter', false);
+    } else if (hash === 'balancing') {
+      navigateTo('research', 'balancing', false);
+    } else if (hash === 'simulator' || hash === 'sim') {
+      navigateTo('simulator', null, false);
+    } else if (hash === 'reports' || hash === 'advocacy') {
+      navigateTo('reports', null, false);
+    } else if (hash === 'methodology' || hash === 'sources') {
+      navigateTo('methodology', null, false);
+    } else {
+      navigateTo('home', null, false);
+    }
+  }
+
+  function switchTab(tabId) {
+    if (tabId === 'tab-explorer') navigateTo('research', 'scatter');
+    else if (tabId === 'tab-profile') navigateTo('gaps', 'profile');
+    else if (tabId === 'tab-research') navigateTo('research', 'balancing');
+    else if (tabId === 'tab-simulator') navigateTo('simulator');
+    else if (tabId === 'tab-advocacy') navigateTo('reports');
+    else if (tabId === 'tab-methodology') navigateTo('methodology');
+    else if (tabId === 'tab-table') navigateTo('gaps', 'table');
+    else navigateTo('home');
   }
 
   function resetFilters() {
@@ -654,7 +784,7 @@
         excludeWar: state.excludeWar,
         onSelectCallback: (selected) => {
           selectAuthority(selected);
-          switchTab('tab-profile');
+          navigateTo('gaps', 'profile');
         }
       }
     );
@@ -773,19 +903,114 @@
     }
   }
 
+  const researchPopulationMeta = {
+    'ALL': {
+      title: 'כלל הרשויות',
+      desc: 'ברמה הארצית, מענק האיזון מרוכז ברשויות חלשות ששיעור השתתפותן נמוך עקב מצוקה כלכלית כוללת.',
+      filter: (d) => true
+    },
+    'GROUP_1_3': {
+      title: 'אשכולות 1–3 (מצוקה וזכאות מוגברת)',
+      desc: 'בתוך אשכולות המצוקה (1–3), ככל שהמענק לנפש גבוה יותר — שיעור ההשתתפות העצמית עולה במובהק (r = +0.4138, p = 0.0002).',
+      filter: (d) => {
+        const c = (d.cbs_socio_cluster !== undefined && d.cbs_socio_cluster !== null && d.cbs_socio_cluster !== '') ? d.cbs_socio_cluster : d.socio_cluster_2021;
+        return c >= 1 && c <= 3;
+      }
+    },
+    'GROUP_4_5': {
+      title: 'אשכולות 4–5 (ביניים נמוכים)',
+      desc: 'באשכולות הביניים הנמוכים (4–5), הקשר בין מענק האיזון להשתתפות עצמית מתון ולא מובהק סטטיסטית.',
+      filter: (d) => {
+        const c = (d.cbs_socio_cluster !== undefined && d.cbs_socio_cluster !== null && d.cbs_socio_cluster !== '') ? d.cbs_socio_cluster : d.socio_cluster_2021;
+        return c >= 4 && c <= 5;
+      }
+    },
+    'GROUP_6_7': {
+      title: 'אשכולות 6–7 (ביניים גבוהים)',
+      desc: 'באשכולות הביניים הגבוהים (6–7), מענק האיזון מצומצם ונצפה מתאם שלילי מובהק מול רשויות ללא זכאות למענק.',
+      filter: (d) => {
+        const c = (d.cbs_socio_cluster !== undefined && d.cbs_socio_cluster !== null && d.cbs_socio_cluster !== '') ? d.cbs_socio_cluster : d.socio_cluster_2021;
+        return c >= 6 && c <= 7;
+      }
+    },
+    'GROUP_8_10': {
+      title: 'אשכולות 8–10 (מבוססים)',
+      desc: 'באשכולות המבוססים (8–10), רוב הרשויות אינן זכאיות למענק איזון (מענק 0 ₪) ולכן השונות במענק נמוכה.',
+      filter: (d) => {
+        const c = (d.cbs_socio_cluster !== undefined && d.cbs_socio_cluster !== null && d.cbs_socio_cluster !== '') ? d.cbs_socio_cluster : d.socio_cluster_2021;
+        return c >= 8 && c <= 10;
+      }
+    }
+  };
+
+  // Add individual clusters 1..10 to metadata
+  for (let cl = 1; cl <= 10; cl++) {
+    const clNum = cl;
+    researchPopulationMeta[`CLUSTER_${clNum}`] = {
+      title: `אשכול ${clNum} בלבד`,
+      desc: clNum <= 3
+        ? `ניתוח ממוקד לאשכול ${clNum}: בחינת הקשר התוך-אשכולי בין גובה מענק האיזון לנפש להשתתפות העצמית בחינוך.`
+        : `ניתוח ממוקד לאשכול ${clNum}: בחינת שיעור ההשתתפות העצמית מול מענק האיזון ברשויות האשכול.`,
+      filter: (d) => {
+        const c = (d.cbs_socio_cluster !== undefined && d.cbs_socio_cluster !== null && d.cbs_socio_cluster !== '') ? d.cbs_socio_cluster : d.socio_cluster_2021;
+        return c === clNum;
+      }
+    };
+  }
+
   function renderResearch() {
-    if (el.canvasBalancingAll && el.canvasBalancingLow) {
-      EducationCharts.renderBalancingGrantResearch(
-        el.canvasBalancingAll,
-        el.canvasBalancingLow,
-        state.allData,
-        {
-          selectedCode: state.selectedAuthority ? state.selectedAuthority.code : null,
-          onSelectCallback: (selected) => {
-            selectAuthority(selected);
-          }
+    if (!el.canvasBalancingAll || !el.canvasBalancingLow) return;
+
+    const popKey = el.selectResearchPopulation ? el.selectResearchPopulation.value : 'GROUP_1_3';
+    const meta = researchPopulationMeta[popKey] || researchPopulationMeta['GROUP_1_3'];
+    const targetData = state.allData.filter(meta.filter);
+
+    const xLabelB = `מענק איזון לנפש (₪) [${meta.title}]`;
+
+    const res = EducationCharts.renderBalancingGrantResearch(
+      el.canvasBalancingAll,
+      el.canvasBalancingLow,
+      state.allData,
+      targetData,
+      {
+        xLabelB: xLabelB,
+        selectedCode: state.selectedAuthority ? state.selectedAuthority.code : null,
+        onSelectCallback: (selected) => {
+          selectAuthority(selected);
         }
-      );
+      }
+    );
+
+    // Update Panel B dynamic header and description
+    if (res && res.panelB && el.researchPanelBTitle) {
+      const pB = res.panelB;
+      const rSign = pB.r >= 0 ? '+' : '';
+      const rFormatted = `${rSign}${pB.r.toFixed(4)}`;
+      const pFormatted = pB.p < 0.0001 ? '< 0.0001' : pB.p.toFixed(4);
+
+      let statDisplay = `r = ${rFormatted} (p = ${pFormatted})`;
+      if (pB.n <= 2) {
+        statDisplay = `N=${pB.n} (מדגם קטן לחישוב מובהקות)`;
+      }
+
+      el.researchPanelBTitle.textContent = `פאנל ב': ${meta.title} (N=${pB.n}) — ${statDisplay}`;
+
+      // Color coding title: green for positive significant, danger for negative significant, muted otherwise
+      if (pB.r > 0.1 && pB.p <= 0.05) {
+        el.researchPanelBTitle.className = 'research-panel-title text-success';
+      } else if (pB.r < -0.1 && pB.p <= 0.05) {
+        el.researchPanelBTitle.className = 'research-panel-title text-danger';
+      } else {
+        el.researchPanelBTitle.className = 'research-panel-title text-accent';
+      }
+    }
+
+    if (el.researchPanelBDesc) {
+      el.researchPanelBDesc.textContent = meta.desc;
+    }
+
+    if (el.researchPopBadge) {
+      el.researchPopBadge.textContent = `${meta.title} — N=${targetData.length}`;
     }
   }
 
@@ -829,7 +1054,7 @@
           const found = state.allData.find(a => a.code === g.code);
           if (found) {
             selectAuthority(found);
-            switchTab('tab-profile');
+            navigateTo('gaps', 'profile');
           }
         };
         el.simGainersBody.appendChild(tr);
@@ -912,7 +1137,7 @@
       tr.style.cursor = 'pointer';
       tr.onclick = () => {
         selectAuthority(row);
-        switchTab('tab-profile');
+        navigateTo('gaps', 'profile');
       };
       el.fullDataBody.appendChild(tr);
     });
@@ -964,7 +1189,6 @@
     document.body.removeChild(link);
   }
 
-  // Global helper for profile selection from outside / console / tooltip
   window.selectAuthorityByCode = function (code) {
     const found = state.allData.find(a => a.code === String(code) || a.cbs_code === String(code));
     if (found) {
@@ -975,10 +1199,11 @@
       if (el.canvasBalancingLow) el.canvasBalancingLow._pinnedAuth = null;
 
       selectAuthority(found);
-      switchTab('tab-profile');
+      navigateTo('gaps', 'profile');
     }
   };
 
+  window.navigateTo = navigateTo;
   window.switchTab = switchTab;
 
   // Run on DOM Ready
